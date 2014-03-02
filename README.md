@@ -1,9 +1,6 @@
 Coolsoft-14
 ===========
-<<<<<<< HEAD
-Mohamed Metawaa 25-4343
 
-=======
 <table>
 	<tr>
 		<th>Name</th>
