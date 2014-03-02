@@ -1,5 +1,8 @@
 Coolsoft-14
 ===========
+<<<<<<< HEAD
+
+=======
 
 <table>
 	<tr>
@@ -72,6 +75,7 @@ Coolsoft-14
 		<td>25-1387</td>
 	</tr>
 	<tr>
+<<<<<<< HEAD
 		<td>Muhammad Mamdouh</td>
 		<td>25-4602</td>
 	</tr>
@@ -84,5 +88,11 @@ Coolsoft-14
 		<td>25-1058</td>
 	</tr>
 
+
+		<td>Nadine Adel</td>
+		<td>25-1058</td>
+	</tr>
+
 </table>
+
 
