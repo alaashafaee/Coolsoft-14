@@ -1,6 +1,6 @@
 Coolsoft-14
 ===========
-<<<<<<< HEAD
+
 <table>
 	<tr>
 		<th>Name</th>
@@ -47,10 +47,6 @@ Coolsoft-14
 		<td>25-2674</td>
 	</tr>
 	<tr>
-		<td>Mohamed Mahmoud Elsaeed </td>
-		<td>25-7019</td>
-	</tr>
-	<tr>
 		<td>Ahmed Mohamed Magdi</td> 
 		<td>25-0455</td>
 	</tr>
@@ -62,20 +58,30 @@ Coolsoft-14
 		<td>Ahmed Moataz</td>
 		<td>25-6033</td>
 	</tr>
+
 	<tr>
 		<td>Mussab ElDash</td>
 		<td>25-6882</td>
+	</tr>
+         <tr>
+		<td>Lin Kassem </td>
+		<td>25-3472</td>
 	</tr>
 	<tr>
 		<td>Rania Abdel Fattah</td>
 		<td>25-1387</td>
 	</tr>
 	<tr>
-		<td>Nadine Adel</td>
+		<td>Muhammad Mamdouh</td>
+		<td>25-4602</td>
+	</tr>
+	<tr>
+		<td>Mohamed Mahmoud Elsaeed </td>
+		<td>25-7019</td>
+	</tr>
+	<tr>
+		<td>Nadine Adel </td>
 		<td>25-1058</td>
 	</tr>
 </table>
-=======
-Mohamed Metawaa 25-4343
-Nadine Adel 
->>>>>>> a06db0091237129bda610a987fb32bc75e628ba7
+
