@@ -1,0 +1,70 @@
+body {
+	background-color: black;
+	color: white;
+}
+
+.mainframe {
+	background-color: black;
+	width: 100%;
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+}
+
+.mainframe th {
+	text-align: left;
+}
+
+.mainframe tr {
+	text-align: center;
+}
+
+.name {
+	margin-top: 60px;
+	text-align: center;
+	width: 100%;
+	font-size: 2em;
+}
+
+.ico {
+	width: 120px;
+	height: 120px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.crop {
+	width: 240px;
+	height: 240px;
+	overflow: hidden;
+	float: left;
+	border-radius: 240px;
+}
+
+.crop img {
+	width: 300px;
+	margin: -70px 0 0 -60px;
+}
+
+.filler {
+	height: 100%;
+}
+
+.feature img {
+	display: inline-block;
+	float: left;
+	max-width: 200px;
+	max-height: 200px;
+}
+
+.feature div {
+	margin-top: 60px;
+	text-align:center;
+	width: 100%;
+}
