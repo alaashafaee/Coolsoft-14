@@ -42,7 +42,7 @@ Coolsoft-14
 		<td>25-2674</td>
 	</tr>
 	<tr>
-		<td><a href="https://rowgithub.com/alaashafaee/Coolsoft-14/blob/C2_magdi_add_info/CoolSoft_Profiles/ahmed%20magdi/index.html">Ahmed Mohamed Magdi</a></td> 
+		<td>Ahmed Mohamed Magdi</a></td> 
 		<td>25-0455</td>
 	</tr>
 	<tr>
