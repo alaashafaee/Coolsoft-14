@@ -1,6 +1,5 @@
 Coolsoft-14
 ===========
-
 <table>
 	<tr>
 		<th>Name</th>
@@ -43,7 +42,7 @@ Coolsoft-14
 		<td>25-2674</td>
 	</tr>
 	<tr>
-		<td>Ahmed Mohamed Magdi</td> 
+		<td>Ahmed Mohamed Magdi</a></td> 
 		<td>25-0455</td>
 	</tr>
 	<tr>
@@ -107,6 +106,3 @@ Coolsoft-14
 
 
 </table>
-
-
-
