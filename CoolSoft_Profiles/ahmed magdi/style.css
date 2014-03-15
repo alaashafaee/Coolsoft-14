@@ -23,7 +23,7 @@ h1{
 	text-transform: none;
 	letter-spacing: -1px;
 	line-height: 1.6;
-	text-shadow:0px 0px 10px black;
+	text-shadow:0px 0px 20px darkblue;
 	margin-left: 32%;
 	margin-top: 5%;
 }
@@ -71,6 +71,15 @@ hr{
 	border:10px solid #F4F4F4;
 
 }
+#profImg:hover{
+	width: 250px;
+	height: 230px;
+	border-radius: 100%;
+	margin-top: 4.5%	;
+	margin-left: 42%;
+	border:10px solid #F4F4F4;
+	box-shadow: 0px 0px 10px darkblue;
+}
 
 #share-button{
 	margin-left: 43%;
@@ -82,6 +91,4 @@ hr{
 	width: 50%;
 	height: 20%;
 	margin-left: 26%;
-
-
 }
