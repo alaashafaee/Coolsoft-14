@@ -55,7 +55,7 @@ Coolsoft-14
 	</tr>
 
 	<tr>
-		<td><a href='http://mussabeldash.github.io'>Mussab ElDash</a></td>
+		<td><a href='http://mussabeldash.github.io' target='_blank'>Mussab ElDash</a></td>
 		<td>25-6882</td>
 	</tr>
          <tr>
