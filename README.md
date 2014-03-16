@@ -46,7 +46,7 @@ Coolsoft-14
 		<td>25-0455</td>
 	</tr>
 	<tr>
-		<td>Khaled Helmy</td>
+		<td><a href="http://khaledhelmy.github.io">Khaled Helmy</a></td>
 		<td>25-1594</td>
 	</tr>
 	<tr>
