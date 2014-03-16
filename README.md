@@ -95,7 +95,7 @@ Coolsoft-14
 		<td>25-11492</td>
 	</tr>
 	<tr>
-		<td>Amir George </td>
+		<td><a href='http://amirgeorge.github.io'>Amir George</a></td>
 		<td>25-4968</td>
 	</tr>
         <tr>
