@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Profile Page</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+   	 	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+    	<script type="text/javascript" src="chase.js"></script>
+ 
+    </style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="578" height="200"></canvas>
+    <script>
+      function drawTextAlongArc(context, str, centerX, centerY, radius, angle) {
+        var len = str.length, s;
+        context.save();
+        context.translate(centerX, centerY);
+        context.rotate(-1 * angle / 2);
+        context.rotate(-1 * (angle / len) / 2);
+        for(var n = 0; n < len; n++) {
+          context.rotate(angle / len);
+          context.save();
+          context.translate(0, -1 * radius);
+          s = str[n];
+          context.fillText(s, 0, 0);
+          context.restore();
+        }
+        context.restore();
+      }
+      var canvas = document.getElementById('myCanvas'), 
+        context = canvas.getContext('2d'),
+        centerX = canvas.width / 2,
+        centerY = canvas.height - 30,
+        angle = Math.PI * 0.8,
+        radius = 100;
+
+      context.font = '30pt Calibri';
+      context.textAlign = 'center';
+      context.fillStyle = 'black';
+      context.strokeStyle = 'blcak';
+      context.lineWidth = 3;
+      drawTextAlongArc(context, 'Ahmed Akram', centerX, centerY, radius, angle);
+
+    </script>
+    <div class="circular"><img src="images/per.png" alt="" /></div>
+
+    <!-- Social Media Buttons - CSS3 -->
+		<ul class="social" id="css3">
+			<li class="facebook">
+				<a href="https://www.facebook.com/ahmed.akram.9085"><strong>Facebook</strong></a>
+			</li>
+			
+			<li class="linkedin">
+				<a href="http://www.linkedin.com/profile/view?id=306290484&trk=nav_responsive_tab_profile_pic"><strong>LinkedIn</strong></a>
+			</li>
+			
+			<li class="twitter">
+				<a href="https://twitter.com/AhmedHagii"><strong>Twitter</strong></a>
+			</li>
+		</ul>
+
+		<ul class="social2" id="css3">
+			<li class="google">
+				<a href="https://plus.google.com/113480395577953049392/posts"><strong>Google+</strong></a>
+			</li>
+			
+			<li class="github">
+				<a href="https://github.com/ahmedhagii"><strong>Github</strong></a>
+			</li>
+			
+		</ul>
+
+	
+		<div class="container">
+			<div class = "about" id = "4" style="margin-left: 150px">
+				<p style = "margin-top:30px; margin-left: 20px">I'm a computer</p>
+				<p style = "margin-top:-15px; margin-left: 10px">science student at the German University in Cairo.</p>
+			</div>
+
+
+			<div class = "about" style = "width: 200px; height: 200px; margin-left: 30px">
+				<p style = "margin-top:60px; margin-left: 30px">I hate doing this page.</p>
+				<p style = "margin-top:-15px; margin-left: 15px">Front-end and I don't get along. I prefer the back seats.</p>
+			</div>
+
+		
+			<div class = "about" style = "margin-left: 40px; margin-top: 80px">
+				<p style = "margin-top:30px; margin-left: 20px">I'm interested in</p>
+				<p style = "margin-top:-15px; margin-left: 5px">Artificial Intelligence, machine learnign and game engines.</p>
+			</div>
+
+			<div class = "about" style = "width: 100px; height: 100px; margin-left: 120px; margin-top: 80px">
+				<p style = "margin-top:30px; margin-left: 10px">esmha goma</p>
+				<p style = "margin-top:-15px; margin-left: 10px">msh asteka!</p>
+			</div>
+
+
+			<div class = "about" id = "goCrazy" onClick = "goCrazy()" style ="margin-top= -30px;">
+				<p style="margin-left: 5px; margin-top: 20px">Click To Go Crazy!</p>
+			</div>
+
+			
+
+			<div class = "about" style = "margin-left: 150px; margin-top: 80px">
+				<p style = "margin-top:40px; margin-left: 20px">Junior Teaching</p>
+				<p style = "margin-top:-15px; margin-left: 30px">Assistant for CSEN102 and CSEN202.</p>
+			</div>
+
+			<div class = "about" style = "width: 150px; height: 150px; margin-left: 200px; margin-top: -40px;">
+				<p style = "margin-top:60px; margin-left: 30px">I swim and play basketball.</p>
+			</div>
+		</div> 
+
+
+		
+
+
+		
+			
+	</body>
+
+
+</html>
