@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<style type="text/css">
+		body {
+	background-color: #1C1C1C
+}
+
+h2 {
+	font-family: Verdana;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	color: #FFFFFF;
+}
+
+
+
+#navbar {
+	top:10px;
+	margin-left:-25px;
+}
+
+#header {
+	position: relative;
+	top: -30px;
+	background-color: #000000;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+ul{
+	list-style-type: none;
+	position:absolute;
+    left:-30px;
+    top:10px;
+}
+
+li {
+	display: inline;
+	border: 2px solid #000000;
+	font-family: Futura, Tahoma, sans-serif;
+	color: #000000;
+	padding: 5px;
+	border-radius: 5px 5px;
+	background-color: #b7d1c4
+}
+
+#left{
+	position:absolute;
+    left:375px;
+    top:140px;
+}
+
+
+
+
+
+
+
+
+#desc{
+    background-color: RGBa(0,0,0,0.5);
+    border: 2px solid #000000;
+	font-family: Futura, Tahoma, sans-serif;
+	color: #000000;
+    width:800px;
+	height: 500px;
+	position:absolute;
+	top: 80px;
+	left : 300px;
+    border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	padding:10px;
+}
+a{
+color: #FFFFFF;
+}
+a.a3{
+
+color: #FFFFFF;
+font-family: ‘Lucida Console’, Monaco, monospace;
+font-size:3em;
+
+
+
+}
+
+
+
+a.a1{
+color: #FFFFFF;
+font-family: ‘Lucida Console’, Monaco, monospace;
+
+}
+a.a2{
+color: #FFFFFF;
+font-family: ‘Lucida Console’, Monaco, monospace;
+font-size:1.5em;
+}
+a.a2{
+font-family: Verdana;
+font-size:em;
+text-decoration:none;
+}
+ol.nav li {
+ background-color: RGBa(255,255,255,0.5);
+}
+
+
+</style>
+
+
+<script type="text/javascript">
+var animate, left=0, imgObj=null;
+
+function init(){
+
+   imgObj = document.getElementById('a3oo');
+   imgObj.style.position= 'absolute';
+   imgObj.style.top = '230px';
+   imgObj.style.left = '-500px';
+   imgObj.style.visibility='hidden';
+  
+   
+   
+   
+    imgObj2 = document.getElementById('a3oo2');
+   imgObj2.style.position= 'absolute';
+   imgObj2.style.top = '10px';
+   imgObj2.style.left = '-300px';
+   imgObj2.style.visibility='hidden';
+   
+     imgObj3 = document.getElementById('a3oo3');
+   imgObj3.style.position= 'absolute';
+   imgObj3.style.top = '540px';
+   imgObj3.style.left = '-1500px';
+  
+  
+   
+   
+   
+   moveRight();
+   
+}
+
+function moveRight(){
+    left = parseInt(imgObj.style.left, 10);
+    left2 = parseInt(imgObj2.style.left,10);
+	left3 = parseInt(imgObj3.style.left,10);
+    if (1350 >= left) {
+	
+	
+	
+        imgObj.style.left = (left + 6) + 'px';
+        imgObj.style.visibility='visible';
+
+        //animate = setTimeout(function(){moveRight();},90); // call moveRight in 20msec
+        imgObj2.style.left = left2>=1350?(-200+'px') : ((left2 + 6) + 'px');
+        imgObj2.style.visibility='visible';
+
+		imgObj3.style.left = left3>=1350?(-1500+'px') : ((left3 + 6) + 'px');
+        imgObj3.style.visibility='visible';
+		
+        animate = setTimeout(function(){moveRight();},90);    
+        //stopanimate = setTimeout(moveRight,20);
+    } else {
+        imgObj.style.left= -500+'px';
+		 //imgObj2.style.left  = -200+'px';
+	
+		animate = setTimeout(function(){moveRight();},90);
+    }
+    //f();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function stop(){
+   clearTimeout(animate);
+}
+
+window.onload = function() {init();};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<title>Mamdou7 Yasna3 Profilo</title>
+	</head>
+	<body background = "skybackground.jpg">
+	
+<div style="position:relative; font-size:50px; z-index:1;"><img src="sa7aba.png" width="100" height="100" id = "a3oo">
+<img src="sa7aba.png" width="100" height="100" id = "a3oo2">
+<img src="tayara.png" width="400" height="400" id = "a3oo3">
+
+</div>
+	
+	
+	
+	
+	
+		<div id="desc" style = "z-index:2;">
+		 <a class=a3 >Muhammad Mamdouh</a><br><br> 
+		<a class=a2>About me</a><br>
+		<a class = a1>My name is Muhammad Mamdouh. I am currently passing the time being a CS student until I figure out a way to make a ton of money
+		so I can afford to stay at home and do nothing for the rest of my life. El tomoo7 7elw.</a><br><br>
+		<a class=a2>Skills</a><br>
+		<a class = a1>Since I excel at almost everything this section is dedicated the stuff I am not good at.</a><br></br>
+		<ol class = "nav"> 
+<li>Growing a beard</li>
+<li>Public speaking</li>
+<li>Lifting weights</li>
+<li>Public speaking while lifting weights</li>
+</ol><br></br>
+		<a class=a2>Tawasal ma3ana</a><br></br>
+		
+		<a href='http://www.twitter.com/iMamdou7'><img src="twitter.png" alt="twitter" width="55" height="55"></a>
+		<a href='http://www.facebook.com/Mamdou111'><img src="facebook.png" alt="facebook" width="50" height="50"></a>
+		
+		</div>
+		
+		</div>
+		
+	
+	</body>
+</html>
