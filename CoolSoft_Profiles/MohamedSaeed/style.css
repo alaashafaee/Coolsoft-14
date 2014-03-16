@@ -22,19 +22,19 @@ a:hover { text-decoration:none; }
 }
 
 li.facebook { background-image:url("facebook.png"); position:fixed;
-top:260px;
-left:700px; }
-li.google { background-image:url("google+.png"); 
+top:40%;
+left:50%; }
+li.google { background-image:url("google.png"); 
 position:fixed;
-top:260px;
-left:800px;}
+top:40%;
+left:60%;}
 li.linkedin { background-image:url("linkedin.png"); position:fixed;
-top:260px;
-left:900px; }
+top:40%;
+left:70%; }
 li.twitter { background-image:url("twitter.png");
 position:fixed;
-top:260px;
-left:1000px; }
+top:40%;
+left:80%; }
 
 #css3:hover li { opacity:0.2; }
 
@@ -51,13 +51,13 @@ left:1000px; }
 
 .slides {
     padding: 0;
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 150px;
     display: block;
     margin: 0 auto;
     position:fixed;
-    top:400px;
-    left:1050px; 
+    top:70%;
+    left:70%; 
    
 }
 
@@ -77,12 +77,13 @@ left:1000px; }
 .slide {
     top: 0;
     opacity: 0;
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 150px;
     display: block;
     position:fixed;
-    top:400px;
-    left:1050px;
+    top:70%;
+    left:70%; 
+
 
     transform: scale(0);
 
@@ -109,7 +110,7 @@ left:1000px; }
     color: #FFF;
     font-size: 156pt;
     text-align: center;
-    line-height: 380px;
+    line-height:  100%;
     font-family: "Varela Round", sans-serif;
     background-color: rgba(255, 255, 255, .3);
     text-shadow: 0px 0px 15px rgb(119, 119, 119);
@@ -161,4 +162,64 @@ input#img-2:checked ~ .nav-dots label#img-dot-2,
 input#img-3:checked ~ .nav-dots label#img-dot-3,
 input#img-4:checked ~ .nav-dots label#img-dot-4 {
 	background: rgba(0, 0, 0, 0.8);
+}
+
+.text
+{
+  position:fixed;
+  top:15%;
+  left:5%; 
+  font-size: 20px;
+  font-style:italic; font-family:Times; font-size: 200; text-align: center;
+}
+
+
+
+div.transbox
+  {
+  width:225px;
+  height:25px;
+  position:fixed;
+  top:93%;
+  left:71%;
+  background-color:#ffffff;
+  border:1px solid black;
+  opacity:0.6;
+  filter:alpha(opacity=60);
+  }
+div.transbox p
+  {
+  margin:2% 10%;
+  font-weight:bold;
+  font-style: italic;
+  font-family: Times;
+  color:#000000;
+  }
+
+.GUC
+{
+position:fixed;
+top:3%;
+left:92%;
+}
+
+.header
+{
+  position:fixed;
+  top:30%;
+  left:50%; 
+  font-style:italic; font-family:Times; font-size:100;
+}
+
+.image_specs
+{
+position:fixed;
+top:25%;
+left:7%;
+border: 8px solid #666;
+border-color: rgb(0, 49, 83);
+width:70%;
+width:350px;
+height:200px;
+box-shadow: 10px 10px 5px #888888;
 }
