@@ -1,0 +1,126 @@
+body {
+	background-color: white;
+	color: white;
+	font-family: 'Esteban', serif;
+}
+
+.mainframe {
+	border-collapse: collapse;
+	background-color: black;
+	width: 100%;
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	padding: 5px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+}
+
+.mainframe th {
+	z-index: 2;
+}
+
+.mainframe tr {
+	z-index: 1;
+	text-align: center;
+}
+
+.divider {
+	border-right: 5px solid white;
+}
+
+.break {
+	height: 15px;
+	background-color: white;
+}
+
+.name {
+	margin-top: 60px;
+	text-align: center;
+	width: 100%;
+	font-size: 2em;
+	font-family: 'Vampiro One', serif;
+}
+
+.ico {
+	width: 120px;
+	height: 120px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.crop {
+	width: 240px;
+	height: 240px;
+	overflow: hidden;
+	float: left;
+	border-radius: 240px;
+	margin-top: auto;
+	margin-bottom: auto;
+	box-shadow: 0px 0px 0px 55px white;
+}
+
+@-webkit-keyframes fade {
+	from {opacity: 1.0;}
+	to {opacity: 0.5;}
+}
+
+@-moz-keyframes fade {
+	from {opacity: 1.0;}
+	to {opacity: 0.5;}
+}
+
+@keyframes fade {
+	from {opacity: 1.0;}
+	to {opacity: 0.5;}
+}
+
+
+.crop img {
+	width: 300px;
+	margin: -70px 0 0 -60px;
+}
+
+.filler {
+	height: 100%;
+}
+
+.feature {
+	width: 50%;
+	/* Chrome, Safari, Opera */
+	-webkit-animation: fade 2s linear 0s infinite alternate;
+	-webkit-animation-play-state: paused;
+	/* Firefox */
+	-moz-animation: fade 2s linear 0s infinite alternate;
+	-moz-animation-play-state: paused;
+	/* Standard syntax */
+	animation: fade 5s linear 0s infinite alternate;
+	animation-play-state:paused;
+}
+
+.feature:hover {
+	/* Chrome, Safari, Opera */
+	-webkit-animation-play-state: paused;
+	/* Firefox */
+	-moz-animation-play-state: paused;
+	/* Standard syntax */
+	animation-play-state: paused;
+	opacity: 1.0;
+}
+
+.feature img {
+	float: left;
+	max-width: 200px;
+	max-height: 200px;
+}
+
+.feature div {
+	margin-top: 60px;
+	text-align:center;
+	width: 100%;
+	margin-bottom: 60px;
+}
