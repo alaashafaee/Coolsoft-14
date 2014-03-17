@@ -18,7 +18,7 @@ Coolsoft-14
 		<td>25-6759</td>
 	</tr>
 	<tr>
-		<td>Abdullrahman El-Husseny </td>
+		<td><a href='http://Husseny.github.io' target='_blank'>Abdullrahman Elhusseny</a></td>
 		<td>25-1311</td>
 	</tr>
 	<tr>
