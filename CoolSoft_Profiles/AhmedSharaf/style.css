@@ -1,0 +1,21 @@
+    .sharafBackground {
+            background-image: url('Images/Background01.jpg');
+            background-position: center top;
+            height: 1197px;
+        }
+        
+        .myStory {
+            width: 1319px;
+            height: 502px;
+        }
+        .gmail {
+            width: 52px;
+            height: 58px;
+        }
+        .facebook {
+            width: 55px;
+            height: 60px;
+        }
+        .formS {
+            height: 1210px;
+        }
