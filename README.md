@@ -6,15 +6,15 @@ Coolsoft-14
 		<th>ID</th>
 	</tr>
 	<tr>
-		<td><a href='http://metawaa.github.io'>Mohamed Abdelhamed Metawaa</a></td> 
+		<td><a href='http://metawaa.github.io' target='_blank'>Mohamed Abdelhamed Metawaa</a></td> 
 		<td>25-4343</td>
 	</tr>
 	<tr>
-		<td><a href='http://rami-khalil.github.io'>Rami Khalil</a></td>
+		<td><a href='http://rami-khalil.github.io' target='_blank'>Rami Khalil</a></td>
 		<td>25-1132</td>
 	</tr>
 	<tr>
-		<td><a href='http://ahmedelassuty.github.io'>Ahmed Elassuty </a></td>
+		<td><a href='http://ahmedelassuty.github.io' target='_blank'>Ahmed Elassuty </a></td>
 		<td>25-6759</td>
 	</tr>
 	<tr>
@@ -38,19 +38,19 @@ Coolsoft-14
 		<td>25-5834</td>
 	</tr>
 	<tr>
-		<td><a href='http://mimikian.github.io'>Abanoub Mimi</a></td>
+		<td><a href='http://mimikian.github.io' target='_blank'>Abanoub Mimi</a></td>
 		<td>25-2674</td>
 	</tr>
 	<tr>
-		<td><a href='http://ahmed93.github.io'>Ahmed Mohamed Magdi</a></td> 
+		<td><a href='http://ahmed93.github.io' target='_blank'>Ahmed Mohamed Magdi</a></td> 
 		<td>25-0455</td>
 	</tr>
 	<tr>
-		<td><a href="http://khaledhelmy.github.io">Khaled Helmy</a></td>
+		<td><a href="http://khaledhelmy.github.io" target='_blank'>Khaled Helmy</a></td>
 		<td>25-1594</td>
 	</tr>
 	<tr>
-		<td><a href='http://ahmed-moataz.github.io'>Ahmed Moataz</a></td>
+		<td><a href='http://ahmed-moataz.github.io' target='_blank'>Ahmed Moataz</a></td>
 		<td>25-6033</td>
 	</tr>
 
@@ -67,15 +67,15 @@ Coolsoft-14
 		<td>25-1387</td>
 	</tr>
 	<tr>
-		<td><a href='http://Mamdou7.github.io'>Muhammad Mamdouh</a></td>
+		<td><a href='http://Mamdou7.github.io' target='_blank'>Muhammad Mamdouh</a></td>
 		<td>25-4602</td>
 	</tr>
 	<tr>
-		<td><a href='http://mohamedsaeed93.github.io'>Mohamed Saeed</a></td>
+		<td><a href='http://mohamedsaeed93.github.io' target='_blank'>Mohamed Saeed</a></td>
 		<td>25-7019</td>
          </tr>
 	<tr>
-		<td><a href='http://ahmedatef.github.io'>Ahmed Atef</a></td>
+		<td><a href='http://ahmedatef.github.io' target='_blank'>Ahmed Atef</a></td>
 		<td>25-7019</td>
          </tr>
 	<tr>
@@ -87,7 +87,7 @@ Coolsoft-14
 		<td>25-8957</td>
 	</tr>
 	<tr>
-		<td><a href='http://ahmedhagii.github.io'>Ahmed Akram</a></td>
+		<td><a href='http://ahmedhagii.github.io' target='_blank'>Ahmed Akram</a></td>
 		<td>25-5201</td>
 	</tr>
 	<tr>
