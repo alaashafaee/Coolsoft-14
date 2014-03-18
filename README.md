@@ -59,7 +59,7 @@ Coolsoft-14
 		<td>25-6882</td>
 	</tr>
          <tr>
-		<td>Lin Kassem </td>
+		<td><a href='http://linsara.github.io' target='_blank'>Lin Kassem</a></td>
 		<td>25-3472</td>
 	</tr>
 	<tr>
