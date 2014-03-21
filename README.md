@@ -30,7 +30,7 @@ Coolsoft-14
 		<td>25-2960</td>
 	</tr>
 	<tr>
-		<td>Ebrahim Serag </td>
+		<td><a href='http://serag8.github.io' target='_blank'>Ebrahim Serag</a></td>
 		<td>25-1962</td>
 	</tr>
 	<tr>
