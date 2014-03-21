@@ -1,0 +1,40 @@
+<div style="padding:10px;">
+	<p style="float:right;">
+		<%= image_tag @contact.image, :class => "profile_image" %>
+	</p>
+
+	<div style="padding:10px;">
+		<p>
+			<h2 id="contact_info"><%=@contact.name%></h2>
+		</p>
+
+		<p>
+			<h3>Email:</h3>
+			<% if @contact.email.nil?%>
+				<%=@contact.email%>
+			<%else%>
+				No Email
+			<%end%>
+		</p>
+
+		<p>
+			<h3>phone:</h3>
+			<% if @contact.phone.nil?%>
+				<%=@contact.phone%>
+			<%else%>
+				No Phone Number
+			<%end%>
+		</p>
+		<p>
+			<h3>Address:</h3>
+			<% if @contact.address.nil?%>
+				<%=@contact.address%>
+			<%else%>
+				No Address
+			<%end%>
+		</p>
+
+		<p><%= link_to 'Edit', edit_contact_path(@contact) %></p>
+
+	</div>
+</div>

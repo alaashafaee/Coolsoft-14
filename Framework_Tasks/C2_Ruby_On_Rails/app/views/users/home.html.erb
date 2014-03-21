@@ -1,0 +1,29 @@
+<p><%= link_to 'Create Contact' , new_contact_path() %></p>
+
+<p> <%= render partial:  "users/search_form" %> </p>
+<div id="data">
+	<table width="100%">
+		<tr>
+   			 <th colspan="1">Name</th>
+   			 <th colspan="1">Phone</th>
+   			 <th colspan="1"></th>
+   			 <th colspan="1"></th>
+ 		</tr>
+				<% if !@contacts.blank? %>
+			  	<% for contact in @contacts %>
+	 		 		<tr>
+	    				<td colspan="1"><%=contact.name%></td>
+	   			 		<td colspan="1"><%=contact.phone%></td>
+	   			 		<td colspan="1"><%= link_to 'Show' , contact_path(contact) %></td>
+	   			 		<td colspan="1"><%= link_to 'delete', method: :delete %></td>
+	  				</tr>
+	  			<% end %>		  
+			<% end %>
+		</table>
+	</div>
+</div>
+
+
+
+
+
