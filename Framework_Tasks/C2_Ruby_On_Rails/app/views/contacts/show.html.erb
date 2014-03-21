@@ -10,7 +10,7 @@
 
 		<p>
 			<h3>Email:</h3>
-			<% if @contact.email.nil?%>
+			<% if !@contact.email.blank?%>
 				<%=@contact.email%>
 			<%else%>
 				No Email
@@ -18,16 +18,24 @@
 		</p>
 
 		<p>
-			<h3>phone:</h3>
-			<% if @contact.phone.nil?%>
+			<h3>Phone No.:</h3>
+			<% if !@contact.phone.blank?%>
 				<%=@contact.phone%>
 			<%else%>
 				No Phone Number
 			<%end%>
 		</p>
 		<p>
+			<h3>Mobile No.:</h3>
+			<% if !@contact.mobile.blank?%>
+				<%=@contact.mobile%>
+			<%else%>
+				No Mobile Number
+			<%end%>
+		</p>
+		<p>
 			<h3>Address:</h3>
-			<% if @contact.address.nil?%>
+			<% if !@contact.address.blank?%>
 				<%=@contact.address%>
 			<%else%>
 				No Address
