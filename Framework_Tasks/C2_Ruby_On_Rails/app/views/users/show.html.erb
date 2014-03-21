@@ -1,24 +1,27 @@
 <div style="padding:10px;">
 	<div style="padding:10px;">
 		<p>
-			<h2 id="contact_info"><%=current_user.name%></h2>
+			<h2 id="contact_info"><%=@user.name%></h2>
 		</p>
 
 		<p>
 			<h3>Email:</h3>
-			<% if current_user.email.nil?%>
-				<%=current_user.email%>
+			<% if !@user.email.blank?%>
+				<%=@user.email%>
 			<%else%>
 				No Email
 			<%end%>
 		</p>
 		<p>
 			<h3>Address:</h3>
-			<% if current_user.address.nil?%>
-				<%=current_user.address%>
+			<% if !@user.address.blank?%>
+				<%=@user.address%>
 			<%else%>
 				No Address
 			<%end%>
 		</p>
+
+		
+		<!-- <p><%= link_to 'Edit', edit_user_path(@user) %></p> -->
 	</div>
 </div>

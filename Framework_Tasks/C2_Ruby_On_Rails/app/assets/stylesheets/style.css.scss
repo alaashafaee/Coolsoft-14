@@ -17,6 +17,7 @@ table{
 
 
 #header{
+	overflow: auto;
 	background-color: white;
 	margin-left: 25%;
 	margin-top: 5%;
@@ -71,14 +72,15 @@ td{
 }
 
 .profile_image{
-	min-height: 200px;
-	min-width: 200px;
-	max-width: 200px;
-	max-height: 200px;
+	min-height: 100px;
+	min-width: 100px;
+	max-width: 100px;
+	max-height: 100px;
 	border-radius: 20px;
 }
 
 #table{
+	overflow: auto;
 	background-color: white;
 	margin-left: 25%;
 	margin-top: 1%;
