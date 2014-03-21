@@ -1,0 +1,42 @@
+<div id="header">
+      <table width="100%">
+        <tr>
+          
+          <td id="title">
+            <h1>AddressBook</h1>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+<div id= "table">
+  <div class = "Log_background">
+
+    <h2>Sign up</h2>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div><%= f.label :name %><br />
+    <%= f.text_field :name, :autofocus => true %></div> 
+
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email%></div>
+
+    <div><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+    <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+
+    <div><%= f.label :address %><br />
+    <%= f.text_field :address %></div>  
+
+    <div><%= f.label :Image %><br />
+    <%= f.file_field :image %></div>
+    <br><br>
+    <div><%= f.submit "Sign up" %></div>
+  <% end %>
+  </div>
+</div>
+<!-- <%= render "devise/shared/links" %> -->
