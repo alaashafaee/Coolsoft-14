@@ -72859,3 +72859,587 @@ Served asset /application.js - 304 Not Modified (0ms)
 
 Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:40:36 +0200
 Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/?method=delete" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Processing by UsersController#home as HTML
+  Parameters: {"method"=>"delete"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.8190ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.2980ms)
+  Rendered users/_search_form.html.erb (1.2ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=address_book_development command={:count=>"contacts", :query=>{"user_contact_id"=>"532c8524e75371ab2d000001"}} (0.3960ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"user_contact_id"=>"532c8524e75371ab2d000001"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.2787ms)
+  Rendered users/home.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 71.9ms (Views: 50.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /style.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /users.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /contacts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /contacts.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (27ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /main.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /users.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:12 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Processing by UsersController#home as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.5019ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.2480ms)
+  Rendered users/_search_form.html.erb (0.5ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=address_book_development command={:count=>"contacts", :query=>{"user_contact_id"=>"532c8524e75371ab2d000001"}} (0.4830ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"user_contact_id"=>"532c8524e75371ab2d000001"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.4671ms)
+  Rendered users/home.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 10.7ms (Views: 8.6ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /contacts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /style.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /contacts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:13 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/users/532c8524e75371ab2d000001" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"532c8524e75371ab2d000001"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.6053ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.2890ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"_id"=>"532c8524e75371ab2d000001"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.2561ms)
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 9.8ms (Views: 6.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /contacts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /style.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /contacts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:14 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Processing by UsersController#home as HTML
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.6061ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.2921ms)
+  Rendered users/_search_form.html.erb (0.5ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=address_book_development command={:count=>"contacts", :query=>{"user_contact_id"=>"532c8524e75371ab2d000001"}} (0.3412ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"user_contact_id"=>"532c8524e75371ab2d000001"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.2642ms)
+  Rendered users/home.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 10.1ms (Views: 7.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /application.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /contacts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /style.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /contacts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:18 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/contacts/532c855be753710c95000002" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"532c855be753710c95000002"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.6390ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.3021ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"_id"=>"532c855be753710c95000002"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.4001ms)
+  Rendered contacts/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 36.4ms (Views: 7.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /contacts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /style.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /contacts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:20 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started GET "/contacts/532c855be753710c95000002/edit" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Processing by ContactsController#edit as HTML
+  Parameters: {"id"=>"532c855be753710c95000002"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.6337ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.2522ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"_id"=>"532c855be753710c95000002"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.2499ms)
+  Rendered contacts/_form.html.erb (11.5ms)
+  Rendered contacts/edit.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 21.5ms (Views: 18.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /contacts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /style.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /contacts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:26 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+
+
+Started PUT "/contacts/532c855be753710c95000002" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Processing by ContactsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"l1SffiNqomqVw9EHpXI6ahPxb9BqirA3L2tNSrJWWWk=", "contact"=>{"name"=>"asd", "email"=>"asd@gmail.com", "address"=>"asdasdasd", "phone"=>"1293847", "mobile"=>"12344444444"}, "commit"=>"create", "id"=>"532c855be753710c95000002"}
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.6270ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.2410ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"_id"=>"532c855be753710c95000002"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.2313ms)
+Redirected to http://localhost:3000/contacts/532c855be753710c95000002
+Completed 302 Found in 7.9ms
+
+
+Started GET "/contacts/532c855be753710c95000002" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"532c855be753710c95000002"}
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=users selector={"$query"=>{"_id"=>"532c8524e75371ab2d000001"}, "$orderby"=>{:_id=>1}} flags=[:slave_ok] limit=-1 skip=0 batch_size=nil fields=nil (0.4721ms)
+  MOPED: 127.0.0.1:27017 QUERY        database=address_book_development collection=contacts selector={"_id"=>"532c855be753710c95000002"} flags=[:slave_ok] limit=0 skip=0 batch_size=nil fields=nil (0.1998ms)
+  Rendered contacts/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 10.8ms (Views: 8.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /contacts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/style.css?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /style.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/contacts.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /contacts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery-1.10.2.min.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /jquery-1.10.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/main.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /main.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/background.jpg" for 127.0.0.1 at 2014-03-21 20:42:27 +0200
+Served asset /background.jpg - 304 Not Modified (0ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.0970ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2400ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.8080ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2090ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2102ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3728ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3068ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2562ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3392ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2958ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3292ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2581ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3378ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2619ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.4112ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3132ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.0018ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3120ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3359ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.4338ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3180ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.8240ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1158ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2300ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2221ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2200ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1988ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3781ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2848ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2352ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2600ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2259ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3182ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2281ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2801ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2639ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3530ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3001ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3170ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.9210ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3640ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3268ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.9871ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1630ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2462ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1289ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1721ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.7241ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3080ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.7920ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2460ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.4119ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2188ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3599ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2569ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2920ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2858ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.4110ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2372ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3921ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3771ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3771ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3530ms)
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.0159ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2321ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2252ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1921ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1332ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2560ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.1520ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.4389ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (0.9511ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2529ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3847ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2197ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3330ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3120ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2968ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3149ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3618ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.2650ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3101ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3430ms)
+  MOPED: Retrying connection to primary for replica set <Moped::Cluster nodes=[<Moped::Node resolved_address="127.0.0.1:27017">]>
+  MOPED: 127.0.0.1:27017 COMMAND      database=admin command={:ismaster=>1} (1.3380ms)
