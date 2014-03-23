@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  success_attpemts: 1
+  failure_attempts: 1
+  views_count: 1
+
+two:
+  title: MyString
+  description: MyText
+  success_attpemts: 1
+  failure_attempts: 1
+  views_count: 1
