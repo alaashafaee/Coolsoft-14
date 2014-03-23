@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Tutor::Application.config.secret_key_base = '88125658ee62ba0e3ddde23afc0fd71a5b00c10835ee4b0931c00374b6a83c8b1e7feb324ea7d7e838a9cdb942520fcd36b78bf5643ab06cde04910f2490d1d2'
+Tutor::Application.config.secret_key_base = '1f46c3cd107a7d37534f6e9beb8ed78eafc3f5fcff0a300e9c4070f7707aa8a08d7c15f59de03f633955796300a42294fb5192b045f8eb926509bd6c07080a50'
