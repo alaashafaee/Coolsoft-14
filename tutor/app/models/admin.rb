@@ -1,2 +1,11 @@
-class Admin < ActiveRecord::Base
+class Admin < User
+
+	#Validations
+
+	#Relations
+	
+	#Methods
+
+
+
 end

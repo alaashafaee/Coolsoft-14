@@ -6,6 +6,7 @@ class CreateProblems < ActiveRecord::Migration
       t.integer :success_attpemts
       t.integer :failure_attempts
       t.integer :views_count
+      t.integer :time_limit
 
       t.timestamps
     end

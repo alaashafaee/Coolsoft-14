@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :age
       t.string :profile_image
       t.boolean :gender
+      t.string :type
 
       t.timestamps
     end

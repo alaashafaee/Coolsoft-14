@@ -1,2 +1,11 @@
-class Student < ActiveRecord::Base
+class Student < User
+	
+	#Validations
+
+	#Relations
+	
+	#Methods
+
+
+
 end

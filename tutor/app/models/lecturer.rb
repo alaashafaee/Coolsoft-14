@@ -1,2 +1,11 @@
-class Lecturer < ActiveRecord::Base
+class Lecturer < Stuff
+	
+	#Validations
+
+	#Relations
+	
+	#Methods
+
+
+
 end

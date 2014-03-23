@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20140323114338) do
   create_table "discussion_boards", force: true do |t|
     t.string   "title"
     t.boolean  "activated"
+    t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,6 +96,8 @@ ActiveRecord::Schema.define(version: 20140323114338) do
   create_table "posts", force: true do |t|
     t.text     "content"
     t.integer  "views_count"
+    t.integer  "discussion_board_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -105,12 +108,15 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.integer  "success_attpemts"
     t.integer  "failure_attempts"
     t.integer  "views_count"
+    t.integer  "time_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "replies", force: true do |t|
     t.text     "content"
+    t.integer  "post_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,6 +144,7 @@ ActiveRecord::Schema.define(version: 20140323114338) do
 
   create_table "stuffs", force: true do |t|
     t.string   "department"
+    t.string   "stuff"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -181,6 +188,7 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

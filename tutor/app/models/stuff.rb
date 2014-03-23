@@ -1,2 +1,11 @@
-class Stuff < ActiveRecord::Base
+class Stuff < User
+	
+	#Validations
+
+	#Relations
+	
+	#Methods
+
+
+
 end

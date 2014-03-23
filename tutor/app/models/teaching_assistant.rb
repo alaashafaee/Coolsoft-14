@@ -1,2 +1,11 @@
-class TeachingAssistant < ActiveRecord::Base
+class TeachingAssistant < Stuff
+	
+	#Validations
+
+	#Relations
+	
+	#Methods
+
+
+
 end
