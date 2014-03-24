@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323233201) do
+ActiveRecord::Schema.define(version: 20140324092151) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20140323233201) do
     t.datetime "updated_at"
   end
 
-  create_table "recommended_problems", force: true do |t|
+  create_table "recommend_problems", force: true do |t|
     t.integer  "problem_id"
     t.integer  "student_id"
     t.integer  "recommender_id"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 20140323233201) do
     t.datetime "updated_at"
   end
 
-  add_index "recommended_problems", ["problem_id", "student_id", "recommender_id"], name: "recom_problems", unique: true
+  add_index "recommend_problems", ["problem_id", "student_id"], name: "recom_problems", unique: true
 
   create_table "replies", force: true do |t|
     t.text     "content"
@@ -158,6 +158,15 @@ ActiveRecord::Schema.define(version: 20140323233201) do
   end
 
   add_index "student_courses", ["course_id", "student_id"], name: "index_student_courses_on_course_id_and_student_id", unique: true
+
+  create_table "student_problems", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "student_problems", ["problem_id", "student_id"], name: "index_student_problems_on_problem_id_and_student_id", unique: true
 
   create_table "students", force: true do |t|
     t.string   "faculty"

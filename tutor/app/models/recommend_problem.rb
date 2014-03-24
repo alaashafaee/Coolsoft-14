@@ -1,4 +1,4 @@
-class RecommendedProblem < ActiveRecord::Base
+class RecommendProblem < ActiveRecord::Base
 	#Validations
 
 	#Relations

@@ -1,4 +1,4 @@
 == Tutor
 
-  To run Unicorn Server ==> foreman start
-  , To run Rails Server ==> rails s
+  To run Unicorn Server ==> foreman start <\br>
+  To run Rails Server ==> rails s
