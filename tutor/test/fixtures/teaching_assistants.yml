@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  graduated_from: MyString
+  graduated_year: 
+  type: false
+
+two:
+  graduated_from: MyString
+  graduated_year: 
+  type: false

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message: MyText
+  type: false
+  time: 1
+  submission_counter: 1
+
+two:
+  message: MyText
+  type: false
+  time: 1
+  submission_counter: 1
