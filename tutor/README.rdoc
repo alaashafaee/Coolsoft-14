@@ -5,7 +5,7 @@ To run Unicorn Server ==> foreman start
 To run Rails Server ==> rails s
 
 
-The seeds file contains dummy records for testing with very basic inputs, If u are gona add validations 
+The seeds file contains dummy records for testing with very basic inputs.
 
 
 To run the seeds file run ==> rake db:seed 
