@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20140324092151) do
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "success_attpemts"
+    t.integer  "success_attempts"
     t.integer  "failure_attempts"
     t.integer  "views_count"
     t.integer  "time_limit"
