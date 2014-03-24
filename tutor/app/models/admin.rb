@@ -4,6 +4,8 @@ class Admin < User
 
 	#Relations
 	
+	#Scoops
+	
 	#Methods
 
 

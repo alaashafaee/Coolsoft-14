@@ -4,6 +4,8 @@ class Debugger < ActiveRecord::Base
 
 	#Relations
 	
+	#Scoops
+	
 	#Methods
 
 

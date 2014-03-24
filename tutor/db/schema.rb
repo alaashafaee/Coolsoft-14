@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323114338) do
+ActiveRecord::Schema.define(version: 20140323233201) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.boolean  "type"
     t.integer  "time"
     t.integer  "submission_counter"
+    t.integer  "model_answer_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,18 +71,24 @@ ActiveRecord::Schema.define(version: 20140323114338) do
 
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
+    t.integer  "model_answer_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
+    t.integer  "model_answer_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "model_answers", force: true do |t|
     t.text     "answer"
+    t.integer  "problem_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,9 +117,21 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.integer  "failure_attempts"
     t.integer  "views_count"
     t.integer  "time_limit"
+    t.integer  "track_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "recommended_problems", force: true do |t|
+    t.integer  "problem_id"
+    t.integer  "student_id"
+    t.integer  "recommender_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recommended_problems", ["problem_id", "student_id", "recommender_id"], name: "recom_problems", unique: true
 
   create_table "replies", force: true do |t|
     t.text     "content"
@@ -125,9 +145,19 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.text     "code"
     t.integer  "length"
     t.boolean  "status"
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "student_courses", force: true do |t|
+    t.string   "student_id"
+    t.string   "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "student_courses", ["course_id", "student_id"], name: "index_student_courses_on_course_id_and_student_id", unique: true
 
   create_table "students", force: true do |t|
     t.string   "faculty"
@@ -141,6 +171,16 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "stuff_courses", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "stuff_id"
+    t.boolean  "owner",      default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stuff_courses", ["course_id", "stuff_id"], name: "index_stuff_courses_on_course_id_and_stuff_id", unique: true
 
   create_table "stuffs", force: true do |t|
     t.string   "department"
@@ -160,6 +200,8 @@ ActiveRecord::Schema.define(version: 20140323114338) do
   create_table "test_cases", force: true do |t|
     t.string   "input"
     t.string   "output"
+    t.integer  "model_answer_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -168,6 +210,8 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.string   "title"
     t.text     "description"
     t.integer  "order_factor"
+    t.integer  "course_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -176,6 +220,8 @@ ActiveRecord::Schema.define(version: 20140323114338) do
     t.string   "title"
     t.integer  "difficulty"
     t.integer  "views_count"
+    t.integer  "topic_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,6 +242,8 @@ ActiveRecord::Schema.define(version: 20140323114338) do
   create_table "variable_constraints", force: true do |t|
     t.string   "variable_name"
     t.string   "type"
+    t.integer  "model_answer_id"
+    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

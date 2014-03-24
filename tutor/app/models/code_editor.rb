@@ -4,6 +4,8 @@ class CodeEditor < ActiveRecord::Base
 
 	#Relations
 	
+	#Scoops
+	
 	#Methods
 
 

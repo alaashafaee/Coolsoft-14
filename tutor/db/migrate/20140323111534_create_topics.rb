@@ -4,6 +4,8 @@ class CreateTopics < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.integer :order_factor
+      t.integer :course_id
+      t.integer :stuff_id
 
       t.timestamps
     end

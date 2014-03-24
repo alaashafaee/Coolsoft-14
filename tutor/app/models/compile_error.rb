@@ -4,6 +4,8 @@ class CompileError < ActiveRecord::Base
 
 	#Relations
 	
+	#Scoops
+	
 	#Methods
 
 
