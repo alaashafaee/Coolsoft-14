@@ -1,7 +1,7 @@
 class DiscussionBoard < ActiveRecord::Base
 
 	#Validations
-	validates :title, presence: true, message: "You must Enter the name of the Discussion Board!"
+	validates :title, presence: true
 
 	#Relations
 	belongs_to :course

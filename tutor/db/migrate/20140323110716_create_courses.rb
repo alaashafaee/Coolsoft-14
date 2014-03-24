@@ -6,7 +6,6 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :year
       t.integer :semester
       t.text :description
-      t.boolean :enable_discussion
 
       t.timestamps
     end
