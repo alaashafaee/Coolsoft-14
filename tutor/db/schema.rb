@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20140324092151) do
     t.integer  "year"
     t.integer  "semester"
     t.text     "description"
-    t.boolean  "enable_discussion"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140324092151) do
 
   create_table "discussion_boards", force: true do |t|
     t.string   "title"
-    t.boolean  "activated"
+    t.boolean  "activated",  default: false
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
