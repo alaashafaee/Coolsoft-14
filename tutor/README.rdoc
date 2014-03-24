@@ -1,6 +1,4 @@
 == Tutor
 
-To run Unicorn Server ==> foreman start
-To run Rails Server ==> rails s
-
-Model have been configured, just check your Task and review your model
+<br><p>To run Unicorn Server ==> foreman start</p>
+<br><p>To run Rails Server ==> rails s</p>
