@@ -5,6 +5,7 @@ class CreateSolutions < ActiveRecord::Migration
       t.integer :length
       t.boolean :status
       t.integer :student_id
+      t.integer :problem_id
 
       t.timestamps
     end
