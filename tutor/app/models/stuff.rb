@@ -3,8 +3,9 @@ class Stuff < User
 	#Validations
 
 	#Relations
-	has_many :stuff_courses
-	has_many :courses, through: :stuff_courses
+	# has_many :stuff_courses
+	# has_many :courses, through: :stuff_courses
+
 
 	has_many :topics
 	has_many :tracks
