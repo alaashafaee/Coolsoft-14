@@ -14,8 +14,35 @@ class Student < User
 
 	
 	#Scoops
+
 	#Methods
+	def get_a_system_suggested_problem
+		suggestions = Set.new
 
+		courses.each do |course|
+			course.topics.each do |topic|
+				
+#				level = TrackProgression.find_by(
+#							user_id: self.id,
+#							topic_id: topic.id
+#						).level
+				level = 0 #dummy value -- waiting for TrackProgression model
 
+				topic.tracks.each do |track|
+#						if(track.difficulty == level)
+							track.problems.each do |problem|
+								if(!problem.is_solved_by_user(self.id))
+									print "GOT ONE!!!!"
+									suggestions.add(problem)
+									break
+								end
+							end
+#						end
+				end
+			end
+		end
+
+		return suggestions.to_a().sample()
+	end
 
 end
