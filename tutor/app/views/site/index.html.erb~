@@ -68,7 +68,7 @@
         <h2>Course -> Topic -> Track</h2>
         <hr>
 
-	<label ><%=@Course.name%></label>
+	<label ><%=@Course1.name%></label>
 	 <br>
 	 <label ><%=@topic.title%></label>
 	 <br>
