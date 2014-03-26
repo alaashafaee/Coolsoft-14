@@ -171,22 +171,12 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
   create_table "staffs", force: true do |t|
     t.string   "department"
     t.string   "staff"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "student_courses", force: true do |t|
-    t.string   "student_id"
-    t.string   "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "student_courses", ["course_id", "student_id"], name: "index_student_courses_on_course_id_and_student_id", unique: true
 
   create_table "students", force: true do |t|
     t.string   "faculty"
