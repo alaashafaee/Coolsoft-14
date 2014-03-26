@@ -16,23 +16,34 @@ class Student < User
 	#Scoops
 
 	#Methods
-	def get_a_system_suggested_problem
-		suggestions = Set.new
-#		print "Student ID: " + self.id.to_s + ", " + courses.size.to_s + "\n"
-		courses.each do |course|
-#			print "Course ID: " + course.id.to_s + "\n"
-			course.topics.each do |topic|
-				
-				level = TrackProgression.get_progress(self.id, topic.id)
-#				print "LEVEL: " + level.to_s
-#				level = 0 #dummy value -- waiting for TrackProgression model
 
+	# [Instance method]
+	# Returns a suggested problem to solve for this user
+	# Parameters: None
+	# Returns: A Problem model instance
+	def get_a_system_suggested_problem
+		# Create a new empty set
+		suggestions = Set.new
+
+		# For every course this student is enrolled in
+		courses.each do |course|
+			# For every topic this course contains
+			course.topics.each do |topic|
+				# Get this student's progress level for this course
+				level = TrackProgression.get_progress(self.id, topic.id)
+
+				# For every track in this course topic
 				topic.tracks.each do |track|
+						# If this track's difficulty matches the student's progress level
 						if(track.difficulty == level)
+							# Check every problem in this track
 							track.problems.each do |problem|
+								# If this problem has not been solved by this student before
 								if(!problem.is_solved_by_user(self.id))
-#									print "GOT ONE!!!!"
+									# Add the problem to the suggestions set
 									suggestions.add(problem)
+									# Only take one problem per track
+									# Break out of problem loop
 									break
 								end
 							end
@@ -41,6 +52,8 @@ class Student < User
 			end
 		end
 
+		# Convert suggestions from set to array
+		# Return random element from array
 		return suggestions.to_a().sample()
 	end
 
