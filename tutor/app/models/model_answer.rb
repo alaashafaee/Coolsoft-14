@@ -4,7 +4,7 @@ class ModelAnswer < ActiveRecord::Base
 
 	#Relations
 	belongs_to :problem
-	belongs_to :owner, class_name: 'Stuff', foreign_key: :stuff_id
+	belongs_to :owner, class_name: 'Staff', foreign_key: :staff_id
 
 	has_many :test_cases, dependent: :destroy
 	has_many :method_constraints, dependent: :destroy

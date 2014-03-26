@@ -4,7 +4,7 @@ class CreateTestCases < ActiveRecord::Migration
       t.string :input
       t.string :output
       t.integer :model_answer_id
-      t.integer :stuff_id
+      t.integer :staff_id
 
       t.timestamps
     end
