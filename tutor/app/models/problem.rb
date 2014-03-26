@@ -7,6 +7,7 @@ class Problem < ActiveRecord::Base
 	belongs_to :track
 
 	has_many :model_answers, dependent: :destroy
+	has_many :test_cases, dependent: :destroy
 	has_many :solutions
 
 	#Scoops

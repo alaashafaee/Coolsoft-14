@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
   create_table "staffs", force: true do |t|
     t.string   "department"
     t.string   "staff"
@@ -213,6 +214,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.string   "output"
     t.integer  "model_answer_id"
     t.integer  "staff_id"
+    t.integer  "problem_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
