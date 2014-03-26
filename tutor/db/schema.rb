@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.text     "description"
     t.integer  "order_factor"
     t.integer  "course_id"
-    t.integer  "staff_id"
+    t.integer  "lecturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

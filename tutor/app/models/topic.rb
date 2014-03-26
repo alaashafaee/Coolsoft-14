@@ -6,7 +6,7 @@ class Topic < ActiveRecord::Base
 	has_many :tracks, dependent: :destroy
 
 	belongs_to :course
-	belongs_to :owner, class_name: "Staff", foreign_key: :staff_id
+	belongs_to :owner, class_name: "Lecturer", foreign_key: :lecturer_id
 
 	#Scoops
 	#Methods
