@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "solutions", force: true do |t|
     t.text     "code"
     t.integer  "length"
-    t.boolean  "status"
+    t.integer  "status"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
