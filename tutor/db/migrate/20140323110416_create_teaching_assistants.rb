@@ -4,6 +4,7 @@ class CreateTeachingAssistants < ActiveRecord::Migration
       t.string :graduated_from
       t.integer :graduated_year
       t.boolean :type
+      t.string :department
 
       t.timestamps
     end

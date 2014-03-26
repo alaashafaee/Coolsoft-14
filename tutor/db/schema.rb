@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140326150549) do
 
   create_table "lecturers", force: true do |t|
     t.string   "degree"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.string   "graduated_from"
     t.integer  "graduated_year"
     t.boolean  "type"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -228,13 +230,13 @@ ActiveRecord::Schema.define(version: 20140326150549) do
 
   create_table "track_progressions", force: true do |t|
     t.integer  "level"
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "track_progressions", ["user_id", "topic_id"], name: "index_track_progressions_on_user_id_and_topic_id", unique: true
+  add_index "track_progressions", ["student_id", "topic_id"], name: "index_track_progressions_on_student_id_and_topic_id", unique: true
 
   create_table "tracks", force: true do |t|
     t.string   "title"
@@ -255,7 +257,8 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
-    t.string   "type"
+    t.integer  "sub_id"
+    t.string   "sub_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
-	
 	#Validations
 
 	#Relations
 	has_many :posts, dependent: :destroy
 	has_many :replies, dependent: :destroy
 
-	has_many :progressions, class_name: "TrackProgression"
+
+	belongs_to :sub, polymorphic: true
 	
 	#Scoops
 	
