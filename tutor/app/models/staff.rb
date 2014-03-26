@@ -6,11 +6,9 @@ class Staff < User
 	# has_many :staff_courses
 	# has_many :courses, through: :staff_courses
 
-
-
-	has_many :topics
 	has_many :tracks
-	has_many :problems	
+	has_many :problems
+
 	has_many :model_answers
 	has_many :method_constraints
 	has_many :method_parameters
