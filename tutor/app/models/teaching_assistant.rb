@@ -1,4 +1,4 @@
-class TeachingAssistant < Stuff
+class TeachingAssistant < Staff
 	
 	#Validations
 

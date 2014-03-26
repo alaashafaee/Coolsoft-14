@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "model_answers", force: true do |t|
     t.text     "answer"
     t.integer  "problem_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -164,9 +164,16 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "solutions", force: true do |t|
     t.text     "code"
     t.integer  "length"
-    t.boolean  "status"
+    t.integer  "status"
     t.integer  "student_id"
     t.integer  "problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "staffs", force: true do |t|
+    t.string   "department"
+    t.string   "staff"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -184,13 +191,6 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.datetime "updated_at"
   end
 
-  create_table "stuffs", force: true do |t|
-    t.string   "department"
-    t.string   "stuff"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "teaching_assistants", force: true do |t|
     t.string   "graduated_from"
     t.integer  "graduated_year"
@@ -202,8 +202,9 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "test_cases", force: true do |t|
     t.string   "input"
     t.string   "output"
+    t.integer  "model_answer_id"
+    t.integer  "staff_id"
     t.integer  "problem_id"
-    t.integer  "stuff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -213,7 +214,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.text     "description"
     t.integer  "order_factor"
     t.integer  "course_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -223,7 +224,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.integer  "difficulty"
     t.integer  "views_count"
     t.integer  "topic_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -245,7 +246,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.string   "variable_name"
     t.string   "type"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
