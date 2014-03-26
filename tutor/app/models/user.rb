@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 	#Relations
 	has_many :posts, dependent: :destroy
 	has_many :replies, dependent: :destroy
-	
+
+
 	#Scoops
 	
 	#Methods
