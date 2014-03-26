@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326144754) do
+ActiveRecord::Schema.define(version: 20140326150549) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -225,6 +225,16 @@ ActiveRecord::Schema.define(version: 20140326144754) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "track_progressions", force: true do |t|
+    t.integer  "level"
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "track_progressions", ["user_id", "topic_id"], name: "index_track_progressions_on_user_id_and_topic_id", unique: true
 
   create_table "tracks", force: true do |t|
     t.string   "title"
