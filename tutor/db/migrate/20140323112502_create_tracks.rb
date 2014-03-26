@@ -5,7 +5,7 @@ class CreateTracks < ActiveRecord::Migration
       t.integer :difficulty
       t.integer :views_count
       t.integer :topic_id
-      t.integer :stuff_id
+      t.integer :staff_id
 
       t.timestamps
     end

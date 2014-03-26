@@ -1,4 +1,4 @@
-class Lecturer < Stuff
+class Lecturer < Staff
 	
 	#Validations
 

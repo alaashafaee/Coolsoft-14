@@ -2,10 +2,10 @@
 
 one:
   course_id: 1
-  stuff_id: 1
+  staff_id: 1
   owner: false
 
 two:
   course_id: 1
-  stuff_id: 1
+  staff_id: 1
   owner: false
