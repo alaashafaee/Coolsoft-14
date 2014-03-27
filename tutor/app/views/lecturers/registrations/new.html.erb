@@ -5,16 +5,16 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :degree %><br />
-    <%= f.text_field :degree%></div>
+    <%= f.text_field :degree, class:"form-control",style:"width:200px",placeholder:"Degree"%></div>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.email_field :email, autofocus: true , class:"form-control",style:"width:200px",placeholder:"Email"%></div>
 
   <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <%= f.password_field :password, autocomplete: "off", class:"form-control",style:"width:200px",placeholder:"Password"%></div>
 
   <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control",style:"width:200px",placeholder:"Confirm Password" %></div>
 
   <div><%= f.submit "Sign up", class: "btn btn-success", style: "margin-top:10px"  %></div>
 <% end %>
