@@ -17,16 +17,20 @@
 			</div>
 
 			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
-
+			<%- if student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in?%>
+				<form class="navbar-form navbar-left">
+                    <input type="text" class="form-control col-lg-8" placeholder="Search">
+                </form>
+            <%end%>
 		</div>
-		
 		<div class="navbar-collapse collapse" id="navbar-main">
+			<%= render "layouts/log_out_form" %>
 		</div>
 
 	</div>
 </div>
 
-<div class="container well" style="margin-top:70px;width:600px">
+<div class="container well" style="margin-top:70px;width:800px">
 <%= yield %>
 </div>
 
