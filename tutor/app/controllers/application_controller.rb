@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :profile_image, :faculty, :major, :semester, :advising, :probation)}
 			elsif "#{resource_name}" == "teaching_assistant"
-				devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation)}
+				devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation, :dob, :profile_image, :gender, :graduated_from, :graduated_year, :department)}
 			end
 		end
 
