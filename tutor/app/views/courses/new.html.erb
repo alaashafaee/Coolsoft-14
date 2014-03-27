@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<%= form_for :course  ,url: courses_path   do |f| %>
+<%= form_for :course, url: courses_path   do |f| %>
   <p>
     <%= f.label :Name %><br>
     <%= f.text_field :name ,:value => @t.name%>

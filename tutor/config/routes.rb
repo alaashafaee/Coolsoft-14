@@ -1,15 +1,13 @@
 Tutor::Application.routes.draw do
-
-  resources :topics
   resources :courses
-  # get "topics/new"
-  # topics GET ":controller(/:action(/:id(.:format)))"
-  # post ':controller(/:action(/:id(.:format)))'
- post "courses/destroy"
-  get "courses/create"
-  get "courses/show"
-  get "courses/manage"
-  
+  resources :topics
+
+  #post "courses/1/destroy"
+ # get "courses/create"
+  # get "courses/show"
+  # get "courses/manage"
+  # get "courses/new"
+  # post "courses/new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
