@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  student_id: 1
-  problem_id: 1
+  course_id: 1
+  staff_id: 1
+  owner: false
 
 two:
-  student_id: 1
-  problem_id: 1
+  course_id: 1
+  staff_id: 1
+  owner: false

@@ -6,7 +6,9 @@ class CreateHints < ActiveRecord::Migration
 	  t.integer :time
 	  t.integer :submission_counter
 	  t.integer :model_answer_id
-	  t.integer :stuff_id
+
+	  
+      t.references :owner, polymorphic: true
 
 	  t.timestamps
 	end

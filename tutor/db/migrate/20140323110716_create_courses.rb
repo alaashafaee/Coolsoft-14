@@ -5,6 +5,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :code
       t.integer :year
       t.integer :semester
+      t.string :university
       t.text :description
 
       t.timestamps
