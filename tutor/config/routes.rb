@@ -1,10 +1,10 @@
 Tutor::Application.routes.draw do
-  post "courses/destroy"
 
   resources :topics
   # get "topics/new"
   # topics GET ":controller(/:action(/:id(.:format)))"
   # post ':controller(/:action(/:id(.:format)))'
+ post "courses/destroy"
   get "courses/create"
   get "courses/show"
   get "courses/manage"
