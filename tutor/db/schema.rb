@@ -11,9 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140325191405) do
+ActiveRecord::Schema.define(version: 20140326150549) do
 
   create_table "admins", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.string   "code"
     t.integer  "year"
     t.integer  "semester"
+    t.string   "university"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -51,6 +60,13 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   end
 
   add_index "courses_students", ["course_id", "student_id"], name: "index_courses_students_on_course_id_and_student_id", unique: true
+
+  create_table "courses_teaching_assistants", id: false, force: true do |t|
+    t.integer "course_id",             null: false
+    t.integer "teaching_assistant_id", null: false
+  end
+
+  add_index "courses_teaching_assistants", ["course_id", "teaching_assistant_id"], name: "TACourses", unique: true
 
   create_table "debuggers", force: true do |t|
     t.datetime "created_at"
@@ -71,13 +87,23 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "lecturers", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "degree"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,7 +118,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,7 +127,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -108,7 +136,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "model_answers", force: true do |t|
     t.text     "answer"
     t.integer  "problem_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -125,7 +154,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.text     "content"
     t.integer  "views_count"
     t.integer  "discussion_board_id"
-    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,7 +168,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,7 +187,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "replies", force: true do |t|
     t.text     "content"
     t.integer  "post_id"
-    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -164,7 +196,7 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "solutions", force: true do |t|
     t.text     "code"
     t.integer  "length"
-    t.boolean  "status"
+    t.integer  "status"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
@@ -172,6 +204,14 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   end
 
   create_table "students", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "faculty"
     t.string   "major"
     t.integer  "year"
@@ -184,17 +224,19 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.datetime "updated_at"
   end
 
-  create_table "stuffs", force: true do |t|
-    t.string   "department"
-    t.string   "stuff"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "teaching_assistants", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "graduated_from"
     t.integer  "graduated_year"
     t.boolean  "type"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -202,8 +244,10 @@ ActiveRecord::Schema.define(version: 20140325191405) do
   create_table "test_cases", force: true do |t|
     t.string   "input"
     t.string   "output"
+    t.integer  "model_answer_id"
     t.integer  "problem_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -213,30 +257,28 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.text     "description"
     t.integer  "order_factor"
     t.integer  "course_id"
-    t.integer  "stuff_id"
+    t.integer  "lecturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "track_progressions", force: true do |t|
+    t.integer  "level"
+    t.integer  "student_id"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "track_progressions", ["student_id", "topic_id"], name: "index_track_progressions_on_student_id_and_topic_id", unique: true
 
   create_table "tracks", force: true do |t|
     t.string   "title"
     t.integer  "difficulty"
     t.integer  "views_count"
     t.integer  "topic_id"
-    t.integer  "stuff_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
-    t.boolean  "gender"
-    t.string   "type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -245,7 +287,8 @@ ActiveRecord::Schema.define(version: 20140325191405) do
     t.string   "variable_name"
     t.string   "type"
     t.integer  "model_answer_id"
-    t.integer  "stuff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

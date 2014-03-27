@@ -1,8 +1,9 @@
-class Admin < User
+class Admin < ActiveRecord::Base
 
 	#Validations
 
 	#Relations
+
 	
 	#Scoops
 	
