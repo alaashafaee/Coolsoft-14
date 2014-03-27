@@ -1,0 +1,26 @@
+<style>
+textarea 
+{ resize: none; }
+</style>
+
+<!-- The flash messages for the succes and failure scenarios -->
+ <p style="color: green"><%= flash[:success] %></p>
+ <p style="color: red"><%= flash[:alert] %></p>
+
+<!-- Timer that starts when problem is shown --> 
+ <div align = "center">
+ <span id="mins" >0</span>:<span id="secs">00</span>
+ </div> 
+
+<%= form_for :solution, :url => { :controller => "solutions", :action => "create" },
+             :html => {:method => :post} do |f| %>
+  <p>
+    <%= @code = f.text_area :code, :placeholder => "write your code here and then click submit",
+              :cols => "93", :rows => "25" %> 
+    <%= f.hidden_field :problem_id, :value => params[:id] %>
+    <br>
+  </p> 
+  <p>
+    <%= f.submit "Submit"%>
+  </p>
+<% end %>
