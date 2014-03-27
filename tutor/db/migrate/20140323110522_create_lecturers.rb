@@ -12,8 +12,6 @@ class CreateLecturers < ActiveRecord::Migration
       t.string :degree
       t.string :department
 
-      t.references :lecturer, polymorphic: true
-
       t.timestamps
     end
   end

@@ -4,7 +4,10 @@ class CreateVariableConstraints < ActiveRecord::Migration
       t.string :variable_name
       t.string :type
       t.integer :model_answer_id
-      t.integer :staff_id
+
+
+      
+      t.references :owner, polymorphic: true
 
       t.timestamps
     end
