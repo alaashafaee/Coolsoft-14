@@ -3,7 +3,9 @@ class CreateReplies < ActiveRecord::Migration
     create_table :replies do |t|
       t.text :content
       t.integer :post_id
-      t.integer :user_id
+
+      
+      t.references :owner, polymorphic: true
 
       t.timestamps
     end
