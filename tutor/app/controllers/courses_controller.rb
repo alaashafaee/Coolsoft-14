@@ -26,7 +26,8 @@ class CoursesController < ApplicationController
     @t.semester = course_params[:semester]
     @t.description = course_params[:description]
     if @t.save
-      render text: "Course Successfully Created "
+      flash[:success_creation]= "Course added."
+      redirect_to :action => 'index'
       #@t.discussion_board = Discussion_board.new
 
         # redirect_to('show')
