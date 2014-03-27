@@ -17,7 +17,7 @@
 			</div>
 
 			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
-			<%- if student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in?%>
+			<%- if signed_in?%>
 				<form class="navbar-form navbar-left">
                     <input type="text" class="form-control col-lg-8" placeholder="Search">
                 </form>
@@ -30,7 +30,7 @@
 	</div>
 </div>
 
-<div class="container well" style="margin-top:70px;width:800px">
+<div class="container well" align="center" style="margin-top:70px;width:800px">
 <%= yield %>
 </div>
 

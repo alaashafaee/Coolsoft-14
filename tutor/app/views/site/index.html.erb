@@ -1,4 +1,5 @@
 <%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in?%>
+	<%= flash[:notice]%>
 	<hr/>
 	<div id="register" align="center">
 		<table>
