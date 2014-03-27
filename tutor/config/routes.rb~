@@ -5,7 +5,6 @@ Tutor::Application.routes.draw do
   # You can have the root of your site routed with "root"
   #get "solutions/problempage"
   resources :solutions
-  resources :problems
   root 'site#index'
 
   # Example of regular route:match "/signup" => "users#new", :via => [:get]
