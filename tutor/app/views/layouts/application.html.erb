@@ -2,18 +2,42 @@
 <html>
 <head>
   <title>CoolSoft - Java Tutor</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+	<%= stylesheet_link_tag "application", "bootstrap", "bootstrap.min", :media => "all"%>
+	<%= javascript_include_tag "application","jquery"%>
+	<%= csrf_meta_tags%>
 </head>
 <body>
 
+<div class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
 
+			<div class="nav navbar-nav navbar-left">
+				<%= link_to image_tag("logoImgHere" , { :title => "Tutor Java !"})%>
+			</div>
 
+			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+			<%- if signed_in?%>
+				<form class="navbar-form navbar-left">
+                    <input type="text" class="form-control col-lg-8" placeholder="Search">
+                </form>
+            <%end%>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-main">
+			<%= render "layouts/log_out_form" %>
+		</div>
 
+	</div>
+</div>
 
+<div class="container well" align="center" style="margin-top:70px;width:800px">
 <%= yield %>
+</div>
 
+
+<div id="footer" class="navbar navbar-default navbar-bottom">
+
+</div>
 
 </body>
 </html>

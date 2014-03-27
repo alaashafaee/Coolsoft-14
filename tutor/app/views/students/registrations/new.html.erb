@@ -1,0 +1,67 @@
+<div align="center">
+<h2>Sign up as Student</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<%= devise_error_messages! %>
+
+	<h3>What's the use of age [can be calculated from dob], year [can be inferred from semester], What are success and failure attempts fields, gender shouldn't be boolean</h3>
+
+	<div>
+		<%= f.label :email %><br />
+		<%= f.email_field :email, autofocus: true %>
+	</div>
+
+	<div>
+		<%= f.label :password %><br />
+		<%= f.password_field :password, autocomplete: "off" %>
+	</div>
+
+	<div>
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation, autocomplete: "off" %>
+	</div>
+
+	<div>
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
+
+	<div>
+		<%= f.label :gender %>
+		<%= f.select :gender, options_for_select(%w[Male Female]) %>
+	</div>
+
+	<div>
+		<%= f.label :date_of_birth %><br />
+		<%= f.datetime_field :dob %>
+	</div>
+
+	<div>
+		<%= f.label :image_url %><br />
+		<%= f.url_field :profile_image %>
+	</div>
+
+	<div>
+		<%= f.label :faculty %><br />
+		<%= f.text_field :faculty %>
+	</div>
+
+	<div>
+		<%= f.label :major %><br />
+		<%= f.text_field :major %>
+	</div>
+
+	<div>
+		<%= f.label :semester %><br />
+		<%= f.number_field :semester %>
+	</div>
+
+	<div><%= f.check_box :advising %> <%= f.label :advising %>
+	<%= f.check_box :probation %> <%= f.label :probation %></div>
+
+	<br />
+	<div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
