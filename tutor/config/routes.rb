@@ -4,6 +4,8 @@ Tutor::Application.routes.draw do HEAD
   get "problem/Create_Edit_Problem_Page"
   get "problem_controller/Create_Edit_Problem_Page"
 
+	resources :test_cases 
+  root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
