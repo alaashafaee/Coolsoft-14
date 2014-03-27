@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
 	#Relations
 
 	belongs_to :owner, class_name: 'User', foreign_key: :user_id
+	
 	belongs_to :discussion_board, class_name: "DiscussionBoard"
 	has_many :replies, dependent: :destroy
 	

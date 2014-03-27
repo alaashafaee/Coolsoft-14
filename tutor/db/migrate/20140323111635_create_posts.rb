@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.text :content
       t.integer :views_count
       t.integer :discussion_board_id
-      t.integer :user_id
+      t.references :user, polymorphic: true
 
       t.timestamps
     end
