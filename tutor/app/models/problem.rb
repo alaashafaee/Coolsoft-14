@@ -3,7 +3,7 @@ class Problem < ActiveRecord::Base
 	#Validations
 
 	#Relations
-	belongs_to :owner, class_name: 'Stuff', foreign_key: :stuff_id
+	belongs_to :owner, polymorphic: true
 	belongs_to :track
 
 	has_many :model_answers, dependent: :destroy
