@@ -1,7 +1,18 @@
 class Course < ActiveRecord::Base
 	
 	#Validations
-	
+	validates :name ,presence: true 
+	validates :description , presence: true
+	validates :code ,presence: true
+	validates :year ,presence: true ,  numericality: { only_integer: true, greater_than_or_equal_to: Date.today.year,message: "is not valid" }
+	validates :semester , presence: true , numericality: true
+
+
+
+
+
+
+
 	#Relations
 	has_many :TAs, class_name: 'TeachingAssistant'
 	has_and_belongs_to_many :lecturers, join_table: "courses_lecturers"
