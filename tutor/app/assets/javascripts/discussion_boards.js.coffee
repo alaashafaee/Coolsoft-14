@@ -18,4 +18,4 @@ $(document).on 'click', '[data-dismiss=modal], .modal-scrollable', ->
   $('.modal-body-content').empty()
 $(document).on 'click', '#ajax-modal', (e) ->
   e.stopPropagation();
->>>>>>> magdi
+

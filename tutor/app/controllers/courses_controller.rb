@@ -13,6 +13,9 @@ class CoursesController < ApplicationController
   end
 
   def manage
+       id =  params[:id]
+    course = Course.find_by_id(id)
+     @discussionBoard = course.discussion_board
   end
 
 end

@@ -1,14 +1,6 @@
-<<<<<<< HEAD
-
-
 <% if @discussionBoard.activated == true %>
-  <%str = "Click to deactivate" %>
-<% else %>
-  <%str = "Click to activate"%>
-<% end %>
 
-<%= button_to str, {:action => "toggle" }  %>
-=======
+
 <div style="width: 50%; margin-left:25%">
 	<h1><%=@discusstionBoard.title%></h1>
 	<% unless @posts.blank? %>
@@ -34,4 +26,10 @@
 		No Posts Yet .. Try Creating a Post
 	<% end %>
 </div>
->>>>>>> magdi
+
+
+
+<% else %>
+  The discussion board is deactivated
+<% end %>
+
