@@ -6,8 +6,9 @@ class Track < ActiveRecord::Base
 	has_many :problems, dependent: :destroy
 
 	belongs_to :topic
-	belongs_to :owner, class_name: "Stuff", foreign_key: :stuff_id
 	
+	belongs_to :owner, polymorphic: true
+
 	#Scoops
 	#Methods
 
