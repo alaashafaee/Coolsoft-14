@@ -1,7 +1,8 @@
 Tutor::Application.routes.draw do
-  get "courses/destroy"
+  post "courses/destroy"
   get "courses/create"
   get "courses/show"
+  get "courses/manage"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

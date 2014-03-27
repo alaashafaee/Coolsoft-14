@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   
   def destroy
-  	Course.find(params[:id]).destroy
+  	Course.last.destroy
     flash[:success] = "Course deleted."
     redirect_to :action => 'show'
   end
