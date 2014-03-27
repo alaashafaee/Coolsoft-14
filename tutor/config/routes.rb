@@ -7,6 +7,7 @@ Tutor::Application.routes.draw do
   resources :solutions
   resources :problems
   root 'site#index'
+  resources :problems
 
   # Example of regular route:match "/signup" => "users#new", :via => [:get]
   #   get 'products/:id' => 'catalog#view'

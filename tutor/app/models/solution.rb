@@ -8,8 +8,11 @@ class Solution < ActiveRecord::Base
 	belongs_to :problem
 	
 	#Scoops
+
 	#Methods
 
-
+	#Constants
+	STATUS_SUBMITTED 	= 	0
+	STATUS_ACCEPTED		=	1
 
 end
