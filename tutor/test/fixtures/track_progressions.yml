@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  course_id: 1
-  stuff_id: 1
-  owner: false
+  level: 1
 
 two:
-  course_id: 1
-  stuff_id: 1
-  owner: false
+  level: 1

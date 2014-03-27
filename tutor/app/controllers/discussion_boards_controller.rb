@@ -1,12 +1,5 @@
 class DiscussionBoardsController < ApplicationController
 
-	 def show
-	 #	redirect_to('toggle')
-	id = Course.last
-		# @id =  params[:id]
-	course = Course.find_by_id(id)
-	@discussionBoard = course.discussion_board
-	 end
 	def toggle
 		@id = Course.last
 		# @id =  params[:id]
@@ -16,5 +9,11 @@ class DiscussionBoardsController < ApplicationController
 		@discussionBoard.save
 		redirect_to :back
 	end
+
+  def show
+  	@discusstionBoard = DiscussionBoard.find(params[:id])
+  	@posts = @discusstionBoard.posts.order("created_at desc")
+  	@replies = @posts.order("created_at desc")
+  end
 
 end
