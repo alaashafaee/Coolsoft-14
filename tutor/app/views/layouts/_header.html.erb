@@ -1,1 +1,9 @@
-<p>This line is from the header file. </p>
+<p>This line is from the header file.</p>
+
+<%- if lecturer_signed_in?%>
+	<%= button_to 'Log Out', destroy_lecturer_session_path, method: :delete %>
+<%- elsif student_signed_in?%>
+	<%= button_to 'Log Out', destroy_student_session_path, method: :delete %> 
+<%- elsif teaching_assistant_signed_in?%>
+	<%= button_to 'Log Out', destroy_teaching_assistant_session_path, method: :delete %>
+<% end%>

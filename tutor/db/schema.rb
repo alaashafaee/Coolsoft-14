@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326150549) do
+ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -84,10 +84,24 @@ ActiveRecord::Schema.define(version: 20140326150549) do
   end
 
   create_table "lecturers", force: true do |t|
+    t.string   "name"
     t.string   "degree"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true
+  add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true
 
   create_table "lecturers_teaching_assistants", id: false, force: true do |t|
     t.integer "teaching_assistant_id", null: false
@@ -186,6 +200,7 @@ ActiveRecord::Schema.define(version: 20140326150549) do
   end
 
   create_table "students", force: true do |t|
+    t.string   "name"
     t.string   "faculty"
     t.string   "major"
     t.integer  "year"
@@ -196,7 +211,20 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.integer  "success_attempts"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "students", ["email"], name: "index_students_on_email", unique: true
+  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "graduated_from"
@@ -204,7 +232,20 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.boolean  "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true
+  add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true
 
   create_table "test_cases", force: true do |t|
     t.string   "input"
