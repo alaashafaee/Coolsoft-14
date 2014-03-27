@@ -3,6 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :name
       t.string :email
+      t.boolean :verified_type
       t.string :password
       t.date :dob
       t.integer :age
