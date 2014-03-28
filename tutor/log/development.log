@@ -5403,3 +5403,508 @@ Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 
 
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/problems/showCreate" for 127.0.0.1 at 2014-03-28 23:36:59 +0200
+
+ActiveRecord::PendingMigrationError (Migrations are pending; run 'bin/rake db:migrate RAILS_ENV=development' to resolve this issue.):
+  activerecord (4.0.4) lib/active_record/migration.rb:383:in `check_pending!'
+  activerecord (4.0.4) lib/active_record/migration.rb:370:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:373:in `_run__207348349__call__callbacks'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.1ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (16.3ms)
+
+
+Started GET "/problems/show" for 127.0.0.1 at 2014-03-28 23:37:03 +0200
+
+ActiveRecord::PendingMigrationError (Migrations are pending; run 'bin/rake db:migrate RAILS_ENV=development' to resolve this issue.):
+  activerecord (4.0.4) lib/active_record/migration.rb:383:in `check_pending!'
+  activerecord (4.0.4) lib/active_record/migration.rb:370:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:373:in `_run__207348349__call__callbacks'
+  activesupport (4.0.4) lib/active_support/callbacks.rb:80:in `run_callbacks'
+  actionpack (4.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/reloader.rb:64:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.3ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.9ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.8ms)
+  [1m[36m (142.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (112.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateTeachingAssistants (20140323110416)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "teaching_assistants" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "verified_type" boolean, "password" varchar(255), "dob" date, "age" integer, "profile_image" varchar(255), "gender" boolean, "graduated_from" varchar(255), "graduated_year" integer, "type" boolean, "department" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323110416"]]
+  [1m[36m (118.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLecturers (20140323110522)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "lecturers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "verified_type" boolean, "password" varchar(255), "dob" date, "age" integer, "profile_image" varchar(255), "gender" boolean, "degree" varchar(255), "department" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323110522"]]
+  [1m[36m (126.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCourses (20140323110716)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "code" varchar(255), "year" integer, "semester" integer, "university" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323110716"]]
+  [1m[36m (105.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStudents (20140323111235)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "verified_type" boolean, "password" varchar(255), "dob" date, "age" integer, "profile_image" varchar(255), "gender" boolean, "faculty" varchar(255), "major" varchar(255), "year" integer, "semester" integer, "advising" boolean, "probation" boolean, "failure_attempts" integer, "success_attempts" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323111235"]]
+  [1m[36m (125.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAdmins (20140323111457)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "verified_type" boolean, "password" varchar(255), "dob" date, "age" integer, "profile_image" varchar(255), "gender" boolean, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323111457"]]
+  [1m[36m (115.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTopics (20140323111534)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "topics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "order_factor" integer, "course_id" integer, "lecturer_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323111534"]]
+  [1m[36m (127.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20140323111635)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "views_count" integer, "discussion_board_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323111635"]]
+  [1m[36m (128.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateReplies (20140323111711)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "replies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "post_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323111711"]]
+  [1m[36m (126.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateDiscussionBoards (20140323112104)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "discussion_boards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "activated" boolean DEFAULT 'f', "course_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323112104"]]
+  [1m[36m (122.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProblems (20140323112245)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "problems" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "success_attempts" integer, "failure_attempts" integer, "views_count" integer, "time_limit" integer, "track_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323112245"]]
+  [1m[36m (126.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateSolutions (20140323112347)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "solutions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" text, "length" integer, "status" integer, "student_id" integer, "problem_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323112347"]]
+  [1m[36m (128.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTracks (20140323112502)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "tracks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "difficulty" integer, "views_count" integer, "topic_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323112502"]]
+  [1m[36m (137.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateModelAnswers (20140323112630)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "model_answers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "answer" text, "problem_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323112630"]]
+  [1m[36m (139.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMethodParameters (20140323113117)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "method_parameters" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "parameter" varchar(255), "model_answer_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113117"]]
+  [1m[36m (136.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMethodConstraints (20140323113134)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "method_constraints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "method_name" varchar(255), "model_answer_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113134"]]
+  [1m[36m (115.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateVariableConstraints (20140323113244)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "variable_constraints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "variable_name" varchar(255), "type" varchar(255), "model_answer_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113244"]]
+  [1m[36m (148.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateTestCases (20140323113417)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "test_cases" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "input" varchar(255), "output" varchar(255), "model_answer_id" integer, "problem_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113417"]]
+  [1m[36m (126.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateHints (20140323113537)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "hints" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "message" text, "type" boolean, "time" integer, "submission_counter" integer, "model_answer_id" integer, "owner_id" integer, "owner_type" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113537"]]
+  [1m[36m (137.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCompileErrors (20140323113636)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "compile_errors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113636"]]
+  [1m[36m (126.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateDebuggers (20140323113646)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "debuggers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113646"]]
+  [1m[36m (118.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCodeEditors (20140323113653)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "code_editors" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323113653"]]
+  [1m[36m (115.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateNotificationMails (20140323114338)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "notification_mails" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "subject" varchar(255), "email" varchar(255), "content" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140323114338"]]
+  [1m[36m (128.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateRecommendations (20140323233201)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "recommendations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "problem_id" integer, "student_id" integer, "recommender_id" integer NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.3ms)[0m  CREATE UNIQUE INDEX "recom_problems" ON "recommendations" ("problem_id", "student_id", "recommender_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140323233201"]]
+  [1m[35m (132.6ms)[0m  commit transaction
+Migrating to CreateJoinTableCourseLecturer (20140325173721)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "courses_lecturers" ("course_id" integer NOT NULL, "lecturer_id" integer NOT NULL) 
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_courses_lecturers_on_course_id_and_lecturer_id" ON "courses_lecturers" ("course_id", "lecturer_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140325173721"]]
+  [1m[36m (117.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateJoinTableTeachingAssistantLecturer (20140325180101)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "lecturers_teaching_assistants" ("teaching_assistant_id" integer NOT NULL, "lecturer_id" integer NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "TALecturers" ON "lecturers_teaching_assistants" ("teaching_assistant_id", "lecturer_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140325180101"]]
+  [1m[35m (134.5ms)[0m  commit transaction
+Migrating to CreateJoinTableCourseStudent (20140325191405)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "courses_students" ("course_id" integer NOT NULL, "student_id" integer NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_courses_students_on_course_id_and_student_id" ON "courses_students" ("course_id", "student_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140325191405"]]
+  [1m[36m (133.0ms)[0m  [1mcommit transaction[0m
+Migrating to JoinTableCourseTeachingAssistant (20140326144754)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "courses_teaching_assistants" ("course_id" integer NOT NULL, "teaching_assistant_id" integer NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE UNIQUE INDEX "TACourses" ON "courses_teaching_assistants" ("course_id", "teaching_assistant_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140326144754"]]
+  [1m[35m (131.6ms)[0m  commit transaction
+Migrating to CreateTrackProgressions (20140326150549)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "track_progressions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "level" integer, "student_id" integer, "topic_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.7ms)[0m  [1mCREATE UNIQUE INDEX "index_track_progressions_on_student_id_and_topic_id" ON "track_progressions" ("student_id", "topic_id")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140326150549"]]
+  [1m[36m (146.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/problems/showCreate" for 127.0.0.1 at 2014-03-28 23:37:56 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/problems/showCreate"):
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.3ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.5ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (24.4ms)
+
+
+Started GET "/problems/show" for 127.0.0.1 at 2014-03-28 23:38:01 +0200
+
+ActionController::RoutingError (No route matches [GET] "/problems/show"):
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.6ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.4ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (21.1ms)
+
+
+Started GET "/problemsby/show" for 127.0.0.1 at 2014-03-28 23:38:06 +0200
+
+ActionController::RoutingError (No route matches [GET] "/problemsby/show"):
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.2ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.4ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (25.6ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 23:38:12 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems"
+  Rendered problems_by_tas/_all_problems.html.erb (1.1ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 938ms (Views: 907.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:13 +0200
+
+
+Started POST "/problems_by_tas/create" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+Processing by ProblemsByTasController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3uWrZzMz2n7uAyns/guKSVvXmqxO/wXoxhJnbOPtIgY=", "Problem"=>{"title"=>"title", "description"=>"long description"}, "commit"=>"Save Problem"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "problems" ("created_at", "description", "title", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Fri, 28 Mar 2014 21:38:25 UTC +00:00], ["description", "long description"], ["title", "title"], ["updated_at", Fri, 28 Mar 2014 21:38:25 UTC +00:00]]
+  [1m[36m (153.8ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/problems_by_tas/create_page
+Completed 302 Found in 173ms (ActiveRecord: 157.0ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems"
+  Rendered problems_by_tas/_all_problems.html.erb (1.1ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 10ms (Views: 8.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:25 +0200
+
+
+Started POST "/problems_by_tas/create" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+Processing by ProblemsByTasController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3uWrZzMz2n7uAyns/guKSVvXmqxO/wXoxhJnbOPtIgY=", "Problem"=>{"title"=>"", "description"=>""}, "commit"=>"Save Problem"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+Redirected to http://localhost:3000/problems_by_tas/create_page
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems"[0m
+  Rendered problems_by_tas/_all_problems.html.erb (0.9ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 23:38:27 +0200
+
+
+Started GET "/problems_by_tas/show?id=1" for 127.0.0.1 at 2014-03-28 23:38:29 +0200
+Processing by ProblemsByTasController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProblem Load (1.7ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."id" = 1 LIMIT 1
+  Rendered problems_by_tas/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 12.4ms | ActiveRecord: 1.7ms)
