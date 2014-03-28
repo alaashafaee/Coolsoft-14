@@ -8,7 +8,7 @@
 	<tr>
 		<td>
 			<%=select(:Track , :id , 
-				@tracks.collect{|t|[t.title , t.id]}, {selected: @tracks.first.id} , 
+				@tracks.collect{|t|[t.title , t.id]}, {selected: @tracks.first ? @tracks.first.id : 0} , 
 				:multiple => true , :style => "width:250px;align='center'" , 
 				:onchange => "getProblems(this.value)" , :size => 15 , :id => "tracksSel")%>
 		</td>

@@ -10508,3 +10508,1446 @@ Processing by TracksController#getProblems as */*
   [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "3"]]
   [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 3]]
 Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/tracks/2" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLecturer Load (0.3ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTopic Load (0.1ms)[0m  SELECT "topics".* FROM "topics" WHERE "topics"."id" = 2 LIMIT 1
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?  [["topic_id", 2]]
+  Rendered tracks/show.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_log_out_form.html.erb (0.3ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.0ms)
+Completed 200 OK in 15ms (Views: 11.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 02:02:49 +0200
+
+
+Started POST "/tracks/3/getProblems" for 127.0.0.1 at 2014-03-28 02:02:50 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mLecturer Load (0.5ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "3"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 3]]
+Completed 200 OK in 6ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tracks/1" for 127.0.0.1 at 2014-03-28 12:55:47 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mLecturer Load (0.2ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (10.0ms)[0m  UPDATE "lecturers" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "lecturers"."id" = 1  [["last_sign_in_at", Thu, 27 Mar 2014 22:58:34 UTC +00:00], ["current_sign_in_at", Fri, 28 Mar 2014 10:55:47 UTC +00:00], ["sign_in_count", 3], ["updated_at", Fri, 28 Mar 2014 10:55:47 UTC +00:00]]
+  [1m[36m (113.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mTopic Load (0.1ms)[0m  SELECT "topics".* FROM "topics" WHERE "topics"."id" = 1 LIMIT 1
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?  [["topic_id", 1]]
+  Rendered tracks/show.html.erb within layouts/application (43.9ms)
+  Rendered layouts/_log_out_form.html.erb (1.1ms)
+  Rendered layouts/_left_side_bar.html.erb (0.3ms)
+  Rendered layouts/_right_side_bar.html.erb (0.4ms)
+Completed 200 OK in 698ms (Views: 350.6ms | ActiveRecord: 126.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 12:55:48 +0200
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:55:49 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.3ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 38ms (Views: 11.5ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:56:07 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mLecturer Load (0.2ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:56:08 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 5ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:56:08 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mLecturer Load (0.2ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:56:09 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:56:09 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mLecturer Load (0.2ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:56:10 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:56:10 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mLecturer Load (0.6ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.3ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 10ms (Views: 2.8ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:56:11 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mLecturer Load (0.6ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 9ms (Views: 1.6ms | ActiveRecord: 0.9ms)
+
+
+Started DELETE "/lecturers/sign_out" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"6TvVYHkVxuQT0zht3V5BFbacbk0Mkhnj7RnAvHnFm7I="}
+  [1m[35mLecturer Load (0.2ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "lecturers" SET "remember_created_at" = ?, "updated_at" = ? WHERE "lecturers"."id" = 1  [["remember_created_at", nil], ["updated_at", Fri, 28 Mar 2014 10:56:47 UTC +00:00]]
+  [1m[36m (143.9ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 254ms (ActiveRecord: 144.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+Processing by SiteController#index as HTML
+  Rendered site/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_log_out_form.html.erb (0.2ms)
+Completed 200 OK in 38ms (Views: 37.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 12:56:47 +0200
+
+
+Started GET "/students/sign_up" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /home/mussab/.rvm/gems/ruby-2.1.0/gems/devise-3.2.4/app/views/devise/shared/_links.erb (1.4ms)
+  Rendered students/registrations/new.html.erb within layouts/application (58.5ms)
+  Rendered layouts/_log_out_form.html.erb (0.3ms)
+Completed 200 OK in 98ms (Views: 94.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 12:58:05 +0200
+
+
+Started POST "/students" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BkbJyKT12fqtPoKw8g2C3E9ANjRi3zjxbCWw6sirJsQ=", "student"=>{"email"=>"mail@student.mail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mStudent Exists (0.2ms)[0m  [1mSELECT 1 AS one FROM "students" WHERE "students"."email" = 'mail@student.mail' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  Rendered /home/mussab/.rvm/gems/ruby-2.1.0/gems/devise-3.2.4/app/views/devise/shared/_links.erb (0.2ms)
+  Rendered students/registrations/new.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_log_out_form.html.erb (0.2ms)
+Completed 200 OK in 163ms (Views: 11.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 12:58:35 +0200
+
+
+Started POST "/students" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BkbJyKT12fqtPoKw8g2C3E9ANjRi3zjxbCWw6sirJsQ=", "student"=>{"email"=>"mail@student.mail", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mStudent Exists (0.1ms)[0m  SELECT 1 AS one FROM "students" WHERE "students"."email" = 'mail@student.mail' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "students" ("created_at", "email", "encrypted_password", "updated_at") VALUES (?, ?, ?, ?)[0m  [["created_at", Fri, 28 Mar 2014 10:58:54 UTC +00:00], ["email", "mail@student.mail"], ["encrypted_password", "$2a$10$AlGP8UOOSIHNJselZ/ust.vS/PX1b3Ujd0ObVJW6tsIhx4cc/50Je"], ["updated_at", Fri, 28 Mar 2014 10:58:54 UTC +00:00]]
+  [1m[35m (149.3ms)[0m  commit transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+Binary data inserted for `string` type on column `last_sign_in_ip`
+Binary data inserted for `string` type on column `current_sign_in_ip`
+  [1m[35mSQL (0.8ms)[0m  UPDATE "students" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "students"."id" = 1  [["last_sign_in_at", Fri, 28 Mar 2014 10:58:54 UTC +00:00], ["current_sign_in_at", Fri, 28 Mar 2014 10:58:54 UTC +00:00], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", Fri, 28 Mar 2014 10:58:54 UTC +00:00]]
+  [1m[36m (136.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 387ms (ActiveRecord: 287.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+Processing by SiteController#index as HTML
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  Rendered site/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_log_out_form.html.erb (0.4ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 12:58:54 +0200
+
+
+Started GET "/tracks/1" for 127.0.0.1 at 2014-03-28 12:59:05 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.4ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTopic Load (0.2ms)[0m  SELECT "topics".* FROM "topics" WHERE "topics"."id" = 1 LIMIT 1
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?  [["topic_id", 1]]
+  Rendered tracks/show.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_log_out_form.html.erb (0.4ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.0ms)
+Completed 200 OK in 15ms (Views: 10.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:06 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.4ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 8ms (Views: 3.0ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:07 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:07 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:08 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:08 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:09 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:09 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:10 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:10 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:11 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:11 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.3ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:12 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.7ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.2ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 10ms (Views: 2.5ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:12 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.3ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:12 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:13 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 6ms (Views: 1.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:13 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:14 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:14 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:14 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:15 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:15 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:15 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:15 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.6ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 8ms (Views: 1.6ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:16 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.7ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.2ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 9ms (Views: 1.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:17 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.3ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 5ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:17 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:18 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:18 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:18 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:18 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:19 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.7ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 9ms (Views: 1.8ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:19 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:38 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:39 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:39 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 12:59:41 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 2]]
+Completed 200 OK in 3ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 12:59:41 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.7ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 1]]
+Completed 200 OK in 11ms (Views: 3.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/tracks/3" for 127.0.0.1 at 2014-03-28 12:59:49 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTopic Load (0.1ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."id" = 3 LIMIT 1[0m
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?[0m  [["topic_id", 3]]
+  Rendered tracks/show.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+     8: 	<tr>
+     9: 		<td>
+    10: 			<%=select(:Track , :id , 
+    11: 				@tracks.collect{|t|[t.title , t.id]}, {selected: @tracks.first.id} , 
+    12: 				:multiple => true , :style => "width:250px;align='center'" , 
+    13: 				:onchange => "getProblems(this.value)" , :size => 15 , :id => "tracksSel")%>
+    14: 		</td>
+  app/views/tracks/show.html.erb:11:in `_app_views_tracks_show_html_erb__1556619141090712905_28341500'
+
+
+  Rendered /home/mussab/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered /home/mussab/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+  Rendered /home/mussab/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (98.2ms)
+
+
+Started GET "/tracks/2" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTopic Load (0.1ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."id" = 2 LIMIT 1[0m
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?[0m  [["topic_id", 2]]
+  Rendered tracks/show.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_log_out_form.html.erb (0.7ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.0ms)
+Completed 200 OK in 19ms (Views: 15.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+
+
+Started POST "/tracks/3/getProblems" for 127.0.0.1 at 2014-03-28 13:00:33 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"3"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.2ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 3]]
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tracks/4/getProblems" for 127.0.0.1 at 2014-03-28 13:00:35 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "4"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 4]]
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tracks/3/getProblems" for 127.0.0.1 at 2014-03-28 13:00:35 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"3"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 3]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/4/getProblems" for 127.0.0.1 at 2014-03-28 13:00:35 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mStudent Load (0.2ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "4"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 4]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/3/getProblems" for 127.0.0.1 at 2014-03-28 13:00:36 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"3"}
+  [1m[35mStudent Load (0.2ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 3]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/4/getProblems" for 127.0.0.1 at 2014-03-28 13:00:36 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mStudent Load (0.6ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.2ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "4"]]
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 4]]
+Completed 200 OK in 8ms (Views: 1.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/tracks/3/getProblems" for 127.0.0.1 at 2014-03-28 13:00:36 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"3"}
+  [1m[35mStudent Load (0.3ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = 1 ORDER BY "students"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 3]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tracks/1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"1"}
+Redirected to http://localhost:3000/
+Filter chain halted as :authenticate! rendered or redirected
+Completed 302 Found in 28ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+Processing by SiteController#index as HTML
+  Rendered site/index.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_log_out_form.html.erb (0.8ms)
+Completed 200 OK in 80ms (Views: 75.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:22:30 +0200
+
+
+Started GET "/lecturers/sign_up" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered lecturers/shared/_links.erb (1.2ms)
+  Rendered lecturers/registrations/new.html.erb within layouts/application (30.3ms)
+  Rendered layouts/_log_out_form.html.erb (0.3ms)
+Completed 200 OK in 65ms (Views: 53.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:22:36 +0200
+
+
+Started GET "/lecturers/sign_in" for 127.0.0.1 at 2014-03-28 13:22:40 +0200
+Processing by Devise::SessionsController#new as HTML
+  Rendered lecturers/shared/_links.erb (0.6ms)
+  Rendered lecturers/sessions/new.html.erb within layouts/application (55.0ms)
+  Rendered layouts/_log_out_form.html.erb (0.3ms)
+Completed 200 OK in 82ms (Views: 78.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:22:40 +0200
+
+
+Started POST "/lecturers/sign_in" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i7vuBrtQKRyBJoMFxj6S1DtHf2ar8m6xH+uLy3v91QE=", "lecturer"=>{"email"=>"mail@mail.mail", "password"=>"[FILTERED]", "remember_me"=>"1"}, "commit"=>"Sign in"}
+  [1m[35mLecturer Load (0.3ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."email" = 'mail@mail.mail' ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.6ms)[0m  UPDATE "lecturers" SET "remember_created_at" = ?, "updated_at" = ? WHERE "lecturers"."id" = 1  [["remember_created_at", Fri, 28 Mar 2014 11:23:01 UTC +00:00], ["updated_at", Fri, 28 Mar 2014 11:23:01 UTC +00:00]]
+  [1m[36m (146.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "lecturers" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "lecturers"."id" = 1[0m  [["last_sign_in_at", Fri, 28 Mar 2014 10:55:47 UTC +00:00], ["current_sign_in_at", Fri, 28 Mar 2014 11:23:01 UTC +00:00], ["sign_in_count", 4], ["updated_at", Fri, 28 Mar 2014 11:23:01 UTC +00:00]]
+  [1m[35m (136.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 439ms (ActiveRecord: 286.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+Processing by SiteController#index as HTML
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  Rendered site/index.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_log_out_form.html.erb (0.3ms)
+  Rendered layouts/_left_side_bar.html.erb (0.3ms)
+  Rendered layouts/_right_side_bar.html.erb (0.2ms)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:23:01 +0200
+
+
+Started GET "/tracks/1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mLecturer Load (0.3ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTopic Load (0.1ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."id" = 1 LIMIT 1[0m
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTrack Load (0.2ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?[0m  [["topic_id", 1]]
+  Rendered tracks/show.html.erb within layouts/application (11.1ms)
+  Rendered layouts/_log_out_form.html.erb (0.4ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.1ms)
+Completed 200 OK in 61ms (Views: 19.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 13:23:09 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mLecturer Load (0.4ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.3ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mProblem Load (0.3ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 1]]
+Completed 200 OK in 27ms (Views: 13.1ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 13:23:10 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mLecturer Load (0.3ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 0.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 13:23:11 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mLecturer Load (0.2ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 1]]
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 13:23:11 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/tracks/1/getProblems" for 127.0.0.1 at 2014-03-28 13:23:11 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"1"}
+  [1m[35mLecturer Load (0.6ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 1]]
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/tracks/2/getProblems" for 127.0.0.1 at 2014-03-28 13:23:12 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mLecturer Load (0.2ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mProblem Load (0.1ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?[0m  [["track_id", 2]]
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tracks/2" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mLecturer Load (0.3ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTopic Load (0.2ms)[0m  [1mSELECT "topics".* FROM "topics" WHERE "topics"."id" = 2 LIMIT 1[0m
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTrack Load (0.1ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?[0m  [["topic_id", 2]]
+  Rendered tracks/show.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_log_out_form.html.erb (0.4ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.0ms)
+Completed 200 OK in 17ms (Views: 10.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+
+
+Started POST "/tracks/3/getProblems" for 127.0.0.1 at 2014-03-28 13:23:15 +0200
+Processing by TracksController#getProblems as */*
+  Parameters: {"id"=>"3"}
+  [1m[35mLecturer Load (0.4ms)[0m  SELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1
+  [1m[36mTrack Load (0.2ms)[0m  [1mSELECT "tracks".* FROM "tracks" WHERE "tracks"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  [1m[35mProblem Load (0.1ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."track_id" = ?  [["track_id", 3]]
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tracks/3" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mLecturer Load (0.4ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTopic Load (0.2ms)[0m  SELECT "topics".* FROM "topics" WHERE "topics"."id" = 3 LIMIT 1
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTrack Load (0.1ms)[0m  SELECT "tracks".* FROM "tracks" WHERE "tracks"."topic_id" = ?  [["topic_id", 3]]
+  Rendered tracks/show.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_log_out_form.html.erb (0.3ms)
+  Rendered layouts/_left_side_bar.html.erb (0.1ms)
+  Rendered layouts/_right_side_bar.html.erb (0.1ms)
+Completed 200 OK in 15ms (Views: 10.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:23:20 +0200
+
+
+Started GET "/tracks/4" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+Processing by TracksController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mLecturer Load (0.4ms)[0m  [1mSELECT "lecturers".* FROM "lecturers" WHERE "lecturers"."id" = 1 ORDER BY "lecturers"."id" ASC LIMIT 1[0m
+  [1m[35mTopic Load (0.5ms)[0m  SELECT "topics".* FROM "topics" WHERE "topics"."id" = 4 LIMIT 1
+  Rendered public/404.html within layouts/application (0.4ms)
+  Rendered layouts/_log_out_form.html.erb (0.4ms)
+  Rendered layouts/_left_side_bar.html.erb (0.0ms)
+  Rendered layouts/_right_side_bar.html.erb (0.0ms)
+Completed 200 OK in 39ms (Views: 34.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/bootstrap.min.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/problem.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/bootstrap.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/problem.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2014-03-28 13:23:30 +0200
