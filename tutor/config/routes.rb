@@ -1,27 +1,15 @@
+route
 Tutor::Application.routes.draw do
-
 get 'courses/show'
-
-  devise_for :teaching_assistants
-  devise_for :lecturers
-  devise_for :students
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-
   resources :courses
   post "courses/duplicate"
-
-  #get "solutions/problempage"
-  resources :solutions
-  resources :problems
-
   root 'site#index'
-  resources :problems
 
-  # Example of regular route:match "/signup" => "users#new", :via => [:get]
+  # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
