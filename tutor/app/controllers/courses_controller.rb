@@ -11,11 +11,13 @@ class CoursesController < ApplicationController
 	end
 
 	# This method get all the existing courses
+	# Authored by Rania Abdel Fattah
 	  def existing
 	  	@courses = Course.all  
 	  end
 
 	# This method duplicate the courses that it is found and save it in a new course
+	# Authored by Rania Abdel Fattah
 	  def duplicate
 	  	permit
 	  	course = Course.find_by_id(params[:Course][:id])
@@ -25,6 +27,7 @@ class CoursesController < ApplicationController
 	end
 
 	# This method choose with parameter should be listed
+	# Authored by Rania Abdel Fattah
 	def permit
 		params.require(:Course).permit(:id)
 	end
