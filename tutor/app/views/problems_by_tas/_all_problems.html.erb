@@ -1,0 +1,21 @@
+<!-- A table view with 3 columns: 
+      Index number that starts from 1
+      All the problem titles that exists in @ problems initialized in create_page waction
+      Button in front of every problem title that holds the id of this problem in params-->
+<table>
+  <tr>
+    
+    <p style="color:blue;font-size:20px;font-weight:bold">Problems List</p>
+  <% @problems.each do |p| %>
+    <tr>
+      <td><%=@counter%></td>
+      <% @counter+=1     %>
+      <td style="font-family:arial;color:black;font-size:20px;font-weight:bold"><%= p.title %></td>
+      
+      <td><Button><%= link_to "View Description", problems_by_tas_show_path(:id => p.id) %></Button></td>
+
+    </tr>
+
+  <% end %>
+</table>
+
