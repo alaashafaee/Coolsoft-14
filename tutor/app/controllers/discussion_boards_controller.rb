@@ -21,8 +21,18 @@ class DiscussionBoardsController < ApplicationController
 
 
 	  def show
-	  	@discusstionBoard = DiscussionBoard.find(params[:id])
-	  	@posts = @discusstionBoard.posts.order("created_at desc")
+	  	@course = Course.find(params[:id])
+	  	puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+	    puts " "
+	    puts " "
+	    puts " "
+	    puts @course.discussion_board.title
+	    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+	    puts " "
+	    puts " "
+	    puts " "
+	  	@discussionBoard = @course.discussion_board
+	  	@posts = @discussionBoard.posts.order("created_at desc")
 	  	@replies = @posts.order("created_at desc")
 	  end
 

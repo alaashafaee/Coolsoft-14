@@ -40,3 +40,10 @@
           </div>
 	</div>
 <%end%>
+
+<!-- If the user is signed in, display "My Courses" button 
+	 Author: Ahmed Akram
+-->
+<% if signed_in? %>
+	<%= button_to "My Courses", {:controller => 'discusstion_boards', :action => 'index'}, class: "btn btn-success" , style: "margin-left:auto; margin-right:auto; margin-top: 80px", method: :get %>
+<%end%>
