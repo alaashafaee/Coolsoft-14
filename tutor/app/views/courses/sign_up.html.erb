@@ -1,0 +1,67 @@
+<h1>Course Sign-Up!</h1>
+<h2><%=@status%> / 6</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% case @status%>
+    <% when "1"%>
+    <h3>Please choose a University: </h3>
+    <% @courses.each do |course| %>
+      <tr>
+          
+        <td><%= link_to(course.university, {:action => "sign_up", :university => course.university, :status => "2"}) %></td>
+        
+      </tr>
+    <% end %>
+
+    <% when "2"%>
+    <h3>Please choose a Semester: </h3>
+    <% @courses.each do |course| %>
+      <tr>
+      		
+        <td><%= link_to(course.semester, {:action => "sign_up", :university => params[:university], :semester => course.semester, :status => "3"}) %></td>
+        
+      </tr>
+    <% end %>
+
+    <% when "3"%>
+    <h3>Please choose a Course: </h3>
+    <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to(course.name, {:action => "sign_up", :university => params[:university], :semester =>course.semester, :code => course.code, :status => "4"} )%></td>
+        
+      </tr>
+    <% end %>
+
+    <% when "4"%>
+    <h3>Pleas choose an Instructor: </h3>
+    <% @course.lecturers.each do |ledturer| %>
+      <tr>
+        <td><%= link_to(ledturer.name, {:action => "sign_up", :university => params[:university], :semester =>@course.semester, :code => @course.code, :lecturer => ledturer.id, :status => "5"} )%></td>
+        
+      </tr>
+    <% end %>
+
+    <% when "5"%>
+    <h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
+      <tr>
+        <td><%= link_to("Sign-Up!", {:action => "sign_up", :university => params[:university], :semester => @course.semester, :code => @course.code, :lecturer => params[:lecturer], :status => "6"} )%></td>
+        
+      </tr>
+
+    <% when "6"%>
+    <h4>You have signed up to: </h4>
+    <h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
+
+
+    <% end %>
+  </tbody>
+</table>
