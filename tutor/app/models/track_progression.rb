@@ -18,6 +18,7 @@ class TrackProgression < ActiveRecord::Base
 	#	user_id => The target user's ID
 	# 	topic_id => The target topic's ID
 	# Returns: An integer
+	# Author: Rami Khalil
 	def self.get_progress(student_id, topic_id)
 		# Try to fetch the progression record for the user, topic pair
 		progression = find_by(student_id: student_id, topic_id: topic_id)

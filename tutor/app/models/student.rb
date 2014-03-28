@@ -25,6 +25,7 @@ class Student < ActiveRecord::Base
 	# Returns a suggested problem to solve for this user
 	# Parameters: None
 	# Returns: A Problem model instance
+	# Author: Rami Khalil
 	def get_a_system_suggested_problem
 		# Create a new empty set
 		suggestions = Set.new
@@ -43,7 +44,7 @@ class Student < ActiveRecord::Base
 							# Check every problem in this track
 							track.problems.each do |problem|
 								# If this problem has not been solved by this student before
-								if(!problem.is_solved_by_user(self.id))
+								if(!problem.is_solved_by_student(self.id))
 									# Add the problem to the suggestions set
 									suggestions.add(problem)
 									# Only take one problem per track
