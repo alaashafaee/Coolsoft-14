@@ -1,6 +1,9 @@
+
 <h1 align ="center">Edit Problem Page</h1>
 
 <br>
+<!--A form that takes the input for the model Problem and calls the action create
+  through two text fields :title and description -->
 <%= form_for :Problem, url: {action: "create"} do |p| %>
   <p>
     <%= p.label :title %><br>
@@ -16,7 +19,9 @@
     <%= p.submit %>
   </p>
 <% end %>
+<!-- A division for the flash message output to view the action's output -->
  <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
+  <!-- A render call to another html.erb view that lists all the problems at the bottom of create_page -->
 <%= render partial: "problems_by_tas/all_problems"%>

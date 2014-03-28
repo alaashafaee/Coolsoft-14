@@ -5103,3 +5103,303 @@ Processing by ProblemsByTasController#show as HTML
   [1m[35mProblem Load (0.5ms)[0m  SELECT "problems".* FROM "problems" WHERE "problems"."id" = 23 LIMIT 1
   Rendered problems_by_tas/show.html.erb within layouts/application (0.1ms)
 Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SiteController#index as HTML
+  Rendered site/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 82ms (Views: 64.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:12 +0200
+
+
+Started GET "/problems/showCreate" for 127.0.0.1 at 2014-03-28 15:08:22 +0200
+
+ActionController::RoutingError (No route matches [GET] "/problems/showCreate"):
+  actionpack (4.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.0.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.0.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.0.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.0.4) lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.0.4) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.0.4) lib/rails/engine.rb:511:in `call'
+  railties (4.0.4) lib/rails/application.rb:97:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/husseny/.rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.2ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.6ms)
+  Rendered /home/husseny/.rvm/gems/ruby-2.1.0/gems/actionpack-4.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (30.8ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 15:08:30 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems"
+  Rendered problems_by_tas/_all_problems.html.erb (12.1ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (24.7ms)
+Completed 200 OK in 39ms (Views: 30.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 15:08:31 +0200
+
+
+Started POST "/problems_by_tas/create" for 127.0.0.1 at 2014-03-28 15:09:27 +0200
+Processing by ProblemsByTasController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3uWrZzMz2n7uAyns/guKSVvXmqxO/wXoxhJnbOPtIgY=", "Problem"=>{"title"=>"Geeky lame title", "description"=>"Imagine a very long description that tells the story behind geeky lame titles and links it to a programming problem"}, "commit"=>"Save Problem"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO "problems" ("created_at", "description", "title", "updated_at") VALUES (?, ?, ?, ?)  [["created_at", Fri, 28 Mar 2014 13:09:27 UTC +00:00], ["description", "Imagine a very long description that tells the story behind geeky lame titles and links it to a programming problem"], ["title", "Geeky lame title"], ["updated_at", Fri, 28 Mar 2014 13:09:27 UTC +00:00]]
+  [1m[36m (344.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/problems_by_tas/create_page
+Completed 302 Found in 356ms (ActiveRecord: 348.3ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems"
+  Rendered problems_by_tas/_all_problems.html.erb (1.4ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 10ms (Views: 9.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:28 +0200
+
+
+Started GET "/problems_by_tas/show?id=24" for 127.0.0.1 at 2014-03-28 15:09:30 +0200
+Processing by ProblemsByTasController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."id" = 24 LIMIT 1[0m
+  Rendered problems_by_tas/show.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 12ms (Views: 6.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/problems_by_tas/create" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+Processing by ProblemsByTasController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3uWrZzMz2n7uAyns/guKSVvXmqxO/wXoxhJnbOPtIgY=", "Problem"=>{"title"=>"", "description"=>""}, "commit"=>"Save Problem"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/problems_by_tas/create_page
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems"
+  Rendered problems_by_tas/_all_problems.html.erb (1.1ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 15:09:34 +0200
+
+
+Started GET "/problems_by_tas/show?id=24" for 127.0.0.1 at 2014-03-28 15:09:51 +0200
+Processing by ProblemsByTasController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mProblem Load (0.2ms)[0m  [1mSELECT "problems".* FROM "problems" WHERE "problems"."id" = 24 LIMIT 1[0m
+  Rendered problems_by_tas/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/problems_by_tas/create" for 127.0.0.1 at 2014-03-28 15:10:02 +0200
+Processing by ProblemsByTasController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3uWrZzMz2n7uAyns/guKSVvXmqxO/wXoxhJnbOPtIgY=", "Problem"=>{"title"=>"", "description"=>""}, "commit"=>"Save Problem"}
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Redirected to http://localhost:3000/problems_by_tas/create_page
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/problems_by_tas/create_page" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+Processing by ProblemsByTasController#create_page as HTML
+  [1m[35mProblem Load (0.2ms)[0m  SELECT "problems".* FROM "problems"
+  Rendered problems_by_tas/_all_problems.html.erb (1.4ms)
+  Rendered problems_by_tas/create_page.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/problems_by_tas.css?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/site.css?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/tracks.css?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/tracks.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/problems_by_tas.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/site.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-03-28 15:10:03 +0200
