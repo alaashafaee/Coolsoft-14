@@ -1,0 +1,50 @@
+
+<% if !@courses.any? %>
+	<h1>You have no courses</h1>
+<%end%>
+	<br>
+	<br>
+<%= button_to "Create a new course"  , :action => 'new', :controller => 'courses',:method => :get %>
+	<br>
+
+
+
+
+<%= flash[:success_creation] %>
+
+
+<h1>Your Courses</h1>
+ 
+<table class = "table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Year</th>
+    <th>Semester</th>
+    <th>Description</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Options</th>
+    
+  </tr>
+ 
+<% @courses.each do |c| %>
+  <tr>
+    <td><%= link_to c.name , :controller => 'courses', :action => 'show', :id => c.id, 
+			:method => :get , class: "btn btn-success" %></td>
+    <td><%= c.code %></td>
+    <td><%= c.year %></td>
+    <td><%= c.semester %></td>
+    <td><%= c.description %></td>
+    <td><%= c.created_at %></td>
+    <td><%= c.updated_at %></td>
+    <% if current_lecturer %>
+    <td><%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success"%>
+      <%end%>
+    </td>
+
+  </tr>
+  <% end %>
+</table>
+
+

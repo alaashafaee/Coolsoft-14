@@ -1,0 +1,21 @@
+<br/>
+<h2> This Course Topics </h2>
+<br/>
+<br/>
+<br/>
+
+<table class = "table table-striped">
+  <tr>
+  	<th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+ 
+  <% @topics.each do |topic| %>
+    <tr>
+	  <td><%= topic.id%>	   	  </td>
+      <td><%= topic.title %>	  </td>
+      <td><%= topic.description %></td>
+    </tr>
+  <% end %>
+</table>
