@@ -1,12 +1,23 @@
 Tutor::Application.routes.draw do
+<<<<<<< HEAD
 get 'courses#show'
+=======
+>>>>>>> d11c0e70fc71d0b4190de57fe9705c8f25625270
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+<<<<<<< HEAD
   root 'site#index'
 
   # Example of regular route:
+=======
+  #get "solutions/problempage"
+  resources :solutions
+  root 'site#index'
+
+  # Example of regular route:match "/signup" => "users#new", :via => [:get]
+>>>>>>> d11c0e70fc71d0b4190de57fe9705c8f25625270
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
