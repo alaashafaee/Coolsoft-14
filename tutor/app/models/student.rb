@@ -5,6 +5,11 @@ class Student < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	
 	#Validations
+	validates :name, presence: true
+	validates :dob, presence: true
+	validates :faculty, presence: true
+	validates :major, presence: true
+	validates :semester, presence: true
 
 	#Relations
 	has_many :solutions, dependent: :destroy

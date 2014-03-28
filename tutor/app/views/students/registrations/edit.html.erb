@@ -19,11 +19,19 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
+<<<<<<< HEAD
+  <div><%= f.submit "Update", class: "btn btn-success", style: "margin-top:10px"  %></div>
+=======
   <div><%= f.submit "Update" %></div>
+>>>>>>> origin/C5_Khaled
 <% end %>
 
 <h3>Cancel my account</h3>
 
+<<<<<<< HEAD
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete %></p>
+=======
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+>>>>>>> origin/C5_Khaled
 
 <%= link_to "Back", :back %>
