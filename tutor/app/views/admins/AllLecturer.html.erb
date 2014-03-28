@@ -1,0 +1,14 @@
+<!--a view to show all lecturers requests-->
+
+<table>
+<h1>List for approval</h1>
+  
+  <% @allLecturers.each do |l| %>
+    <tr>
+      <td><%= l.name %></td>
+      <td><%= l.verified_type %></td>
+      <td><%= link_to "approve" , admin_approveRequestsLecturer_path(:id => l.id)%> </td>
+    </tr>
+
+  <% end %>
+</table>
