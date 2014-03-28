@@ -1,16 +1,9 @@
 <h3>Choose a Course</h3>
-<!-- <form>
-Course name: <input type="text" name="coursename"><br>
-Semester:    <input type="text" name="lastname">
-<br><br>
-<button type="button">Create</button>
-</form> -->
+
+<!-- This is a drop down list for all the courses to let the lecturer choose which course will take a copy from it -->
 <%= form_for :Course , url: {:action => "duplicate" , method: "post"} do |f|%>
 <%= f.select :id , @courses.collect{|c| [c.name , c.id]} %>
 <br><br>
 <%= f.submit%>
-<!-- <label>Course Name :</label><br>
-<%= f.text_field :name%><br>
-<label>Semester :</label><br>
-<%= f.text_field :Semester%> -->
+
 <%end%>
