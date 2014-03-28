@@ -8,9 +8,13 @@ Tutor::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  #get "solutions/problempage"
+  resources :solutions
+  resources :problems
   root 'site#index'
+  resources :problems
 
-  # Example of regular route:
+  # Example of regular route:match "/signup" => "users#new", :via => [:get]
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
