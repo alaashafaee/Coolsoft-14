@@ -1,5 +1,12 @@
 Tutor::Application.routes.draw do
-get 'courses/show'
+  get 'courses/show'
+  get "tracks/show"
+  post "tracks/get"
+  post "tracks/create"
+  post "problems_by_tas/create"
+  get "problems_by_tas/create_page"
+  get "problems_by_tas/show"
+  get "problems_by_tas/problem_view"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
