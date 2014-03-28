@@ -1,2 +1,12 @@
 
-<%= button_to "delete course", {:action => "destroy"}, class: "btn btn-danger" , method: :delete %> 
+
+<p>
+    <div><%= button_to "Add Topics", {:action => "destroy"}, class: "btn btn-success" , style: "float: left; margin-left: 100px", method: :delete %> </div> 
+
+    <div  ><%= button_to "Add a TA", {:action => "destroy"}, class: "btn btn-success" , style: "float: left; margin-left: 15px", method: :delete %> </div>
+
+    <div  ><%= button_to "delete course", {:action => "destroy"}, class: "btn btn-success" , style: "float: left; margin-left: 15px", method: :delete %> </div> 
+ </p>
+
+	<div><%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger" , style: "float: left; margin-top: 100px; margin-left: -220px", method: :delete %> </div>
+
