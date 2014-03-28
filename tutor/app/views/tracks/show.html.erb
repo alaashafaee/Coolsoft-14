@@ -7,11 +7,16 @@
 	</tr>
 	<tr>
 		<td>
+			<!-- List of all tracks of the selected topic
+				visit /tracks/:id where id is the id of the topic
+				that route I used until we decide on a correct route -->
 			<%=select(:Track , :id , 
 				@tracks.collect{|t|[t.title , t.id]}, {selected: @tracks.first ? @tracks.first.id : 0} , 
 				:multiple => true , :style => "width:250px;align='center'" , 
 				:onchange => "getProblems(this.value)" , :size => 15 , :id => "tracksSel")%>
 		</td>
+
+		<!-- Here will be the list of problems of the track selected in the previous list -->
 		<td id="second" align="center">
 			<%=select(:Track , :id , {}, {} , 
 				:multiple => true , :style => "width:250px;align='center'" , 
@@ -19,6 +24,9 @@
 		</td>
 	</tr>
 	<tr>
+		<!-- Here is a buttons to create and edit problems and tracks but for now
+			the create button of tracks is the only button that works
+			 other buttons only shows an alert -->
 		<td align="center">
 			<button onclick="newTrack()">New</button>
 			<button onclick="show('Course')">Edit</button>
@@ -30,6 +38,8 @@
 	</tr>
 </table>
 <br>
+
+<!-- thats a form for creating a track which is intially hidden until the new button clicked -->
 <div align="center" ><%=flash[:notice]%></div><br>
 <div align="center" id="create_track" hidden=true><%= form_for :Track , url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 				<label>Title :</label> <%= f.text_field :title %> <br>

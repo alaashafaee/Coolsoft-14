@@ -1,5 +1,7 @@
 class TracksController < ApplicationController
   
+  # shows the tracks of the topic with id :id
+  # show 404 page if there is no topic with such id
   def show
   	id = params[:id]
     @topic = Topic.find_by_id(id)
@@ -14,6 +16,7 @@ class TracksController < ApplicationController
     end
   end
 
+  # render a json file with a set of problems of the track with id :id
   def getProblems
   	id = params[:id]
   	track = Track.find(id)
@@ -21,6 +24,9 @@ class TracksController < ApplicationController
   	render json: problems
   end
 
+  # creates a new track with the passed parameters
+  # if the parameters is valid a flash that it was save will show
+  # and if not not a flash will show that there are fields missing
   def create
     t = Track.new(permitCreate)
   	if t.save
@@ -32,6 +38,7 @@ class TracksController < ApplicationController
     end
   end
 
+  # permit the passed parameters
   def permitCreate
     params.require(:Track).permit(:topic_id , :title , :difficulty)
   end
