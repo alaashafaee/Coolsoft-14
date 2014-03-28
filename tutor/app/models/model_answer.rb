@@ -1,7 +1,7 @@
 class ModelAnswer < ActiveRecord::Base
 	
 	#Validations
- validates :answer , :presence => true
+ 	validates :answer , :presence => true
     validates :answer , :length => { :minimum => 1 }
 	#Relations
 	belongs_to :problem

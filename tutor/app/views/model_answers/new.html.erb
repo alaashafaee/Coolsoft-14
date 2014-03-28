@@ -1,32 +1,38 @@
 <%= form_for :model_answer, url: model_answers_path  do |f| %>
-  <!--Nadine:form to display textarea where the answer should be written and show the previous answers in a table.--> 
- <h1>Previous Answers</h1>
-  <%= flash[:notice]%>
+<!--Nadine:form to display textarea where the answer should be written and show the previous answers in a table.--> 
+<h1>Previous Answers</h1>
+<%= flash[:notice]%>
+
+
+
 <table>
 
-  
-  
  
-  <% @answers.each do |answer1| %>
-  <table border ="1">
-    <tr>
+<% @answers.each do |answer1| %>
+<table border ="1">
+<tr>
 
-      <td><%= answer1.answer %></td>
+  <td><%= answer1.answer %></td>
       
-    </tr>
+</tr>
 
-  <% end %>
-
+<% end %>
 
 </table>
-  <p>
 
-  <h2>Please Insert your model answer</h2>
-   
-    <%= f.text_area :answer %>
-  </p>
+  
+<p>
+
+<h2>Please Insert your model answer</h2>
+<%= f.text_area :answer %>
+
+</p>
  
-  <p>
-    <%= f.submit %>
-  </p>
+
+<p>
+
+<%= f.submit %>
+
+</p>
+
 <% end %>

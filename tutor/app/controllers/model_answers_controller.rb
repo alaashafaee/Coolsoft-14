@@ -19,15 +19,15 @@ class ModelAnswersController < ApplicationController
 #Nadine- creates in ModelAnswer a record with the parameters taken from the view and check if saved or not
 #saved and notify the user
 	def create
-	 @answer = ModelAnswer.new(post_params)
-	 if @answer.save
-	 	flash[:notice] = "Your Answer is now added"
-      redirect_to :back
-      else
-     flash[:notice] = "Your Answer can not be added "
-     redirect_to :back
+	 	@answer = ModelAnswer.new(post_params)
+	 	if @answer.save
+			flash[:notice] = "Your Answer is now added"
+			redirect_to :back
+     	else
+     		flash[:notice] = "Your Answer can not be added "
+     		redirect_to :back
        
-	end
+		end
 	end
 
 
@@ -43,15 +43,15 @@ class ModelAnswersController < ApplicationController
 
 #Nadine- saves all record in ModelAnswer to loop on them in the view and show the records to the user
 	def index
-  	@answers = ModelAnswer.all
+  		@answers = ModelAnswer.all
 	end
 
 
 #Nadine-it requires from the form in the view the attributes we are interested in
-private
-  def post_params
-    params.require(:model_answer).permit(:answer)
-  end
+	private
+ 	 def post_params
+   		 params.require(:model_answer).permit(:answer)
+  	end
 
 
 end
