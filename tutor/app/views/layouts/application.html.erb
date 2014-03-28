@@ -32,11 +32,9 @@
 
 <%- if signed_in?%>
 	<%= render "layouts/left_side_bar"%>
-<%end%>
-
-<%- if signed_in?%>
 	<%= render "layouts/right_side_bar"%>
 <%end%>
+
 
 <div class="container well" align="center" style="margin-top:70px;margin-bottom:70px;width:60%;height:80%">
 <%= yield %>
