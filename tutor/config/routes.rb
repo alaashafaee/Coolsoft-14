@@ -1,12 +1,9 @@
 Tutor::Application.routes.draw do
-
+  post 'topics/new' => 'topics#new'
   resources :discussion_boards
   resources :courses
   resources :topics
 
-  # get "topics/new"
-  # topics GET ":controller(/:action(/:id(.:format)))"
-  # post ':controller(/:action(/:id(.:format)))'
   get "courses/destroy"
   get "courses/create"
   get "courses/show"
@@ -29,6 +26,7 @@ Tutor::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'site#index'
   post "discussion_boards/toggle"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

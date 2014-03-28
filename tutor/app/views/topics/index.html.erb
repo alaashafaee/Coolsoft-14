@@ -1,5 +1,5 @@
 <br/>
-
+<h2> This Course Topics </h2>
 <br/>
 <br/>
 <br/>
@@ -11,7 +11,7 @@
     <th>Description</th>
   </tr>
  
-  <% Topic.all.each do |topic| %>
+  <% @topics.each do |topic| %>
     <tr>
 	  <td><%= topic.id%>	   	  </td>
       <td><%= topic.title %>	  </td>

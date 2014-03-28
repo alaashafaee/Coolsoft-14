@@ -1,18 +1,18 @@
-<% if @discussionBoard.activated == true %>
-  <%str = "Click to deactivate DiscussionBoard" %>
-<% else %>
-  <%str = "Click to activate DiscussionBoard"%>
-<% end %>
-
-<%= button_to str, {class: "btn btn-danger" , :controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}  %>
-
 
 <p>
-    <div><%= button_to "Add Topics", {:action => "destroy"}, class: "btn btn-success" , style: "float: left; margin-left: 100px", method: :delete %> </div> 
+    <div><%= button_to "Add Topics", {:controller => 'topics', :action => 'new',
+    	 :course => @course}, class: "btn btn-success" , style: "float: left;", method: :post %> </div> 
 
-    <div  ><%= button_to "Add a TA", {:action => "destroy"}, class: "btn btn-success" , style: "float: left; margin-left: 15px", method: :delete %> </div>
+    <div><%= button_to "Add a TA", {:action => 'show'}, class: "btn btn-success" , style: "float: left; margin-left: 15px", :method => :get%> </div>
 
-    <div  ><%= button_to "delete course", {:action => "destroy"}, class: "btn btn-success" , style: "float: left; margin-left: 15px", method: :delete %> </div> 
+    <div><% if @discussionBoard.activated == true %>
+			  <%str = "Deactivate DiscussionBoard" %>
+			<% else %>
+			  <%str = "Activate DiscussionBoard"%>
+		<% end %>
+
+		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success" , style: "float: left; margin-left: 15px"%>
+	</div> 
  </p>
-
-	<div><%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger" , style: "float: left; margin-top: 100px; margin-left: -220px", method: :delete %> </div>
+<br/>
+	<div><%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger" , style: "margin-top: 100px; float: right", method: :delete %> </div>
