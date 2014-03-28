@@ -1,0 +1,31 @@
+<head>
+
+</head>
+
+<h1> > Add test case(s) </h1>
+ <table style="width:500px">
+
+  <%- @test_cases.each do |test_case| %>
+      <tr>
+      <td><p><b> <b>-</b> input:</b>  <%= test_case.input %></p>  </td> <td><p><b>output:</b>  <%= test_case.output %></p></td>
+      </tr>
+  <% end %>
+ 
+</table>
+
+<%= render "form"%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
