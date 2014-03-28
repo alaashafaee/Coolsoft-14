@@ -1,20 +1,27 @@
+<!-- Name: Topics List
+     Author: Ahmed Akram
+-->
+
 <br/>
-<h2> This Course Topics </h2>
+<h2> The Course's Topics </h2>
 <br/>
 <br/>
 <br/>
 
+<!-- Creating a table for the topics -->
 <table class = "table table-striped">
   <tr>
+    <!-- Listing the heads -->
   	<th>ID</th>
     <th>Title</th>
     <th>Description</th>
   </tr>
- 
+  <!-- Looping on the array of topics of the course -->
   <% @topics.each do |topic| %>
     <tr>
-	  <td><%= topic.id%>	   	  </td>
-      <td><%= topic.title %>	  </td>
+      <!-- Inserting the records to the table -->
+	    <td><%= topic.id%></td>
+      <td><%= topic.title %></td>
       <td><%= topic.description %></td>
     </tr>
   <% end %>

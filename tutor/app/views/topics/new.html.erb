@@ -1,12 +1,17 @@
+<!-- Name: The New Topic Form 
+     Author: Ahmed Akram
+-->
+
 <div align="center">
   <h1>New Topic</h1>
-  <!-- <p>Find me in app/views/topics/new.html.erb</p>  -->
 
+<% if flash[:notice] == "Failed" %>
   <%= flash[:notice] %>
+<%end%>
+
+
 <br/>
-  <%= 'This Course id is: ' + @course.id.to_s %>
-<br/>
-<br/>
+  <!-- Rendering the form fields -->
   <%= form_for :topic, url: topics_path do |f| %>
     <p>
       <%= f.label "Title" %><br>

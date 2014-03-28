@@ -1,15 +1,6 @@
 class CoursesController < ApplicationController
   
   def index
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    puts " "
-    puts " "
-    puts " "
-    puts current_lecturer.id
-    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-    puts " "
-    puts " "
-    puts " "
     @courses = current_lecturer.courses.order("created_at desc")
   end
 
