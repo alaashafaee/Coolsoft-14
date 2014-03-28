@@ -1,5 +1,9 @@
 class DiscussionBoardsController < ApplicationController
-
+	
+    # [Action]
+    # Description: This action takes the passed  discussion board id and changes its
+    #              activated field to true or false depending in its current state
+    # Author: Ahmed Atef
 	def toggle
 		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 	    puts " "

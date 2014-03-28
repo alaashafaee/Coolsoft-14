@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "discussion_boards", force: true do |t|
     t.string   "title"
-    t.boolean  "activated",  default: false
+    t.boolean  "activated",  default: true
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
