@@ -1,4 +1,6 @@
 Tutor::Application.routes.draw do
+
+  resources :discussion_boards
   resources :courses
   resources :topics
 
@@ -26,7 +28,7 @@ Tutor::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'site#index'
-
+  post "discussion_boards/toggle"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
