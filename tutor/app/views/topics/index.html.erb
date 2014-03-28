@@ -9,10 +9,9 @@
 <br/>
 
 <!-- Creating a table for the topics -->
-<table class = "table table-striped">
+<table class = "table table-striped", style = "width:50%", border = "1">
   <tr>
     <!-- Listing the heads -->
-  	<th>ID</th>
     <th>Title</th>
     <th>Description</th>
   </tr>
@@ -20,7 +19,6 @@
   <% @topics.each do |topic| %>
     <tr>
       <!-- Inserting the records to the table -->
-	    <td><%= topic.id%></td>
       <td><%= topic.title %></td>
       <td><%= topic.description %></td>
     </tr>
