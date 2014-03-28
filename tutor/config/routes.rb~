@@ -1,5 +1,11 @@
 Tutor::Application.routes.draw do
-get 'courses#show'
+get 'courses/show'
+ get "model_answers/new"
+
+ post "model_answers/new"
+
+"
+  resources :model_answers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
