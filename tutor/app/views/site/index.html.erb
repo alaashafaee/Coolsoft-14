@@ -1,1 +1,24 @@
- Sites#Index: Hello, world!
+<%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in?%>
+	<%= flash[:notice]%>
+	<hr/>
+	<div id="register" align="center">
+		<table>
+			<tr class="row">
+				<td>
+					<p style="margin-right:5px">
+					I'm a :
+					</p>
+					</td>
+				<td>
+					<%= button_to 'Student',new_student_registration_path,style: "margin-right: 10px",class: "btn btn-success", method: :get %>
+				</td>
+				<td>
+					<%= button_to 'Lecturer', new_lecturer_registration_path,style: "margin-right: 10px",class: "btn btn-success" ,method: :get %>
+				</td>
+				<td>
+					<%= button_to 'Teaching Assistant', new_teaching_assistant_registration_path, style: "margin-right: 10	px", class: "btn btn-success", method: :get %>
+				</td>
+			</tr>
+		</table>
+	</div>
+<%end%>

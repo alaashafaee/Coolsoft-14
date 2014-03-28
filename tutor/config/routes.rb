@@ -1,9 +1,12 @@
+route
 Tutor::Application.routes.draw do
 get 'courses/show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  resources :courses
+  post "courses/duplicate"
   root 'site#index'
 
   # Example of regular route:
