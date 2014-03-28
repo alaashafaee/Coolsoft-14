@@ -12,23 +12,13 @@
 
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
-		<div class="navbar-header">
-
-			<div class="nav navbar-nav navbar-left" style="margin-right:12px">
-				<%= link_to image_tag("logo.png" , { :title => "Tutor Java !" , size: "50x50"})%>
-			</div>
-
-			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
-			<%- if signed_in?%>
-				<form class="navbar-form navbar-left">
-					<input type="text" class="form-control col-lg-8" placeholder="Search">
-				</form>
-			<%end%>
+		<div class="nav navbar-nav navbar-left" style="margin-right:12px">
+			<%= link_to image_tag("logo.png" , { :title => "Tutor Java !" , size: "50x50"})%>
 		</div>
-		<div class="navbar-collapse collapse" id="navbar-main">
-			<%= render "layouts/log_out_form" %>
-		</div>
-
+		<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+		<%- if signed_in?%>	
+			<%= render "layouts/signed_in_header"%>
+		<%end%>
 	</div>
 </div>
 
