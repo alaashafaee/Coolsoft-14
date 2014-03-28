@@ -1,5 +1,9 @@
 Tutor::Application.routes.draw do
-get 'courses/show'
+
+  get 'courses/show'
+  devise_for :teaching_assistants
+  devise_for :lecturers
+  devise_for :students
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
