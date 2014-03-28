@@ -30,4 +30,8 @@
       <%= f.submit "Save", class: "btn btn-success"%>
     </p>
   <% end %>
+
+  <!-- A back to courses list button -->
+  <%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success" , style: "float:right; margin-top:-50px", :method => :get %>
 </div>
+
