@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    
+    <p style="color:blue;font-size:20px;font-weight:bold">Problems List</p>
+  <% @problems.each do |p| %>
+    <tr>
+      <td><%=@counter%></td>
+      <% @counter+=1     %>
+      <td style="font-family:arial;color:black;font-size:20px;font-weight:bold"><%= p.title %></td>
+      
+      <td><Button><%= link_to "View Description", problems_by_tas_show_path(:id => p.id) %></Button></td>
+
+    </tr>
+
+  <% end %>
+</table>
+
