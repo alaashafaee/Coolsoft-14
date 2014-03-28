@@ -1,10 +1,16 @@
 class DiscussionBoardsController < ApplicationController
 
 	def toggle
-		
-		 @id =  params[:id]
-		@course = Course.find_by_id(@id)
-		 @discussionBoard = @course.discussion_board
+		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+	    puts " "
+	    puts " "
+	    puts " "
+	    puts params[:id]
+	    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+	    puts " "
+	    puts " "
+	    puts " "
+		@discussionBoard =DiscussionBoard.find_by_id(params[:id])
 		@discussionBoard.activated = !@discussionBoard.activated 
 		@discussionBoard.save
 		redirect_to :back

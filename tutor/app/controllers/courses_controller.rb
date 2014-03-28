@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
     puts " "
     puts " "
     puts " "
-    @courses = current_lecturer.courses.all
+    @courses = current_lecturer.courses.order("created_at desc")
   end
 
 
@@ -36,6 +36,11 @@ class CoursesController < ApplicationController
     @t.description = course_params[:description]
     if @t.save
       current_lecturer.courses << @t
+      @discussion_board = DiscussionBoard.new
+      @discussion_board.title = @t.name + " DiscussionBoard"
+      @discussion_board.course_id = @t.id
+      @discussion_board.save
+      @t.discussion_board = @discussion_board
       flash[:success_creation]= "Course added."
       redirect_to :action => 'index'
       #@t.discussion_board = Discussion_board.new
@@ -47,6 +52,7 @@ class CoursesController < ApplicationController
   
   def edit
     @course = Course.find_by_id(params[:id])
+    @discussionBoard = @course.discussion_board
   end
 
   def show
@@ -55,9 +61,6 @@ class CoursesController < ApplicationController
   end
 
   def manage
-       id =  params[:id]
-    course = Course.find_by_id(id)
-     @discussionBoard = course.discussion_board
   end
 
   private def course_params 

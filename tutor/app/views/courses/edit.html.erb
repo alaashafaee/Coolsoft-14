@@ -1,2 +1,11 @@
+<% if @discussionBoard.activated == true %>
+  <%str = "Click to deactivate DiscussionBoard" %>
+<% else %>
+  <%str = "Click to activate DiscussionBoard"%>
+<% end %>
 
+<%= button_to str, {class: "btn btn-danger" , :controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}  %>
+
+<br/>
+<br/>
 <%= button_to "delete course", {:action => "destroy"}, class: "btn btn-danger" , method: :delete %> 
