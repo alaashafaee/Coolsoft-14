@@ -3,15 +3,13 @@
 
 <h1>Your Courses</h1>
  
-<table class = "table table-striped">
+<table class = "table table-striped", style = "width:40%">
   <tr>
     <th>Name</th>
     <th>Code</th>
     <th>Year</th>
     <th>Semester</th>
     <th>Description</th>
-    <th>Created at</th>
-    <th>Updated at</th>
     <th>Options</th>
     
   </tr>
@@ -23,12 +21,13 @@
     <td><%= c.year %></td>
     <td><%= c.semester %></td>
     <td><%= c.description %></td>
-    <td><%= c.created_at %></td>
-    <td><%= c.updated_at %></td>
     <% if current_lecturer %>
-    <td><%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success"%>
-      <%end%>
-    </td>
+    <td><%= button_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right"%>
+    <%end%>
+    <%= button_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right;" %>
+     </td>
+
+   
 
   </tr>
   <% end %>
