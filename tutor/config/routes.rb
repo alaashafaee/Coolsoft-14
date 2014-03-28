@@ -1,9 +1,12 @@
 Tutor::Application.routes.draw do
+  devise_for :teaching_assistants
+  devise_for :lecturers
+  devise_for :students
   get "problem/Create_Edit_Problem_Page"
   get "problem_controller/Create_Edit_Problem_Page"
-  get "tracks/show"
-  post "tracks/get"
-  post "tracks/create"
+  resources :tracks do
+    post 'getProblems' , on: :member
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

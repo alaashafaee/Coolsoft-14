@@ -8,14 +8,14 @@
 	<tr>
 		<td>
 			<%=select(:Track , :id , 
-				@tracks.collect{|t|[t.title , t.id]}, {selected: 1} , 
+				@tracks.collect{|t|[t.title , t.id]}, {selected: @tracks.first.id} , 
 				:multiple => true , :style => "width:250px;align='center'" , 
-				:onchange => "getProblems(this.value)" , :size => 20 , :id => "tracksSel")%>
+				:onchange => "getProblems(this.value)" , :size => 15 , :id => "tracksSel")%>
 		</td>
 		<td id="second" align="center">
 			<%=select(:Track , :id , {}, {} , 
 				:multiple => true , :style => "width:250px;align='center'" , 
-				:onchange => "getProblems(this.value)" , :size => 20 , :id => "problemsSel")%>
+				:onchange => "getProblems(this.value)" , :size => 15 , :id => "problemsSel")%>
 		</td>
 	</tr>
 	<tr>
@@ -29,14 +29,9 @@
 		</td>
 	</tr>
 </table>
-<%@con = true%>
-<% if flash[:notice] == "Successfully created..." %>
-<% @con = true%>
-<%else%>
-<%@con = false%>
-<%end%>
-<div align="center" ><%=flash[:notice]%></div>
-<div align="center" id="create_track" hidden=<%=@con%>><%= form_for :Track , url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+<br>
+<div align="center" ><%=flash[:notice]%></div><br>
+<div align="center" id="create_track" hidden=true><%= form_for :Track , url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
 				<label>Title :</label> <%= f.text_field :title %> <br>
 				<label>Difficulty :</label><%= f.number_field :difficulty %> <br>
 				<%= f.submit "Create" %> <br>

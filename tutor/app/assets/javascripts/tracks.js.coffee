@@ -8,12 +8,9 @@
     return	
 
 @getProblems = (track_id) ->
-    selTrackId = track_id
-    data = "id=" + track_id
     $.ajax
         type: "POST"
-        url: "/tracks/get"
-        data: data
+        url: "/tracks/" + track_id + "/getProblems"
         datatype: "json"
         success: (data) ->
             showProblems data
@@ -21,7 +18,7 @@
     return
 
 showProblems = (datas) ->
-    inner = "<input name='Problem[id][]' type='hidden' value='' /><select id='ProblemsSel' multiple='multiple' name='Problem[id][]' onchange='' size='20' style='width:250px;align='center'>"
+    inner = "<input name='Problem[id][]' type='hidden' value='' /><select id='ProblemsSel' multiple='multiple' name='Problem[id][]' onchange='' size='15' style='width:250px;align='center'>"
     for data in datas
         opt = "<option value='" + data.id + "'>" + data.title + "</option>"
         inner += opt

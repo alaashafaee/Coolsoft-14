@@ -7,12 +7,14 @@ class TracksController < ApplicationController
      @course = @topic.course
      @tracks = @topic.tracks
     else
-     # raise ActionController::RoutingError.new('Not Found')
      render ('public/404')
+    end
+    if flash[:notice] != "Successfully created..." && flash[:notice] != "The required Fields are missing"
+      flash[:notice]= nil
     end
   end
 
-  def get
+  def getProblems
   	id = params[:id]
   	track = Track.find(id)
   	problems = track.problems
