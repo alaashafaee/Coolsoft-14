@@ -12,7 +12,11 @@ class CoursesController < ApplicationController
     puts " "
     @courses = current_lecturer.courses.order("created_at desc")
   end
-
+#Delete a course
+#authored by Metawaa
+#This action takes the course id, remove it from the database
+#and then redirects the user to the show courses page accompanied
+#with a "Course deleted" message
 
   def destroy
   	course = Course.find_by_id(params[:id])
