@@ -1,0 +1,4 @@
+Discussion_board_show
+========================
+<h3><%= link_to post.owner.name, user_path(post.owner) %></h3>  till the user is created
+<h3><%= link_to reply.owner.name, user_path(post.owner) %></h3>  till the user is created

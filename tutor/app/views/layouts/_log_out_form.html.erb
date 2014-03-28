@@ -1,0 +1,15 @@
+<ul class="nav navbar-nav navbar-right" id="navbar-main">
+	<%- if lecturer_signed_in?%>
+		<li style="margin-top:10px">
+			<%= button_to 'Log Out',destroy_lecturer_session_path,class: "btn btn-danger", method: :delete %>
+		</li>
+	<%- elsif student_signed_in?%>
+		<li style="margin-top:10px">
+			<%= button_to 'Log Out',destroy_student_session_path,class: "btn btn-danger",method: :delete %> 
+		</li>
+	<%- elsif teaching_assistant_signed_in?%>
+		<li style="margin-top:10px">
+			<%= button_to 'Log Out', destroy_teaching_assistant_session_path, class: "btn btn-danger" ,method: :delete %>
+		</li>
+	<% end%>
+</ul>

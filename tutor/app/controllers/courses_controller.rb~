@@ -1,5 +1,0 @@
-class CoursesController < ApplicationController
-	def show 
-		@courses = lecturer.find(params[:id]).course
-	end
-end

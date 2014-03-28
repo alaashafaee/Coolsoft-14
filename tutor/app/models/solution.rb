@@ -4,7 +4,6 @@ class Solution < ActiveRecord::Base
 
 	#Relations
 	belongs_to :student
-	belongs_to :problem
 	
 	#Scoops
 	#Methods
