@@ -31,7 +31,11 @@
 </div>
 
 <div class="container well" align="center" style="margin-top:70px;width:800px">
+
 <%= yield %>
+
+<%= render "problems/system_recommendation" if student_signed_in? %>
+
 </div>
 
 

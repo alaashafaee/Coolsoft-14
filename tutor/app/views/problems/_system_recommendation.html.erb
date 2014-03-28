@@ -1,0 +1,6 @@
+<%=
+	suggestion = current_student.get_a_system_suggested_problem
+	if suggestion != nil then
+		link_to "Recommended problem: " + suggestion.title, suggestion
+	end
+%>
