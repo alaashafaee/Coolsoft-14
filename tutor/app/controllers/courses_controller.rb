@@ -1,7 +1,16 @@
 class CoursesController < ApplicationController
   
   def index
-    @courses = Course.all
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    puts " "
+    puts " "
+    puts " "
+    puts current_lecturer.id
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    puts " "
+    puts " "
+    puts " "
+    @courses = current_lecturer.courses.all
   end
 
 
@@ -26,14 +35,14 @@ class CoursesController < ApplicationController
     @t.semester = course_params[:semester]
     @t.description = course_params[:description]
     if @t.save
+      current_lecturer.courses << @t
       render text: "Course Successfully Created "
       #@t.discussion_board = Discussion_board.new
-
-        # redirect_to('show')
-    else render :action=>'new'  
-        
+      # redirect_to('show')
+    else 
+      render :action=>'new'    
     end
-end
+  end
   
   def edit
     @course = Course.find_by_id(params[:id])

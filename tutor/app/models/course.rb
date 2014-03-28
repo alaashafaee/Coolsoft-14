@@ -8,11 +8,6 @@ class Course < ActiveRecord::Base
 	validates :semester , presence: true , numericality: true
 
 
-
-
-
-
-
 	#Relations
 	has_and_belongs_to_many :TAs, class_name:"TeachingAssistant", join_table: "courses_teaching_assistants"
 	has_and_belongs_to_many :lecturers, join_table: "courses_lecturers"

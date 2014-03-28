@@ -1,8 +1,8 @@
 <%= flash[:success] %>
-<%= @courses.name %>
+
 <h1>Your Courses</h1>
  
-<table border="3">
+<table class = "table table-striped">
   <tr>
     <th>Name</th>
     <th>Code</th>
@@ -11,6 +11,7 @@
     <th>Description</th>
     <th>Created at</th>
     <th>Updated at</th>
+    <th>Options</th>
     
   </tr>
  
@@ -23,7 +24,10 @@
     <td><%= c.description %></td>
     <td><%= c.created_at %></td>
     <td><%= c.updated_at %></td>
-    <td><%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-sucess"%></td>
+    <% if current_lecturer %>
+    <td><%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success"%>
+      <%end%>
+    </td>
 
   </tr>
   <% end %>
