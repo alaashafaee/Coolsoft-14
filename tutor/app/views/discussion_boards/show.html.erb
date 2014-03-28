@@ -1,0 +1,35 @@
+<% if @discussionBoard.activated == true %>
+
+
+<div style="width: 50%; margin-left:25%">
+	<h1><%=@discusstionBoard.title%></h1>
+	<% unless @posts.blank? %>
+		<% @posts.each do |post| %>
+			<div style="background-color: #A8A8A8">
+				<h3><%= post.owner.name %></h3>
+				<%= post.content %><br>
+				<%= post.views_count %>
+				<div>
+					<% unless post.replies.blank? %>
+						<% post.replies.each do |reply| %>
+							<br><%= reply.content %><br>
+						<% end %>
+					<%else%>
+					<br>
+					<% end %>
+					<%= render 'reply' %>
+				</div>
+			</div>
+			<br>
+	  <% end %>
+	<% else %>
+		No Posts Yet .. Try Creating a Post
+	<% end %>
+</div>
+
+
+
+<% else %>
+  The discussion board is deactivated
+<% end %>
+

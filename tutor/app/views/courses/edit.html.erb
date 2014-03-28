@@ -1,0 +1,19 @@
+
+<p>
+    <div><%= button_to "Add Topics", {:controller => 'topics', :action => 'new',
+    	 :course => @course}, class: "btn btn-success" , style: "float: left;", method: :post %> </div> 
+
+    <div><%= button_to "Add a TA", {:action => 'show'}, class: "btn btn-success" , style: "float: left; margin-left: 15px", :method => :get%> </div>
+
+    <div><% if @discussionBoard.activated == true %>
+			  <%str = "Deactivate DiscussionBoard" %>
+			<% else %>
+			  <%str = "Activate DiscussionBoard"%>
+		<% end %>
+
+		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success" , style: "float: left; margin-left: 15px"%>
+	</div> 
+ </p>
+<br/>
+<!--delete - button authored by Metawaa - It should trigger the destroy action upon clicking it -->
+	<div><%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger" , style: "margin-top: 100px; float: right", method: :delete %> </div>
