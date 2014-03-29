@@ -22,8 +22,8 @@ class CoursesController < ApplicationController
 			@course = Course.find_by_code(params[:code])
 			@lecturer = Lecturer.find(params[:lecturer])
 			#Insert in the DB
-			#@student = Student.find_by_id(...)
-			#@student.courses << @course	
+			#student = Student.find(current_student.id)
+			#student.courses << @course	
 		 end 			
 	end
   
@@ -87,5 +87,5 @@ class CoursesController < ApplicationController
   private def course_params 
 	   params.require(:course).permit(:name,:code,:year,:semester,:description)
   end
-  
+
 end
