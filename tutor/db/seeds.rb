@@ -25,9 +25,9 @@ TeachingAssistant.create(name: "TA1")
 TeachingAssistant.create(name: "TA2")
 
 puts("# --------------------------Courses------------------------------")
-Course.create(name:"Course1")
-Course.create(name:"Course2")
-Course.create(name:"Course3")
+Course.create(name:"Course1" , description: "Course1" , code:"CSEN401" , year: 2020 , semester: 5)
+Course.create(name:"Course2" , description: "Course2" , code:"CSEN402" , year: 2050 , semester: 10)
+Course.create(name:"Course3" , description: "Course3" , code:"CSEN403" , year: 2090 , semester: 1)
 
 puts("# --------------------------DiscussionBoards------------------------------")
 DiscussionBoard.create(title:"DiscussionBoard1")

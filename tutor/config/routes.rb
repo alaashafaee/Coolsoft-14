@@ -1,10 +1,34 @@
 Tutor::Application.routes.draw do
-get 'courses/show'
+  match ':controller(/:action(/:id))', :via =>:get
+  resources :courses
+  resources :topics
+
+  # get "topics/new"
+  # topics GET ":controller(/:action(/:id(.:format)))"
+  # post ':controller(/:action(/:id(.:format)))'
+  get "courses/destroy"
+  get "courses/create"
+  get "courses/show"
+
+
+  devise_for :teaching_assistants
+  devise_for :lecturers
+  devise_for :students
+  
+
+  #post "courses/1/destroy"
+ # get "courses/create"
+  # get "courses/show"
+  # get "courses/manage"
+  # get "courses/new"
+  # post "courses/new"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'site#index'
+  match ':controller(/:action(/:id))', :via =>:get
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
