@@ -1,4 +1,5 @@
 Tutor::Application.routes.draw do
+  match ':controller(/:action(/:id))', :via =>:get
   resources :courses
   resources :topics
 
@@ -8,6 +9,7 @@ Tutor::Application.routes.draw do
   get "courses/destroy"
   get "courses/create"
   get "courses/show"
+
 
   devise_for :teaching_assistants
   devise_for :lecturers

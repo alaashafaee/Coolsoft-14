@@ -1,5 +1,4 @@
 class CoursesController < ApplicationController
-<<<<<<< HEAD
 	def sign_up
 		@status = params[:status]	
 		case params[:status]
@@ -27,7 +26,6 @@ class CoursesController < ApplicationController
 			#@student.courses << @course	
 		 end 			
 	end
-=======
   
   def index
     puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -89,6 +87,5 @@ class CoursesController < ApplicationController
   private def course_params 
 	   params.require(:course).permit(:name,:code,:year,:semester,:description)
   end
-
->>>>>>> 712f7bddbd15969b71d11520c333b8c28ee4dbf1
+  
 end
