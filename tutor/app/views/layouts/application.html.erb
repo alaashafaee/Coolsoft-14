@@ -12,8 +12,8 @@
 	<div class="container">
 		<div class="navbar-header">
 
-			<div class="nav navbar-nav navbar-left">
-				<%= link_to image_tag("logoImgHere" , { :title => "Tutor Java !"})%>
+			<div class="nav navbar-nav navbar-left" style="margin-right:12px">
+				<%= link_to image_tag("logo.png" , { :title => "Tutor Java !" , size: "50x50"})%>
 			</div>
 
 			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
@@ -30,13 +30,20 @@
 	</div>
 </div>
 
-<div class="container well" align="center" style="margin-top:70px;width:800px">
+<%- if signed_in?%>
+	<%= render "layouts/left_side_bar"%>
+	<%= render "layouts/right_side_bar"%>
+<%end%>
+
+
+<div class="container well" align="center" style="margin-top:70px;margin-bottom:70px;width:60%;height:80%">
 <%= yield %>
 </div>
 
 
-<div id="footer" class="navbar navbar-default navbar-bottom">
 
+<div id="footer" align="center" class="navbar navbar-default navbar-fixed-bottom">
+	<%= render "layouts/footer"%>
 </div>
 
 </body>
