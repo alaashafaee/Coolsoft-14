@@ -1,6 +1,15 @@
 class Lecturer < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
 	
 	#Validations
+	validates :name, presence: true
+	validates :dob, presence: true
+	validates :degree, presence: true
+	validates :department, presence: true
 
 	#Relations
 	has_and_belongs_to_many :courses, join_table: "courses_lecturers"

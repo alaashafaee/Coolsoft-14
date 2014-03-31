@@ -1,0 +1,21 @@
+<br/>
+
+<br/>
+<br/>
+<br/>
+
+<table border = "1">
+  <tr>
+  	<th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+ 
+  <% Topic.all.each do |topic| %>
+    <tr>
+	  <td><%= topic.id%>	   	  </td>
+      <td><%= topic.title %>	  </td>
+      <td><%= topic.description %></td>
+    </tr>
+  <% end %>
+</table>

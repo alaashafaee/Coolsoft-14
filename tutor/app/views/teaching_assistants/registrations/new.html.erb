@@ -1,0 +1,68 @@
+<div align="center">
+<h2>Sign up as Teaching Assistant</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+	<%= devise_error_messages! %>
+
+	<h3>Same issue for age and gender, What is type?</h3>
+
+	<div>
+		<%= f.label :email %><br />
+		<%= f.email_field :email, autofocus: true %>
+	</div>
+
+	<div>
+		<%= f.label :password %><br />
+		<%= f.password_field :password, autocomplete: "off" %>
+	</div>
+
+	<div>
+		<%= f.label :password_confirmation %><br />
+		<%= f.password_field :password_confirmation, autocomplete: "off" %>
+	</div>
+
+	<div>
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
+
+	<div>
+		<%= f.label :date_of_birth %><br />
+		<%= f.text_field :dob %>
+	</div>
+
+	<div>
+		<%= f.label :profile_image %><br />
+		<%= f.url_field :profile_image %>
+	</div>
+
+	<div>
+		<%= f.label :gender %>
+		<%= f.select :gender, options_for_select(%w[Male Female]) %>
+	</div>
+
+	<div>
+		<%= f.label :graduated_from %><br />
+		<%= f.text_field :graduated_from %>
+	</div>
+
+	<div>
+		<%= f.label :graduation_year %><br />
+		<%= f.text_field :graduated_year %>
+	</div>
+
+	<div>
+		<%= f.label :department %><br />
+		<%= f.text_field :department %>
+	</div>
+
+	<div><%= f.submit "Sign up" %></div>
+
+    <div style="margin:10px">
+		<%= f.submit "Sign up", class: "btn btn-success", style: "margin-top:10px"  %>
+	</div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

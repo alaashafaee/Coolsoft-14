@@ -1,6 +1,15 @@
 class TeachingAssistant < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 	
 	#Validations
+	validates :name, presence: true
+	validates :dob, presence: true
+	validates :graduated_from, presence: true
+	validates :graduated_year, presence: true
+	validates :department, presence: true
 
 	#Relations
 	has_many :posts, as: :owner, dependent: :destroy
