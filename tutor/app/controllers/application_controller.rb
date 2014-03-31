@@ -5,8 +5,10 @@ class ApplicationController < ActionController::Base
   	protect_from_forgery with: :exception
 	before_action :update_sanitized_params, if: :devise_controller?
 
-	#UPDATE ALL FIELDS
 	private
+		# Allows certain fields to passed through a form
+		# Parameters: None
+		# Returns: None
 		def update_sanitized_params
 			if "#{resource_name}" == "lecturer"
 		  		devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password, :password_confirmation, :degree, :dob, :profile_image, :gender, :department)}
@@ -17,6 +19,9 @@ class ApplicationController < ActionController::Base
 			end
 		end
 
+		# Checks for user authentication and if not authenticated, will be redirected to root
+		# Parameters: None
+		# Returns: None
 		def authenticate!
 			if signed_in? or params[:controller].include?"devise"
 				return true
