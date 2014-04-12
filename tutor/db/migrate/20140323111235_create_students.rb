@@ -18,6 +18,8 @@ class CreateStudents < ActiveRecord::Migration
       t.integer :failure_attempts
       t.integer :success_attempts
 
+      t.references :student, polymorphic: true
+
       t.timestamps
     end
   end

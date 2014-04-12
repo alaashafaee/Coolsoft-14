@@ -1,6 +1,6 @@
-class CreateLecturers < ActiveRecord::Migration
+class CreateStaffs < ActiveRecord::Migration
   def change
-    create_table :lecturers do |t|
+    create_table :staffs do |t|
       t.string :name
       t.string :email
       t.boolean :verified_type
@@ -9,10 +9,8 @@ class CreateLecturers < ActiveRecord::Migration
       t.integer :age
       t.string :profile_image
       t.boolean :gender
-      t.string :degree
       t.string :department
-
-      t.references :lecturer, polymorphic: true
+      t.string :staff
 
       t.timestamps
     end
