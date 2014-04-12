@@ -4,8 +4,8 @@ class ModelAnswer < ActiveRecord::Base
 
 	#Relations
 	belongs_to :problem
-	belongs_to :owner, class_name: 'Staff', foreign_key: :staff_id
-
+	belongs_to :owner, polymorphic: true
+	
 	has_many :method_constraints, dependent: :destroy
 	has_many :method_parameters, dependent: :destroy
 	has_many :variable_constraints, dependent: :destroy
