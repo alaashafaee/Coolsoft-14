@@ -38,5 +38,5 @@ pickle-email-*.html
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
 
-
+/db/migrate
 
