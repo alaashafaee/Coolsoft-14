@@ -94,8 +94,6 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.boolean  "gender"
     t.string   "degree"
     t.string   "department"
-    t.integer  "lecturer_id"
-    t.string   "lecturer_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -222,8 +220,6 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.boolean  "probation"
     t.integer  "failure_attempts"
     t.integer  "success_attempts"
-    t.integer  "student_id"
-    t.string   "student_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
