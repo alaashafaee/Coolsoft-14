@@ -1,6 +1,0 @@
-<h1> the test cases List</h1>
-
-<% @test_case.each do |test_case|%>
-	<h2>%= test_case.input </h2> 
-        <h2>%= test_case.output</h2>
-<%end%>
