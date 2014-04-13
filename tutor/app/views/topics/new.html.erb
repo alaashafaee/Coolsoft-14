@@ -1,0 +1,35 @@
+<!-- Name: The New Topic Form 
+	Author: Ahmed Akram
+-->
+
+<div align="center">
+	<h1>New Topic</h1>
+
+	<% if flash[:notice] == "Failed" %>
+		<%= flash[:notice] %>
+	<%end%>
+
+	<br/>
+
+	<!-- Rendering the form fields -->
+	<%= form_for :topic, url: topics_path do |f| %>
+	<p>
+		<%= f.label "Title" %><br>
+		<%= f.text_field :title, autofocus: true, class:"form-control",style:"width:300px",placeholder:"Title"%>
+	</p>
+
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description, class:"form-control",style:"margin-left:auto;
+		margin-right:auto;height:200px; width:500px; resize:none",placeholder:"Description" %>
+	</p>
+
+	<%= f.hidden_field :course_id, :value => @course.id %>
+		<p>
+			<%= f.submit "Save", class: "btn btn-success"%>
+		</p>
+	<% end %>
+
+	<!-- A back to courses list button -->
+	<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success" , style: "float:right; margin-top:-50px", :method => :get %>
+</div>
