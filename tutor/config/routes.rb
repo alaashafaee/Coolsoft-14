@@ -1,9 +1,5 @@
 Tutor::Application.routes.draw do
-  get "topics/new"
-  get "topics/destroy"
-  get "topics/create"
-  get "topics/index"
-  get "topics/show"
+  resources :topics
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
