@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>CoolSoft - Java Tutor</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>CoolSoft - Java Tutor</title>
+		<%= stylesheet_link_tag "application", "bootstrap", "bootstrap.min", :media => "all"%>
+		<%= javascript_include_tag "application","jquery"%>
+		<%= csrf_meta_tags%>
+	</head>
 
-<p>This line is from the main application layout file. <a href='http://guides.rubyonrails.org/layouts_and_rendering.html'>Read more here.</a></p>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
 
-<%= render partial: "layouts/header" %>
+					<div class="nav navbar-nav navbar-left" style="margin-right:12px">
+						<%= link_to image_tag("logo.png" , { :title => "Tutor Java !" , size: "50x50"})%>
+					</div>
 
-<%= yield %>
+					<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+					<%- if signed_in?%>
+						<form class="navbar-form navbar-left">
+		                    <input type="text" class="form-control col-lg-8" placeholder="Search">
+		                </form>
+		            <%end%>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar-main">
+					<%= render "layouts/log_out_form" %>
+				</div>
 
-<%= render partial: "layouts/footer" %>
+			</div>
+		</div>
 
-</body>
+		<%- if signed_in?%>
+			<%= render "layouts/left_side_bar"%>
+		<%end%>
+
+		<%- if signed_in?%>
+			<%= render "layouts/right_side_bar"%>
+		<%end%>
+
+		<div class="container well" align="center" style="margin-top:70px;margin-bottom:70px;width:60%;height:80%">
+		<%= yield %>
+		</div>
+
+		<div id="footer" align="center" class="navbar navbar-default navbar-fixed-bottom">
+			<%= render "layouts/footer"%>
+		</div>
+
+	</body>
 </html>
