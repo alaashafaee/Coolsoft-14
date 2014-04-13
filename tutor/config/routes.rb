@@ -55,7 +55,6 @@ Tutor::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-=======
 	resources :tracks do
   		post 'getProblems' , on: :member
 	end
@@ -113,6 +112,5 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
->>>>>>> 4b90d70c448b33cb228b1c944d8c98e00b529012
 end
 	
