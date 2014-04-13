@@ -1,5 +1,9 @@
 class CoursesController < ApplicationController
 
+	# [Action]
+	# Description: This action renders a list of all courses belonging to 
+	# 			   the current user.
+	# Author: Ahmed Osam
 	def index
 		@courses = current_lecturer.courses.order("created_at desc")
 	end  
@@ -75,5 +79,5 @@ class CoursesController < ApplicationController
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
-
+		
 end
