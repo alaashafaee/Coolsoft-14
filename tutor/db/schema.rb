@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "code"
     t.integer  "year"
     t.integer  "semester"
-    t.string   "university"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,8 +84,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -100,6 +98,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.boolean  "gender"
     t.string   "degree"
     t.string   "department"
+    t.integer  "lecturer_id"
+    t.string   "lecturer_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -127,8 +127,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
     t.integer  "model_answer_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -136,8 +135,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
     t.integer  "model_answer_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,8 +143,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "model_answers", force: true do |t|
     t.text     "answer"
     t.integer  "problem_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -163,8 +160,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.text     "content"
     t.integer  "views_count"
     t.integer  "discussion_board_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "user_id"
+    t.string   "user_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -177,8 +174,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -196,8 +192,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "replies", force: true do |t|
     t.text     "content"
     t.integer  "post_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -208,6 +203,21 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.integer  "status"
     t.integer  "student_id"
     t.integer  "problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "staffs", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
+    t.string   "department"
+    t.string   "staff"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -227,6 +237,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.boolean  "probation"
     t.integer  "failure_attempts"
     t.integer  "success_attempts"
+    t.integer  "student_id"
+    t.string   "student_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -276,9 +288,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "input"
     t.string   "output"
     t.integer  "model_answer_id"
+    t.integer  "staff_id"
     t.integer  "problem_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -308,8 +319,22 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.integer  "difficulty"
     t.integer  "views_count"
     t.integer  "topic_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
+    t.integer  "sub_id"
+    t.string   "sub_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -318,8 +343,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "variable_name"
     t.string   "type"
     t.integer  "model_answer_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
+    t.integer  "staff_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

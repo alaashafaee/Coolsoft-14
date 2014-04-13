@@ -26,7 +26,7 @@ Coolsoft-14
 		<td>25-4461</td>
 	</tr>
 	<tr>
-		<td><a href='http://fadel1493.github.io'>Mohamed Fadel </a></td>
+		<td>Mohamed Fadel </td>
 		<td>25-2960</td>
 	</tr>
 	<tr>
