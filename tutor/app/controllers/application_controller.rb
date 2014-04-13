@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   	# Prevent CSRF attacks by raising an exception.
   	# For APIs, you may want to use :null_session instead.
   	before_action :authenticate!
@@ -24,6 +25,6 @@ class ApplicationController < ActionController::Base
 				flash[:notice] = "You're not logged in!"
 				redirect_to :root
 			end
-
 		end
+
 end
