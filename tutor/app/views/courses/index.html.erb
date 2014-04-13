@@ -1,0 +1,34 @@
+
+<%= flash[:success_creation] %>
+
+<h1>Your Courses</h1>
+ 
+<table class = "table table-striped", style = "width:40%">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Year</th>
+    <th>Semester</th>
+    <th>Description</th>
+    <th>Options</th>
+    
+  </tr>
+ 
+<% @courses.each do |c| %>
+  <tr>
+    <td><%= c.name %></td>
+    <td><%= c.code %></td>
+    <td><%= c.year %></td>
+    <td><%= c.semester %></td>
+    <td><%= c.description %></td>
+    <% if current_lecturer %>
+    <td><%= button_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right"%>
+    <%end%>
+    <%= button_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right;" %>
+     </td>
+
+   
+
+  </tr>
+  <% end %>
+</table>
