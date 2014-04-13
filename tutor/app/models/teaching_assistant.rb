@@ -1,10 +1,11 @@
-class TeachingAssistant < Staff
+class TeachingAssistant < ActiveRecord::Base
 	
 	#Validations
 
 	#Relations
-	has_and_belongs_to_many :courses, join_table: "courses_teaching_assistants"
+	has_one :user, as: :sub
 
+	has_and_belongs_to_many :courses, join_table: "courses_teaching_assistants"
 	#Scoops
 	#Methods
 

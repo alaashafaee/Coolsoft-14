@@ -84,7 +84,18 @@ ActiveRecord::Schema.define(version: 20140326150549) do
   end
 
   create_table "lecturers", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "degree"
+    t.string   "department"
+    t.integer  "lecturer_id"
+    t.string   "lecturer_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -133,6 +144,7 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.integer  "views_count"
     t.integer  "discussion_board_id"
     t.integer  "user_id"
+    t.string   "user_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -179,6 +191,14 @@ ActiveRecord::Schema.define(version: 20140326150549) do
   end
 
   create_table "staffs", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "department"
     t.string   "staff"
     t.datetime "created_at"
@@ -186,6 +206,14 @@ ActiveRecord::Schema.define(version: 20140326150549) do
   end
 
   create_table "students", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "faculty"
     t.string   "major"
     t.integer  "year"
@@ -194,14 +222,25 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.boolean  "probation"
     t.integer  "failure_attempts"
     t.integer  "success_attempts"
+    t.integer  "student_id"
+    t.string   "student_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "teaching_assistants", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.boolean  "verified_type"
+    t.string   "password"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.string   "graduated_from"
     t.integer  "graduated_year"
     t.boolean  "type"
+    t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -228,13 +267,13 @@ ActiveRecord::Schema.define(version: 20140326150549) do
 
   create_table "track_progressions", force: true do |t|
     t.integer  "level"
-    t.integer  "user_id"
+    t.integer  "student_id"
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "track_progressions", ["user_id", "topic_id"], name: "index_track_progressions_on_user_id_and_topic_id", unique: true
+  add_index "track_progressions", ["student_id", "topic_id"], name: "index_track_progressions_on_student_id_and_topic_id", unique: true
 
   create_table "tracks", force: true do |t|
     t.string   "title"
@@ -255,7 +294,8 @@ ActiveRecord::Schema.define(version: 20140326150549) do
     t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
-    t.string   "type"
+    t.integer  "sub_id"
+    t.string   "sub_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
