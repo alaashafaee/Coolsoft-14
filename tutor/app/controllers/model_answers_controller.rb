@@ -1,57 +1,57 @@
 class ModelAnswersController < ApplicationController
-
-	
-#Nadine- saves all information in table ModelAnswer in variable @ answers
-#saves a new record in table ModelAnswer in variable @answer
-	
+# [Add answer story 4.6]
+# It creates the new answer.
+# Parameters: 
+#   @answer: the new answer the user enters.
+#   @answers: All the previous answers that had been entered before..
+# Author: Nadine Adel
 	def new
-
 		@answers = ModelAnswer.all
 		@answer = ModelAnswer.new
 	end
 
-
-
-
-
-
-
-#Nadine- creates in ModelAnswer a record with the parameters taken from the view and check if saved or not
-#saved and notify the user
+# [Add answer story 4.6]
+# The new answer is saved. 
+# Parameters: 
+#   @answer:answer provided by the user.
+# Returns: Returns a message if the answer is added and another message if answer was not added.
+# Author: Nadine Adel
 	def create
-	 	@answer = ModelAnswer.new(post_params)
-	 	if @answer.save
+		@answer = ModelAnswer.new(post_params)
+		if @answer.save
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :back
-     	else
+    	else
      		flash[:notice] = "Your Answer can not be added "
      		redirect_to :back
-       
-		end
+       	end
 	end
 
-
-
-#Nadine- shows a single record in table ModelAnswer
-
+# [Add answer story 4.6]
+# It shows answer that was entered before. 
+# Parameters: 
+#   @answer:previous answer.
+# Author: Nadine Adel
 	def show
-
 		@answer = ModelAnswer.find(params[:problem_id])
-
 	end
-	
 
-#Nadine- saves all record in ModelAnswer to loop on them in the view and show the records to the user
+# [Add answer story 4.6]
+# It shows all the answers that are saved in the database. 
+# Parameters: 
+#   @answers:previous answer that are saved in the database.
+# Author: Nadine Adel
 	def index
   		@answers = ModelAnswer.all
 	end
 
-
-#Nadine-it requires from the form in the view the attributes we are interested in
+# [Add answer story 4.6]
+# It requires the attributes from the form that we are interested in. 
+# Parameters: 
+#   @answer:the answer that the user wants to add.
+# Author: Nadine Adel
 	private
- 	 def post_params
-   		 params.require(:model_answer).permit(:answer)
-  	end
-
-
-end
+	def post_params
+   		params.require(:model_answer).permit(:answer)
+	end
+	end
