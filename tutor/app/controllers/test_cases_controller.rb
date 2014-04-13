@@ -10,7 +10,7 @@ end
 # [Add test case-story 4.8]
 # Display the form that is used to add a test case. 
 # Parameters: None
-# Returns: 
+# Returns: None
 # Author: Lin 
 def new 
     @test_case = TestCase.new()  
@@ -19,7 +19,7 @@ end
 # Saves the new test case into the database.(What the form the 'new' method will submit to)  
 # Parameters: None
 # Returns: In case of success a flash notice will appear:"Post created successfully"
-#        In case of failure a flash notice will appear:"Can't add test case!"
+#          In case of failure a flash notice will appear:"Can't add test case!"
 # Author: Lin
 def create
 @test_case = TestCase.new(post_params) 
@@ -34,7 +34,7 @@ end
 # [Add test case-story 4.8]
 # private method. Controls the test case parameters that can be accessed.
 # Parameters: None
-# Returns:
+# Returns: None
 # Author: Lin
 private
 def post_params
