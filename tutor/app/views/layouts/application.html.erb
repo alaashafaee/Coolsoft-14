@@ -1,20 +1,37 @@
+<!--
+# [View Layout - Story 1.2]
+# General layout
+# Author: Ahmed Elassuty
+-->
 <!DOCTYPE html>
 <html>
-<head>
-  <title>CoolSoft - Java Tutor</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<p>This line is from the main application layout file. <a href='http://guides.rubyonrails.org/layouts_and_rendering.html'>Read more here.</a></p>
-
-<%= render partial: "layouts/header" %>
-
-<%= yield %>
-
-<%= render partial: "layouts/footer" %>
-
-</body>
+	<head>
+		<title>CoolSoft - Java Tutor</title>
+		<%= stylesheet_link_tag "application", "bootstrap", "bootstrap.min", :media => "all"%>
+		<%= javascript_include_tag "application","jquery"%>
+		<%= csrf_meta_tags%>
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="nav navbar-nav navbar-left" style="margin-right:12px">
+					<%= link_to image_tag("logo.png" , { :title => "Tutor Java !" , size: "50x50"})%>
+				</div>
+				<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+				<%- if signed_in?%>	
+					<%= render "layouts/signed_in_header"%>
+				<%end%>
+			</div>
+		</div>
+		<%- if signed_in?%>
+			<%= render "layouts/left_side_bar"%>
+			<%= render "layouts/right_side_bar"%>
+		<%end%>
+		<div class="container well main-content" align="center">
+			<%= yield %>
+		</div>
+		<div id="footer" align="center" class="navbar navbar-default navbar-fixed-bottom">
+			<%= render "layouts/footer"%>
+		</div>
+	</body>
 </html>
