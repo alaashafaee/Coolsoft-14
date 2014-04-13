@@ -11,7 +11,7 @@ class TrackProgression < ActiveRecord::Base
 
 	#Methods
 
-	# [Class Method]
+	# [Find Recommendations - Story 3.9]
 	# Returns the target users progress level in the target topic
 	# If the progression record does not exist, returns level 0 by default
 	# Parameters: 

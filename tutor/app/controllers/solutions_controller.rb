@@ -1,5 +1,5 @@
 class SolutionsController < ApplicationController
-	# [Instance method]
+	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
 	# Parameters: ID of the problem , ID of current student , code from the form_for
 	# outputs 2 flush messages for success and failure scenarios 
@@ -20,7 +20,7 @@ class SolutionsController < ApplicationController
 		end
 	end
 
-	# [Instance method]
+	# [Code Editor: Write Code - Story 3.3]
 	# Fills the ID of the problem , code from the form_for 
 	# Author: @MOHAMEDSAEED
 	private

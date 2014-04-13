@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-	# [Instance method]
+	# [Solve a problem - Story 3.1]
 	# Returns the problem statment that the user chose
 	# Parameters: ID of the problem
 	# Returns: A Problem model instance

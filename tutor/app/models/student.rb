@@ -27,7 +27,7 @@ class Student < ActiveRecord::Base
 
 	#Methods
 
-	# [Instance method]
+	# [Find Recommendations - Story 3.9]
 	# Returns a suggested problem to solve for this user
 	# Parameters: None
 	# Returns: A Problem model instance

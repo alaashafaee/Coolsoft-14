@@ -14,7 +14,7 @@ class Problem < ActiveRecord::Base
 	
 	#Methods
 
-	# [Instance method]
+	# [Find Recommendations - Story 3.9]
 	# Returns true IFF this problem is solved by the target user, false otherwise
 	# Parameters: user_id => The target user's ID
 	# Returns: A boolean value
