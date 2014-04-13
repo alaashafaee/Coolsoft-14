@@ -1,4 +1,5 @@
 class ModelAnswer < ActiveRecord::Base
+<<<<<<< HEAD
 #Validations
 validates :answer , :presence => true
 validates :answer , :length => { :minimum => 1 }
