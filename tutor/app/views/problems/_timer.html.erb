@@ -5,27 +5,28 @@ var time;
 var timer_is_on=0;
 
 function timer(){
-        digit++;       
+	digit++;
 
-        if(digit>59){
-                min++;
-                document.getElementById("mins").innerHTML=min;
-                digit=0;
-        }
-if (digit <= 9)
-        	digit = '0' + digit;
-        	document.getElementById("secs").innerHTML=digit;}
+	if(digit>59){
+		min++;
+		document.getElementById("mins").innerHTML=min;
+		digit=0;
+	}
+	if (digit <= 9)
+		digit = '0' + digit;
+	document.getElementById("secs").innerHTML=digit;
+}
 
 function activate(){
-        if(!timer_is_on){
-                timer_is_on=1;
-                time=setInterval(timer, 1000);
-                timer();
-        }
+	if(!timer_is_on){
+		timer_is_on=1;
+		time=setInterval(timer, 1000);
+		timer();
+	}
 }
 
 function doLoad() {
-   activate();
+	activate();
 }
 
 window.onload = doLoad;
