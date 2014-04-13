@@ -30,31 +30,20 @@ class Student < ActiveRecord::Base
 	# [Find Recommendations - Story 3.9]
 	# Returns a suggested problem to solve for this user
 	# Parameters: None
-	# Returns: A Problem model instance
+	# Returns: A Problem model instance for the suggested problem
 	# Author: Rami Khalil
 	def get_a_system_suggested_problem
-		# Create a new empty set
 		suggestions = Set.new
 
-		# For every course this student is enrolled in
 		courses.each do |course|
-			# For every topic this course contains
 			course.topics.each do |topic|
-				# Get this student's progress level for this course
 				level = TrackProgression.get_progress(self.id, topic.id)
 
-				# For every track in this course topic
 				topic.tracks.each do |track|
-						# If this track's difficulty matches the student's progress level
 						if(track.difficulty == level)
-							# Check every problem in this track
 							track.problems.each do |problem|
-								# If this problem has not been solved by this student before
 								if(!problem.is_solved_by_student(self.id))
-									# Add the problem to the suggestions set
 									suggestions.add(problem)
-									# Only take one problem per track
-									# Break out of problem loop
 									break
 								end
 							end

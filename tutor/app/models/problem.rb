@@ -15,13 +15,13 @@ class Problem < ActiveRecord::Base
 	#Methods
 
 	# [Find Recommendations - Story 3.9]
-	# Returns true IFF this problem is solved by the target user, false otherwise
+	# Checks whether this problem is solved by the target user
 	# Parameters: user_id => The target user's ID
-	# Returns: A boolean value
+	# Returns: The boolean value true IFF this problem is solved by the target user, false otherwise
 	# Author: Rami Khalil
-	def is_solved_by_student(studet_id)
+	def is_solved_by_student(student_id)
 		return Solution.find_by(
-					student_id: studet_id,
+					student_id: student_id,
 					problem_id: self.id,
 					status: Solution::STATUS_ACCEPTED) != nil
 	end
