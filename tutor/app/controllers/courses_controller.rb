@@ -19,7 +19,8 @@ class CoursesController < ApplicationController
 			@courses = Course.select(:university).distinct
 			@status = "1"
 		when "2"
-			@courses = Course.where("university= " + "\""+ params[:university] + "\"").select(:semester).distinct
+			@courses = Course.where("university= " + "\""+ params[:university]
+				+ "\"").select(:semester).distinct
 		when "3"
 			@courses = Course.where("semester= " + params[:semester])	
 		when "4"
@@ -31,8 +32,8 @@ class CoursesController < ApplicationController
 			@course = Course.find_by_code(params[:code])
 			@lecturer = Lecturer.find(params[:lecturer])
 			#Insertion in the DB
-			#student = Student.find(current_student.id)
-			#student.courses << @course	
+			student = Student.find(current_student.id)
+			student.courses << @course	
 		end
 	end
 end
