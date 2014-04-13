@@ -41,11 +41,16 @@
 #   datas: List of problems to be shown
 # Author: Mussab ElDash
 showProblems = (datas) ->
-	inner = "<input name='Problem[id][]' type='hidden' value='' />
-				<select id='ProblemsSel' multiple='multiple' name='Problem[id][]' 
-				onchange='' size='15' style='width:250px;align='center'>"
+	inner = "<input name='Problem[id][]' 
+				type='hidden' value='' />
+				<select id='ProblemsSel' 
+				multiple='multiple' 
+				name='Problem[id][]' 
+				onchange='' size='15' 
+				style='width:250px;align='center'>"
 	for data in datas
-		opt = "<option value='" + data.id + "'>" + data.title + "</option>"
+		opt = "<option value='" + data.id + "'>" 
+		opt+= data.title + "</option>"
 		inner += opt
 	inner += "</select>"
 	document.getElementById("second").innerHTML = inner

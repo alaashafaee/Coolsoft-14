@@ -10,6 +10,11 @@ class TracksController < ApplicationController
 	# Returns: The view of the requested topic
 	# Author: Mussab ElDash
 	def show
+		boool = flash[:notice] != "Successfully created..."
+		boool&&=flash[:notice] != "The required Fields are missing"
+		if boool
+			flash[:notice]= nil
+		end
 		id = params[:id]
 		@topic = Topic.find_by_id(id)
 		if @topic
@@ -17,9 +22,6 @@ class TracksController < ApplicationController
 			@tracks = @topic.tracks
 		else
 			render ('public/404')
-		end
-		if flash[:notice] != "Successfully created..." && flash[:notice] != "The required Fields are missing"
-			flash[:notice]= nil
 		end
 	end
 
