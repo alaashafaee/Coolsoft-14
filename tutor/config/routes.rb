@@ -10,6 +10,10 @@ Tutor::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   #get "solutions/problempage"
+  resources :tracks do
+ 	post 'getProblems' , on: :member
+  end
+
   resources :solutions
   resources :problems
   root 'site#index'
@@ -64,3 +68,4 @@ Tutor::Application.routes.draw do
   #     resources :products
   #   end
 end
+	
