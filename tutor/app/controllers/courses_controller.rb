@@ -4,6 +4,11 @@ class CoursesController < ApplicationController
 		@courses = current_lecturer.courses.order("created_at desc")
 	end  
 
+	# [Action]
+	# Description: This action takes the course id, remove it from the database
+	# 			   and then redirects the user to the show courses page accompanied
+	# 			   with a "Course deleted" message.
+	# Author: Mohamed Metawaa
 	def destroy
 		course = Course.find_by_id(params[:id])
 		course.destroy
@@ -11,12 +16,20 @@ class CoursesController < ApplicationController
 		redirect_to :action => 'index'
 	end
 
+	# [Action]
+	# Description: This action creates a new instance variable for the course.
+	# Author: Mohamed Mamdouh
 	def new
 		if(@new_coursedc == nil)
 			@new_course = Course.new
 		end
 	end
 
+	# [Action]
+	# Description: This action takes the info submited by the user in the form 
+	# 			   and creates a new record. Then, insert it in the table. If the 
+	# 			   insertion did not succeed, and error message will appear.
+	# Author: Mohamed Mamdouh
 	def create
 		@new_course  = Course.new
 		@new_course.name = course_params[:name]
@@ -38,11 +51,19 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	# [Action]
+	# Description: This action takes the info submited by the user in the form 
+	# 			   and creates a new record. Then, insert it in the table. If the 
+	# 			   insertion did not succeed, and error message will appear.
+	# Author: Mohamed Mamdouh
 	def edit
 		@course = Course.find_by_id(params[:id])
 		@discussionBoard = @course.discussion_board
 	end
 
+	# [Action]
+	# Description: This action shows a specific selected course.
+	# Author: Ahmed Osam
 	def show
 		@course = Course.find_by_id(params[:id])
 	end
