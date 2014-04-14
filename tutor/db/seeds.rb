@@ -49,8 +49,8 @@ Reply.create(content: "Reply5")
 
 puts("# --------------------------Topics------------------------------")
 Topic.create(title: "Prolog" , course_id: 1)
-Topic.create(title: "Topic2" , course_id: 1)
-Topic.create(title: "Topic3" , course_id: 1)
+Topic.create(title: "Haskell" , course_id: 1)
+Topic.create(title: "C" , course_id: 1)
 
 puts("# -----------------------Hints---------------------------")
 Hint.create(message: "Do not Try to Solve CS problem-1")
@@ -77,14 +77,14 @@ VariableConstraint.create(variable_name: "VariableConstraint 1")
 VariableConstraint.create(variable_name: "VariableConstraint 2")
 VariableConstraint.create(variable_name: "VariableConstraint 3")
 
-puts("# -----------------------Problems---------------------------")
-Problem.create(title:"Problem 1" , track_id: 1)
-Problem.create(title:"Problem 2" , track_id: 1)
-Problem.create(title:"Problem 3" , track_id: 2)
-
 puts("# -----------------------Tracks---------------------------")
-Track.create(title: "Track 1" , topic_id: 1 , difficulty: 1)
-Track.create(title: "Track 2" , topic_id: 1 , difficulty: 2)
-Track.create(title: "Track 3" , topic_id: 2 , difficulty: 3)
+Track.create(title: "Track 1" , topic_id: 1 , difficulty: 0)
+Track.create(title: "Track 2" , topic_id: 1 , difficulty: 1)
+Track.create(title: "Track 3" , topic_id: 2 , difficulty: 2)
+
+puts("# -----------------------Problems---------------------------")
+Problem.create(title: "Problem 1", descrption: "Problem 1", track_id: 1)
+Problem.create(title: "Problem 2", descrption: "Problem 2", track_id: 1)
+Problem.create(title: "Problem 3", descrption: "Problem 3", track_id: 2)
 
 puts("# -------------------------------------------------------")

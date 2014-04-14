@@ -14,6 +14,12 @@
 ActiveRecord::Schema.define(version: 20140413181651) do
 
   create_table "admins", force: true do |t|
+    t.string   "name"
+    t.boolean  "verified_type"
+    t.date     "dob"
+    t.integer  "age"
+    t.string   "profile_image"
+    t.boolean  "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
