@@ -3,11 +3,20 @@ Tutor::Application.routes.draw do
 	devise_for :students
 	devise_for :lecturers
 
-	# The priority is based upon order of creation: first created -> highest priority.
-	# See how all your routes lay out with "rake routes".
 
-	# You can have the root of your site routed with "root"
+	get "courses/destroy"
+	get "courses/create"
+	get "courses/show"
+	get "courses/index"
+ 
+
+	post "courses/new"
+	post "discussion_boards/toggle"
+
+
 	root 'site#index'
+
+
 
 	resources :tracks do
 		post 'getProblems' , on: :member
