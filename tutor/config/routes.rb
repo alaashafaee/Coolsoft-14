@@ -75,5 +75,3 @@ Tutor::Application.routes.draw do
 	#   end
 
 end
-
-
