@@ -11,7 +11,7 @@ class CoursesController < ApplicationController
 	#	id: The course id
 	# Author: Rania Abdel Fattah
 	def duplicate
-		course = Course.find_by_id(permitdup[:id])
+		course = Course.find_by_id(permitd_up[:id])
 		new_course = course.dup
 		if new_course.save
 			redirect_to :back
@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
 	#	id: The course id
 	# Author: Rania Abdel Fattah
 	private
-		def permitdup
+		def permitd_up
 			params.require(:course).permit(:id)
 		end
 end
