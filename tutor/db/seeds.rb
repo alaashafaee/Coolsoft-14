@@ -105,6 +105,8 @@ puts("# -----------------------Users---------------------------")
 Lecturer.first.topics << Topic.first
 Lecturer.first.tracks << Track.first
 Lecturer.first.problems << Problem.first
+Lecturer.first.courses << Course.first
+Lecturer.first.courses << Course.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
 Problem.first.model_answers << ModelAnswer.first
@@ -131,5 +133,11 @@ puts("# -----------------------Topics---------------------------")
 Topic.first.tracks << Track.first
 Topic.find_by_id(2).tracks << Track.find_by_id(2)
 Topic.find_by_id(3).tracks << Track.find_by_id(3)
+
+puts("# -----------------------Courses---------------------------")
+Course.first.topics << Topic.first
+Course.first.topics << Topic.find_by_id(2)
+Course.find_by_id(2).topics << Topic.find_by_id(3)
+
 
 puts("# -------------------------------------------------------")
