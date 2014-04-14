@@ -13,6 +13,4 @@ class Track < ActiveRecord::Base
 	#Scoops
 	#Methods
 
-
-
 end
