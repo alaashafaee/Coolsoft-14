@@ -63,7 +63,7 @@ class CoursesController < ApplicationController
 			flash[:success_creation]= "Course added."
 			redirect_to :action => 'index'
 		else 
-			render :action=>'new'    
+			render :action=>'new'
 		end
 	end
 

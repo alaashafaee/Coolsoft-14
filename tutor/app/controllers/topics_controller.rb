@@ -10,6 +10,7 @@ class TopicsController < ApplicationController
 	# Author: Ahmed Akram
 	def new
 		@course = Course.find(params[:course_id])
+		@new_topic = Topic.new
 	end
 
 	# [Specify Topics - Story 1.2]
@@ -22,7 +23,7 @@ class TopicsController < ApplicationController
 	# 	@topics: A list of all topics belonging to the course
 	# Author: Ahmed Akram
 	def index
-		@course = Course.find(params[:id])
+		@course = Course.find(params[:course_id])
 		@topics = @course.topics.order("created_at desc")
 	end
 
@@ -45,12 +46,12 @@ class TopicsController < ApplicationController
 		bool = @new_topic.save
 		if bool == true 
 			flash[:notice] = "Succeeded"
-			@course = Course.find(topic_params[:course_id])
+			@course = Course.find(course_params[:course_id])
 			@course.topics << @new_topic
 			redirect_to :controller => 'topics', :action => 'index', :id => @course.id
 		else
-			flash[:notice] = "Failed"
-			redirect_to :back
+			flash[:notice] = "Fill the missing fields"
+			render :action => 'new'  
 		end
 	end
 
@@ -67,7 +68,11 @@ class TopicsController < ApplicationController
 
 	private
 	def topic_params
-		params.require(:topic).permit(:title,:description,:course_id)
+		params.require(:topic).permit(:title,:description)
+	end
+
+	def course_params
+		params.permit(:course_id)
 	end
 
 end
