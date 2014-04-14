@@ -9,6 +9,7 @@ class Lecturer < ActiveRecord::Base
 	validates :dob, presence: true
 	validates :degree, presence: true
 	validates :age, presence: true
+	validates :dob, presence: true
 
 	#Relations
 	has_and_belongs_to_many :courses, join_table: "courses_lecturers"
