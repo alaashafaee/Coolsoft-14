@@ -18,7 +18,7 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems' , on: :member
 	end
-	resources :problems_by_tas
+	resources :problems
 	resources :solutions
 	resources :problems
 
