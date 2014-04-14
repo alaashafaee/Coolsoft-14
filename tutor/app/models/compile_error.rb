@@ -8,6 +8,4 @@ class CompileError < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end
