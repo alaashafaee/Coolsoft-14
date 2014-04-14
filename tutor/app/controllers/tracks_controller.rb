@@ -10,11 +10,6 @@ class TracksController < ApplicationController
 	# Returns: The view of the requested topic
 	# Author: Mussab ElDash
 	def show
-		boool = flash[:notice] != "Successfully created..."
-		boool&&=flash[:notice] != "The required Fields are missing"
-		if boool
-			flash[:notice]= nil
-		end
 		id = params[:id]
 		@topic = Topic.find_by_id(id)
 		if @topic
@@ -49,13 +44,17 @@ class TracksController < ApplicationController
 	# Returns: The same page that wants to create the Track
 	# Author: Mussab ElDash
 	def create
-  		t = Track.new(permitCreate)
-  		if t.save
-  			flash[:notice] = "Successfully created..."
-  			redirect_to :back
-		else
-			flash[:notice] = "The required Fields are missing"
-			redirect_to :back
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+  			t = Track.new(permitCreate)
+  			if t.save
+  				flash[:notice] = "Successfully created..."
+  				redirect_to :back
+			else
+				flash[:error] = "There is a missing field"
+				flash[:title] = permitCreate[:title]
+				flash[:difficulty] = permitCreate[:difficulty]
+				redirect_to :back
+			end
 		end
 	end
 

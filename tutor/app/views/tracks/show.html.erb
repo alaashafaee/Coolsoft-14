@@ -1,4 +1,5 @@
 <%@title = @course.name + '#'+ @topic.title%>
+<% boool = lecturer_signed_in? || teaching_assistant_signed_in? %>
 <h1><%=@title%></h1>
 <table align="center">
 	<tr>
@@ -27,33 +28,41 @@
 				:size => 15 , :id => "problemsSel")%>
 		</td>
 	</tr>
-	<tr>
-		<!-- Here is a buttons to create and edit problems 
-			and tracks but for now
-			the create button of tracks is the only button that works
-			other buttons only shows an alert -->
-		<td align="center">
-			<button onclick="newTrack()">New</button>
-			<button onclick="show('Course')">Edit</button>
-		</td>
-		<td align="center">
-			<button onclick="show('Problem')">Edit</button>
-			<button onclick="alert('hello')">New</button>
-		</td>
-	</tr>
+	<% if boool %>
+		<tr>
+			<!-- Here is a buttons to create and edit problems 
+				and tracks but for now
+				the create button of tracks is the only button that works
+				other buttons only shows an alert -->
+			<td align="center">
+				<button onclick="newTrack()">New</button>
+				<button onclick="show('Course')">Edit</button>
+			</td>
+			<td align="center">
+				<button onclick="show('Problem')">Edit</button>
+				<button onclick="alert('hello')">New</button>
+			</td>
+		</tr>
+	<%end%>
 </table>
 <br>
 
 <!-- thats a form for creating a track which is intially hidden 7
 		until the new button clicked -->
-<div align="center" ><%=flash[:notice]%></div><br>
-<div align="center" id="create_track" hidden=true>
-	<%= form_for :Track , url: {action: "create"}, 
-	html: {class: "nifty_form"} do |f| %>
-				<label>Title :</label>
-				<%= f.text_field :title %> <br>
-				<label>Difficulty :</label>
-				<%= f.number_field :difficulty %> <br>
-				<%= f.submit "Create" %> <br>
-				<%= f.hidden_field :topic_id , :value => params[:id]%>
-				<% end %></div>
+<%if !flash[:title] && !flash[:difficulty]%>
+	<%hide = 'hidden=true'%>
+<%end%>	
+<%if boool%>
+	<div align="center" ><%= flash[:error]%></div>
+	<div align="center" ><%= flash[:notice]%></div><br>
+	<div align="center" id="create_track" <%=hide%>>
+		<%= form_for :Track , url: {action: "create"}, 
+		html: {class: "nifty_form"} do |f| %>
+					<label>Title :</label>
+					<%= f.text_field :title , :value => flash[:title] %> <br>
+					<label>Difficulty :</label>
+					<%= f.number_field :difficulty , :value => flash[:difficulty] %> <br>
+					<%= f.hidden_field :topic_id , :value => params[:id]%>
+					<%= f.submit "Create" %> <br>
+					<% end %></div>
+<%end%>

@@ -1,11 +1,4 @@
 Tutor::Application.routes.draw do
-	get 'courses/show'
-	get "model_answers/new"
-	post "model_answers/new"
-	resources :model_answers
-
-	get 'courses/show'
-	resources :test_cases
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -15,24 +8,21 @@ Tutor::Application.routes.draw do
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
-	resources :tracks do
-		post 'getProblems' , on: :member
-	end
-	resources :problems_by_tas
-	resources :solutions
-	resources :problems
-
 
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
-
-	get 'courses/show'
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 	# Example resource route (maps HTTP verbs to controller actions automatically):
 	#   resources :products
+	resources :courses
+	resources :test_cases
+	resources :model_answers
+	resources :problems_by_tas
+	resources :solutions
+	resources :problems
 
 	# Example resource route with options:
 	#   resources :products do
@@ -45,6 +35,11 @@ Tutor::Application.routes.draw do
 	#       get 'sold'
 	#     end
 	#   end
+	resources :tracks do
+		member do
+			post 'getProblems'
+		end
+	end
 
 	# Example resource route with sub-resources:
 	#   resources :products do
