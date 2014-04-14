@@ -1,1 +1,46 @@
- Sites#Index: Hello, world!
+<%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in?%>
+	<%= flash[:notice]%>
+	<div class="bs-docs-section">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="bs-component">
+					<div class="jumbotron">
+						<h1>Java Tutor</h1>
+						<p>Java Tutor helps you to learn Java easily since we are tracking you step by step and giving you hints to be better.Whenever you need us we will be there.
+						</p>
+					</div>
+					<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr/>
+	<div id="register" align="center" class="well">
+		<div class="col-lg-4">
+			<div class="bs-component">
+				<div class="well">
+					<%= button_to 'Student',new_student_registration_path,style: "height:100px",class: "btn btn-success  btn-lg", method: :get %>
+				</div>
+				<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="bs-component">
+				<div class="well">
+				<%= button_to 'Teaching Assistant', new_teaching_assistant_registration_path, style: "height:100px", class: "btn btn-success  btn-lg", method: :get %>
+				</div>
+				<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="bs-component">
+				<div class="well">
+					<%= button_to 'Lecturer', new_lecturer_registration_path,style: "height:100px",class: "btn btn-success  btn-lg" ,method: :get %>
+				</div>
+				<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+			</div>
+		</div>
+	</div>
+<%end%>
