@@ -10,7 +10,7 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ---------------------------Admins-----------------------------------")
-# Admin.create(name: "Admin")
+Admin.create(name: "Admin")
 
 puts("# ---------------------------Lecturers-----------------------------")
 Lecturer.create!(name:"Lecturer1" , email:"1@lecturer.com" , password:"123456789")
@@ -109,11 +109,6 @@ Lecturer.first.courses << Course.first
 Lecturer.first.courses << Course.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
-<<<<<<< HEAD
-Problem.create(title: "Problem 1", description: "Problem 1", track_id: 1)
-Problem.create(title: "Problem 2", description: "Problem 2", track_id: 1)
-Problem.create(title: "Problem 3", description: "Problem 3", track_id: 2)
-=======
 Problem.first.model_answers << ModelAnswer.first
 Problem.first.model_answers << ModelAnswer.find_by_id(2)
 Problem.first.test_cases << TestCase.first
@@ -143,7 +138,5 @@ puts("# -----------------------Courses---------------------------")
 Course.first.topics << Topic.first
 Course.first.topics << Topic.find_by_id(2)
 Course.find_by_id(2).topics << Topic.find_by_id(3)
-
->>>>>>> 6a460e526e7e76016b74313fe477e0169e49fea5
 
 puts("# -------------------------------------------------------")
