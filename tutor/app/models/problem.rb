@@ -14,6 +14,4 @@ class Problem < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end

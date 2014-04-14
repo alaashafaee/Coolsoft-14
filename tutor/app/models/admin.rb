@@ -4,11 +4,8 @@ class Admin < ActiveRecord::Base
 
 	#Relations
 
-	
 	#Scoops
 	
 	#Methods
-
-
 
 end

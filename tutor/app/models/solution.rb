@@ -7,8 +7,7 @@ class Solution < ActiveRecord::Base
 	belongs_to :problem
 	
 	#Scoops
+
 	#Methods
-
-
 
 end

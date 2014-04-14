@@ -5,12 +5,9 @@ class Hint < ActiveRecord::Base
 	#Relations
 	belongs_to :model_answer
 	belongs_to :owner, polymorphic: true
-
 	
 	#Scoops
 	
 	#Methods
-
-
 
 end

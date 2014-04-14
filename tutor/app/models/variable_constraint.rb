@@ -10,5 +10,4 @@ class VariableConstraint < ActiveRecord::Base
 	
 	#Methods
 
-
 end

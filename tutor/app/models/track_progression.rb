@@ -1,6 +1,5 @@
 class TrackProgression < ActiveRecord::Base
-
-
+	
 	#Validations
 
 	#Relations
@@ -8,8 +7,7 @@ class TrackProgression < ActiveRecord::Base
 	belongs_to :topic
 	
 	#Scoops
+
 	#Methods
-
-
 
 end

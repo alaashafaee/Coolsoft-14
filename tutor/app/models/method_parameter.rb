@@ -10,6 +10,4 @@ class MethodParameter < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end

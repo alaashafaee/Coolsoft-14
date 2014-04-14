@@ -12,6 +12,4 @@ class Post < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end

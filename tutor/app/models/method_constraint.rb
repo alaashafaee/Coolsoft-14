@@ -10,6 +10,4 @@ class MethodConstraint < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end

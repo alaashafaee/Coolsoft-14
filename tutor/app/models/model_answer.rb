@@ -15,6 +15,4 @@ class ModelAnswer < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end
