@@ -1,4 +1,3 @@
-
 <%= flash[:success_creation] %>
 
 <h1>Your Courses</h1>
@@ -21,9 +20,9 @@
 			<td><%= c.semester %></td>
 			<td><%= c.description %></td>
 			<td>
-				<% if current_lecturer %>
-					<%= button_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right"%>
-				<%end%>
+				<% if lecturer_signed_in? %>
+					<%= button_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right" %>
+				<% end %>
 				<%= button_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id}, class: "btn btn-success", method: :get, style: "float: right;" %>
 			</td>
 		</tr>
