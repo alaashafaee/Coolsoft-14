@@ -3,7 +3,8 @@ class ModelAnswersController < ApplicationController
 # It creates the new answer.
 # Parameters: 
 #   @answer: the new answer the user enters.
-#   @answers: All the previous answers that had been entered before..
+#   @answers: All the previous answers that had been entered before.
+#   Return : none
 # Author: Nadine Adel
 	def new
 		@answers = ModelAnswer.all
@@ -15,6 +16,7 @@ class ModelAnswersController < ApplicationController
 # Parameters: 
 #   @answer:answer provided by the user.
 # Returns: Returns a message if the answer is added and another message if answer was not added.
+#   Return : none
 # Author: Nadine Adel
 	def create
 		@answer = ModelAnswer.new(post_params)
@@ -31,6 +33,7 @@ class ModelAnswersController < ApplicationController
 # It shows answer that was entered before. 
 # Parameters: 
 #   @answer:previous answer.
+#   Return : none
 # Author: Nadine Adel
 	def show
 		@answer = ModelAnswer.find(params[:problem_id])
@@ -40,6 +43,7 @@ class ModelAnswersController < ApplicationController
 # It shows all the answers that are saved in the database. 
 # Parameters: 
 #   @answers:previous answer that are saved in the database.
+#   Return : none
 # Author: Nadine Adel
 	def index
 		@answers = ModelAnswer.all
@@ -49,6 +53,7 @@ class ModelAnswersController < ApplicationController
 # It requires the attributes from the form that we are interested in. 
 # Parameters: 
 #   @answer:the answer that the user wants to add.
+#   Return : none
 # Author: Nadine Adel
 	private
 	def post_params
