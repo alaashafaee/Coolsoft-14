@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.text     "code"
     t.integer  "length"
     t.integer  "status"
+    t.integer  "time"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
