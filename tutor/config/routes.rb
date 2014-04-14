@@ -12,7 +12,9 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems' , on: :member
 	end
+
 	resources :problems
+
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 
