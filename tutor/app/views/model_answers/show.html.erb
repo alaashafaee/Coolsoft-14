@@ -1,0 +1,15 @@
+<h1>Listing posts</h1>
+<table>
+	<tr>
+		<th>Text</th>
+	</tr>
+	<% @answers.each do |answer1| %>
+	<tr>
+		<td><%= answer1.answer %></td>
+	</tr>
+	<% end %>
+</table>
+<p>
+	<strong>Text:</strong>
+	<%= @answer.answer %>
+</p>
