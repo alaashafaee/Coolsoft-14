@@ -1,0 +1,10 @@
+	<h3>Choose a Course</h3>
+
+	<!-- This is a drop down list for all the courses to let the lecturer choose which course will take a copy from it
+	Authored by Rania Abdel Fattah -->
+	<%= form_for :course , url: {:action => "duplicate" , method: "post"} do |f|%>
+	<%= f.select :id , @courses.collect{|c| [c.name , c.id]} %>
+	<br><br>
+	<%= f.submit%>
+
+	<%end%>
