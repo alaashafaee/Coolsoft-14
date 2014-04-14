@@ -48,7 +48,6 @@ gem 'foreman'
 # gem 'debugger', group: [:development, :test]
 
 # User authentication
-gem 'devise'
 
 # Use composite primary keys in models
 gem 'composite_primary_keys', '~> 6.0.1'
