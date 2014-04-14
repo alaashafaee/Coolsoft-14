@@ -1,26 +1,16 @@
 Tutor::Application.routes.draw do
 	get 'courses/show'
 	resources :test_cases
- 	
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
-
-
 	get "courses/destroy"
 	get "courses/create"
 	get "courses/show"
 	get "courses/index"
- 
-
 	post "courses/new"
 	post "discussion_boards/toggle"
-
-
 	root 'site#index'
-
-
-
 	resources :tracks do
 		post 'getProblems' , on: :member
 	end
