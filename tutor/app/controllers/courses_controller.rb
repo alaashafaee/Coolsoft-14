@@ -10,7 +10,7 @@ class CoursesController < ApplicationController
 	# Parameters:
 	#	id: The course id
 	# Author: Rania Abdel Fattah
-	 def duplicate
+	def duplicate
 	  	course = Course.find_by_id(permitdup[:id])
   		new_course = course.dup
   		if new_course.save

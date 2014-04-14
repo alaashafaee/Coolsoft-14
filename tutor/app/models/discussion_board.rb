@@ -11,6 +11,4 @@ class DiscussionBoard < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end

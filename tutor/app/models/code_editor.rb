@@ -8,6 +8,4 @@ class CodeEditor < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end
