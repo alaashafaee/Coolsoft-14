@@ -34,3 +34,6 @@ pickle-email-*.html
 
 # These should all be checked in to normalise the environment:
 Gemfile.lock, .ruby-version, .ruby-gemset
+
+# Ignoring generated model diagram
+models.svg
