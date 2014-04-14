@@ -5,6 +5,10 @@ class Lecturer < ActiveRecord::Base
 		:recoverable, :rememberable, :trackable, :validatable
 
 	#Validations
+	validates :name, presence: true
+	validates :dob, presence: true
+	validates :degree, presence: true
+	validates :age, presence: true
 
 	#Relations
 	has_one :user, as: :sub

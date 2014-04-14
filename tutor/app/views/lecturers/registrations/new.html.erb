@@ -1,21 +1,42 @@
 <h2>Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <div>
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <div>
+            <%= f.label :name %><br />
+            <%= f.text_field :name %>
+        </div>
 
-  <div><%= f.label :degree %><br />
-    <%= f.text_field :degree%></div>
+        <div>
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+        </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+        <div>
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+        <div>
+            <%= f.label :age %><br />
+            <%= f.number_field :age %>
+        </div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+        <div>
+            <%= f.label :date_of_birth %><br />
+            <%= f.datetime_field :dob %>
+        </div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+        <div>
+            <%= f.label :degree %><br />
+            <%= f.text_field :degree %>
+        </div>
+
+        <div><%= f.submit "Sign up" %></div>
+    <% end %>
 
 <%= render "lecturers/shared/links" %>

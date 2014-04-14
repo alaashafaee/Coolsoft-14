@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 		def update_sanitized_params
 			if "#{resource_name}" == "lecturer"
 		  		devise_parameter_sanitizer.for(:sign_up) {
-		  			|u| u.permit(:name, :email, :password, :password_confirmation, :degree)
+		  			|u| u.permit(:name, :email, :password, :password_confirmation, :degree, :age)
 		  		}
 		  	elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
