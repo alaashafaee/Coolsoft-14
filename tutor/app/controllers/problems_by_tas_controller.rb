@@ -31,7 +31,7 @@ class ProblemsByTasController < ApplicationController
 	#   id: The id of the problem to be edited or newly created
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
-	def edit
+	def new
   		@problem = Problem.find_by_id(params[:id])
   	end
   	def new

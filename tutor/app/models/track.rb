@@ -1,6 +1,8 @@
 class Track < ActiveRecord::Base
 	
 	#Validations
+	validates :difficulty, presence: true
+	validates :title , presence: true
 
 	#Relations
 	has_many :problems, dependent: :destroy
