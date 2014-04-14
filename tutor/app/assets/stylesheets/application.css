@@ -11,7 +11,6 @@
  *= require_self
  *= require_tree .
  */
-
 .center {
 	margin: 0 auto;
 	width: 80%;
@@ -28,15 +27,13 @@
 }
 
 
-.side-bar-left-fix-rat {
-	width:19%;
+.side-left {
 	height:700px;
 	margin-left:6px;
 }
 
 
-.side-bar-right-fix-rat {
-	width:19%;
+.side-right {
 	height:700px;
 	margin-right:6px;
 }

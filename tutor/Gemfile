@@ -7,7 +7,7 @@ gem 'rails', '4.0.4'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
+gem 'devise'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
 
@@ -41,9 +41,13 @@ end
 gem 'unicorn'
 gem 'foreman'
 
-
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# User authentication
+
+# Use composite primary keys in models
+gem 'composite_primary_keys', '~> 6.0.1'
