@@ -25,8 +25,8 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def create
 		p = Problem.new(permitCreate)
-  		if p.save
-  			redirect_to :action => "edit", :id => p.id
+		if p.save
+			redirect_to :action => "edit", :id => p.id
 		else 
 			flash.keep[:notice] = "Problem is missing paramaters"	
 			redirect_to :back
@@ -40,8 +40,8 @@ class ProblemsController < ApplicationController
 	# Returns: params to create action
 	# Author: Abdullrahman Elhusseny
 	def permitCreate
-  		params.require(:Problem).permit(:title , :description) 
-  	end
+		params.require(:Problem).permit(:title , :description) 
+	end
 	# [Edit Problem - 4.5]
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters: 
@@ -49,12 +49,13 @@ class ProblemsController < ApplicationController
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def edit
-  		@problem = Problem.find_by_id(params[:id])
-  	end
-  	def new
-  		if lecturer_signed_in?
-  			render ('new')
-  		else	
+		@problem = Problem.find_by_id(params[:id])
+		@test_cases = @problem.test_cases
+	end
+	def new
+		if lecturer_signed_in?
+			render ('new')
+		else	
 			render ('public/404')
 		end	
 	end
