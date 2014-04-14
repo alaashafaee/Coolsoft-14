@@ -139,5 +139,4 @@ Course.first.topics << Topic.first
 Course.first.topics << Topic.find_by_id(2)
 Course.find_by_id(2).topics << Topic.find_by_id(3)
 
-
 puts("# -------------------------------------------------------")
