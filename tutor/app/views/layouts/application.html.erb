@@ -28,6 +28,7 @@
 			<%= render "layouts/right_side_bar"%>
 		<%end%>
 		<div class="container well main-content" align="center">
+			<%= render "problems/system_recommendation" if student_signed_in? %>
 			<%= yield %>
 		</div>
 		<div id="footer" align="center" class="navbar navbar-default navbar-fixed-bottom">
