@@ -1,5 +1,4 @@
-<div align="center">
-<h2>Sign up as Student</h2>
+<h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -16,5 +15,4 @@
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
-</div>
+<%= render "students/shared/links" %>

@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140327152228) do
+=======
+ActiveRecord::Schema.define(version: 20140413181651) do
+>>>>>>> master
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -102,7 +106,10 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "lecturer_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "email",                  default: "", null: false
+=======
+>>>>>>> master
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -241,7 +248,10 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "student_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "email",                  default: "", null: false
+=======
+>>>>>>> master
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -269,7 +279,10 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "email",                  default: "", null: false
+=======
+>>>>>>> master
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
