@@ -1,8 +1,3 @@
-<style>
-textarea 
-{ resize: none; }
-</style>
-
 <!-- The flash messages for the succes and failure scenarios -->
  <p style="color: green"><%= flash[:success] %></p>
  <p style="color: red"><%= flash[:alert] %></p>
@@ -15,8 +10,8 @@ textarea
 <%= form_for :solution, :url => { :controller => "solutions", :action => "create" },
              :html => {:method => :post} do |f| %>
   <p>
-    <%= @code = f.text_area :code, :placeholder => "write your code here and then click submit",
-              :cols => "93", :rows => "25" %> 
+    <%= @code = f.text_area :code, :placeholder => "Write your code here and then click submit",
+              :cols => "50", :rows => "25" %> 
     <%= f.hidden_field :problem_id, :value => params[:id] %>
     <br>
   </p> 
