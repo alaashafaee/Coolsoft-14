@@ -16,7 +16,6 @@ class ModelAnswersController < ApplicationController
 # Parameters: 
 #   @answer:answer provided by the user.
 # Returns: Returns a message if the answer is added and another message if answer was not added.
-#   Return : none
 # Author: Nadine Adel
 	def create
 		@answer = ModelAnswer.new(post_params)
