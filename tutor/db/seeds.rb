@@ -66,9 +66,9 @@ ModelAnswer.create(answer: "System.out.println('SQL baaaad')-5")
 ModelAnswer.create(answer: "System.out.println('SQL baaaad')-6")
 
 puts("# -----------------------Test Cases---------------------------")
-TestCase.create(output: "hello World 1")
-TestCase.create(output: "hello World 2")
-TestCase.create(output: "hello World 3")
+TestCase.create(output: "hello World 1" , input:"x = 0")
+TestCase.create(output: "hello World 2" , input:"x = 1")
+TestCase.create(output: "hello World 3" , input:"x = 2")
 
 puts("# -----------------------Method Parameters---------------------------")
 MethodParameter.create(parameter:"MethodParameters 1")
