@@ -21,10 +21,10 @@ class ModelAnswersController < ApplicationController
 		if @answer.save
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :back
-    	else
-     		flash[:notice] = "Your Answer can not be added "
-     		redirect_to :back
-       	end
+		else
+			flash[:notice] = "Your Answer can not be added "
+			redirect_to :back
+		end
 	end
 
 # [Add answer story 4.6]
@@ -42,7 +42,7 @@ class ModelAnswersController < ApplicationController
 #   @answers:previous answer that are saved in the database.
 # Author: Nadine Adel
 	def index
-  		@answers = ModelAnswer.all
+		@answers = ModelAnswer.all
 	end
 
 # [Add answer story 4.6]
@@ -52,6 +52,6 @@ class ModelAnswersController < ApplicationController
 # Author: Nadine Adel
 	private
 	def post_params
-   		params.require(:model_answer).permit(:answer)
+		params.require(:model_answer).permit(:answer)
 	end
 	end

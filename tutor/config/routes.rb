@@ -1,8 +1,11 @@
 Tutor::Application.routes.draw do
-  get 'courses/show'
-  get "model_answers/new"
-  post "model_answers/new"
-  resources :model_answers
+	get 'courses/show'
+	get "model_answers/new"
+	post "model_answers/new"
+	resources :model_answers
+
+	get 'courses/show'
+	resources :test_cases
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -70,5 +73,7 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
+
 end
+
 
