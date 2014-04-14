@@ -1,6 +1,6 @@
 class TestCase < ActiveRecord::Base
 	#Validations
-    validates :output ,:presence => true 
+	validates :output ,:presence => true 
 	validates :output, :length => { :minimum => 1 }
 	#Relations
 	belongs_to :model_answer
