@@ -1,10 +1,15 @@
+<style>
+textarea 
+{ resize: none; }
+</style>
+
 <!-- The flash messages for the succes and failure scenarios -->
  <p style="color: green"><%= flash[:success] %></p>
  <p style="color: red"><%= flash[:alert] %></p>
 
 <!-- Timer that starts when problem is shown --> 
  <div align = "center">
- <span id="mins" >0</span>:<span id="secs">00</span>
+ <span id="mins">0</span>:<span id="secs">00</span>
  </div> 
 
 <%= form_for :solution, :url => { :controller => "solutions", :action => "create" },

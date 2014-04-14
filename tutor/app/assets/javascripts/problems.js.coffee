@@ -15,7 +15,7 @@ timer = ->
 		digit = 0
 	if digit <= 9
 		digit = "0" + digit  
-		document.getElementById("secs").innerHTML = digit
+	document.getElementById("secs").innerHTML = digit
 
 activate = ->
 	unless timer_is_on
