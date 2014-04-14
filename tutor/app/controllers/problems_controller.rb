@@ -50,6 +50,8 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def edit
   		@problem = Problem.find_by_id(params[:id])
+  		@test_cases = @problem.test_cases
+  		@answers = @problem.model_answers
   	end
   	def new
   		if lecturer_signed_in?

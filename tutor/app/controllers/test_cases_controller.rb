@@ -25,10 +25,10 @@ def create
 	@test_case = TestCase.new(post_params) 
 	if @test_case.save
 		flash[:notice] = "Post created successfully"
-		redirect_to :back
+		redirect_to :controller => 'problems', :action => 'edit' , :id => @test_case.problem_id
 	else
 		flash[:notice] = "Can't add test case!"
-		redirect_to :back
+		redirect_to :controller => 'problems', :action => 'edit' , :id => @test_case.problem_id
 	end 
 end
 # [Add test case-story 4.8]
@@ -38,6 +38,6 @@ end
 # Author: Lin
 private
 def post_params
-	params.require(:test_case).permit(:input, :output)
+	params.require(:test_case).permit(:input, :output, :problem_id)
 end
 end

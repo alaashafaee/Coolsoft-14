@@ -12,6 +12,7 @@
 <p>
 	<h2>Please Insert your model answer</h2>
 	<%= f.text_area :answer %>
+	<%= f.hidden_field :problem_id, value: params[:id] %>
 </p>
 <p>
 	<%= f.submit %>

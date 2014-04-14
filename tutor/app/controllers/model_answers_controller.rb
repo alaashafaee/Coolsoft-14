@@ -21,10 +21,12 @@ class ModelAnswersController < ApplicationController
 		@answer = ModelAnswer.new(post_params)
 		if @answer.save
 			flash[:notice] = "Your Answer is now added"
-			redirect_to :back
+			redirect_to :controller => 'problems', :action => 'edit' , :id => @answer.problem_id
+
 		else
 			flash[:notice] = "Your Answer can not be added "
-			redirect_to :back
+			redirect_to :controller => 'problems', :action => 'edit' , :id => @answer.problem_id
+
 		end
 	end
 
@@ -56,6 +58,6 @@ class ModelAnswersController < ApplicationController
 # Author: Nadine Adel
 	private
 	def post_params
-		params.require(:model_answer).permit(:answer)
+		params.require(:model_answer).permit(:answer, :problem_id)
 	end
 	end
