@@ -1,4 +1,7 @@
 Tutor::Application.routes.draw do
+	get 'courses/show'
+	resources :test_cases
+ 	
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
