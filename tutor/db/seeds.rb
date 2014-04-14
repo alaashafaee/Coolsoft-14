@@ -83,8 +83,8 @@ Track.create(title: "Track 2" , topic_id: 1 , difficulty: 1)
 Track.create(title: "Track 3" , topic_id: 2 , difficulty: 2)
 
 puts("# -----------------------Problems---------------------------")
-Problem.create(title: "Problem 1", descrption: "Problem 1", track_id: 1)
-Problem.create(title: "Problem 2", descrption: "Problem 2", track_id: 1)
-Problem.create(title: "Problem 3", descrption: "Problem 3", track_id: 2)
+Problem.create(title: "Problem 1", description: "Problem 1", track_id: 1)
+Problem.create(title: "Problem 2", description: "Problem 2", track_id: 1)
+Problem.create(title: "Problem 3", description: "Problem 3", track_id: 2)
 
 puts("# -------------------------------------------------------")
