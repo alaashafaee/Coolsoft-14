@@ -3,8 +3,9 @@ class Problem < ActiveRecord::Base
 	#Validations
 	validates_presence_of :title
 	validates_presence_of :description
+
 	#Relations
-	belongs_to :owner, class_name: 'Staff', foreign_key: :staff_id
+	belongs_to :owner, polymorphic: true
 	belongs_to :track
 
 	has_many :model_answers, dependent: :destroy
@@ -14,7 +15,6 @@ class Problem < ActiveRecord::Base
 	#Scoops
 	
 	#Methods
-
 	# [Find Recommendations - Story 3.9]
 	# Checks whether this problem is solved by the target user
 	# Parameters: 
@@ -27,4 +27,5 @@ class Problem < ActiveRecord::Base
 					problem_id: self.id,
 					status: Solution::STATUS_ACCEPTED) != nil
 	end
+
 end

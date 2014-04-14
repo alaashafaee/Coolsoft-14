@@ -1,6 +1,5 @@
 class TrackProgression < ActiveRecord::Base
-
-
+	
 	#Validations
 
 	#Relations
@@ -10,7 +9,6 @@ class TrackProgression < ActiveRecord::Base
 	#Scoops
 
 	#Methods
-
 	# [Find Recommendations - Story 3.9]
 	# Returns the target users progress level in the target topic
 	# If the progression record does not exist, returns level 0 by default
@@ -29,7 +27,6 @@ class TrackProgression < ActiveRecord::Base
 		else
 			return progression.level
 		end
-
 		return 0
 	end
 end
