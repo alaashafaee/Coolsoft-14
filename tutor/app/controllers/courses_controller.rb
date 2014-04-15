@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
 	# [Create from Existant Course - Story 2.5]
 	# Return the courses
+	# Parameters:
+	#	null
 	# Author: Rania Abdel Fattah 
 	def index
 		@courses = Course.all
