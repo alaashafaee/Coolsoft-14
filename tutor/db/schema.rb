@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20140413181651) do
+ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "code"
     t.integer  "year"
     t.integer  "semester"
+    t.string   "university"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,26 +85,24 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
-    t.integer  "staff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "lecturers", force: true do |t|
     t.string   "name"
-    t.string   "email"
     t.boolean  "verified_type"
-    t.string   "password"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
     t.string   "department"
-    t.integer  "lecturer_id"
-    t.string   "lecturer_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -129,7 +127,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
     t.integer  "model_answer_id"
-    t.integer  "staff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,7 +136,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
     t.integer  "model_answer_id"
-    t.integer  "staff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,7 +145,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   create_table "model_answers", force: true do |t|
     t.text     "answer"
     t.integer  "problem_id"
-    t.integer  "staff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -162,8 +163,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.text     "content"
     t.integer  "views_count"
     t.integer  "discussion_board_id"
-    t.integer  "user_id"
-    t.string   "user_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -176,7 +177,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
-    t.integer  "staff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -194,7 +196,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   create_table "replies", force: true do |t|
     t.text     "content"
     t.integer  "post_id"
-    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -209,26 +212,9 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.datetime "updated_at"
   end
 
-  create_table "staffs", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.boolean  "verified_type"
-    t.string   "password"
-    t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
-    t.boolean  "gender"
-    t.string   "department"
-    t.string   "staff"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "students", force: true do |t|
     t.string   "name"
-    t.string   "email"
     t.boolean  "verified_type"
-    t.string   "password"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
@@ -241,10 +227,9 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.boolean  "probation"
     t.integer  "failure_attempts"
     t.integer  "success_attempts"
-    t.integer  "student_id"
-    t.string   "student_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -261,9 +246,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
-    t.string   "email"
     t.boolean  "verified_type"
-    t.string   "password"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
@@ -274,6 +257,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -292,8 +276,9 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "input"
     t.string   "output"
     t.integer  "model_answer_id"
-    t.integer  "staff_id"
     t.integer  "problem_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -323,22 +308,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.integer  "difficulty"
     t.integer  "views_count"
     t.integer  "topic_id"
-    t.integer  "staff_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.boolean  "verified_type"
-    t.string   "password"
-    t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
-    t.boolean  "gender"
-    t.integer  "sub_id"
-    t.string   "sub_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -347,10 +318,10 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "variable_name"
     t.string   "type"
     t.integer  "model_answer_id"
-    t.integer  "staff_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
->>>>>>> 63e4a76057f44febf37c1b0c9377e9e8393d58c7
 
 end

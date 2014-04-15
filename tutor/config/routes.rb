@@ -72,4 +72,3 @@ Tutor::Application.routes.draw do
 	#     resources :products
 	#   end
 end
->>>>>>> 63e4a76057f44febf37c1b0c9377e9e8393d58c7
