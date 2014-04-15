@@ -45,10 +45,10 @@ class TopicsController < ApplicationController
 		@new_topic.description = topic_params[:description]
 		bool = @new_topic.save
 		if bool == true 
-			flash[:notice] = "Succeeded"
+			flash[:notice] = "Topic successfully created"
 			@course = Course.find(course_params[:course_id])
 			@course.topics << @new_topic
-			redirect_to :controller => 'topics', :action => 'index', :id => @course.id
+			redirect_to :action => 'index'
 		else
 			flash[:notice] = "Fill the missing fields"
 			render :action => 'new'  

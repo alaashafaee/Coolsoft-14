@@ -4,7 +4,11 @@
 
 <h2>The Course's Topics</h2>
 
-<br/><br/><br/>
+<br/>
+<% if flash[:notice] -%>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:notice] %></div>
+<% end %>
+<br/>
 
 <!-- Creating a table for the topics -->
 <table class = "table table-striped", style = "width:50%", border = "1">
