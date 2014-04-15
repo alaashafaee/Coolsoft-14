@@ -48,9 +48,9 @@ Reply.create(content: "Reply4")
 Reply.create(content: "Reply5")
 
 puts("# --------------------------Topics------------------------------")
-Topic.create(title: "Topic1")
-Topic.create(title: "Topic2")
-Topic.create(title: "Topic3")
+Topic.create(title: "Topic1", description: "This is Topic1 description")
+Topic.create(title: "Topic2", description: "This is Topic2 description")
+Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
 Hint.create(message: "Do not Try to Solve CS problem-1")
