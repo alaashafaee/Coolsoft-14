@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.boolean  "incomplete"
     t.integer  "success_attempts"
     t.integer  "failure_attempts"
     t.integer  "views_count"
@@ -307,6 +308,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "tracks", force: true do |t|
     t.string   "title"
     t.integer  "difficulty"
+    t.integer  "position"
     t.integer  "views_count"
     t.integer  "topic_id"
     t.integer  "owner_id"
