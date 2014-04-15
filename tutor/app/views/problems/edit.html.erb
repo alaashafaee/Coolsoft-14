@@ -3,22 +3,6 @@
 and a paragraph to view the problem description of the instance variable @problem -->
 <h2 align ="center"><%= @problem.title %></h2>
 <p><%= @problem.description %></p>
-<!--A form that takes the input for the model Problem and calls the action create
-  through two text fields :title and description -->
-<%= form_for :Problem, url: {action: "create"} do |p| %>
-  <p>
-    <%= p.label :title %><br>
-    <%= p.text_field :title %>
-  </p>
-  <p>
-    <%= p.label :description  %><br>
-    <%= p.text_area :description , :cols => "50", :rows => "10" %>
-  </p>
- 
-  <p>
-    <%= p.submit %>
-  </p>
-<% end %>
 
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
