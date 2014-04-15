@@ -21,11 +21,11 @@ class ModelAnswersController < ApplicationController
 		@answer = ModelAnswer.new(post_params)
 		if @answer.save
 			flash[:notice] = "Your Answer is now added"
-			redirect_to :controller => 'problems', :action => 'edit' , :id => @answer.problem_id
+			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 
 		else
-			flash[:notice] = "Your Answer can not be added "
-			redirect_to :controller => 'problems', :action => 'edit' , :id => @answer.problem_id
+			flash[:notice] = "Your Answer can not be added"
+			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 
 		end
 	end

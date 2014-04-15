@@ -1,7 +1,7 @@
 <%-#Lin: This is a form where the TA can add a test case.It has 2 labels and 2 textfields -%>
 <%= form_for :test_case , url: test_cases_path do |f| %>
 <p>
-	<%= flash[:notice]%><br>
+	<%= flash[:notice] %><br>
 	<%= f.label :Input %>
 	<%= f.text_field :input %>
 	<%= f.label :Output %>
