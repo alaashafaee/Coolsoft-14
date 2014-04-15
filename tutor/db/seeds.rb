@@ -25,9 +25,9 @@ TeachingAssistant.create(name:"TA1" , email:"1@ta.com" , password:"123456789")
 TeachingAssistant.create(name:"TA2" , email:"2@ta.com" , password:"123456789")
 
 puts("# --------------------------Courses------------------------------")
-Course.create(name:"Course1")
-Course.create(name:"Course2")
-Course.create(name:"Course3")
+Course.create(name:"Course1", description:"This is course one", code:1, year:2014)
+Course.create(name:"Course2", description:"This is course two", code:2, year:2014)
+Course.create(name:"Course3", description:"This is course three", code:3, year:2014)
 
 puts("# --------------------------DiscussionBoards------------------------------")
 DiscussionBoard.create(title:"DiscussionBoard1")
