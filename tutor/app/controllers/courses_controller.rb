@@ -32,7 +32,11 @@ class CoursesController < ApplicationController
 			@lecturer = Lecturer.find(params[:lecturer])
 			#Insertion in the DB
 			student = Student.find(current_student.id)
-			student.courses << @course	
+			if student.courses.find_by_id(@course.id) == nil
+				student.courses << @course
+			else
+				@status = "7"
+			end		
 		end
 	end
 end

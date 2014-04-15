@@ -1,5 +1,5 @@
 Tutor::Application.routes.draw do
- 	match ':controller(/:action(/:id))', :via =>:get 
+ 	get 'courses/sign_up'
 	get 'courses/show'
 	get "model_answers/new"
 	post "model_answers/new"
