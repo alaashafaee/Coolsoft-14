@@ -8,6 +8,4 @@ class Debugger < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end

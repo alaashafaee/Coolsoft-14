@@ -1,22 +1,16 @@
 class Student < ActiveRecord::Base
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
-	devise	:database_authenticatable, :registerable,
-		:recoverable, :rememberable, :trackable, :validatable
-	
+	devise :database_authenticatable, :registerable,
+	     :recoverable, :rememberable, :trackable, :validatable
+
 	#Validations
 
 	#Relations
-	# has_many :student_courses
-	# has_many :courses, through: :student_courses
-	has_one :user, as: :sub
-
 	has_many :solutions, dependent: :destroy
-
 	has_many :progressions, class_name: "TrackProgression"
-
-	has_many :posts, dependent: :destroy
-	has_many :replies, dependent: :destroy
+	has_many :posts, as: :owner, dependent: :destroy
+	has_many :replies, as: :owner, dependent: :destroy
 
 	has_many :recommendations
 	has_many :recommended_problems, class_name: 'Problem', through: :recommendations, source: :problem
@@ -26,7 +20,6 @@ class Student < ActiveRecord::Base
 	#Scoops
 
 	#Methods
-
 	# [Find Recommendations - Story 3.9]
 	# Returns a suggested problem to solve for this user
 	# Parameters: None
@@ -57,3 +50,4 @@ class Student < ActiveRecord::Base
 		return suggestions.to_a().sample()
 	end
 end
+
