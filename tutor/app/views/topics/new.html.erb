@@ -6,8 +6,9 @@
 	<h1>New Topic</h1>
 	<br/>
 	<% if flash[:notice] -%>
-		<div class="alert alert-warning", style="width:180px"><%= flash[:notice] %></div>
+		<div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
 	<% end %>
+	<br/><br/><br/>
 	<!-- Rendering the form fields -->
 	<%= form_for :topic, url: {action: "create"} do  |f| %>
 		<p>

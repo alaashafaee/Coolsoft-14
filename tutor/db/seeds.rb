@@ -30,9 +30,9 @@ Course.create(name:"Course2", description:"This is course two", code:2, year:201
 Course.create(name:"Course3", description:"This is course three", code:3, year:2014, semester:1)
 
 puts("# --------------------------DiscussionBoards------------------------------")
-DiscussionBoard.create(title:"DiscussionBoard1")
-DiscussionBoard.create(title:"DiscussionBoard2")
-DiscussionBoard.create(title:"DiscussionBoard3")
+DiscussionBoard.create(title:"DiscussionBoard1", activated: true)
+DiscussionBoard.create(title:"DiscussionBoard2", activated: true)
+DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
 Post.create(content: "Post1")
@@ -136,7 +136,9 @@ Topic.find_by_id(3).tracks << Track.find_by_id(3)
 
 puts("# -----------------------Courses---------------------------")
 Course.first.topics << Topic.first
+Course.first.discussion_board = DiscussionBoard.first
 Course.first.topics << Topic.find_by_id(2)
 Course.find_by_id(2).topics << Topic.find_by_id(3)
+Course.find_by_id(2).discussion_board = DiscussionBoard.last
 
 puts("# -------------------------------------------------------")

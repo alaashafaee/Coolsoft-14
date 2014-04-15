@@ -51,7 +51,11 @@ class TopicsController < ApplicationController
 			@course.topics << @new_topic
 			redirect_to :action => 'index'
 		else
-			flash[:notice] = "Fill the missing fields"
+			if @new_topic.errors.any?
+				flash[:notice] = "This topic already exists" 
+			else
+				flash[:notice] = "Fill the missing fields"
+			end
 			render :action => 'new'  
 		end
 	end
