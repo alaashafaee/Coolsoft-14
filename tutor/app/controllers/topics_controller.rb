@@ -43,6 +43,7 @@ class TopicsController < ApplicationController
 		@new_topic = Topic.new
 		@new_topic.title = topic_params[:title]
 		@new_topic.description = topic_params[:description]
+		@new_topic.lecturer_id = current_lecturer
 		bool = @new_topic.save
 		if bool == true 
 			flash[:notice] = "Topic successfully created"
@@ -67,12 +68,12 @@ class TopicsController < ApplicationController
 	end
 
 	private
-	def topic_params
-		params.require(:topic).permit(:title,:description)
-	end
+		def topic_params
+			params.require(:topic).permit(:title,:description)
+		end
 
-	def course_params
-		params.permit(:course_id)
-	end
+		def course_params
+			params.permit(:course_id)
+		end
 
 end
