@@ -1,37 +1,35 @@
-	<% if !@courses.any? %>
-		<h1>You have no courses</h1>
-	<%end%>
-	<%= button_to "Create course"  , {:action => 'new', :controller => 'courses',:method => :get} , {
-		class: 'btn btn-primary' }   %>
-		<br>
-	<%= flash[:success_creation] %>
+<% if !@courses.any? %>
+	<h1>You have no courses</h1>
+<% end %>
+<% if current_lecturer %>
+	<%= button_to "Create course", {:action => 'new', :controller => 'courses'}, {
+	class: 'btn btn-primary'} %>
+<% end %>
+<br>
+<%= flash[:success_creation] %>
 <% if @courses.any? %>
-		<h1>Your Courses</h1>
-	<table class = "table table-striped">
-		 <tr>
+	<h1>Your Courses</h1>
+	<table class = "table table-striped", style = "width:80%">
+		<tr>
 			<th>Name</th>
 			<th>Code</th>
-			<th>Year</th>
-			<th>Semester</th>
-			<th>Description</th>
-			<th>Created at</th>
-			<th>Updated at</th>
 			<th>Options</th>
+			<th></th>
 		</tr>
 		<% @courses.each do |c| %>
 			<tr>
-				<td><%= link_to c.name , :controller => 'courses', :action => 'show', :id => c.id, 
-							:method => :get , class: "btn btn-success" %></td>
+				<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
+							:method => :get, class: "btn btn-success" %></td>
 				<td><%= c.code %></td>
-				<td><%= c.year %></td>
-				<td><%= c.semester %></td>
-				<td><%= c.description %></td>
-				<td><%= c.created_at %></td>
-				<td><%= c.updated_at %></td>
-				<% if current_lecturer %>
-				<td><%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id},
-								class: "btn btn-success"%><%end%></td>
+				<td>
+					<% if current_lecturer %>
+						<%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+				</td>
 			</tr>
 		<% end %>
 	</table>
-<%end%>
+<% end %>

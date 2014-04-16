@@ -1,0 +1,27 @@
+<!-- 	Name: Topics List
+		Author: Ahmed Akram
+-->
+<h2>The Course's Topics</h2>
+<br/>
+<% if flash[:notice] -%>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:notice] %></div>
+<% end %>
+<br/>
+<!-- Creating a table for the topics -->
+<table class = "table table-striped", style = "width:50%", border = "1">
+	<tr>
+		<!-- Listing the heads -->
+		<th>Title</th>
+		<th>Description</th>
+	</tr>
+	
+	<!-- Looping on the array of topics of the course -->
+	<% @topics.each do |topic| %>
+		<tr>
+			<!-- Inserting the records to the table -->
+			<td><%= topic.title %></td>
+			<td><%= topic.description %></td>
+		</tr>
+	<% end %>
+</table>
+<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
