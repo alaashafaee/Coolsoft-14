@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MethodConstraintsControllerTest < ActionController::TestCase
+class ConstrainsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
