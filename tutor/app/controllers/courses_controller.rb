@@ -5,10 +5,16 @@ class CoursesController < ApplicationController
 	# Parameters:
 	#	current_lecturer: The current signed in lecturer
 	# Returns: 
-	# 	@course: A list of all the lecurer's courses
+	# 	@course: A list of all the user's courses
 	# Author: Ahmed Osam
 	def index
-		@courses = current_lecturer.courses.order("created_at desc")
+		if lecturer_signed_in?
+			@courses = current_lecturer.courses.order("created_at desc")
+		elsif teaching_assistant_signed_in?
+			@courses = current_teaching_assistant.courses.order("created_at desc")
+		else
+			@courses = current_student.courses.order("created_at desc")
+		end
 	end  
 
 	# Description: This action takes the course id, remove it from the database
@@ -81,14 +87,7 @@ class CoursesController < ApplicationController
 		@discussionBoard = @course.discussion_board
 	end
 
-	# Description: This action shows a specific selected course.
-	# Parameters:
-	#	params[:id]: The current course's id
-	# Returns: 
-	# 	none
-	# Author: Ahmed Osam
 	def show
-		@course = Course.find_by_id(params[:id])
 	end
 
 	def manage

@@ -43,7 +43,6 @@ class TopicsController < ApplicationController
 		@new_topic = Topic.new
 		@new_topic.title = topic_params[:title]
 		@new_topic.description = topic_params[:description]
-		@new_topic.lecturer_id = current_lecturer
 		bool = @new_topic.save
 		if bool == true 
 			flash[:notice] = "Topic successfully created"
