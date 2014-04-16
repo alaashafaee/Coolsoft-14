@@ -1,0 +1,78 @@
+<div class="page-header">
+	<h1><%=@course.name%> <small><%=@topic.title%></small></h1>
+</div>
+<% if @can_edit %>
+	<% if flash[:error] %>
+		<div align="center" class="alert alert-warning" ><%= flash[:error] %></div><br>
+	<% end %>
+	<% if flash[:success] %>
+		<div align="center" class="alert alert-success" ><%= flash[:success] %></div><br>
+		<% end %>
+<% end %>
+<table align="center">
+	<tr>
+		<th><span class="label label-info">Tracks</span></th>
+		<th><span class="label label-info">Problems</span></th>
+	</tr>
+	<tr>
+		<td>
+			<!-- List of all tracks of the selected topic
+				visit /tracks/:id where id is the id of the topic
+				that route I used until we decide on a correct route -->
+			<%=select(:Track , :id , 
+				@tracks.collect{|t|[t.title , t.id]}, 
+				{selected: @tracks.first ? @tracks.first.id : 0} , 
+				:multiple => true , :style => "width:250px;align='center'" , 
+				:onchange => "getProblems(this.value)" , 
+				:size => 15 , :id => "tracksSel")%>
+		</td>
+
+		<!-- Here will be the list of problems 
+			of the track selected in the previous list -->
+		<td id="second" align="center">
+			<%=select(:Track , :id , {}, {} , 
+				:multiple => true , :style => "width:250px;align='center'" , 
+				:onchange => "getProblems(this.value)" , 
+				:size => 15 , :id => "problemsSel")%>
+		</td>
+	</tr>
+	<% if @can_edit %>
+		<tr>
+			<!-- Here is a buttons to create and edit problems 
+				and tracks but for now
+				the create button of tracks is the only button that works
+				other buttons only shows an alert -->
+			<td align="center">
+				<button class="btn btn-default" onclick="newTrack()">New</button>
+				<button class="btn btn-default" onclick="show('Course')">Edit</button>
+			</td>
+			<td align="center">
+				<button class="btn btn-default" onclick="show('Problem')">New</button>
+				<button class="btn btn-default" onclick="alert('hello')">Edit</button>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<br>
+
+<!-- thats a form for creating a track which is intially hidden 7
+		until the new button clicked -->
+<% if @can_edit %>
+	<% if !flash[:title] && !flash[:difficulty] %>
+		<% hide = 'hidden=true' %>
+	<% end %>
+	<div id="create_track" <%= hide %> >
+		<%= form_for :Track , url: {controller: "tracks" , action: "create"}, 
+		html: {class: "form-inline form-horizontal nifty_form" , role: "form"} do |f| %>
+			<div class="form-group">
+				<%= f.text_field :title , :value => flash[:title] , 
+					:class => "form-control" , :placeholder => "Title"%><br>
+				<%= f.number_field :difficulty , :value => flash[:difficulty] , 
+					:class => "form-control" , :placeholder => "Difficulty" , 
+					:min => 1 %><br>
+				<%= f.hidden_field :topic_id , :value => params[:id] %>
+				<%= f.submit "Create" , :class => "btn btn-default" %>
+			</div><!-- /form-group -->
+		<% end %><!-- /form -->
+	</div><!-- /create_track -->
+<% end %><!-- /can_edit -->

@@ -13,5 +13,12 @@ class Course < ActiveRecord::Base
 	#Scoops
 	
 	#Methods
-
+	def can_edit(id)
+		if id
+			can_edit = Lecturer.find_by_id(id).courses.include?(self)
+			can_edit ||= TeachingAssistant.find_by_id(id).courses.include?(self)
+		else
+			false
+		end
+	end
 end

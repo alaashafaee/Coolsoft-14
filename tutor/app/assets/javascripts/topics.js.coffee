@@ -27,7 +27,7 @@
 # Author: Mussab ElDash
 @getProblems = (track_id) ->
 	$.ajax
-		type: "POST"
+		type: "GET"
 		url: "/tracks/" + track_id + "/getProblems"
 		datatype: "json"
 		success: (data) ->
@@ -53,7 +53,8 @@ showProblems = (datas) ->
 		opt+= data.title + "</option>"
 		inner += opt
 	inner += "</select>"
-	document.getElementById("second").innerHTML = inner
+	second = document.getElementById("second")
+	second.innerHTML = inner
 	return
 
 # [Create Track - Story 4.1]

@@ -23,6 +23,7 @@ Tutor::Application.routes.draw do
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
+	resources :topics
 
 	# Example resource route with options:
 	#   resources :products do
@@ -37,7 +38,7 @@ Tutor::Application.routes.draw do
 	#   end
 	resources :tracks do
 		member do
-			post 'getProblems'
+			get 'getProblems'
 		end
 	end
 
