@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
 		else
 			@courses = current_student.courses.order("created_at desc")
 		end
-	end  
+	end
 
 	# Description: This action takes the course id, remove it from the database
 	# 			   and then redirects the user to the show courses page accompanied
@@ -93,7 +93,7 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
-	private 
+	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
