@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "hints", force: true do |t|
     t.text     "message"
-    t.boolean  "type"
+    t.boolean  "category"
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
