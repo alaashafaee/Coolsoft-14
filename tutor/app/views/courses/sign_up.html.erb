@@ -2,6 +2,8 @@
 <table>
 	<tbody>
 		<% case @status%>
+			<% when "0" %>
+				<h3>Sorry, only students can sign up for courses!</h3>
 			<% when "1" %>
 				<h2><%=@status%> / 6</h2>
 				<h3>Please choose a University</h3>
