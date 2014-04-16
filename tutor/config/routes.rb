@@ -18,7 +18,6 @@ Tutor::Application.routes.draw do
 	resources :discussion_boards do
 		post 'toggle', on: :member
 	end
-	
 	post 'courses/new' => 'courses#new'
 	resources :courses do
 		post 'topics/new' => 'topics#new'

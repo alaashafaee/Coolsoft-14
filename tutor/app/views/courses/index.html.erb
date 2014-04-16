@@ -3,7 +3,7 @@
 <% end %>
 <% if current_lecturer %>
 	<%= button_to "Create course", {:action => 'new', :controller => 'courses'}, {
-	class: 'btn btn-primary'} %>
+		class: 'btn btn-primary'} %>
 <% end %>
 <br>
 <%= flash[:success_creation] %>
