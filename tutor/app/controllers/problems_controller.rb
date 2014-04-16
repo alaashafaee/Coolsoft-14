@@ -25,6 +25,13 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def create
 		p = Problem.new(permitCreate)
+		if lecturer_signed_in?
+			p.owner_id = current_lecturer.id
+		else
+			if teaching_assistant_signed_in?
+				p.owner_id = current_teaching_assistant.id
+			end
+		end
   		if p.save
   			redirect_to :action => "edit", :id => p.id
 		else 
@@ -49,12 +56,16 @@ class ProblemsController < ApplicationController
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def edit
-  		@problem = Problem.find_by_id(params[:id])
-  		@test_cases = @problem.test_cases
-  		@answers = @problem.model_answers
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+  			@problem = Problem.find_by_id(params[:id])
+  			@test_cases = @problem.test_cases
+  			@answers = @problem.model_answers
+  		else
+  			render ('public/404')
+  		end	
   	end
   	def new
-  		if lecturer_signed_in?
+  		if lecturer_signed_in? || teaching_assistant_signed_in?
   			render ('new')
   		else	
 			render ('public/404')

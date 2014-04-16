@@ -18,10 +18,19 @@ class ModelAnswersController < ApplicationController
 	# Returns: Returns a message if the answer is added and another message if answer was not added.
 	# Author: Nadine Adel
 	def create
-		@answer = ModelAnswer.new(post_params)
-		if @answer.save
+		if lecturer_signed_in? 
+			@answer = ModelAnswer.new(post_params)
+			@answer.owner_id = current_lecturer.id
+		else
+			if teaching_assistant_signed_in?
+				@answer = ModelAnswer.new(post_params)
+				@answer.owner_id = current_teaching_assistant.id
+			end
+		end
+		if @answer.save 
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
+
 		else
 			flash[:notice] = "Your Answer can not be added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id

@@ -22,12 +22,20 @@ end
 #          In case of failure a flash notice will appear:"Can't add test case!"
 # Author: Lin
 def create
-	@test_case = TestCase.new(post_params) 
+		if lecturer_signed_in? 
+			@test_case = TestCase.new(post_params)
+			@test_case.owner_id = current_lecturer.id
+		else
+			if teaching_assistant_signed_in?
+				@test_case = TestCase.new(post_params)
+				@test_case.owner_id = current_teaching_assistant.id
+			end
+		end
 	if @test_case.save
-		flash[:notice] = "Post created successfully"
+		flash[:notice] = "Your test case is now added"
 		redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
 	else
-		flash[:notice] = "Can't add test case!"
+		flash[:notice] = "Your test case cannot added"
 		redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
 	end 
 end
