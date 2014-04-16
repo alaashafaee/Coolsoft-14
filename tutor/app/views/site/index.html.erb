@@ -1,4 +1,4 @@
-<%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in?%>
+<%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in? %>
 	<% if flash[:notice] %>
 		<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
 			<%= flash[:notice] %> 
