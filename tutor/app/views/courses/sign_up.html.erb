@@ -33,7 +33,7 @@
 					<tr>
 						<td>
 							<%= link_to(course.name, {:action => "sign_up", :university => params[:university],
-							:semester =>course.semester, :code => course.code, :status => "4"} )%>
+							:semester =>course.semester, :id => course.id, :status => "4"} )%>
 						</td>
 					</tr>
 				<% end %>
@@ -44,7 +44,7 @@
 					<tr>
 						<td>
 							<%= link_to(lecturer.name, {:action => "sign_up", :university => params[:university],
-							:semester =>@course.semester, :code => @course.code, :lecturer => lecturer.id, :status => "5"} )%>
+							:semester =>@course.semester, :id => @course.id, :lecturer => lecturer.id, :status => "5"} )%>
 						</td>
 					</tr>
 				<% end %>
@@ -54,7 +54,7 @@
 				<tr>
 					<td>
 						<%= link_to("Sign-Up!", {:action => "sign_up", :university => params[:university],
-						:semester => @course.semester, :code => @course.code, :lecturer => params[:lecturer], :status => "6"} )%>
+						:semester => @course.semester, :id => @course.id, :lecturer => params[:lecturer], :status => "6"} )%>
 					</td>
 				</tr>
 			<% when "6" %>
