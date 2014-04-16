@@ -4,8 +4,6 @@
 	<%= button_to "Create course"  , {:action => 'new', :controller => 'courses',:method => :get} , {
 		class: 'btn btn-primary' }   %>
 		<br>
-		<br>		
-		<br>
 	<%= flash[:success_creation] %>
 <% if @courses.any? %>
 		<h1>Your Courses</h1>
@@ -23,7 +21,7 @@
 		<% @courses.each do |c| %>
 			<tr>
 				<td><%= link_to c.name , :controller => 'courses', :action => 'show', :id => c.id, 
-				    			 :method => :get , class: "btn btn-success" %></td>
+							:method => :get , class: "btn btn-success" %></td>
 				<td><%= c.code %></td>
 				<td><%= c.year %></td>
 				<td><%= c.semester %></td>
@@ -32,7 +30,7 @@
 				<td><%= c.updated_at %></td>
 				<% if current_lecturer %>
 				<td><%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :id => c.id},
-								 class: "btn btn-success"%><%end%></td>
+								class: "btn btn-success"%><%end%></td>
 			</tr>
 		<% end %>
 	</table>
