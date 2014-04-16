@@ -31,7 +31,6 @@ class ApplicationController < ActionController::Base
 				flash[:notice] = "You're not logged in!"
 				redirect_to :root
 			end
-
 		end
 
 end

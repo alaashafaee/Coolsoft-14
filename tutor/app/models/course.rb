@@ -15,9 +15,5 @@ class Course < ActiveRecord::Base
 	
 	has_one :discussion_board, dependent: :destroy	
 	has_many :topics, dependent: :destroy
-	
-	#Scoops
-	
-	#Methods
 
 end

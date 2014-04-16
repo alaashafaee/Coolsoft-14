@@ -8,32 +8,23 @@ Tutor::Application.routes.draw do
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
-
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
-
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
-
 	resources :discussion_boards do
 		post 'toggle', on: :member
 	end
-
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
 	end
-
-	
-	
 	resources :model_answers do
 		post "model_answers/new"
 	end
-
 	resources :test_cases
-
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -83,5 +74,5 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
-	
+
 end

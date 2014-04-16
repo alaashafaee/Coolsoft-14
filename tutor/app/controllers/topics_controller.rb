@@ -52,9 +52,7 @@ class TopicsController < ApplicationController
 			redirect_to :action => 'index'
 		else
 			if @new_topic.errors.any?
-				flash[:notice] = "This topic already exists" 
-			else
-				flash[:notice] = "Fill the missing fields"
+				flash[:notice] = @new_topic.errors.full_messages.first
 			end
 			render :action => 'new'  
 		end
