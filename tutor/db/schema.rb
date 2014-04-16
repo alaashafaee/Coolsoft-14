@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "lecturers", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
@@ -216,7 +215,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "students", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
@@ -248,7 +246,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
