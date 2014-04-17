@@ -1,4 +1,3 @@
-
 <body>
 <script type="text/javascript">
 	function toggle_visibility(id) {
@@ -7,7 +6,7 @@
 			e.style.display = 'none';
 		else
 			e.style.display = 'block';
- 	 }
+	}
 </script>
 </body>
 
@@ -15,7 +14,6 @@
 <div id="foo" style="display:none;">
 
 <table class="table table-striped", style = "width:60%">
-
 	<thead>
 		<tr>
 			<th style="width: 30%">Title</th>
@@ -23,7 +21,6 @@
 			<th style="width: 10%">Edit</th>
 		</tr>
 	</thead>
-
 	<tbody>
 		<tr>
 			<% @tips.each do |tip1| %>
@@ -32,9 +29,8 @@
 				<td><%= tip1.time  %></td>
 				<td><%= button_to "View or Edit"  , {:action => 'new', :controller => 'tips',:method => :post}, {class: 'btn btn-primary btn-xs' }   %></td>
 		</tr>
-          
 	</tbody>		
-				<% end %>
-				<% end %>
+					<% end %>
+					<% end %>
 </table>
 </div>

@@ -1,16 +1,11 @@
 class HintsController < ApplicationController
-  def new
-  		@hints = Hint.all
-		
-		@hint = Hint.new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def destroy
-  end
+# [View hints and tips]
+# It fetches from database all the previous hints.
+# Parameters: 
+#   @hints: All the previous hints that had been entered before.
+#   Return : none
+# Author: Nadine Adel
+	def new
+		@hints = Hint.all
+	end
 end
