@@ -109,7 +109,7 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.courses << Course.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
-	Problem.fid_by_id(3).test_cases << TestCase.first
+	Problem.find_by_id(3).test_cases << TestCase.first
 	Problem.first.model_answers << ModelAnswer.first
 	Problem.first.model_answers << ModelAnswer.find_by_id(2)
 	Problem.first.test_cases << TestCase.first
@@ -122,7 +122,7 @@ puts("# -----------------------Problems---------------------------")
 
 	Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 	Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
-	Problem.finnd_by_id(3).solutions << Solution.find_by_id(3)
+	Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 
 puts("# -----------------------Tracks---------------------------")
 	Track.first.problems << Problem.first
