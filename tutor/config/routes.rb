@@ -19,6 +19,7 @@ Tutor::Application.routes.draw do
 	#   get 'products/:id' => 'catalog#view'
 
 	# You can have the root of your site routed with "root"
+
 	root 'site#index'
 	resources :tracks do
 		post 'getProblems', on: :member
@@ -29,6 +30,7 @@ Tutor::Application.routes.draw do
 	resources :discussion_boards do
 		post 'toggle', on: :member
 	end
+	post 'courses/new' => 'courses#new'
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
