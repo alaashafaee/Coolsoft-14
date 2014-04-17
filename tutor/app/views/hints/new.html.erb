@@ -27,7 +27,7 @@
 				<% if hint1.category == false %>
 					<td><%= hint1.message  %></td>
 					<td><%= hint1.submission_counter  %></td>
-					<td><%= button_to "View or Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+					<td><%= button_to "Edit"  , {:action => 'new', :controller => 'hints',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
 			</tr>
 		</tbody>    
 						<% end %>
