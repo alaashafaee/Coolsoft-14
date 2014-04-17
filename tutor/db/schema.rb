@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.boolean  "incomplete"
     t.integer  "success_attempts"
     t.integer  "failure_attempts"
     t.integer  "views_count"
@@ -206,6 +207,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.text     "code"
     t.integer  "length"
     t.integer  "status"
+    t.integer  "time"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
