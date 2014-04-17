@@ -26,9 +26,18 @@
 			<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
 				<ul class="list-group">
 					<% t.problems.each do |p|%>
+						<% if @problems_status %>
+							<% if @problems_status[:success].include?(p) %>
+								<% color = "label label-success" %>
+							<% elsif @problems_status[:failure].include?(p) %>
+								<% color = "label label-warning" %>
+							<% else %>
+								<% color = "label label-default" %>
+							<% end %>
+						<% end %>
 						<li class="list-group-item" data-toggle="tooltip"
 							data-placement="top" title="<%= p.description%>">
-								<%= link_to p.title , p %>
+								<%= link_to p.title , p , class: color %>
 						</li>
 					<% end %>
 				</ul>
