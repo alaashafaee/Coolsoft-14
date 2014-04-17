@@ -28,12 +28,17 @@
 
         <div>
             <%= f.label :date_of_birth %><br />
-            <%= f.datetime_field :dob %>
+            <%= f.date_select :dob, {:start_year => Date.today.year-90, :end_year => Date.today.year} %>
         </div>
 
         <div>
             <%= f.label :degree %><br />
             <%= f.text_field :degree %>
+        </div>
+
+        <div>
+            <%= f.label :department %><br />
+            <%= f.text_field :department %>
         </div>
 
         <div><%= f.submit "Sign up" %></div>
