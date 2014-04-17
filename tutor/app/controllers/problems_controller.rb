@@ -27,9 +27,11 @@ class ProblemsController < ApplicationController
 		p = Problem.new(permitCreate)
 		if lecturer_signed_in?
 			p.owner_id = current_lecturer.id
+			p.owner_type = "lecturer"
 		else
 			if teaching_assistant_signed_in?
 				p.owner_id = current_teaching_assistant.id
+				p.owner_type = "teaching assistant"
 			end
 		end
   		if p.save

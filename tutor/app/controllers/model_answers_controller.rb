@@ -21,10 +21,12 @@ class ModelAnswersController < ApplicationController
 		if lecturer_signed_in? 
 			@answer = ModelAnswer.new(post_params)
 			@answer.owner_id = current_lecturer.id
+			@answer.owner_type = "lecturer"
 		else
 			if teaching_assistant_signed_in?
 				@answer = ModelAnswer.new(post_params)
 				@answer.owner_id = current_teaching_assistant.id
+				@answer.owner_type = "teaching assistant"
 			end
 		end
 		if @answer.save 
@@ -67,4 +69,4 @@ class ModelAnswersController < ApplicationController
 	def post_params
 		params.require(:model_answer).permit(:answer, :problem_id)
 	end
-	end
+end
