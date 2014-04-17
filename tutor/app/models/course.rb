@@ -24,10 +24,9 @@ class Course < ActiveRecord::Base
 	# Parameters: The id of the user
 	# Returns: True in case he has access else False
 	# Author: Mussab ElDash
-	def can_edit(id)
-		if id
-			can_edit = Lecturer.find_by_id(id).courses.include?(self)
-			can_edit ||= TeachingAssistant.find_by_id(id).courses.include?(self)
+	def can_edit(user)
+		if user
+			can_edit = user.courses.include?(self)
 		else
 			false
 		end
