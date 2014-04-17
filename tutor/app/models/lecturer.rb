@@ -4,12 +4,12 @@ class Lecturer < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
 
+	mount_uploader :profile_image, ProfileImageUploader
+
 	#Validations
 	validates :name, presence: true
-	validates :dob, presence: true
 	validates :degree, presence: true
-	validates :age, presence: true
-	validates :dob, presence: true
+	validates :department, presence: true
 
 	#Relations
 	has_and_belongs_to_many :courses, join_table: "courses_lecturers"
