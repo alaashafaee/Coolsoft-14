@@ -17,11 +17,11 @@
 	<% @problems.each do |p| %>
 		<% if @problems_status %>
 			<% if @problems_status[:success].include?(p) %>
-				<% color = "text-primary" %>
+				<% color = "label label-success" %>
 			<% elsif @problems_status[:failure].include?(p) %>
-				<% color = "text-danger" %>
+				<% color = "label label-warning" %>
 			<% else %>
-				<% color = "" %>
+				<% color = "label label-default" %>
 			<% end %>
 		<% end %>
 		<div class="panel panel-default">
@@ -29,8 +29,9 @@
 				data-toggle="collapse" data-parent="#accordion"
 				href="#<%= p.id.to_s %>">
 					<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
-					<%= link_to p.title , p , style: 'color:#FFFFFF;' %></b>
-					<span class="badge <%= color %>"><%= p.success_attempts %></span>
+					<%= link_to p.title , p , style: 'color:#003366;' ,
+					class: color %></b>
+					<span class="badge"><%= p.success_attempts %></span>
 			</div>
 			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
 				<%= p.description %>
