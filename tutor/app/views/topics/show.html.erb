@@ -1,63 +1,46 @@
 <div class="page-header">
-	<h1><%=@course.name%> <small><%=@topic.title%></small></h1>
+	<h1><%= link_to @course.name , @course %>
+		<small><%= link_to @topic.title , @topic %></small></h1>
 </div>
 <% if @can_edit %>
 	<% if flash[:error] %>
-		<div align="center" class="alert alert-warning" ><%= flash[:error] %></div><br>
+		<div align="center" class="alert alert-warning" ><%= flash[:error] %>
+		</div><br>
 	<% end %>
 	<% if flash[:success] %>
-		<div align="center" class="alert alert-success" ><%= flash[:success] %></div><br>
+		<div align="center" class="alert alert-success" ><%= flash[:success] %>
+		</div><br>
 		<% end %>
 <% end %>
-<table align="center">
-	<tr>
-		<th><span class="label label-info">Tracks</span></th>
-		<th><span class="label label-info">Problems</span></th>
-	</tr>
-	<tr>
-		<td>
-			<!-- List of all tracks of the selected topic
-				visit /tracks/:id where id is the id of the topic
-				that route I used until we decide on a correct route -->
-			<%=select(:Track , :id , 
-				@tracks.collect{|t|[t.title , t.id]}, 
-				{selected: @tracks.first ? @tracks.first.id : 0} , 
-				:multiple => true , :style => "width:250px;align='center'" , 
-				:onchange => "getProblems(this.value)" , 
-				:size => 15 , :id => "tracksSel")%>
-		</td>
 
-		<!-- Here will be the list of problems 
-			of the track selected in the previous list -->
-		<td id="second" align="center">
-			<%=select(:Track , :id , {}, {} , 
-				:multiple => true , :style => "width:250px;align='center'" , 
-				:onchange => "getProblems(this.value)" , 
-				:size => 15 , :id => "problemsSel")%>
-		</td>
-	</tr>
-	<% if @can_edit %>
-		<tr>
-			<!-- Here is a buttons to create and edit problems 
-				and tracks but for now
-				the create button of tracks is the only button that works
-				other buttons only shows an alert -->
-			<td align="center">
-				<button class="btn btn-default" onclick="newTrack()">New</button>
-				<button class="btn btn-default" onclick="show('Course')">Edit</button>
-			</td>
-			<td align="center">
-				<button class="btn btn-default" onclick="show('Problem')">New</button>
-				<button class="btn btn-default" onclick="alert('hello')">Edit</button>
-			</td>
-		</tr>
+<div class="panel-group list-group" id="accordion">
+	<% @tracks.each do |t| %>
+		<div class="panel panel-default">
+			<div class="panel-title list-group-item list-group-item-info"
+				data-toggle="collapse" data-parent="#accordion"
+				href="#<%= t.id.to_s %>">
+					<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
+						<%= link_to t.title , t , style: 'color:#FFFFFF;'%></b>
+					<span class="badge"><%= t.problems.count %></span>
+			</div>
+			<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
+				<ul class="list-group">
+					<% t.problems.each do |p|%>
+						<li class="list-group-item" data-toggle="tooltip"
+							data-placement="top" title="<%= p.description%>">
+								<%= link_to p.title , p %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
 	<% end %>
-</table>
-<br>
+</div>
 
-<!-- thats a form for creating a track which is intially hidden 7
+<!-- thats a form for creating a track which is intially hidden
 		until the new button clicked -->
 <% if @can_edit %>
+	<span class="label label-default" onclick="newTrack()">New</span><br><br>
 	<% if !flash[:title] && !flash[:difficulty] %>
 		<% hide = 'hidden=true' %>
 	<% end %>

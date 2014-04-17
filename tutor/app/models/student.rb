@@ -49,5 +49,30 @@ class Student < ActiveRecord::Base
 		# Return random element from array
 		return suggestions.to_a().sample()
 	end
+
+	# [Integrating_Akram_Device - Story 4.1]
+	# Gets all the problem that this student attempted and puts each
+	# state of attempt in a list : success , failure , other
+	# Parameters: None
+	# Returns: A hash with 3 list of the succeeded , failed problems
+	# 	and the third in case there is another state yet to be known
+	# Author: Mussab ElDash
+	def getProblemsStatus
+		res = {:success => [] , :failure => [] , :other => []}
+		res[:success] = []
+		res[:failure] = []
+		res[:other] = []
+		solutions = self.solutions
+		solutions.each do |s|
+			if s.status == 0
+				res[:success] << s.problem
+			elsif s.status == 1
+				res[:failure] << s.problem
+			else
+				res[:other] << s.problem
+			end
+		end
+		res
+	end
 end
 

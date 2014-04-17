@@ -13,6 +13,11 @@ class Course < ActiveRecord::Base
 	#Scoops
 	
 	#Methods
+	# [Integrating_Akram_Device - Story 4.1]
+	# checks if the user with id :id has the access to edit , create this course
+	# Parameters: The id of the user
+	# Returns: True in case he has access else False
+	# Author: Mussab ElDash
 	def can_edit(id)
 		if id
 			can_edit = Lecturer.find_by_id(id).courses.include?(self)

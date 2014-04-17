@@ -81,8 +81,10 @@ VariableConstraint.create(variable_name: "VariableConstraint 2")
 VariableConstraint.create(variable_name: "VariableConstraint 3")
 
 puts("# -----------------------Problems---------------------------")
-Problem.create(title:"Problem 1" , description:"This will be very hard Problem")
-Problem.create(title:"Problem 2" , description:"This is very hard Problem")
+Problem.create(title:"Problem 1" , description:"This will be very hard Problem" \
+	, success_attempts: 1)
+Problem.create(title:"Problem 2" , description:"This is very hard Problem" \
+	, success_attempts: 0)
 Problem.create(title:"Problem 3" , description:"This wont be a hard Problem")
 Problem.create(title:"Problem 4" , description:"This will be very easy Problem")
 Problem.create(title:"Problem 5" , description:"This is very easy Problem")
@@ -94,8 +96,8 @@ Track.create(title: "Track 3" , difficulty: 3)
 Track.create(title: "Track 4" , difficulty: 4)
 
 puts("# -----------------------Solutions---------------------------")
-Solution.create(code:"println(My first solution)",length:5,status:3)
-Solution.create(code:"println(My second solution)",length:5,status:3)
+Solution.create(code:"println(My first solution)",length:5,status:0)
+Solution.create(code:"println(My second solution)",length:5,status:1)
 Solution.create(code:"println(My third solution)",length:5,status:3)
 
 puts("# -------------------------------------------------------")
@@ -145,4 +147,10 @@ Course.first.topics << Topic.first
 Course.first.topics << Topic.find_by_id(2)
 Course.find_by_id(2).topics << Topic.find_by_id(3)
 
-puts("# -------------------------------------------------------")
+puts("# -----------------------Solution---------------------------")
+Student.first.solutions << Solution.first
+Student.first.solutions << Solution.find_by_id(2)
+# Student.find_by_id(2).solutions << Solution.find_by_id(3)
+Student.first.solutions << Solution.find_by_id(3)
+
+puts("# ---------------------------------------------------------")
