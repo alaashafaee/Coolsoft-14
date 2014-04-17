@@ -50,7 +50,7 @@ class Student < ActiveRecord::Base
 		return suggestions.to_a().sample()
 	end
 
-	def get_next_problems_hash
+	def get_next_problems_to_solve
 		next_problems_to_solve = Hash.new
 
 		courses.each do |course|
