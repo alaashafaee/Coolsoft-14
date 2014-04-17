@@ -30,9 +30,7 @@
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="selected-link" value="repo_source" data-pjax-transient />
     <meta content="collector.githubapp.com" name="octolytics-host" /><meta content="collector-cdn.github.com" name="octolytics-script-host" /><meta content="github" name="octolytics-app-id" /><meta content="C52E7B34:2126:3281D7A:53504524" name="octolytics-dimension-request_id" /><meta content="6736418" name="octolytics-actor-id" /><meta content="linsara" name="octolytics-actor-login" /><meta content="3e5a39b8574e591ea979f07781909bd2cb574890c7d6392f8419d4b5b07283cf" name="octolytics-actor-hash" />
-    
-
-    
+        
     
     <link rel="icon" type="image/x-icon" href="https://github.global.ssl.fastly.net/favicon.ico" />
 

@@ -1,24 +1,29 @@
+<!doctype html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
+<title>jQuery UI Sortable - Default functionality</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+</style>
 <script>
-<%= javascript_include_tag 'gmap3.min' %>
+$(function() {
+$( "#sortable" ).sortable();
+$( "#sortable" ).disableSelection();
+});
 </script>
-
 </head>
-
-<table id="table-1" cellspacing="0" cellpadding="2">
-    <tr id="1"><td>1</td><td>One</td><td>some text</td></tr>
-    <tr id="2"><td>2</td><td>Two</td><td>some text</td></tr>
-    <tr id="3"><td>3</td><td>Three</td><td>some text</td></tr>
-    <tr id="4"><td>4</td><td>Four</td><td>some text</td></tr>
-    <tr id="5"><td>5</td><td>Five</td><td>some text</td></tr>
-    <tr id="6"><td>6</td><td>Six</td><td>some text</td></tr>
-</table>
-
-
-<ul id="list-of-tracks" style="cursor: move">
-  <% @tracks.each do |track| %>
-    <li id="item_<%= track.id %>">
-      <%= track.title %>
-    </li>
-  <% end %>
+<body>
+<ul id="sortable">
+<%- @tracks.each do |track| %>
+	<li><%=track.title%></li>	
+<% end %>
 </ul>
+</body>
+</html>

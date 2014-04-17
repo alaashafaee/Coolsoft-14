@@ -2,7 +2,7 @@ class TracksController < ApplicationController
 	
 
 	def index
-		@tracks = Track.all
+		@tracks = Track.all 
 	end 
 
 	def new
@@ -78,11 +78,19 @@ class TracksController < ApplicationController
 	def permitCreate
 		params.require(:Track).permit(:topic_id , :title , :difficulty)
 	end
-	def sort
-		@topic = Topic.find(params[:id])
-		@Topic.tracks.each do | track |
-		track.difficulty = params["list-of-tracks"].index(f.id.to_s)+1
-		f.save
-		end
-	end
+
+	##def sort
+	#	@topic = Topic.find(params[:id])
+	#	@Topic.tracks.each do | track |
+	#	track.difficulty = params["list-of-tracks"].index(f.id.to_s)+1
+	#	f.save
+	#	end
+	#end
+
+	def sort  
+     params[:tracks].each_with_index do |id, index|  
+       Track.update_all([’difficulty=?’, index+1], [’id=?’, id])  
+    end  
+     render :nothing => true  
+    end  
 end
