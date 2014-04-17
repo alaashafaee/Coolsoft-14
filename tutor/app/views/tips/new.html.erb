@@ -14,12 +14,13 @@
 <a href="#" onclick="toggle_visibility('foo');"><h2><li>Previous Tips</li></h2></a>
 <div id="foo" style="display:none;">
 
-<table class="table table-striped">
+<table class="table table-striped", style = "width:60%">
 
 	<thead>
 		<tr>
 			<th style="width: 30%">Title</th>
-			<th style="width: 20%">View or Edit</th>
+			<th style="width: 20%">Time of showing in seconds</th>
+			<th style="width: 10%">Edit</th>
 		</tr>
 	</thead>
 
@@ -28,6 +29,7 @@
 			<% @tips.each do |tip1| %>
 			<% if tip1.category == true %>
 				<td><%= tip1.message  %></td>
+				<td><%= tip1.time  %></td>
 				<td><%= button_to "View or Edit"  , {:action => 'new', :controller => 'tips',:method => :post}, {class: 'btn btn-primary btn-xs' }   %></td>
 		</tr>
           
