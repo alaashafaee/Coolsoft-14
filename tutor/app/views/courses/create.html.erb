@@ -1,0 +1,27 @@
+<h1>Courses#create</h1>
+
+<%= form_for :course, url: courses_path do |f| %>
+	<p>
+		<%= f.label :Name %><br>
+		<%= f.text_field :course_name %>
+	</p>
+	<p>
+		<%= f.label :Code %><br>
+		<%= f.text_field :course_Code %>
+	</p>
+	<p>
+		<%= f.label :Description %><br>
+		<%= f.text_area :course_description %>
+	</p>
+	<p>
+		<%= f.label :Semester %><br>
+		<%= f.text_field :course_semester %>
+	</p>
+	<p>
+		<%= f.label :Year %><br>
+		<%= f.text_field :course_year %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
