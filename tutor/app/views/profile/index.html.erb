@@ -1,0 +1,12 @@
+<% if student_signed_in? %>
+<p> you are signed in </p>
+<%
+	next_problems_to_solve = current_student.get_next_problems_hash 
+	if next_problems_to_solve != nil then
+		next_problems_to_solve.each do |key , value| 
+			str =  key + "--" + value.title
+		 %> 
+		<%= str %>
+		<% end %>
+	<% end %>
+<% end %>

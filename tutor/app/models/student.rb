@@ -49,5 +49,33 @@ class Student < ActiveRecord::Base
 		# Return random element from array
 		return suggestions.to_a().sample()
 	end
+
+	def get_next_problems_hash
+		next_problems_to_solve = Hash.new
+
+		courses.each do |course|
+			course.topics.each do |topic|
+				level = TrackProgression.get_progress(self.id, topic.id)
+
+				topic.tracks.each do |track|
+						if(track.difficulty == level)
+							track.problems.each do |problem|
+								if(!problem.is_solved_by_student(self.id))
+									key = course.name
+									key += " - " + topic.title
+									key += " - " + track.title
+									next_problems_to_solve[key] = problem
+									break
+								end
+							end
+						end
+				end
+			end
+		end
+
+		return next_problems_to_solve
+	end
+
+
 end
 
