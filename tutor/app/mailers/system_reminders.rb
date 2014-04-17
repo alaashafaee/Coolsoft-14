@@ -3,6 +3,6 @@ class SystemReminders < ActionMailer::Base
   def welcome_email(current_student)
     @user = current_student
     @url  = 'http://localhost:3000'
-    mail(to: @user.email, subject: 'Welcome to our Awesome Tutors Website')
+    mail(to: @user.email, subject: 'We miss you at our Awesome Tutors Website')
   end
 end
