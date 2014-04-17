@@ -8,6 +8,7 @@ class ModelAnswersController < ApplicationController
 # Author: Nadine Adel
 	def new
 		@answers = ModelAnswer.all
+
 		@answer = ModelAnswer.new
 	end
 
@@ -35,7 +36,9 @@ class ModelAnswersController < ApplicationController
 #   Return : none
 # Author: Nadine Adel
 	def show
-		@answer = ModelAnswer.find(params[:problem_id])
+		
+		#@answer = ModelAnswer.where(answer_ID: params[:id])
+
 	end
 
 # [Add answer story 4.6]

@@ -3,6 +3,8 @@ Tutor::Application.routes.draw do
 	get "model_answers/new"
 	post "model_answers/new"
 	resources :model_answers
+	post "model_answers/show"
+		get "model_answers/show"
 
 	get 'courses/show'
 	resources :test_cases
