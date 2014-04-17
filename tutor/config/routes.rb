@@ -1,4 +1,12 @@
 Tutor::Application.routes.draw do
+  get "hints/new"
+  get "hints/create"
+  get "hints/edit"
+  get "hints/destroy"
+  get "tips/new"
+  get "tips/create"
+  get "tips/edit"
+  get "tips/destroy"
 	get 'courses/show'
 	get "model_answers/new"
 	post "model_answers/new"

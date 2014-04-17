@@ -1,0 +1,48 @@
+
+<body>
+<script type="text/javascript">
+  function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    if(e.style.display == 'block')
+      e.style.display = 'none';
+    else
+      e.style.display = 'block';
+   }
+</script>
+</body>
+
+
+<a href="#" onclick="toggle_visibility('foo');"><h2><li>Previous Hints</li></h2></a>
+<div id="foo" style="display:none;">
+
+<table class="table table-condensed table-striped">
+
+  <thead>
+    <tr>
+    <th  >Hints</th>
+      <th >Number of submissions</th>
+      <th >View or Edit</th>
+       
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% @hints.each do |hint1| %>
+      <% if hint1.category == false %>
+         <td > <%= hint1.message  %></td>
+        <td><%= hint1.submission_counter  %></td>
+     
+      <td><%= button_to "View or Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+      
+    </tr>
+          
+  </tbody>    
+        <% end %>
+        <% end %>
+        
+</table>
+
+
+</div>

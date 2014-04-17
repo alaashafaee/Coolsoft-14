@@ -53,8 +53,8 @@ Topic.create(title: "Topic2")
 Topic.create(title: "Topic3")
 
 puts("# -----------------------Hints---------------------------")
-Hint.create(message: "Do not Try to Solve CS problem-1")
-Hint.create(message: "Do not Try to Solve CS problem-2")
+Hint.create(message: "Do not Try to Solve CS problem-1", type: 0)
+Hint.create(message: "Do not Try to Solve CS problem-2", type: 1)
 Hint.create(message: "Do not Try to Solve CS problem-3")
 
 puts("# -----------------------ModelAnswer---------------------------")

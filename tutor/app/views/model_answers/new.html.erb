@@ -1,19 +1,73 @@
 <%= form_for :model_answer, url: model_answers_path  do |f| %>
-<h1>Previous Answers</h1>
+<!--Nadine:form to display textarea where the answer should be written and show the previous answers in a table.--> 
+
 <%= flash[:notice]%>
-<table>
-	<% @answers.each do |answer1| %>
-<table border ="1">
-<tr>
-	<td><%= answer1.answer %></td>
-</tr>
-	<% end %>
-</table>
+<!--kkdk-->
+
+<!--Nadine:a view in which there is a loop to fetch fom database all previous answers.-->
 <p>
-	<h2>Please Insert your model answer</h2>
-	<%= f.text_area :answer %>
+
+<h2>Please Insert your model answer</h2>
+<%= f.text_area :answer %>
+
 </p>
+ 
+
 <p>
-	<%= f.submit %>
+
+<%= f.submit class: "btn btn-primary" %>
+
 </p>
+<body>
+<script type="text/javascript">
+
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+
+</script>
+</body>
+
+<a href="#" onclick="toggle_visibility('foo');"><h2><li>Previous Answers</li></h2></a>
+<div id="foo" style="display:none;">
+
+ 
+<table class="table table-striped">
+
+        <thead>
+          <tr>
+            <th style="width: 30%">Title</th>
+            <th style="width: 20%">View or Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+          <% @answers.each do |answer1| %>
+            <td><%= answer1.answer  %></td>
+            <td><%= button_to "View or Edit"  , {:action => 'new', :controller => 'tips',:method => :post} , {
+    class: 'btn btn-primary btn-xs' }   %></td>
+          </tr>
+          
+        </tbody>
+        <% end %>
+      </table>
+
+
+
+</div>
+
+
+
+
+
+ <!--dd-->
+
+  
+
+
 <% end %>
