@@ -143,5 +143,4 @@ class CoursesController < ApplicationController
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
 
-
 end
