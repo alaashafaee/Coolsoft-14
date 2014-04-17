@@ -66,6 +66,13 @@ class ProblemsController < ApplicationController
   			render ('public/404')
   		end	
   	end
+  	# [Edit Problem - 4.5]
+	# Checks if a lecturer or TA is signed in and shows the problem's add page(title & description)
+	# on success and renders 404 on failure
+	# Parameters: 
+	# 	none
+	# Returns: Redirects to add page on success or 404 on failure
+	# Author: Abdullrahman Elhusseny
   	def new
   		if lecturer_signed_in? || teaching_assistant_signed_in?
   			render ('new')
