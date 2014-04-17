@@ -1,5 +1,13 @@
 class TracksController < ApplicationController
 	
+
+	def index
+		@tracks = Track.all
+	end 
+
+	def new
+		@track = Track.new()
+	end
 	# [Create Track - Story 4.1]
 	# shows the tracks of the topic with id :id
 	# show 404 page if there is no topic with such id
@@ -69,5 +77,12 @@ class TracksController < ApplicationController
 	# Author: Mussab ElDash
 	def permitCreate
 		params.require(:Track).permit(:topic_id , :title , :difficulty)
+	end
+	def sort
+		@topic = Topic.find(params[:id])
+		@Topic.tracks.each do | track |
+		track.difficulty = params["list-of-tracks"].index(f.id.to_s)+1
+		f.save
+		end
 	end
 end

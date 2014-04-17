@@ -1,4 +1,5 @@
 class Track < ActiveRecord::Base
+	
 	acts_as_list :scope => :topic
 	#Validations
 	validates :difficulty, presence: true
