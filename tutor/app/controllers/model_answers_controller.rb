@@ -19,8 +19,7 @@ class ModelAnswersController < ApplicationController
 # Returns: Returns a message if the answer is added and another message if answer was not added.
 # Author: Nadine Adel
 	def create
-		@answer = ModelAnswer.new(post_params)
-		if params[:first_button]
+		@answer = ModelAnswer.new(post_params)]
 		if @answer.save 
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :back
@@ -28,12 +27,7 @@ class ModelAnswersController < ApplicationController
 			flash[:notice] = "Your Answer can not be added "
 			redirect_to :back
 		end
-		else
-			render "edit"
-		end
-	
-
-
+		
 	end
 
 # [Add answer story 4.6]
