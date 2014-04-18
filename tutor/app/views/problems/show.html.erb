@@ -1,14 +1,11 @@
-<label ><%=@course.name %></label>
-/
-<label ><%=@topic.title %></label>
-/
-<label ><%=@track.title %></label>
-<br>
-<br>
+<label><%= @course.name %></label> / 
+<label><%= @topic.title %></label> / 
+<label><%= @track.title %></label>
+<br /><br />
 
 <div class='problem'>
 	<label><%= @problem.title %></label><br/>
-	<%=@problem.description %>
+	<%= @problem.description %>
 		<table width='100%'>
 			<tr>
 				<td width='80%'>

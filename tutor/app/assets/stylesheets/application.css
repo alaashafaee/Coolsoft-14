@@ -27,18 +27,18 @@
 }
 
 .side-left {
-	height:1700px;
+	height:700px;
 	margin-left:6px;
 }
 
 .side-right {
-	height:1700px;
+	height:700px;
 	margin-right:6px;
 }
 
 .main-content {
 	margin-top:70px;
 	margin-bottom:70px;
-	width:60%;
+	width:80%;
 	height:80%;
 }
