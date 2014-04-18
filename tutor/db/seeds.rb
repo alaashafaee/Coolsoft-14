@@ -86,9 +86,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.create(title:"Problem 3" , description:"This wont be a hard Problem")
 
 puts("# -----------------------Tracks---------------------------")
-	Track.create(title: "Track 1" , difficulty: 1)
-	Track.create(title: "Track 2" , difficulty: 2)
-	Track.create(title: "Track 3" , difficulty: 3)
+	Track.create(title: "Track 1" , difficulty: 0)
+	Track.create(title: "Track 2" , difficulty: 1)
+	Track.create(title: "Track 3" , difficulty: 2)
 
 puts("# -----------------------Solutions---------------------------")
 	Solution.create(code:"println(My first solution)",length:5,status:3)
