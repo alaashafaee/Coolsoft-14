@@ -1,8 +1,8 @@
-every 2.hours do
+every 2.days do
 	@current = 
 	Student.all.each do |student|
-		#if student.last_sign_in_at > #some value
-			runner "SystemReminders.reminder_email(student)"
-		#end
+		if student.last_sign_in_at > Time.now - 7.days
+			runner "SystemReminders.reminder_email(student).deliver"
+		end
 	end
 end
