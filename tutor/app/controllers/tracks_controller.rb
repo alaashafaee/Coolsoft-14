@@ -17,6 +17,11 @@ class TracksController < ApplicationController
 	#   id: The id of the topic
 	# Returns: The view of the requested topic
 	# Author: Mussab ElDash
+
+	def index
+		@tracks= Track.all
+	end
+
 	def show
 		boool = flash[:notice] != "Successfully created..."
 		boool&&=flash[:notice] != "The required Fields are missing"
