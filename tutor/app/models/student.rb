@@ -72,7 +72,7 @@ class Student < ActiveRecord::Base
 				res[:other] << s.problem
 			end
 		end
-		res
+		return res
 	end
 end
 
