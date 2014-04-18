@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   end
 
   create_table "posts", force: true do |t|
+    t.string   "title"
+    t.string   "img"
     t.text     "content"
     t.integer  "views_count"
     t.integer  "discussion_board_id"
