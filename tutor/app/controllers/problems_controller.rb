@@ -39,6 +39,7 @@ class ProblemsController < ApplicationController
 			redirect_to :back
 		end
 	end
+
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters: 
@@ -49,6 +50,7 @@ class ProblemsController < ApplicationController
 	def permitCreate
   		params.require(:Problem).permit(:title , :description) 
   	end
+
 	# [Edit Problem - 4.5]
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters: 
@@ -64,6 +66,7 @@ class ProblemsController < ApplicationController
   			render ('public/404')
   		end	
   	end
+
   	# [Edit Problem - 4.5]
 	# Checks if a lecturer or TA is signed in and shows the problem's add page(title & description)
 	# on success and renders 404 on failure

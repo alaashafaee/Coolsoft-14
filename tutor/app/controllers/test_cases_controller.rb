@@ -7,6 +7,7 @@ class TestCasesController < ApplicationController
 	def index 
 		@test_cases = TestCase.all
 	end
+
 	# [Add test case-story 4.8]
 	# Display the form that is used to add a test case. 
 	# Parameters: None
@@ -15,6 +16,7 @@ class TestCasesController < ApplicationController
 	def new 
 		@test_case = TestCase.new()  
 	end
+
 	# [Add test case-story 4.8]
 	# Saves the new test case into the database.(What the form the 'new' method will submit to)  
 	# Parameters: None
@@ -39,6 +41,7 @@ class TestCasesController < ApplicationController
 			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
 		end 
 	end
+	
 	# [Add test case-story 4.8]
 	# private method. Controls the test case parameters that can be accessed.
 	# Parameters: None
