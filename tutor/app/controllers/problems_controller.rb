@@ -40,7 +40,6 @@ class ProblemsController < ApplicationController
 	#   description: problem's description
 	# Returns: params to create action
 	# Author: Abdullrahman Elhusseny
-	private
 	def permitCreate
   		params.require(:Problem).permit(:title , :description) 
   	end
