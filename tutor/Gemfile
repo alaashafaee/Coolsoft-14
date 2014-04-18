@@ -53,5 +53,5 @@ gem 'foreman'
 gem 'composite_primary_keys', '~> 6.0.1'
 
 #
-gem 'acts_as_list'
+
 
