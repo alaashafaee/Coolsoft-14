@@ -12,7 +12,7 @@
 		<%= csrf_meta_tags%>
 	</head>
 	<body>
-		<div class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar navbar-default">
 			<div class="container">
 				<div class="nav navbar-nav navbar-left" style="margin-right:12px">
 					<%= link_to image_tag("logo.png" , { :title => "Java Tutor!" , size: "50x50"})%>
@@ -23,15 +23,12 @@
 				<%end%>
 			</div>
 		</div>
-		<%- if signed_in?%>
-			<%= render "layouts/left_side_bar"%>
-			<%= render "layouts/right_side_bar"%>
-		<%end%>
+		<%= render "layouts/right_side_bar" if signed_in?%>
 		<div class="container well main-content" align="center">
 			<%= render "problems/system_recommendation" if student_signed_in? %>
 			<%= yield %>
 		</div>
-		<div id="footer" align="center" class="navbar navbar-default navbar-fixed-bottom">
+		<div id="footer" align="center" class="navbar navbar-default" style="margin-bottom: 0px;">
 			<%= render "layouts/footer"%>
 		</div>
 	</body>
