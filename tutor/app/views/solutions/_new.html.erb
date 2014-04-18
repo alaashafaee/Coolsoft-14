@@ -6,11 +6,14 @@
 <b>Time spent:</b> 
 <span id="mins">0</span>:<span id="secs">00</span>
 
+<!-- Add editor -->
+<pre id="editor">
+</pre>
+
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
-	<%= @code = f.text_area :code, placeholder: "Write your code here and then click submit",
-			class: "editor" %> 
+	<%= @code = f.hidden_field "code", :id =>'result' %>  
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>
@@ -37,4 +40,15 @@
 	<p class='output'>
 		Output response
 	</p>
+<!-- create an "ace" editor" to run -->
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/java");
+    var code = editor.getSession().getValue();
+    editor.getSession().on('change', function(){ 
+    code = editor.getSession().getValue(); 
+    document.getElementById('result').value = code;   
+});
+</script> 
 <% end %>
