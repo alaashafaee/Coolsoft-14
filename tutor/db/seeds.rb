@@ -35,8 +35,8 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(content: "Post1")
-	Post.create(content: "Post2")
+	Post.create(content: "This is the first post i post, the problems is very hard so this is about the ifst Problem" , views_count: 20)
+	Post.create(content: "It is very hard to keep in this life, so it better is keep up tilll you die" , views_count: 100)
 	Post.create(content: "Post3")
 	Post.create(content: "Post4")
 
@@ -108,8 +108,13 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.courses << Course.first
 	Lecturer.first.courses << Course.find_by_id(2)
 
+	Lecturer.first.posts << Post.first
+	Lecturer.first.posts << Post.find_by_id(2)
+	Lecturer.first.replies << Reply.first
+	Lecturer.first.replies << Reply.find_by_id(2)
+
 puts("# -----------------------Problems---------------------------")
-	Problem.fid_by_id(3).test_cases << TestCase.first
+	Problem.find_by_id(3).test_cases << TestCase.first
 	Problem.first.model_answers << ModelAnswer.first
 	Problem.first.model_answers << ModelAnswer.find_by_id(2)
 	Problem.first.test_cases << TestCase.first
@@ -122,7 +127,7 @@ puts("# -----------------------Problems---------------------------")
 
 	Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 	Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
-	Problem.finnd_by_id(3).solutions << Solution.find_by_id(3)
+	Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 
 puts("# -----------------------Tracks---------------------------")
 	Track.first.problems << Problem.first
@@ -140,5 +145,10 @@ puts("# -----------------------Courses---------------------------")
 	Course.first.topics << Topic.find_by_id(2)
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
+
+puts("# -----------------------Posts & replies ---------------------------")
+	DiscussionBoard.first.posts << Post.first
+	DiscussionBoard.first.posts << Post.find_by_id(2)
+	# Post.first.replies 
 
 puts("# -------------------------------------------------------")

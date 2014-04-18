@@ -1,15 +1,21 @@
-<div align="center">
-	<% if @discussionBoard.activated == true %>
-		<div style="width: 50%; margin-left:25%">
-			<h3><%=@discussionBoard.title%></h3>
+<div>
+	<% if @discussionBoard.activated %>
+		<div >
+			<h2><%=@discussionBoard.title%></h2>
+			<br>
 			<% unless @posts.blank? %>
 				<% @posts.each do |post| %>
-					<div style="background-color: #A8A8A8">
-						<h3><%= post.owner.name %></h3>
+					<div>
+						<b><%= post.owner.name %></b>
 						<%= post.content %><br>
 						<%= post.views_count %>
 					</div>
-					<br>
+					<hr style="display: block; 
+								height: 1px;
+    							border: 0; 
+    							border-top: 1px solid #ccc;
+    							margin: 1em 0; 
+    							padding: 0;">
 				<% end %>
 			<% else %>
 				No Posts Yet .. Try Creating a Post
