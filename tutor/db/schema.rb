@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "hints", force: true do |t|
     t.text     "message"
-    t.boolean  "type"
+    t.boolean  "category"
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
@@ -93,7 +93,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "lecturers", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
@@ -172,6 +171,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.boolean  "incomplete"
     t.integer  "success_attempts"
     t.integer  "failure_attempts"
     t.integer  "views_count"
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.text     "code"
     t.integer  "length"
     t.integer  "status"
+    t.integer  "time"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
@@ -214,7 +215,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "students", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
@@ -246,7 +246,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
     t.integer  "age"
     t.string   "profile_image"
