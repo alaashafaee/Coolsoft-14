@@ -8,7 +8,7 @@ class Debugger < ActiveRecord::Base
 	
 	#Methods
 
-	# [Execulte Line By Line - 3.8]
+	# [Execute Line By Line - 3.8]
 	# Converts the list of execution states to JSON
 	# Parameters:
 	# 	states_table: The hash table containing the states of execution of a program
