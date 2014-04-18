@@ -112,6 +112,7 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
+	Lecturer.first.replies << Reply.find_by_id(3)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -149,6 +150,8 @@ puts("# -----------------------Courses---------------------------")
 puts("# -----------------------Posts & replies ---------------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-	# Post.first.replies 
+	Post.first.replies << Reply.first
+	Post.first.replies << Reply.find_by_id(2)
+	Post.first.replies << Reply.find_by_id(3)
 
 puts("# -------------------------------------------------------")
