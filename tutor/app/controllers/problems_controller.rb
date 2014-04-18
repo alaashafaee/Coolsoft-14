@@ -28,11 +28,9 @@ class ProblemsController < ApplicationController
 		if lecturer_signed_in?
 			p.owner_id = current_lecturer.id
 			p.owner_type = "lecturer"
-		else
-			if teaching_assistant_signed_in?
-				p.owner_id = current_teaching_assistant.id
-				p.owner_type = "teaching assistant"
-			end
+		elsif teaching_assistant_signed_in?
+			p.owner_id = current_teaching_assistant.id
+			p.owner_type = "teaching assistant"
 		end
   		if p.save
   			redirect_to :action => "edit", :id => p.id

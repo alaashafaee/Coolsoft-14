@@ -26,12 +26,10 @@ class TestCasesController < ApplicationController
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_lecturer.id
 			@test_case.owner_type = "lecturer"
-		else
-			if teaching_assistant_signed_in?
-				@test_case = TestCase.new(post_params)
-				@test_case.owner_id = current_teaching_assistant.id
-				@test_case.owner_type = "teaching assistant"
-			end
+		elsif teaching_assistant_signed_in?
+			@test_case = TestCase.new(post_params)
+			@test_case.owner_id = current_teaching_assistant.id
+			@test_case.owner_type = "teaching assistant"
 		end
 		if @test_case.save
 			flash[:notice] = "Your test case is now added"

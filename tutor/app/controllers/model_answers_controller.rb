@@ -22,12 +22,10 @@ class ModelAnswersController < ApplicationController
 			@answer = ModelAnswer.new(post_params)
 			@answer.owner_id = current_lecturer.id
 			@answer.owner_type = "lecturer"
-		else
-			if teaching_assistant_signed_in?
-				@answer = ModelAnswer.new(post_params)
-				@answer.owner_id = current_teaching_assistant.id
-				@answer.owner_type = "teaching assistant"
-			end
+		elsif teaching_assistant_signed_in?
+			@answer = ModelAnswer.new(post_params)
+			@answer.owner_id = current_teaching_assistant.id
+			@answer.owner_type = "teaching assistant"
 		end
 		if @answer.save 
 			flash[:notice] = "Your Answer is now added"
