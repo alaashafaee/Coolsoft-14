@@ -32,6 +32,7 @@ class ProblemsController < ApplicationController
 			redirect_to :back
 		end
 	end
+
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters: 
@@ -39,9 +40,11 @@ class ProblemsController < ApplicationController
 	#   description: problem's description
 	# Returns: params to create action
 	# Author: Abdullrahman Elhusseny
+	private
 	def permitCreate
   		params.require(:Problem).permit(:title , :description) 
   	end
+
 	# [Edit Problem - 4.5]
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters: 
@@ -51,6 +54,7 @@ class ProblemsController < ApplicationController
 	def edit
   		@problem = Problem.find_by_id(params[:id])
   	end
+
   	def new
   		if lecturer_signed_in?
   			render ('new')
