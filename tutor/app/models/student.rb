@@ -50,6 +50,12 @@ class Student < ActiveRecord::Base
 		return suggestions.to_a().sample()
 	end
 
+	#Methods
+	# [Problem Assined - Story 5.5]
+	# Returns a Hash containing the next problem to solve in each course - topic - track
+	# Parameters: None
+	# Returns: A Hash of key as 'Course-Topic-track' and value as a Problem model instance
+	# Author: Mohab Ghanim (Modified from Rami Khalil's Story 3.9)
 	def get_next_problems_to_solve
 		next_problems_to_solve = Hash.new
 
@@ -72,10 +78,7 @@ class Student < ActiveRecord::Base
 				end
 			end
 		end
-
 		return next_problems_to_solve
 	end
 
-
 end
-
