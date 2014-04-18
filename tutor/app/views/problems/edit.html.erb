@@ -1,11 +1,11 @@
-<!-- The html web page consists of two tags 
+<!-- The html web page consists of two tags
 	a header to view the problem title of the instance variable @problem
 and a paragraph to view the problem description of the instance variable @problem -->
 <h2 align ="center"><%= @problem.title %></h2>
 <p><%= @problem.description %></p>
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
-<!-- A division for the flash message output to view the action's output --> 
+<!-- A division for the flash message output to view the action's output -->
 <% if flash[:notice] %>
 	<div class="notice"><%= flash[:notice] %></div>
 <% end %>

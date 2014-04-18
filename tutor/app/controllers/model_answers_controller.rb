@@ -13,7 +13,7 @@ class ModelAnswersController < ApplicationController
 
 	# [Add answer story 4.6]
 	# The new answer is saved.
-	# Parameters: 
+	# Parameters:
 	#   @answer:answer provided by the user.
 	# Returns: Returns a message if the answer is added and another message if answer was not added.
 	# Author: Nadine Adel
