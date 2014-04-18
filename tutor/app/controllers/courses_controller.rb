@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
 	def destroy
 		course = Course.find_by_id(params[:id])
 		course.destroy
-		flash[:success] = "Course deleted."
+		flash[:success_deletion] = "Course deleted."
 		redirect_to :action => 'index'
 	end
 
