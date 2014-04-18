@@ -1,15 +1,14 @@
- <label ><%=@course.name %></label>
- <br>
- <label ><%=@topic.title %></label>
- <br>
- <label ><%=@track.title %></label>
- <br>
- <br>
- 
- <label>Title : <%=@problem.title %></label>
- <br>
- Problem statement:- 
- <br>
- <label ><%=@problem.description %></label>
+<label ><%=@course.name %></label>
+<br>
+<label ><%=@topic.title %></label>
+<br>
+<label ><%=@track.title %></label>
+<br>
+<br>
 
- <%= render partial: "solutions/new"%>
+<div class='problem'>
+	<label><%= @problem.title %></label><br/>
+	<%=@problem.description %>
+
+	<%= render partial: "solutions/new"%>
+</div>
