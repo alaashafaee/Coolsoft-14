@@ -38,7 +38,7 @@
 
         <div style="margin:10px">
             <br />
-            <%= f.label :profile_image %>
+            <%= f.label :profile_image %><br />
             <%= image_tag(@lecturer.profile_image_url.to_s) if @lecturer.profile_image? %>
             <%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
             <%= f.hidden_field :profile_image_cache %>
