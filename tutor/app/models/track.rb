@@ -1,16 +1,17 @@
 class Track < ActiveRecord::Base
 	
 	#Validations
+	validates :difficulty, presence: true
+	validates :title , presence: true
 
 	#Relations
 	has_many :problems, dependent: :destroy
 
-	belongs_to :topic
-	belongs_to :owner, class_name: "Staff", foreign_key: :staff_id
-	
+	belongs_to :topic	
+	belongs_to :owner, polymorphic: true
+
 	#Scoops
+
 	#Methods
-
-
 
 end

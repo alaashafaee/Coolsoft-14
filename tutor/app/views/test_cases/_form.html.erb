@@ -1,0 +1,13 @@
+<%-#Lin: This is a form where the TA can add a test case.It has 2 labels and 2 textfields -%>
+<%= form_for :test_case , url: test_cases_path do |f| %>
+	<p>
+		<%= f.label :Input %>
+		<%= f.text_field :input %>
+		<%= f.label :Output %>
+		<%= f.text_field :output %>
+		<%= f.hidden_field :problem_id, value: params[:id] %>
+	</p>
+	<p>
+		<%= f.submit 'Add test case' %>
+	</p>
+<% end %>

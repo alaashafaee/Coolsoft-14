@@ -1,39 +1,57 @@
 class CoursesController < ApplicationController
 
-	# [Action]
 	# Description: This action renders a list of all courses belonging to 
 	# 			   the current user.
+	# Parameters:
+	#	current_lecturer: The current signed in lecturer
+	# Returns: 
+	# 	@course: A list of all the user's courses
 	# Author: Ahmed Osam
 	def index
-		@courses = current_lecturer.courses.order("created_at desc")
-	end  
+		if lecturer_signed_in?
+			@courses = current_lecturer.courses.order("created_at desc")
+		elsif teaching_assistant_signed_in?
+			@courses = current_teaching_assistant.courses.order("created_at desc")
+		else
+			@courses = current_student.courses.order("created_at desc")
+		end
+	end
 
-	# [Action]
 	# Description: This action takes the course id, remove it from the database
 	# 			   and then redirects the user to the show courses page accompanied
 	# 			   with a "Course deleted" message.
+	# Parameters:
+	#	params[:id]: The current course's id
+	# Returns: 
+	# 	none
 	# Author: Mohamed Metawaa
 	def destroy
 		course = Course.find_by_id(params[:id])
 		course.destroy
-		flash[:success] = "Course deleted."
+		flash[:success_deletion] = "Course deleted."
 		redirect_to :action => 'index'
 	end
 
 
-	# [Action]
-	# Description: This action creates a new instance variable for the course.
+	# Description: This action creates a new instance variable for the course
+	# Parameters:
+	#	none
+	# Returns: 
+	# 	@new_course: A new course instance 
 	# Author: Mohamed Mamdouh
 	def new
-		if(@new_coursedc == nil)
+		if(@new_course == nil)
 			@new_course = Course.new
 		end
 	end
 
-	# [Action]
 	# Description: This action takes the info submited by the user in the form 
 	# 			   and creates a new record. Then, insert it in the table. If the 
-	# 			   insertion did not succeed, and error message will appear.
+	# 			   insertion did not succeed, and error message will appear
+	# Parameters:
+	#	none
+	# Returns: 
+	# 	none
 	# Author: Mohamed Mamdouh
 	def create
 		@new_course  = Course.new
@@ -52,33 +70,33 @@ class CoursesController < ApplicationController
 			flash[:success_creation]= "Course added."
 			redirect_to :action => 'index'
 		else 
-			render :action=>'new'    
+			render :action=>'new'
 		end
 	end
 
 	# [Action]
-	# Description: This action takes the info submited by the user in the form 
-	# 			   and creates a new record. Then, insert it in the table. If the 
-	# 			   insertion did not succeed, and error message will appear.
+	# Description: This action passes and instance variable of the course and its
+	# 			   discussionBoard to the edit view
+	# Parameters:
+	#	params[:id]: The current course's id
+	# Returns: 
+	# 	@course
+	# 	@discussionBoard
 	# Author: Mohamed Mamdouh
 	def edit
 		@course = Course.find_by_id(params[:id])
 		@discussionBoard = @course.discussion_board
 	end
 
-	# [Action]
-	# Description: This action shows a specific selected course.
-	# Author: Ahmed Osam
 	def show
-		@course = Course.find_by_id(params[:id])
 	end
 
 	def manage
 	end
 
-	private 
+	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
-		
+
 end
