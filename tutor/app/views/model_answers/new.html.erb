@@ -2,6 +2,18 @@
 
 <%= flash[:notice]%>
 
+
+<body>
+<script type="text/javascript">
+function toggle_visibility(id) {
+var e = document.getElementById(id);
+if(e.style.display == 'block')
+e.style.display = 'none';
+else
+e.style.display = 'block';
+}
+</script>
+</body>
 <p>
 	<h2>Please Insert your model answer</h2>
 	<%= f.text_area :answer,:cols => "50", :rows => "15" %>
@@ -9,21 +21,8 @@
 <p>
  <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
 </p>
-<body>
-<script type="text/javascript">
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Answers</a>
 
-    function toggle_visibility(id) {
-       var e = document.getElementById(id);
-       if(e.style.display == 'block')
-          e.style.display = 'none';
-       else
-          e.style.display = 'block';
-    }
-
-</script>
-</body>
-
-<a href="#" onclick="toggle_visibility('foo');"><h2><li>Previous Answers</li></h2></a>
 <div id="foo" style="display:none;">
 
 <table class="table table-striped", style = "width:60%">
@@ -55,3 +54,13 @@
       </table>
       </div>
 <% end %>
+<style type="text/css" />
+
+
+a.Lst {
+    font-size: 30px;
+    line-height: 0px;
+    padding-left: 0px;
+    font-weight: normal;
+}
+</style>

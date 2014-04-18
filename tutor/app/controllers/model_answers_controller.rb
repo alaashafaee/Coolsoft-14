@@ -19,7 +19,7 @@ class ModelAnswersController < ApplicationController
 # Returns: Returns a message if the answer is added and another message if answer was not added.
 # Author: Nadine Adel
 	def create
-		@answer = ModelAnswer.new(post_params)]
+		@answer = ModelAnswer.new(post_params)
 		if @answer.save 
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :back

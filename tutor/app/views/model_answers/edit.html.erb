@@ -8,6 +8,8 @@
             <p><%= f.text_area :answer,:cols => "50", :rows => "15" %></p> 
 
            <%= f.submit "Save changes", class: "btn btn-large btn-primary"  %>
+
+           <p ><%= button_to "Return to edit problem page"  , {:action => 'new', :controller => 'model_answers',:method => :post},{class: 'btn btn-primary btn' }   %></p>
           
         
           
