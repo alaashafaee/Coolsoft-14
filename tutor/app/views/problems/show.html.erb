@@ -5,20 +5,26 @@
 <div class='problem'>
 	<label><%= @problem.title %></label><br/>
 	<%= @problem.description %>
-		<table width='100%'>
-			<tr>
-				<td width='80%'>
-					<%= render partial: "solutions/new"%>
-				</td>
-				<td style='vertical-align:top;'>
-					<div style='margin-left:1em;'>
-						<b>Memory Contents:</b><br /><br />
-						<br /><br />
-						<b>Hints:</b><br /><br />
-						<br /><br />
-						<b>Tips:</b><br /><br />
-					</div>
-				</td>
-			</tr>
-		</table>
+	<table width='100%'>
+		<tr>
+			<td width='80%'>
+				<% if student_signed_in? %>
+					<% track_progess = TrackProgression.get_progress(current_student,
+					@problem.track.topic) %> 
+ 					<% if track_progess >= @problem.track.difficulty %>
+ 						<%= render partial: "solutions/new"%>
+ 						<td style='vertical-align:top;'>
+							<div style='margin-left:1em;'>
+								<b>Memory Contents:</b><br /><br />
+								<br /><br />
+								<b>Hints:</b><br /><br />
+								<br /><br />
+								<b>Tips:</b><br /><br />
+							</div>
+						</td>
+					<% end %> 
+				<% end %>
+			</td>
+		</tr>					
+	</table>
 </div>
