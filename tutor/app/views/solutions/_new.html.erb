@@ -18,14 +18,17 @@
 	<table width='100%'>
 		<tr>
 			<td>
-				<button id='compile'>Compile</button>
-				<button id='test'>Test</button>
-				<button id='debug'>Debug</button>
-				<button id='previous' disabled>Previous Step</button>
-				<button id='next' disabled>Next Step</button>
+				<%= button_tag 'Compile', id:'compile' %>
+				<%= button_tag 'Test', id: 'test' %>
+				<%= button_tag 'Debug', id: 'debug' %>
+				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
+				<%= button_tag 'Next Step', id: 'next', disabled: true %>
 			</td>
 			<td style='text-align:right;'>					
-				<b class='accepted'>Accepted</b> 
+				<b class='accepted'>Accepted</b>
+				<b class='wrong_answer'>Wrong Answer</b>
+				<b class='runtime_error'>Runtime Error</b>
+				<b class='compilation_error'>Compilation Error</b>
 				<%= f.submit "Submit"%>
 			</td>
 		</tr>
