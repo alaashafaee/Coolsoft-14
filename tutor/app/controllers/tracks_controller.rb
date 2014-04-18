@@ -60,7 +60,7 @@ class TracksController < ApplicationController
 			elsif params[:Track][:difficulty] == ""
 				flash[:error] = "The Difficulty field is empty"
 			else
-				flash[:error] = "An error has occured"
+				flash[:error] = "An error has occured"
 			end
 			flash[:title] = params[:Track][:title]
 			flash[:difficulty] = params[:Track][:difficulty]
@@ -78,7 +78,7 @@ class TracksController < ApplicationController
 	# Author: Mussab ElDash
 	private
 		def permit_create
-			permit = params.require(:Track).permit(:topic_id , :title , :difficulty)
+			permit = params.require(:Track).permit(:topic_id, :title, :difficulty)
 			topic = Topic.find_by_id(permit[:topic_id])
 			if topic
 				course = topic.course
@@ -88,7 +88,7 @@ class TracksController < ApplicationController
 			can_edit = course.can_edit(current_lecturer)
 			can_edit||= course.can_edit(current_teaching_assistant)
 			if can_edit
-				permit
+				return permit
 			end
 		end
 end
