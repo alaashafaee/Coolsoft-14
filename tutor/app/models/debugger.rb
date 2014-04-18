@@ -14,8 +14,8 @@ class Debugger < ActiveRecord::Base
 	# 	states_table: The hash table containing the states of execution of a program
 	# Returns: JSON representation of execution table
 	# Author: Rami Khalil
-	def execution_states_json(states_table)
+	#def execution_states_json(states_table)
 		#Empty method stub
-	end
+	#end
 
 end

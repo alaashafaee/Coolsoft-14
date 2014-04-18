@@ -23,11 +23,14 @@
 				<%end%>
 			</div>
 		</div>
+
 		<%= render "layouts/right_side_bar" if signed_in?%>
+
 		<div class="container well main-content" align="center">
 			<%= render "problems/system_recommendation" if student_signed_in? %>
 			<%= yield %>
 		</div>
+
 		<div id="footer" align="center" class="navbar navbar-default" style="margin-bottom: 0px;">
 			<%= render "layouts/footer"%>
 		</div>
