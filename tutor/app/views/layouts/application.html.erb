@@ -24,8 +24,6 @@
 			</div>
 		</div>
 
-		<%= render "layouts/right_side_bar" if signed_in?%>
-
 		<div class="container well main-content" align="center">
 			<%= render "problems/system_recommendation" if student_signed_in? %>
 			<%= yield %>
