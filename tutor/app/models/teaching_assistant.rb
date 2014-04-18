@@ -4,7 +4,13 @@ class TeachingAssistant < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
 	
+	mount_uploader :profile_image, ProfileImageUploader
+
 	#Validations
+	validates :name, presence: true
+	validates :graduated_from, presence: true
+	validates :graduated_year, presence: true, numericality: {only_integer: true, message: "must be a number"}
+	validates :department, presence: true
 
 	#Relations
 	has_many :posts, as: :owner, dependent: :destroy

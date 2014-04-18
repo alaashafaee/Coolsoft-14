@@ -10,7 +10,7 @@ class Student < ActiveRecord::Base
 	validates :name, presence: true
 	validates :faculty, presence: true
 	validates :major, presence: true
-	validates :semester, presence: true, numericality: {only_integer: true, message: "must be a number."}
+	validates :semester, presence: true, numericality: {only_integer: true, message: "must be a number"}
 
 	#Relations
 	has_many :solutions, dependent: :destroy

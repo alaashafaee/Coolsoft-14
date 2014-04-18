@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
 				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|u| u.permit(:name, :email, :password, :password_confirmation)
+					|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob,
+						:graduated_from, :graduated_year, :department, :profile_image, 
+						:profile_image_cache)
 				}
 			end
 		end
