@@ -3,8 +3,5 @@
 # Author: Mussab ElDash
 @newTrack = ->
 	create = document.getElementById("create_track")
-	if create.hidden is true
-		create.hidden = false
-	else
-		create.hidden = true
+	create.hidden = !create.hidden
 	return
