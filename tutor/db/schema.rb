@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
+    t.string   "university"
     t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -219,6 +220,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
+    t.boolean  "share",                  default: false
+    t.string   "university"
     t.string   "faculty"
     t.string   "major"
     t.integer  "year"
@@ -229,12 +232,12 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.integer  "success_attempts"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -252,8 +255,9 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.boolean  "gender"
     t.string   "graduated_from"
     t.integer  "graduated_year"
-    t.boolean  "type"
     t.string   "department"
+    t.string   "university"
+    t.string   "degree"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false

@@ -35,8 +35,8 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(content: "Post1")
-	Post.create(content: "Post2")
+	Post.create(content: "This is the first post i post, the problems is very hard so this is about the ifst Problem" , views_count: 20)
+	Post.create(content: "It is very hard to keep in this life, so it better is keep up tilll you die" , views_count: 100)
 	Post.create(content: "Post3")
 	Post.create(content: "Post4")
 
@@ -108,6 +108,11 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.courses << Course.first
 	Lecturer.first.courses << Course.find_by_id(2)
 
+	Lecturer.first.posts << Post.first
+	Lecturer.first.posts << Post.find_by_id(2)
+	Lecturer.first.replies << Reply.first
+	Lecturer.first.replies << Reply.find_by_id(2)
+
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
 	Problem.first.model_answers << ModelAnswer.first
@@ -141,4 +146,8 @@ puts("# -----------------------Courses---------------------------")
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
 
+puts("# -----------------------Posts & replies ---------------------------")
+	DiscussionBoard.first.posts << Post.first
+	DiscussionBoard.first.posts << Post.find_by_id(2)
+	
 puts("# -------------------------------------------------------")
