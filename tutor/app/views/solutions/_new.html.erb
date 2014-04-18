@@ -9,37 +9,31 @@
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
-	<p>
-		<%= @code = f.text_area :code, 
-				placeholder: \
-					"Write your code here and then click submit",
-				class: "editor" %> 
-		<%= f.hidden_field :problem_id, value: params[:id] %>
-		<br>
-		<table width='100%'>
-			<tr>
-				<td>
-					<button>Compile</button>
-					<button>Test</button>
-					<button id='debug'>Debug</button>
-					<button id='previous' disabled>Previous Step</button>
-					<button id='next' disabled>Next Step</button>
-				</td>
-				<td style='text-align:right;'>					
-					<b class='accepted'>Accepted</b> - 
-					<%= f.submit "Submit"%>
-				</td>
-			</tr>
-		</table>
-		<br /><br />
-		<textarea class='test'>Test Input</textarea><br /><br />
-		<b>Output:</b><br />
-		<p class='output'>
-			Output response
-		</p>
-
-	</p> 
-	<p>
-		
+	<%= @code = f.text_area :code, 
+			placeholder: \
+				"Write your code here and then click submit",
+			class: "editor" %> 
+	<%= f.hidden_field :problem_id, value: params[:id] %>
+	<br>
+	<table width='100%'>
+		<tr>
+			<td>
+				<button id='compile'>Compile</button>
+				<button id='test'>Test</button>
+				<button id='debug'>Debug</button>
+				<button id='previous' disabled>Previous Step</button>
+				<button id='next' disabled>Next Step</button>
+			</td>
+			<td style='text-align:right;'>					
+				<b class='accepted'>Accepted</b> 
+				<%= f.submit "Submit"%>
+			</td>
+		</tr>
+	</table>
+	<br /><br />
+	<textarea class='test'>Test Input</textarea><br /><br />
+	<b>Output:</b><br />
+	<p class='output'>
+		Output response
 	</p>
 <% end %>
