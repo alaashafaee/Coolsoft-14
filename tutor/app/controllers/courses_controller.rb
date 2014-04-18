@@ -20,6 +20,7 @@ class CoursesController < ApplicationController
 		redirect_to :action => 'index'
 	end
 
+
 	# [Action]
 	# Description: This action creates a new instance variable for the course.
 	# Author: Mohamed Mamdouh

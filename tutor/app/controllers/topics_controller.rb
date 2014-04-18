@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
 		@course = Course.find(params[:course_id])
 	end
 
+
 	# [Action]
 	# Description: This action takes the passed course id and assings
 	#              the respective topics of that course to an instance
