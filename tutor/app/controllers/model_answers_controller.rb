@@ -20,13 +20,20 @@ class ModelAnswersController < ApplicationController
 # Author: Nadine Adel
 	def create
 		@answer = ModelAnswer.new(post_params)
-		if @answer.save
+		if params[:first_button]
+		if @answer.save 
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :back
 		else
 			flash[:notice] = "Your Answer can not be added "
 			redirect_to :back
 		end
+		else
+			render "edit"
+		end
+	
+
+
 	end
 
 # [Add answer story 4.6]
@@ -35,9 +42,32 @@ class ModelAnswersController < ApplicationController
 #   @answer:previous answer.
 #   Return : none
 # Author: Nadine Adel
-	def show
-		
+	def edit
+		@answer = ModelAnswer.find(params[:id])
+		#@answer_modified.update(answer::modifiedanswer)
+		#@answer_modified.content = post_params1(:answer)
+		#@answers = ModelAnswer.find(params[:id]) 
+	#	@answers.update(answer:'yarab')
+
 		#@answer = ModelAnswer.where(answer_ID: params[:id])
+
+	end
+	def update
+		 @answer = ModelAnswer.find(params[:id])
+      if @answer.update_attributes(post_params)
+         redirect_to :action => 'new', :id => @answer_modified
+      else
+         
+        flash[:notice] = "Your Answer is now added"
+      end
+	#		<% answers = ModelAnswer.find(params[:id]) %>
+	#	<% answers.update(answer:'oppaa') %>
+	#	<% answers.save %
+	#	if params[:second_button]
+		
+	#else
+	#	flash[:notice] = "Your Answer can notddd be added "
+	#	end
 
 	end
 
@@ -60,5 +90,12 @@ class ModelAnswersController < ApplicationController
 	private
 	def post_params
 		params.require(:model_answer).permit(:answer)
+
+
+	end
+	private
+	def post_params1
+		params.require(:modified_answer).permit(:modifiedanswer)
+
 	end
 	end

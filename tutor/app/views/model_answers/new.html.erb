@@ -7,7 +7,7 @@
 	<%= f.text_area :answer,:cols => "50", :rows => "15" %>
 </p>
 <p>
-<%= f.submit class: "btn btn-primary" %>
+ <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
 </p>
 <body>
 <script type="text/javascript">
@@ -44,9 +44,9 @@
             <td><%= answer1.created_at  %></td>
             <td><%= answer1.updated_at  %></td>
             
-            <td><%= link_to "View or Edit", :controller => 'model_answers', :action => 'show', :id => 
+            <td><%= link_to "View or Edit", :controller => 'model_answers', :action => 'edit', :id => 
             answer1.id, 
-              :method => :get, class: 'btn btn-primary btn-xs' %></td>)
+              :method => :get, class: 'btn btn-primary btn-xs' %></td>
 
              </tr>
           
