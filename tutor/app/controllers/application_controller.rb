@@ -11,12 +11,13 @@ class ApplicationController < ActionController::Base
 		def update_sanitized_params
 			if "#{resource_name}" == "lecturer"
 		  		devise_parameter_sanitizer.for(:sign_up) {
-		  			|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :degree, :department, 
-		  				:profile_image, :profile_image_cache)
+		  			|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :degree, 
+		  				:department, :profile_image, :profile_image_cache)
 		  		}
 		  	elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|u| u.permit(:name, :email, :password, :password_confirmation)
+					|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :faculty, 
+						:major, :semester, :advising, :probation, :profile_image, :profile_image_cache)
 				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {

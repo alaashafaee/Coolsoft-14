@@ -4,7 +4,13 @@ class Student < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
 
+	mount_uploader :profile_image, ProfileImageUploader
+
 	#Validations
+	validates :name, presence: true
+	validates :faculty, presence: true
+	validates :major, presence: true
+	validates :semester, presence: true, numericality: {only_integer: true, message: "must be a number."}
 
 	#Relations
 	has_many :solutions, dependent: :destroy

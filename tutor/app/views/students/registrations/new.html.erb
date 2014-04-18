@@ -1,18 +1,62 @@
 <h2>Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:multipart => true}) do |f| %>
+        <%= devise_error_messages! %>
+        
+        <div style="margin:10px">
+            <%= f.email_field :email, autofocus: true, class: "form-control", style: "width:300px", placeholder: "Email"%>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+        <div style="margin:10px">
+            <%= f.text_field :name, class: "form-control", style: "width:300px", placeholder: "Name"%>
+        </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+        <div style="margin:10px">
+        	<%= f.password_field :password, autocomplete: "off", class:"form-control", style:"width:300px", placeholder:"Password"%>
+    	</div>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    	<div style="margin:10px">
+        	<%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", style:"width:300px",placeholder: "Confirm Password" %>
+    	</div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+        <div style="margin:10px">
+            <%= f.label :gender %>
+            <%= f.select(:gender, [['Male', true], ['Female', false]]) %>
+        </div>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+        <div style="margin:10px">
+            <%= f.label :date_of_birth %>
+            <%= f.date_select :dob, {:start_year => Date.today.year-90, :end_year => Date.today.year} %>
+        </div>
+
+        <div style="margin:10px">
+            <%= f.text_field :faculty, class: "form-control", style: "width:300px", placeholder: "Faculty"%>
+        </div>
+
+        <div style="margin:10px">
+            <%= f.text_field :major, class: "form-control", style: "width:300px", placeholder: "Major"%>
+        </div>
+
+        <div style="margin:10px">
+            <%= f.text_field :semester, class: "form-control", style: "width:300px", placeholder: "Semester"%>
+        </div>
+
+        <div style="margin:10px">
+            <%= f.label :advising %>
+            <%= f.select(:advising, [['No', false], ['Yes', true]]) %>
+            <%= f.label :probation %>
+            <%= f.select(:probation, [['No', false], ['Yes', true]]) %>
+        </div>
+
+        <div style="margin:10px">
+            <br />
+            <%= f.label :profile_image %><br />
+            <%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %>
+            <%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
+            <%= f.hidden_field :profile_image_cache %>
+            <br />
+        </div>
+
+        <div><%= f.submit "Sign up", class: "btn btn-success", style: "margin-top:10px" %></div>
+    <% end %>
 
 <%= render "students/shared/links" %>
