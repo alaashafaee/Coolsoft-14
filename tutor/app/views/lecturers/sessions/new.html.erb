@@ -1,10 +1,11 @@
 <h2>Sign in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-	<% if flash[:alert] %>
+	<% if flash[:alert] or flash[:notice] %>
 		<br />
 		<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
-			<%= flash[:alert] %> 
+			<%= flash[:alert] if flash[:alert] %>
+			<%= flash[:notice] if flash[:notice] %>
 		</div>
 		<br /><br />
 	<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327152228) do
+ActiveRecord::Schema.define(version: 20140419213048) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -111,8 +111,13 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "unconfirmed_email"
+    t.string   "confirmation_token"
+    t.string   "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "lecturers", ["confirmation_token"], name: "index_lecturers_on_confirmation_token", unique: true
   add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true
   add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true
 
@@ -239,8 +244,13 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "unconfirmed_email"
+    t.string   "confirmation_token"
+    t.string   "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
 
@@ -266,8 +276,13 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "unconfirmed_email"
+    t.string   "confirmation_token"
+    t.string   "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
+  add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true
   add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true
   add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true
 
