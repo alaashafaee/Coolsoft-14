@@ -1,70 +1,34 @@
-<<<<<<< HEAD
-<html>
 <head>
-<ul class="sortable">
-  <%- @tracks.each do |track| %>
-		
-		 <li><%= track.title %></li>
-		
+
+<%= javascript_include_tag 'jquery-2.1.0.js', 'jquery.tablednd.js' ,'jquery.tablednd.0.6.min.js' %>
+
+<script type="text/javascript" charset="utf-8">
+
+$(document).ready(function() {
+	$('#list-of-tracks').tableDnD({
+		onDrop: function(table, row) {
+		//var data = $.tableDnD.serialize();
+ 		$.ajax({
+        url: "/tracks",
+        type: "post",
+        data: $('#list-of-tracks').sortable('serialize'),
+        dataType: 'script',
+        complete: function(request){
+          $('#list-of-tracks').effect('highlight');
+        }
+      });
+		}
+	})
+})
+
+</script>
+</head>
+
+<table id="list-of-tracks" cellspacing="4" cellpadding="4">
+	<%- @tracks.each do |track| %>
+    	<tr id="track-<%= track.id %>"><td><%= track.title %></td></tr>
 	<% end %>
-</ul>
-<%= javascript_include_tag 'jquery.sortable.js' %> 
-<script>
-    $('.sortable').sortable();
-</script>
-
-</head>
+</table>
 
 
 
-<body>
-
-</body>
-</html>
-=======
-<!doctype html>
-<html lang="en">
-
-<head>
-<meta charset="utf-8">
-<title>jQuery UI Sortable - Default functionality</title>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
-<style>
-#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-#sortable li span { position: absolute; margin-left: -1.3em; }
-</style>
-<script>
-/*$(function() {
-$( "#sortable" ).sortable();
-$( "#sortable" ).disableSelection();
-});
-*/
-$(document).ready(function () {
-            $("#sortable1").sortable({
-                update: function (event, ui) {
-                    var order = $(this).sortable('toArray').toString();
-                    alert(order);
-
-                }
-            });
-        });
-
-
-</script>
-</head>
-
-<body>
-<ul id="sortable1">
-<%- @tracks.each do |track| %>
-		<li id= "track-<%= track.id %>" ><%= track.title %></li>
-<% end %>
-</ul>
-</body>
-
-</html>
-
->>>>>>> de3242e... Issue #182 fixed drag&drop functionality

@@ -8,11 +8,13 @@ Tutor::Application.routes.draw do
 
 	# You can have the root of your site routed with "root"
 
-	resources :tracks, :collection => { :sort => :post}  
+	#resources :tracks, :collection => { :sort => :post}  
+
 
 	root 'site#index'
 	resources :tracks do
 		post 'getProblems', on: :member
+		post :sort, on: :collection
 	end
 	resources :problems_by_tas
 	resources :solutions

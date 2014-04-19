@@ -1,5 +1,7 @@
 class Track < ActiveRecord::Base
 	
+	acts_as_list :scope => :topic
+	default_scope :order => :difficulty
 
 	#Validations
 	validates :difficulty, presence: true
@@ -14,5 +16,4 @@ class Track < ActiveRecord::Base
 	#Scoops
 
 	#Methods
-
 end

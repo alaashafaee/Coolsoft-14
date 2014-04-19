@@ -1,10 +1,5 @@
 class TracksController < ApplicationController
 	
-
-	def index
-		@tracks = Track.all 
-	end 
-
 	def new
 		@track = Track.new()
 	end
@@ -84,18 +79,19 @@ class TracksController < ApplicationController
 		params.require(:Track).permit(:topic_id , :title , :difficulty)
 	end
 
-	##def sort
-	#	@topic = Topic.find(params[:id])
-	#	@Topic.tracks.each do | track |
-	#	track.difficulty = params["list-of-tracks"].index(f.id.to_s)+1
-	#	f.save
-	#	end
-	#end
+	#Lin
+	def index
+	@tracks = Track.order('tracks.difficulty ASC')
+	end
 
-	def sort  
-     params[:tracks].each_with_index do |id, index|  
-       Track.update_all([’difficulty=?’, index+1], [’id=?’, id])  
-    end  
-     render :nothing => true  
-    end  
+	#Lin
+	def sort
+		Track.all.each do |track|
+			if difficulty = params[:tracks].index(track.id.to_s)
+			track.update_attribute(:difficulty, difficulty + 1) unless track.difficulty == difficulty + 1
+			end
+		end
+		render :nothing => true, :status => 200
+	end
+
 end
