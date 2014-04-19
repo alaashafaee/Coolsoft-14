@@ -78,20 +78,4 @@ class TracksController < ApplicationController
 	def permitCreate
 		params.require(:Track).permit(:topic_id , :title , :difficulty)
 	end
-
-	#Lin
-	def index
-	@tracks = Track.order('tracks.difficulty ASC')
-	end
-
-	#Lin
-	def sort
-		Track.all.each do |track|
-			if difficulty = params[:tracks].index(track.id.to_s)
-			track.update_attribute(:difficulty, difficulty + 1) unless track.difficulty == difficulty + 1
-			end
-		end
-		render :nothing => true, :status => 200
-	end
-
 end

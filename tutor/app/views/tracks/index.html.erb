@@ -1,34 +1,42 @@
 <head>
+<%= javascript_include_tag 'jquery-2.1.0.js' %>
+<%= javascript_include_tag 'jquery.sortable.js'%>
 
-<%= javascript_include_tag 'jquery-2.1.0.js', 'jquery.tablednd.js' ,'jquery.tablednd.0.6.min.js' %>
-
-<script type="text/javascript" charset="utf-8">
-
-$(document).ready(function() {
-	$('#list-of-tracks').tableDnD({
-		onDrop: function(table, row) {
-		//var data = $.tableDnD.serialize();
- 		$.ajax({
-        url: "/tracks",
-        type: "post",
-        data: $('#list-of-tracks').sortable('serialize'),
-        dataType: 'script',
-        complete: function(request){
-          $('#list-of-tracks').effect('highlight');
-        }
-      });
-		}
-	})
-})
-
-</script>
 </head>
 
-<table id="list-of-tracks" cellspacing="4" cellpadding="4">
+<ul class="list-of-tracks" >
 	<%- @tracks.each do |track| %>
-    	<tr id="track-<%= track.id %>"><td><%= track.title %></td></tr>
+		<li id="track_<%= track.id %>" ><%= track.title %> </li>
 	<% end %>
-</table>
+</ul>
 
-
+<script>
+	
+	$(function () {
+		$('.list-of-tracks').sortable().bind("sortupdate", function() {
+		updateValues();
+		});
+	});
+	
+	function updateValues() {
+		var items = [];
+		$("list-of-tracks").children().each(function() {
+		var item = {difficulty: $(this).text()};
+		items.push(item);
+		});
+		var jsonData = JSON.stringify(items);	
+		
+		$.ajax ({
+		url: "/tracks",
+		type: "Post",
+		data: jsonData,
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		success: function(){
+		alert("ya rab ");
+		},
+		error: function(){}
+		});
+	};
+</script>
 
