@@ -8,9 +8,9 @@ class TeachingAssistant < ActiveRecord::Base
 
 	#Validations
 	validates :name, presence: true
-	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/
+	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :graduated_from, presence: true
-	validates :graduated_year, presence: true, numericality: {only_integer: true, 
+	validates :graduated_year, presence: false, numericality: {only_integer: true, 
 		greater_than_or_equal_to: Date.today.year-90, less_than_or_equal_to: Date.today.year}
 	validates :department, presence: true
 

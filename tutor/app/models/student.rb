@@ -8,10 +8,10 @@ class Student < ActiveRecord::Base
 
 	#Validations
 	validates :name, presence: true
-	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/
+	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :faculty, presence: true
 	validates :major, presence: true
-	validates :semester, presence: true, numericality: {only_integer: true, greater_than: 0, less_than: 11}
+	validates :semester, presence: false, numericality: {only_integer: true, greater_than: 0, less_than: 11}
 
 	#Relations
 	has_many :solutions, dependent: :destroy
