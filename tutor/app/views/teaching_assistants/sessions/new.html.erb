@@ -1,17 +1,27 @@
 <h2>Sign in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+	<% if flash[:alert] %>
+		<br />
+		<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
+			<%= flash[:alert] %> 
+		</div>
+		<br /><br />
+	<% end %>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+	<div style="margin:10px">
+        <%= f.email_field :email, autofocus: true, class: "form-control", style: "width:300px", placeholder: "Email"%>
+    </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <div style="margin:10px">
+    	<%= f.password_field :password, autocomplete: "off", class:"form-control", style:"width:300px", placeholder:"Password"%>
+	</div>
 
-  <div><%= f.submit "Sign in" %></div>
+	<% if devise_mapping.rememberable? -%>
+		<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+	<% end -%>
+
+	<div><%= f.submit "Sign in", class: "btn btn-success", style: "margin-top:10px" %></div>
 <% end %>
 
 <%= render "teaching_assistants/shared/links" %>
