@@ -1,10 +1,58 @@
-<h1> > Add test case(s) </h1>
-<table style="width:500px">
-	<%- @test_cases.each do |test_case| %>
-		<tr>
-		<td><p><b>-</b><b>input:</b> <%= test_case.input %></p> </td>
-		<td><p><b>output:</b>  <%= test_case.output %></p></td>
-		</tr>
-	<% end %>
-</table>
 <%= render "form"%>
+<body>
+<script type="text/javascript">
+function toggle_visibility(id) {
+var e = document.getElementById(id);
+if(e.style.display == 'block')
+e.style.display = 'none';
+else
+e.style.display = 'block';
+}
+</script>
+</body>
+
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous test case(s)</a>
+<div id="foo" style="display:none;">
+
+<table class="table table-striped", style = "width:60%">
+
+        <thead>
+          <tr>
+            <th style ="width:20%" >Input</th>
+            <th style ="width:20%" >Output</th>
+            
+            <th style ="width:20%" >View or Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+          <% @test_cases.each do |test_case| %>
+          
+            <td><%= test_case.input   %></td>
+            <td><%= test_case.output   %></td>
+            
+            
+            <td><%= link_to "View or Edit", :controller => 'test_cases', :action => 'edit', :id => 
+            test_case.id, 
+              :method => :get, class: 'btn btn-primary btn-xs' %></td>
+
+             </tr>
+          
+        </tbody>
+        <% end %>
+
+      </table>
+	
+</div>
+
+<style type="text/css" />
+
+
+a.Lst {
+    font-size: 30px;
+    line-height: 0px;
+    padding-left: 0px;
+    font-weight: normal;
+}
+</style>

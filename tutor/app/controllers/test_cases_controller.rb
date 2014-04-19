@@ -31,6 +31,12 @@ def create
 		redirect_to :back
 	end 
 end
+
+
+def edit
+	@test_case =TestCase.find(params[:id])
+
+end
 # [Add test case-story 4.8]
 # private method. Controls the test case parameters that can be accessed.
 # Parameters: None

@@ -1,5 +1,6 @@
 <%-#Lin: This is a form where the TA can add a test case.It has 2 labels and 2 textfields -%>
 <%= form_for :test_case , url: test_cases_path do |f| %>
+<h2>Please Insert your Test case</h2>
 <p>
 	<%= flash[:notice]%><br>
 	<%= f.label :Input %>
@@ -8,6 +9,6 @@
 	<%= f.text_field :output  %>
 </p>
 <p >
-	<%= f.submit 'Add test case' %>
+	<%= f.submit 'Add test case',class: "btn btn-large btn-primary" %>
 </p>
 <% end %>
