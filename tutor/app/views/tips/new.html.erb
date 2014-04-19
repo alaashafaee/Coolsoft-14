@@ -10,7 +10,7 @@
 	</script>
 </body>
 
-<a href="#" onclick="toggle_visibility('foo');"><h2><li>Previous Tips</li></h2></a>
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Tips</a>
 
 <div id="foo" style="display:none;">
 	<table class="table table-striped", style = "width:60%">
@@ -22,9 +22,15 @@
 			</tr>
 		</thead>
 		<tbody>
+		<% @tips1=Array.new %>
 			<tr>
 				<% @tips.each do |tip1| %>
+
 				<% if tip1.category == true %>
+				<% @tips1.new(tip1) %>
+
+				
+			
 					<td><%= tip1.message  %></td>
 					<td><%= tip1.time  %></td>
 					<td><%= button_to "Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
@@ -32,5 +38,19 @@
 		</tbody>    
 						<% end %>
 						<% end %>
+							<% if !@tips1.any? %>
+			<p>You have no previous Tips</p>
+			<% end %>
 	</table>
 </div>
+
+<style type="text/css" />
+
+
+a.Lst {
+    font-size: 30px;
+    line-height: 0px;
+    padding-left: 0px;
+    font-weight: normal;
+}
+</style>
