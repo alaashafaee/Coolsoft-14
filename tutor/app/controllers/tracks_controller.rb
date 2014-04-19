@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
 
 	# [Integrating_Akram_Device - Story 4.1]
-	# ahow list of problems for the track with id :id
+	# Shows a list of problems for the track with id :id
 	# Parameters: 
 	#   id: The id of the Track
 	# Returns: Page with list of the problems
