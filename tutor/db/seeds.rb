@@ -82,10 +82,8 @@ puts("# -----------------------Variable Constraints---------------------------")
 
 puts("# -----------------------Problems---------------------------")
 
-	Problem.create(title:"Problem 1" , description:"This will be very hard Problem" \
-		, success_attempts: 1)
-	Problem.create(title:"Problem 2" , description:"This is very hard Problem" \
-		, success_attempts: 0)
+	Problem.create(title:"Problem 1" , description:"This will be very hard Problem")
+	Problem.create(title:"Problem 2" , description:"This is very hard Problem" )
 	Problem.create(title:"Problem 3" , description:"This wont be a hard Problem")
 	Problem.create(title:"Problem 4" , description:"This will be very easy Problem")
 	Problem.create(title:"Problem 5" , description:"This is very easy Problem")
