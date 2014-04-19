@@ -81,18 +81,24 @@ puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 3")
 
 puts("# -----------------------Problems---------------------------")
-	Problem.create(title:"Problem 1" , description:"This will be very hard Problem")
-	Problem.create(title:"Problem 2" , description:"This is very hard Problem")
+
+	Problem.create(title:"Problem 1" , description:"This will be very hard Problem" \
+		, success_attempts: 1)
+	Problem.create(title:"Problem 2" , description:"This is very hard Problem" \
+		, success_attempts: 0)
 	Problem.create(title:"Problem 3" , description:"This wont be a hard Problem")
+	Problem.create(title:"Problem 4" , description:"This will be very easy Problem")
+	Problem.create(title:"Problem 5" , description:"This is very easy Problem")
 
 puts("# -----------------------Tracks---------------------------")
 	Track.create(title: "Track 1" , difficulty: 1)
 	Track.create(title: "Track 2" , difficulty: 2)
 	Track.create(title: "Track 3" , difficulty: 3)
+	Track.create(title: "Track 4" , difficulty: 4)
 
 puts("# -----------------------Solutions---------------------------")
-	Solution.create(code:"println(My first solution)",length:5,status:3)
-	Solution.create(code:"println(My second solution)",length:5,status:3)
+	Solution.create(code:"println(My first solution)",length:5,status:0)
+	Solution.create(code:"println(My second solution)",length:5,status:1)
 	Solution.create(code:"println(My third solution)",length:5,status:3)
 
 puts("# -----------------------TrackProgression---------------------------")
@@ -111,6 +117,7 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.problems << Problem.first
 	Lecturer.first.courses << Course.first
 	Lecturer.first.courses << Course.find_by_id(2)
+	Student.first.courses << Course.first
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -129,14 +136,18 @@ puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 
 puts("# -----------------------Tracks---------------------------")
+
 	Track.first.problems << Problem.first
-	Track.find_by_id(2).problems << Problem.find_by_id(2)
-	Track.find_by_id(3).problems << Problem.find_by_id(3)
+	Track.first.problems << Problem.find_by_id(2)
+	Track.find_by_id(2).problems << Problem.find_by_id(3)
+	Track.find_by_id(2).problems << Problem.find_by_id(4)
+	Track.find_by_id(3).problems << Problem.find_by_id(5)
 
 puts("# -----------------------Topics---------------------------")
 	Topic.first.tracks << Track.first
-	Topic.find_by_id(2).tracks << Track.find_by_id(2)
-	Topic.find_by_id(3).tracks << Track.find_by_id(3)
+	Topic.first.tracks << Track.find_by_id(2)
+	Topic.find_by_id(2).tracks << Track.find_by_id(3)
+	Topic.find_by_id(3).tracks << Track.find_by_id(4)
 
 puts("# -----------------------Courses---------------------------")
 	Course.first.topics << Topic.first
@@ -145,4 +156,10 @@ puts("# -----------------------Courses---------------------------")
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
 
-puts("# -------------------------------------------------------")
+
+puts("# -----------------------Solution---------------------------")
+	Student.first.solutions << Solution.first
+	Student.first.solutions << Solution.find_by_id(2)
+	Student.first.solutions << Solution.find_by_id(3)
+
+puts("# ---------------------------------------------------------")
