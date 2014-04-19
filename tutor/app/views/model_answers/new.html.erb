@@ -22,6 +22,9 @@ e.style.display = 'block';
  <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
 </p>
 <a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Answers</a>
+<% if !@answers.any? %>
+			<p>You have no previous answers</p>
+			<% end %>
 
 <div id="foo" style="display:none;">
 
@@ -39,6 +42,7 @@ e.style.display = 'block';
 
           <tr>
           <% @answers.each do |answer1| %>
+          
             <td><%= answer1.answer  %></td>
             <td><%= answer1.created_at  %></td>
             <td><%= answer1.updated_at  %></td>
@@ -51,6 +55,7 @@ e.style.display = 'block';
           
         </tbody>
         <% end %>
+
       </table>
       </div>
 <% end %>

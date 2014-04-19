@@ -8,7 +8,6 @@ class ModelAnswersController < ApplicationController
 # Author: Nadine Adel
 	def new
 		@answers = ModelAnswer.all
-
 		@answer = ModelAnswer.new
 	end
 
@@ -49,10 +48,11 @@ class ModelAnswersController < ApplicationController
 	def update
 		 @answer = ModelAnswer.find(params[:id])
       if @answer.update_attributes(post_params)
-         redirect_to :action => 'new', :id => @answer_modified
+      	flash[:notice] = "Your Answer is now updated"
+         redirect_to :action => 'new'
       else
          
-        flash[:notice] = "Your Answer is now added"
+        flash[:notice] = "Your Answer is noy updated"
       end
 	#		<% answers = ModelAnswer.find(params[:id]) %>
 	#	<% answers.update(answer:'oppaa') %>
