@@ -14,26 +14,29 @@
 	
 	$(function () {
 		$('.list-of-tracks').sortable().bind("sortupdate", function() {
+		//alert("testing that sorting is occuring") ; //this alert appears
 		updateValues();
 		});
 	});
 	
 	function updateValues() {
-		var items = [];
+		/*var items = [];
 		$("list-of-tracks").children().each(function() {
 		var item = {difficulty: $(this).text()};
 		items.push(item);
-		});
-		var jsonData = JSON.stringify(items);	
-		
+		}); */
+		var newOrder = $('#list-of-tracks').sortable('toArray').toString(); 
+
+		var jsonData = JSON.stringify(newOrder);	
+	
 		$.ajax ({
-		url: "/tracks",
-		type: "Post",
+		url: "/tracks", //we need the reordering to appear on the same page (index page)
+		type: "POST",  
 		data: jsonData,
 		dataType: "json",
 		contentType: "application/json; charset=utf-8",
 		success: function(){
-		alert("ya rab ");
+			alert("test 2 ") // this alert does not appear
 		},
 		error: function(){}
 		});

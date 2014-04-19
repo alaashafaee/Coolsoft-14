@@ -1,8 +1,9 @@
 class TracksController < ApplicationController
-	
+	#Lin
 	def new
 		@track = Track.new()
 	end
+
 	# [Create Track - Story 4.1]
 	# shows the tracks of the topic with id :id
 	# show 404 page if there is no topic with such id
@@ -57,6 +58,7 @@ class TracksController < ApplicationController
 	# Returns: The same page that wants to create the Track
 	# Author: Mussab ElDash
 	def create
+		
   		t = Track.new(permitCreate)
   		if t.save
   			flash[:notice] = "Successfully created..."
@@ -78,4 +80,6 @@ class TracksController < ApplicationController
 	def permitCreate
 		params.require(:Track).permit(:topic_id , :title , :difficulty)
 	end
+
+
 end
