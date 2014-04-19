@@ -2,10 +2,27 @@
 	a header to view the problem title of the instance variable @problem
 and a paragraph to view the problem description of the instance variable @problem -->
 <h2 align ="center"><%= @problem.title %></h2>
+<%= form_for :Problem, url: problem_path(@problem), method: :patch do |p| %>
+
+		<%= p.text_field :title %>
+		<%= p.hidden_field :description, value: @problem.description %>
+		<%= p.submit('update title') %>
+	
+<% end %>
 <p><%= @problem.description %></p>
+<%= form_for :Problem, url: problem_path(@problem), method: :patch do |p| %>
+
+		<%= p.text_area :description, :cols => "50", :rows => "10" %>
+		<p>
+		<%= p.submit('update description') %>
+		</p>
+		<%= p.hidden_field :title, value: @problem.title %>
+	
+<% end %>
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
 <!-- A division for the flash message output to view the action's output -->
 <% if flash[:notice] %>
 	<div class="notice"><%= flash[:notice] %></div>
 <% end %>
+<%= link_to 'done', done_path(:id => @problem.id) %>

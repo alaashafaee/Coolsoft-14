@@ -24,7 +24,7 @@ class ProblemsController < ApplicationController
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def create
-		p = Problem.new(permitCreate)
+		p = Problem.new(problem_params)
 		if lecturer_signed_in?
 			p.owner_id = current_lecturer.id
 			p.owner_type = "lecturer"
@@ -38,17 +38,6 @@ class ProblemsController < ApplicationController
 			flash.keep[:notice] = "Problem is missing paramaters"
 			redirect_to :back
 		end
-	end
-
-	# [Add Problem - 4.4]
-	# Passes the input of the form as paramaters for create action to use it
-	# Parameters:
-	#   title: problem's title
-	#   description: problem's description
-	# Returns: params to create action
-	# Author: Abdullrahman Elhusseny
-	def permitCreate
-		params.require(:Problem).permit(:title , :description)
 	end
 
 	# [Edit Problem - 4.5]
@@ -80,5 +69,37 @@ class ProblemsController < ApplicationController
 		else
 			render ('public/404')
 		end
+	end
+
+	def update
+		@problem = Problem.find_by_id(params[:id])
+		if @problem.update_attributes(problem_params)
+			redirect_to :action => "edit", :id => @problem.id
+		else 
+			flash.keep[:notice] = "Update paramater is empty"
+			redirect_to :back
+		end
+	end
+
+	def done
+		@problem = Problem.find_by_id(params[:id])
+		if @problem.test_cases.empty?
+			render ('404')
+		elsif @problem.model_answers.empty?
+			render ('404')
+		else
+			redirect_to :action => "edit", :id => @problem.id
+		end	
+	end	
+	# [Add Problem - 4.4]
+	# Passes the input of the form as paramaters for create action to use it
+	# Parameters:
+	#   title: problem's title
+	#   description: problem's description
+	# Returns: params to create action
+	# Author: Abdullrahman Elhusseny
+	private
+	def problem_params
+		params.require(:Problem).permit(:title , :description)
 	end
 end
