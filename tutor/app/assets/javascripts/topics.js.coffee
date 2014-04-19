@@ -1,3 +1,7 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+# [Create Track - Story 4.1]
+# Triggers the visibilty of the create track form
+# Author: Mussab ElDash
+@newTrack = ->
+	create = document.getElementById("create_track")
+	create.hidden = !create.hidden
+	return
