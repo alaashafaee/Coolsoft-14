@@ -70,4 +70,8 @@ class TracksController < ApplicationController
 	def permitCreate
 		params.require(:Track).permit(:topic_id , :title , :difficulty)
 	end
+
+	def index
+		@tracks = Track.all
+	end
 end
