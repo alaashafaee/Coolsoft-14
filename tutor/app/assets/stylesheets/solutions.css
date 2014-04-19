@@ -1,0 +1,32 @@
+textarea  {
+	resize: none;
+}
+
+.problem {
+	text-align: left;
+}
+
+.accepted {
+	display: none;
+	color: green;	
+}
+
+.wrong_answer {
+	display: none;
+	color: red;	
+}
+
+.runtime_error {
+	display: none;
+	color: red;	
+}
+
+.compilation_error {
+	display: none;
+	color: red;	
+}
+
+.presentation_error {
+	display: none;
+	color: blue;
+}

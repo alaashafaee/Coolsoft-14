@@ -10,47 +10,48 @@
 	</script>
 </body>
 
-<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Tips</a>
-
-<div id="foo" style="display:none;">
-	<table class="table table-striped", style = "width:60%">
-		<thead>
-			<tr>
-				<th style = "width:30%"  >Tips</th>
-				<th style = "width:10%" >Time of showing in seconds</th>
-				<th style = "width:20%">Edit</th>
-			</tr>
-		</thead>
-		<tbody>
-		<% @tips1=Array.new %>
-			<tr>
-				<% @tips.each do |tip1| %>
-
-				<% if tip1.category == true %>
-				<% @tips1.new(tip1) %>
-
+<% @tips1=Array.new %>
+<% @tips_check.each do |tip2| %>
+	<% if tip2.category == true %>
+		<% @tips1.push(tip2) %>
+	<%end%>
+<%end%>
 				
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Tips</a>
+<div id="foo" style="display:none;">
+	<% if !@tips1.any? %>
+		<p>No previous Tips</p>
+	<% end %>
+	<%if !@tips1.empty?%>
+		<table class="table table-striped", style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:30%"  >Tips</th>
+					<th style = "width:10%" >Time of showing in seconds</th>
+					<th style = "width:20%">Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<% @tips.each do |tip1| %>
+					<% if tip1.category == true %>
+						<td style = "max-width: 300px; word-wrap:break-word;"><%= tip1.message %>	</td>
+						<td style ="width:20%"><%= tip1.time  %></td>
+						<td><%= button_to "Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+				</tr>
+			</tbody>    
+					<% end %>
+					<% end %>
 			
-					<td><%= tip1.message  %></td>
-					<td><%= tip1.time  %></td>
-					<td><%= button_to "Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
-			</tr>
-		</tbody>    
-						<% end %>
-						<% end %>
-							<% if !@tips1.any? %>
-			<p>You have no previous Tips</p>
-			<% end %>
-	</table>
+		</table>
+	<%end%>
 </div>
 
 <style type="text/css" />
-
-
 a.Lst {
-    font-size: 30px;
-    line-height: 0px;
-    padding-left: 0px;
-    font-weight: normal;
+	font-size: 30px;
+	line-height: 0px;
+	padding-left: 0px;
+	font-weight: normal;
 }
 </style>

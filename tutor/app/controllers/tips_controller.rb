@@ -3,9 +3,11 @@ class TipsController < ApplicationController
 # It fetches from database all the previous tips.
 # Parameters: 
 #   @tips: All the previous tips that had been entered before.
+#   @tips_check:All the previous tips that had been entered before to check if it is a tip or hint.
 #   Return : none
 # Author: Nadine Adel
 	def new
 		@tips= Hint.all
+		@tips_check =Hint.all
 	end
 end

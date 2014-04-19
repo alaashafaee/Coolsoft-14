@@ -9,40 +9,47 @@
 		}
 	</script>
 </body>
+<% @hints1=Array.new %>
+<% @hints_check.each do |hint2| %>
+	<% if hint2.category == true %>
+		<% @hints1.push(hint2) %>
+	<%end%>
+<%end%>
 
 <a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Hints</a>
 
-
 <div id="foo" style="display:none;">
-	<table class="table table-striped", style = "width:60%">
-		<thead>
-			<tr>
-				<th style = "width:30%"  >Hints</th>
-				<th style = "width:10%" >Number of submissions</th>
-				<th style = "width:20%">Edit</th>
-			</tr>
-		</thead>
-		<tbody>
-		<% @hints1=Array.new %>
-			<tr>
-				<% @hints.each do |hint1| %>
-				<% if hint1.category == false %>
-				<% @hints1.new(hint1) %>
-					<td><%= hint1.message  %></td>
-					<td><%= hint1.submission_counter  %></td>
-					<td><%= button_to "Edit"  , {:action => 'new', :controller => 'hints',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
-			</tr>
-		</tbody>    
+	<% if !@hints1.any? %>
+		<p>You have no previous Hints</p>
+	<% end %>
+	<%if !@hints1.empty?%>
+		<table class="table table-striped", style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:30%"  >Hints</th>
+					<th style = "width:10%" >Number of submissions</th>
+					<th style = "width:20%">Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<% @hints.each do |hint1| %>
+						<% if hint1.category == false %>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<%= hint1.message %>
+							</td>
+							<td style="width:20%"><%= hint1.submission_counter  %></td>
+							<td><%= button_to "Edit"  , {:action => 'new', :controller => 'hints',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+				</tr>
+			</tbody>    
 						<% end %>
-						<% end %>
-								<% if !@hints1.any? %>
-			<p>You have no previous Hints</p>
-			<% end %>
-	</table>
+					<% end %>
+				
+		</table>
+	<%end%>
 </div>
+
 <style type="text/css" />
-
-
 a.Lst {
     font-size: 30px;
     line-height: 0px;
