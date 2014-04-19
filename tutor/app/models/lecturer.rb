@@ -1,10 +1,9 @@
 class Lecturer < ActiveRecord::Base
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, 
 	     :validatable, :confirmable
 
+	#Uploader
 	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
@@ -33,6 +32,13 @@ class Lecturer < ActiveRecord::Base
 	has_many :hints, as: :owner
 	
 	#Methods
+
+	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
+	# Checks if the email is already registered in tables: Student and TeachingAssistant
+	# before registering the email for table: Lecturer
+	# Parameters: None
+	# Returns: None
+	# Author: Khaled Helmy
 	def duplicate_email
 		if Student.find_by email: email or TeachingAssistant.find_by email: email
 			errors.add(:email, "has already been taken")

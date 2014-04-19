@@ -25,7 +25,7 @@ Tutor::Application.configure do
 	# number of complex assets.
 	config.assets.debug = true
 
-	# Configuring Devise mailer in Development environment
+	# Configuring mailing options in Development environment
 	config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 	config.action_mailer.delivery_method = :smtp
 	config.action_mailer.perform_deliveries = true
