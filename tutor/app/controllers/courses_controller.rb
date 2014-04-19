@@ -1,11 +1,57 @@
 class CoursesController < ApplicationController
 
-	# Description: This action renders a list of all courses belonging to 
-	# 			   the current user.
+	# [Course Sign-Up - Story 2.6]
+	# Allows students to sign-up/register for new courses by choosing
+	#	the desired course attributes in the following order:
+	#	University > Semester > Course > Instructor > Sign-Up > Confirmation
+	# Parameter:
+	#	params[]: A hash of the request URL attributes
+	# Returns:
+	#	@status: The next status (0:Failure:Not a student, 1:University, 2:Semester, 3:Course,
+	#		4:Instructor, 5:Sign-Up, 6:Confirmation, 7:Failure:Already signed up)
+	#	@courses: A list of the courses
+	#	@course: The chosen course
+	#	@lecturer: The chosen lecturer
+	# Author: Ahmed Moataz
+	def sign_up
+		@status = params[:status]	
+		if student_signed_in?
+			case params[:status]
+			when nil
+				@courses = Course.select(:university).distinct
+				@status = "1"
+			when "2"
+				@courses = Course.where("university= " + "\"" + params[:university] + "\"").select(:semester).distinct
+			when "3"
+				@courses = Course.where("semester= " + params[:semester] + " AND university = " + "\"" + params[:university] + "\"")	
+			when "4"
+				@course = Course.find(params[:id])
+			when "5"
+				@course = Course.find(params[:id])
+				@lecturer = Lecturer.find(params[:lecturer])
+			when "6"
+				@course = Course.find(params[:id])
+				@lecturer = Lecturer.find(params[:lecturer])
+				#Insertion in the DB
+				student = Student.find(current_student.id)
+				if student.courses.find_by_id(@course.id) == nil
+					student.courses << @course
+				else
+					@status = "7"
+				end		
+			end
+		else
+			@status = "0"	
+		end	
+	end
+
+	# [View Courses - Stroy 1.11]
+	# This action renders a list of all courses belonging to 
+	#	the current user.
 	# Parameters:
 	#	current_lecturer: The current signed in lecturer
 	# Returns: 
-	# 	@course: A list of all the user's courses
+	#	@course: A list of all the user's courses
 	# Author: Ahmed Osam
 	def index
 		if lecturer_signed_in?
@@ -17,13 +63,14 @@ class CoursesController < ApplicationController
 		end
 	end
 
-	# Description: This action takes the course id, remove it from the database
-	# 			   and then redirects the user to the show courses page accompanied
-	# 			   with a "Course deleted" message.
+	# [Delete a Course - Story 1.12]
+	# This action takes the course id, remove it from the database
+	#	and then redirects the user to the show courses page accompanied
+	#	with a "Course deleted" message.
 	# Parameters:
 	#	params[:id]: The current course's id
 	# Returns: 
-	# 	none
+	#	none
 	# Author: Mohamed Metawaa
 	def destroy
 		course = Course.find_by_id(params[:id])
@@ -32,11 +79,12 @@ class CoursesController < ApplicationController
 		redirect_to :action => 'index'
 	end
 
+	# [Define a Course - Story 1.1]
 	# Description: This action creates a new instance variable for the course
 	# Parameters:
 	#	none
 	# Returns: 
-	# 	@new_course: A new course instance 
+	#	@new_course: A new course instance 
 	# Author: Mohamed Mamdouh
 	def new
 		if(@new_course == nil)
@@ -44,13 +92,14 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	# [Define a Course - Story 1.1]
 	# Description: This action takes the info submited by the user in the form 
-	# 			   and creates a new record. Then, insert it in the table. If the 
-	# 			   insertion did not succeed, and error message will appear
+	#	and creates a new record. Then, insert it in the table. If the 
+	#	insertion did not succeed, and error message will appear
 	# Parameters:
 	#	none
 	# Returns: 
-	# 	none
+	#	none
 	# Author: Mohamed Mamdouh
 	def create
 		@new_course  = Course.new
@@ -73,14 +122,14 @@ class CoursesController < ApplicationController
 		end
 	end
 
-	# [Action]
+	# [Define a Course - Story 1.1]
 	# Description: This action passes and instance variable of the course and its
-	# 			   discussionBoard to the edit view
+	#	discussionBoard to the edit view
 	# Parameters:
 	#	params[:id]: The current course's id
 	# Returns: 
-	# 	@course
-	# 	@discussionBoard
+	#	@course
+	#	@discussionBoard
 	# Author: Mohamed Mamdouh
 	def edit
 		@course = Course.find_by_id(params[:id])

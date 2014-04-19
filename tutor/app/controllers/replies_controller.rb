@@ -9,7 +9,6 @@ class RepliesController < ApplicationController
 		render "index"
 	end
 
-
 	def new
 		@reply = Reply.new()
 	end
@@ -49,7 +48,7 @@ class RepliesController < ApplicationController
 	    @reply = Reply.find(params[:id])
 	    respond_to do |format|
 	        if @reply.save
-	            format.html { redirect_to "show", notice: 'Changed' }
+	            format.html { redirect_to "show"}
 	            format.js
 	        else
 	            format.html { render action: "new" }
