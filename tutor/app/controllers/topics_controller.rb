@@ -1,8 +1,8 @@
 class TopicsController < ApplicationController
 
 	# [Create Track - Story 4.1]
-	# Shows the tracks of the topic with id :id and
-	# Show 404 page if there is no topic with such id
+	# Shows the tracks of the topic with id :id or
+	# Shows 404 page if there is no topic with such id
 	# This Action should be put in the future in the 
 	# Topic controller
 	# Parameters: 
