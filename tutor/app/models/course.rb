@@ -20,7 +20,7 @@ class Course < ActiveRecord::Base
 	
 	#Methods
 	# [Integrating_Akram_Device - Story 4.1]
-	# checks if the user with id :id has the access to edit , create this course
+	# Checks if the user with id :id has the access to edit , create this course
 	# Parameters: The id of the user
 	# Returns: True in case he has access else False
 	# Author: Mussab ElDash
