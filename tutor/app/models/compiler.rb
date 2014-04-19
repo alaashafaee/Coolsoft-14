@@ -9,7 +9,7 @@ class Compiler < ActiveRecord::Base
 	#Methods
 
 	# Author: Ahmed Moataz
-	def compile(student_id, problem_id, code)
+	def self.compile(student_id, problem_id, code)
 		#file name needs a third parameter to make it unique
 		file_name = 's' + student_id.to_s + 'p' + problem_id.to_s + '.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
@@ -17,7 +17,7 @@ class Compiler < ActiveRecord::Base
 	end
 
 	# Author: Ahmed Moataz
-	def compiler_feedback(student_id, problem_id, code)
+	def self.compiler_feedback(student_id, problem_id, code)
 		feedback = compile(student_id,problem_id, code)
 		if feeedback == ""
 			return { success: true }

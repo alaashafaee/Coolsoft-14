@@ -16,7 +16,7 @@
 	<table width='100%'>
 		<tr>
 			<td>
-				<%= button_tag 'Compile', id:'compile' %>
+				
 				<%= button_tag 'Test', id: 'test' %>
 				<%= button_tag 'Debug', id: 'debug' %>
 				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
@@ -28,6 +28,7 @@
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
 				<%= f.submit "Submit"%>
+				<%= f.submit "Compile"%>
 			</td>
 		</tr>
 	</table>
@@ -38,3 +39,4 @@
 		Output response
 	</p>
 <% end %>
+<%= button_tag 'Compile', id:'compile' %>
