@@ -7,6 +7,7 @@ class TeachingAssistant < ActiveRecord::Base
 	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
+	validate :duplicate_email
 	validates :name, presence: true
 	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :graduated_from, presence: true
@@ -29,8 +30,11 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :test_cases,	 as: :owner
 	has_many :hints, 	as: :ownert
 
-	#Scoops
-
 	#Methods
+	def duplicate_email
+		if Student.find_by email: email or Lecturer.find_by email: email
+			errors.add(:email, "has already been taken")
+		end
+	end
 
 end
