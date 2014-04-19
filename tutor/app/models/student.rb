@@ -64,17 +64,17 @@ class Student < ActiveRecord::Base
 				level = TrackProgression.get_progress(self.id, topic.id)
 
 				topic.tracks.each do |track|
-						if(track.difficulty == level)
-							track.problems.each do |problem|
-								if(!problem.is_solved_by_student(self.id))
-									key = course.name
-									key += " - " + topic.title
-									key += " - " + track.title
-									next_problems_to_solve[key] = problem
-									break
-								end
+					if(track.difficulty == level)
+						track.problems.each do |problem|
+							if(!problem.is_solved_by_student(self.id))
+								key = course.name
+								key += " - " + topic.title
+								key += " - " + track.title
+								next_problems_to_solve[key] = problem
+								break
 							end
 						end
+					end
 				end
 			end
 		end
