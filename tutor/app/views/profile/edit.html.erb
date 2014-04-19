@@ -1,0 +1,123 @@
+<% if student_signed_in? %>
+  <%= form_tag({ action: "save"}, method: "post") do %>
+    <%= label_tag(:name, "Name:") %>
+    <%= text_field_tag(:name, current_student.name) %>
+    <br>
+    <br>
+    <%= label_tag(:email, "Email:") %>
+    <%= text_field_tag(:email, current_student.email) %>
+    <br>
+    <br>
+    <%= label_tag(:age, "Age:") %>
+    <%= text_field_tag(:age, current_student.age) %>
+    <br>
+    <br>
+    <%= label_tag(:faculty, "Faculty:") %>
+    <%= text_field_tag(:faculty, current_student.faculty) %>
+    <br>
+    <br>
+    <%= label_tag(:major, "Major:") %>
+    <%= text_field_tag(:major, current_student.major) %>
+    <br>
+    <br>
+    <%= label_tag(:semester, "Semester:") %>
+    <%= text_field_tag(:semester, current_student.semester) %>
+    <br>
+    <br>
+     <p> Advising : </P>
+    <%= radio_button_tag(:advising, true ) %>
+    <%= label_tag(:advising, "Yes") %>
+    <%= radio_button_tag(:advising, false) %>
+    <%= label_tag(:advising, "No") %>
+    <br>
+    <br>
+     <p> Probation : </P>
+    <%= radio_button_tag(:probation, true ) %>
+    <%= label_tag(:probation, "Yes") %>
+    <%= radio_button_tag(:probation, false) %>
+    <%= label_tag(:probation, "No") %>
+    <br>
+    <br>
+    <p> Gender : </P>
+    <%= radio_button_tag(:gender, true ) %>
+    <%= label_tag(:gender, "male") %>
+    <%= radio_button_tag(:gender, false) %>
+    <%= label_tag(:gender, "female") %>
+    <br>
+    <br>
+  <%= submit_tag("save changes") %>
+    
+<%end%>
+
+<%elsif lecturer_signed_in? %>
+    <%= form_tag({ action: "save"}, method: "post") do %>
+    <%= label_tag(:name, "Name:") %>
+    <%= text_field_tag(:name, current_lecturer.name) %>
+    <br>
+    <br>
+    <%= label_tag(:age, "Age:") %>
+    <%= text_field_tag(:age, current_lecturer.age) %>
+    <br>
+    <br>
+    <%= label_tag(:email, "Email:") %>
+    <%= text_field_tag(:email, current_lecturer.email) %>
+    <br>
+    <br>
+    <%= label_tag(:degree, "Degree :") %>
+    <%= text_field_tag(:degree, current_lecturer.degree) %>
+    <br>
+    <br>
+    <%= label_tag(:department, "Department :") %>
+    <%= text_field_tag(:department, current_lecturer.department) %>
+    <p> Gender : </P>
+    <%= radio_button_tag(:gender, true ) %>
+    <%= label_tag(:gender, "male") %>
+    <%= radio_button_tag(:gender, false) %>
+    <%= label_tag(:gender, "female") %>
+    <br>
+    <br>
+    <br>
+    <br>
+  <%= submit_tag("save changes") %>
+<% end %>
+
+
+
+<%elsif teaching_assistant_signed_in? %>
+    <%= form_tag({ action: "save"}, method: "post") do %>
+    <%= label_tag(:name, "Name:") %>
+    <%= text_field_tag(:name, current_teaching_assistant.name) %>
+    <br>
+    <br>
+    <%= label_tag(:age, "Age:") %>
+    <%= text_field_tag(:age, current_teaching_assistant.age) %>
+    <br>
+    <br>
+    <%= label_tag(:email, "Email:") %>
+    <%= text_field_tag(:email, current_teaching_assistant.email) %>
+    <br>
+    <br>
+    <%= label_tag(:graduated_from, "Graduated from:") %>
+    <%= text_field_tag(:graduated_from, current_teaching_assistant.graduated_from) %>
+    <br>
+    <br>
+    <%= label_tag(:department, "Department :") %>
+    <%= text_field_tag(:department, current_teaching_assistant.department) %>
+    <p> Gender : </P>
+    <%= radio_button_tag(:gender, true ) %>
+    <%= label_tag(:gender, "male") %>
+    <%= radio_button_tag(:gender, false) %>
+    <%= label_tag(:gender, "female") %>
+    <br>
+    <br>
+    <br>
+    <br>
+  <%= submit_tag("save changes") %>
+<% end %>
+
+
+<br>
+<br>
+  <%= link_to("Return to profile", :root) %>
+
+<% end %>
