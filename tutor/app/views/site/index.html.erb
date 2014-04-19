@@ -53,6 +53,11 @@
 	 Author: Ahmed Akram
 -->
 <% if signed_in? %>
+	<% if flash[:notice] %>
+		<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
+			<%= flash[:notice] %> 
+		</div>
+	<% end %>
 	<%= button_to "My Courses", {:controller => 'courses', :action => 'index'}, class: "btn btn-success", style: "margin-left:auto; margin-right:auto; margin-top: 80px", method: :get %>
 	<br/><br/><br/>
 	<% if(lecturer_signed_in?) %>
