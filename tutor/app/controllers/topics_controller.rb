@@ -100,3 +100,9 @@ class TopicsController < ApplicationController
 		end
 
 end
+
+	def edit 
+		id = params[:id]
+		@topic = Topic.find_by_id(id)
+	end 
+
