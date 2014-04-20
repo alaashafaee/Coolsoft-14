@@ -1,7 +1,3 @@
-every 2.days do
-	Student.all.each do |student|
-		if student.last_sign_in_at > Time.now - 7.days
-			runner "SystemReminders.reminder_email(student).deliver"
-		end
-	end
+every 2.hours do
+  runner "Student.send_reminder_mails"
 end
