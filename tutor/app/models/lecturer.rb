@@ -4,7 +4,7 @@ class Lecturer < ActiveRecord::Base
 	     :validatable, :confirmable
 
 	#Uploader
-	mount_uploader :img, ProfileImageUploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email

@@ -5,7 +5,7 @@ class TeachingAssistant < ActiveRecord::Base
 	     :recoverable, :rememberable, :trackable, 
 	     :validatable, :confirmable
 	
-	mount_uploader :img, ProfileImageUploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email
@@ -32,7 +32,7 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :method_parameters, 	as: :owner
 	has_many :variable_constraints,	 as: :owner
 	has_many :test_cases,	 as: :owner
-	has_many :hints, 	as: :ownert
+	has_many :hints, 	as: :owner
 
 	#Methods
 

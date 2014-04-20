@@ -56,8 +56,8 @@
 			<br />
 			<%= f.label :profile_image %><br />
 			<%= image_tag(@student.img_url.to_s) if @student.img? %>
-			<%= f.file_field :img, {:accept => 'image/png,image/gif,image/jpeg'} %>
-			<%= f.hidden_field :img_cache %>
+			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
+			<%= f.hidden_field :profile_image_cache %>
 			<br />
 		</div>
 
