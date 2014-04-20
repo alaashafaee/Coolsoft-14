@@ -13,6 +13,8 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
 
+	#post 'solutions_constraints/edit'
+
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -29,6 +31,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :solutions_constraints
 
 	# Example resource route with options:
 	#   resources :products do
