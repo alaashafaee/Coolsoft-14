@@ -12,12 +12,15 @@ class TeachingAssistant < ActiveRecord::Base
 	validates :name, presence: true
 	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :graduated_from, presence: true
+	validates_format_of :graduated_from, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :graduated_year, presence: false, numericality: {only_integer: true, 
 		greater_than_or_equal_to: Date.today.year-90, less_than_or_equal_to: Date.today.year}
+	validates :degree, presence: true
 	validates_format_of :degree, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :university, presence: true
 	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
+	validates_format_of :department, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 
 	#Relations
 	has_many :posts, as: :owner, dependent: :destroy
