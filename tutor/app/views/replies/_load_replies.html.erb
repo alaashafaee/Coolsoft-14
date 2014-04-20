@@ -4,7 +4,7 @@
 			<%= reply.content %>
 			<%= reply.created_at  %>
 			<%= link_to "edit", edit_reply_path(reply), {:remote => true, :id=>"edit"}%>
-			<%= link_to "Destroy", reply ,data: {confirm: "Are you sure?"}, :method => :delete , :remote => true%>
+			<%= link_to "Destroy", reply,  :remote => true, :method => :delete, :class => 'delete_reply'%>
 		</div>
 		<br>
 

@@ -11,11 +11,17 @@ class RepliesController < ApplicationController
 
 	def new
 		@reply = Reply.new()
+		respond_to do |format|
+		    format.html # new.html.erb
+		    format.json { render json: @reply }
+		    format.js
+	    end
 	end
 
 	def edit
 		@replies =  Reply.find(params[:id])
 		respond_to do |format|
+			format.html { render action:"edit"}
         	format.js { render :layout=>false }
    		end
 	end
@@ -25,12 +31,15 @@ class RepliesController < ApplicationController
 		current_lecturer.replies << @reply
 		Post.find_by_id(1).replies << @reply
 		respond_to do |format|
-	        if @reply.save
-	            format.html { render action:"index"}
-	            format.js 
-	        else
-	            format.html { render action: "new" }
-	        end
+			if @reply.save
+				format.html { redirect_to action: "index" }
+				format.json { render json: @reply, status: :created, location: @reply }
+				format.js
+			else
+				format.html { render action: "new" }
+				format.json { render json: @reply.errors, status: :unprocessable_entity }
+				format.js
+			end
 	    end
 	end
 
@@ -39,9 +48,10 @@ class RepliesController < ApplicationController
 		respond_to do |format|
 	        if @reply.destroy
 	            format.html { redirect_to action:"index"}
-	            format.js
+	            format.js 
 	        else
 	            format.html { render action: "new" }
+	            format.js
 	        end
 	    end
 
