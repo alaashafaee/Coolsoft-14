@@ -1,0 +1,45 @@
+<div class="page-header">
+	<h1><%= link_to @course.name , @course %>
+		<small><%= link_to @topic.title , @topic %></small></h1>
+</div>
+<% if @can_edit %>
+	<% if flash[:error] %>
+		<div align="center" class="alert alert-warning" ><%= flash[:error] %>
+		</div><br>
+	<% end %>
+	<% if flash[:success] %>
+		<div align="center" class="alert alert-success" ><%= flash[:success] %>
+		</div><br>
+		<% end %>
+<% end %>
+
+<div class="panel-group list-group" id="accordion">
+	<% @problems.each do |p| %>
+		<% if @problems_status %>
+			<% if @problems_status[:success].include?(p) %>
+				<% color = "label label-success" %>
+			<% elsif @problems_status[:failure].include?(p) %>
+				<% color = "label label-warning" %>
+			<% else %>
+				<% color = "label label-default" %>
+			<% end %>
+		<% end %>
+		<div class="panel panel-default">
+			<div class="panel-title list-group-item list-group-item-info"
+				data-toggle="collapse" data-parent="#accordion"
+				href="#<%= p.id.to_s %>">
+					<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
+					<%= link_to p.title , p , style: 'color:#003366;' ,
+					class: color %></b>
+					<span class="badge"><%= p.success_attempts %></span>
+			</div>
+			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
+				<%= p.description %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<% if @can_edit %>
+	<%= link_to "New" , '/problems/new', class: "label label-default" %>
+<% end %>
