@@ -9,7 +9,7 @@
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
-	<%= @code = f.text_area :code, placeholder: "Write your code here and then click submit",
+	<%= @code = f.text_area :code, value: "public class s" + current_student.id.to_s + "p" + params[:id],
 			class: "editor" %> 
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
@@ -34,9 +34,16 @@
 	</table>
 	<br /><br />
 	<textarea class='test'>Test Input</textarea><br /><br />
+	<p style="color: blue"><%= flash[:compiler_notice] %></p>
+	<b>Compiler:</b><br/>
+	<div style="color: orange; font-family: monospace; ">
+		<p style="color: green"><%= flash[:compiler_success] %></p>
+		<p style="color: red"><%= flash[:compiler_fail] %></p>
+		<p style="white-space: pre; "><%= flash[:compiler_feedback] %></p>
+	</div>
+
 	<b>Output:</b><br />
 	<p class='output'>
 		Output response
 	</p>
 <% end %>
-<%= button_tag 'Compile', id:'compile' %>

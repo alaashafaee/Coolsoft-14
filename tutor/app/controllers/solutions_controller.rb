@@ -21,7 +21,22 @@ class SolutionsController < ApplicationController
 				redirect_to :back
 			end
 		elsif params[:commit] == 'Compile'
-		 	flash[:alert] = "compileeeeeeeeeeee!!!"
+			#
+			@solution = Solution.new(solution_params)
+			@solution.student_id = current_student.id
+			#@solution.status = 0
+			@solution.length = @solution.code.length
+			# 
+			compiler_feedback = Compiler.compiler_feedback("10", "12", solution_params[:code])
+			if compiler_feedback[:success]
+				flash[:compiler_success] = "Compiled!"
+			else
+				flash[:compiler_fail] = "Compilation Failed!"
+				flash[:compiler_feedback] = compiler_feedback[:errors]
+			end	
+			#
+		 	#flash[:compiler_notice] = "Compiled! -->" + params.to_s + " -//- " + solution_params.to_s
+		 	#flash[:compiler_feedback] = Compiler.compiler_feedback("10", "12", solution_params[:code])[:errors]
 			redirect_to :back
 		end
 

@@ -19,17 +19,17 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(student_id, problem_id, code)
 		feedback = compile(student_id,problem_id, code)
-		if feeedback == ""
+		if feedback == ""
 			return { success: true }
 		else
-			return { success: false, errors: feeedback }
+			return { success: false, errors: feedback }
 		end					
 	end	
 
 	# Author: Ahmed Moataz
-	def compile_test
+	def self.compile_test
 		var = %x[ #{'javac -g ' + 'rubyJava2.java' +  ' 2>&1'} ]
-		return var + " \n " + "________" 
+		# return var + " \n " + "________" 
 	end
 
 	
