@@ -12,6 +12,11 @@ class SolutionsController < ApplicationController
 		@solution.student_id = current_student.id
 		@solution.status = 0
 		@solution.length = @solution.code.length
+		@testcases = @solution.problem.test_cases
+		response_message = Solution.validate(@solution.code , @testcases)
+		@solution.status = response_message[:status]
+		@errors =  response_message[:failure]
+		@success = response_message[:success]
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js { render 'alert.js.erb' }
