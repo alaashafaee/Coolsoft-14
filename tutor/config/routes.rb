@@ -1,4 +1,5 @@
 Tutor::Application.routes.draw do
+  get "satistics/show"
 	get 'courses/show'
 	get "model_answers/new"
 	post "model_answers/new"
