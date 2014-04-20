@@ -35,8 +35,8 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(content: "Post1")
-	Post.create(content: "Post2")
+	Post.create(content: "This is the first post i post, the problems is very hard so this is about the ifst Problem" , views_count: 20)
+	Post.create(content: "It is very hard to keep in this life, so it better is keep up tilll you die" , views_count: 100)
 	Post.create(content: "Post3")
 	Post.create(content: "Post4")
 
@@ -82,10 +82,8 @@ puts("# -----------------------Variable Constraints---------------------------")
 
 puts("# -----------------------Problems---------------------------")
 
-	Problem.create(title:"Problem 1" , description:"This will be very hard Problem" \
-		, success_attempts: 1)
-	Problem.create(title:"Problem 2" , description:"This is very hard Problem" \
-		, success_attempts: 0)
+	Problem.create(title:"Problem 1" , description:"This will be very hard Problem")
+	Problem.create(title:"Problem 2" , description:"This is very hard Problem" )
 	Problem.create(title:"Problem 3" , description:"This wont be a hard Problem")
 	Problem.create(title:"Problem 4" , description:"This will be very easy Problem")
 	Problem.create(title:"Problem 5" , description:"This is very easy Problem")
@@ -118,6 +116,11 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.courses << Course.first
 	Lecturer.first.courses << Course.find_by_id(2)
 	Student.first.courses << Course.first
+
+	Lecturer.first.posts << Post.first
+	Lecturer.first.posts << Post.find_by_id(2)
+	Lecturer.first.replies << Reply.first
+	Lecturer.first.replies << Reply.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -156,7 +159,10 @@ puts("# -----------------------Courses---------------------------")
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
 
-
+puts("# -----------------------Posts & replies ---------------------------")
+	DiscussionBoard.first.posts << Post.first
+	DiscussionBoard.first.posts << Post.find_by_id(2)
+	
 puts("# -----------------------Solution---------------------------")
 	Student.first.solutions << Solution.first
 	Student.first.solutions << Solution.find_by_id(2)
