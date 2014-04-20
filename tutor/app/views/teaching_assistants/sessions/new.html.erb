@@ -1,28 +1,30 @@
-<h2>Sign in</h2>
+<div align="center">	
+	<h2>Sign in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-	<% if flash[:alert] or flash[:notice] %>
-		<br />
-		<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
-			<%= flash[:alert] if flash[:alert] %>
-			<%= flash[:notice] if flash[:notice] %>
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+		<% if flash[:alert] or flash[:notice] %>
+			<br />
+			<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
+				<%= flash[:alert] if flash[:alert] %>
+				<%= flash[:notice] if flash[:notice] %>
+			</div>
+			<br /><br />
+		<% end %>
+
+		<div style="margin:10px">
+			<%= f.email_field :email, autofocus: true, class: "form-control", style: "width:300px", placeholder: "Email"%>
 		</div>
-		<br /><br />
+
+		<div style="margin:10px">
+			<%= f.password_field :password, autocomplete: "off", class:"form-control", style:"width:300px", placeholder:"Password"%>
+		</div>
+
+		<% if devise_mapping.rememberable? -%>
+			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		<% end -%>
+
+		<div><%= f.submit "Sign in", class: "btn btn-success", style: "margin-top:10px" %></div>
 	<% end %>
 
-	<div style="margin:10px">
-        <%= f.email_field :email, autofocus: true, class: "form-control", style: "width:300px", placeholder: "Email"%>
-    </div>
-
-    <div style="margin:10px">
-    	<%= f.password_field :password, autocomplete: "off", class:"form-control", style:"width:300px", placeholder:"Password"%>
-	</div>
-
-	<% if devise_mapping.rememberable? -%>
-		<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-	<% end -%>
-
-	<div><%= f.submit "Sign in", class: "btn btn-success", style: "margin-top:10px" %></div>
-<% end %>
-
-<%= render "teaching_assistants/shared/links" %>
+	<%= render "teaching_assistants/shared/links" %>
+</div>
