@@ -6,6 +6,8 @@ class TipsController < ApplicationController
 	end
 
 	def show
+		@tips = Hint.find_by_id(params[:id])
+		@tip = Hint.find_by_id(params[:id])
 	end
 
 	def create
@@ -30,14 +32,28 @@ class TipsController < ApplicationController
 	end
 
 	def edit
+		@tip = Hint.find_by_id(params[:id])
 	end
 
 	def update
+		@tip = Hint.find(params[:id])
+		@tip.category = true
+		@tip.time = tip_params_edit[:time]
+		@tip.message = tip_params_edit[:message]
+		if @tip.save
+			render :action => 'show'
+		else
+			render :action=>'edit'
+		end
 	end
 
-  	private
+	private
 	def tip_params 
 		params.require(:tip).permit(:message, :time)
 	end
+	private
+		def tip_params_edit 
+		params.require(:tip_edit).permit(:message, :time)
+		end
 
 end

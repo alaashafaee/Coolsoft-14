@@ -1,2 +1,25 @@
-<h1>Tips#show</h1>
-<p>Find me in app/views/tips/show.html.erb</p>
+<html>
+	<body onLoad="setTimeout('delayedRedirect()', 3500)">
+		<h2>
+			Tip content:
+		</h2>
+		<h3>
+			<%= @tip.message %>
+		</h3>
+		<p>
+		Time: <%= @tip.time %>
+		</p>
+		<p>
+			<%= link_to "Edit Tip", edit_tip_path(@tip),class: "btn btn-primary btn-xs", style: "float:left"%>
+		</p>
+		<br>
+		<br>
+	</body>
+
+	<script type="text/javascript">
+		function delayedRedirect()
+		{
+			window.location = "/tips"
+		}
+	</script>
+</html>

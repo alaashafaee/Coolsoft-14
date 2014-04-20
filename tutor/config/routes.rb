@@ -7,6 +7,8 @@ Tutor::Application.routes.draw do
   get "tips/destroy"
   get "tips/edit"
   get "tips/update"
+  get"tips/show/:id" => 'tips#show'
+  post"tips/:id/edit" => 'tips#update'
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -37,6 +39,7 @@ Tutor::Application.routes.draw do
 	resources :problems
 	resources :topics
 	resources :tips
+
 
 	# Example resource route with options:
 	#   resources :products do
