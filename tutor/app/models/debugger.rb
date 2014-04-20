@@ -10,9 +10,9 @@ class Debugger < ActiveRecord::Base
 	#Methods
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
-	# 		untill the passed regex is encountered
+	# 	untill the passed regex is encountered
 	# Parameters:
-	# 		regex : The input regex to be encountered to return
+	# 	regex : The input regex to be encountered to return
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def bufferUntil regex
@@ -29,7 +29,7 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
-	# 		untill the below regex is encountered
+	# 	untill the below regex is encountered
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def bufferUntilReady
@@ -38,7 +38,7 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
-	# 		untill the below regex is encountered
+	# 	untill the below regex is encountered
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def bufferUntilComplete
@@ -48,7 +48,7 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: Debug - Story 3.6]
 	# Inputs an input to the input stream of the debugger JDB
 	# Parameters:
-	# 		input : The input to be written in the sub stream
+	# 	input : The input to be written in the sub stream
 	# Returns: A List of all 100 steps ahead
 	# Author: Rami Khalil
 	def input input
@@ -57,10 +57,10 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Starts the debugging session and return all variables and there values
-	# 		100 steps ahead
+	# 	100 steps ahead
 	# Parameters:
-	# 		file_path : The path of the file to debugged
-	# 		input : The arguments to be passed to the main method
+	# 	file_path : The path of the file to debugged
+	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Author: Mussab ElDash
 	def start(file_path , input)
