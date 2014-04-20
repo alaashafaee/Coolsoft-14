@@ -57,6 +57,7 @@ puts("# -----------------------Hints---------------------------")
 	Hint.create(message: "Do not Try to Solve CS problem-2")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
+
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-2")

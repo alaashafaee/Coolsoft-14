@@ -1,5 +1,12 @@
 Tutor::Application.routes.draw do
 
+  	resources :hints
+  	resources :tips
+	get 'courses/show'
+	get "model_answers/new"
+	post "model_answers/new"
+	resources :model_answers
+
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
