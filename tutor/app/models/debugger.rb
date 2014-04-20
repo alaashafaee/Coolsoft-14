@@ -30,6 +30,7 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
 	# 	untill the below regex is encountered
+	# Parameters: None
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def bufferUntilReady
@@ -39,6 +40,7 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
 	# 	untill the below regex is encountered
+	# Parameters: None
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def bufferUntilComplete
@@ -95,6 +97,8 @@ class Debugger < ActiveRecord::Base
 	
 	# [Debugger: Debug - Story 3.6]
 	# Iterates 100 times to get the value of all local variables in each step
+	# Parameters: None
+	# Returns: None
 	# Author: Mussab ElDash
 	def debug
 		counter = 0
@@ -117,6 +121,7 @@ class Debugger < ActiveRecord::Base
 	
 	# [Debugger: Debug - Story 3.6]
 	# Gets the number of the line to be executed
+	# Parameters: None
 	# Returns: The number of the line to be executed
 	# Author: Mussab ElDash
 	def get_line
