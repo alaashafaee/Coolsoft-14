@@ -1,0 +1,29 @@
+<h1 align ="center">Add a Hint</h1>
+<br>
+<!--A form that takes the input for the model Problem and calls the action create
+  through two text fields :title and description -->
+<%= form_for :Hint, url: {action: "create"} do |p| %>
+	<p>
+		<%= p.label :title %><br>
+		<%= p.text_field :title %>
+	</p>
+	<p>
+		<%= p.label :category %><br>
+		<%= p.text_field :category %>
+	</p>
+	<p>
+		<%= p.label :submission_counter %><br>
+		<%= p.text_field :submission_counter %>
+	</p>
+	<p>
+		<%= p.label :message  %><br>
+		<%= p.text_area :message , :cols => "50", :rows => "10" %>
+	</p>
+	<p>
+		<%= p.submit %>
+	</p>
+<% end %>
+<!-- A division for the flash message output to view the action's output --> 
+<% if flash[:notice] %>
+	<div class="notice"><%= flash[:notice] %></div>
+<% end %>
