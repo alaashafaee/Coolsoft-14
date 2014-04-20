@@ -1,10 +1,11 @@
 class Executer
 
 	def self.execute(file, input) 
-		path = '/Users/mac/Desktop/'
-		compile = %x[#{'javac ' + path + file + '.java' + ' 2>&1'}]
+		path = '../../students_solutions/Java/'
+		classes_path = '../../students_solutions/Class'
+		compile = %x[#{'javac -d ' + classes_path + ' ' + path + file + '.java' + ' 2>&1'}]
 		if compile.empty?
-			@execute_res = %x[#{'java -cp ' + path + ' ' + file + ' ' + input + ' 2>&1'}]
+			@execute_res = %x[#{'java -cp ' + classes_path + ' ' + file + ' ' + input + ' 2>&1'}]
 			# puts execute_res
 			if @execute_res.empty?
 				true
