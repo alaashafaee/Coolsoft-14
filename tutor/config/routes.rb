@@ -12,7 +12,7 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
-
+ 	post 'posts/new' => 'posts#new'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -29,7 +29,8 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
-
+	resources :posts
+	
 	# Example resource route with options:
 	#   resources :products do
 	#     member do

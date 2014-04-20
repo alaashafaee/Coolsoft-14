@@ -1,0 +1,23 @@
+
+<div align="center">
+  <h1>New Post</h1>
+  <br/>
+  <% if flash[:notice] -%>
+    <div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
+  <% end %>
+  <br/><br/><br/>
+  <%= form_for :post, url: {action: "create"} do  |f| %>
+
+    <p>
+      <%= f.label :content %><br>
+      <%= f.text_area :content, class:"form-control", style: "margin-left:auto;
+      margin-right:auto;height:200px;width:500px;resize:none", placeholder: "Enter your post"%>
+      <%= f.hidden_field :disscusion_board_id, value: params[:discussion_board_id] %>
+    </p>
+    <p>
+      <%= f.submit "Save", class: "btn btn-success"%>
+    </p>
+  <% end %>
+
+</div>
+ 
