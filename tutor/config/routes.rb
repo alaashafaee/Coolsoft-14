@@ -16,6 +16,29 @@ Tutor::Application.routes.draw do
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
+	resources :tracks do
+		post 'getProblems', on: :member
+	end
+	resources :problems_by_tas
+	resources :solutions
+	resources :problems
+	resources :discussion_boards do
+		post 'toggle', on: :member
+	end
+	post 'courses/new' => 'courses#new'
+	resources :courses do
+		post 'topics/new' => 'topics#new'
+		resources :topics
+	end
+	resources :model_answers do
+		post "model_answers/new"
+	end
+	resources :test_cases
+	devise_for :teaching_assistants
+	devise_for :students
+	devise_for :lecturers
+	
+
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -29,6 +52,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :profile
 
 	# Example resource route with options:
 	#   resources :products do
