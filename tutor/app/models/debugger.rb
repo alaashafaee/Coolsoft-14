@@ -76,14 +76,14 @@ class Debugger < ActiveRecord::Base
 		end
 		$All = []
 		begin
-			$input, $output, $error, wait_thr = Open3.popen3("jdb",file_path_with_args.strip)
-			wti # buffer untill Ready
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path_with_args.strip)
+			bufferUntilReady
 			$input.puts "stop in #{file_path}.main"
-			wti # buffer untill Ready
-			$input.puts "run"
+			bufferUntilReady
+			input "run"
 			num = get_line
-			$input.puts "locals"
-			locals = get_variables # getting the local variables
+			input "locals"
+			locals = get_variables
 			hash = {:line => num, :locals => locals}
 			$All << hash
 			debug
@@ -100,10 +100,10 @@ class Debugger < ActiveRecord::Base
 		counter = 0
 		while counter < 100 && !$input.closed? do
 			begin
-				$input.puts "step"
+				input "step"
 				num = get_line
 				$input.puts "locals"
-				locals = get_variables # getting the local variables
+				locals = get_variables
 				hash = {:line => num, :locals => locals}
 				$All << hash
 				counter += 1
@@ -120,7 +120,7 @@ class Debugger < ActiveRecord::Base
 	# Returns: The number of the line to be executed
 	# Author: Mussab ElDash
 	def get_line
-		out_stream = wtd
+		out_stream = bufferUntilComplete
 		list_of_lines = out_stream.split(/\n+/)
 		last_line = list_of_lines[-2]
 		/\d+/=~ last_line
