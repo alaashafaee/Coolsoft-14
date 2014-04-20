@@ -1,3 +1,4 @@
+require "open3"
 class Debugger < ActiveRecord::Base
 	
 	#Validations
@@ -7,43 +8,18 @@ class Debugger < ActiveRecord::Base
 	#Scoops
 	
 	#Methods
-	def start(file_path , input)
-		to_be_compiled = file_path
-		if file_path =~ "/.*\.java/"
-			file_path = file_path[0..-6]
-		else
-			to_be_compiled = file_path + ".java"
-		end
-		if !system("javac -g " + to_be_compiled)
-			exit
-		end
-		file_path_with_args = file_path + " " + input
-		if !system("java " + file_path_with_args)
-			exit
-		end
-		hash = {}
-		begin
-			$input, $output, $error, $wait_thr = Open3.popen3("jdb",file_path_with_args)
-			wti $output
-			$input.puts "stop in #{file_path}.main"
-			wti $output
-			$input.puts "run"
-			num = get_line $output
-			$input.puts "locals"
-			locals = get_locals($input, $output)
-			hash[num] = locals
-			debug($input, $output, hash)
-		rescue
-			return false
-		end
-		return hash
-	end
-
-	def wti(outputstr)
+	# [Debugger: Debug - Story 3.6]
+	# Gets the output from the output stream of the debugger
+	# 		untill the passed regex is encountered
+	# Parameters:
+	# 		regex : The input regex to be encountered to return
+	# Returns: A String of the buffer
+	# Author: Rami Khalil
+	def bufferUntil regex
 		buffer = ""
-		until buffer.tr("\r\n","") =~ /.+>/ or buffer =~ /.+\[\d\]/ do
+		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
 			begin
-				temp = outputstr.read_nonblock 2048
+				temp = $output.read_nonblock 2048
 				buffer += temp
 			rescue
 			end
@@ -51,79 +27,105 @@ class Debugger < ActiveRecord::Base
 	  	return buffer
 	end
 
-	def wtd(output)
-		buffer = ""
-		until buffer =~ /.+\[\d\]/ do
-			begin
-				temp = output.read_nonblock 2048
-				buffer += temp
-			rescue
-			end
-		end
-		return buffer
-	end	
+	# [Debugger: Debug - Story 3.6]
+	# Gets the output from the output stream of the debugger
+	# 		untill the below regex is encountered
+	# Returns: A String of the buffer
+	# Author: Rami Khalil
+	def bufferUntilReady
+		(bufferUntil [/> $/m]) + "\n"
+	end
 
-	def debug(inputstr , outputstr, hash)
-		while !inputstr.closed? do
+	# [Debugger: Debug - Story 3.6]
+	# Gets the output from the output stream of the debugger
+	# 		untill the below regex is encountered
+	# Returns: A String of the buffer
+	# Author: Rami Khalil
+	def bufferUntilComplete
+		(bufferUntil [/\[\d\] $/m]) + "\n"
+	end
+	
+	# [Debugger: Debug - Story 3.6]
+	# Inputs an input to the input stream of the debugger JDB
+	# Parameters:
+	# 		input : The input to be written in the sub stream
+	# Returns: A List of all 100 steps ahead
+	# Author: Rami Khalil
+	def input input
+		$input.puts input
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Starts the debugging session and return all variables and there values
+	# 		100 steps ahead
+	# Parameters:
+	# 		file_path : The path of the file to debugged
+	# 		input : The arguments to be passed to the main method
+	# Returns: A List of all 100 steps ahead
+	# Author: Mussab ElDash
+	def start(file_path , input)
+		to_be_compiled = file_path
+		if file_path =~ /.*\.java/
+			file_path = file_path[0..-6]
+		else
+			to_be_compiled = file_path + ".java"
+		end
+		if !system("javac -g " + to_be_compiled)
+			puts "Compilation Error"
+			exit
+		end
+		$All = []
+		begin
+			$input, $output, $error, wait_thr = Open3.popen3("jdb",file_path_with_args.strip)
+			wti # buffer untill Ready
+			$input.puts "stop in #{file_path}.main"
+			wti # buffer untill Ready
+			$input.puts "run"
+			num = get_line
+			$input.puts "locals"
+			locals = get_variables # getting the local variables
+			hash = {:line => num, :locals => locals}
+			$All << hash
+			debug
+		rescue => e
+			p e.message
+		end
+		return $All
+	end
+	
+	# [Debugger: Debug - Story 3.6]
+	# Iterates 100 times to get the value of all local variables in each step
+	# Author: Mussab ElDash
+	def debug
+		counter = 0
+		while counter < 100 && !$input.closed? do
 			begin
-				inputstr.puts "step"
-				num = get_line $output
-				inputstr.puts "locals"
-				locals = locals = get_locals($input, $output)
-				hash[num] = locals
-			rescue
-				inputstr.close
+				$input.puts "step"
+				num = get_line
+				$input.puts "locals"
+				locals = get_variables # getting the local variables
+				hash = {:line => num, :locals => locals}
+				$All << hash
+				counter += 1
+			rescue => e
+				puts e.message
+				$input.close
+				puts "closed"
 			end
 		end
 	end
-
-	def get_line(outputstr)
-		out_stream = wtd outputstr
+	
+	# [Debugger: Debug - Story 3.6]
+	# Gets the number of the line to be executed
+	# Returns: The number of the line to be executed
+	# Author: Mussab ElDash
+	def get_line
+		out_stream = wtd
 		list_of_lines = out_stream.split(/\n+/)
 		last_line = list_of_lines[-2]
 		/\d+/=~ last_line
 		regex_capture = $&
 		return regex_capture.to_i
-	end
-
-	def get_locals(in_stream, out_stream)
-		out_stream = wtd outputstr
-		arguments_vars = out_stream.split("Local variables:")
-		arguments_before = arguments_vars[0]
-		arguments_remove = arguments_before.split("Method arguments:")
-		arguments_after_string = arguments_remove[1]
-		arguments_list = dump_vars(arguments_after_string.split(/\n+/),
-			in_stream, out_stream, "=")
-		vars_before = arguments_vars[1]
-		vars_remove = vars_before.split(/\n+/)
-		vars_after = vars_remove[0..-2]
-		vars_list = dump_vars(vars_after, in_stream, out_stream ,"=")
-		return {:method => arguments_list , :vars => vars_list}
-	end
-
-	def dump_vars(arguments_vars_list, in_stream, out_stream, seperator)
-		res = {}
-		arguments_vars_list.each do |argument_var|
-			argument_var = argument_var.strip
-			var_value = argument_var.split(/#{seperator}{1}/)
-			var = var_value[0]
-			value = var_value[1]
-			value =~ /instance of .*"/
-			if value == 0
-				res[var] = dump(var, in_stream, out_stream)
-			else
-				res[var] = value
-			end
-		end
-		return res
-	end
-
-	def dump(var, in_stream, out_stream)
-		in_stream.puts "dump " + var
-		out_from_stream = wtd(out_stream).strip
-		list_before = out_from_stream.split(/\n+/)
-		list_after = list_before[1..-2]
-		return dump_vars(list_after, in_stream, out_stream, ":")
 	end
 
 end
