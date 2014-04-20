@@ -22,7 +22,7 @@ and a paragraph to view the problem description of the instance variable @proble
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
 
-<%= button_to "Done", action: "done" , id: @problem.id %>
+<Button><%= link_to "Done", done_problem_path( :done => {:id => @problem.id} )%></button>
 <%= render partial: "problems/failure_options" %>
 <!-- A division for the flash message output to view the action's output -->
 <% if flash[:notice] %>

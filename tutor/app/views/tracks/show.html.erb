@@ -31,15 +31,16 @@
 					<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
 					<%= link_to p.title , p , style: 'color:#003366;' ,
 					class: color %></b>
-					<span class="badge"><%= p.success_attempts %></span>
+				
 			</div>
 			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
 				<%= p.description %>
 			</div>
 		</div>
+		<Button><%= link_to "Edit", edit_problem_path(:problems => { :edit => {:id => p.id} } )%></button>
 	<% end %>
 </div>
 
 <% if @can_edit %>
-	<%= link_to "New" , '/problems/new', class: "label label-default" %>
+	<Button><%= link_to "Add", new_problem_path(:problems => { :new => {:id => @track.id} } )%></button>
 <% end %>

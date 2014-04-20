@@ -32,6 +32,7 @@ class ProblemsController < ApplicationController
 			p.owner_id = current_teaching_assistant.id
 			p.owner_type = "teaching assistant"
 		end
+		p.track_id = params[:id]
 		if p.save
 			redirect_to :action => "edit", :id => p.id
 		else 
