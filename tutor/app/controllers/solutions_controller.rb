@@ -21,27 +21,37 @@ class SolutionsController < ApplicationController
 				redirect_to :back
 			end
 		elsif params[:commit] == 'Compile'
-			#
-			@solution = Solution.new(solution_params)
-			@solution.student_id = current_student.id
-			#@solution.status = 0
-			@solution.length = @solution.code.length
-			# 
-			compiler_feedback = Compiler.compiler_feedback("10", "12", solution_params[:code])
-			if compiler_feedback[:success]
-				flash[:compiler_success] = "Compiled Successfully!"
-			else
-				flash[:compiler_fail] = "Compilation Failed!"
-				flash[:compiler_feedback] = compiler_feedback[:errors]
-			end	
-			#
-		 	#flash[:compiler_notice] = "Compiled! -->" + params.to_s + " -//- " + solution_params.to_s
-		 	#flash[:compiler_feedback] = Compiler.compiler_feedback("10", "12", solution_params[:code])[:errors]
-			redirect_to :back
+			compile_solution
 		end
 
 
 	end
+
+	# Author: Ahmed Moataz
+	def compile_solution
+		@solution = Solution.new(solution_params)
+		@solution.student_id = current_student.id
+		@solution.length = @solution.code.length
+		if @solution.save
+			compiler_feedback = Compiler.compiler_feedback(current_student.id, solution_params[:problem_id], @solution.id.to_s, solution_params[:code])
+			if compiler_feedback[:success]
+				#compiled successfully
+				@solution.status = 3
+				flash[:compiler_success] = "Compilation Succeeded!"
+			else
+				#failed to compile
+				@solution.status = 2
+				flash[:compiler_fail] = "Compilation Failed!"
+				flash[:compiler_feedback] = compiler_feedback[:errors]
+			end	
+			#flash[:compiler_notice] = "Compiled! -->" + params.to_s + " -//- " + solution_params.to_s
+	 		#flash[:compiler_feedback] = Compiler.compiler_feedback("10", "12", solution_params[:code])[:errors]
+			redirect_to :back
+		else
+			flash[:alert] = "You did not write any code!"
+			redirect_to :back
+		end	
+	end	
 
 
 

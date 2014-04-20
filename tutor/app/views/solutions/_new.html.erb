@@ -9,14 +9,13 @@
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
-	<%= @code = f.text_area :code, value: "public class s" + current_student.id.to_s + "p" + params[:id],
+	<%= @code = f.text_area :code, value: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}",
 			class: "editor" %> 
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>
 		<tr>
 			<td>
-				
 				<%= button_tag 'Test', id: 'test' %>
 				<%= button_tag 'Debug', id: 'debug' %>
 				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
@@ -34,7 +33,8 @@
 	</table>
 	<br /><br />
 	<textarea class='test'>Test Input</textarea><br /><br />
-	<p style="color: blue"><%= flash[:compiler_notice] %></p>
+	<p style="color: blue;"><%= flash[:compiler_notice] %></p>
+	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div style="color: orange; font-family: monospace; border: #000000; border-style: solid; border-width: thin;
 				max-height: 150px; min-height: 150px; overflow: auto; background: #3d1451;">
