@@ -1,7 +1,7 @@
 Tutor::Application.routes.draw do
-	
-	resources :hints
-	resources :tips
+
+  	resources :hints
+  	resources :tips
 	get 'courses/show'
 	get "model_answers/new"
 	post "model_answers/new"

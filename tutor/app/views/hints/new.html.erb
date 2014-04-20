@@ -11,7 +11,7 @@
 </body>
 <% @hints1=Array.new %>
 <% @hints_check.each do |hint2| %>
-	<% if hint2.category == true %>
+	<% if hint2.category == false%>
 		<% @hints1.push(hint2) %>
 	<%end%>
 <%end%>
