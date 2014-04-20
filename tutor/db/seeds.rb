@@ -208,13 +208,9 @@ puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
 	
-<<<<<<< HEAD
 puts("# -----------------------Solution---------------------------")
 	Student.first.solutions << Solution.first
 	Student.first.solutions << Solution.find_by_id(2)
 	Student.first.solutions << Solution.find_by_id(3)
 
 puts("# ---------------------------------------------------------")
-=======
-puts("# ---------------------------------------------------------")
->>>>>>> master

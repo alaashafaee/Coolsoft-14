@@ -23,7 +23,7 @@ root.toggleDebug = () ->
 # Returns: none
 # Author: Rami Khalil (Temporary)
 root.compile = () ->
-	alert "Compiling'"
+	alert "Compiling"
 
 # [Test - Story 3.15]
 # Sends the code and the input to be processed on the server.
