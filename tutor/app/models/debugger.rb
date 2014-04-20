@@ -12,7 +12,7 @@ class Debugger < ActiveRecord::Base
 	# Gets the output from the output stream of the debugger
 	# 	untill the passed regex is encountered
 	# Parameters:
-	# 		regex : The input regex to be encountered to return
+	# 	regex : The input regex to be encountered to return
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def bufferUntil regex
