@@ -24,7 +24,7 @@ class PostsController < ApplicationController
 
 		if @new_post.save
 			flash[:notice] = "Post successfully created"
-			@discussion_board = DiscussionBoard.find_by_id(params[:discussion_board_id])
+			@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 			@discussion_board.posts << @new_post
 	    #		redirect_to :action => 'index'
 		else
@@ -37,6 +37,9 @@ class PostsController < ApplicationController
 		private
 		def post_params 
 			params.require(:post).permit(:content,:title)
+		end
+		def discussion_board_params 
+			params.require(:post).permit(:discussion_board_id)
 		end
 		
 end
