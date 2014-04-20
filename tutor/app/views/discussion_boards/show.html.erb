@@ -14,14 +14,11 @@
 			<% else %>
 				No Posts Yet .. Try Creating a Post
 			<% end %>
-
-
-
 		</div>
 		<div>
-		<%= button_to "Add Post", {:controller => 'posts', :action => 'new',
+			<%= button_to "Add Post", {:controller => 'posts', :action => 'new',
 			:discussion_board_id => @discussionBoard.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
-	</div> 
+	</div> 	
 	<% else %>
 		The discusstion board is deactivated
 	<% end %>

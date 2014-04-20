@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 		@discussion_board = DiscussionBoard.find_by_id(params[:discussion_board_id])
 		@new_post = Post.new
 	end
+
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed parameters from 
 	#              the add post form, creates a new Post record
@@ -24,21 +25,18 @@ class PostsController < ApplicationController
 	# 	flash[:notice]: A message indicating the success or failure of the creation
 	# Author: Ahmed Atef
 	def create
-	@new_post = Post.new(post_params)
-	#@new_post.content = post_params[:content]
-	@new_post.views_count = 0
+		@new_post = Post.new(post_params)
+		@new_post.views_count = 0
 		if lecturer_signed_in?
 			@new_post.owner_id = current_lecturer.id
 			@new_post.owner_type = "lecturer"
 		elsif teaching_assistant_signed_in?
 			@new_post.owner_id = current_teaching_assistant.id
 			@new_post.owner_type = "teaching assistant"
-			elsif student_signed_in
-				@new_post.owner_id = current_student.id
+		elsif student_signed_in
+			@new_post.owner_id = current_student.id
 			@new_post.owner_type = "student"
-			 	 
 		end
-
 		if @new_post.save
 			flash[:notice] = "Post successfully created"
 			@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
@@ -50,6 +48,7 @@ class PostsController < ApplicationController
 			render :action => 'new'  
 		end
 	end
+
 	# [Add Post - story 1.13]
 	# private method. Controls the post form parameters that can be accessed.
 	# Parameters: 
@@ -58,12 +57,12 @@ class PostsController < ApplicationController
 	# 	discussion_board_id: hidden field for the discussion board id
 	# Returns: None
 	# Author: Ahmed Atef
-		private
+	private
 		def post_params 
 			params.require(:post).permit(:content,:title)
 		end
+
 		def discussion_board_params 
 			params.require(:post).permit(:discussion_board_id)
-		end
-		
+		end		
 end
