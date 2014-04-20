@@ -84,12 +84,25 @@ class ProblemsController < ApplicationController
 	def done
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.test_cases.empty?
-			render ('public/404')
-		elsif @problem.model_answers.empty?
-			render ('public/404')
-		else
+			@failure = true
+			flash.keep[:notice] = "Test cases are empty #{@failure}"
 			redirect_to :action => "edit", :id => @problem.id
+		elsif @problem.model_answers.empty?
+			@failure = true
+			flash.keep[:notice] = "Answers are empty"
+			redirect_to :back
+		else
+			redirect_to :action => "show", :id => @problem.id
 		end
+	end	
+
+	def destroy_problem
+		@problem = Problem.find_by_id(params[:id])
+		@problem.test_cases.destroy
+		@problem.model_answers.destroy
+		@problem.destroy
+		flash.keep[:notice] = "Problem has been deleted"
+		redirect_to :action => "new"
 	end	
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
