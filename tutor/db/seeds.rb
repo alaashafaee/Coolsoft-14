@@ -35,10 +35,10 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(title: "This is very interesting Topic", content: "Life is easy don't give up", views_count: 20)
-	Post.create(title: "also This is very interesting Topic", content: "Do your best and don't give up", views_count: 100)
-	Post.create(title: "not This is very interesting Topic", content: "Post3")
-	Post.create(title: "This is very interesting Topic", content: "Post4")
+	Post.create(content: "The Main Objective is to be a winner", views_count: 20)
+	Post.create(content: "It is very hard to keep in this life, be happy", views_count: 100)
+	Post.create(content: "Post3")
+	Post.create(content: "Post4")
 
 puts("# --------------------------Replies---------------------------")
 	Reply.create(content: "Reply1")
@@ -102,25 +102,57 @@ puts("# -----------------------TrackProgression---------------------------")
 	TrackProgression.create(level: 2, student_id: 1, topic_id: 1) 
 	TrackProgression.create(level: 0, student_id: 1, topic_id: 2) 
 	
+puts("# -----------------------Attempts---------------------------")
+	Attempt.create(success: true) 
+	Attempt.create(failure: true)
+	Attempt.create(success: true) 
+	Attempt.create(failure: true) 
+	Attempt.create(success: true) 
+	Attempt.create(success: true) 
+	Attempt.create(success: true) 
+	Attempt.create(success: true) 
+	Attempt.create(success: true) 
+	Attempt.create(failure: true) 
+	Attempt.create(failure: true) 
+	Attempt.create(failure: true) 
+	Attempt.create(failure: true) 
+	
 puts("# -------------------------------------------------------")
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
 puts("**************************************************************")
 
-puts("# -----------------------Users---------------------------")
+puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.topics << Topic.first
 	Lecturer.first.tracks << Track.first
 	Lecturer.first.problems << Problem.first
 	Lecturer.first.courses << Course.first
 	Lecturer.first.courses << Course.find_by_id(2)
-	Student.first.courses << Course.first
-
 	Lecturer.first.posts << Post.first
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
 	Lecturer.first.replies << Reply.find_by_id(3)
+
+puts("# -----------------------Students---------------------------")
+	Student.first.courses << Course.first
+	Student.first.solutions << Solution.first
+	Student.first.solutions << Solution.find_by_id(2)
+	Student.first.solutions << Solution.find_by_id(3)
+	Student.first.attempts << Attempt.first
+	Student.first.attempts << Attempt.find_by_id(2)
+	Student.first.attempts << Attempt.find_by_id(3)
+	Student.first.attempts << Attempt.find_by_id(4)
+	Student.first.attempts << Attempt.find_by_id(5)
+	Student.first.attempts << Attempt.find_by_id(6)
+	Student.first.attempts << Attempt.find_by_id(7)
+	Student.first.attempts << Attempt.find_by_id(8)
+	Student.first.attempts << Attempt.find_by_id(9)
+	Student.first.attempts << Attempt.find_by_id(10)
+	Student.first.attempts << Attempt.find_by_id(11)
+	Student.first.attempts << Attempt.find_by_id(12)
+	Student.first.attempts << Attempt.find_by_id(13)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -138,36 +170,42 @@ puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
 	Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 
-puts("# -----------------------Tracks---------------------------")
+	Problem.first.attempts << Attempt.first
+	Problem.first.attempts << Attempt.find_by_id(2)
+	Problem.first.attempts << Attempt.find_by_id(3)
+	Problem.first.attempts << Attempt.find_by_id(4)
+	Problem.first.attempts << Attempt.find_by_id(5)
+	Problem.first.attempts << Attempt.find_by_id(6)
+	Problem.first.attempts << Attempt.find_by_id(7)
+	Problem.first.attempts << Attempt.find_by_id(8)
+	Problem.first.attempts << Attempt.find_by_id(9)
+	Problem.first.attempts << Attempt.find_by_id(10)
+	Problem.first.attempts << Attempt.find_by_id(11)
+	Problem.first.attempts << Attempt.find_by_id(12)
+	Problem.first.attempts << Attempt.find_by_id(13)
+
+puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first
 	Track.first.problems << Problem.find_by_id(2)
 	Track.find_by_id(2).problems << Problem.find_by_id(3)
 	Track.find_by_id(2).problems << Problem.find_by_id(4)
 	Track.find_by_id(3).problems << Problem.find_by_id(5)
 
-puts("# -----------------------Topics---------------------------")
+puts("# ---------------------- Topics -------------------------")
 	Topic.first.tracks << Track.first
 	Topic.first.tracks << Track.find_by_id(2)
 	Topic.find_by_id(2).tracks << Track.find_by_id(3)
 	Topic.find_by_id(3).tracks << Track.find_by_id(4)
 
-puts("# -----------------------Courses---------------------------")
+puts("# --------------------- Courses -------------------------")
 	Course.first.topics << Topic.first
 	Course.first.discussion_board = DiscussionBoard.first
 	Course.first.topics << Topic.find_by_id(2)
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
 
-puts("# -----------------------Posts & replies ---------------------------")
+puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-	Post.first.replies << Reply.first
-	Post.first.replies << Reply.find_by_id(2)
-	Post.first.replies << Reply.find_by_id(3)
-
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
 
 puts("# ---------------------------------------------------------")
