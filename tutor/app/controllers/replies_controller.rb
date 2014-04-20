@@ -15,6 +15,9 @@ class RepliesController < ApplicationController
 
 	def edit
 		@replies =  Reply.find(params[:id])
+		respond_to do |format|
+        	format.js { render :layout=>false }
+   		end
 	end
 
 	def create

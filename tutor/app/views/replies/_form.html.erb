@@ -1,6 +1,7 @@
-<%= form_for :reply, url: {method: "PUT", remote: true ,:format => :js} do  |f| %>
+<%= form_for :reply, url: {method: "POST", remote: true ,:format => :js} do  |f| %>
 	
 	<%= f.text_field :content, autofocus: true, style: "width:300px", placeholder: "Content" %>
 
 	<%= f.submit "Submit", :id=>"submit_reply"%>
+	
 <% end %>
