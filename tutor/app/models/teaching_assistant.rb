@@ -5,7 +5,7 @@ class TeachingAssistant < ActiveRecord::Base
 	     :recoverable, :rememberable, :trackable, 
 	     :validatable, :confirmable
 	
-	mount_uploader :profile_image, ProfileImageUploader
+	mount_uploader :img, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email

@@ -17,18 +17,18 @@ class ApplicationController < ActionController::Base
 		if "#{resource_name}" == "lecturer"
 	  		devise_parameter_sanitizer.for(:sign_up) {
 	  			|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :degree, 
-	  				:university, :department, :profile_image, :profile_image_cache)
+	  				:university, :department, :img, :img_cache)
 	  		}
 	  	elsif "#{resource_name}" == "student"
 			devise_parameter_sanitizer.for(:sign_up) {
 				|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :university, 
-					:faculty, :major, :semester, :advising, :probation, :profile_image, :profile_image_cache)
+					:faculty, :major, :semester, :advising, :probation, :img, :img_cache)
 			}
 		elsif "#{resource_name}" == "teaching_assistant"
 			devise_parameter_sanitizer.for(:sign_up) {
 				|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob,
 					:graduated_from, :graduated_year, :degree, :university, :department, 
-					:profile_image, :profile_image_cache)
+					:img, :img_cache)
 			}
 		end
 	end

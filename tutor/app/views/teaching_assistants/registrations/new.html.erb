@@ -52,9 +52,9 @@
 		<div style="margin:10px">
 			<br />
 			<%= f.label :profile_image %><br />
-			<%= image_tag(@teaching_assistant.profile_image_url.to_s) if @teaching_assistant.profile_image? %>
-			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
-			<%= f.hidden_field :profile_image_cache %>
+			<%= image_tag(@teaching_assistant.img_url.to_s) if @teaching_assistant.img? %>
+			<%= f.file_field :img, {:accept => 'image/png,image/gif,image/jpeg'} %>
+			<%= f.hidden_field :img_cache %>
 			<br />
 		</div>
 
