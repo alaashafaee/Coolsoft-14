@@ -12,8 +12,10 @@ class SolutionsController < ApplicationController
 		@solution.student_id = current_student.id
 		@solution.status = 0
 		@solution.length = @solution.code.length
-		@testcases = @solution.problem.test_cases
-		response_message = Solution.validate(@solution.code , @testcases)
+		testcases = @solution.problem.test_cases
+		file = "st[" + current_student.id + "]pr[" + @solution.problem_id + "]so[" 
+					#+ Solution_id
+		response_message = Solution.validate(@solution.code , testcases , file)
 		@solution.status = response_message[:status]
 		@errors =  response_message[:failure]
 		@success = response_message[:success]
