@@ -15,19 +15,26 @@ e.style.display = 'block';
 </script>
 </body>
 <p>
-	<h2>Please Insert your model answer</h2>
-	<%= f.text_area :answer,:cols => "50", :rows => "15" %>
+  <h2>Please Insert your model answer</h2>
+  <%= f.text_area :answer,:cols => "50", :rows => "15" %>
+  
 </p>
-<p>
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<br>
  <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
-</p>
+</br>
+<br> </br>
+
+<br>
 <a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Answers</a>
+</br>
+
 <% if !@answers.any? %>
-			<p>You have no previous answers</p>
-			<% end %>
+      <p>You have no previous answers</p>
+      <% end %>
 
 <div id="foo" style="display:none;">
-
+<div class="span3 divider">
 <table class="table table-striped", style = "width:60%">
 
         <thead>
@@ -46,6 +53,7 @@ e.style.display = 'block';
             <td><%= answer1.answer  %></td>
             <td><%= answer1.created_at  %></td>
             <td><%= answer1.updated_at  %></td>
+
             
             <td><%= link_to "View or Edit", :controller => 'model_answers', :action => 'edit', :id => 
             answer1.id, 
@@ -57,6 +65,7 @@ e.style.display = 'block';
         <% end %>
 
       </table>
+      </div>
       </div>
 <% end %>
 <style type="text/css" />

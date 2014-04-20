@@ -1,12 +1,16 @@
 <% provide(:title, "Edit Answer") %>
 <%= form_for(@answer) do |f| %>
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit',
+              :method => :get, class: 'btn btn-default btn-xs' %></ul>
 
 <h1>Answer</h1>
+
 
 <%= flash[:notice]%>
        
             <p><%= f.text_area :answer,:cols => "50", :rows => "15" %></p> 
 			 <%= f.submit "Save changes", class: "btn btn-large btn-primary"  %>
+			
          
         
 

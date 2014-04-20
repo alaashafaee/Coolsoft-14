@@ -1,0 +1,70 @@
+<div class="page-header">
+	<h1><%= link_to @course.name , @course %>
+		<small><%= link_to @topic.title , @topic %></small></h1>
+</div>
+<% if @can_edit %>
+	<% if flash[:error] %>
+		<div align="center" class="alert alert-warning" ><%= flash[:error] %>
+		</div><br>
+	<% end %>
+	<% if flash[:success] %>
+		<div align="center" class="alert alert-success" ><%= flash[:success] %>
+		</div><br>
+		<% end %>
+<% end %>
+
+<div class="panel-group list-group" id="accordion">
+	<% @tracks.each do |t| %>
+		<div class="panel panel-default">
+			<div class="panel-title list-group-item list-group-item-info"
+				data-toggle="collapse" data-parent="#accordion"
+				href="#<%= t.id.to_s %>">
+					<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
+						<%= link_to t.title , t , style: 'color:#003366;'%></b>
+					<span class="badge"><%= t.problems.count %></span>
+			</div>
+			<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
+				<ul class="list-group">
+					<% t.problems.each do |p|%>
+						<% if @problems_status %>
+							<% if @problems_status[:success].include?(p) %>
+								<% color = "label label-success" %>
+							<% elsif @problems_status[:failure].include?(p) %>
+								<% color = "label label-warning" %>
+							<% else %>
+								<% color = "label label-default" %>
+							<% end %>
+						<% end %>
+						<li class="list-group-item" data-toggle="tooltip"
+							data-placement="top" title="<%= p.description%>">
+								<%= link_to p.title , p , class: color %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<!-- thats a form for creating a track which is intially hidden
+		until the new button clicked -->
+<% if @can_edit %>
+	<span class="label label-default" onclick="newTrack()">New</span><br><br>
+	<% if !flash[:title] && !flash[:difficulty] %>
+		<% hide = 'hidden=true' %>
+	<% end %>
+	<div id="create_track" <%= hide %> >
+		<%= form_for :Track , url: {controller: "tracks" , action: "create"}, 
+		html: {class: "form-inline form-horizontal nifty_form" , role: "form"} do |f| %>
+			<div class="form-group">
+				<%= f.text_field :title , :value => flash[:title] , 
+					:class => "form-control" , :placeholder => "Title"%><br>
+				<%= f.number_field :difficulty , :value => flash[:difficulty] , 
+					:class => "form-control" , :placeholder => "Difficulty" , 
+					:min => 1 %><br>
+				<%= f.hidden_field :topic_id , :value => params[:id] %>
+				<%= f.submit "Create" , :class => "btn btn-default" %>
+			</div><!-- /form-group -->
+		<% end %><!-- /form -->
+	</div><!-- /create_track -->
+<% end %><!-- /can_edit -->
