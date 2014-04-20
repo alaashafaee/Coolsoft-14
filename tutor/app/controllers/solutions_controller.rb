@@ -35,6 +35,8 @@ class SolutionsController < ApplicationController
 		if @solution.save
 			compiler_feedback = Compiler.compiler_feedback(current_student.id, solution_params[:problem_id], @solution.id.to_s, solution_params[:code])
 			if compiler_feedback[:success]
+				#to pass the current solution_id
+				@solution_id = @solution.id
 				#compiled successfully
 				@solution.status = 3
 				flash[:compiler_success] = "Compilation Succeeded!"
