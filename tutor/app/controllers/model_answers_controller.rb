@@ -8,7 +8,7 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	def new
 		@answers = ModelAnswer.all
-		@answer = ModelAnswer.new
+		@answer_modified = ModelAnswer.all
 	end
 
 	# [Add answer story 4.6]
@@ -33,6 +33,11 @@ class ModelAnswersController < ApplicationController
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 		else
+				if @answer == nil 
+	
+			flash[:notice] = "Your Answer can not be added!!!" 
+		
+		end
 			flash[:notice] = "Your Answer can not be added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 		end
@@ -59,7 +64,7 @@ class ModelAnswersController < ApplicationController
 		 @answer = ModelAnswer.find(params[:id])
       if @answer.update_attributes(post_params)
       	flash[:notice] = "Your Answer is now updated"
-         redirect_to :action => 'new'
+         redirect_to :controller => 'model_answers', :action => 'edit', :id => @answer.problem_id
       else
          
         flash[:notice] = "Your Answer is noy updated"
@@ -105,7 +110,7 @@ class ModelAnswersController < ApplicationController
 	private
 	def post_params
 		#params.require(:model_answer).permit(:answer)
-		params.require(:model_answer).permit(:answer, :problem_id)
+		params.require(:model_answer).permit(:title,:answer, :problem_id)
 
 
 	end

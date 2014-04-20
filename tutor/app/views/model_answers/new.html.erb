@@ -15,7 +15,10 @@ e.style.display = 'block';
 </script>
 </body>
 <p>
+
+
   <h2>Please Insert your model answer</h2>
+  <br><%= f.text_box :title %></br>
   <%= f.text_area :answer,:cols => "50", :rows => "15" %>
   
 </p>
@@ -29,13 +32,15 @@ e.style.display = 'block';
 <a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Answers</a>
 </br>
 
+
+
+<div id="foo" style="display:none;">
 <% if !@answers.any? %>
       <p>You have no previous answers</p>
       <% end %>
+<% if !@answers.empty? %>
 
-<div id="foo" style="display:none;">
-<div class="span3 divider">
-<table class="table table-striped", style = "width:60%">
+<table class="table table-striped", style = "width:70%">
 
         <thead>
           <tr>
@@ -43,6 +48,7 @@ e.style.display = 'block';
             <th style = "width:20%" >Created At</th>
             <th style = "width:20%" >Updated At</th>
             <th >View or Edit</th>
+            <th >Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -50,14 +56,16 @@ e.style.display = 'block';
           <tr>
           <% @answers.each do |answer1| %>
           
-            <td><%= answer1.answer  %></td>
+            <td><%= answer1.title  %></td>
             <td><%= answer1.created_at  %></td>
             <td><%= answer1.updated_at  %></td>
+
 
             
             <td><%= link_to "View or Edit", :controller => 'model_answers', :action => 'edit', :id => 
             answer1.id, 
               :method => :get, class: 'btn btn-primary btn-xs' %></td>
+               <td><a href="#" class="btn btn-success btn-large"><i class="icon-white icon-heart"></i> Bootstrap Button Generator</a></td>
 
              </tr>
           
@@ -65,8 +73,9 @@ e.style.display = 'block';
         <% end %>
 
       </table>
+      <%end%>
       </div>
-      </div>
+      
 <% end %>
 <style type="text/css" />
 

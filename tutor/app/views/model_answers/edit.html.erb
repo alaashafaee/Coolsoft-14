@@ -3,13 +3,15 @@
 <ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit',
               :method => :get, class: 'btn btn-default btn-xs' %></ul>
 
-<h1>Answer</h1>
-
 
 <%= flash[:notice]%>
-       
+		<h3><br><%= f.label :Title %>
+			<%= f.text_field :title %></br></h3>
+			<h3>			<br><%= f.label :Answer %></br> </h3>
+       		
             <p><%= f.text_area :answer,:cols => "50", :rows => "15" %></p> 
-			 <%= f.submit "Save changes", class: "btn btn-large btn-primary"  %>
+
+			 <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 			
          
         
