@@ -5,4 +5,7 @@ class FacebookController < ApplicationController
   		:message => 'Updating via FbGraph',
 	)
   end
+  def show
+  	render ('index')
+  end
 end
