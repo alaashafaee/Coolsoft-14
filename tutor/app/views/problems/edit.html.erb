@@ -25,4 +25,4 @@ and a paragraph to view the problem description of the instance variable @proble
 <% if flash[:notice] %>
 	<div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<%= link_to 'done', done_path(:id => @problem.id) %>
+<%= button_to "Done", action: "done" , id: @problem.id %>

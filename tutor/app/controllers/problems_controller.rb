@@ -84,12 +84,12 @@ class ProblemsController < ApplicationController
 	def done
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.test_cases.empty?
-			render ('404')
+			render ('public/404')
 		elsif @problem.model_answers.empty?
-			render ('404')
+			render ('public/404')
 		else
 			redirect_to :action => "edit", :id => @problem.id
-		end	
+		end
 	end	
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
