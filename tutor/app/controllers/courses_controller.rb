@@ -137,6 +137,16 @@ class CoursesController < ApplicationController
 	end
 
 	def show
+		@course = Course.find_by_id(params[:id])
+		if @course
+			@topics = @course.topics
+			tracks = []
+			@topics.each do |t|
+				tracks = tracks + t.tracks
+			end
+		else
+			render ('public/404')
+		end
 	end
 
 	def manage
