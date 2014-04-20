@@ -1,0 +1,13 @@
+<h1>Add a Teaching Assistant</h1>
+
+<%= form_for :teaching_assistant do |f| %>
+	<p>
+		<%= select("teaching_assistant", "email", TeachingAssistant.find(:all).collect {|p| [ p.name ] }, {:prompt => 'Select'}) %>
+	</p>
+		<p>
+		<%= select("lecturer_teaching_assistant", "email", TeachingAssistant.find(:all).collect {|p| [ p.name ] }, {:prompt => 'Select'}) %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

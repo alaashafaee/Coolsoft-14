@@ -21,7 +21,8 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	resources :courses do
 		post 'topics/new' => 'topics#new'
-		resources :topics
+		resources :teaching_assistants, only: [:new]
+		resources :topics	
 	end
 	resources :model_answers do
 		post "model_answers/new"
