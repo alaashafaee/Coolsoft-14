@@ -15,12 +15,18 @@
 	<table width='100%'>
 		<tr>
 			<td>
-				<%= button_tag 'Compile', type: 'Button', id: 'compileButton', onClick: 'compile()' %>
-				<%= button_tag 'Test', type: 'Button', id: 'testButton', onClick: 'test()' %>
-				<%= button_tag 'Start Debugging', type: 'Button', id: 'debugButton', onClick: 'debug()' %>
-				<%= button_tag 'Previous', type: 'Button', id: 'previousButton', onClick: 'previous()', hidden: true %>
-				<%= button_tag 'Next', type: 'Button', id: 'nextButton', onClick: 'next()', hidden: true %>
-				<%= button_tag 'Stop Debugging', type: 'Button', id: 'stopButton', onClick: 'stop()', hidden: true %>
+				<%= button_tag 'Compile', type: 'Button',
+					id: 'compileButton', onClick: 'compile()' %>
+				<%= button_tag 'Test', type: 'Button',
+					id: 'testButton', onClick: 'test()' %>
+				<%= button_tag 'Start Debugging', type: 'Button',
+					id: 'debugButton', onClick: 'debug()' %>
+				<%= button_tag 'Previous', type: 'Button',
+					id: 'previousButton', onClick: 'previous()', hidden: true %>
+				<%= button_tag 'Next', type: 'Button',
+					id: 'nextButton', onClick: 'next()', hidden: true %>
+				<%= button_tag 'Stop Debugging', type: 'Button',
+					id: 'stopButton', onClick: 'stop()', hidden: true %>
 			</td>
 			<td style='text-align:right;'>
 				<b class='accepted'>Accepted</b>
