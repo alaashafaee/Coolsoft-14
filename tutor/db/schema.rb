@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.datetime "updated_at"
   end
 
+
+  create_table "attempts", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "problem_id"
+    t.boolean  "failure",    default: false
+    t.boolean  "success",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+
   create_table "code_editors", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,7 +106,10 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "name"
     t.boolean  "verified_type"
     t.date     "dob"
+<<<<<<< HEAD
     t.integer  "age"
+=======
+>>>>>>> 45f4e2f50368aee47731e659a388998a2588c453
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
@@ -231,7 +245,10 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "name"
     t.boolean  "verified_type"
     t.date     "dob"
+<<<<<<< HEAD
     t.integer  "age"
+=======
+>>>>>>> 45f4e2f50368aee47731e659a388998a2588c453
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "faculty"
@@ -263,7 +280,10 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.string   "name"
     t.boolean  "verified_type"
     t.date     "dob"
+<<<<<<< HEAD
     t.integer  "age"
+=======
+>>>>>>> 45f4e2f50368aee47731e659a388998a2588c453
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "graduated_from"
