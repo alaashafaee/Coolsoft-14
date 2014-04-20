@@ -28,9 +28,12 @@ class SolutionsController < ApplicationController
 	# Author: Ahmed Akram
 	def execute
 		if Executer.execute('test', input[:input])
-			flash[:msg] = Executer.get_output()
+			output = Executer.get_output()
+			flash[:msg] = output
 		else
-			flash[:msg] = Executer.get_runtime_error()
+			output = Executer.get_runtime_error()
+			flash[:msg] = output[:error]
+			flash[:exp] = output[:explaination]
 		end
 		redirect_to :back
 	end

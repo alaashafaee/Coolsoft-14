@@ -11,7 +11,7 @@
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
 	<%= @code = f.text_area :code, placeholder: "Write your code here and then click submit",
-			class: "editor" %> 
+			class: "editor" %>
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>
@@ -21,7 +21,7 @@
 				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
 				<%= button_tag 'Next Step', id: 'next', disabled: true %>
 			</td>
-			<td style='text-align:right;'>					
+			<td style='text-align:right;'>
 				<b class='accepted'>Accepted</b>
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
@@ -35,15 +35,28 @@
 	<br /><br />
 		<div>
 			<b>Input:</b></br>
-			<%= f.text_area :input, placeholder: "Write your test case here", 
-				class: "form-control", style: "width:400px" %> 
+			<%= f.text_area :input, placeholder: "Write your test case here",
+				class: "form-control", style: "width:400px" %>
 		</div>
 		</br>
 		<div>
 			<b>Output:</b>
-			<p class='output'>
-				<pre><%= flash[:msg] %></pro>
-			</p>
+			<% if flash[:exp] %>
+				<div class="panel panel-danger fixed-content", style="white-space: pre">
+						<div class="panel-heading", style="min-height: 30px; max-height: 30px; line-height:0.25px; margin-top: -45px">
+							<h3 class="panel-title"> Error </h3>
+						</div>
+						<div class="panel-body", style= "margin-top:-100px">
+							<p><%= flash[:msg] %></p>
+						</div>
+						<div class="panel-heading", style="min-height: 30px; max-height: 30px; line-height:0.25px; margin-top: -90px">
+							<h3 class="panel-title"> Explanation </h3>
+						</div>
+						<div class="panel-body", style= "margin-top:-100px">
+							<p><%= flash[:exp] %></p>
+						</div>
+				</div>
+			<% end %>
 		</div>
 <% end %>
 </div>

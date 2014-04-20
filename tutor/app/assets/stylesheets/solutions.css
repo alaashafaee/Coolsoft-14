@@ -30,3 +30,9 @@ textarea  {
 	display: none;
 	color: blue;
 }
+
+.fixed-content {
+	max-height: 200px;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
