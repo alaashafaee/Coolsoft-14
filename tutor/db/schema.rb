@@ -25,13 +25,11 @@ ActiveRecord::Schema.define(version: 20140419085448) do
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
     t.integer  "problem_id"
-    t.integer  "failure"
-    t.integer  "success"
+    t.boolean  "failure",    default: false
+    t.boolean  "success",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "attempts", ["problem_id", "student_id"], name: "index_attempts_on_problem_id_and_student_id", unique: true
 
   create_table "code_editors", force: true do |t|
     t.datetime "created_at"
@@ -103,7 +101,7 @@ ActiveRecord::Schema.define(version: 20140419085448) do
   create_table "lecturers", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.string   "img"
+    t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
     t.string   "university"
@@ -227,7 +225,7 @@ ActiveRecord::Schema.define(version: 20140419085448) do
   create_table "students", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.string   "img"
+    t.string   "profile_image"
     t.boolean  "gender"
     t.boolean  "share",                  default: false
     t.string   "university"
@@ -256,7 +254,7 @@ ActiveRecord::Schema.define(version: 20140419085448) do
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.string   "img"
+    t.string   "profile_image"
     t.boolean  "gender"
     t.string   "graduated_from"
     t.integer  "graduated_year"
