@@ -29,7 +29,10 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
-
+	resources :students
+	resources :teaching_assistants
+	resources :lecturers
+	
 	# Example resource route with options:
 	#   resources :products do
 	#     member do
