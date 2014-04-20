@@ -1,10 +1,37 @@
-	<h3>Choose a Course</h3>
 
-	<!-- This is a drop down list for all the courses to let the lecturer choose which course will take a copy from it
-	Authored by Rania Abdel Fattah -->
-	<%= form_for :course , url: {:action => "duplicate" , method: "post"} do |f|%>
-		<%= f.select :id , @courses.collect{|c| [c.name , c.id]} %>
-	<br><br>
-	<%= f.submit%>
+<% if !@courses.any? %>
+	<h1>You have no courses</h1>
+<% end %>
+<% if current_lecturer %>
+	<%= button_to "Create course", {:action => 'choose', :controller => 'courses'}, {
+		class: 'btn btn-primary'} %>
+<% end %>
+<br>
+<%= flash[:success_creation] %>
+<% if @courses.any? %>
+	<h1>Your Courses</h1>
+	<table class = "table table-striped", style = "width:80%">
+		<tr>
+			<th>Name</th>
+			<th>Code</th>
+			<th>Options</th>
+			<th></th>
+		</tr>
+		<% @courses.each do |c| %>
+			<tr>
+				<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
+							:method => :get, class: "btn btn-success" %></td>
+				<td><%= c.code %></td>
+				<td>
+					<% if current_lecturer %>
+						<%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
 
-	<%end%>
