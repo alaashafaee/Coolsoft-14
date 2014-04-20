@@ -1,9 +1,5 @@
 Tutor::Application.routes.draw do
 
-	devise_for :teaching_assistants
-	devise_for :students
-	devise_for :lecturers
-
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 
