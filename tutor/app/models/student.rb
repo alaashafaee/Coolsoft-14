@@ -51,3 +51,17 @@ class Student < ActiveRecord::Base
 	end
 end
 
+
+
+	# [System Reminders - Story 5.4]
+	# sends reminder e-mails to inactive users
+	# Parameters: None
+	# Returns: None
+	# Author: Amir George
+	def send_reminder_mails
+		Student.find_each do |student|
+			if student.last_sign_in_at < Time.now - 7.days
+				SystemReminders.reminder_email(student).deliver
+			end
+		end
+	end
