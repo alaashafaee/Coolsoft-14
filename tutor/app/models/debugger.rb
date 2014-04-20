@@ -76,10 +76,10 @@ class Debugger < ActiveRecord::Base
 		end
 		$All = []
 		begin
-			$input, $output, $error, wait_thr = Open3.popen3("jdb",file_path_with_args.strip)
-			wti # buffer untill Ready
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path_with_args.strip)
+			bufferUntilReady # buffer untill Ready
 			$input.puts "stop in #{file_path}.main"
-			wti # buffer untill Ready
+			bufferUntilReady # buffer untill Ready
 			$input.puts "run"
 			num = get_line
 			$input.puts "locals"
