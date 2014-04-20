@@ -1,5 +1,12 @@
 Tutor::Application.routes.draw do
 
+  get "tips/new"
+  get "tips/show"
+  get "tips/create"
+  get "tips/index"
+  get "tips/destroy"
+  get "tips/edit"
+  get "tips/update"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
