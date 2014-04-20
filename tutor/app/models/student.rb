@@ -11,12 +11,17 @@ class Student < ActiveRecord::Base
 	validate :duplicate_email
 	validates :name, presence: true
 	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :university, presence: true
+	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :faculty, presence: true
+	validates_format_of :faculty, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :major, presence: true
+	validates_format_of :major, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :semester, presence: false, numericality: {only_integer: true, greater_than: 0, less_than: 11}
 
 	#Relations
 	has_many :solutions, dependent: :destroy
+	has_many :attempts, dependent: :destroy
 	has_many :progressions, class_name: "TrackProgression"
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy

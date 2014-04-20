@@ -14,6 +14,9 @@ class TeachingAssistant < ActiveRecord::Base
 	validates :graduated_from, presence: true
 	validates :graduated_year, presence: false, numericality: {only_integer: true, 
 		greater_than_or_equal_to: Date.today.year-90, less_than_or_equal_to: Date.today.year}
+	validates_format_of :degree, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :university, presence: true
+	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
 
 	#Relations

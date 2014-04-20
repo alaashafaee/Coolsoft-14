@@ -12,6 +12,8 @@ class Lecturer < ActiveRecord::Base
 	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :degree, presence: true
 	validates_format_of :degree, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :university, presence: true
+	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
 
 	#Relations
