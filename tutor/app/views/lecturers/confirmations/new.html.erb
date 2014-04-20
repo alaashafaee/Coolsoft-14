@@ -1,7 +1,7 @@
 <div align="center">	
 	<h2>Resend confirmation instructions</h2>
 
-	<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, :class => 'form-devise'}) do |f| %>
+	<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :class => 'form-devise' }) do |f| %>
 		<%= devise_error_messages! %>
 
 		<div>
