@@ -1,0 +1,2 @@
+class SolutionsConstrainsController < ApplicationController
+end
