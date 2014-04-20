@@ -1,14 +1,14 @@
 <div align="center">	
 	<h2>Resend confirmation instructions</h2>
 
-	<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+	<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, :class => 'form-devise'}) do |f| %>
 		<%= devise_error_messages! %>
 
-		<div style="margin:10px">
-			<%= f.email_field :email, autofocus: true, class: "form-control", style: "width:300px", placeholder: "Email"%>
+		<div>
+			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"%>
 		</div>
 
-		<div><%= f.submit "Resend confirmation instructions", class: "btn btn-success", style: "margin-top:10px" %></div>
+		<div><%= f.submit "Resend confirmation instructions", class: "btn btn-success button-devise" %></div>
 	<% end %>
 
 	<%= render "lecturers/shared/links" %>
