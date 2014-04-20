@@ -1,5 +1,15 @@
-<h3 align ="center">Edit Solution's Constraints</h2>
-<p><%= @parameters.parameter %></p>
-<%= @variables.variable_name %>
-
-<%= button_to "Save changes", {:controller => 'solutions_constraints', :action => 'show'}, class: "btn btn-success" , style: "float: center;" %>
+<%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
+<h1> Edit Constraints</h1>
+<%= form_for :Parameter, url: {action: "update"} do |edit| %>
+	<table>
+		<tr>
+			<th>Method Parameter</th>
+			<td><%= edit.text_field(@parameters.parameter) %></td>
+		</tr><br><br>
+		<tr>
+			<th>Variable Constraints</th>
+			<td><%= edit.text_field(@variables.variable_name) %></td>
+		</tr>
+	</table><br><br>
+	<%= edit.submit "Save Changes"%>
+<% end %>

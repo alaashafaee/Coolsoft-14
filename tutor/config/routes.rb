@@ -13,7 +13,7 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
 
-	#post 'solutions_constraints/edit'
+	post 'solutions_constraints/delete'
 
 
 	# You can have the root of your site routed with "root"

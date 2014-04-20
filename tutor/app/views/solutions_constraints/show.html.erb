@@ -1,5 +1,27 @@
-<h3>Methods parameters</h3>
-<%= @parameters.parameter %>
-<h3>Variable Constraints</h3>
-<%= @variables.variable_name %>
-<%= @variables.type %>
+	<%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
+	<table class = "table table-striped", style = "width:80%">
+		<tr>
+			<th>Constraints</th>
+		</tr>
+		<tr>
+			<td><%= @parameters.parameter %></td>
+		</tr>
+		<tr>
+			<td><%= @variables.variable_name %></td>
+		</tr>
+		<tr>
+			<td class="actions">
+				<%= link_to "Edit", :controller => 'solutions_constraints', :action => 'edit' %>
+				<%= link_to "Delete", :controller => 'solutions_constraints', :action => 'delete' %>
+			</td>
+		</tr>
+	</table>	
+	
+
+	
+
+
+
+
+
+	

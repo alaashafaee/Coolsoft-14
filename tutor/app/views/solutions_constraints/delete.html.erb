@@ -1,0 +1,7 @@
+
+		<h1> Delete Constraints</h1>
+	<%= form_for :parameter, url: solutions_constraints_delete_path do |delete| %>
+		<p> Are you sure you want to delete this constraint</p>
+		<%= @parameters.parameter %>
+		<%= delete.submit %>
+	<% end %> 

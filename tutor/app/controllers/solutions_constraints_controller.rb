@@ -22,9 +22,30 @@ class SolutionsConstraintsController < ApplicationController
 		end
 	end
 
-	#def delete
-	#	constraint.find(params[id]).destroy
-	#	flash[:success_deletion] = "Constraints deleted."
-	#end
+	def update
+		@parameters = MethodParameter.find_by_id(params[:id])
+		@variables = VariableConstraint.find_by_id(params[:id])
+		if @parameters.update_attributes(constraint_params) && @variables.update_attributes(constraint_params)
+			redirect_to :action => 'show'
+		else
+			redirect_to :action => 'index'
+		end
+	end
+
+	def delete
+		@parameters = MethodParameter.find_by_id(params[:id])
+		@variables = VariableConstraint.find_by_id(params[:id])	
+	end
+
+	def destroy
+		@parameters = MethodParameter.find_by_id(params[:id]).destroy
+		@variables = VariableConstraint.find_by_id(params[:id]).destroy
+		flash[:success_deletion] = "Constraints deleted."
+	end
+
+	private
+	def constraint_params
+		params.require(:parameter).permit(:parameters, :variables)
+	end
 
 end
