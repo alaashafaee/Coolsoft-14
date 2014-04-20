@@ -29,6 +29,12 @@ class TipsController < ApplicationController
 	end
 
 	def destroy
+		@tips = Hint.find(params[:id]) 
+		@tip = Hint.find(params[:id])
+		@tips.destroy
+		@tip.destroy
+		redirect_to :action => 'index'
+
 	end
 
 	def edit
@@ -51,6 +57,7 @@ class TipsController < ApplicationController
 	def tip_params 
 		params.require(:tip).permit(:message, :time)
 	end
+
 	private
 		def tip_params_edit 
 		params.require(:tip_edit).permit(:message, :time)
