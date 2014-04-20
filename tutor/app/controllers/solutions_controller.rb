@@ -29,7 +29,7 @@ class SolutionsController < ApplicationController
 			# 
 			compiler_feedback = Compiler.compiler_feedback("10", "12", solution_params[:code])
 			if compiler_feedback[:success]
-				flash[:compiler_success] = "Compiled!"
+				flash[:compiler_success] = "Compiled Successfully!"
 			else
 				flash[:compiler_fail] = "Compilation Failed!"
 				flash[:compiler_feedback] = compiler_feedback[:errors]

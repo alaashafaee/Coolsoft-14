@@ -35,15 +35,13 @@
 	<br /><br />
 	<textarea class='test'>Test Input</textarea><br /><br />
 	<p style="color: blue"><%= flash[:compiler_notice] %></p>
-	<b>Compiler:</b><br/>
-	<div style="color: orange; font-family: monospace; ">
-		<p style="color: green"><%= flash[:compiler_success] %></p>
-		<p style="color: red"><%= flash[:compiler_fail] %></p>
-		<p style="white-space: pre; "><%= flash[:compiler_feedback] %></p>
+	<b>Console:</b><br/>
+	<div style="color: orange; font-family: monospace; border: #000000; border-style: solid; border-width: thin;
+				max-height: 150px; min-height: 150px; overflow: auto; background: #3d1451;">
+		<p style="color: green; margin: 5px;"><%= flash[:compiler_success] %></p>
+		<p style="color: red; margin: 5px;"><%= flash[:compiler_fail] %></p>
+		<p style="white-space: pre; margin: 5px;"><%= flash[:compiler_feedback] %></p>
 	</div>
 
-	<b>Output:</b><br />
-	<p class='output'>
-		Output response
-	</p>
+	
 <% end %>
