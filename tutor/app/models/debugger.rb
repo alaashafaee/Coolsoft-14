@@ -84,7 +84,6 @@ class Debugger < ActiveRecord::Base
 			bufferUntilReady
 			input "run"
 			num = get_line
-			input "locals"
 			locals = get_variables
 			hash = {:line => num, :locals => locals}
 			$All << hash
@@ -106,7 +105,6 @@ class Debugger < ActiveRecord::Base
 			begin
 				input "step"
 				num = get_line
-				$input.puts "locals"
 				locals = get_variables
 				hash = {:line => num, :locals => locals}
 				$All << hash
