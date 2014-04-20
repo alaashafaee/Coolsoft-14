@@ -34,10 +34,6 @@ class PostsController < ApplicationController
 			render :action => 'new'  
 		end
 	end
-
-#def permitCreate
-#		params.permit(:content)
-	#end
 		private
 		def post_params 
 			params.permit(:content)
