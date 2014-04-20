@@ -1,17 +1,10 @@
 class TracksController < ApplicationController
-	#Lin
-	def new
-		@track = Track.new()
-	end
 
-	# [Create Track - Story 4.1]
-	# shows the tracks of the topic with id :id
-	# show 404 page if there is no topic with such id
-	# This Action should be put in the future in the 
-	# Topic controller
+	# [Integrating_Akram_Device - Story 4.1]
+	# Shows a list of problems for the track with id :id
 	# Parameters: 
-	#   id: The id of the topic
-	# Returns: The view of the requested topic
+	#   id: The id of the Track
+	# Returns: Page with list of the problems
 	# Author: Mussab ElDash
 
 	def index
@@ -19,16 +12,20 @@ class TracksController < ApplicationController
 	end
 
 	def show
-		boool = flash[:notice] != "Successfully created..."
-		boool&&=flash[:notice] != "The required Fields are missing"
-		if boool
-			flash[:notice]= nil
-		end
 		id = params[:id]
-		@topic = Topic.find_by_id(id)
-		if @topic
+		track = Track.find_by_id(id)
+		if track
+			@topic = track.topic
 			@course = @topic.course
-			@tracks = @topic.tracks
+			@problems = track.problems
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
+			if student_signed_in?
+				@problems_status = current_student.getProblemsStatus
+				@problems_status[:success] = @problems_status[:success] & @problems
+				@problems_status[:failure] = @problems_status[:failure] & @problems
+				@problems_status[:other] = @problems_status[:other] & @problems
+			end
 		else
 			render ('public/404')
 		end
@@ -41,10 +38,10 @@ class TracksController < ApplicationController
 	# Returns: The list of the requested problems in json file
 	# Author: Mussab ElDash
 	def getProblems
-  		id = params[:id]
-  		track = Track.find(id)
-  		problems = track.problems
-  		render json: problems
+		id = params[:id]
+		track = Track.find(id)
+		problems = track.problems
+		render json: problems
 	end
 
 	# [Create Track - Story 4.1]
@@ -58,13 +55,20 @@ class TracksController < ApplicationController
 	# Returns: The same page that wants to create the Track
 	# Author: Mussab ElDash
 	def create
-		
-  		t = Track.new(permitCreate)
-  		if t.save
-  			flash[:notice] = "Successfully created..."
-  			redirect_to :back
+		t = Track.new(permit_create)
+		if t.save
+			flash[:success] = "Successfully created..."
+			redirect_to :back
 		else
-			flash[:notice] = "The required Fields are missing"
+			if params[:Track][:title] == ""
+				flash[:error] = "The Title field is empty"
+			elsif params[:Track][:difficulty] == ""
+				flash[:error] = "The Difficulty field is empty"
+			else
+				flash[:error] = "An error has occured"
+			end
+			flash[:title] = params[:Track][:title]
+			flash[:difficulty] = params[:Track][:difficulty]
 			redirect_to :back
 		end
 	end
@@ -77,9 +81,21 @@ class TracksController < ApplicationController
 	#   difficulty: The difficulty of the track to be created
 	# Returns: The permited params
 	# Author: Mussab ElDash
-	def permitCreate
-		params.require(:Track).permit(:topic_id , :title , :difficulty)
-	end
 
-
+	private
+		def permit_create
+			permit = params.require(:Track).permit(:topic_id, :title, :difficulty)
+			topic = Topic.find_by_id(permit[:topic_id])
+			if topic
+				course = topic.course
+			else
+				return
+			end
+			can_edit = course.can_edit(current_lecturer)
+			can_edit||= course.can_edit(current_teaching_assistant)
+			if can_edit
+				return permit
+			end
+		end
 end
+
