@@ -11,19 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413181651) do
+ActiveRecord::Schema.define(version: 20140419085448) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
+    t.string   "img"
     t.boolean  "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
@@ -33,7 +30,6 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 
   create_table "code_editors", force: true do |t|
     t.datetime "created_at"
@@ -92,7 +88,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
 
   create_table "hints", force: true do |t|
     t.text     "message"
-    t.boolean  "type"
+    t.boolean  "category"
     t.integer  "time"
     t.integer  "submission_counter"
     t.integer  "model_answer_id"
@@ -104,15 +100,11 @@ ActiveRecord::Schema.define(version: 20140413181651) do
 
   create_table "lecturers", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
-<<<<<<< HEAD
-    t.integer  "age"
-=======
->>>>>>> 45f4e2f50368aee47731e659a388998a2588c453
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
+    t.string   "university"
     t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -157,6 +149,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   end
 
   create_table "model_answers", force: true do |t|
+    t.string   "title"
     t.text     "answer"
     t.integer  "problem_id"
     t.integer  "owner_id"
@@ -174,6 +167,8 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   end
 
   create_table "posts", force: true do |t|
+    t.string   "title"
+    t.string   "img"
     t.text     "content"
     t.integer  "views_count"
     t.integer  "discussion_board_id"
@@ -186,8 +181,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "success_attempts"
-    t.integer  "failure_attempts"
+    t.boolean  "incomplete"
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
@@ -209,6 +203,7 @@ ActiveRecord::Schema.define(version: 20140413181651) do
 
   create_table "replies", force: true do |t|
     t.text     "content"
+    t.string   "img"
     t.integer  "post_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -220,53 +215,33 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.text     "code"
     t.integer  "length"
     t.integer  "status"
+    t.integer  "time"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "staffs", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.boolean  "verified_type"
-    t.string   "password"
-    t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
-    t.boolean  "gender"
-    t.string   "department"
-    t.string   "staff"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "students", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
-<<<<<<< HEAD
-    t.integer  "age"
-=======
->>>>>>> 45f4e2f50368aee47731e659a388998a2588c453
     t.string   "profile_image"
     t.boolean  "gender"
+    t.boolean  "share",                  default: false
+    t.string   "university"
     t.string   "faculty"
     t.string   "major"
-    t.integer  "year"
     t.integer  "semester"
     t.boolean  "advising"
     t.boolean  "probation"
-    t.integer  "failure_attempts"
-    t.integer  "success_attempts"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -278,18 +253,14 @@ ActiveRecord::Schema.define(version: 20140413181651) do
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
-<<<<<<< HEAD
-    t.integer  "age"
-=======
->>>>>>> 45f4e2f50368aee47731e659a388998a2588c453
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "graduated_from"
     t.integer  "graduated_year"
-    t.boolean  "type"
     t.string   "department"
+    t.string   "university"
+    t.string   "degree"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -345,21 +316,6 @@ ActiveRecord::Schema.define(version: 20140413181651) do
     t.integer  "topic_id"
     t.integer  "owner_id"
     t.string   "owner_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.boolean  "verified_type"
-    t.string   "password"
-    t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
-    t.boolean  "gender"
-    t.integer  "sub_id"
-    t.string   "sub_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
