@@ -1,11 +1,12 @@
 <!-- The flash messages for the succes and failure scenarios -->
 <p style="color: green"><%= flash[:success] %></p>
 <p style="color: red"><%= flash[:alert] %></p>
-
+<p> <%= @input %> </p>
 <!-- Timer that starts when problem is shown --> 
 <b>Time spent:</b> 
 <span id="mins">0</span>:<span id="secs">00</span>
 
+<div>
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
@@ -16,8 +17,6 @@
 	<table width='100%'>
 		<tr>
 			<td>
-				<%= button_tag 'Compile', id:'compile' %>
-				<%= button_tag 'Test', id: 'test' %>
 				<%= button_tag 'Debug', id: 'debug' %>
 				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
 				<%= button_tag 'Next Step', id: 'next', disabled: true %>
@@ -27,14 +26,24 @@
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
+				<%= f.submit "Compile"%>
+				<%= f.submit "Run Test Case"%>
 				<%= f.submit "Submit"%>
 			</td>
 		</tr>
 	</table>
 	<br /><br />
-	<textarea class='test'>Test Input</textarea><br /><br />
-	<b>Output:</b><br />
-	<p class='output'>
-		Output response
-	</p>
+		<div>
+			<b>Input:</b></br>
+			<%= f.text_area :input, placeholder: "Write your test case here", 
+				class: "form-control", style: "width:400px" %> 
+		</div>
+		</br>
+		<div>
+			<b>Output:</b>
+			<p class='output'>
+				<pre><%= flash[:msg] %></pro>
+			</p>
+		</div>
 <% end %>
+</div>
