@@ -5,6 +5,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
+<%= javascript_include_tag 'jquery.sortable.js'%>
 
 <script>
 $(function() {
@@ -113,11 +114,21 @@ $(function() {
 	</div><!-- /create_track -->
 <% end %><!-- /can_edit -->
 
+
 <div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
-<p>This is where I am going to put my  drag and drop code</p>
+<p>This is the list of tracks that should be sortable
+
+	<ul class="list-of-tracks" >
+	<%- @tracks.each do |track| %>
+		<li id="track_<%= track.id %>" ><%= track.title %> </li>
+	<% end %>
+	</ul>
+
+</p>
 </div>
 
 <button id="opener">Edit Track Rating</button>
+
 </body>
 </html>
 
