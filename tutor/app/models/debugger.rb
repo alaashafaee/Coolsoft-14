@@ -77,13 +77,13 @@ class Debugger < ActiveRecord::Base
 		$All = []
 		begin
 			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path_with_args.strip)
-			bufferUntilReady # buffer untill Ready
+			bufferUntilReady
 			$input.puts "stop in #{file_path}.main"
-			bufferUntilReady # buffer untill Ready
+			bufferUntilReady
 			$input.puts "run"
 			num = get_line
 			$input.puts "locals"
-			locals = get_variables # getting the local variables
+			locals = get_variables
 			hash = {:line => num, :locals => locals}
 			$All << hash
 			debug
@@ -103,7 +103,7 @@ class Debugger < ActiveRecord::Base
 				$input.puts "step"
 				num = get_line
 				$input.puts "locals"
-				locals = get_variables # getting the local variables
+				locals = get_variables
 				hash = {:line => num, :locals => locals}
 				$All << hash
 				counter += 1
