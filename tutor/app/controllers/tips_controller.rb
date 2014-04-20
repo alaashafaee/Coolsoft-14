@@ -16,9 +16,13 @@ class TipsController < ApplicationController
 		@tips.time = tip_params[:time]
 		@tips.category = true
 		if @tips.save
-	  		current_lecturer.hints << @tips
-	  		@tip = @tips
-	  		render :action => 'show'
+			if lecturer_signed_in?
+				current_lecturer.hints << @tips
+			elsif teaching_assistant_signed_in?
+				current_teaching_assistant.hints << @tips
+			end	
+			@tip = @tips
+			render :action => 'show'
 		else
 	  		render :action=>'new'
 		end
