@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
 	# Allows students to sign-up/register for new courses by choosing
 	#	the desired course attributes in the following order:
 	#	University > Semester > Course > Instructor > Sign-Up > Confirmation
-	# Parameter:
+	# Parameters:
 	#	params[]: A hash of the request URL attributes
 	# Returns:
 	#	@status: The next status (0:Failure:Not a student, 1:University, 2:Semester, 3:Course,

@@ -1,4 +1,5 @@
 class SolutionsController < ApplicationController
+
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
 	# and outputs 2 flush messages for success and failure scenarios 
@@ -24,16 +25,21 @@ class SolutionsController < ApplicationController
 		end
 	end
 
+	# [Compiler: Compile - Story 3.4]
+	# Creates a soution for the current problem in the database and compiles it.
+	#	Then it places the compilation results and feedback in the flash hash.
+	# Parameters:
+	#	solution_params: submitted from the form_for
+	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
 		@solution = Solution.new(solution_params)
 		@solution.student_id = current_student.id
 		@solution.length = @solution.code.length
 		if @solution.save
-			compiler_feedback = Compiler.compiler_feedback(current_student.id, solution_params[:problem_id], @solution.id.to_s, solution_params[:code])
+			compiler_feedback = Compiler.compiler_feedback(current_student.id,
+				solution_params[:problem_id],@solution.id.to_s, solution_params[:code])
 			if compiler_feedback[:success]
-				#to pass the current solution_id
-				@solution_id = @solution.id
 				#compiled successfully
 				@solution.status = 3
 				flash[:compiler_success] = "Compilation Succeeded!"
@@ -61,4 +67,5 @@ class SolutionsController < ApplicationController
 	def solution_params
 		params.require(:solution).permit(:code , :problem_id)
 	end
+
 end
