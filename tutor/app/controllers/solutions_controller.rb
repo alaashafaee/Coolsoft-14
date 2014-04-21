@@ -23,8 +23,6 @@ class SolutionsController < ApplicationController
 		elsif params[:commit] == 'Compile'
 			compile_solution
 		end
-
-
 	end
 
 	# Author: Ahmed Moataz
@@ -45,15 +43,13 @@ class SolutionsController < ApplicationController
 				@solution.status = 2
 				flash[:compiler_fail] = "Compilation Failed!"
 				flash[:compiler_feedback] = compiler_feedback[:errors]
-			end	
-			#flash[:compiler_notice] = "Compiled! -->" + params.to_s + " -//- " + solution_params.to_s
-	 		#flash[:compiler_feedback] = Compiler.compiler_feedback("10", "12", solution_params[:code])[:errors]
+			end
 			redirect_to :back
 		else
 			flash[:alert] = "You did not write any code!"
 			redirect_to :back
-		end	
-	end	
+		end
+	end
 
 
 
