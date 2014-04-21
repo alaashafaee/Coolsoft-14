@@ -1,0 +1,9 @@
+#element_to_pop_up {
+    background-color:#fff;
+    border-radius:10px;
+    color:#000;
+    display:none;
+    padding:10px;
+    min-width:100px;
+    min-height: 100px;
+	}
