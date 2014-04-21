@@ -30,7 +30,7 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
 	# 	until the below regex is encountered
-	# Parameters: None
+	# Parameters: none
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def buffer_until_ready
@@ -40,7 +40,7 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
 	# 	until the below regex is encountered
-	# Parameters: None
+	# Parameters: none
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def buffer_until_complete
@@ -51,14 +51,14 @@ class Debugger < ActiveRecord::Base
 	# Inputs an input to the input stream of the debugger JDB
 	# Parameters:
 	# 	input : The input to be written in the sub stream
-	# Returns: None
+	# Returns: none
 	# Author: Rami Khalil
 	def input input
 		$input.puts input
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Starts the debugging session and return all variables and there values
+	# Starts the debugging session and return all variables and their values
 	# 	100 steps ahead
 	# Parameters:
 	# 	file_path : The path of the file to debugged
@@ -96,8 +96,8 @@ class Debugger < ActiveRecord::Base
 	
 	# [Debugger: Debug - Story 3.6]
 	# Iterates 100 times to get the value of all local variables in each step
-	# Parameters: None
-	# Returns: None
+	# Parameters: none
+	# Returns: none
 	# Author: Mussab ElDash
 	def debug
 		counter = 0
@@ -119,7 +119,7 @@ class Debugger < ActiveRecord::Base
 	
 	# [Debugger: Debug - Story 3.6]
 	# Gets the number of the line to be executed
-	# Parameters: None
+	# Parameters: none
 	# Returns: The number of the line to be executed
 	# Author: Mussab ElDash
 	def get_line
