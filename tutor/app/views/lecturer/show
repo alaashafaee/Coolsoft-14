@@ -1,0 +1,13 @@
+<!-- a view to show the statistics-->
+<table>
+	<h1>statistics</h1>
+	<!-- view the number of problems answered correctly by students -->
+	<h2>number of problems answered correctly</h2>
+  	<% @problems %>
+
+  	<!-- view the average number of trials while answering a problem -->
+  	<h2>average number of trials</h2>
+  	<% @average %>
+
+	<% end %>
+</table>

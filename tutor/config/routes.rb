@@ -1,4 +1,7 @@
 Tutor::Application.routes.draw do
+	post 'lecturer/show_statistics' => 'lecturer#show'
+	post'lecturer/error' => 'lecturer#no problem is answered correctly'
+	
 
 	devise_for :teaching_assistants
 	devise_for :students
