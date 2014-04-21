@@ -1,5 +1,10 @@
 class FacebookController < ApplicationController
-  def show
-  	render ('index')
-  end
+# [Post to Facebook - Story 5.1]
+# renders the view that prompts user to post to facebook
+# Parameters: None
+# Returns: None
+# Author: Amir George
+	def show
+		render ('index')
+	end
 end
