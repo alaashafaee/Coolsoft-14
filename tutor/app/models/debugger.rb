@@ -76,7 +76,7 @@ class Debugger < ActiveRecord::Base
 			puts "Compilation Error"
 			exit
 		end
-		$All = []
+		$all = []
 		begin
 			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path, input.strip)
 			bufferUntilReady
@@ -91,7 +91,7 @@ class Debugger < ActiveRecord::Base
 		rescue => e
 			p e.message
 		end
-		return $All
+		return $all
 	end
 	
 	# [Debugger: Debug - Story 3.6]
@@ -107,7 +107,7 @@ class Debugger < ActiveRecord::Base
 				num = get_line
 				locals = get_variables
 				hash = {:line => num, :locals => locals}
-				$All << hash
+				$all << hash
 				counter += 1
 			rescue => e
 				puts e.message
