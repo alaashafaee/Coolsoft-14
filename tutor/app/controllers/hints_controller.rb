@@ -25,6 +25,7 @@ class HintsController < ApplicationController
 	# Author: Mimi
 	def create
 		@new_Tip = Hint.new(hint_params)
+		@new_Tip.category = false
 		bool = @new_Tip.save
 		if bool == true 
 			flash[:notice] = "Hint successfully created"
@@ -34,6 +35,7 @@ class HintsController < ApplicationController
 			if @new_Tip.errors.any?
 				flash[:notice] = @new_Tip.errors.full_messages.first
 			end
+			#render "create"
 			redirect_to :back
 		end
 	end	
