@@ -34,7 +34,7 @@ class Debugger < ActiveRecord::Base
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def buffer_until_ready
-		(bufferUntil [/> $/m]) + "\n"
+		(buffer_until [/> $/m]) + "\n"
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -44,7 +44,7 @@ class Debugger < ActiveRecord::Base
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
 	def buffer_until_complete
-		(bufferUntil [/\[\d\] $/m]) + "\n"
+		(buffer_until [/\[\d\] $/m]) + "\n"
 	end
 	
 	# [Debugger: Debug - Story 3.6]
