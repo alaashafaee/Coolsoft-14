@@ -42,12 +42,15 @@ class PostsController < ApplicationController
 		if lecturer_signed_in?
 			@new_post.owner_id = current_lecturer.id
 			@new_post.owner_type = "lecturer"
+			current_lecturer.posts << @new_post
 		elsif teaching_assistant_signed_in?
 			@new_post.owner_id = current_teaching_assistant.id
 			@new_post.owner_type = "teaching assistant"
+			current_teaching_assistant << @new_post
 		elsif student_signed_in?
 			@new_post.owner_id = current_student.id
 			@new_post.owner_type = "student"
+			current_student.posts << @new_post
 		end
 		if @new_post.save
 			flash[:notice] = "Post successfully created"
