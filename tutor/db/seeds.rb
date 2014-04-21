@@ -76,7 +76,9 @@ puts("# -----------------------Method Parameters---------------------------")
 	MethodParameter.create(parameter:"MethodParameters 3")
 
 puts("# -----------------------Method Constraints--------------------------")
-	
+	MethodConstraint.create(method_name:"MethodName 1")
+	MethodConstraint.create(method_name:"MethodName 2")
+	MethodConstraint.create(method_name:"MethodName 3")
 
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")

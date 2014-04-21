@@ -12,7 +12,7 @@
 		<tr>
 			<td class="actions">
 				<%= link_to "Edit", :controller => 'solutions_constraints', :action => 'edit' %>
-				<%= link_to "Delete", :controller => 'solutions_constraints', :action => 'delete' %>
+				<%= link_to "Delete", solutions_constraints_path, method: :destroy, data: { confirm: 'Are you sure?' } %>
 			</td>
 		</tr>
 	</table>	

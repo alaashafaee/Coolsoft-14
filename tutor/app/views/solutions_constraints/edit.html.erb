@@ -11,5 +11,6 @@
 			<td><%= edit.text_field(@variables.variable_name) %></td>
 		</tr>
 	</table><br><br>
-	<%= edit.submit "Save Changes"%>
+	<%= button_to "Save", {:action => 'show', :controller => 'solutions_constraints'}, {
+		class: 'btn btn-primary'} %>
 <% end %>
