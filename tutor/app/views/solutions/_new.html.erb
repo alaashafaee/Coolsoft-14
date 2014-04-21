@@ -5,7 +5,7 @@
 <!-- Timer that starts when problem is shown --> 
 <b>Time spent:</b> 
 <span id="mins">0</span>:<span id="secs">00</span>
-
+<%= @solution_id.to_s %>
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>

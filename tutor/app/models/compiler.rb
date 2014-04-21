@@ -37,7 +37,11 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.change_class_name(student_id, problem_id, solution_id, code)
 		name = 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + solution_id.to_s
-		return code.sub(code[0..code.index('{')], 'public class ' + name + ' {')	
+		if code.include? 'public' && 'class' && '{'
+			return code.sub(code[0..code.index('{')], 'public class ' + name + ' {')
+		else
+			return code	
+		end	
 	end	
 
 	# Author: Ahmed Moataz
