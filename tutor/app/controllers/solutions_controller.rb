@@ -13,12 +13,12 @@ class SolutionsController < ApplicationController
 		@solution.status = 0
 		@solution.length = @solution.code.length
 		testcases = @solution.problem.test_cases
-		file = "st[" + current_student.id + "]pr[" + @solution.problem_id + "]so[" 
+		file = "st[" + current_student.id.to_s + "]pr[" + @solution.problem_id.to_s + "]so[" 
 					#+ Solution_id
 		response_message = Solution.validate(@solution.code , testcases , file)
 		@solution.status = response_message[:status]
-		@errors =  response_message[:failure]
-		@success = response_message[:success]
+		errors =  response_message[:failure]
+		success = response_message[:success]
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js { render 'alert.js.erb' }
