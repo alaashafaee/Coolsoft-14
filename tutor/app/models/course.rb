@@ -33,7 +33,7 @@ class Course < ActiveRecord::Base
 	end
 
 	# [Simple Search - Story 1.22]
-	# search for users
+	# search for courses
 	# Parameters: keyword
 	# Returns: A hash with search results according to the keyword
 	# Author: Ahmed Elassuty
