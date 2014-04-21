@@ -53,6 +53,7 @@ class PostsController < ApplicationController
 			flash[:notice] = "Post successfully created"
 			@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 			@discussion_board.posts << @new_post
+			redirect_to :controller => 'posts', :action => 'show', :id => @new_post.id
 		else
 			if @new_post.errors.any?
 				flash[:notice] = @new_post.errors.full_messages.first
