@@ -12,7 +12,6 @@ class SolutionsController < ApplicationController
 			@solution.student_id = current_student.id
 			@solution.status = 0
 			@solution.length = @solution.code.length
-
 			if @solution.save
 				flash[:success] = "Your Solution has been submitted successfully"
 				redirect_to :back
