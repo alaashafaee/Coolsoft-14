@@ -13,6 +13,15 @@ class PostsController < ApplicationController
 		@new_post = Post.new
 	end
 
+	def show
+	  	@post = Post.find(params[:id])
+	  	@replies = @post.replies.order("created_at desc")
+	end	  	
+
+	def edit
+		@post = Post.find(params[:id])
+	end
+
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed parameters from 
 	#              the add post form, creates a new Post record
@@ -46,6 +55,19 @@ class PostsController < ApplicationController
 				flash[:notice] = @new_post.errors.full_messages.first
 			end
 			render :action => 'new'  
+		end
+	end
+
+		def update
+		@post = Post.find(params[:id])
+		if @post.update_attributes(post_params) 
+			flash[:notice] = "Post successfully updated"
+			redirect_to(:action => 'show' ,:id => @post.id)
+		else
+			if @new_post.errors.any?
+				flash[:notice] = @new_post.errors.full_messages.first
+			end
+			render :action => 'edit'  
 		end
 	end
 
