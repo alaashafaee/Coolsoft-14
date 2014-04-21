@@ -124,9 +124,10 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until_complete
+		puts out_stream
 		list_of_lines = out_stream.split(/\n+/)
 		last_line = list_of_lines[-2]
-		/\d+/=~ last_line
+		/^\d+/=~ last_line
 		regex_capture = $&
 		if regex_capture
 			return regex_capture.to_i
