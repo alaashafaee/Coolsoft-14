@@ -10,7 +10,7 @@ class Debugger < ActiveRecord::Base
 	#Methods
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
-	# 	untill the passed regex is encountered
+	# 	until the passed regex is encountered
 	# Parameters:
 	# 	regex : The input regex to be encountered to return
 	# Returns: A String of the buffer
@@ -29,7 +29,7 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
-	# 	untill the below regex is encountered
+	# 	until the below regex is encountered
 	# Parameters: None
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
@@ -39,7 +39,7 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
-	# 	untill the below regex is encountered
+	# 	until the below regex is encountered
 	# Parameters: None
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
