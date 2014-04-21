@@ -1,7 +1,7 @@
 class Lecturer < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, 
-	     :validatable, :confirmable
+	    	:recoverable, :rememberable, :trackable, 
+	    	:validatable, :confirmable
 
 	#Uploader
 	mount_uploader :profile_image, ProfileImageUploader
@@ -16,10 +16,12 @@ class Lecturer < ActiveRecord::Base
 	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
 	validates_format_of :department, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :gender, presence: true
+	validates :dob, presence: true
 
 	#Relations
 	has_and_belongs_to_many :courses, join_table: "courses_lecturers"
-	has_and_belongs_to_many :worked_with, class_name:"TeachingAssistant",	join_table: "lecturers_teaching_assistants"
+	has_and_belongs_to_many :worked_with, class_name:"TeachingAssistant", join_table: "lecturers_teaching_assistants"
 	
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
