@@ -1,0 +1,10 @@
+	<h1>Solutions' Constraints</h1>
+	
+	<table class = "table table-striped", style = "width:80%">
+		<% @parameters.each do |params| %>
+			<tr>
+				<td><%= link_to params.parameter, :controller => 'solutions_constraints', :action => 'show', :id => params.id %></td>
+					<% end %>
+				</td>
+			</tr>
+	</table>

@@ -1,0 +1,44 @@
+<%= form_for :constrain do |f| %>
+	<table>
+		<tr>
+			<th>Method Constrains</th>
+			<td width = "10px"></td>
+			<td><%= f.text_field :parameter, placeholder: "Return Type"%></td>
+			<td width = "10px"></td>
+			<td><%= f.text_field :parameter, placeholder: "Method Name" %></td>
+			<br>
+		</tr>
+		<tr height="10px"></tr>
+		<tr>
+			<%= form_for :patient do |u| %>
+				<th>Method Parameter</th>
+				<td width = "10px"></td>
+				<td><%= u.text_field :parameter, placeholder: "Variable Type" %></td>
+				<td width = "10px"></td>
+				<td><%= u.text_field :parameter, placeholder: "Variable Name" %></td>
+				<td width = "20px"></td>
+				<td><%= image_submit_tag "add_buttom.png", id:"params", style: "width:15%;height:15%;margin_top:10px;"%></td>
+ 			<% end %>
+		</tr>
+		<tr height="10px"></tr>
+		<tr>
+			<%= form_for :patient do |u| %>
+				<th>Variable Constraints</th>
+				<td width = "10px"></td>
+				<td><%= u.text_field :variable_name, placeholder: "Variable Type" %></td>
+				<td width = "10px"></td>
+				<td><%= u.text_field :variable_name, placeholder: "Variable Name" %></td>
+				<td width = "20px"></td>
+				<td><%= image_submit_tag "add_buttom.png", id:"variables", style: "width:15%;height:15%;margin_top:10px;"%></td>
+ 			<% end %>
+		</tr>
+	</table>
+	<div id="parameter">
+		<% render action: "show_params"%>
+	</div>
+	<div id="variable">
+		<% render action: "show_variables"%>
+	</div>
+	<br>
+	<%= f.submit "Save Changes", class: "btn btn-success"%>
+<% end %>
