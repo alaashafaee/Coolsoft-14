@@ -13,16 +13,44 @@ puts("# ---------------------------Admins-----------------------------------")
 	Admin.create(name: "Admin")
 
 puts("# ---------------------------Lecturers-----------------------------")
-	Lecturer.create!(name:"Lecturer1", email:"1@lecturer.com", password:"123456789")
-	Lecturer.create!(name:"Lecturer1", email:"2@lecturer.com", password:"123456789")
+	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'LecturerI',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		degree: "PhD", university: "GUC", department: "MET")
+	l.save!
+	l = Lecturer.new(email: '2@lecturer.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'LecturerII',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		degree: "PhD", university: "Uni", department: "Dep")
+	l.save!
 
 puts("# ---------------------------Students-----------------------------")
-	Student.create!(name:"Student1", email:"1@student.com", password:"123456789")
-	Student.create!(name:"Student2", email:"2@student.com", password:"123456789")
+	s = Student.new(email: '1@student.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'StudentI',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		faculty: "MET", university: "GUC", major: "CS", semester: 6, 
+		advising: false, probation: false)
+	s.save!
+	s = Student.new(email: '2@student.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'StudentII',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
+		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
+		advising: true, probation: true)
+	s.save!
 
 puts("# ---------------------------TeachingAssistants-----------------------------")
-	TeachingAssistant.create(name:"TA1", email:"1@ta.com", password:"123456789")
-	TeachingAssistant.create(name:"TA2", email:"2@ta.com", password:"123456789")
+	t = TeachingAssistant.new(email: '1@ta.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'TAI',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		degree: "MSc", university: "GUC", department: "MET",
+		graduated_from: "GUC", graduated_year: 2005)
+	t.save!
+	t = TeachingAssistant.new(email: '2@ta.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'TAII',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		degree: "BSc", university: "Uni", department: "Dep",
+		graduated_from: "Uni", graduated_year: 2009)
+	t.save!
 
 puts("# --------------------------Courses------------------------------")
 	Course.create(name:"Course1", description:"This is course one", code:1, year:2014, semester:1)
@@ -119,7 +147,6 @@ puts("# -----------------------Attempts---------------------------")
 	Attempt.create(failure: true) 
 	
 puts("# -------------------------------------------------------")
-
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
 puts("**************************************************************")

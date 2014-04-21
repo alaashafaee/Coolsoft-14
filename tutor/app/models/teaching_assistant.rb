@@ -1,7 +1,7 @@
 class TeachingAssistant < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
-	     	:recoverable, :rememberable, :trackable, 
-	     	:validatable, :confirmable
+			:recoverable, :rememberable, :trackable, 
+			:validatable, :confirmable
 	
 	mount_uploader :profile_image, ProfileImageUploader
 
@@ -19,7 +19,6 @@ class TeachingAssistant < ActiveRecord::Base
 	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
 	validates_format_of :department, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
-	validates :gender, presence: true
 	validates :dob, presence: true
 
 	#Relations
@@ -33,7 +32,7 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :model_answers, as: :owner
 	has_many :method_constraints, as: :owner
 	has_many :method_parameters, as: :owner
-	has_many :variable_constraints,	as: :owner
+	has_many :variable_constraints, as: :owner
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
 
