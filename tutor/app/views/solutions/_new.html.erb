@@ -49,7 +49,8 @@
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div style="color: orange; font-family: monospace; border: #000000; border-style: solid;
-		border-width: thin; max-height: 150px; min-height: 150px; overflow: auto; background: #3d1451;">
+		border-width: thin; max-height: 150px; min-height: 150px; background: #3d1451; overflow: scroll;
+		overflow-y: scroll; overflow-x: scroll; max-width: 750px; min-width: 750px;">
 		<p style="color: green; margin: 5px;"><%= flash[:compiler_success] %></p>
 		<p style="color: red; margin: 5px;"><%= flash[:compiler_fail] %></p>
 		<p style="white-space: pre; margin: 5px;"><%= flash[:compiler_feedback] %></p>

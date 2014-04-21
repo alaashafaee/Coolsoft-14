@@ -2,9 +2,9 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	# and outputs 2 flush messages for success and failure scenarios 
+	#	and outputs 2 flush messages for success and failure scenarios 
 	# Parameters: 
-	# 	solution_params: submitted from the form_for
+	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
@@ -49,6 +49,7 @@ class SolutionsController < ApplicationController
 				flash[:compiler_fail] = "Compilation Failed!"
 				flash[:compiler_feedback] = compiler_feedback[:errors]
 			end
+			@solution.save
 			redirect_to :back
 		else
 			flash[:alert] = "You did not write any code!"
