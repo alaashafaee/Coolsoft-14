@@ -2,7 +2,7 @@
 
 <%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
 	<p>
-		<%= select("teaching_assistant", "email", TeachingAssistant.find(:all).collect {|p| [ p.name ] }, {:prompt => 'Select'}) %>
+		<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
 	</p>
 
 	<p>

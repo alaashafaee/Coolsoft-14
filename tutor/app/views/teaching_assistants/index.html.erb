@@ -8,12 +8,12 @@
 <table class = "table table-striped", style = "width:50%", border = "1">
   <tr>
     <!-- Listing the heads -->
-    <th>Title</th>
-    <th>Description</th>
+    <th>Name</th>
+    <th>Email</th>
   </tr>
   
   <!-- Looping on the array of topics of the course -->
-  <% @teaching_assistants.each do |teacing_assistant| %>
+  <% @course_teaching_assistants.each do |teaching_assistant| %>
     <tr>
       <!-- Inserting the records to the table -->
       <td><%= teaching_assistant.name %></td>

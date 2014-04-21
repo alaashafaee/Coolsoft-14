@@ -5,14 +5,16 @@ class TeachingAssistantsController < ApplicationController
 	end
 
 	def create
-		@teaching_assistant = teaching_assistants.where(email: params[:email])
-		@course = courses.find_by_id(params[:course_id])
+		@teaching_assistant = TeachingAssistant.find_by_id(params[:teaching_assistant][:id])
+		@course = Course.find_by_id(params[:course_id])
+		@course.TAs << @teaching_assistant
+		redirect_to :action => 'index'
 	end	
 	
 
 	def index
 		@course = Course.find(params[:course_id])
-		@teaching_assistants = @course.TAs.order('name')
+		@course_teaching_assistants = @course.TAs.order('name')
 	end
 
 
