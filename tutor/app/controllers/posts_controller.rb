@@ -45,7 +45,7 @@ class PostsController < ApplicationController
 		elsif teaching_assistant_signed_in?
 			@new_post.owner_id = current_teaching_assistant.id
 			@new_post.owner_type = "teaching assistant"
-		elsif student_signed_in
+		elsif student_signed_in?
 			@new_post.owner_id = current_student.id
 			@new_post.owner_type = "student"
 		end
