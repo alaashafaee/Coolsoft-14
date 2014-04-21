@@ -15,6 +15,7 @@ class LecturerController < ApplicationController
   			render "show"
   		end
  	end
+
  	# [average number of trials - Story 2.3]
 	# Select a problem_id and count the number of students who tried to answer this problem
 	# Parameters =
@@ -41,4 +42,35 @@ class LecturerController < ApplicationController
  			render "show"
  		end
  	end
+
+
+ 	# [average time - Story 2.2]
+	# Select a problem_id and calculate the average time taken to answer a problem
+	# Parameters =
+	# 	student_id=a unique value for every student who try to answer a problem
+	# 	problem_id=a unique value for every problem
+	# 	time=an intger value to show the time taken to write a specific solution
+	# Returns: an integer value 
+	# Returns in case of failure : a message "No one answered this problem "
+	# Author: Rana ElNagar
+ 	def time
+ 		@problem=Problem.find_by_id(params[:id])
+ 		if Solution.find_by problem_id = @problem?
+ 			@time = Solution.find_by time 
+ 			unless @time.nil?
+ 				@time = @time + Solution.find_by time
+ 			end
+ 			@students=Solution.distinct.count.(:student_id)
+ 		else 
+ 			redirect_to "time"
+ 		end
+ 		@averageTime=(@time / @students)*100
+ 		if @averageTime.nil?
+ 			flash[:notice]="no one answered this problem"
+ 			render "has_no_answer"
+ 		else
+ 			render "show"
+ 		end
+ 	end
+
 end
