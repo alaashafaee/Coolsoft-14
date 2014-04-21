@@ -1,29 +1,40 @@
-<!-- Timer that starts when problem is shown --> 
-<b>Time spent:</b> 
+<!-- The flash messages for the succes and failure scenarios -->
+<p style="color: green"><%= flash[:success] %></p>
+<p style="color: red"><%= flash[:alert] %></p>
+
+<!-- Timer that starts when problem is shown -->
+<b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
 
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} , remote: true do |f| %>
 	<%= @code = f.text_area :code, placeholder: "Write your code here and then click submit",
-			class: "editor" %> 
+				class: "editor" %>
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>
 		<tr>
 			<td>
-				<%= button_tag 'Compile', id:'compile' %>
-				<%= button_tag 'Test', id: 'test' %>
-				<%= button_tag 'Debug', id: 'debug' %>
-				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
-				<%= button_tag 'Next Step', id: 'next', disabled: true %>
+				<%= button_tag 'Compile', type: 'Button',
+					id: 'compileButton', onClick: 'compile()' %>
+				<%= button_tag 'Test', type: 'Button',
+					id: 'testButton', onClick: 'test()' %>
+				<%= button_tag 'Start Debugging', type: 'Button',
+					id: 'debugButton', onClick: 'debug()' %>
+				<%= button_tag 'Previous', type: 'Button',
+					id: 'previousButton', onClick: 'previous()', hidden: true %>
+				<%= button_tag 'Next', type: 'Button',
+					id: 'nextButton', onClick: 'next()', hidden: true %>
+				<%= button_tag 'Stop Debugging', type: 'Button',
+					id: 'stopButton', onClick: 'stop()', hidden: true %>
 			</td>
-			<td style='text-align:right;'>					
+			<td style='text-align:right;'>
 				<b class='accepted'>Accepted</b>
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit"%>
+				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?' %>
 			</td>
 		</tr>
 	</table>
