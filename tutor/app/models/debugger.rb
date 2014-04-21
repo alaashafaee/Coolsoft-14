@@ -49,4 +49,9 @@ class Debugger < ActiveRecord::Base
 		return result
 	end
 
+	def get_name variable
+		name = variable.split(" = ").first
+		return name
+	end
+
 end
