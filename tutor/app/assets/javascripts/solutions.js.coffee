@@ -1,7 +1,7 @@
 # The list of variables
 Variables = null
-# The number of the current line to be executed
-LineNumber = 0
+# The number of the current index of the line to be executed
+IndexNumber = 0
 
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
@@ -10,8 +10,8 @@ LineNumber = 0
 # Returns: None
 # Author: Mussab ElDash
 @start_debug = (problem_id) ->
-	input = document.getElementById('solution_code').value
-	test = document.getElementById('testcases').value
+	input = $('#solution_code').val()
+	test = $('#testcases').val()
 	alert input
 	alert test
 	$.ajax
@@ -20,11 +20,71 @@ LineNumber = 0
 		data: {id : problem_id , code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
+			$('#nextButton').attr "disabled", false
+			$('#previousButton').attr "disabled", true
+			toggleDebug()
 			Variables = data
 			$.each data, (ia, da) ->
 				alert da["line"] + "=>" + da["locals"] + "da[locals] is Empty for now"
-			document.getElementById('next').disabled = false
-			document.getElementById('previous').disabled = true
-			# toggleDebug
 			return
 	return
+
+# [Execute Line By Line - Story 3.8]
+# Toggles debugging mode by changing the available buttons.
+# Parameters:
+#	none
+# Returns: none
+# Author: Rami Khalil (Temporary)
+@toggleDebug = () ->
+	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
+	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
+	$('#testButton').prop 'hidden', !$('#testButton').prop 'hidden'
+
+	$('#nextButton').prop 'hidden', !$('#nextButton').prop 'hidden'
+	$('#previousButton').prop 'hidden', !$('#previousButton').prop 'hidden'
+	$('#stopButton').prop 'hidden', !$('#stopButton').prop 'hidden'
+
+# [Compile - Story 3.4]
+# Sends the code to the server to be compiled.
+# Parameters:
+#	none
+# Returns: none
+# Author: Rami Khalil (Temporary)
+@compile = () ->
+	alert "Compiling"
+
+# [Test - Story 3.15]
+# Sends the code and the input to be processed on the server.
+# Parameters:
+#	none
+# Returns: none
+# Author: Rami Khalil (Temporary)
+@test = () ->
+	alert "Testing"
+
+# [Execute Line By Line - Story 3.8]
+# Moves to the next state of execution.
+# Parameters:
+#	none
+# Returns: none
+# Author: Rami Khalil
+@next = () ->
+	alert "Next Step"
+
+# [Execute Line By Line - Story 3.8]
+# Moves to the previous state of execution.
+# Parameters:
+#	none
+# Returns: none
+# Author: Rami Khalil
+@previous = () ->
+	alert "Previous Step"
+
+# [Debug - Story 3.6]
+# Stops the debugging session.
+# Parameters:
+#	none
+# Returns: none
+# Author: Rami Khalil (Temporary)
+@stop = () ->
+	toggleDebug()
