@@ -32,6 +32,7 @@ class ProblemsController < ApplicationController
 			p.owner_id = current_teaching_assistant.id
 			p.owner_type = "teaching assistant"
 		end
+		p.incomplete = true
 		p.track_id = params[:id]
 		if p.save
 			redirect_to :action => "edit", :id => p.id
@@ -52,6 +53,7 @@ class ProblemsController < ApplicationController
 			@problem = Problem.find_by_id(params[:id])
 			@test_cases = @problem.test_cases
 			@answers = @problem.model_answers
+			@track = Track.find_by_id(@problem.track_id)
 		else
 			render ('public/404')
 		end
@@ -83,7 +85,7 @@ class ProblemsController < ApplicationController
 	end
 
 	def done
-		@problem = Problem.find_by_id(params[:id])
+		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.test_cases.empty?
 			@failure = true
 			flash.keep[:notice] = "Test cases are empty #{@failure}"
@@ -93,12 +95,13 @@ class ProblemsController < ApplicationController
 			flash.keep[:notice] = "Answers are empty"
 			redirect_to :back
 		else
+			@problem.incomplete = false
 			redirect_to :action => "show", :id => @problem.id
 		end
 	end	
 
 	def destroy_problem
-		@problem = Problem.find_by_id(params[:id])
+		@problem = Problem.find_by_id(params[:problem_id])
 		@problem.test_cases.destroy
 		@problem.model_answers.destroy
 		@problem.destroy

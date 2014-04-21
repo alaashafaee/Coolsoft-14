@@ -27,7 +27,7 @@ Tutor::Application.routes.draw do
 	resources :model_answers
 	resources :problems_by_tas
 	resources :solutions
-	resources :problems
+	
 	resources :topics
 
 	# Example resource route with options:
@@ -54,6 +54,11 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
+
+	resources :problems do
+		get 'done'
+		get 'destroy_problem'
+	end	
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales

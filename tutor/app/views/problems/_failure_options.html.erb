@@ -1,4 +1,3 @@
-<%= button_to "Abort and Delete Problem", action: "destroy_problem" , id: @problem.id %>
-<%= button_to "Save as Incomplete", action: "done" , id: @problem.id %>
-<Button><%= link_to "Abort and Delete Problem", destroy_problem_problem_path(:problems => { :destroy_problem => {:id => @problem.id} } )%></button>
-<Button><%= link_to "Save as Incomplete", done_problem_path(:problems => { :done => {:id => @problem.id} } )%></button>
+
+<%= button_to 'Abort and Delete Problem', problem_destroy_problem_path(:problem_id => @problem.id), method: :get, :confirm => 'Are you sure?' %>	
+<%= button_to 'Save as Incomplete', problem_path(:id => @problem.id), method: :get %>	
