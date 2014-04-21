@@ -1,6 +1,18 @@
 <% provide(:title, "Edit Answer") %>
+<%if session[:errorsupdate] %>
+		<span class ="red"><h4> Model Answer can't be updayed </h2></span>
+		<ul>
+		<% session[:errorsupdate].each do |msg| %>
+				<li>
+				<span class="red">	<%= msg %> </span>
+				</li>
+			<% end %>
+				
+		
+		</ul>
+	<% end %>
 <%= form_for(@answer) do |f| %>
-<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit',
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @answer.problem_id,
               :method => :get, class: 'btn btn-default btn-xs' %></ul>
 
 
@@ -19,3 +31,7 @@
         
           
 <%end%>
+<style type="text/css" />
+	.red { color: #FF0000; }
+	.bold { font-weight: bold; }
+</style>

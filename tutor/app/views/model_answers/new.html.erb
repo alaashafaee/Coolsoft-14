@@ -1,8 +1,19 @@
 <%= form_for :model_answer, url: model_answers_path  do |f| %>
 
-<%= flash[:notice]%>
-<%= flash[:error]%>
 
+<%= flash[:error] %>
+<%if session[:error] %>
+		<span class ="red"><h4> Model Answer can't be saved </h2></span>
+		<ul>
+		<% session[:error].each do |msg| %>
+				<li>
+				<span class="red">	<%= msg %> </span>
+				</li>
+			<% end %>
+				
+		
+		</ul>
+	<% end %>
 
   <h2>Please Insert your model answer</h2>
 
@@ -22,3 +33,7 @@
 <br> </br>
 
 <%end%>
+<style type="text/css" />
+	.red { color: #FF0000; }
+	.bold { font-weight: bold; }
+</style>

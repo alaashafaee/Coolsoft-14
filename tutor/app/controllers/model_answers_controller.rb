@@ -28,23 +28,21 @@ class ModelAnswersController < ApplicationController
 			@answer.owner_id = current_lecturer.id
 			@answer.owner_type = "lecturer"
 			@answer.problem_id=@@problemid
-			@problems.model_answers << @answer
+			
 		elsif teaching_assistant_signed_in?
 			@answer = ModelAnswer.new(post_params)
 			@answer.owner_id = current_teaching_assistant.id
 			@answer.problem_id=@@problemid
 			@answer.owner_type = "teaching assistant"
-			@problems.model_answers << @answer
+			
 		end
 		if @answer.save
+			@problems.model_answers << @answer
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 		else
-			if params[:model_answer][:title] == ""
-				flash[:error] = "Title is a required field"
-			elsif params[:model_answer][:answer]==""  
-				flash[:error] = "Answer is a required field" 
-			end
+			session[:error] = @answer.errors.full_messages
+		
 			redirect_to :back
 			#redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 		end
@@ -66,7 +64,9 @@ class ModelAnswersController < ApplicationController
       		flash[:notice] = "Your Answer is now updated"
          	redirect_to :controller => 'problems', :action => 'edit', :id => @@problemid
 		else
-         	flash[:notice] = "Your Answer is noy updated"
+         	session[:errorsupdate] = @answer.errors.full_messages
+		
+			redirect_to :back
 		end
     end
 	
