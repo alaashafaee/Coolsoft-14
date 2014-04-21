@@ -15,7 +15,7 @@ class Debugger < ActiveRecord::Base
 		instance_variables = []
 		flag = 0
 		input "locals"
-		output_buffer = bufferUntilComplete
+		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
 			if line == "Method arguments:"
 				flag = 1
