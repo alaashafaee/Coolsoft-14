@@ -1,18 +1,10 @@
-<html>
-<head>
-<title></title>
-</head>
-<body>
-
-<% if student_signed_in? %>
-Name : <% current_student.name %>
-Solved Problems : <% @solved %>
-Failures : <% @failed %>
-<% end %>
-
-<% else %>
-You cant view this because you are not a student !
-<% end %>
-
-</body>
-</html>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<%= column_chart [
+  [ "Solved ones",  @solved ],
+  [ "Wrong answers", @failed ],
+  [ "Attempted ones", '8']
+ ],
+ 
+ library: {bar: {groupWidth: "10%"}},
+colors: ["lightblue","grey","darkgrey"]
+ %>

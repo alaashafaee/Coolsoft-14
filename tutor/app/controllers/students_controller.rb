@@ -1,8 +1,8 @@
 class StudentsController < ApplicationController
 
   def get_performance
-  	@solved = current_student.success_attempts
-  	@failed = current_student.failure_attempts
+  	@solved = Attempt.count(:conditions => { :success => true, :student_id => current_student.id })
+  	@failed = Attempt.count(:conditions => { :failure => true, :student_id => current_student.id })
   end
 
 end
