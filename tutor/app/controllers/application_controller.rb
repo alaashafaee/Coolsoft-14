@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	before_action :update_sanitized_params, if: :devise_controller?
 
-	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Permits some fields to be passed through sign up forms to update the lecturer,
 	# 	student, and teaching_assistant models
 	# Parameters: None
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Checks if a user is signed-in in order to be used in authentication over different pages
 	# 	where they are redirected to homepage if they aren't authenticated
 	# Parameters: None

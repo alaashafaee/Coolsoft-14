@@ -38,7 +38,7 @@ class TeachingAssistant < ActiveRecord::Base
 
 	#Methods
 
-	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Checks if the email is already registered in tables: Lecturer and Student
 	# 	before registering the email for table: TeachingAssistant
 	# Parameters: None
