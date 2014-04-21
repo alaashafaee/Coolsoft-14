@@ -1,0 +1,15 @@
+<h1>Listing articles</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @teaching_assistants.each do |teacing_assistant| %>
+    <tr>
+      <td><%= teaching_assistant.name %></td>
+      <td><%= teaching_assistant.email %></td>
+    </tr>
+  <% end %>
+</table>

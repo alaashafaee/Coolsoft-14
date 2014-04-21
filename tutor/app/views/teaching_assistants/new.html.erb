@@ -1,13 +1,13 @@
 <h1>Add a Teaching Assistant</h1>
 
-<%= form_for :teaching_assistant do |f| %>
+<%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
 	<p>
 		<%= select("teaching_assistant", "email", TeachingAssistant.find(:all).collect {|p| [ p.name ] }, {:prompt => 'Select'}) %>
 	</p>
-		<p>
-		<%= select("lecturer_teaching_assistant", "email", TeachingAssistant.find(:all).collect {|p| [ p.name ] }, {:prompt => 'Select'}) %>
-	</p>
+
 	<p>
-		<%= f.submit %>
-	</p>
+		<%= f.submit "Add TA", class: "btn btn-success"%>
+	</p>	
 <% end %>
+
+<%= button_to "Back", {:controller => 'courses', :action =>'index'}, class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
