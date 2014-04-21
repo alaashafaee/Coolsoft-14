@@ -21,11 +21,11 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.compile(student_id, problem_id, solution_id, code)
 		java_path = 'students_solutions/Java/'
-		%x[ #{'mkdir' + ' -p ' + java_path} ]
+		%x[ #{'mkdir -p ' + java_path} ]
 		file_name = java_path + 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + solution_id.to_s + '.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
 		class_path = 'students_solutions/Class'
-		%x[ #{'mkdir' + ' -p ' + class_path} ]
+		%x[ #{'mkdir -p ' + class_path} ]
 		return %x[ #{'javac -g -d ' + class_path + ' ' + file_name + ' 2>&1'} ]
 	end
 
