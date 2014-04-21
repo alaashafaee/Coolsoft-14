@@ -15,7 +15,7 @@ class Debugger < ActiveRecord::Base
 	# 	regex : The input regex to be encountered to return
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
-	def bufferUntil regex
+	def buffer_until regex
 		buffer = ""
 		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
 			begin
@@ -33,7 +33,7 @@ class Debugger < ActiveRecord::Base
 	# Parameters: None
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
-	def bufferUntilReady
+	def buffer_until_ready
 		(bufferUntil [/> $/m]) + "\n"
 	end
 
@@ -43,7 +43,7 @@ class Debugger < ActiveRecord::Base
 	# Parameters: None
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
-	def bufferUntilComplete
+	def buffer_until_complete
 		(bufferUntil [/\[\d\] $/m]) + "\n"
 	end
 	
@@ -79,9 +79,9 @@ class Debugger < ActiveRecord::Base
 		$all = []
 		begin
 			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path, input.strip)
-			bufferUntilReady
+			buffer_until_ready
 			input "stop in #{file_path}.main"
-			bufferUntilReady
+			buffer_until_ready
 			input "run"
 			num = get_line
 			# locals = get_variables
@@ -123,7 +123,7 @@ class Debugger < ActiveRecord::Base
 	# Returns: The number of the line to be executed
 	# Author: Mussab ElDash
 	def get_line
-		out_stream = bufferUntilComplete
+		out_stream = buffer_until_complete
 		list_of_lines = out_stream.split(/\n+/)
 		last_line = list_of_lines[-2]
 		/\d+/=~ last_line
