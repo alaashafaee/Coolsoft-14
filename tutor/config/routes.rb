@@ -7,7 +7,7 @@ Tutor::Application.routes.draw do
 	post "model_answers/edit"
 		get "model_answers/show"
 
-
+		get "problems/edit"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers

@@ -1,89 +1,24 @@
 <%= form_for :model_answer, url: model_answers_path  do |f| %>
 
 <%= flash[:notice]%>
-
-
-<body>
-<script type="text/javascript">
-function toggle_visibility(id) {
-var e = document.getElementById(id);
-if(e.style.display == 'block')
-e.style.display = 'none';
-else
-e.style.display = 'block';
-}
-</script>
-</body>
-<p>
+<%= flash[:error]%>
 
 
   <h2>Please Insert your model answer</h2>
-  <br><%= f.text_box :title %></br>
+
+  <br><h3><%= f.label :Title%></h3>
+		<%= f.text_field :title %></br>
+	<h3>	<%= f.label :Answer%> </h3>
   <%= f.text_area :answer,:cols => "50", :rows => "15" %>
   
-</p>
+  
+
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
+   
  <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
+
 </br>
 <br> </br>
 
-<br>
-<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Answers</a>
-</br>
-
-
-
-<div id="foo" style="display:none;">
-<% if !@answers.any? %>
-      <p>You have no previous answers</p>
-      <% end %>
-<% if !@answers.empty? %>
-
-<table class="table table-striped", style = "width:70%">
-
-        <thead>
-          <tr>
-            <th >Title</th>
-            <th style = "width:20%" >Created At</th>
-            <th style = "width:20%" >Updated At</th>
-            <th >View or Edit</th>
-            <th >Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <tr>
-          <% @answers.each do |answer1| %>
-          
-            <td><%= answer1.title  %></td>
-            <td><%= answer1.created_at  %></td>
-            <td><%= answer1.updated_at  %></td>
-
-
-            
-            <td><%= link_to "View or Edit", :controller => 'model_answers', :action => 'edit', :id => 
-            answer1.id, 
-              :method => :get, class: 'btn btn-primary btn-xs' %></td>
-               <td><a href="#" class="btn btn-success btn-large"><i class="icon-white icon-heart"></i> Bootstrap Button Generator</a></td>
-
-             </tr>
-          
-        </tbody>
-        <% end %>
-
-      </table>
-      <%end%>
-      </div>
-      
-<% end %>
-<style type="text/css" />
-
-
-a.Lst {
-    font-size: 30px;
-    line-height: 0px;
-    padding-left: 0px;
-    font-weight: normal;
-}
-</style>
+<%end%>
