@@ -68,6 +68,23 @@ class TracksController < ApplicationController
 		end
 	end
 
+	def recommend_problem
+		problem = Problem.find_by_id(params[:id])
+		track = problem.track
+		topic = problem.track.topic
+		course = problem.track.topic.course
+		students_enrolled = course.students
+		students_receiving_recommendation = Hash.new
+
+		students_enrolled.each do |student|
+			student_level = TrackProgression.get_progress(student.id,topic.id)
+			if (student_level == track.difficulty)
+				students_receiving_recommendation[student.id] = student.name
+			end
+		end
+		render json: students_receiving_recommendation
+	end
+
 	# [Create Track - Story 4.1]
 	# permits the passed parameters
 	# Parameters: 
