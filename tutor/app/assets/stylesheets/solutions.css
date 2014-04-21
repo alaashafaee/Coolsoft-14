@@ -30,3 +30,34 @@ textarea  {
 	display: none;
 	color: blue;
 }
+
+.console {
+	color: orange;
+	font-family: monospace;
+	border: #000000;
+	border-style: solid;
+	border-width: thin;
+	max-height: 150px;
+	min-height: 150px;
+	background: #3d1451;
+	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	max-width: 750px;
+	min-width: 750px;
+}
+
+.compilation_succeeded {
+	color: green;
+	margin: 5px;
+}
+
+.compilation_failed {
+	color: red;
+	margin: 5px;
+}
+
+.compilation_feedback {
+	white-space: pre;
+	margin: 5px;
+}
