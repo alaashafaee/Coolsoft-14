@@ -2,7 +2,7 @@ class DebugController < ApplicationController
 
 	# [Debugger: Debug - Story 3.6]
 	# Send the recieved code to be debugged 
-	# 	and return the result to the user as an json object
+	# 	and return the result to the user as a json object
 	# Parameters: 
 	# 	id: The id of the problem being solved
 	# 	code: The code to be debugged
