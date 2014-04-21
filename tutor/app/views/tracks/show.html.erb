@@ -37,10 +37,10 @@
 				<%= p.description %>
 			</div>
 		</div>
-		<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
+		<Button><%= link_to "Edit", edit_problem_path(:problems => { :edit => {:id => p.id} } )%></button>
 	<% end %>
 </div>
 
 <% if true %>
-	<Button><%= link_to "Add", new_problem_path(:id => @track.id )%></button>
+	<Button><%= link_to "Add", new_problem_path(:problems => { :new => {:id => @track.id} } )%></button>
 <% end %>
