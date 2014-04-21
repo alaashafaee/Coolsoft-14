@@ -96,7 +96,7 @@ class TopicsController < ApplicationController
 		end
 
 		def course_params
-			params.permit(:course_id)
+			params.permit(:course_id )
 		end
 
 end

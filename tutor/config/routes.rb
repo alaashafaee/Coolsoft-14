@@ -47,7 +47,7 @@ Tutor::Application.routes.draw do
 		end
 	end
 
-	resources :tracks do
+	resources :topics do
 		member do
 			post 'sort'
 		end
