@@ -76,10 +76,9 @@ class Debugger < ActiveRecord::Base
 			puts "Compilation Error"
 			exit
 		end
-		file_path_with_args = "#{file_path} #{input}"
 		$All = []
 		begin
-			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path_with_args.strip)
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path, input.strip)
 			bufferUntilReady
 			input "stop in #{file_path}.main"
 			bufferUntilReady
