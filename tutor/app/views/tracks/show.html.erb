@@ -31,13 +31,27 @@
 					<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
 					<%= link_to p.title , p , style: 'color:#003366;' ,
 					class: color %></b>
-					<span class="badge"><%= p.success_attempts %></span>
+					<span class="badge">
+						<div id="my-button1">Click me!</div>
+					</span>
 			</div>
 			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
 				<%= p.description %>
 			</div>
 		</div>
 	<% end %>
+</div>
+<div id="element_to_pop_up">
+    <div id="container">
+        <ul>
+            <li>kdj ie Lorem ipsum dolor sit amet</li><button>Recommend</button>
+            <li>consectetur adipisicing elit, sed do eiusmod</li><button>Recommend</button>
+            <li>labore et dolore magna aliqua. Ut enim ad minim veniam</li><button>Recommend</button>
+            <li>quis nostrud exercitation ullamco laboris nisi</li><button>Recommend</button>
+            <li>ut aliquip ex ea commodo consequat. Duis aute irure dolor in</li><button>Recommend</button>
+            <li>cillum dolore eu fugiat nulla pariatur. Excepteur </li><button>Recommend</button>
+        </ul>
+    </div>
 </div>
 
 <% if @can_edit %>
