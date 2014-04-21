@@ -9,10 +9,6 @@ class Debugger < ActiveRecord::Base
 	
 	#Methods
 
-	def input input
-		$input.puts input
-	end
-
 	def get_variables
 		method_arguments = []
 		local_variables = []
