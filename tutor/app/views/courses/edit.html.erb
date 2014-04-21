@@ -30,8 +30,40 @@
 		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
 	</div> 
 </div>
-<br/>
+<br>
+<div>
+	<%= form_for :course, url: course_path(@course), method: :patch do |c| %>
+	<p>
+		<br><br><%= c.label :name %><br>
+    	<%= c.text_field :name %>
+  	</p>
+ 
+  	<p>
+    	<%= c.label :code %><br>
+    	<%= c.text_area :code %>
+  	</p>
 
+	<p>
+    	<%= c.label :year %><br>
+    	<%= c.text_area :year %>
+  	</p>
+
+  	<p>
+    	<%= c.label :semester %><br>
+    	<%= c.text_area :semester %>
+  	</p>
+
+  	<p>
+    	<%= c.label :description %><br>
+    	<%= c.text_area :description %>
+	</p>
+ 
+	<p>
+		<%= c.submit %>
+	</p>
+	<% end %>
+	<%= link_to 'Back', courses_path %>
+</div>	
 <!-- This button deletes the course -->
 <div>
 	<%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger" , style: "margin-top: 100px; float: right", method: :delete %> 
