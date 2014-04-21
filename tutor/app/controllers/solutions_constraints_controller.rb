@@ -18,6 +18,7 @@ class SolutionsConstraintsController < ApplicationController
 		if lecturer_signed_in? || teaching_assistant_signed_in?
 			@parameters = MethodParameter.find_by_id(params[:id])
 			@variables = VariableConstraint.find_by_id(params[:id])
+			redirect_to :action => 'show'
 			#@methods = MethodConstraints.find_by_id(params[:id])	
 		end
 	end
@@ -26,6 +27,7 @@ class SolutionsConstraintsController < ApplicationController
 		@parameters = MethodParameter.find_by_id(params[:id])
 		@variables = VariableConstraint.find_by_id(params[:id])
 		if @parameters.update_attributes(constraint_params) && @variables.update_attributes(constraint_params)
+			flash[:notice] = "Constraints updated"
 			redirect_to :action => 'show'
 		else
 			redirect_to :action => 'index'
@@ -47,5 +49,4 @@ class SolutionsConstraintsController < ApplicationController
 	def constraint_params
 		params.require(:parameter).permit(:parameters, :variables)
 	end
-
 end
