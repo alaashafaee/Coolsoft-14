@@ -50,8 +50,6 @@ class SolutionsController < ApplicationController
 		end
 	end
 
-
-
 	# [Code Editor: Write Code - Story 3.3]
 	# Fills the ID of the problem , code from the form_for 
 	# Parameters:
