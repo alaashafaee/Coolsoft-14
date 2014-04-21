@@ -1,24 +1,24 @@
 class Executer
 
-	def self.execute(file, input) 
-		java_path = 'students_solutions/Java/'
+	def self.execute(file_name, input)
+		# java_path = 'students_solutions/Java/'
 		classes_path = 'students_solutions/Class'
-		compile = %x[#{'javac -g -d ' + classes_path + ' ' + java_path + file + '.java' + ' 2>&1'}]
-		if compile.empty?
-			problem_id = 3
-			validity = check_input_validity(input, problem_id)
-			if validity[:status]
-				@execute_res = %x[#{'java -cp ' + classes_path + ' ' + file + ' ' + input + ' 2>&1'}]
-				if @execute_res.include?("Exception")
-					return false
-				else
-					return true
-				end
-			else
-				@execute_res = validity[:msg]
+		# compile = %x[#{'javac -g -d ' + classes_path + ' ' + java_path + file + '.java' + ' 2>&1'}]
+		# if compile.empty?
+		problem_id = 3
+		validity = check_input_validity(input, problem_id)
+		if validity[:status]
+			@execute_res = %x[#{'java -cp ' + classes_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
+			if @execute_res.include?("Exception")
 				return false
+			else
+				return true
 			end
+		else
+			@execute_res = validity[:msg]
+			return false
 		end
+		# end
 	end
 
 	def self.check_input_validity(input, problem_id)
@@ -34,21 +34,24 @@ class Executer
 		return {status: true, msg:""}
 	end
 
-	def self.get_runtime_error()
+	def self.remove_class_name(file_name, error, sub_name)
+		return error.gsub(file_name, sub_name)
+	end
+
+	def self.get_runtime_error(file_name, sub_name)
+		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
 		if @execute_res.include?("/ by zero")
-			return msg = {error: @execute_res, 
-					explaination: "Division by Zero results in infinity, which computers can not understand. Be carefull !"}
+			message = "Division by Zero results in infinity, "\
+						"which computers can not understand. Be careful !"
+			return msg = {error: @execute_res, explaination: message}
 		else
-			return msg = {error: @execute_res, 
-					explaination: "To be set Runtime Error!"}
+			message = "To be set Runtime Error!"
+			return msg = {error: @execute_res, explaination: message}
 		end
 	end
 
-	def self.get_output() 
+	def self.get_output()
 		return @execute_res
 	end
 
 end
-
-# Executer.execute(ARGV[0], ARGV[1])
-# Executer.get_runtime_error()
