@@ -106,3 +106,15 @@ end
 		@topic = Topic.find_by_id(id)
 	end 
 
+	def sort
+		id = params[:id]
+		@topic = Topic.find_by_id(id)
+		@tracks = @topic.tracks #did nothing new here just made sure I have the the correct topic id and the tracks related to it
+
+		#men hena not sure what I should do 
+		new_Order_Array = params[:methodParam] #now we we can use the array passed by Ajax
+		@tracks.each do |track|
+			track.difficulty = params['track'].index(track.id) + 1 #track.id.to_s I removed.to_s part
+			track.save
+		end
+	end

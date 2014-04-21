@@ -46,6 +46,12 @@ Tutor::Application.routes.draw do
 			get 'getProblems'
 		end
 	end
+
+	resources :tracks do
+		member do
+			post 'sort'
+		end
+	end
 	resources :discussion_boards do
 		member do
 			post 'toggle'
