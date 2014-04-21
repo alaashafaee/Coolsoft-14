@@ -1,0 +1,20 @@
+<div>
+		<h1>
+			Search Results :
+		</h1>
+		<p class="lead">
+			Search for Users and Courses
+		</p>
+</div>
+<div id="results">
+<% if @lecturers.any? %>
+	<div class="panel-group" id="accordion">
+		<%= render "result_form" , objects: @lecturers %>
+	</div>
+<%end%>
+<% if @students.any? %>
+	<div class="panel-group list-group" id="accordion">
+		<%= render "result_form" , objects: @students %>
+	</div>
+<%end%>
+</div>
