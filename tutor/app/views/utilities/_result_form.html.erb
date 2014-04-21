@@ -1,21 +1,21 @@
 <div class="panel panel-default">
 	<div class="panel-title list-group-item list-group-item-info"
 		data-toggle="collapse" data-parent="#accordion" href="#<%= objects.first.class.name.pluralize.to_s %>">
-					<div align="center">
-						<a>
-							<%= objects.first.class.name.pluralize.to_s %>
-							<span class="badge">
-								<%=objects.count%>
-							</span>
-						</a>
-					</div>
+		<div align="center">
+			<a class="panel-title">
+				<%= objects.first.class.name.pluralize.to_s %>
+				<span class="badge">
+					<%=objects.count%>
+				</span>
+			</a>
+		</div>
 	</div>
 	<div id="<%= objects.first.class.name.pluralize.to_s %>" class="panel-collapse collapse">
 		<ul class="list-group">
-			<% objects.each do |l|%>
+			<% objects.each do |object|%>
 				<li class="list-group-item" data-toggle="tooltip"
-					data-placement="top" title="<%= l.name%>">
-						<%= link_to l.name ,class: 'color' %>
+					data-placement="top" title="<%= object.name%>">
+						<%= link_to object.name, class: 'color' %>
 				</li>
 			<% end %>
 		</ul>
