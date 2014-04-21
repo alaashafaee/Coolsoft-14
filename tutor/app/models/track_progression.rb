@@ -27,6 +27,7 @@ class TrackProgression < ActiveRecord::Base
 		else
 			return progression.level
 		end
+
 		return 0
 	end
 end

@@ -1,12 +1,7 @@
-<%=
+<%
 	suggestion = current_student.get_a_system_suggested_problem
 	if suggestion != nil then
-		link_to "Recommended problem: " + suggestion.title, suggestion
-	end
-%>
-
-<%
-	if suggestion != nil then
-		%><br><%
+		concat link_to "Recommended problem: " + suggestion.title, suggestion
+		%><br /><%
 	end
 %>
