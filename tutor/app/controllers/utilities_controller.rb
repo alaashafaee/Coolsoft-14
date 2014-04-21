@@ -11,7 +11,7 @@ class UtilitiesController < ApplicationController
 		@teaching_assisstants = TeachingAssistant.search(params[:search])
 		@courses = Course.search(params[:search])
 		respond_to do |format|
-			format.js #render 'simple_search.js.erb'
+			format.js
 			format.html
 		end
 	end
