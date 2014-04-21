@@ -99,6 +99,10 @@ class TopicsController < ApplicationController
 			params.permit(:course_id )
 		end
 
+		def track_params
+			params.permit(:difficulty)
+		end
+
 end
 
 	def edit 
@@ -109,9 +113,9 @@ end
 	def sort
 		id = params[:id]
 		@topic = Topic.find_by_id(id)
-		@tracks = @topic.tracks #get the tracks of a certain topic
+		@tracks = @topic.tracks #get all the tracks of a certain topic
 
-		#men hena not sure what I should do 
+		#from here not sure what I should do 
 		new_Order_Array = params[:methodParam] #now we we can use the array passed by Ajax
 		@tracks.each do |track|
 			track.difficulty = params[:methodParam].index(track.id) + 1 #track.id.to_s I removed.to_s part

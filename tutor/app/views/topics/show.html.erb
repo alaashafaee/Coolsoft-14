@@ -26,19 +26,16 @@ $(document).ready(function() {
 			Done: function(){
 				//call the ajax function here
 				var array = $("#list-of-tracks").sortable('toArray') ;
-				
 				$.ajax({
-     				type: 'POST',
-     				dataType: 'javascript',
-     				//should the url be "/tracks/sort"
-     				//or                "/tracks" + topic_id + "/sort"
+     				//should the url be "/topics/sort"
+     				//or                "/topics" + topic_id + "/sort"
      				//or                "sort" only   
      				// should I include ROOT_PATH at the begining  
-
      				url: 'topics/sort',
-     				traditional: true,
-     				//dataType: "json",
+     				type: 'POST',
      				data: { methodParam : array }, //use it as a key value pair
+					dataType: 'script',
+
      				success: function (data) {
          				alert("success");
      				},
