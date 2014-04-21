@@ -1,0 +1,19 @@
+<% if flash[:notice] -%>
+		<div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
+	<% end %>
+	<br/><br/><br/>
+	<!-- Rendering the form fields -->
+	<%= form_for :hint, url: { :controller => "hints",action: "create"} do  |f| %>
+		<p>
+			<%= f.label "text" %><br>
+			<%= f.text_field :message, autofocus: true, class:"form-control", style: "width:300px", placeholder: "text", value: params[:message] %>
+		</p>
+		<p>
+			<%= f.label :"The number of wrong submissions that hint appears after"  %><br>
+			<%= f.text_area :submission_counter, class:"form-control", style: "margin-left:auto;
+			margin-right:auto;height:50px;width:500px;resize:none", value:params[:submission_counter] %>
+		</p>
+		<p>
+			<%= f.submit "Save", class: "btn btn-success"%>
+		</p>
+<% end %>

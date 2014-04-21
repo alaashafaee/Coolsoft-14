@@ -29,6 +29,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :hints
 
 	# Example resource route with options:
 	#   resources :products do
