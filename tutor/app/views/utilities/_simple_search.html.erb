@@ -1,0 +1,32 @@
+<div id="result_body">
+	<div class="panel-body">
+		<div id="results">
+			<% unless @lecturers.present? or @teaching_assisstants.present? or @courses.present? or @students.present?%>
+				<div style="text-align:center">
+					<p> No Result match </p>
+				</div>
+			<% else %>
+				<% if @lecturers.present?%>
+					<div class="panel-group list-group" id="accordion">
+						<%= render "result_form" , objects: @lecturers %>
+					</div>
+				<%end%>
+				<% if @students.present?%>
+					<div class="panel-group list-group" id="accordion">
+						<%= render "result_form" , objects: @students %>
+					</div>
+				<%end%>
+				<% if @teaching_assisstants.present? %>
+					<div class="panel-group list-group" id="accordion">
+						<%= render "result_form" , objects: @teaching_assisstants %>
+					</div>
+				<%end%>
+				<% if @courses.present? %>
+					<div class="panel-group list-group" id="accordion">
+						<%= render "result_form" , objects: @courses %>
+					</div>
+				<%end%>
+			<% end %>
+		</div>
+	</div>
+</div>
