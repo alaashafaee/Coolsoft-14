@@ -20,9 +20,11 @@ class Compiler < ActiveRecord::Base
 	#	The compiler's feedback.
 	# Author: Ahmed Moataz
 	def self.compile(student_id, problem_id, solution_id, code)
-		file_name = 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + solution_id.to_s + '.java'
+		java_path = 'students_solutions/Java/'
+		file_name = java_path + 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + solution_id.to_s + '.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
-		return %x[ #{'javac -g ' + file_name +  ' 2>&1'} ]
+		class_path = 'students_solutions/Class'
+		return %x[ #{'javac -g -d ' + class_path + ' ' + file_name + ' 2>&1'} ]
 	end
 
 	# [Compiler: Compile - Story 3.4]
