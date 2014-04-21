@@ -32,6 +32,7 @@ class ProblemsController < ApplicationController
 			p.owner_id = current_teaching_assistant.id
 			p.owner_type = "teaching assistant"
 		end
+		p.incomplete = true
 		if p.save
 			redirect_to :action => "edit", :id => p.id
 		else 
@@ -51,6 +52,9 @@ class ProblemsController < ApplicationController
 			@problem = Problem.find_by_id(params[:id])
 			@test_cases = @problem.test_cases
 			@answers = @problem.model_answers
+			@track = Track.find_by_id(@problem.track_id)
+			@topic = Topic.find_by_id(@track.topic_id)
+			@tracks = Track.find_all_by_topic_id(@track.topic_id)
 		else
 			render ('public/404')
 		end
@@ -72,17 +76,24 @@ class ProblemsController < ApplicationController
 	end
 
 	def update
+		@track = Track.find_by_id(problem_params[:track_id])
 		@problem = Problem.find_by_id(params[:id])
-		if @problem.update_attributes(problem_params)
-			redirect_to :action => "edit", :id => @problem.id
+		@problem_test = @track.problems.find_all_by_title(@problem.title)
+		if(Array(@problem_test).size == 0)
+			@problem = Problem.find_by_id(params[:id])
+			if @problem.update_attributes(problem_params)
+				redirect_to :action => "edit", :id => @problem.id
+			else
+				flash.keep[:notice] = "Update paramater is empty"	
+			end	
 		else 
-			flash.keep[:notice] = "Update paramater is empty"
-			redirect_to :back
+			flash.keep[:notice] = "#{@track.title} has a problem with the same title"
 		end
+		redirect_to :back
 	end
 
 	def done
-		@problem = Problem.find_by_id(params[:id])
+		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.test_cases.empty?
 			@failure = true
 			flash.keep[:notice] = "Test cases are empty #{@failure}"
@@ -92,12 +103,13 @@ class ProblemsController < ApplicationController
 			flash.keep[:notice] = "Answers are empty"
 			redirect_to :back
 		else
+			@problem.incomplete = false
 			redirect_to :action => "show", :id => @problem.id
 		end
 	end	
 
 	def destroy_problem
-		@problem = Problem.find_by_id(params[:id])
+		@problem = Problem.find_by_id(params[:problem_id])
 		@problem.test_cases.destroy
 		@problem.model_answers.destroy
 		@problem.destroy
@@ -113,6 +125,6 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	private
 	def problem_params
-		params.require(:Problem).permit(:title , :description)
+		params.require(:Problem).permit(:title , :description, :track_id)
 	end
 end
