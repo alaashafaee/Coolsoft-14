@@ -52,16 +52,17 @@ class PostsController < ApplicationController
 			@new_post.owner_type = "student"
 			current_student.posts << @new_post
 		end
+		@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 		if @new_post.save
 			flash[:notice] = "Post successfully created"
-			@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 			@discussion_board.posts << @new_post
 			redirect_to :controller => 'posts', :action => 'show', :id => @new_post.id
 		else
 			if @new_post.errors.any?
 				flash[:notice] = @new_post.errors.full_messages.first
 			end
-			render :action => 'new'  
+			#redirect_to :controller => 'posts', :action => 'new',:discussion_board_id => @discussion_board.id
+			render :action => 'new' 
 		end
 	end
 
