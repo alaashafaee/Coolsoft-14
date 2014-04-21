@@ -25,4 +25,12 @@ class TeachingAssistant < ActiveRecord::Base
 
 	#Methods
 
+	# [Simple Search - Story 1.22]
+	# search for users
+	# Parameters: keyword
+	# Returns: A hash with search results according to the keyword
+	# Author: Ahmed Elassuty
+	def self.search(keyword)
+		where("name LIKE ? or email LIKE ?", "%#{keyword}%" , "%#{keyword}%") if keyword.present?
+	end
 end
