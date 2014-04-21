@@ -19,6 +19,7 @@ and a paragraph to view the problem description of the instance variable @proble
 		<%= p.hidden_field :title, value: @problem.title %>
 	
 <% end %>
+
 <p>Current Track: <%= @track.title %></p>
 <%= form_for :Problem, url: problem_path(@problem), method: :patch do |p| %>
 	<% if Array(@tracks).size > 1 %>
@@ -26,11 +27,12 @@ and a paragraph to view the problem description of the instance variable @proble
 		<%= p.submit('Change Track') %>
 	<% end %>
 <% end %>
+
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
-
-<%= button_to "Done", action: "done" , id: @problem.id %>
+<%= render partial: "problems/success_options" %>
 <%= render partial: "problems/failure_options" %>
+
 <!-- A division for the flash message output to view the action's output -->
 <% if flash[:notice] %>
 	<div class="notice"><%= flash[:notice] %></div>

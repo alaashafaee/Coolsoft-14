@@ -8,11 +8,11 @@ class TracksController < ApplicationController
 	# Author: Mussab ElDash
 	def show
 		id = params[:id]
-		track = Track.find_by_id(id)
-		if track
-			@topic = track.topic
+		@track = Track.find_by_id(id)
+		if @track
+			@topic = @track.topic
 			@course = @topic.course
-			@problems = track.problems
+			@problems = @track.problems
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 			if student_signed_in?

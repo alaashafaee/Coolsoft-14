@@ -84,12 +84,13 @@ class ProblemsController < ApplicationController
 			if @problem.update_attributes(problem_params)
 				redirect_to :action => "edit", :id => @problem.id
 			else
-				flash.keep[:notice] = "Update paramater is empty"	
+				flash.keep[:notice] = "Update paramater is empty"
+				redirect_to :back
 			end	
 		else 
 			flash.keep[:notice] = "#{@track.title} has a problem with the same title"
+			redirect_to :back
 		end
-		redirect_to :back
 	end
 
 	def done
@@ -104,7 +105,7 @@ class ProblemsController < ApplicationController
 			redirect_to :back
 		else
 			@problem.incomplete = false
-			redirect_to :action => "show", :id => @problem.id
+			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
 	end	
 
@@ -112,9 +113,10 @@ class ProblemsController < ApplicationController
 		@problem = Problem.find_by_id(params[:problem_id])
 		@problem.test_cases.destroy
 		@problem.model_answers.destroy
+		@track = @problem.track_id
 		@problem.destroy
 		flash.keep[:notice] = "Problem has been deleted"
-		redirect_to :action => "new"
+		redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 	end	
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
