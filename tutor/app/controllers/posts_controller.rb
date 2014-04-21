@@ -14,6 +14,18 @@ class PostsController < ApplicationController
 	end
 
 	# [Add Post - Story 1.13]
+	# Description: Displays the post that the user chose
+	# Parameters:
+	#	@post: The current post the user is in.
+	#	@posts = The list of replies of @post
+	# Returns: The view of the post
+	# Author: Ahmed Atef
+	def show
+	  	@post = Post.find(params[:id])
+	  	@replies = @post.replies.order("created_at desc")
+	end
+
+	# [Add Post - Story 1.13]
 	# Description: This action takes the passed parameters from 
 	#              the add post form, creates a new Post record
 	#              and assigns it to the respective discussion board.If the 
