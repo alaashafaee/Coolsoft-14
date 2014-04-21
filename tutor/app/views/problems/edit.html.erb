@@ -19,9 +19,10 @@ and a paragraph to view the problem description of the instance variable @proble
 		<%= p.hidden_field :title, value: @problem.title %>
 	
 <% end %>
+
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
-<%= button_to 'Done', problem_done_path(:problem_id => @problem.id), method: :get %>
+<%= render partial: "problems/success_options" %>
 <%= render partial: "problems/failure_options" %>
 
 <!-- A division for the flash message output to view the action's output -->

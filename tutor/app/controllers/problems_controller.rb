@@ -33,7 +33,6 @@ class ProblemsController < ApplicationController
 			p.owner_type = "teaching assistant"
 		end
 		p.incomplete = true
-		p.track_id = params[:id]
 		if p.save
 			redirect_to :action => "edit", :id => p.id
 		else 
@@ -53,7 +52,6 @@ class ProblemsController < ApplicationController
 			@problem = Problem.find_by_id(params[:id])
 			@test_cases = @problem.test_cases
 			@answers = @problem.model_answers
-			@track = Track.find_by_id(@problem.track_id)
 		else
 			render ('public/404')
 		end
@@ -96,7 +94,7 @@ class ProblemsController < ApplicationController
 			redirect_to :back
 		else
 			@problem.incomplete = false
-			redirect_to :action => "show", :id => @problem.id
+			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
 	end	
 
@@ -104,9 +102,10 @@ class ProblemsController < ApplicationController
 		@problem = Problem.find_by_id(params[:problem_id])
 		@problem.test_cases.destroy
 		@problem.model_answers.destroy
+		@track = @problem.track_id
 		@problem.destroy
 		flash.keep[:notice] = "Problem has been deleted"
-		redirect_to :action => "new"
+		redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 	end	
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
@@ -117,6 +116,6 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	private
 	def problem_params
-		params.require(:Problem).permit(:title , :description)
+		params.require(:Problem).permit(:title , :description, :track_id)
 	end
 end
