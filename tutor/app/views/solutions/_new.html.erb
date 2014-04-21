@@ -18,7 +18,8 @@
 			<td>
 				<%= button_tag 'Compile', id:'compile' %>
 				<%= button_tag 'Test', id: 'test' %>
-				<%= button_tag 'Debug', id: 'debug' %>
+				<%= button_tag 'Debug', id: 'debug', type: 'button',
+					onclick: "start_debug(#{params[:id]})" %>
 				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
 				<%= button_tag 'Next Step', id: 'next', disabled: true %>
 			</td>
@@ -32,7 +33,7 @@
 		</tr>
 	</table>
 	<br /><br />
-	<textarea class='test'>Test Input</textarea><br /><br />
+	<textarea id='testcases' class='test'>Test Input</textarea><br /><br />
 	<b>Output:</b><br />
 	<p class='output'>
 		Output response

@@ -84,8 +84,8 @@ class Debugger < ActiveRecord::Base
 			bufferUntilReady
 			input "run"
 			num = get_line
-			locals = get_variables
-			hash = {:line => num, :locals => locals}
+			# locals = get_variables
+			hash = {:line => num, :locals => []}
 			$all << hash
 			debug
 		rescue => e
@@ -105,8 +105,8 @@ class Debugger < ActiveRecord::Base
 			begin
 				input "step"
 				num = get_line
-				locals = get_variables
-				hash = {:line => num, :locals => locals}
+				# locals = get_variables
+				hash = {:line => num, :locals => []}
 				$all << hash
 				counter += 1
 			rescue => e
@@ -128,7 +128,42 @@ class Debugger < ActiveRecord::Base
 		last_line = list_of_lines[-2]
 		/\d+/=~ last_line
 		regex_capture = $&
-		return regex_capture.to_i
+		if regex_capture
+			return regex_capture.to_i
+		else
+			raise 'Exited'
+		end
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Create a java file and start debugging
+	# Parameters: 
+	# 	Student_id: The id of the current signed in student
+	# 	problem_id: The id of the problem being solved
+	# 	code: The code to be debugged
+	# 	input: The arguments to be debugged against
+	# Returns: The result of the debugging
+	# Author: Mussab ElDash
+	def self.debug(student_id, problem_id, code, input)
+		code = change_class_name(student_id, problem_id, code)
+		file_name = 'st' + student_id.to_s + 'pr' + problem_id.to_s
+		File.open("#{file_name}.java", 'w') { |file| file.write(code) }
+		# return {done: "Done"}
+		debugger = Debugger.new
+		return debugger.start(file_name, input)
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Renames the class name to be compiled and debugged correctly
+	# Parameters: 
+	# 	Student_id: The id of the current signed in student
+	# 	problem_id: The id of the problem being solved
+	# 	code: The code to be debugged
+	# Returns: The modified code
+	# Author: Mussab ElDash
+	def self.change_class_name(student_id, problem_id, code)
+		name = 'st' + student_id.to_s + 'pr' + problem_id.to_s
+		return code.sub(code[0..code.index('{')], 'public class ' + name + ' {')	
 	end
 
 end
