@@ -86,7 +86,7 @@ class Debugger < ActiveRecord::Base
 			num = get_line
 			locals = get_variables
 			hash = {:line => num, :locals => locals}
-			$All << hash
+			$all << hash
 			debug
 		rescue => e
 			p e.message
