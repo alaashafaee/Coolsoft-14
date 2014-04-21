@@ -127,7 +127,7 @@ Devise.setup do |config|
 
 	# ==> Configuration for :rememberable
 	# The time the user will be remembered without asking for credentials again.
-	# config.remember_for = 2.weeks
+	config.remember_for = 2.weeks
 
 	# If true, extends the user's remember period when remembered via cookie.
 	# config.extend_remember_period = false
@@ -187,7 +187,7 @@ Devise.setup do |config|
 	# Time interval you can reset your password with a reset password key.
 	# Don't put a too small interval or your users won't have the time to
 	# change their passwords.
-	config.reset_password_within = 0
+	config.reset_password_within = 2.hours
 
 	# ==> Configuration for :encryptable
 	# Allow you to use another encryption algorithm besides bcrypt (default). You can use
