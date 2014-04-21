@@ -3,24 +3,24 @@
 	<div>
 		<p>
 			<b>Code: </b>
-			<%=@course.code%>
-		</P>
+			<%= @course.code%>
+		</p>
 		<p>
 			<b>Year: </b>
 			<%= @course.year%>
-		</P>
+		</p>
 		<p>
 			<b>Semester:</b>
 			<%= @course.semester%>
-		</P>
+		</p>
 		<p>
 			<b>Description:</b>
 			<%= @course.description%>
-		</P>
+		</p>
 	</div>
 
 	<div>
-		<%= link_to "View Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => @course.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+		<%= link_to "View Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => @course.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
 	</div>
 
 	<div class="panel-group list-group" id="accordion">
@@ -36,10 +36,10 @@
 				<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
 					<ul class="list-group">
 						<% t.tracks.each do |tt|%>
-									<% color = "label label-default" %>
+								<% color = "label label-default" %>
 							<li class="list-group-item" data-toggle="tooltip"
 								data-placement="top" title="<%= tt.difficulty%>">
-									<%= link_to tt.title , tt , class: color %>
+								<%= link_to tt.title , tt , class: color %>
 							</li>
 						<% end %>
 					</ul>
