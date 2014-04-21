@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
 
-  	# Prevent CSRF attacks by raising an exception.
-  	# For APIs, you may want to use :null_session instead.
-  	before_action :authenticate!
-  	protect_from_forgery with: :exception
+	# Prevent CSRF attacks by raising an exception.
+	# For APIs, you may want to use :null_session instead.
+	before_action :authenticate!
+	protect_from_forgery with: :exception
 	before_action :update_sanitized_params, if: :devise_controller?
 
 	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
-	# Permits some fields to be passed through sign up forms to update the lecturer, 
+	# Permits some fields to be passed through sign up forms to update the lecturer,
 	# 	student, and teaching_assistant models
 	# Parameters: None
 	# Returns: None
@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
 	private
 	def update_sanitized_params
 		if "#{resource_name}" == "lecturer"
-	  		devise_parameter_sanitizer.for(:sign_up) {
-	  			|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :degree, 
-	  				:university, :department, :profile_image, :profile_image_cache)
-	  		}
-	  	elsif "#{resource_name}" == "student"
+			devise_parameter_sanitizer.for(:sign_up) {
+				|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :degree, 
+					:university, :department, :profile_image, :profile_image_cache)
+			}
+		elsif "#{resource_name}" == "student"
 			devise_parameter_sanitizer.for(:sign_up) {
 				|u| u.permit(:name, :email, :password, :password_confirmation, :gender, :dob, :university, 
 					:faculty, :major, :semester, :advising, :probation, :profile_image, :profile_image_cache)
