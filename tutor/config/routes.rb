@@ -13,13 +13,12 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
 
-
 	# You can have the root of your site routed with "root"
 	root 'site#index'
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
+	
 	# Example resource route (maps HTTP verbs to controller actions automatically):
 	#   resources :products
 	resources :courses
@@ -88,5 +87,4 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
-
 end
