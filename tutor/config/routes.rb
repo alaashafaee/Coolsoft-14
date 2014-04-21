@@ -29,7 +29,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
-	resources :solutions_constraints
+		
 
 	# Example resource route with options:
 	#   resources :products do
@@ -55,6 +55,13 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
+	resources :solutions_constraints do
+		collection do
+			post "new"
+		end
+	end
+
+
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales

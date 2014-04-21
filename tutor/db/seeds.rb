@@ -71,9 +71,9 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "hello World 3", input:"x = 2")
 
 puts("# -----------------------Method Parameters---------------------------")
-	MethodParameter.create(parameter:"MethodParameters 1")
-	MethodParameter.create(parameter:"MethodParameters 2")
-	MethodParameter.create(parameter:"MethodParameters 3")
+	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")

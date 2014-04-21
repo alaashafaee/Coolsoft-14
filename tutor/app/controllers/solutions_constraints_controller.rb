@@ -6,17 +6,12 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	def create
-		
+		redirect_to action: "index"
 	end
 
-	def show_params
-		@data = MethodParameter.all
-		render "show_data"
-	end
-
-	def show_variables
-		@data = VariableConstraint.all
-		render "show_data"
+	def new
+		@constrain = MethodConstraint.new()
+		@params = MethodParameter.new()
 	end
 
 	def show
