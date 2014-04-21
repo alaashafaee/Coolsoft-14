@@ -73,4 +73,28 @@ class LecturerController < ApplicationController
  		end
  	end
 
+ 	# [show attempts- Story 2.4]
+	# Select a problem_id and select the attempts to answer this problem
+	# Parameters =
+	# 	problem_id=a unique value for every problem
+	# 	code=a text to show the solution of a problem
+	# Returns: text 
+	# Returns in case of failure : a message "No one answered this problem "
+	# Author: Rana ElNagar
+ 	def showAttempts
+ 		@problem=Problem.find_by_id(params[:id])
+ 		@solution=Solution.find_by problem_id 
+ 		if @problem == @solution?
+ 			@attempt=Solution.find_by code
+ 			if @attempt.nil?
+ 				falsh[:notice]="no one answered this problem"
+ 				render "has_no_answer"
+ 			else 
+ 				render "show"
+ 			end
+ 		else 
+ 			redirect_to "showAttempts"
+ 		end
+ 	end
+
 end
