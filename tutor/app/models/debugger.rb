@@ -9,10 +9,16 @@ class Debugger < ActiveRecord::Base
 	
 	#Methods
 
+	# [Debugger: View Variables - Story 3.7]
+	# Returns a list of all variables in the class with
+	# 	their values
+	# Parameters: None
+	# Returns: An Array
+	# Author: Khaled Helmy
 	def get_variables
 		method_arguments = []
 		local_variables = []
-		instance_variables = get_instance_variables
+		class_variables = get_class_variables
 		flag = 0
 		input "locals"
 		output_buffer = buffer_until_complete
@@ -32,13 +38,52 @@ class Debugger < ActiveRecord::Base
 					local_variables = local_variables + variable_value
 			end
 		end
-		return method_arguments + local_variables + instance_variables
+		return method_arguments + local_variables + class_variables
 	end
 
-	def get_instance_variables
-		input "dump this"
+	# [Debugger: View Variables - Story 3.7]
+	# Return the list of instance and static variables from within
+	# 	static methods
+	# Parameters: None
+	# Returns: An Array
+	# Author: Khaled Helmy
+	def get_class_variables
+		result = []
+		input "print this.getClass().getName()"
+		flag = 0
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			if flag == 1
+				class_name = output_buffer.split(" = ").last
+				input "fields " + class_name
+				fields_list = buffer_until_complete
+				fields_list.each_line do |line|
+					if line.match("fields list")
+						next
+					else
+						field_name = line.split(" ").last
+						input "print this." + field_name
+						field_result = buffer_until_complete
+						field_result = field_result.split(".").last
+						result << field_result
+					end
+				end
+			else
+				if line.match("Exception")
+					break
+				else
+					flag = 1
+			end
+		end
+		return result
 	end
 
+	# [Debugger: View Variables - Story 3.7]
+	# Takes a variable and evaluates its value
+	# Parameters: 
+	#   variable: A String containing a variable assignment
+	# Returns: An Array
+	# Author: Khaled Helmy
 	def get_value variable
 		result = []
 		if variable.match("instance")
@@ -56,6 +101,13 @@ class Debugger < ActiveRecord::Base
 		return result
 	end
 
+	# [Debugger: View Variables - Story 3.7]
+	# Takes a line containing an object assignment and extracts
+	# 	the object name
+	# Parameters: 
+	#   variable: A String containing an object assignment
+	# Returns: A String
+	# Author: Khaled Helmy
 	def get_name variable
 		name = variable.split(" = ").first
 		return name
