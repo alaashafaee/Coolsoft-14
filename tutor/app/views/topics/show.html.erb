@@ -9,9 +9,8 @@
 
 <script>
 
-//var order;  //  making order a global variable
 $(document).ready(function() {
-	 //var DoneFlag = new Boolean(0); //a flag to check whether the TA made changes or not
+	 
 	$("#list-of-tracks").sortable();
 	
 	$( "#edit_track_rating_dialog" ).dialog({
@@ -24,19 +23,17 @@ $(document).ready(function() {
 			Cancel: function(){
 			$( this ).dialog( "close" );
 			} ,
-			//Done: function(){
-				//DoneFlag = Boolean(1);
-				// call the updateValue() function here 
-				// display an alert("changes saved")
-				//close the dialog box 
-			//}
 			Done: function(){
 				//call the ajax function here
 				var array = $("#list-of-tracks").sortable('toArray') ;
-
 				$.ajax({
      				type: 'post',
-     				url: '/tracks/sort',
+     				//should the url be "/tracks/sort"
+     				//or                "/tracks" + topic_id + "/sort"
+     				//or                "sort" only   
+     				// should I include ROOT_PATH at the begining  
+
+     				url: '/tracks/1/sort',
      				traditional: true,
      				//dataType: "json",
      				data: { methodParam : array }, //use it as a key value pair
@@ -47,9 +44,7 @@ $(document).ready(function() {
          				alert("Error on ajax post");
      				}
  				}); 
-
 				//alert(array.toString()) ;  //alert returns this format 1,2
-				
 				$( this ).dialog( "close" ); // close 
 			}
 		}
