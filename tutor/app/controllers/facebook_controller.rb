@@ -1,6 +1,6 @@
 class FacebookController < ApplicationController
 # [Post to Facebook - Story 5.1]
-# renders the view that prompts user to post to facebook
+# Renders the view that prompts user to post to facebook
 # Parameters: None
 # Returns: None
 # Author: Amir George
