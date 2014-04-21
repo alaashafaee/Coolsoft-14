@@ -51,7 +51,7 @@ class Debugger < ActiveRecord::Base
 	# Inputs an input to the input stream of the debugger JDB
 	# Parameters:
 	# 	input : The input to be written in the sub stream
-	# Returns: A List of all 100 steps ahead
+	# Returns: None
 	# Author: Rami Khalil
 	def input input
 		$input.puts input
