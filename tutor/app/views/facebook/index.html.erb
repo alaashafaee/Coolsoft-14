@@ -11,11 +11,19 @@
 				status     : true,
 				xfbml      : true
 			});
-			FB.ui({
-				method: 'feed'
-			});
+			FB.ui(
+				{
+					method: 'feed'
+				},
+				function(response) {
+					if (response && response.post_id) {
+						alert('Post was published.');
+					} else {
+						alert('Post was not published.');
+					}
+				}
+			);
 		};
-
 		(function(d, s, id){
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) {return;}
