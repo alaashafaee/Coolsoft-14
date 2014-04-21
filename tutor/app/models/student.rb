@@ -33,7 +33,7 @@ class Student < ActiveRecord::Base
 
 	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
 	# Checks if the email is already registered in tables: Lecturer and TeachingAssistant
-	# before registering the email for table: Student
+	# 	before registering the email for table: Student
 	# Parameters: None
 	# Returns: None
 	# Author: Khaled Helmy

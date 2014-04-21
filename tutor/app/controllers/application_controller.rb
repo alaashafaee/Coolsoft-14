@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
 	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
 	# Permits some fields to be passed through sign up forms to update the lecturer, 
-	# student, and teaching_assistant models
+	# 	student, and teaching_assistant models
 	# Parameters: None
 	# Returns: None
 	# Author: Khaled Helmy
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
 	# [User Authentication Advanced - Story 5.9, 5.11, 5.12, 5.16]
 	# Checks if a user is signed-in in order to be used in authentication over different pages
-	# where they are redirected to homepage if they aren't authenticated
+	# 	where they are redirected to homepage if they aren't authenticated
 	# Parameters: None
 	# Returns: None
 	# Author: Khaled Helmy
