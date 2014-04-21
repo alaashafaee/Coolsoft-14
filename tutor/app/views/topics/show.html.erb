@@ -9,14 +9,14 @@
 
 <script>
 
-var order;  //  making order a global variable
+//var order;  //  making order a global variable
 $(document).ready(function() {
-	 var DoneFlag = new Boolean(0); //a flag to check whether the TA made changes or not
+	 //var DoneFlag = new Boolean(0); //a flag to check whether the TA made changes or not
 	 $("#list-of-tracks").sortable({ 
 	 	update: function (event, ui) {
 	 		order = $(this).sortable('toArray')
 			// this will return an array of this form => track_1,track_2,track_3        
-			 DoneFlag = Boolean(1) ;  
+			 //DoneFlag = Boolean(1) ;  
 
 //.toString(); remember to add this back 
 		}
@@ -25,22 +25,25 @@ $(document).ready(function() {
 	$( "#edit_track_rating_dialog" ).dialog({
 		autoOpen: false,
 		modal: true,
+		width: 'auto',
+		height: 'auto',
+		autoResize:false,
 		buttons: {
 			Cancel: function(){
 			$( this ).dialog( "close" );
 			}
-			Done: function(){
-				DoneFlag = Boolean(1);
+			//Done: function(){
+				//DoneFlag = Boolean(1);
 				// call the updateValue() function here 
 				// display an alert("changes saved")
 				//close the dialog box 
 			//}
 		}
 	});
-
 	$( "#opener" ).click(function() {
 		$( "#edit_track_rating_dialog" ).dialog( "open" );
-	});
+		$("#edit_track_rating_dialog").css('overflow', 'hidden');
+	}).disableSelection();
 });
 </script>
 </head>
