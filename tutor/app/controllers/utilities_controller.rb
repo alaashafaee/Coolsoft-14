@@ -15,4 +15,7 @@ class UtilitiesController < ApplicationController
 			format.html
 		end
 	end
+
+	def advanced_search
+	end
 end
