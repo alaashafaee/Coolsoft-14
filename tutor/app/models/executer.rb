@@ -9,10 +9,10 @@ class Executer
 			validity = check_input_validity(input, problem_id)
 			if validity[:status]
 				@execute_res = %x[#{'java -cp ' + classes_path + ' ' + file + ' ' + input + ' 2>&1'}]
-				if @execute_res.empty?
-					true
+				if @execute_res.include?("Exception")
+					return false
 				else
-					false
+					return true
 				end
 			else
 				@execute_res = validity[:msg]
@@ -27,12 +27,11 @@ class Executer
 		if input.include?("\n")
 			return {status: false, msg: "Input can not have line breaks \"don't use enter\""}
 		end
-		if input.split(" ").count == variables_number
-			return true
-		else
+		if input.split(" ").count != variables_number
 			msg = "Enter only " + variables_number.to_s + " numbers"
 			return {status: false, msg: msg}
 		end
+		return {status: true, msg:""}
 	end
 
 	def self.get_runtime_error()

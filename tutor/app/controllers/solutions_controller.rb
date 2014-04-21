@@ -49,7 +49,7 @@ class SolutionsController < ApplicationController
 		def solution_params
 			params.require(:solution).permit(:code , :problem_id)
 		end
-
+		# Ahmed Akram
 		def input
 			params.require(:solution).permit(:input)
 		end
