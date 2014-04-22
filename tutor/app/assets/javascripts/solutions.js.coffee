@@ -19,13 +19,46 @@ index_number = 0
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
-			toggleDebug()
-			variables = data
 			stop_spin()
+			if !data["success"]
+				compilation_error data["data"]["errors"]
+				return
+			variables = data["data"]
+			toggleDebug()
+			debug_console()
 			jump_state 0
 		error: ->
 			stop_spin()
 			return
+	return
+
+# [Debugger: Debug - Story 3.6]
+# Fills the console with the compilation errors
+# Parameters: noe
+# Returns: none
+# Author: Mussab ElDash
+compilation_error = (data) ->
+	$('.compilation_failed').html("Compilation Failed!")
+	$('.compilation_feedback').html(data)
+	return
+
+# [Debugger: Debug - Story 3.6]
+# Clears the console
+# Parameters: noe
+# Returns: none
+# Author: Mussab ElDash
+clear_console = ->
+	$('.compilation_failed').html("")
+	$('.compilation_feedback').html("")
+	return
+
+# [Debugger: Debug - Story 3.6]
+# Write successful debug in the console
+# Parameters: noe
+# Returns: none
+# Author: Mussab ElDash
+debug_console = ->
+	$('.compilation_succeeded').html("Debugging Succeeded!")
 	return
 
 # [Debugger: Debug - Story 3.6]
@@ -142,7 +175,7 @@ index_number = 0
 # Returns: none
 # Author: Rami Khalil
 @jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line'] - 1
+	highlight_line variables[stateNumber]['line'] - 2
 
 # [Debug - Story 3.6]
 # Stops the debugging session.

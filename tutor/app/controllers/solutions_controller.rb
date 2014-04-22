@@ -77,6 +77,7 @@ class SolutionsController < ApplicationController
 		else
 			flash[:alert] = "You did not write any code!"
 		end
+		redirect_to :back
 	end
 
 	private

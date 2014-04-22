@@ -65,15 +65,14 @@ class Debugger < ActiveRecord::Base
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(solution, input)
-		class_name = solution.class_file_name
+	def start(class_name, input)
 		$all = []
 		Dir.chdir(Solution::CLASS_PATH){
 			begin
 				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, input)
-				p buffer_until_ready
+				buffer_until_ready
 				input "stop in #{class_name}.main"
-				p buffer_until_ready
+				buffer_until_ready
 				input "run"
 				num = get_line
 				# locals = get_variables
@@ -81,7 +80,9 @@ class Debugger < ActiveRecord::Base
 				$all << hash
 				debug
 			rescue => e
-				p e.message
+				unless e.message === 'Exited'
+					return false
+				end
 			end
 		}
 		return $all
@@ -103,9 +104,8 @@ class Debugger < ActiveRecord::Base
 				$all << hash
 				counter += 1
 			rescue => e
-				puts e.message
 				$input.close
-				puts "closed"
+				raise 'Exited'
 			end
 		end
 	end
@@ -119,13 +119,20 @@ class Debugger < ActiveRecord::Base
 		out_stream = buffer_until_complete
 		puts out_stream
 		list_of_lines = out_stream.split(/\n+/)
+		before_last_line = list_of_lines[-2]
+		/, line=\d+/ =~ before_last_line
+		before_last_regex_capture = $&
+		/\d+/ =~ before_last_regex_capture
+		before_last_regex_capture = $&
 		last_line = list_of_lines[-2]
 		/^\d+/=~ last_line
-		regex_capture = $&
-		if regex_capture
-			return regex_capture.to_i
+		last_regex_capture = $&
+		if last_regex_capture
+			return last_regex_capture.to_i
+		elsif before_last_regex_capture
+			return before_last_regex_capture.to_i
 		else
-			return -1
+			raise 'Exited'
 		end
 	end
 
@@ -143,9 +150,17 @@ class Debugger < ActiveRecord::Base
 			problem_id: problem_id })
 		compile_status = Compiler.compiler_feedback(solution)
 		unless compile_status[:success]
-		 	return "Compilation Error"
+			return {:success => false , data: compile_status}
 		 end
 		debugger = Debugger.new
-		return debugger.start(solution, input)
+		class_name = solution.class_file_name
+		debugging = debugger.start(class_name, input)
+		puts "-----------------------------------------------------"
+		p debugging
+		java_file = solution.java_file_name true, true
+		class_file = solution.class_file_name true, true
+		File.delete(java_file)
+		File.delete(class_file)
+		return {:success => true , data: debugging}
 	end
 end
