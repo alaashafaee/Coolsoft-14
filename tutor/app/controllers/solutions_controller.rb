@@ -26,7 +26,7 @@ class SolutionsController < ApplicationController
 
 	# [Compiler: Compile - Story 3.4]
 	# Creates a soution for the current problem in the database and compiles it.
-	#	Then it places the compilation results and feedback in the flash hash.
+	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
@@ -36,15 +36,16 @@ class SolutionsController < ApplicationController
 		@solution.student_id = current_student.id
 		@solution.length = @solution.code.length
 		if @solution.save
-			compiler_feedback = Compiler.compiler_feedback(current_student.id,
-				solution_params[:problem_id], @solution.id.to_s, solution_params[:code])
+			compiler_feedback = Compiler.compiler_feedback(@solution)
 			if compiler_feedback[:success]
 				@solution.status = 3
 				flash[:compiler_success] = "Compilation Succeeded!"
+				flash[:previous_code] = compiler_feedback[:previous_code]
 			else
 				@solution.status = 2
 				flash[:compiler_fail] = "Compilation Failed!"
 				flash[:compiler_feedback] = compiler_feedback[:errors]
+				flash[:previous_code] = compiler_feedback[:previous_code]
 			end
 			@solution.save
 		else
