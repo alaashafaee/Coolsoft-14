@@ -1,2 +1,62 @@
-<h1>Hints#index</h1>
-<p>Find me in app/views/hints/index.html.erb</p>
+<body>
+	<script type="text/javascript">
+		function toggle_visibility(id) {
+			var e = document.getElementById(id);
+			if(e.style.display == 'block')
+				e.style.display = 'none';
+			else
+				e.style.display = 'block';
+		}
+	</script>
+</body>
+
+<% @hints1=Array.new %>
+<% @hints_check.each do |hint2| %>
+	<% if hint2.category == false%>
+		<% @hints1.push(hint2) %>
+	<%end%>
+<%end%>
+<br><ul class="navbar-brand pull-right"><%= link_to "Create New Hint"  , {:controller => 'hints',:action => 'new',
+    :method => :get, :model_answer_id => @answer.id },{class: 'btn btn-primary btn' }  %> </ul></br>
+<br>
+
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo2'); return false;"  style="font:120px"> Previous Hints</a>
+
+<div id="foo2" style="display:none;">
+	<% if !@hints1.any? %>
+		<p>You have no previous Hints</p>
+	<% end %>
+	<%if !@hints1.empty?%>
+		<table class="table table-striped", style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:30%"  >Hints</th>
+					<th style = "width:10%" >Number of submissions</th>
+					<th style = "width:20%">Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<% @hints.each do |hint1| %>
+						<% if hint1.category == false %>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<%= hint1.message %>
+							</td>
+							<td style="width:20%"><%= hint1.submission_counter  %></td>
+							<td><%= button_to "Edit"  , {:action => 'new', :controller => 'hints',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+				</tr>
+			</tbody>    
+						<% end %>
+					<% end %>
+		</table>
+	<%end%>
+</div>
+
+<style type="text/css" />
+a.Lst {
+    font-size: 30px;
+    line-height: 0px;
+    padding-left: 0px;
+    font-weight: normal;
+}
+</style>
