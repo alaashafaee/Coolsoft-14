@@ -105,10 +105,10 @@ indexNumber = 0
 	text_area = document.getElementById "solution_code"
 	code_lines = text_area.value.split '\n'
 	start_offset = 0
-	for i in[0...code_lines.length]
+	for i in[0..code_lines.length] by 1
 		if i == line
 			break
-		start_offset += code_lines.length+1
+		start_offset += code_lines[i].length+1
 	end_offset = start_offset + code_lines[line].length
 
 	# Chrome / Firefox
