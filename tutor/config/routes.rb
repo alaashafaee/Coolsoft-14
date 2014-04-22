@@ -30,7 +30,7 @@ Tutor::Application.routes.draw do
 	resources :problems
 	resources :topics
 	resources :hints
-	
+
 	# Example resource route with options:
 	#   resources :products do
 	#     member do
@@ -42,6 +42,7 @@ Tutor::Application.routes.draw do
 	#       get 'sold'
 	#     end
 	#   end
+
 	resources :tracks do
 		member do
 			get 'getProblems'

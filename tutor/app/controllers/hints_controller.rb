@@ -10,8 +10,8 @@ class HintsController < ApplicationController
 	def edit
 		@new_Tip = Hint.find_by_id(params[:id])
 	end	
-	
-    # [Edit helping hints - Story 4.13 ]
+
+	# [Edit helping hints - Story 4.13 ]
 	# This action takes the passed parameters from 
 	#	the creation form, edits a Hint record
 	#	which assigned  to the respective problem. If the 
@@ -19,7 +19,7 @@ class HintsController < ApplicationController
 	#	with a "Failed" message.
 	# Parameters:
 	#	hint_params[]: A list that has all fields entered by the user to in the
-	#	edit_hint form
+	#		edit_hint form
 	# Returns: 
 	#	flash[:notice]: A message indicating the success or failure of the edit
 	# Author: Mimi
@@ -43,8 +43,7 @@ class HintsController < ApplicationController
  	# [Edit helping hints - Story 4.13 ]
 	# Description: 
 	#	take the parameters from the from
-	# Parameters:
-	#			  none
+	# Parameters: none
 	# Returns:
 	#	Hash of paramas 
 	# Author: Mimi
