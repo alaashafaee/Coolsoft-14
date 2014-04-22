@@ -93,6 +93,25 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
+	#[Find Recommendations - Story 4.9]
+	# Description: This action orders the topics of a specific course
+	# Parameters:
+	#	params[:id]: The current course's id
+	# Returns: none
+	# Author: Mohamed Metawaa
+	def sort
+		@topic = Topic.find_by_id(params[:methodParam][0])  
+		@course = @topic.course 
+		@topics = @course.topics
+		new_Order_Array = params[:methodParam]
+
+		@topics.each do |t|
+			t.order_factor = (params[:methodParam]).index(t.id.to_s) + 1 
+			t.save
+		end
+		render :nothing => true
+	end
+
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)

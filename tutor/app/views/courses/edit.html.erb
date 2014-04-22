@@ -1,6 +1,60 @@
 <!--	Name: Course Edit Page
 		Author: Ahmed Akram
 -->
+<meta charset="utf-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<script>
+$(document).ready(function() {
+
+	$("#list-of-topics").sortable({
+	placeholder: "ui-state-highlight" , 
+	axis: "y",
+	tolerance: 'pointer',
+	forcePlaceholderSize: true,
+	cursor: "move",
+	containment: "parent" 
+	});
+
+	$("#order_topics_dialog").dialog({
+		autoOpen: false,
+		modal: true,
+		width: 'auto',
+		height: 'auto',
+		autoResize:false,
+		buttons: {
+			Done: function(){
+				var array = $("#list-of-topics").sortable('toArray') ;
+				$.ajax({
+					url: '/courses/sort',
+					type: 'POST',
+					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+					data: { 'methodParam' : array },
+					success: function (data) {
+						alert("success");
+						location.reload();
+					},
+					error: function (args) {
+						alert("Error on ajax post");
+					}
+				}); 
+				$(this).dialog("close");  
+			} ,
+			Cancel: function(){
+				$(this).dialog("close");
+			} 
+		}
+	});
+
+	$("#opener").click(function() {
+		$("#order_topics_dialog").dialog("open");
+		$("#order_topics_dialog").css('overflow', 'hidden');
+	}).disableSelection();
+});
+</script>
 
 <div>
 	<!-- This button shows all topics of the course -->
@@ -13,7 +67,12 @@
 	<div>
 		<%= button_to "Add Topics", {:controller => 'topics', :action => 'new',
 			:course_id => @course.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
-	</div> 
+	</div>
+
+	<!-- This button activates the topics sorting -->
+	<div>
+		<button id="opener" , class="btn btn-success", style= "float: left;margin-left: 15px" >Order topics</button>
+	</div>
 
 	<!-- This button activates the add TA action -->
 	<div><%= button_to "Add a TA", {:action => 'show'}, class: "btn btn-success" , style: "float: left; margin-left: 15px", :method => :get%> 
