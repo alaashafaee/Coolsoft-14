@@ -1,13 +1,13 @@
 <%
-	count = 0;
+	hint_count = 0;
 	@problem.model_answers.each do |model_answer|
 		model_answer.hints.each do |hint|
 			%>
-				<div id='hint<%= count %>' time='<%= hint.time %>' class='hidden'>
+				<div id='hint<%= hint_count %>' time='<%= hint.time %>' class='hidden'>
 					<%= hint.message %>
 				</div>
 			<%
-			count = count + 1
+			hint_count = hint_count + 1
 		end
 	end
 %>
