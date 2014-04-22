@@ -109,9 +109,29 @@ indexNumber = 0
 # Parameters:
 #	stateNumber: The target state number.
 # Returns: none
-# Author: Rami Khalil
+# Author: Rami Khalil + Khaled Helmy
 @jump_state = (stateNumber) ->
 	highlight_line variables[stateNumber]['line']
+	update_memory_contents stateNumber
+
+# [View Variables - Story 3.7]
+# Updates the variables values according to a certain state
+# Parameters:
+#	stateNumber: The target state number.
+# Returns: none
+# Author: Khaled Helmy
+@update_memory_contents = (stateNumber) ->
+	update_memory_contents = (stateNumber) ->
+	div = document.getElementById("memory")
+	list_of_variables = variables[stateNumber]["locals"]
+	s = ""
+	i = 0
+	while i < list_of_variables.length
+    	s += list_of_variables[i]
+    	s += "<br />"
+    	i++
+  	div.innerHTML = s
+  	return
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
