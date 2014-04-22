@@ -16,6 +16,7 @@
 			<th>Code</th>
 			<th>Options</th>
 			<th></th>
+			<th></th>
 		</tr>
 		<% @courses.each do |c| %>
 			<tr>
@@ -29,6 +30,11 @@
 				</td>
 				<td>
 					<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+				</td>
+				<td>
+					<% if current_student %>
+						<%= link_to "Share", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+					<% end %>
 				</td>
 			</tr>
 		<% end %>
