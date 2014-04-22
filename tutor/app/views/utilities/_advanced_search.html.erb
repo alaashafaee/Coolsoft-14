@@ -1,9 +1,10 @@
-<%= form_tag utilities_advanced_search_path, method: 'get', remote: true,class: "form-horizontal" do %>
+<%= form_tag utilities_advanced_search_path, method: 'get', remote: true,
+		class: "form-horizontal" do %>
 	<fieldset>
 		<div class="form-group">
 			<label class="col-lg-2 control-label">Keyword</label>
 			<div class="col-lg-10">
-			  <%= text_field_tag :keyword, "" , class: "form-control" %>
+				<%= text_field_tag :keyword, "" , class: "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -18,7 +19,7 @@
 					<div>
 						<label>
 							<%= check_box_tag :teaching_assistants%>Teaching Assistant
-						</label>                        	
+						</label>
 					</div>
 					<div>
 						<label>
@@ -28,18 +29,18 @@
 					<div>
 						<label>
 							<%= check_box_tag :courses%>Courses
-						</label>                       	
+						</label>
 					</div>
 					<div>
 						<label>
 							<%= check_box_tag :topics%>Topics
-						</label>                        	
+						</label>
 					</div>
 					<div>
 						<label>
 							<%= check_box_tag :posts%>Posts
-						</label>                        	
-					</div>                        
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>
