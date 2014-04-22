@@ -1,7 +1,6 @@
 <!-- The flash messages for the succes and failure scenarios -->
 <p style="color: green"><%= flash[:success] %></p>
 <p style="color: red"><%= flash[:alert] %></p>
-
 <!-- Timer that starts when problem is shown -->
 <b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
@@ -36,14 +35,15 @@
 					id: 'compileButton', onClick: 'compile()' %>
 				<%= button_tag 'Test', type: 'Button',
 					id: 'testButton', onClick: 'test()' %>
-				<%= button_tag 'Start Debugging', type: 'Button',
-					id: 'debugButton', onClick: 'debug()' %>
+				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
+					onclick: "start_debug(#{params[:id]})" %>
 				<%= button_tag 'Previous', type: 'Button',
 					id: 'previousButton', onClick: 'previous()', hidden: true %>
 				<%= button_tag 'Next', type: 'Button',
 					id: 'nextButton', onClick: 'next()', hidden: true %>
 				<%= button_tag 'Stop Debugging', type: 'Button',
 					id: 'stopButton', onClick: 'stop()', hidden: true %>
+				<span id="spinner" class="" align="center"></span>
 			</td>
 			<td style='text-align:right;'>
 				<b class='accepted'>Accepted</b>
@@ -56,7 +56,7 @@
 		</tr>
 	</table>
 	<br /><br />
-	<textarea class='test'>Test Input</textarea><br /><br />
+	<textarea id='testcases' class='test'>Test Input</textarea><br /><br />
 	<b>Output:</b><br />
 	<p class='output'>
 		Output response
