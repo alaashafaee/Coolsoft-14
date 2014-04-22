@@ -34,9 +34,9 @@
 				<td>
 					<% if current_student %>
 						<% if s %>
-							<%= link_to "Share", {:controller => 'courses', :action => 'share', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+							<%= link_to "Share", {:controller => 'courses', :action => 'share', :method => :post, :id => c.id}, :share_value => true, class: "btn btn-success", style: "text-decoration:none" %>
 						<% else %>
-							<%= link_to "Hide", {:controller => 'courses', :action => 'hide', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+							<%= link_to "Hide", {:controller => 'courses', :action => 'share', :method => :post, :id => c.id}, :share_value => false, class: "btn btn-success", style: "text-decoration:none" %>
 						<% end %>
 					<% end %>
 				</td>

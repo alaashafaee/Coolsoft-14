@@ -144,6 +144,25 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
+	def share
+		if student_signed_in
+			student_id = current_student.id
+			course_id = params[:id]
+			share_value = params[:share_value]
+			result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)
+			if result.share == true and share_value == true
+				render ('public/404')
+			elsif result.share == false and share_value == false
+				render ('public/404')
+			else
+				result.share = share_value
+				result.save
+			end
+		else
+			render ('public/404')
+		end
+	end
+
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
