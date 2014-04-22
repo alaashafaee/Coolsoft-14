@@ -26,19 +26,19 @@ class Post < ActiveRecord::Base
 			case params[:options]
 				when "exactly match"
 					tire.search  do
-						query { string "content:#{params[:keyword]}" }
+						query { string "title:#{params[:keyword]}" }
 					end
 				when "includes"
 					tire.search  do
-						query { string "content:*#{params[:keyword]}*" }
+						query { string "title:*#{params[:keyword]}*" }
 					end
 				when "starts with"
 					tire.search  do
-						query { string "content:#{params[:keyword]}*" }
+						query { string "title:#{params[:keyword]}*" }
 					end
 				when "ends with"
 					tire.search  do
-						query { string "content:*#{params[:keyword]}" }
+						query { string "title:*#{params[:keyword]}" }
 					end
 			end
 		end
