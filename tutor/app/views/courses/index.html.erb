@@ -7,6 +7,7 @@
 		class: 'btn btn-primary'} %>
 <% end %>
 <br>
+<%= flash[:success_deletion] %>
 <%= flash[:success_creation] %>
 <% if @courses.any? %>
 	<h1>Your Courses</h1>
