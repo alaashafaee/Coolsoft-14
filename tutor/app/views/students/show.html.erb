@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>CoolSoft - Java tutor | <%= @student.id%>'s Profile</title>
+	</head>
 	<body>
 		<h1> <%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %> <%= @student.name%>'s Profile </h1>
 		<div class="tabs">
