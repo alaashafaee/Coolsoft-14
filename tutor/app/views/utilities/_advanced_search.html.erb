@@ -1,4 +1,4 @@
-<%= form_tag utilities_advanced_search_path, method: 'get', class: "form-horizontal" do %>
+<%= form_tag utilities_advanced_search_path, method: 'get', remote: true,class: "form-horizontal" do %>
 				<fieldset>
 				  <div class="form-group">
 					<label class="col-lg-2 control-label">Keyword</label>
@@ -69,10 +69,7 @@
 				  <div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Options</label>
 					<div class="col-lg-10">
-					  <select class="form-control" id="select">
-						<option>excatly match</option>
-						<option>includes</option>
-					  </select>
+					  <%= select_tag :options , "<option>excatly match</option><option>includes</option>".html_safe,class: "form-control"%>
 					</div>
 				  </div>
 				  <div class="form-group">

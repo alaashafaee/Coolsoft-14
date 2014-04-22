@@ -17,7 +17,12 @@ class UtilitiesController < ApplicationController
 	end
 
 	def advanced_search
+		@objects  = Lecturer.search(params)
+		puts @objects.inspect
 		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 end

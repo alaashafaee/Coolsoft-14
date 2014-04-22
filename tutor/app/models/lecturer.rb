@@ -7,7 +7,7 @@ class Lecturer < ActiveRecord::Base
 	#Elasticsearch
 	include Tire::Model::Search
 	include Tire::Model::Callbacks
-	
+
 	#concerns
 	include Searchable
 
@@ -33,5 +33,17 @@ class Lecturer < ActiveRecord::Base
 	#Scoops
 	
 	#Methods
-	
+	def self.search(params)
+		if params[:keyword].present?
+			if params[:options].eql?"exactly match"
+				tire.search  do
+					query { string "name:#{params[:keyword]}" }
+				end
+			elsif params[:options].eql?"includes"
+				tire.search  do
+					query { string "name:*#{params[:keyword]}*" }
+				end
+			end
+		end
+	end
 end
