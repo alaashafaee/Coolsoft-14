@@ -16,6 +16,15 @@ timer = ->
 	if digit <= 9
 		digit = "0" + digit  
 	document.getElementById("secs").innerHTML = digit
+	i = 0
+	while true
+		hint = $('#hint' + i)
+		if typeof(hint.attr 'time') == 'undefined'
+			break
+		time = hint.attr 'time'
+		if time <= min*60 + parseInt(digit, 10)
+			hint.attr 'class', ''
+		i++
 
 activate = ->
 	unless timer_is_on
