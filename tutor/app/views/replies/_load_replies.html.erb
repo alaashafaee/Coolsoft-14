@@ -1,12 +1,16 @@
 <% if !@replies.blank? %>
-	<% for reply in @replies %>
-		<div>
-			<%= reply.content %>
-			<%= reply.created_at  %>
-			<%= link_to "edit", edit_reply_path(reply), {:remote => true, :id=>"edit"}%>
-			<%= link_to "Destroy", reply,  :remote => true, :method => :delete, :class => 'delete_reply'%>
-		</div>
-		<br>
-
-	<% end %>  
+	<table>
+		<% for reply in @replies %>
+			<tr>
+				<td><%= reply.content %></td>
+				<td width= "10px"></td>
+				<td><%= reply.created_at  %></td>
+				<td width= "20px"></td>
+				<td><%= link_to "edit", edit_reply_path(reply), {:remote => true, :id=>"edit"}%></td>
+				<td width= "20px"></td>
+				<td><%= link_to "Destroy", reply,  :remote => true, :method => :delete, :class => 'delete_reply'%></td>
+			</tr>
+			<tr height="10px"></tr>
+		<% end %>  
+	</table>
 <% end %>

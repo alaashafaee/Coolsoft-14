@@ -1,4 +1,5 @@
 <div id="text_holder">
+	<%= render "load_replies" %>
 </div>
 <input type = "text" id="input_field">
-<button onclick="post();">submit</button>	 
+<button onclick="post(<%= params[:id] %>);">submit</button>	 

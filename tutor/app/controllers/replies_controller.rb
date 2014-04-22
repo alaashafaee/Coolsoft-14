@@ -9,14 +9,6 @@ class RepliesController < ApplicationController
 		render "index"
 	end
 
-	def new
-		@reply = Reply.new()
-		respond_to do |format|
-		    format.html # new.html.erb
-		    format.json { render json: @reply }
-		    format.js
-	    end
-	end
 
 	def edit	
 		@replies =  Reply.find(params[:id])
@@ -26,22 +18,25 @@ class RepliesController < ApplicationController
    		end
 	end
 
-	def create
+	def new
 		line = params[:reply]
 		post = Post.find_by_id(params[:post_id])
 		reply = Reply.new
 		reply.content = line
 		post.replies << reply
 		if lecturer_signed_in?
-			current.lecturer.replies << reply
+			current_lecturer.replies << reply
 		elsif teaching_assistant_signed_in?
-			current.teaching_assistant.replies << reply
+			current_teaching_assistant.replies << reply
 		else
-			current.student.replies << reply				
+			current_student.replies << reply				
 		end
 		reply.save
-		@replies = Reply.all
-		render json: reply.id
+		respond_to do |format|
+			format.html { render action:"edit"}
+        	format.json { render "new.js"}
+        	format.js { render "new"}
+   		end
 
 	end
 
@@ -75,6 +70,5 @@ class RepliesController < ApplicationController
 	def reply_params
 		params.require(:reply).permit(:content)
 	end
-
 
 end
