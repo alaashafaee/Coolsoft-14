@@ -10,7 +10,12 @@ class Solution < ActiveRecord::Base
 	#Scoops
 
 	#Methods
-	# [Compiler: Compile - Story 3.4, Debugger: Debug - Story 3.6]
+	# [
+	#	Compiler: Compile - Story 3.4
+	# 	Compiler: Validate - Story 3.5
+	# 	Debugger: Debug - Story 3.6
+	# 	Compiler: Test - Story 3.15
+	# ]
 	# Returns the file name associatd with this solution code.
 	# Parameters:
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
@@ -20,7 +25,12 @@ class Solution < ActiveRecord::Base
 		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s
 	end
 
-	# [Compiler: Compile - Story 3.4, Debugger: Debug - Story 3.6]
+	# [
+	#	Compiler: Compile - Story 3.4
+	# 	Compiler: Validate - Story 3.5
+	# 	Debugger: Debug - Story 3.6
+	# 	Compiler: Test - Story 3.15
+	# ]
 	# Returns the java file name associatd with this solution code.
 	# Parameters:
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
@@ -33,7 +43,12 @@ class Solution < ActiveRecord::Base
 		return jfile_name
 	end
 
-	# [Compiler: Compile - Story 3.4, Debugger: Debug - Story 3.6]
+	# [
+	#	Compiler: Compile - Story 3.4
+	# 	Compiler: Validate - Story 3.5
+	# 	Debugger: Debug - Story 3.6
+	# 	Compiler: Test - Story 3.15
+	# ]
 	# Returns the class file name associatd with this solution code.
 	# Parameters:
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
