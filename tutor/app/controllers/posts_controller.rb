@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+	class PostsController < ApplicationController
 
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed discussion board id and assigns
@@ -40,16 +40,10 @@ class PostsController < ApplicationController
 		@new_post = Post.new(post_params)
 		@new_post.views_count = 0
 		if lecturer_signed_in?
-			@new_post.owner_id = current_lecturer.id
-			@new_post.owner_type = "lecturer"
 			current_lecturer.posts << @new_post
 		elsif teaching_assistant_signed_in?
-			@new_post.owner_id = current_teaching_assistant.id
-			@new_post.owner_type = "teaching assistant"
-			current_teaching_assistant << @new_post
+			current_teaching_assistant.posts << @new_post
 		elsif student_signed_in?
-			@new_post.owner_id = current_student.id
-			@new_post.owner_type = "student"
 			current_student.posts << @new_post
 		end
 		@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
