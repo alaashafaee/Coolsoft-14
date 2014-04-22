@@ -203,7 +203,7 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: View Variables - Story 3.7]
 	# Return the list of instance and static variables of the
 	# 	class from within static methods
-	# Parameters: None
+	# Parameters: none
 	# Returns: 
 	# 	An array. It contains the list of instance and static
 	# 	variables and their associated values
@@ -245,7 +245,7 @@ class Debugger < ActiveRecord::Base
 	# Fetches the variables found in the class and returns 
 	# 	a list of all variables in the class with their 
 	#	associated values
-	# Parameters: None
+	# Parameters: none
 	# Returns: 
 	# 	An array. It contains the list of variables and their values
 	# Author: Khaled Helmy

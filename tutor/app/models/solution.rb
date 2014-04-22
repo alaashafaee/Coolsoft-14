@@ -18,7 +18,7 @@ class Solution < ActiveRecord::Base
 	# ]
 	# Returns the file name associated with this solution code.
 	# Parameters:
-	# 	append_extension: A boolean value deciding whether the file extension should be appended.
+	# 	none
 	# Returns: The solution's java file name
 	# Author: Rami Khalil
 	def file_name
@@ -33,6 +33,7 @@ class Solution < ActiveRecord::Base
 	# ]
 	# Returns the java file name associated with this solution code.
 	# Parameters:
+	# 	prepend_path: A boolean value deciding whether the java file folder path should be prepended.
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's java file name
 	# Author: Rami Khalil
@@ -51,6 +52,7 @@ class Solution < ActiveRecord::Base
 	# ]
 	# Returns the class file name associated with this solution code.
 	# Parameters:
+	# 	prepend_path: A boolean value deciding whether the java file folder path should be prepended.
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's class file name
 	# Author: Rami Khalil

@@ -2,6 +2,7 @@
 <label><%= @topic.title %></label> / 
 <label><%= @track.title %></label>
 <br /><br />
+<div id="fb-root"></div>
 <div class='problem'>
 	<label><%= @problem.title %></label><br/>
 	<%= @problem.description %>
@@ -9,6 +10,7 @@
 		<tr>
 			<td width='80%'>
 				<% if student_signed_in? %>
+					<%=button_tag 'Ask Facebook', type: 'Button', id:'facebook', onClick: "openBackWindow('/facebook', 'Facebook')" %>
 					<% track_progess = TrackProgression.get_progress(current_student,
 					@problem.track.topic) %> 
  					<% if track_progess >= @problem.track.difficulty %>
