@@ -2,17 +2,17 @@
 // Encapsulation
 // $ is assigned to jQuery
 
-function showdialog(id){
-
+function showdialog(problem_id, recommender_id){
 	$.ajax({ 
 		type: "GET",
-		url: '/tracks/recommend_problem/' + id,
+		url: '/tracks/show_classmates/' + problem_id,
 		datatype: 'json',
-		success: fill
+		success: function(json){
+			fill(json, problem_id, recommender_id)}
 	});
 }
 
-function fill(data){
+function fill(data, problem_id, recommender_id){
 	elem = $('#container');
 	elem.html("");
 	if(Object.keys(data).length == 0){
@@ -20,14 +20,33 @@ function fill(data){
 		$('.classmates_list').bPopup();
 		return;
 	}
-	elem.html("<ul>");
+	elem.html("<h2> Recommend this problem to </h2>")
+	elem.append("<ul class ='list-group'>");
 	$.each(data, function (i , datum){
 		datum = data[i];
-		temp = "<li>" + datum + " " + i + "</li>"
+		temp = "<li class='list-group-item'>" + datum + 
+					"<button type='button' class='recommend btn btn-xs'"+
+					"onclick='recommend(" + problem_id + "," + recommender_id + "," + i + ")'>"+
+					 	"recommend" + 
+					"</button>" + 
+				"</li>"
 		elem.append(temp);
 	});
 	elem.append("</ul>");
 	$('.classmates_list').bPopup();	
+}
+
+function recommend(problem_id, recommender_id, student_id){
+
+	$.ajax({
+		type: "POST",
+		url: '/tracks/insert_recommendation/',
+		data: {	p_id : problem_id,
+				r_id : recommender_id,
+				s_id : student_id
+			}
+	});
+
 }
 // ;
 // (function ($) {

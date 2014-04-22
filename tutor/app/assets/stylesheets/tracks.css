@@ -4,6 +4,14 @@
     color:#000;
     display:none;
     padding:10px;
-    min-width:100px;
-    min-height: 100px;
+    min-width:400px;
+    min-height: 600px;
 	}
+#container li{
+	padding: 10px;
+	list-style: none;
+}
+
+.recommend {
+	float: right;
+}

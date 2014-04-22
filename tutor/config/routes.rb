@@ -12,8 +12,8 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
-	get 'tracks/recommend_problem/:id' => 'tracks#recommend_problem'
-
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'

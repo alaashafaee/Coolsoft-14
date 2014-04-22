@@ -68,7 +68,7 @@ class TracksController < ApplicationController
 		end
 	end
 
-	def recommend_problem
+	def show_classmates
 		problem = Problem.find_by_id(params[:id])
 		track = problem.track
 		topic = problem.track.topic
@@ -83,6 +83,20 @@ class TracksController < ApplicationController
 			end
 		end
 		render json: students_receiving_recommendation
+	end
+
+	def insert_recommendation
+		problem_id = params[:p_id]
+		student_id = params[:s_id]
+		recommender_id = params[:r_id]
+
+		recommendation = Recommendation.new
+		recommendation.problem_id = problem_id
+		recommendation.student_id = student_id
+		recommendation.recommender_id = recommender_id
+		recommendation.save
+
+		render :nothing => true
 	end
 
 	# [Create Track - Story 4.1]
