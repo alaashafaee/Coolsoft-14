@@ -90,6 +90,34 @@ class TopicsController < ApplicationController
 		end
 	end
 
+
+	def sort
+		puts "%%%%%%%%%%%%%%"
+		puts params[:methodParam]
+
+		#id = params[:id] mafesh 7aga esmaha kedda
+ 		#@topic = Track.find_by_id(params[:methodParam][0])
+		#@topic = (params[:methodParam][0]).topic 
+
+		@track = Track.find_by_id(params[:methodParam][0]) #this will get me the track 
+		@topic = @track.topic  #get the topic
+		@tracks = @topic.tracks #get all the tracks of a certain topic
+
+		#from here not sure what I should do 
+		new_Order_Array = params[:methodParam] #now we we can use the array passed by Ajax
+		##this is a hash and so we can't use it directly
+
+
+		@tracks.each do |track|
+			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1 #track.id.to_s I removed.to_s part
+			puts(track.save)
+
+		end
+
+		render :nothing => true
+
+	end
+
 	private
 		def topic_params
 			params.require(:topic).permit(:title,:description)
@@ -110,15 +138,3 @@ end
 		@topic = Topic.find_by_id(id)
 	end 
 
-	def sort
-		id = params[:id]
-		@topic = Topic.find_by_id(id)
-		@tracks = @topic.tracks #get all the tracks of a certain topic
-
-		#from here not sure what I should do 
-		new_Order_Array = params[:methodParam] #now we we can use the array passed by Ajax
-		@tracks.each do |track|
-			track.difficulty = params[:methodParam].index(track.id) + 1 #track.id.to_s I removed.to_s part
-			track.save
-		end
-	end

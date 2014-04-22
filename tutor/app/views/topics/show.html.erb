@@ -1,5 +1,4 @@
-<html lang="en">
-<head>
+
 <meta charset="utf-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -11,7 +10,14 @@
 
 $(document).ready(function() {
 	 
-	$("#list-of-tracks").sortable();
+	$("#list-of-tracks").sortable({
+	placeholder: "ui-state-highlight" , 
+	axis :"y",
+	tolerance: 'pointer',
+	forcePlaceholderSize: true,
+	cursor: "move",
+	containment: "parent" //not sure if this is nice or good ==> to restric the movement of the topics 
+	});
 	
 	$( "#edit_track_rating_dialog" ).dialog({
 		autoOpen: false,
@@ -26,16 +32,17 @@ $(document).ready(function() {
 			Done: function(){
 				//call the ajax function here
 				var array = $("#list-of-tracks").sortable('toArray') ;
+				//alert(JSON.stringify(array));
 				$.ajax({
      				//should the url be "/topics/sort"
      				//or                "/topics" + topic_id + "/sort"
      				//or                "sort" only   
-     				// should I include ROOT_PATH at the begining  
-     				url: 'topics/sort',
+     				// should I include ROOT_PATH at the begining 
+     				//{controller: "topics" , action: "sort"} this did not work also  
+     				url: '/topics/sort',
      				type: 'POST',
-     				data: { methodParam : array }, //use it as a key value pair
-					dataType: 'script',
-
+     				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+     				data: { 'methodParam' : array }, //use it as a key value pair
      				success: function (data) {
          				alert("success");
      				},
@@ -55,11 +62,10 @@ $(document).ready(function() {
 	}).disableSelection();
 });
 
-
 </script>
-</head>
 
-<body>
+
+
 <div class="page-header">
 	<h1><%= link_to @course.name , @course %>
 		<small><%= link_to @topic.title , @topic %></small></h1>
@@ -133,7 +139,6 @@ $(document).ready(function() {
 
 
 
-
 <div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
 <p>This is the list of tracks that should be sortable
 
@@ -147,8 +152,4 @@ $(document).ready(function() {
 </div>
 
 <button id="opener">Edit Track Rating</button>
-
-</body>
-</html>
-
 

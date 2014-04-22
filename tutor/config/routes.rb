@@ -48,7 +48,7 @@ Tutor::Application.routes.draw do
 	end
 
 	resources :topics do
-		member do
+		collection do           #to remove the id from the route 
 			post 'sort'
 		end
 	end
