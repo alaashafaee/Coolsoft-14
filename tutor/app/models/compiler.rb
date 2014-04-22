@@ -17,7 +17,7 @@ class Compiler < ActiveRecord::Base
 		file_name = java_path + 'st' + student_id.to_s + 'pr' +
 			problem_id.to_s + 'so' + solution_id.to_s + '.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
-		class_path = 'students_solutions/Class'
+		class_path = 'students_solutions/Class/'
 		%x[ #{'mkdir -p ' + class_path} ]
 		return %x[ #{'javac -g -d ' + class_path + ' ' + file_name + ' 2>&1'} ]
 	end

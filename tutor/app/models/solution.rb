@@ -61,6 +61,28 @@ class Solution < ActiveRecord::Base
 		return jfile_name
 	end
 
+	# [Compiler: Test - Story 3.15]
+	# Returns the class path.
+	# Parameters:
+	# 	none
+	# Returns: 
+	# 	The class path
+	# Author: Ahmed Akram
+	def self.get_class_path
+		CLASS_PATH
+	end
+
+	# [Compiler: Test - Story 3.15]
+	# Returns the java path.
+	# Parameters:
+	# 	none
+	# Returns: 
+	# 	The java path
+	# Author: Ahmed Akram
+	def self.get_java_path
+		JAVA_PATH
+	end
+
 	#Constants
 	STATUS_SUBMITTED 	= 	0
 	STATUS_ACCEPTED		=	1
