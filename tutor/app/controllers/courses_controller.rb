@@ -144,6 +144,16 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
+	# [Share Performance - Story 5.2, 5.13]
+	# Description: Updates the database with the value of whether to share
+	# 	performance or not and it redirects to an error page if an error
+	# 	occurs
+	# Parameters:
+	#	params[:id]: The course id
+	# 	params[:share_value]: The decision of the student whether to share his
+	# 							performance or not
+	# Returns: none
+	# Author: Khaled Helmy
 	def share
 		if student_signed_in
 			student_id = current_student.id
@@ -168,6 +178,15 @@ class CoursesController < ApplicationController
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
 
+		# [Share Performance - Story 5.2, 5.13]
+		# Description: Fetches the sharing status for each course that the current
+		# 	signed in student is subscribing to in the database, appends them in
+		# 	a list and returns that list
+		# Parameters: none
+		# Returns:
+		# 	An array that contains the sharing status of each course for the
+		# 	current signed in student
+		# Author: Khaled Helmy
 		def find_state courses
 			states = []
 			student_id = current_student.id
