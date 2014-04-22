@@ -7,6 +7,7 @@ class StudentsController < ApplicationController
 	# Author: Serag
 	def show
 		@student = Student.find(params[:id])
+		@courses = @student.courses.order("created_at desc")
 	end
 	def index
 	end
