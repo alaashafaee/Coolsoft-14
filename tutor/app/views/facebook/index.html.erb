@@ -18,8 +18,10 @@
 				function(response) {
 					if (response && response.post_id) {
 						alert('Post was published.');
+						window.close();
 					} else {
 						alert('Post was not published.');
+						window.close();
 					}
 				}
 			);
