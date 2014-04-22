@@ -1,128 +1,46 @@
-<script type="text/javascript">
-	
-	var type = new Array();
-	var param_name = new Array();
-
-	function add_params(field)
-	{	
-		var tmp_type = document.getElementById("params_type").value;
-		var tmp_name = document.getElementById("params_name").value;
-
-		if (tmp_name != "" && tmp_type != "") {
-			document.getElementById("params_type").style.border= "default";
-			document.getElementById("params_name").style.border= "default";
-			type[type.length] = tmp_type;
-			document.getElementById("params_type").value = "";
-			param_name[param_name.length] = tmp_name;
-			document.getElementById("params_name").value = "";
-
-			document.getElementById("parameter").innerHTML = "<h3>Paramter</h3><table>";
-			for (var i = 0; i < type.length; i++) {	
-				$('#parameter').append("<tr>");
-				$('#parameter').append("<td width = \"10px\"></td>");
-				$('#parameter').append("<td><label>"+type[i]+"</label></td>");
-				$('#parameter').append("<td width = \"10px\"></td>");
-				$('#parameter').append("<td><label>"+param_name[i]+"</label></td>");
-				$('#parameter').append("<td width = \"20px\"></td>");
-				$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:15%;height:15%;margin_top:10px;;cursor:pointer\"></td>");
-				$('#parameter').append("</tr>");
-			}
-			$('#parameter').append("</table>");
-		}else {
-			if (tmp_name == "" && tmp_type == ""){
-				document.getElementById("params_type").style.border= "red 1px solid";
-				document.getElementById("params_name").style.border= "red 1px solid";
-			}else if(tmp_name == ""){
-				document.getElementById("params_type").style.border= "normal";
-				document.getElementById("params_name").style.border= "red 1px solid";
-			}else{
-				document.getElementById("params_type").style.border= "red 1px solid";
-				document.getElementById("params_name").style.border= "default";
-			}
-		}
-	}
-	function remove_params(field)
-	{	
-		var index = field.id.split("_")[1];
-		type.splice(index,1);
-		param_name.splice(index,1);
-		document.getElementById("parameter").innerHTML = "<h3>Paramter</h3><table>";
-		if(type.length == 0)
-		{
-			$('#parameter').append("No paramter");
-		}
-		for (var i = 0; i < type.length; i++) {
-			$('#parameter').append("<tr>");
-			$('#parameter').append("<td width = \"10px\"></td>");
-			$('#parameter').append("<td><label>"+type[i]+"</label></td>");
-			$('#parameter').append("<td width = \"10px\"></td>");
-			$('#parameter').append("<td><label>"+param_name[i]+"</label></td>");
-			$('#parameter').append("<td width = \"20px\"></td>");
-			$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:15%;height:15%;margin_top:10px;;cursor:pointer\"></td>");
-			$('#parameter').append("</tr>");
-		}
-		$('#parameter').append("</table>");
-	}
-
-	function submitParams()
-	{
-		alert('clicked');
-		$.ajax({
-			complete: function(){alert("complete");},
-			type: "POST",
-			url: "aaa",
-			data: {params_type: JSON.stringify(params_type)},
-			success: function(){alert("success !!!");},
-			error: function(){alert("failllll");}
-		});
-	}
-
-</script>
-
-<%= form_for :@constrain do |f| %>
+<%= form_for :@constrain, url:{action:"create"} do |f| %>
 	<table>
 		<tr>
 			<th>Method Constrains</th>
 			<td width = "10px"></td>
-			<td><%= f.text_field :parameter, placeholder: "Return Type"%></td>
+			<td><%= f.text_field :method_return, placeholder: "Return Type"%></td>
 			<td width = "10px"></td>
-			<td><%= f.text_field :parameter, placeholder: "Method Name" %></td>
+			<td><%= f.text_field :method_name, placeholder: "Method Name" %></td>
 			<br>
 		</tr>
 		<tr height="10px"></tr>
 		<tr>
-			<%= form_for :@params do |u| %>
+			<%= fields_for :@params do |u| %>
 				<th>Method Parameter</th>
 				<td width = "10px"></td>
-				<td><%= u.text_field :parameaaater, placeholder: "Variable Type", id:"params_type" %></td>
+				<td><%= u.text_field :params_type, placeholder: "Variable Type", id:"params_type" %></td>
 				<td width = "10px"></td>
-				<td><%= u.text_field :asd, placeholder: "Variable Name", id:"params_name" %></td>
+				<td><%= u.text_field :parameter, placeholder: "Variable Name", id:"params_name" %></td>
 				<td width = "20px"></td>
-				<td><%= image_tag "add_buttom.png", id:"params", style: "width:15%;height:15%;margin_top:10px;cursor:pointer", onclick: "add_params(this);"%></td>
+				<td><%= image_tag "add_buttom.png", style: "width:15%;height:15%;margin_top:10px;cursor:pointer", onclick: "add_params(this);"%></td>
  			<% end %>
 		</tr>
 		<tr height="10px"></tr>
 		<tr>
-			<%= form_for :patient do |u| %>
+			<%= fields_for :@variables do |u| %>
 				<th>Variable Constraints</th>
 				<td width = "10px"></td>
-				<td><%= u.text_field :variable_name, placeholder: "Variable Type" %></td>
+				<td><%= u.text_field :variable_type, placeholder: "Variable Type", id:"variable_type" %></td>
 				<td width = "10px"></td>
-				<td><%= u.text_field :variable_name, placeholder: "Variable Name" %></td>
+				<td><%= u.text_field :variable_name, placeholder: "Variable Name", id:"variable_name" %></td>
 				<td width = "20px"></td>
-				<td><%= image_submit_tag "add_buttom.png", id:"variables", style: "width:15%;height:15%;margin_top:10px;"%></td>
+				<td><%= image_tag "add_buttom.png", style: "width:15%;height:15%;margin_top:10px;cursor:pointer", onclick: "add_variable(this);"%></td>
  			<% end %>
 		</tr>
 	</table>
 	<div id="parameter">
-		<h3>Paramter</h3>
-			No paramter
-
+		<h3>Paramters Constraints</h3>
+			No paramters
 	</div>
 	<div id="variable">
-		
+		<h3>Variables Constraints</h3>
+			No variables
 	</div>
 	<br>
-	<%= f.submit "Save Changes", class: "btn btn-default"%>	
-	
+	<%= button_tag "Save Changes", type: "button", class: "btn btn-large btn-success", onclick:"submitParams();"%>	
 <% end %>

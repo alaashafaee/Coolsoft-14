@@ -6,12 +6,29 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	def create
-		redirect_to action: "index"
+		param_type = params[:p_type]
+		param_name = params[:p_name]
+		var_type = params[:v_type]
+		var_name = params[:v_type]
+		method_return = params[:method_return]
+		method_name = params[:method_name]
+
+		myhash = {}
+		param_name.each_with_index do |k,i|
+			myhash[k] = param_type[i]
+		end
+
+		myhash.each do |key, value|
+			puts(key + value)
+		end
+
+
 	end
 
 	def new
-		@constrain = MethodConstraint.new()
-		@params = MethodParameter.new()
+		@constrain = MethodConstraint.new
+		@params = MethodParameter.new
+		@variables = VariableConstraint.new
 	end
 
 	def show
@@ -50,11 +67,6 @@ class SolutionsConstraintsController < ApplicationController
 		@parameters = MethodParameter.find_by_id(params[:id]).destroy
 		@variables = VariableConstraint.find_by_id(params[:id]).destroy
 		flash[:success_deletion] = "Constraints deleted."
-	end
-
-	private
-	def constraint_params
-		params.require(:parameter).permit(:parameters, :variables)
 	end
 
 end
