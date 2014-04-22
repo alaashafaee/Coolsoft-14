@@ -17,12 +17,24 @@ class UtilitiesController < ApplicationController
 	end
 
 	def advanced_search
-		@objects = []
 		if params[:lecturers].present?
-			@objects  = Lecturer.search(params)
+			@lecturers  = Lecturer.search(params)
 		end
-		puts @objects.inspect
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+		if params[:students].present?
+			@students  = Student.search(params)
+		end
+		if params[:teaching_assistants].present?
+			@teaching_assistants  = TeachingAssistant.search(params)
+		end
+		if params[:topics].present?
+			@topics  = Topic.search(params)
+		end
+		if params[:courses].present?
+			@courses  = Course.search(params)
+		end
+		if params[:posts].present?
+			@posts  = Post.search(params)
+		end
 		respond_to do |format|
 			format.html
 			format.js
