@@ -1,9 +1,15 @@
 <h1>Add a Teaching Assistant</h1>
-
+<br/>
+<% if flash[:notice] -%>
+  <div class="alert alert-success", style="display: inline-block;"><%= flash[:notice] %></div>
+<% end %>
+<br/>
 <%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
 	<p>
 		<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
 	</p>
+
+	
 
 	<p>
 		<%= f.submit "Add TA", class: "btn btn-success"%>
