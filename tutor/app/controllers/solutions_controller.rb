@@ -2,8 +2,8 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	#	and outputs 2 flush messages for success and failure scenarios 
-	# Parameters: 
+	#	and outputs 2 flash messages for success and failure scenarios
+	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: MOHAMEDSAEED
@@ -21,7 +21,33 @@ class SolutionsController < ApplicationController
 			redirect_to :back
 		elsif params[:commit] == 'Compile'
 			compile_solution
+		elsif params[:commit] == 'Run Test Case'
+			compile_solution
+			if flash[:compiler_fail] || flash[:alert]
+				redirect_to :back and return
+			end
+			execute
 		end
+	end
+
+	# [Compiler: Test - Story 3.15]
+	# This Action runs the execute method from the Executer model
+	# Parameters:
+	#	@solution: The submitted solution
+	# Returns:
+	# 	A flash message containing the appropriate reply
+	# Author: Ahmed Akram
+	def execute
+		file_name = @solution.file_name
+		if Executer.execute(file_name, input[:input], solution_params[:problem_id])
+			output = Executer.get_output()
+			flash[:msg] = output
+		else
+			output = Executer.get_runtime_error(file_name, 'CoolSoft')
+			flash[:msg] = output[:error]
+			flash[:exp] = output[:explanation]
+		end
+		redirect_to :back
 	end
 
 	# [Compiler: Compile - Story 3.4]
@@ -51,19 +77,30 @@ class SolutionsController < ApplicationController
 		else
 			flash[:alert] = "You did not write any code!"
 		end
-		redirect_to :back
 	end
 
-	# [Code Editor: Write Code - Story 3.3]
-	# Fills the ID of the problem , code from the form_for 
-	# Parameters:
-	# 	code: The written code for the problem
-	# 	problem_id: Hidden field for problem id
-	# Returns: none
-	# Author: MOHAMEDSAEED
 	private
-	def solution_params
-		params.require(:solution).permit(:code, :problem_id)
-	end
+		# [Code Editor: Write Code - Story 3.3]
+		# Permits the id of the problem, code from the form_for
+		# Parameters:
+		# 	code: The written code for the problem
+		# 	problem_id: Hidden field for problem id
+		# Returns:
+		# 	none
+		# Author: MOHAMEDSAEED
+		def solution_params
+			params.require(:solution).permit(:code, :problem_id)
+		end
+
+		# [Compiler: Test - Story 3.15]
+		# Permits the input
+		# Parameters:
+		#	none
+		# Returns:
+		# 	params[:input]: The test case entered by the solver
+		# Author: Ahmed Akram
+		def input
+			params.require(:solution).permit(:input)
+		end
 
 end

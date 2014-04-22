@@ -14,7 +14,6 @@ class SolutionsConstraintsController < ApplicationController
 			if method_cons.present?
 				method_cons.each do |cons|
 					@parameters = MethodParameter.new
-					puts(method_cons[0])
 					@parameters.parameter = method_cons[:name]
 					@parameters.params_type = method_cons[:type]
 					# @constrain.parameters << @parameters
