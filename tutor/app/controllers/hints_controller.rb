@@ -18,7 +18,7 @@ class HintsController < ApplicationController
 		@answer = ModelAnswer.find(params[:model_answer_id])
 		@@answer_id = params[:model_answer_id]
 	end
-	
+
 	# [Adding Helping Hints - 4.12]
 	# Creates a new record to Hint Table
 	# Parameters:
@@ -59,3 +59,20 @@ class HintsController < ApplicationController
 	def permitCreate
 		params.require(:Hint).permit(:submission_counter, :message)
 	end
+	
+			# [Delete a Hint - Story 4.21]
+	# This action takes the hint id, remove it from the database
+	#	and then redirects the user to the edit page accompanied
+	#	with a "Hint deleted" message.
+	# Parameters:
+	#	params[:id]: The current hint's id
+	# Returns: 
+	#	none
+	# Author: Mohamed Fadel
+	def destroy
+		hint = Hint.find_by_id(params[:id])
+		hint.destroy
+		flash[:success_deletion] = "Hint deleted."
+		redirect_to :controller => 'model_answers', :action => 'edit', :id => @@answer_id
+	end
+end
