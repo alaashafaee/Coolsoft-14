@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.string   "message"
     t.integer  "course_id"
     t.integer  "student_id"
+    t.integer  "lecturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,9 +34,9 @@ ActiveRecord::Schema.define(version: 20140422100002) do
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
     t.integer  "problem_id"
-    t.boolean  "failure",     default: false
-    t.boolean  "success",     default: false
-    t.boolean  "uncompleted", default: false
+    t.boolean  "failure",    default: false
+    t.boolean  "success",    default: false
+    t.boolean  "incomplete", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -202,6 +203,8 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "problems", ["track_id", "title"], name: "index_problems_on_track_id_and_title", unique: true
 
   create_table "recommendations", force: true do |t|
     t.integer  "problem_id"
