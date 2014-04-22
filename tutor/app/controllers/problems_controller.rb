@@ -33,10 +33,15 @@ class ProblemsController < ApplicationController
 			p.owner_type = "teaching assistant"
 		end
 		p.incomplete = true
-		if p.save
-			redirect_to :action => "edit", :id => p.id
-		else 
-			flash.keep[:notice] = "Problem is missing paramaters"
+		begin
+			if p.save
+				redirect_to :controller => "tracks", :action => "show", :id => p.track_id
+			else 
+				flash.keep[:notice] = "Problem is missing paramaters"
+				redirect_to :back
+			end
+		rescue
+			flash.keep[:notice] = "Problem with the same title exists in this track"
 			redirect_to :back
 		end
 	end
