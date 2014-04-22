@@ -1,4 +1,3 @@
-
 <meta charset="utf-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -6,7 +5,6 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 
 <script>
-
 $(document).ready(function() {
 	 
 	$("#list-of-tracks").sortable({
@@ -15,7 +13,7 @@ $(document).ready(function() {
 	tolerance: 'pointer',
 	forcePlaceholderSize: true,
 	cursor: "move",
-	containment: "parent" //not sure if this is nice or good ==> to restric the movement of the topics 
+	containment: "parent" 
 	});
 	
 	$( "#edit_track_rating_dialog" ).dialog({
@@ -25,35 +23,26 @@ $(document).ready(function() {
 		height: 'auto',
 		autoResize:false,
 		buttons: {
-			Cancel: function(){
-			$( this ).dialog( "close" );
-			} ,
 			Done: function(){
-				//call the ajax function here
 				var array = $("#list-of-tracks").sortable('toArray') ;
-				//alert(JSON.stringify(array)); //uncomment it 
 				$.ajax({
-     				//should the url be "/topics/sort"
-     				//or                "/topics" + topic_id + "/sort"
-     				//or                "sort" only   
-     				// should I include ROOT_PATH at the begining 
-     				//{controller: "topics" , action: "sort"} this did not work also  
-     				url: '/topics/sort',
-     				type: 'POST',
-     				beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-     				data: { 'methodParam' : array }, //use it as a key value pair
-     				success: function (data) {
-         				alert("success");
-         				location.reload();
-         				//redirect_to:back ; 
-     				},
-     				error: function (args) {
-         				alert("Error on ajax post");
-     				}
- 				}); 
-				//alert(array.toString()) ;  //alert returns this format 1,2
-				$( this ).dialog( "close" ); // close 
-			}
+					url: '/topics/sort',
+					type: 'POST',
+					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+					data: { 'methodParam' : array },
+					success: function (data) {
+						alert("success");
+						location.reload();
+					},
+					error: function (args) {
+						alert("Error on ajax post");
+					}
+				}); 
+				$( this ).dialog( "close" );  
+			} ,
+			Cancel: function(){
+				$( this ).dialog( "close" );
+			} 
 		}
 	});
 
@@ -62,10 +51,7 @@ $(document).ready(function() {
 		$("#edit_track_rating_dialog").css('overflow', 'hidden');
 	}).disableSelection();
 });
-
 </script>
-
-
 
 <div class="page-header">
 	<h1><%= link_to @course.name , @course %>
@@ -139,16 +125,12 @@ $(document).ready(function() {
 	</div><!-- /create_track -->
 <% end %><!-- /can_edit -->
 
-
-
-
-
 <div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
 <p>This is the list of tracks that should be sortable
 
 	<ul id="list-of-tracks" >
 	<%- @tracks.each do |track| %>
-		<li id="<%= track.id %>" ><%= track.title %> </li> <!-- id="track_<%= track.id %>" -->
+		<li id="<%= track.id %>" ><%= track.title %> </li> 
 	<% end %>
 	</ul>
 

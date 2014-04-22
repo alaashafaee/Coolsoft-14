@@ -90,32 +90,25 @@ class TopicsController < ApplicationController
 		end
 	end
 
-
+	# [Edit Track Rating - Story 4.3]
+	# Changes the difficulty of tracks that belong to a certain topic  
+	# to match the order specified by TA/Lecturer through 
+	# drag and drop sortable list. 
+	# Parameters: 
+	#   params[:methodParam]: The array of the sorted trackes.
+	# Returns: None.
+	# Author: Lin Kassem
 	def sort
-		puts "%%%%%%%%%%%%%%"
-		puts params[:methodParam]
-
-		#id = params[:id] mafesh 7aga esmaha kedda
- 		#@topic = Track.find_by_id(params[:methodParam][0])
-		#@topic = (params[:methodParam][0]).topic 
-
-		@track = Track.find_by_id(params[:methodParam][0]) #this will get me the track 
-		@topic = @track.topic  #get the topic
-		@tracks = @topic.tracks #get all the tracks of a certain topic
-
-		#from here not sure what I should do 
-		new_Order_Array = params[:methodParam] #now we we can use the array passed by Ajax
-		##this is a hash and so we can't use it directly
-
+		@track = Track.find_by_id(params[:methodParam][0])  
+		@topic = @track.topic 
+		@tracks = @topic.tracks
+ 		new_Order_Array = params[:methodParam]
 
 		@tracks.each do |track|
-			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1 #track.id.to_s I removed.to_s part
+			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1 
 			puts(track.save)
-
 		end
-
 		render :nothing => true
-
 	end
 
 	private
@@ -132,9 +125,3 @@ class TopicsController < ApplicationController
 		end
 
 end
-
-	def edit 
-		id = params[:id]
-		@topic = Topic.find_by_id(id)
-	end 
-
