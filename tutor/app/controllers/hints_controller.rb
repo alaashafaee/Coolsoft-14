@@ -13,8 +13,8 @@ class HintsController < ApplicationController
 	# [Adding Helping Hints - 4.12]
 	# Creates a new record to Hint Table
 	# Parameters:
-	#   title: problem's title through permitCreate action
-	#   description: problem's description through permitCreate action
+	#   owner_id: ID of the hint owner
+	#   owner type: type of hint owner
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Mohamed Fadel
 	def create
@@ -38,7 +38,6 @@ class HintsController < ApplicationController
 	# [Adding Helping Hints - 4.12]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:
-	#   title: hint's title
 	#   category: hint's category
 	#   submission_counter: hint's submission counter
 	#   message: hint's message
