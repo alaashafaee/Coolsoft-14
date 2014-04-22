@@ -121,16 +121,15 @@ indexNumber = 0
 # Returns: none
 # Author: Khaled Helmy
 @update_memory_contents = (stateNumber) ->
-	update_memory_contents = (stateNumber) ->
 	div = document.getElementById("memory")
 	list_of_variables = variables[stateNumber]["locals"]
-	s = ""
+	content = ""
 	i = 0
 	while i < list_of_variables.length
-    	s += list_of_variables[i]
-    	s += "<br />"
+    	content += list_of_variables[i]
+    	content += "<br /><br />"
     	i++
-  	div.innerHTML = s
+  	div.innerHTML = content
   	return
 
 # [Debug - Story 3.6]
