@@ -38,8 +38,7 @@ index_number = 0
 
 # [Execute Line By Line - Story 3.8]
 # Toggles debugging mode by changing the available buttons.
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
 @toggleDebug = () ->
@@ -53,8 +52,7 @@ index_number = 0
 
 # [Compile - Story 3.4]
 # Sends the code to the server to be compiled.
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
 @compile = () ->
@@ -62,8 +60,7 @@ index_number = 0
 
 # [Test - Story 3.15]
 # Sends the code and the input to be processed on the server.
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
 @test = () ->
@@ -71,8 +68,7 @@ index_number = 0
 
 # [Execute Line By Line - Story 3.8]
 # Moves to the next state of execution.
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Rami Khalil
 @next = () ->
@@ -85,8 +81,7 @@ index_number = 0
 
 # [Execute Line By Line - Story 3.8]
 # Moves to the previous state of execution.
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Rami Khalil
 @previous = () ->
@@ -138,8 +133,7 @@ index_number = 0
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
 @stop = () ->
