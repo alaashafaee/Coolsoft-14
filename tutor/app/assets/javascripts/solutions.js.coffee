@@ -26,8 +26,8 @@ IndexNumber = 0
 			toggleDebug()
 			Variables = data
 			stop_spin()
-			$.each data, (ia, da) ->
-				alert da["line"] + "=>" + da["locals"] + "locals is Empty for now"
+			for datum in data
+				alert "#{datum['line']}=>#{datum['locals']}locals is Empty for now"
 			return
 		error: ->
 			stop_spin()
