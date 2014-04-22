@@ -2,9 +2,9 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	# and outputs 2 flush messages for success and failure scenarios 
-	# Parameters: 
-	# 	solution_params: submitted from the form_for
+	#	and outputs 2 flush messages for success and failure scenarios
+	# Parameters:
+	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
@@ -14,42 +14,91 @@ class SolutionsController < ApplicationController
 			@solution.status = 0
 			@solution.length = @solution.code.length
 			if @solution.save
-				flash[:success] = "Your Solution has been submitted successfully"
-				redirect_to :back and return
+				flash[:success] = "Your solution has been submitted successfully"
 			else
-				flash[:alert] = "Blank Submissions are not allowed !!!"
+				flash[:alert] = "Blank submissions are not allowed!!!"
+			end
+			redirect_to :back
+		elsif params[:commit] == 'Compile'
+			compile_solution
+		elsif params[:commit] == 'Run Test Case'
+			compile_solution
+			if flash[:compiler_fail] || flash[:alert]
 				redirect_to :back and return
 			end
-		elsif params[:commit] == 'Run Test Case'
 			execute
 		end
-	end
+	end	
 
+	# [Compiler: Test - Story 3.15]
+	# This Action runs the execute method from the Executer model
+	# Parameters:
+	#	@solution: The submitted solution
+	# Returns:
+	# 	A flash message containing the appropriate reply
 	# Author: Ahmed Akram
 	def execute
-		if Executer.execute('test', input[:input])
+		file_name = @solution.file_name
+		if Executer.execute(file_name, input[:input])
 			output = Executer.get_output()
 			flash[:msg] = output
 		else
-			output = Executer.get_runtime_error()
+			output = Executer.get_runtime_error(file_name, 'CoolSoft')
 			flash[:msg] = output[:error]
 			flash[:exp] = output[:explaination]
 		end
 		redirect_to :back
 	end
 
-	# [Code Editor: Write Code - Story 3.3]
-	# Fills the ID of the problem , code from the form_for 
+	# [Compiler: Compile - Story 3.4]
+	# Creates a soution for the current problem in the database and compiles it.
+	#	Then it places the compilation results and feedback in the flash hash.
 	# Parameters:
-	# 	code: The written code for the problem
-	# 	problem_id: Hidden field for problem id
+	#	solution_params: submitted from the form_for
 	# Returns: none
-	# Author: MOHAMEDSAEED
+	# Author: Ahmed Moataz
+	def compile_solution
+		@solution = Solution.new(solution_params)
+		@solution.student_id = current_student.id
+		@solution.length = @solution.code.length
+		if @solution.save
+			compiler_feedback = Compiler.compiler_feedback(current_student.id,
+				solution_params[:problem_id], @solution.id.to_s, solution_params[:code])
+			if compiler_feedback[:success]
+				@solution.status = 3
+				flash[:compiler_success] = "Compilation Succeeded!"
+			else
+				@solution.status = 2
+				flash[:compiler_fail] = "Compilation Failed!"
+				flash[:compiler_feedback] = compiler_feedback[:errors]
+			end
+			@solution.save
+		else
+			flash[:alert] = "You did not write any code!"
+		end
+		# redirect_to :back
+	end
+
 	private
+		# [Code Editor: Write Code - Story 3.3]
+		# Permits the ID of the problem, code from the form_for
+		# Parameters:
+		# 	code: The written code for the problem
+		# 	problem_id: Hidden field for problem id
+		# Returns: 
+		# 	none
+		# Author: MOHAMEDSAEED
 		def solution_params
 			params.require(:solution).permit(:code , :problem_id)
 		end
-		# Ahmed Akram
+
+		# [Compiler: Test - Story 3.15]
+		# Permits the input
+		# Parameters:
+		#	none
+		# Returns:
+		# 	params[:input]: The test case entered by the solver
+		# Author: Ahmed Akram
 		def input
 			params.require(:solution).permit(:input)
 		end
