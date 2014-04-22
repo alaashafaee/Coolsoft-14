@@ -10,8 +10,10 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
+	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
+	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -87,4 +89,3 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
-end
