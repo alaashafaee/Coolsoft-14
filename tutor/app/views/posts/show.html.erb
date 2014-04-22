@@ -22,7 +22,7 @@
 			<% end %>
 		</div>
 		<% if @post.owner_id == @userID %>
-	<%= button_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
+	<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
 		class: 'btn btn-primary',:id => @post.id} %>
 <% end %>
 </div>

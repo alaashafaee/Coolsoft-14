@@ -64,8 +64,8 @@ class PostsController < ApplicationController
 			flash[:notice] = "Post successfully updated"
 			redirect_to(:action => 'show' ,:id => @post.id)
 		else
-			if @new_post.errors.any?
-				flash[:notice] = @new_post.errors.full_messages.first
+			if @post.errors.any?
+				flash[:notice] = @post.errors.full_messages.first
 			end
 			render :action => 'edit'  
 		end
