@@ -24,11 +24,16 @@ function fill(data, problem_id, recommender_id){
 	elem.append("<ul class ='list-group'>");
 	$.each(data, function (i , datum){
 		datum = data[i];
-		temp = "<li class='list-group-item'>" + datum + 
+		temp = "<li class='list-group-item'>" + datum['student_name'] +
 					"<button type='button' class='recommend btn btn-xs'"+
-					"onclick='recommend(" + problem_id + "," + recommender_id + "," + i + ")'>"+
-					 	"recommend" + 
-					"</button>" + 
+					"onclick='recommend(" + problem_id + "," + recommender_id + "," + i + ")'";
+						if (datum['recommended_before'] == 'true' ){
+							temp += "disabled";
+							temp += ">recommended before"
+						}else {
+							temp += ">recommend";
+						} 
+					temp += "</button>" + 
 				"</li>"
 		elem.append(temp);
 	});

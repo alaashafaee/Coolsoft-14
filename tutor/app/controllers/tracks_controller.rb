@@ -79,11 +79,14 @@ class TracksController < ApplicationController
 		students_enrolled.each do |student|
 			student_level = TrackProgression.get_progress(student.id,topic.id)
 			if (student_level == track.difficulty)
-				if (!Recommendation.where(
+				students_receiving_recommendation[student.id] = Hash.new
+				students_receiving_recommendation[student.id]['student_name'] = student.name
+				students_receiving_recommendation[student.id]['recommended_before'] = 'false'
+				if (Recommendation.where(
 					:problem_id => problem.id,
 				 	:recommender_id => current_student.id,
 				 	:student_id => student.id).present?)
-						students_receiving_recommendation[student.id] = student.name
+						students_receiving_recommendation[student.id]['recommended_before'] = 'true'
 				end
 			end
 		end
