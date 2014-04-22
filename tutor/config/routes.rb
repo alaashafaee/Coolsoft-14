@@ -14,7 +14,6 @@ Tutor::Application.routes.draw do
 	get 'courses/sign_up'
 	post 'debuggers/:id' => 'debuggers#start'
 
-
 	# You can have the root of your site routed with "root"
 	root 'site#index'
 
