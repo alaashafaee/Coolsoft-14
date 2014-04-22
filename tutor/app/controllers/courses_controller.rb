@@ -153,9 +153,9 @@ class CoursesController < ApplicationController
 		@course = Course.find_by_id(params[:id])
 		if @course.update(course_params)
 			render 'show'
-			else 
-				render 'edit' 
-			end
+		else 
+			render 'edit' 
+		end
 	end
 
 	private
