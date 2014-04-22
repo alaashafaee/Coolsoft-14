@@ -11,7 +11,7 @@ class HintsController < ApplicationController
 		@hints_check=Hint.all
 	end
 	# [Adding Helping Hints - 4.12]
-	# Creates a new record to Problem Table
+	# Creates a new record to Hint Table
 	# Parameters:
 	#   title: problem's title through permitCreate action
 	#   description: problem's description through permitCreate action
