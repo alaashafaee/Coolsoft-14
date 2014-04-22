@@ -17,7 +17,10 @@ class UtilitiesController < ApplicationController
 	end
 
 	def advanced_search
-		@objects  = Lecturer.search(params)
+		@objects = []
+		if params[:lecturers].present?
+			@objects  = Lecturer.search(params)
+		end
 		puts @objects.inspect
 		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 		respond_to do |format|

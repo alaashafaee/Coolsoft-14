@@ -35,14 +35,23 @@ class Lecturer < ActiveRecord::Base
 	#Methods
 	def self.search(params)
 		if params[:keyword].present?
-			if params[:options].eql?"exactly match"
-				tire.search  do
-					query { string "name:#{params[:keyword]}" }
-				end
-			elsif params[:options].eql?"includes"
-				tire.search  do
-					query { string "name:*#{params[:keyword]}*" }
-				end
+			case params[:options]
+				when "exactly match"
+					tire.search  do
+						query { string "name:#{params[:keyword]}" }
+					end
+				when "includes"
+					tire.search  do
+						query { string "name:*#{params[:keyword]}*" }
+					end
+				when "starts with"
+					tire.search  do
+						query { string "name:#{params[:keyword]}*" }
+					end
+				when "ends with"
+					tire.search  do
+						query { string "name:*#{params[:keyword]}" }
+					end
 			end
 		end
 	end
