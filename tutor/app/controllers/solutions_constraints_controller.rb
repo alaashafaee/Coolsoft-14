@@ -69,18 +69,6 @@ class SolutionsConstraintsController < ApplicationController
 		end
 	end
 
-	def destroy
-		if parameters = MethodParameter.find_by_id(params[:id]).destroy &&
-			variables = VariableConstraint.find_by_id(params[:id]).destroy &&
-			methods = MethodConstraint.find_by_id(params[:id]).destroy	
-			flash[:notice] = "Constraints deleted."
-			redirect_to :back
-		else
-			flash[:error] = "Constraints is not deleted."
-			redirect_to :action => 'show'
-		end
-	end
-
 	# [Edit Solutions' Constraints - Story 4.14]
 	# Brief description of method
 	# Parameters: 

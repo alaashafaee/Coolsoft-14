@@ -1,14 +1,14 @@
 <%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
 <h1> Edit Constraints</h1>
-<%= form_for :Parameter, url: {action: "update"} do |edit| %>
+<%= form_for :parameter, url: {action: "update"}, html:{method: "PUT"} do |edit| %>
 	<table>
 		<tr>
 			<th>Method Parameter</th>
-			<td><%= edit.text_field(@parameters.parameter) %></td>
+			<td><%= edit.text_field :parameters, :value => @parameters.parameter %></td>
 		</tr><br><br>
 		<tr>
 			<th>Variable Constraints</th>
-			<td><%= edit.text_field(@variables.variable_name) %></td>
+			<td><%= edit.text_field :variables, :value => @variables.variable_name %></td>
 		</tr>
 	</table><br><br>
 	<%= submit_tag("Save") %>
