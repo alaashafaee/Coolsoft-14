@@ -1,7 +1,7 @@
 class Executer
 
 	# [Compiler: Test - Story 3.15]
-	# Runs the solution submitted on the submitted test case
+	# Runs the solution submited on the submited test case
 	# Parameters:
 	#	file_name: The submited file name
 	# 	input: Test case entered by the user
