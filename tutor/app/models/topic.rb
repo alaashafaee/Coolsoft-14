@@ -1,5 +1,9 @@
 class Topic < ActiveRecord::Base
-	
+
+	#Elasticsearch
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+		
 	#Validations
 	validates :title, :description, presence: true
 	validates :title, :description, uniqueness: true

@@ -5,10 +5,14 @@
 -->
 <div class="navbar-header">
 	<%= form_tag utilities_simple_search_path, :method => 'get',
-			remote: controller?("utilities"), class: "navbar-form navbar-left"  do %>
-		<p>
-			<%= text_field_tag :search, params[:search], class: "form-control", size: "30", placeholder: "Search for Users and Courses"  %>
-		</p>
+			remote: controller?("utilities","simple_search"), class: "navbar-form navbar-left"  do %>
+			<div class="input-group" style="width:350px">	
+				<%= text_field_tag :search, params[:search], class: "form-control",
+						size: "30", placeholder: "Search for Users and Courses"  %>
+				<span class="input-group-btn">
+					<%= link_to "Try Advanced", utilities_advanced_search_path, class: "btn btn-default"%>
+				</span>
+			</div>
 	<% end %>
 </div>
 <div class="navbar-collapse collapse" id="navbar-main">
