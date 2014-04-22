@@ -23,4 +23,6 @@
             <%= f.submit "Update Post", class: "btn btn-success"  %>
         </p>
     <% end %>
+     <%= button_to "Delete Post", {:action => 'destroy'}, method: :delete,
+        class: 'btn btn-primary',:id => params[:id] , :confirm => "Are you sure??" %>
 </div>
