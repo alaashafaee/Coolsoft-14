@@ -70,3 +70,34 @@ root.previous = () ->
 # Author: Rami Khalil (Temporary)
 root.stop = () ->
 	toggleDebug()
+
+@validate_code = (problem_id) ->
+	code = $('#solution_code').val()
+	mins = parseInt($('#mins').text())
+	secs = parseInt($('#secs').text())
+	time = mins*60 + secs
+	#start_spin()
+	$.ajax
+		type: "POST"
+		url: '/solutions'
+		data: {problem_id: problem_id, code: code, time: time}
+		datatype: 'json'
+		success: (data) ->
+			#stop_spin()
+			success = $('#validate_success')
+			errors = $('#validate_error')
+			success.html("")
+			for i in data["success"]
+				success.append("#{i}<br>")
+			errors.html("")
+			for i in data["failure"]
+				errors.append("#{i}<br>")
+			if code.length isnt 0 
+				alert 'Solution has been submitted successfully'
+			else
+				alert 'Blank submissions are not allowed'
+			return
+		error: (data) ->
+			#stop_spin()
+			return
+	return

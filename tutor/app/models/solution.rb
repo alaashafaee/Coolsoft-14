@@ -38,10 +38,14 @@ class Solution < ActiveRecord::Base
 					response[:failure] << "Logic error: for input: " + input +" , 
 					expected output: " + expected_output +" but your output was: "
 					+ output  
-					response[:status] = 5
+					unless response[:status] == 4
+						response[:status] = 5
+					end
 				else
 					response[:success] << "Your Solution is correct , Passed"
-					response[:status] = 1 	
+					unless(response[:status] == 4 | 5)
+						response[:status] = 1 	
+					end
 				end
 			else
 				runtime_error = Executer.get_runtime_error()

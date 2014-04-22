@@ -8,21 +8,17 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		@solution = Solution.new(solution_params)
-		@solution.student_id = current_student.id
-		@solution.status = 0
-		@solution.length = @solution.code.length
-		testcases = @solution.problem.test_cases
-		file = "st[" + current_student.id.to_s + "]pr[" + @solution.problem_id.to_s + "]so[" 
-					#+ Solution_id
-		response_message = Solution.validate(@solution.code , testcases , file)
-		@solution.status = response_message[:status]
-		errors =  response_message[:failure]
-		success = response_message[:success]
-		respond_to do |format|
-			format.html { redirect_to :back }
-			format.js { render 'alert.js.erb' }
-		end
+		solution = Solution.new({problem_id: params[:problem_id], code: params[:code],
+					time: params[:time]})
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		testcases = solution.problem.test_cases
+		#response_message = Solution.validate(solution.code , testcases , file)
+		response_message = {:success => ["Success"], :failure => ["Failure"]}
+		#solution.status = response_message[:status]
+		solution.save
+		render json: response_message
+		#end
 	end
 
 	# [Code Editor: Write Code - Story 3.3]
@@ -32,9 +28,9 @@ class SolutionsController < ApplicationController
 	# 	problem_id: Hidden field for problem id
 	# Returns: none
 	# Author: MOHAMEDSAEED
-	private
-	def solution_params
-		params.require(:solution).permit(:code , :problem_id)
-	end
+	# private
+	# def solution_params
+	# 	params.require(:solution).permit(:code , :problem_id)
+	# end
 	
 end

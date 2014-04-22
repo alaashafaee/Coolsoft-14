@@ -34,7 +34,8 @@
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?' %>
+				<%= button_tag 'Submit', type: 'Button',
+					id: 'submitButton', onClick: "validate_code(#{params[:id]})" %>
 			</td>
 		</tr>
 	</table>
@@ -43,5 +44,9 @@
 	<b>Output:</b><br />
 	<p class='output'>
 		Output response
+		<div style="color: red" id="validate_error">
+		</div>
+		<div  style="color: green" id="validate_success">
+		</div>
 	</p>
 <% end %>
