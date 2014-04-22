@@ -16,6 +16,11 @@ class UtilitiesController < ApplicationController
 		end
 	end
 
+	# [Advanced Search - Story 1.23]
+	# search for users and courses and topics
+	# Parameters: search options
+	# Returns: A hashes with search results according to the keyword
+	# Author: Ahmed Elassuty
 	def advanced_search
 		if params[:lecturers].present?
 			@lecturers  = Lecturer.search(params)
@@ -38,6 +43,18 @@ class UtilitiesController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.js
+		end
+	end
+
+	# [Simple Search - Story 1.22]
+	# auto complete search keyword for users and courses
+	# Parameters: search
+	# Returns: A hashes with search results according to the keyword
+	# Author: Ahmed Elassuty
+	def auto_complete
+		@objects = Lecturer.simple_search(params[:q]).take(1)
+		respond_to do |format|
+			format.json {render :template => 'utilities/auto_complete',:formats => [],:handlers => [:json_builder],:layout=>false}
 		end
 	end
 end
