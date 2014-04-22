@@ -204,6 +204,8 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.datetime "updated_at"
   end
 
+  add_index "problems", ["track_id", "title"], name: "index_problems_on_track_id_and_title", unique: true
+
   create_table "recommendations", force: true do |t|
     t.integer  "problem_id"
     t.integer  "student_id"
