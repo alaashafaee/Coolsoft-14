@@ -24,7 +24,7 @@ class Debugger < ActiveRecord::Base
 			rescue
 			end
 		end
-	  	return buffer
+		return buffer
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -46,7 +46,7 @@ class Debugger < ActiveRecord::Base
 	def buffer_until_complete
 		(buffer_until [/\[\d\] $/m]) + "\n"
 	end
-	
+
 	# [Debugger: Debug - Story 3.6]
 	# Inputs an input to the input stream of the debugger JDB
 	# Parameters:
@@ -93,7 +93,7 @@ class Debugger < ActiveRecord::Base
 		end
 		return $all
 	end
-	
+
 	# [Debugger: Debug - Story 3.6]
 	# Iterates 100 times to get the value of all local variables in each step
 	# Parameters: none
@@ -116,7 +116,7 @@ class Debugger < ActiveRecord::Base
 			end
 		end
 	end
-	
+
 	# [Debugger: Debug - Story 3.6]
 	# Gets the number of the line to be executed
 	# Parameters: none
@@ -138,7 +138,7 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Create a java file and start debugging
-	# Parameters: 
+	# Parameters:
 	# 	Student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	code: The code to be debugged
@@ -156,7 +156,7 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Renames the class name to be compiled and debugged correctly
-	# Parameters: 
+	# Parameters:
 	# 	Student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	code: The code to be debugged
@@ -164,7 +164,7 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def self.change_class_name(student_id, problem_id, code)
 		name = 'st' + student_id.to_s + 'pr' + problem_id.to_s
-		return code.sub(code[0..code.index('{')], 'public class ' + name + ' {')	
+		return code.sub(code[0..code.index('{')], 'public class ' + name + ' {')
 	end
 
 end

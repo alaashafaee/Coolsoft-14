@@ -5,7 +5,7 @@ IndexNumber = 0
 
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
-# Parameters: 
+# Parameters:
 # 	problem_id: The id of the problem being solved
 # Returns: none
 # Author: Mussab ElDash
