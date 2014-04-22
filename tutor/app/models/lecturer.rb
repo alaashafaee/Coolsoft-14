@@ -33,6 +33,12 @@ class Lecturer < ActiveRecord::Base
 	#Scoops
 	
 	#Methods
+
+	# [Advanced Search - Story 1.23]
+	# search for lecturers
+	# Parameters: hash of search options
+	# Returns: A hash with search results according to the keyword and other options
+	# Author: Ahmed Elassuty
 	def self.search(params)
 		if params[:keyword].present?
 			case params[:options]
