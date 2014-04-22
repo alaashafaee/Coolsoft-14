@@ -91,11 +91,11 @@ class ProblemsController < ApplicationController
 				format.html {redirect_to :action => "edit", :id => @problem.id}
 				format.js
 			end
-		else 
+		else
 			flash.keep[:notice] = "Update paramater is empty"
 			respond_to do |format|
 				format.html {redirect_to :action => "edit", :id => @problem.id}
-				format.js	
+				format.js
 			end
 		end
 	end
@@ -121,7 +121,7 @@ class ProblemsController < ApplicationController
 			flash.keep[:notice] = ""
 			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
-	end	
+	end
 
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it

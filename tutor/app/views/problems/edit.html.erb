@@ -11,7 +11,7 @@ and a paragraph to view the problem description of the instance variable @proble
 		
 	<% end %>
 </div>
-<div id="div2">	
+<div id="div2">
 	<p><%= @problem.description %></p>
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
 
@@ -21,7 +21,7 @@ and a paragraph to view the problem description of the instance variable @proble
 			</p>
 			<%= p.hidden_field :title, value: @problem.title %>
 	<% end %>
-</div>	
+</div>
 
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
@@ -33,4 +33,4 @@ and a paragraph to view the problem description of the instance variable @proble
 	<% if flash[:notice] %>
 		<div class="notice"><%= flash[:notice] %></div>
 	<% end %>
-</div>	
+</div>
