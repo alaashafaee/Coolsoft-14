@@ -70,6 +70,7 @@ class Executer
 	# Author: Ahmed Akram
 	def self.get_runtime_error(file_name, sub_name)
 		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
+
 		if @execute_res.include?("/ by zero")
 			message = "Division by Zero results in infinity, "\
 						"which computers can not understand. Be careful !"

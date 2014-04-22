@@ -161,7 +161,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
 	Problem.first.model_answers << ModelAnswer.first
 	Problem.first.model_answers << ModelAnswer.find_by_id(2)
-	Problem.first.test_cases << TestCase.first
+	Problem.first.test_cases << TestCase.find_by_id(4)
+	Problem.first.test_cases << TestCase.find_by_id(5)
+	Problem.first.test_cases << TestCase.find_by_id(6)
 	Problem.first.solutions << Solution.first
 
 	Problem.find_by_id(2).model_answers << ModelAnswer.find_by_id(3)
