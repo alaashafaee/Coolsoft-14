@@ -37,7 +37,3 @@ Gemfile.lock, .ruby-version, .ruby-gemset
 
 # Ignoring generated model diagram
 models.svg
-
-# Ignoring Java files and class files
-*.java
-*.class
