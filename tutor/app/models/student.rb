@@ -84,9 +84,9 @@ end
 	# Parameters: None
 	# Returns: None
 	# Author: Amir George
-	def send_reminder_mails
+	def self.send_reminder_mails
 		Student.find_each do |student|
-			if student.last_sign_in_at < Time.now - 7.days
+			if student.last_sign_in_at < Time.now
 				SystemReminders.reminder_email(student).deliver
 			end
 		end
