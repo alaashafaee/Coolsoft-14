@@ -72,21 +72,45 @@ class ProblemsController < ApplicationController
 		end
 	end
 
+	# [Edit Problem - 4.5]
+	# Update the problem's title or description
+	# Parameters:
+	#  problem_params: a problem's title & description
+	# Returns: refreshes divisions in the page using AJAX without refreshing the whole page
+	# Author: Abdullrahman Elhusseny
 	def update
 		@problem = Problem.find_by_id(params[:id])
+		if (problem_params[:title] == @problem.title)
+			@message = "Description updated"
+		else
+			@message = "Title updated"
+		end
 		if @problem.update_attributes(problem_params)
-			redirect_to :action => "edit", :id => @problem.id
+				flash.keep[:notice] = @message
+			respond_to do |format|
+				format.html {redirect_to :action => "edit", :id => @problem.id}
+				format.js
+			end
 		else 
 			flash.keep[:notice] = "Update paramater is empty"
-			redirect_to :back
+			respond_to do |format|
+				format.html {redirect_to :action => "edit", :id => @problem.id}
+				format.js	
+			end
 		end
 	end
 
+	# [Edit Problem - 4.5]
+	# Checks if problem is complete or not by checking the number of test cases and answers
+	# Parameters:
+	#  problem_id: ID of the problem being edited
+	# Returns: On success redirects to the track page, on failure redirects to the edit page
+	# Author: Abdullrahman Elhusseny
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.test_cases.empty?
 			@failure = true
-			flash.keep[:notice] = "Test cases are empty #{@failure}"
+			flash.keep[:notice] = "Test cases are empty"
 			redirect_to :action => "edit", :id => @problem.id
 		elsif @problem.model_answers.empty?
 			@failure = true
@@ -94,19 +118,11 @@ class ProblemsController < ApplicationController
 			redirect_to :back
 		else
 			@problem.incomplete = false
+			flash.keep[:notice] = ""
 			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
 	end	
 
-	def destroy_problem
-		@problem = Problem.find_by_id(params[:problem_id])
-		@problem.test_cases.destroy
-		@problem.model_answers.destroy
-		@track = @problem.track_id
-		@problem.destroy
-		flash.keep[:notice] = "Problem has been deleted"
-		redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
-	end	
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:

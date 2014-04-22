@@ -1,0 +1,8 @@
+<h2 align ="center"><%= @problem.title %></h2>
+<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
+
+		<%= p.text_field :title %>
+		<%= p.hidden_field :description, value: @problem.description %>
+		<%= p.submit('update title') %>
+	
+<% end %>
