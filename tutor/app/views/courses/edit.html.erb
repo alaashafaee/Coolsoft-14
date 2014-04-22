@@ -35,29 +35,29 @@
 	<%= form_for :course, url: course_path(@course), method: :patch do |c| %>
 	<p>
 		<br><br><%= c.label :name %><br>
-    	<%= c.text_field :name %>
-  	</p>
- 
-  	<p>
-    	<%= c.label :code %><br>
-    	<%= c.text_area :code %>
-  	</p>
+		<%= c.text_field :name %>
+	</p>
 
 	<p>
-    	<%= c.label :year %><br>
-    	<%= c.text_area :year %>
-  	</p>
-
-  	<p>
-    	<%= c.label :semester %><br>
-    	<%= c.text_area :semester %>
-  	</p>
-
-  	<p>
-    	<%= c.label :description %><br>
-    	<%= c.text_area :description %>
+		<%= c.label :code %><br>
+		<%= c.text_area :code %>
 	</p>
- 
+
+	<p>
+		<%= c.label :year %><br>
+		<%= c.text_area :year %>
+	</p>
+
+	<p>
+		<%= c.label :semester %><br>
+		<%= c.text_area :semester %>
+	</p>
+
+	<p>
+		<%= c.label :description %><br>
+		<%= c.text_area :description %>
+	</p>
+
 	<p>
 		<%= c.submit %>
 	</p>
