@@ -11,7 +11,6 @@ Tutor::Application.routes.draw do
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
 	post 'courses/new' => 'courses#new'
-	#post '/hints/:id/edit' => 'hints#edit'
 	get 'courses/sign_up'
 
 
