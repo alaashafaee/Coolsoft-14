@@ -55,7 +55,6 @@
 			if @new_post.errors.any?
 				flash[:notice] = @new_post.errors.full_messages.first
 			end
-			#redirect_to :controller => 'posts', :action => 'new',:discussion_board_id => @discussion_board.id
 			render :action => 'new' 
 		end
 	end
