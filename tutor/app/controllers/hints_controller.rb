@@ -13,8 +13,8 @@ class HintsController < ApplicationController
 	# [Adding Helping Hints - 4.12]
 	# Creates a new record to Hint Table
 	# Parameters:
-	#   owner_id: ID of the hint owner
-	#   owner type: type of hint owner
+	# 	owner_id: ID of the hint owner
+	# 	owner type: type of hint owner
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Mohamed Fadel
 	def create
