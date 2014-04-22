@@ -76,8 +76,10 @@ index_number = 0
 		jump_state ++index_number
 	else if(index_number == 99)
 		alert "The online debugger can only step forward 100 times."
+		jump_state index_number
 	else
 		alert "The program has terminated."
+		jump_state index_number
 
 # [Execute Line By Line - Story 3.8]
 # Moves to the previous state of execution.
@@ -89,6 +91,7 @@ index_number = 0
 		jump_state --index_number
 	else
 		alert "This is the first step in the program."
+		jump_state index_number
 
 # [Execute Line By Line - Story 3.8]
 # Highlights the target line number in the editor
