@@ -1,5 +1,9 @@
 class Course < ActiveRecord::Base
-	
+
+	#Elasticsearch
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+		
 	#Validations
 	validates :name, presence: true 
 	validates :description, presence: true
@@ -37,7 +41,7 @@ class Course < ActiveRecord::Base
 	# Parameters: keyword
 	# Returns: A hash with search results according to the keyword
 	# Author: Ahmed Elassuty
-	def self.search(keyword)
+	def self.simple_search(keyword)
 		where("name LIKE ? or code LIKE ?", "%#{keyword}%" , "%#{keyword}%") if keyword.present?
 	end
 
