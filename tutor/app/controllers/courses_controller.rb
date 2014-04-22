@@ -92,11 +92,6 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
-	private
-		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description)
-		end
-
 	# [Create from Existant Course - Story 2.5]
 	# Return the courses
 	# Parameters:
@@ -104,9 +99,6 @@ class CoursesController < ApplicationController
 	# Author: Rania Abdel Fattah 
 	def existing
 		@courses = Course.all
-		if @courses.nil?
-			redirect_to :new
-		end
 	end
 	# [Create from Existant Course - Story 2.5]
 	# Duplicate the courses that it is found and save them in a new course
@@ -114,10 +106,10 @@ class CoursesController < ApplicationController
 	#	id: The course id
 	# Author: Rania Abdel Fattah
 	def duplicate
-		course = Course.find_by_id(permitd_up[:id])
-		new_course = course.dup
+		@course = Course.find_by_id(permitd_up[:id])
+		new_course = @course.dup
 		if new_course.save
-			redirect_to :back
+			redirect_to :action => 'index'
 		else
 			redirect_to :back
 		end
@@ -126,7 +118,7 @@ class CoursesController < ApplicationController
 	# Choose which parameter should be listed
 	# Parameters:
 	#	id: The course id
-	# Author: Rania Abdel Fattah
+	# Author: Rania A0bdel Fattah
 	private
 		def permitd_up
 			params.require(:course).permit(:id)
@@ -134,4 +126,11 @@ class CoursesController < ApplicationController
 
 	def choose
 	end
-end
+
+
+	private
+		def course_params 
+			params.require(:course).permit(:name,:code,:year,:semester,:description)
+		end
+
+	end
