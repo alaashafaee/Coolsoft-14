@@ -33,6 +33,7 @@ class ProblemsController < ApplicationController
 			p.owner_type = "teaching assistant"
 		end
 		if p.save
+			
 			redirect_to :action => "edit", :id => p.id
 		else 
 			flash.keep[:notice] = "Problem is missing paramaters"

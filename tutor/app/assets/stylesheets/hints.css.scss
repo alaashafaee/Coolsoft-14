@@ -1,0 +1,27 @@
+// Place all the styles related to the Hints controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+thk,tdj{
+    overflow: hidden;
+    width: 500px;
+    height: 50px;
+    display: block;
+   
+}
+ td{
+        //height: 70px;
+        width: 20px;
+    }
+.achievements-wrapper { table-layout:fixed; }
+.the-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+.myWidth { max-width: 20px; }
+.concat div { overflow: hidden; -ms-text-overflow: ellipsis; -o-text-overflow: ellipsis; text-overflow: ellipsis; white-space: nowrap; width: inherit; }
+ //overflow: auto;
+ //"table table-condensed table-striped"
+ .the-table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}

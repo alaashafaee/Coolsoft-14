@@ -57,6 +57,7 @@ puts("# -----------------------Hints---------------------------")
 	Hint.create(message: "Do not Try to Solve CS problem-2")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
+
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-2")
@@ -208,9 +209,12 @@ puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
 	
+<<<<<<< HEAD
+=======
 puts("# -----------------------Solution---------------------------")
 	Student.first.solutions << Solution.first
 	Student.first.solutions << Solution.find_by_id(2)
 	Student.first.solutions << Solution.find_by_id(3)
 
+>>>>>>> 623d49a35c55479799922c9cb678433035b5256b
 puts("# ---------------------------------------------------------")

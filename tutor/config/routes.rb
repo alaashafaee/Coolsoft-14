@@ -1,5 +1,24 @@
 Tutor::Application.routes.draw do
 
+
+
+	resources :hints
+	resources :tips
+
+
+	get 'courses/show'
+	get "model_answers/new"
+	post "model_answers/new"
+	resources :model_answers
+
+	post "model_answers/edit"
+		get "model_answers/show"
+
+
+		get "problems/edit"
+
+
+
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -12,7 +31,6 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
-
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -53,6 +71,7 @@ Tutor::Application.routes.draw do
 	end
 	resources :model_answers do
 		post "model_answers/new"
+	
 	end
 	# Example resource route with sub-resources:
 	#   resources :products do

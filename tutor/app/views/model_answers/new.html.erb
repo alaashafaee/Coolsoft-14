@@ -1,0 +1,40 @@
+<%= form_for :model_answer, url: model_answers_path  do |f| %>
+
+
+
+<%= flash[:error] %>
+<%if session[:error] %>
+		<span class ="red"><h4> Model Answer can't be saved </h2></span>
+		<ul>
+		<% session[:error].each do |msg| %>
+				<li>
+				<span class="red">	<%= msg %> </span>
+				</li>
+			<% end %>
+				
+		
+		</ul>
+	<% end %>
+
+  <h2>Please Insert your model answer</h2>
+
+  <br><h3><%= f.label :Title%></h3>
+		<%= f.text_field :title %></br>
+	<h3>	<%= f.label :Answer%> </h3>
+  <%= f.text_area :answer,:cols => "50", :rows => "15" %>
+  
+  
+
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<br>
+   
+ <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
+
+</br>
+<br> </br>
+
+<%end%>
+<style type="text/css" />
+	.red { color: #FF0000; }
+	.bold { font-weight: bold; }
+</style>
