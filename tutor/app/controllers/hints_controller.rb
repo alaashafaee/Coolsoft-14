@@ -2,15 +2,15 @@ class HintsController < ApplicationController
 
 	@@answer_id = nil
 
-	#[Adding Helping Hints - 4.12]
-	#Creates a new record to Hint Table
-	#Parameters:
+	# [Adding Helping Hints - 4.12]
+	# Creates a new record to Hint Table
+	# Parameters:
 	#	owner_id: ID of the hint owner
 	#	owner type: type of hint owner
 	#	category: states whether it is a hint or tip
-	#Returns:
+	# Returns:
 	#	Redirects to edit page on success, refreshes on failure
-	#Author: Mohamed Fadel
+	# Author: Mohamed Fadel
 	def create
 		p = Hint.new(permitCreate)
 		if lecturer_signed_in?
@@ -33,27 +33,27 @@ class HintsController < ApplicationController
 		end
 	end
 
-	#[Adding Helping Hints - 4.12]
-	#Passes the input of the form as paramaters for create action to use it
-	#Parameters:
+	# [Adding Helping Hints - 4.12]
+	# Passes the input of the form as paramaters for create action to use it
+	# Parameters:
 	#	submission_counter: hint's submission counter
 	#	message: hint's message
-	#Returns: 
+	# Returns: 
 	#	params to create action
-	#Author: Mohamed Fadel
+	# Author: Mohamed Fadel
 	def permitCreate
 		params.require(:Hint).permit(:submission_counter, :message)
 	end
 	
-	#[Delete a Hint - Story 4.21]
-	#This action takes the hint id, remove it from the database
-	#and then redirects the user to the edit page accompanied
-	#with a "Hint deleted" message.
-	#Parameters:
+	# [Delete a Hint - Story 4.21]
+	# This action takes the hint id, removes it from the database
+	# and then redirects the user to the edit page accompanied
+	# with a "Hint deleted" message.
+	# Parameters:
 	#	params[:id]: The current hint's id
-	#Returns: 
+	# Returns: 
 	#	none
-	#Author: Mohamed Fadel
+	# Author: Mohamed Fadel
 	def destroy
 		hint = Hint.find_by_id(params[:id])
 		hint.destroy
