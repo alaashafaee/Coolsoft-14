@@ -1,9 +1,15 @@
 class HintsController < ApplicationController
-
+	# [Edit helping hints - Story 4.13 ]
+	# Description: This action creates the form and retrives the data of the selected problem 
+	# 			   to be being edited
+	# Parameters:
+	#			   ID of the hint  
+	# Returns: 
+	# 			   none
+	# Author: Mimi
     def show
 		@new_Tip = Hint.find_by_id(params[:id])
 	end
-   
     # [Edit helping hints - Story 4.13 ]
 	# Description: This action takes the passed parameters from 
 	#              the creation form, edits a Hint record
@@ -31,7 +37,13 @@ class HintsController < ApplicationController
 			redirect_to :back
 		end
 	end	
-
+ 	# [Edit helping hints - Story 4.13 ]
+	# Description: 
+	#  			  take the parameters from the from
+	# Parameters:
+	#			  none
+	# Returns: 
+	# Author: Mimi
 	private
 		def hint_params
 			params.require(:hint).permit(:message,:submission_counter,:id)
