@@ -65,22 +65,25 @@ class Debugger < ActiveRecord::Base
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(file_path, input)
+	def start(solution, input)
+		class_name = solution.class_file_name
 		$all = []
-		begin
-			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path, input)
-			buffer_until_ready
-			input "stop in #{file_path}.main"
-			buffer_until_ready
-			input "run"
-			num = get_line
-			# locals = get_variables
-			hash = {:line => num, :locals => []}
-			$all << hash
-			debug
-		rescue => e
-			p e.message
-		end
+		Dir.chdir(Solution::CLASS_PATH){
+			begin
+				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, input)
+				p buffer_until_ready
+				input "stop in #{class_name}.main"
+				p buffer_until_ready
+				input "run"
+				num = get_line
+				# locals = get_variables
+				hash = {:line => num, :locals => []}
+				$all << hash
+				debug
+			rescue => e
+				p e.message
+			end
+		}
 		return $all
 	end
 
@@ -122,7 +125,7 @@ class Debugger < ActiveRecord::Base
 		if regex_capture
 			return regex_capture.to_i
 		else
-			raise 'Exited'
+			return -1
 		end
 	end
 
@@ -136,29 +139,13 @@ class Debugger < ActiveRecord::Base
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(student_id, problem_id, code, input)
-		solution = solution.Create({code: code, student_id: student_id,
+		solution = Solution.create({code: code, student_id: student_id,
 			problem_id: problem_id })
-		compile_status = Compile.compiler_feedback(solution)
+		compile_status = Compiler.compiler_feedback(solution)
 		unless compile_status[:success]
 		 	return "Compilation Error"
 		 end
 		debugger = Debugger.new
-		input = input.split " " 
-		file_path = solution.class_file_name true, false
-		return debugger.start(file_path, input.strip)
+		return debugger.start(solution, input)
 	end
-
-	# [Debugger: Debug - Story 3.6]
-	# Renames the class name to be compiled and debugged correctly
-	# Parameters:
-	# 	Student_id: The id of the current signed in student
-	# 	problem_id: The id of the problem being solved
-	# 	code: The code to be debugged
-	# Returns: The modified code
-	# Author: Mussab ElDash
-	def self.change_class_name(student_id, problem_id, code)
-		name = 'st' + student_id.to_s + 'pr' + problem_id.to_s
-		return code.sub(code[0..code.index('{')], 'public class ' + name + ' {')
-	end
-
 end
