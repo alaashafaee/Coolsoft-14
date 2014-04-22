@@ -123,14 +123,17 @@ indexNumber = 0
 @update_memory_contents = (stateNumber) ->
 	div = document.getElementById("memory")
 	list_of_variables = variables[stateNumber]["locals"]
-	content = ""
+	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
 	i = 0
 	while i < list_of_variables.length
-    	content += list_of_variables[i]
-    	content += "<br /><br />"
-    	i++
-  	div.innerHTML = content
-  	return
+		values = list_of_variables[i].split " = "
+		content += "<tr class='success'><td>" + values[0] + "</td>"
+		content += "<td>" + values[1] + "</td></tr>"
+		i++
+	content += "</table>"
+	div.innerHTML = content
+	return
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
