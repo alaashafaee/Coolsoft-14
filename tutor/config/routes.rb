@@ -13,6 +13,7 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
  	post 'posts/new' => 'posts#new'
+ 	post '/posts/:id' => 'posts#update'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
