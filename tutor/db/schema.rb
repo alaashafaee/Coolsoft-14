@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.string   "message"
     t.integer  "course_id"
     t.integer  "student_id"
+    t.integer  "lecturer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
