@@ -56,6 +56,10 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	def edit
 		@answer = ModelAnswer.find(params[:id])
+
+		@problem = Problem.find(@answer.problem_id)
+
+		@test_cases = @problem.test_cases
 	end
 
 	def update
