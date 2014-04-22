@@ -7,9 +7,12 @@ class HintsController < ApplicationController
 	# Returns: none
 	# Author: Mimi
 	def edit
+		if current_lecturer or current_teaching_assistant
 		@new_Tip = Hint.find_by_id(params[:id])
+		else
+		render "public/500.html"
+		end
 	end	
-
 	# [Edit helping hints - Story 4.13 ]
 	# This action takes the passed parameters from 
 	#	the creation form, edits a Hint record
