@@ -152,7 +152,7 @@ class CoursesController < ApplicationController
 	def update
 		@course = Course.find_by_id(params[:id])
 		if @course.update(course_params)
-			redirect_to @course
+			render 'show'
 			else 
 				render 'edit'
 			end 
