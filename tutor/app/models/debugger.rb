@@ -10,10 +10,12 @@ class Debugger < ActiveRecord::Base
 	#Methods
 
 	# [Debugger: View Variables - Story 3.7]
-	# Returns a list of all variables in the class with
-	# 	their values
+	# Fetches the variables found in the class and returns 
+	# 	a list of all variables in the class with their 
+	#	associated values
 	# Parameters: None
-	# Returns: An Array
+	# Returns: 
+	# 	An array. It contains the list of variables and their values
 	# Author: Khaled Helmy
 	def get_variables
 		method_arguments = []
@@ -42,10 +44,12 @@ class Debugger < ActiveRecord::Base
 	end
 
 	# [Debugger: View Variables - Story 3.7]
-	# Return the list of instance and static variables from within
-	# 	static methods
+	# Return the list of instance and static variables of the
+	# 	class from within static methods
 	# Parameters: None
-	# Returns: An Array
+	# Returns: 
+	# 	An array. It contains the list of instance and static
+	# 	variables and their associated values
 	# Author: Khaled Helmy
 	def get_class_variables
 		result = []
@@ -79,10 +83,11 @@ class Debugger < ActiveRecord::Base
 	end
 
 	# [Debugger: View Variables - Story 3.7]
-	# Takes a variable and evaluates its value
+	# Takes an object and evaluates its value
 	# Parameters: 
-	#   variable: A String containing a variable assignment
-	# Returns: An Array
+	#   variable: a string containing an instance object
+	# Returns: 
+	# 	An array. It contains the values inside an object
 	# Author: Khaled Helmy
 	def get_value variable
 		result = []
@@ -105,8 +110,9 @@ class Debugger < ActiveRecord::Base
 	# Takes a line containing an object assignment and extracts
 	# 	the object name
 	# Parameters: 
-	#   variable: A String containing an object assignment
-	# Returns: A String
+	#   variable: A string containing an object assignment
+	# Returns: 
+	# 	A string. It contains the object name
 	# Author: Khaled Helmy
 	def get_name variable
 		name = variable.split(" = ").first
