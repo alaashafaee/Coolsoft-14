@@ -14,19 +14,32 @@ IndexNumber = 0
 	test = $('#testcases').val()
 	alert input
 	alert test
+	start_spin()
 	$.ajax
 		type: "POST"
 		url: '/debug/' + problem_id
-		data: {id : problem_id , code : input , case : test}
+		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
 			$('#nextButton').attr "disabled", false
 			$('#previousButton').attr "disabled", true
 			toggleDebug()
 			Variables = data
+			stop_spin()
 			$.each data, (ia, da) ->
-				alert da["line"] + "=>" + da["locals"] + "da[locals] is Empty for now"
+				alert da["line"] + "=>" + da["locals"] + "locals is Empty for now"
 			return
+		error: ->
+			stop_spin()
+			return
+	return
+
+@start_spin = ->
+	$('#spinner').attr "class" , "spinner"
+	return
+
+@stop_spin = ->
+	$('#spinner').attr "class" , ""
 	return
 
 # [Execute Line By Line - Story 3.8]
