@@ -42,7 +42,6 @@ Tutor::Application.routes.draw do
 	#       get 'sold'
 	#     end
 	#   end
-
 	resources :tracks do
 		member do
 			get 'getProblems'
