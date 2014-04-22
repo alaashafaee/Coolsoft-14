@@ -1,5 +1,7 @@
 Tutor::Application.routes.draw do
 
+  get "hints/index"
+  get "tips/index"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
