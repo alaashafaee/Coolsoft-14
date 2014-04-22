@@ -29,6 +29,9 @@ puts("# --------------------------Courses------------------------------")
 	Course.create(name:"Course2", description:"This is course two", code:2, year:2014, semester:1)
 	Course.create(name:"Course3", description:"This is course three", code:3, year:2014, semester:1)
 
+puts("# --------------------------Course_Student------------------------------")
+	CourseStudent.create(share: true)
+
 puts("# --------------------------DiscussionBoards------------------------------")
 	DiscussionBoard.create(title:"DiscussionBoard1", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard2", activated: true)
@@ -136,7 +139,7 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.find_by_id(2)
 
 puts("# -----------------------Students---------------------------")
-	Student.first.courses << Course.first
+	Student.first.course_students << CourseStudent.first
 	Student.first.solutions << Solution.first
 	Student.first.solutions << Solution.find_by_id(2)
 	Student.first.solutions << Solution.find_by_id(3)
@@ -153,6 +156,11 @@ puts("# -----------------------Students---------------------------")
 	Student.first.attempts << Attempt.find_by_id(11)
 	Student.first.attempts << Attempt.find_by_id(12)
 	Student.first.attempts << Attempt.find_by_id(13)
+
+	# Other way to add Course into student, but it will require getting Course_student via searching
+	# since the table has key on (student_id and course_id)then the array will always be 1 elemet [0]
+	Student.find_by_id(2).courses << Course.find_by_id(2)
+	CourseStudent.where(student_id:2, course_id:2)[0].update(share: true)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -203,6 +211,7 @@ puts("# --------------------- Courses -------------------------")
 	Course.first.topics << Topic.find_by_id(2)
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
+	Course.first.course_students << CourseStudent.first
 
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
