@@ -16,7 +16,7 @@ class Solution < ActiveRecord::Base
 	# 	Debugger: Debug - Story 3.6
 	# 	Compiler: Test - Story 3.15
 	# ]
-	# Returns the file name associatd with this solution code.
+	# Returns the file name associated with this solution code.
 	# Parameters:
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's java file name
@@ -31,7 +31,7 @@ class Solution < ActiveRecord::Base
 	# 	Debugger: Debug - Story 3.6
 	# 	Compiler: Test - Story 3.15
 	# ]
-	# Returns the java file name associatd with this solution code.
+	# Returns the java file name associated with this solution code.
 	# Parameters:
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's java file name
@@ -49,7 +49,7 @@ class Solution < ActiveRecord::Base
 	# 	Debugger: Debug - Story 3.6
 	# 	Compiler: Test - Story 3.15
 	# ]
-	# Returns the class file name associatd with this solution code.
+	# Returns the class file name associated with this solution code.
 	# Parameters:
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's class file name
