@@ -7,7 +7,7 @@
 <br/>
 <br/>	
 <!-- Rendering the form fields -->
-<%= form_for :hint,url:{:controller => "hints",action:"edit"} do  |f| %> 
+<%= form_for @new_Tip,url:{:controller => "hints",action:"update"} do  |f| %> 
 		<%= f.hidden_field :id , value: params[:id] %>
 		<p>
 			<%= f.label "Hint description" %><br>
