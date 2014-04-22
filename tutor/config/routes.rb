@@ -30,6 +30,7 @@ Tutor::Application.routes.draw do
 	resources :problems
 	resources :topics
 	resources :hints
+	
 	# Example resource route with options:
 	#   resources :products do
 	#     member do
