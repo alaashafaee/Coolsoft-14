@@ -41,11 +41,6 @@ ActiveRecord::Schema.define(version: 20140419085448) do
     t.datetime "updated_at"
   end
 
-  create_table "compilers", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "code"

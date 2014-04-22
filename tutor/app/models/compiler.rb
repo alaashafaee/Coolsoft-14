@@ -22,7 +22,8 @@ class Compiler < ActiveRecord::Base
 	def self.compile(student_id, problem_id, solution_id, code)
 		java_path = 'students_solutions/Java/'
 		%x[ #{'mkdir -p ' + java_path} ]
-		file_name = java_path + 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + solution_id.to_s + '.java'
+		file_name = java_path + 'st' + student_id.to_s + 'pr' +
+			problem_id.to_s + 'so' + solution_id.to_s + '.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
 		class_path = 'students_solutions/Class'
 		%x[ #{'mkdir -p ' + class_path} ]
@@ -43,7 +44,7 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(student_id, problem_id, solution_id, code)
 		new_code = change_class_name(student_id, problem_id, solution_id, code)
-		feedback = compile(student_id,problem_id, solution_id, new_code)
+		feedback = compile(student_id, problem_id, solution_id, new_code)
 		if feedback == ""
 			return { success: true, errors: nil }
 		else

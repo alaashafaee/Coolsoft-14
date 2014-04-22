@@ -14,12 +14,11 @@ class SolutionsController < ApplicationController
 			@solution.status = 0
 			@solution.length = @solution.code.length
 			if @solution.save
-				flash[:success] = "Your Solution has been submitted successfully"
-				redirect_to :back
+				flash[:success] = "Your solution has been submitted successfully"
 			else
-				flash[:alert] = "Blank Submissions are not allowed !!!"
-				redirect_to :back
+				flash[:alert] = "Blank submissions are not allowed!!!"
 			end
+			redirect_to :back
 		elsif params[:commit] == 'Compile'
 			compile_solution
 		end
@@ -38,23 +37,20 @@ class SolutionsController < ApplicationController
 		@solution.length = @solution.code.length
 		if @solution.save
 			compiler_feedback = Compiler.compiler_feedback(current_student.id,
-				solution_params[:problem_id],@solution.id.to_s, solution_params[:code])
+				solution_params[:problem_id], @solution.id.to_s, solution_params[:code])
 			if compiler_feedback[:success]
-				#compiled successfully
 				@solution.status = 3
 				flash[:compiler_success] = "Compilation Succeeded!"
 			else
-				#failed to compile
 				@solution.status = 2
 				flash[:compiler_fail] = "Compilation Failed!"
 				flash[:compiler_feedback] = compiler_feedback[:errors]
 			end
 			@solution.save
-			redirect_to :back
 		else
 			flash[:alert] = "You did not write any code!"
-			redirect_to :back
 		end
+		redirect_to :back
 	end
 
 	# [Code Editor: Write Code - Story 3.3]
@@ -66,7 +62,7 @@ class SolutionsController < ApplicationController
 	# Author: MOHAMEDSAEED
 	private
 	def solution_params
-		params.require(:solution).permit(:code , :problem_id)
+		params.require(:solution).permit(:code, :problem_id)
 	end
 
 end
