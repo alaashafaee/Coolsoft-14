@@ -1,8 +1,10 @@
 Tutor::Application.routes.draw do
 
 
+
 	resources :hints
 	resources :tips
+
 
 	get 'courses/show'
 	get "model_answers/new"
@@ -12,7 +14,9 @@ Tutor::Application.routes.draw do
 	post "model_answers/edit"
 		get "model_answers/show"
 
+
 		get "problems/edit"
+
 
 
 	devise_for :teaching_assistants

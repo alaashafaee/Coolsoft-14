@@ -22,7 +22,12 @@ class ModelAnswersController < ApplicationController
 	#<%= link_to "Save Model Answer"  , {:controller => 'problems',:action => 'edit',
     #:method => :get, :id => @problem.id },{class: 'btn btn-primary btn-xs', style: "text-decoration:none" }%>
 	def create
+
 		@problems =Problem.find_by_id(@@problemid)
+
+		@answer = ModelAnswer.new(post_params)
+		 
+
 		if lecturer_signed_in?
 			@answer = ModelAnswer.new(post_params)
 			@answer.owner_id = current_lecturer.id
@@ -37,7 +42,9 @@ class ModelAnswersController < ApplicationController
 			
 		end
 		if @answer.save
+
 			@problems.model_answers << @answer
+
 			flash[:notice] = "Your Answer is now added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @answer.problem_id
 		else
@@ -48,12 +55,7 @@ class ModelAnswersController < ApplicationController
 		end
 	end
 
-	# [Add answer story 4.6]
-	# It shows answer that was entered before. 
-	# Parameters: 
-	#   @answer:previous answer.
-	#   Return : none
-	# Author: Nadine Adel
+
 	def edit
 		@answer = ModelAnswer.find(params[:id])
 
@@ -86,6 +88,7 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	def show
 		@answer = ModelAnswer.find(params[:problem_id])
+
 	end
 
 	# [Add answer story 4.6]
@@ -107,7 +110,12 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	private
 	def post_params
+
 		params.require(:model_answer).permit(:title,:answer,:problem_id)
+
+
+
 	end
+
 	
 end

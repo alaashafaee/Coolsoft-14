@@ -1,0 +1,27 @@
+<% provide(:title, "Edit Test case") %>
+
+<%= form_for(@test_case) do |f| %>
+
+<h2>Test Case </h2>
+<%= flash[:notice]%>
+		<br><%= f.label :Input %>
+			<%= f.text_field :input %></br>
+			<br><%= f.label :Output %>
+			<%= f.text_field :output %></br>
+			
+       		
+            
+
+			<br> <%= f.submit "Save changes", class: "btn btn-large btn-primary" %><br>
+
+         
+        
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @test_case.problem_id,
+              :method => :get, class: 'btn btn-default btn-xs' %></ul>
+        
+          
+<%end%>
+<style type="text/css" />
+	.red { color: #FF0000; }
+	.bold { font-weight: bold; }
+</style>
