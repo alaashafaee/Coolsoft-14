@@ -132,7 +132,7 @@ index_number = 0
 # Returns: none
 # Author: Rami Khalil
 @jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line'] - 2
+	highlight_line variables[stateNumber]['line'] - 1
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
