@@ -95,7 +95,7 @@ class ProblemsController < ApplicationController
 			@track = Problem.find_by_id(params[:id]).track_id
 			if Problem.find_by_id(params[:id]).destroy
 				flash[:notice] = "Problem successfully Deleted"
-				redirect_to(:controller => 'track' , :action => 'show' ,:id => @track.id)
+				redirect_to(:controller => 'track' , :action => 'show' ,:id => @track)
 			end
 	end
 end
