@@ -1,7 +1,7 @@
 class Executer
 
 	# [Compiler: Test - Story 3.15]
-	# Runs the solution submited on the submited test case
+	# Runs the solution submitted on the submitted test case
 	# Parameters:
 	#	file_name: The submited file name
 	# 	input: Test case entered by the user
@@ -9,7 +9,7 @@ class Executer
 	# 	@execute_res: The execution result
 	# Author: Ahmed Akram
 	def self.execute(file_name, input, problem_id)
-		class_path = Solution.get_class_path
+		class_path = Solution::CLASS_PATH
 		validity = check_input_validity(input, problem_id)
 		if validity[:status]
 			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
@@ -34,8 +34,7 @@ class Executer
 	# 	A hash [status, msg], where status is true or false and msg is costume explaining message
 	# Author: Ahmed Akram
 	def self.check_input_validity(input, problem_id)
-		# variables_number = Problem.find_by_id(problem_id).variable_constraints.count
-		variables_number = 2
+		variables_number = Problem.find_by_id(problem_id).test_cases.first.input.split(" ").count
 		if input.include?("\n")
 			return {status: false, msg: "Input can not have line breaks \"don't use enter\""}
 		end
@@ -52,7 +51,7 @@ class Executer
 	#	file_name: The submited file name
 	# 	error: The runtime error
 	# 	sub_name: The costume name to replace the class name
-	# Returns: 
+	# Returns:
 	# 	none
 	# Author: Ahmed Akram
 	def self.remove_class_name(file_name, error, sub_name)
@@ -65,7 +64,7 @@ class Executer
 	#	file_name: The submited file name
 	# 	sub_name: The name to replace the class name
 	# Returns:
-	# 	A hash [error, explaination], where error is the runtime error and explaination
+	# 	A hash [error, explanation], where error is the runtime error and explanation
 	# 		is a custom message to explain the error
 	# Author: Ahmed Akram
 	def self.get_runtime_error(file_name, sub_name)
@@ -74,10 +73,10 @@ class Executer
 		if @execute_res.include?("/ by zero")
 			message = "Division by Zero results in infinity, "\
 						"which computers can not understand. Be careful !"
-			return msg = {error: @execute_res, explaination: message}
+			return msg = {error: @execute_res, explanation: message}
 		else
 			message = "To be set Runtime Error!"
-			return msg = {error: @execute_res, explaination: message}
+			return msg = {error: @execute_res, explanation: message}
 		end
 	end
 

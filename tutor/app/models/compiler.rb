@@ -15,14 +15,8 @@ class Compiler < ActiveRecord::Base
 		%x[ #{'mkdir -p ' + Solution::JAVA_PATH} ]
 		file_name = solution.java_file_name(true, true)
 		File.open(file_name, 'w') { |file| file.write(code) }
-<<<<<<< HEAD
-		class_path = 'students_solutions/Class/'
-		%x[ #{'mkdir -p ' + class_path} ]
-		return %x[ #{'javac -g -d ' + class_path + ' ' + file_name + ' 2>&1'} ]
-=======
 		%x[ #{'mkdir -p ' + Solution::CLASS_PATH} ]
 		return %x[ #{'javac -g -d ' + Solution::CLASS_PATH + ' ' + file_name + ' 2>&1'} ]
->>>>>>> 71527b8b3fb9b4afea159f37d741cfcd0ff16e53
 	end
 
 	# [Compiler: Compile - Story 3.4]

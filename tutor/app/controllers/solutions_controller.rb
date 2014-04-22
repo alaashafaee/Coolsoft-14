@@ -2,7 +2,7 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	#	and outputs 2 flush messages for success and failure scenarios
+	#	and outputs 2 flash messages for success and failure scenarios
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
@@ -28,7 +28,7 @@ class SolutionsController < ApplicationController
 			end
 			execute
 		end
-	end	
+	end
 
 	# [Compiler: Test - Story 3.15]
 	# This Action runs the execute method from the Executer model
@@ -45,7 +45,7 @@ class SolutionsController < ApplicationController
 		else
 			output = Executer.get_runtime_error(file_name, 'CoolSoft')
 			flash[:msg] = output[:error]
-			flash[:exp] = output[:explaination]
+			flash[:exp] = output[:explanation]
 		end
 		redirect_to :back
 	end
@@ -77,20 +77,19 @@ class SolutionsController < ApplicationController
 		else
 			flash[:alert] = "You did not write any code!"
 		end
-		# redirect_to :back
 	end
 
 	private
 		# [Code Editor: Write Code - Story 3.3]
-		# Permits the ID of the problem, code from the form_for
+		# Permits the id of the problem, code from the form_for
 		# Parameters:
 		# 	code: The written code for the problem
 		# 	problem_id: Hidden field for problem id
-		# Returns: 
+		# Returns:
 		# 	none
 		# Author: MOHAMEDSAEED
 		def solution_params
-			params.require(:solution).permit(:code , :problem_id)
+			params.require(:solution).permit(:code, :problem_id)
 		end
 
 		# [Compiler: Test - Story 3.15]
