@@ -8,9 +8,8 @@ class Executer
 	# Returns:
 	# 	@execute_res: The execution result
 	# Author: Ahmed Akram
-	def self.execute(file_name, input)
+	def self.execute(file_name, input, problem_id)
 		class_path = Solution.get_class_path
-		problem_id = 3
 		validity = check_input_validity(input, problem_id)
 		if validity[:status]
 			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]

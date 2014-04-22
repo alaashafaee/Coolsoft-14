@@ -39,7 +39,7 @@ class SolutionsController < ApplicationController
 	# Author: Ahmed Akram
 	def execute
 		file_name = @solution.file_name
-		if Executer.execute(file_name, input[:input])
+		if Executer.execute(file_name, input[:input], solution_params[:problem_id])
 			output = Executer.get_output()
 			flash[:msg] = output
 		else
