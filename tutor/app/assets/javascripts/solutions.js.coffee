@@ -22,7 +22,7 @@ index_number = 0
 			toggleDebug()
 			variables = data
 			stop_spin()
-			highlight_line data[0]['line']
+			jump_state 0
 		error: ->
 			stop_spin()
 			return
@@ -129,7 +129,7 @@ index_number = 0
 # Returns: none
 # Author: Rami Khalil
 @jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line']
+	highlight_line variables[stateNumber]['line'] - 2
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
