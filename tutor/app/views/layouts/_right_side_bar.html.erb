@@ -4,4 +4,17 @@
 # Author: Ahmed Elassuty
 -->
 <div id="right_side_bar" class="well pull-right side-right" style="width:25%">
+<div id="nav_bar">
+	<tr>
+		<td><%= button_to "Courses", {:action => 'index', :controller => 'courses'}, {
+		class: 'btn btn-primary'} %></td>
+	</tr>
+	<style>
+	div.nav_bar {
+		float: right;
+		width: 30px;
+		background-color: black;
+	}
+	</style>
+</div>
 </div>
