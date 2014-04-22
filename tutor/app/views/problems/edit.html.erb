@@ -1,7 +1,7 @@
 <!-- The html web page consists of two tags
 	a header to view the problem title of the instance variable @problem
 and a paragraph to view the problem description of the instance variable @problem -->
-<h2 align ="center"><%= @problem.title %></h2>
+<h2 id="div1",align ="center"><%= @problem.title %></h2>
 <%= form_for :Problem, url: problem_path(@problem), method: :patch do |p| %>
 
 		<%= p.text_field :title %>
@@ -20,8 +20,8 @@ and a paragraph to view the problem description of the instance variable @proble
 	
 <% end %>
 
-<p>Current Track: <%= @track.title %></p>
-<%= form_for :Problem, url: problem_path(@problem), method: :patch do |p| %>
+<p id="div3">Current Track: <%= @track.title %></p>
+<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
 	<% if Array(@tracks).size > 1 %>
 		<%= p.collection_select(:track_id, @tracks, :id,:title ) %>
 		<%= p.submit('Change Track') %>
@@ -30,10 +30,10 @@ and a paragraph to view the problem description of the instance variable @proble
 
 <%= render partial: "test_cases/index" %>
 <%= render partial: "model_answers/new" %>
+<br>
 <%= render partial: "problems/success_options" %>
 <%= render partial: "problems/failure_options" %>
-
-<!-- A division for the flash message output to view the action's output -->
+<br>
 <% if flash[:notice] %>
-	<div class="notice"><%= flash[:notice] %></div>
+	<div class="notice" id="div4"><%= flash[:notice] %></div>
 <% end %>

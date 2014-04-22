@@ -75,21 +75,43 @@ class ProblemsController < ApplicationController
 		end
 	end
 
-	def update
-		@track = Track.find_by_id(problem_params[:track_id])
+	def update		
 		@problem = Problem.find_by_id(params[:id])
-		@problem_test = @track.problems.find_all_by_title(@problem.title)
-		if(Array(@problem_test).size == 0)
-			@problem = Problem.find_by_id(params[:id])
+		@track = Track.find_by_id(update_track_params[:track_id]) 
+		if update_track_params[:track_id].blank?
 			if @problem.update_attributes(problem_params)
-				redirect_to :action => "edit", :id => @problem.id
+				flash.keep[:notice] = "Paramaters updated"
+				respond_to do |format|
+					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.js 
+				end
 			else
 				flash.keep[:notice] = "Update paramater is empty"
 				redirect_to :back
+			end
+		elsif (@problem.track_id == update_track_params[:track_id].to_i)
+			flash.keep[:notice] = "The problem already belongs to this track"
+			respond_to do |format|
+				format.html {redirect_to :action => "edit", :id => @problem.id}
+				format.js 
 			end	
-		else 
-			flash.keep[:notice] = "#{@track.title} has a problem with the same title"
-			redirect_to :back
+		else		
+			@problems_in_track = @track.problems.find_all_by_title(@problem.title)
+			if(Array(@problems_in_track).size == 0)
+				if @problem.update_attributes(update_track_params)
+					flash.keep[:notice] = "Problem is moved to #{@track.title}"
+					respond_to do |format|
+						format.html {redirect_to :action => "edit", :id => @problem.id}
+						format.js 
+					end	
+				else 
+					flash.keep[:notice] = " Cannot change track"
+					redirect_to :back
+				end
+			else
+				flash.keep[:notice] = "#{@track.title} has a problem with the same title"
+				redirect_to :back
+			end		
 		end
 	end
 
@@ -109,15 +131,6 @@ class ProblemsController < ApplicationController
 		end
 	end	
 
-	def destroy_problem
-		@problem = Problem.find_by_id(params[:problem_id])
-		@problem.test_cases.destroy
-		@problem.model_answers.destroy
-		@track = @problem.track_id
-		@problem.destroy
-		flash.keep[:notice] = "Problem has been deleted"
-		redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
-	end	
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:
@@ -127,6 +140,9 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	private
 	def problem_params
-		params.require(:Problem).permit(:title , :description, :track_id)
+		params.require(:Problem).permit(:title , :description)
 	end
+	def update_track_params
+		params.require(:Problem).permit(:track_id)
+	end	
 end
