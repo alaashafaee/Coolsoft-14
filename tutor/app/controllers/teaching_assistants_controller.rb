@@ -9,6 +9,4 @@ class TeachingAssistantsController < ApplicationController
 		@teaching_assistant = TeachingAssistant.find(params[:id])
 		@courses = @teaching_assistant.courses.order("created_at desc")
 	end
-	def index
-	end
 end

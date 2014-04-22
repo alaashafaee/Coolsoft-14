@@ -9,6 +9,4 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 		@courses = @student.courses.order("created_at desc")
 	end
-	def index
-	end
 end
