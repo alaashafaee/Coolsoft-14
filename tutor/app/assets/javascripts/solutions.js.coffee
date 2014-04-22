@@ -7,7 +7,7 @@ IndexNumber = 0
 # Sends the code to the server and changes the Variables to the data recieved
 # Parameters: 
 # 	problem_id: The id of the problem being solved
-# Returns: None
+# Returns: none
 # Author: Mussab ElDash
 @start_debug = (problem_id) ->
 	input = $('#solution_code').val()
