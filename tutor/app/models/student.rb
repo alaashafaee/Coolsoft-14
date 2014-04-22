@@ -80,11 +80,11 @@ class Student < ActiveRecord::Base
 		recommended_problems = Recommendation.where(:student_id => self.id)
 		recommended_problems_hash = Hash.new
 		recommended_problems.each do |problem|
-			recommended_problems_hash[problem.id] = Hash.new
-			recommender_name = Student.where(:id => problem.recommender_id).recommender_name
-			problem_title = Problem.where(:id => problem.id).title
-			recommended_problems_hash[problem.id]['recommender_name '] = recommender_name
-			recommended_problems_hash[problem.id]['ptoblem_title'] = problem.title
+			recommended_problems_hash[problem.problem_id] = Hash.new
+			recommender_name = Student.where(:id => problem.recommender_id).take.name
+			problem_title = Problem.where(:id => problem.problem_id).take.title
+			recommended_problems_hash[problem.problem_id]['recommender_name'] = recommender_name
+			recommended_problems_hash[problem.problem_id]['problem_title'] = problem_title
 		end
 		return recommended_problems_hash
 	end
