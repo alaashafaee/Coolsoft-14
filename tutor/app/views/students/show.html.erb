@@ -66,9 +66,9 @@
 </script>
 <html>
 	<head>
-		<title> <%= @student.id%>'s Profile </title>
+		<title>CoolSoft - Java tutor | <%= @student.id%>'s Profile</title>
 	<body>
-		<h1> <%= @student.name%>'s Profile </h1>
+		<h1> <%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %> <%= @student.name%>'s Profile </h1>
 		<div class="tabs">
 			<ul class="tab-links">
 				<li class="active"><a href="#tab1">Info</a></li>
