@@ -75,11 +75,20 @@ class ProblemsController < ApplicationController
 		end
 	end
 
+	# [Edit track of a problem - 4.2]
+	# Updates title, description or track of a problem
+	# Parameters:
+	#   problem_params: passes title and description from the update form 
+	#   update_track_params: passes track_id from the update form
+	# Returns: Refreshes the track name if changed
+	#		   Refreshes the page on title or description change
+	#          Refreshes the flash notice with the right message
+	# Author: Abdullrahman Elhusseny
 	def update		
 		@problem = Problem.find_by_id(params[:id])
-		@track = Track.find_by_id(update_track_params[:track_id]) 
+		@track = Track.find_by_id(update_track_params[:track_id])
 		if update_track_params[:track_id].blank?
-			if @problem.update_attributes(problem_params)
+			if @problem.update_attributes(update_problem_params)
 				flash.keep[:notice] = "Paramaters updated"
 				respond_to do |format|
 					format.html {redirect_to :action => "edit", :id => @problem.id}
@@ -87,14 +96,17 @@ class ProblemsController < ApplicationController
 				end
 			else
 				flash.keep[:notice] = "Update paramater is empty"
-				redirect_to :back
+				respond_to do |format|
+					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.js 
+				end
 			end
 		elsif (@problem.track_id == update_track_params[:track_id].to_i)
 			flash.keep[:notice] = "The problem already belongs to this track"
 			respond_to do |format|
 				format.html {redirect_to :action => "edit", :id => @problem.id}
 				format.js 
-			end	
+			end
 		else		
 			@problems_in_track = @track.problems.find_all_by_title(@problem.title)
 			if(Array(@problems_in_track).size == 0)
@@ -106,15 +118,28 @@ class ProblemsController < ApplicationController
 					end	
 				else 
 					flash.keep[:notice] = " Cannot change track"
-					redirect_to :back
+					respond_to do |format|
+						format.html {redirect_to :action => "edit", :id => @problem.id}
+						format.js 
+					end
 				end
 			else
 				flash.keep[:notice] = "#{@track.title} has a problem with the same title"
-				redirect_to :back
+				@track = Track.find_by_id(@problem.track_id)
+				respond_to do |format|
+					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.js 
+				end
 			end		
 		end
 	end
 
+	# [Edit Problem - 4.5]
+	# Checks if the problem can be saved as incomplete or not
+	# Parameters:
+	#   params[:problem_id]: the id of the problem that was being edited
+	# Returns: On success returns to the track page, on failure redirects to edit page
+	# Author: Abdullrahman Elhusseny
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.test_cases.empty?
@@ -127,6 +152,7 @@ class ProblemsController < ApplicationController
 			redirect_to :back
 		else
 			@problem.incomplete = false
+			flash.keep[:notice] = "Problem is saved as complete"
 			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
 	end	
@@ -136,12 +162,31 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#   title: problem's title
 	#   description: problem's description
+	#   track_id: problem's track_id
 	# Returns: params to create action
 	# Author: Abdullrahman Elhusseny
 	private
 	def problem_params
-		params.require(:Problem).permit(:title , :description)
+		params.require(:Problem).permit(:title , :description, :track_id)
 	end
+
+	# [Edit Problem - 4.5]
+	# Passes the input of the form as paramaters for update action to use it
+	# Parameters:
+	#   title: problem's title
+	#   description: problem's description
+	# Returns: params to update action
+	# Author: Abdullrahman Elhusseny
+	def update_problem_params
+		params.require(:Problem).permit(:title , :description)
+	end	
+
+	# [Edit Problem - 4.5]
+	# Passes the input of the form as paramaters for update action to use it
+	# Parameters:
+	#   track_id: problem's track_id
+	# Returns: params to update action
+	# Author: Abdullrahman Elhusseny
 	def update_track_params
 		params.require(:Problem).permit(:track_id)
 	end	
