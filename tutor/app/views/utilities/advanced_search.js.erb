@@ -1,1 +1,7 @@
-$("#advanced_search_result").html("<%=escape_javascript( render 'result_form', objects: @objects)%>");
+$("#advanced_search_result").html("<%=escape_javascript( render 'result_form', objects: @lecturers)%>");
+$("#advanced_search_result").append("<%=escape_javascript( render 'result_form', objects: @teaching_assistants)%>");
+$("#advanced_search_result").append("<%=escape_javascript( render 'result_form', objects: @students)%>");
+$("#advanced_search_result").append("<%=escape_javascript( render 'result_form', objects: @courses)%>");
+$("#advanced_search_result").append("<%=escape_javascript( render 'result_form', objects: @topics)%>");
+$("#advanced_search_result").append("<%=escape_javascript( render 'result_form', objects: @posts)%>");
+$(".no_results").remove();
