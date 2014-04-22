@@ -30,7 +30,7 @@
 					data-toggle="collapse" data-parent="#accordion"
 					href="#<%= t.id.to_s %>">
 						<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
-							<%= link_to t.title , t , style: 'color:#003366;'%></b>
+							<%= link_to t.title, t, style: 'color:#003366;'%></b>
 						<span class="badge"><%= t.tracks.count %></span>
 				</div>
 				<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
@@ -39,7 +39,7 @@
 							<% color = "label label-default" %>
 							<li class="list-group-item" data-toggle="tooltip"
 								data-placement="top" title="<%= tt.difficulty%>">
-								<%= link_to tt.title , tt , class: color %>
+								<%= link_to tt.title, tt, class: color %>
 							</li>
 						<% end %>
 					</ul>
