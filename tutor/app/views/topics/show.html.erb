@@ -32,7 +32,7 @@ $(document).ready(function() {
 			Done: function(){
 				//call the ajax function here
 				var array = $("#list-of-tracks").sortable('toArray') ;
-				//alert(JSON.stringify(array));
+				//alert(JSON.stringify(array)); //uncomment it 
 				$.ajax({
      				//should the url be "/topics/sort"
      				//or                "/topics" + topic_id + "/sort"
