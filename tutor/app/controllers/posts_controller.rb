@@ -30,6 +30,22 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
+	# [Delete Post- Story 1.15]
+	# This action takes the post id, remove it from the database
+	#	and then redirects the user to the show page of the discussion board
+	#	with a "Post successfully Deleted" message.
+	# Parameters:
+	#	params[:id]: The current post's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+			@dis = Post.find_by_id(params[:id]).discussion_board_id
+			if Post.find_by_id(params[:id]).destroy
+				flash[:notice] = "Post successfully Deleted"
+				redirect_to(:controller => 'discussion_boards' , :action => 'show' ,:id => @dis)
+			end
+	end		
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed parameters from 
 	#              the add post form, creates a new Post record
