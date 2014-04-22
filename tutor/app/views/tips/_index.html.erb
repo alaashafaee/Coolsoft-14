@@ -1,0 +1,56 @@
+<body>
+	<script type="text/javascript">
+		function toggle_visibility(id) {
+			var e = document.getElementById(id);
+			if(e.style.display == 'block')
+				e.style.display = 'none';
+			else
+				e.style.display = 'block';
+		}
+	</script>
+</body>
+
+<% @tips1=Array.new %>
+<% @tips_check.each do |tip2| %>
+	<% if tip2.category == true %>
+		<% @tips1.push(tip2) %>
+	<%end%>
+<%end%>
+				
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Tips</a>
+<div id="foo" style="display:none;">
+	<% if !@tips1.any? %>
+		<p>No previous Tips</p>
+	<% end %>
+	<%if !@tips1.empty?%>
+		<table class="table table-striped", style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:30%"  >Tips</th>
+					<th style = "width:10%" >Time of showing in seconds</th>
+					<th style = "width:20%">Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<% @tips.each do |tip1| %>
+					<% if tip1.category == true %>
+						<td style = "max-width: 300px; word-wrap:break-word;"><%= tip1.message %>	</td>
+						<td style ="width:20%"><%= tip1.time  %></td>
+						<td><%= button_to "Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+				</tr>
+			</tbody>    
+					<% end %>
+					<% end %>
+		</table>
+	<%end%>
+</div>
+
+<style type="text/css" />
+a.Lst {
+	font-size: 30px;
+	line-height: 0px;
+	padding-left: 0px;
+	font-weight: normal;
+}
+</style>

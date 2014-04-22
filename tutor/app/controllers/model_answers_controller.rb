@@ -60,6 +60,10 @@ class ModelAnswersController < ApplicationController
 		@problem = Problem.find(@answer.problem_id)
 
 		@test_cases = @problem.test_cases
+		@tips = @answer.hints
+		@tips_check = @answer.hints
+		@hints = @answer.hints
+		@hints_check = @answer.hints
 	end
 
 	def update
