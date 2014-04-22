@@ -66,19 +66,9 @@ class Debugger < ActiveRecord::Base
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
 	def start(file_path, input)
-		to_be_compiled = file_path
-		if file_path =~ /.*\.java/
-			file_path = file_path[0..-6]
-		else
-			to_be_compiled = file_path + ".java"
-		end
-		if !system("javac -g " + to_be_compiled)
-			puts "Compilation Error"
-			exit
-		end
 		$all = []
 		begin
-			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path, input.strip)
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb",file_path, input)
 			buffer_until_ready
 			input "stop in #{file_path}.main"
 			buffer_until_ready
@@ -146,12 +136,16 @@ class Debugger < ActiveRecord::Base
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(student_id, problem_id, code, input)
-		code = change_class_name(student_id, problem_id, code)
-		file_name = 'st' + student_id.to_s + 'pr' + problem_id.to_s
-		File.open("#{file_name}.java", 'w') { |file| file.write(code) }
-		# return {done: "Done"}
+		solution = solution.Create({code: code, student_id: student_id,
+			problem_id: problem_id })
+		compile_status = Compile.compiler_feedback(solution)
+		unless compile_status[:success]
+		 	return "Compilation Error"
+		 end
 		debugger = Debugger.new
-		return debugger.start(file_name, input)
+		input = input.split " " 
+		file_path = solution.class_file_name true, false
+		return debugger.start(file_path, input.strip)
 	end
 
 	# [Debugger: Debug - Story 3.6]
