@@ -207,7 +207,7 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-	
+
 puts("# -----------------------Solution---------------------------")
 	Student.first.solutions << Solution.first
 	Student.first.solutions << Solution.find_by_id(2)
