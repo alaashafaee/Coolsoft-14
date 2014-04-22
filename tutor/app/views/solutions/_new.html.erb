@@ -36,8 +36,6 @@
 			<td>
 				<%= button_tag 'Compile', type: 'Button',
 					id: 'compileButton', onClick: 'compile()' %>
-				<%= button_tag 'Test', type: 'Button',
-					id: 'testButton', onClick: 'test()' %>
 				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
 					onclick: "start_debug(#{params[:id]})" %>
 				<%= button_tag 'Previous', type: 'Button',
