@@ -1,28 +1,28 @@
 <div align="center">
 	<% if current_lecturer %>
 		<% @userID = current_lecturer.id %>
-		<% end %>
+	<% end %>
 			<% if current_student %>
 				<% @userID = current_student.id %>
 			<% end %>	
 				<%if current_teaching_assistant %>
 					<% @userID = current_teaching_assistant.id %>
 				<%end%>
-		<div style="width: 50%; margin-left:25%">
-			<h3><%=@post.title%></h3>
-			<% unless @replies.blank? %>
-				<% @replies.each do |reply| %>
-					<div style="background-color: #A8A8A8">
-						<%= reply.content %><br>
-					</div>
-					<br>
-				<% end %>
-			<% else %>
-				No Replies in this post yet .
-			<% end %>
-		</div>
-		<% if @post.owner_id == @userID %>
-	<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
-		class: 'btn btn-primary',:id => @post.id} %>
-<% end %>
+<div style="width: 50%; margin-left:25%">
+	<h3><%=@post.title%></h3>
+	<% unless @replies.blank? %>
+		<% @replies.each do |reply| %>
+			<div style="background-color: #A8A8A8">
+				<%= reply.content %><br>
+			</div>
+			<br>
+		<% end %>
+	<% else %>
+		No Replies in this post yet .
+	<% end %>
+</div>
+	<% if @post.owner_id == @userID %>
+		<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
+			class: 'btn btn-primary',:id => @post.id} %>
+	<% end %>
 </div>

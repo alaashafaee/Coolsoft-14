@@ -18,6 +18,14 @@ class PostsController < ApplicationController
 	  	@replies = @post.replies.order("created_at desc")
 	end	  	
 
+	# [Edit Post - Story 1.18]
+	# Description: This action takes the passed post id 
+	#               to be passed to the Edit form.
+	# Parameters:
+	#	params[:id]: The post id
+	# Returns: 
+	# 	none
+	# Author: Ahmed Atef
 	def edit
 		@post = Post.find(params[:id])
 	end
@@ -58,6 +66,16 @@ class PostsController < ApplicationController
 		end
 	end
 
+	# [Edit Post - Story 1.18]
+	# Description: This action takes the passed parameters from 
+	#              the edit post form, updates the passed post parameters.If the 
+	#              update fails the user is redirected to the form
+	# Parameters:
+	#	topic_params[]: A list that has all fields entered by the user to in the
+	# 					Edit_post_form
+	# Returns: 
+	# 	flash[:notice]: A message indicating the success or failure of the creation
+	# Author: Ahmed Atef
 		def update
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params) 
