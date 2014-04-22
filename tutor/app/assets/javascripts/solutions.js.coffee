@@ -28,10 +28,20 @@ indexNumber = 0
 			return
 	return
 
+# [Debugger: Debug - Story 3.6]
+# Starts the Spinner
+# Parameters: noe
+# Returns: none
+# Author: Mussab ElDash
 @start_spin = ->
 	$('#spinner').attr "class" , "spinner"
 	return
 
+# [Debugger: Debug - Story 3.6]
+# Stops the Spinner
+# Parameters: noe
+# Returns: none
+# Author: Mussab ElDash
 @stop_spin = ->
 	$('#spinner').attr "class" , ""
 	return
