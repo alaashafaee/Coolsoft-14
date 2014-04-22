@@ -155,9 +155,15 @@ function submitParams()
 		data:{	parameter_constraint: JSON.stringify(hash_p),
 				variable_constraint: JSON.stringify(hash_v),
 				method_return: JSON.stringify(method),
-				method_name: JSON.stringify(name),
+				method_name: JSON.stringify(name)
 			},
-		success: function(){},
-		error: function(){alert("failed");},
+		success: function(data){
+			alert("Data have been Added successfully");
+			window.location = window.location
+		},
+		datatype: "JSON",
+		error: function(){
+			alert("failed");
+		}
 	});
 }

@@ -6,14 +6,22 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	def create
-		@method_cons = params[:paramter_constraint]
+		@method_cons = params[:parameter_constraint]
+		@var_cons = params[:variable_constraint]
+		
+		@method = params[:method_name]
+		@method_returned = params[:method_return]
 
+		@constarint = MethodConstraint.new
+		@Constraint.method_name = @method
+		@Constraint.method_return = @method_returned
+		@Constraint.save
+
+		redirect_to action:"index"
 	end
 
 	def new
 		@constrain = MethodConstraint.new
-		@params = MethodParameter.new
-		@variables = VariableConstraint.new
 	end
 
 	def show
