@@ -14,16 +14,20 @@ class SolutionsConstraintsController < ApplicationController
 			if method_cons.present?
 				method_cons.each do |cons|
 					@parameters = MethodParameter.new
-					puts "#{method_cons[0]} here"
+					puts(method_cons[0])
 					@parameters.parameter = method_cons[:name]
 					@parameters.params_type = method_cons[:type]
 					# @constrain.parameters << @parameters
 					@parameters.save
 				end
+				render json: true
+				@constarint.save
+			else
+				render json: false
 			end
-			@constarint.save
+			
 		end
-	 	render json: true
+	 	
 	end
 
 	def new
