@@ -1,16 +1,21 @@
 <h1>Add a Teaching Assistant</h1>
 <br/>
 <% if flash[:notice] -%>
-  <div class="alert alert-success", style="display: inline-block;"><%= flash[:notice] %></div>
+  <div class="alert alert-warning", style="display: inline-block;"><%= flash[:notice] %></div>
 <% end %>
 <br/>
 <%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
-	<p>
+	<p id="all_tas">
 		<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
 	</p>
 
-	
-
+	<p id="">
+		<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+	</p>
+	<p>
+		
+	<input type="checkbox" id="switch_tas">Only show people I've worked with<br>
+    </p>    
 	<p>
 		<%= f.submit "Add TA", class: "btn btn-success"%>
 	</p>	

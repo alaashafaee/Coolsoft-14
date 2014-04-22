@@ -5,7 +5,7 @@ class TeachingAssistant < ActiveRecord::Base
 	     :recoverable, :rememberable, :trackable, :validatable
 	
 	#Validations
-	validates :id, uniqueness: true 
+	 
 
 
 	#Relations

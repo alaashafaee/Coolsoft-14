@@ -1,7 +1,6 @@
 class TeachingAssistantsController < ApplicationController
 
 	def new 
-		@course = Course.find_by_id(params[:course_id])
 	end
 
 	def create
@@ -13,7 +12,8 @@ class TeachingAssistantsController < ApplicationController
 			flash[:notice]='TA added!'
 			redirect_to :action => 'index'
 		rescue
-			flash[:notice]='TA is already added to the course'
+			flash[:notice]='Error! TA is probably already added to the course. 
+			That or something went terribly wrong on our side. Either way lamo2a5za.'
 			redirect_to :action => 'new'
 		end	
 
