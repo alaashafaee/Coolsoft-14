@@ -2,31 +2,15 @@ class HintsController < ApplicationController
 
 	@@answer_id = nil
 
-	# [View hints and tips-Story 4.22]
-	# It fetches from database all the previous hints.
-	# Parameters: 
-	#   @hints: All the previous hints that had been entered before.
-	#   @hints_check: All the previous hints that had been entered before to check if it is a hint or a tip.
-	# Return : table with all previous hints
-	# Author: Nadine Adel
-	def index
-
-		@hints = Hint.all
-		@hints_check=Hint.all
-	end
-	def new
-		@answer = ModelAnswer.find(params[:model_answer_id])
-		@@answer_id = params[:model_answer_id]
-	end
-
-	# [Adding Helping Hints - 4.12]
-	# Creates a new record to Hint Table
-	# Parameters:
-	# 	owner_id: ID of the hint owner
-	# 	owner type: type of hint owner
-	# 	category: states whether it is a hint or tip
-	# Returns: Redirects to edit page on success, refreshes on failure
-	# Author: Mohamed Fadel
+	#	[Adding Helping Hints - 4.12]
+	#	Creates a new record to Hint Table
+	#	Parameters:
+	#	owner_id: ID of the hint owner
+	#	owner type: type of hint owner
+	#	category: states whether it is a hint or tip
+	#	Returns: 
+	#	Redirects to edit page on success, refreshes on failure
+	#	Author: Mohamed Fadel
 	def create
 		p = Hint.new(permitCreate)
 		if lecturer_signed_in?
@@ -49,26 +33,26 @@ class HintsController < ApplicationController
 		end
 	end
 
-	# [Adding Helping Hints - 4.12]
-	# Passes the input of the form as paramaters for create action to use it
-	# Parameters:
-	#   submission_counter: hint's submission counter
-	#   message: hint's message
-	# Returns: params to create action
-	# Author: Mohamed Fadel
+	#	[Adding Helping Hints - 4.12]
+	#	Passes the input of the form as paramaters for create action to use it
+	#	Parameters:
+	#	submission_counter: hint's submission counter
+	#	message: hint's message
+	#	Returns: params to create action
+	#	Author: Mohamed Fadel
 	def permitCreate
 		params.require(:Hint).permit(:submission_counter, :message)
 	end
 	
-			# [Delete a Hint - Story 4.21]
-	# This action takes the hint id, remove it from the database
+	#	[Delete a Hint - Story 4.21]
+	#	This action takes the hint id, remove it from the database
 	#	and then redirects the user to the edit page accompanied
 	#	with a "Hint deleted" message.
-	# Parameters:
+	#	Parameters:
 	#	params[:id]: The current hint's id
-	# Returns: 
+	#	Returns: 
 	#	none
-	# Author: Mohamed Fadel
+	#	Author: Mohamed Fadel
 	def destroy
 		hint = Hint.find_by_id(params[:id])
 		hint.destroy
