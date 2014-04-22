@@ -1,9 +1,9 @@
 class Executer
 
 	# [Compiler: Test - Story 3.15]
-	# Runs the solution submited on the submited test case
+	# Runs the solution submitted on the submitted test case
 	# Parameters:
-	#	file_name: The submited file name
+	#	file_name: The submitted file name
 	# 	input: Test case entered by the user
 	# Returns:
 	# 	@execute_res: The execution result
@@ -48,7 +48,7 @@ class Executer
 	# [Compiler: Test - Story 3.15]
 	# Replaces the class name from the error with a costume one
 	# Parameters:
-	#	file_name: The submited file name
+	#	file_name: The submitted file name
 	# 	error: The runtime error
 	# 	sub_name: The costume name to replace the class name
 	# Returns:
@@ -61,7 +61,7 @@ class Executer
 	# [Compiler: Test - Story 3.15]
 	# Returns the runtime error and a message
 	# Parameters:
-	#	file_name: The submited file name
+	#	file_name: The submitted file name
 	# 	sub_name: The name to replace the class name
 	# Returns:
 	# 	A hash [error, explanation], where error is the runtime error and explanation

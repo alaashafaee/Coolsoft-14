@@ -4,7 +4,7 @@ class SolutionsController < ApplicationController
 	# Creates a solution for a problem that the student chose
 	#	and outputs 2 flash messages for success and failure scenarios
 	# Parameters:
-	#	solution_params: submited from the form_for
+	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
@@ -14,7 +14,7 @@ class SolutionsController < ApplicationController
 			@solution.status = 0
 			@solution.length = @solution.code.length
 			if @solution.save
-				flash[:success] = "Your solution has been submited successfully"
+				flash[:success] = "Your solution has been submitted successfully"
 			else
 				flash[:alert] = "Blank submissions are not allowed!!!"
 			end
@@ -33,7 +33,7 @@ class SolutionsController < ApplicationController
 	# [Compiler: Test - Story 3.15]
 	# This Action runs the execute method from the Executer model
 	# Parameters:
-	#	@solution: The submited solution
+	#	@solution: The submitted solution
 	# Returns:
 	# 	A flash message containing the appropriate reply
 	# Author: Ahmed Akram
@@ -54,7 +54,7 @@ class SolutionsController < ApplicationController
 	# Creates a soution for the current problem in the database and compiles it.
 	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
-	#	solution_params: submited from the form_for
+	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
