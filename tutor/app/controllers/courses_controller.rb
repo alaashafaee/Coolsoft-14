@@ -61,6 +61,7 @@ class CoursesController < ApplicationController
 			@courses = current_teaching_assistant.courses.order("created_at desc")
 		else
 			@courses = current_student.courses.order("created_at desc")
+			@share = find_state @courses
 		end
 	end
 
@@ -146,6 +147,21 @@ class CoursesController < ApplicationController
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
+		end
+
+		def find_state courses
+			states = []
+			student_id = current_student.id
+			courses.each do |c|
+				course_id = c.id
+				result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)
+				if result.share == true
+					states << "Share"
+				else
+					states << "Hide"
+				end
+			end
+			return states
 		end
 
 end

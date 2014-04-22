@@ -18,7 +18,7 @@
 			<th></th>
 			<th></th>
 		</tr>
-		<% @courses.each do |c| %>
+		<% @courses.zip(@share).each do |c, s| %>
 			<tr>
 				<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
 							:method => :get, class: "btn btn-success" %></td>
@@ -33,7 +33,11 @@
 				</td>
 				<td>
 					<% if current_student %>
-						<%= link_to "Share", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+						<% if s %>
+							<%= link_to "Share", {:controller => 'courses', :action => 'share', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+						<% else %>
+							<%= link_to "Hide", {:controller => 'courses', :action => 'hide', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+						<% end %>
 					<% end %>
 				</td>
 			</tr>
