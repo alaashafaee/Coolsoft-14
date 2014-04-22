@@ -4,13 +4,15 @@
 
 <!-- Timer that starts when problem is shown --> 
 <b>Time spent:</b> 
-<span id="mins">0</span>:<span id="secs">00</span>
+<span id="mins" class="mins">0</span>:<span id="secs" class="secs">00</span>
 
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
 	<%= @code = f.text_area :code, placeholder: "Write your code here and then click submit",
 			class: "editor" %> 
+	<%= f.hidden_field :mins, id: "min", value: "" %>
+	<%= f.hidden_field :secs, id: "sec", value: "" %>
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>

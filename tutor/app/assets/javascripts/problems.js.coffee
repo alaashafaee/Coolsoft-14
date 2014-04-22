@@ -11,11 +11,13 @@ timer = ->
 	digit++
 	if digit > 59
 		min++
-		document.getElementById("mins").innerHTML = min
+		$(".mins").html min
 		digit = 0
 	if digit <= 9
 		digit = "0" + digit  
-	document.getElementById("secs").innerHTML = digit
+	$(".secs").html digit
+	$("#sec").val($(".secs").html())
+	$("#min").val($(".mins").html())
 
 activate = ->
 	unless timer_is_on
