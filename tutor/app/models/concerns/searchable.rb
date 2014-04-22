@@ -9,7 +9,7 @@ module Searchable
 
 	#class Methods
 	module ClassMethods
-		def search(keyword)
+		def simple_search(keyword)
 			self.where("name LIKE ? or email LIKE ?", "%#{keyword}%" , "%#{keyword}%") if keyword.present?
 		end
 	end
