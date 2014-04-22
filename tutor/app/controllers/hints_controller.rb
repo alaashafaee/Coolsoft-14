@@ -4,8 +4,7 @@ class HintsController < ApplicationController
 	#	to be being edited
 	# Parameters:
 	#	ID of the hint  
-	# Returns: 
-	#	none
+	# Returns: none
 	# Author: Mimi
 	def edit
 		@new_Tip = Hint.find_by_id(params[:id])
