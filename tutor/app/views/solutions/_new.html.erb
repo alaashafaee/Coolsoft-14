@@ -16,7 +16,9 @@
 			</div>
 		</div>
 		<%= @code = f.text_area :code,
-			value: "\tpublic static void main(String [] args) {\n\t\t\n\t}",
+			value: flash[:previous_code]==nil ?
+				"\tpublic static void main(String [] args) {\n\t\t\n\t}" :
+				flash[:previous_code].to_s,
 			placeholder: "Write your code here and then click submit",
 			class: "editor" %>
 		<div class="editor_bottom">
@@ -27,6 +29,7 @@
 	</div>
 
 	<%= f.hidden_field :problem_id, value: params[:id] %>
+	<%= f.hidden_field :file_name, value: flash[:file_name] %>
 	<br>
 	<table width='100%'>
 		<tr>
