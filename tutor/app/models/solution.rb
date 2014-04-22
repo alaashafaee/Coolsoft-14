@@ -7,22 +7,17 @@ class Solution < ActiveRecord::Base
 	belongs_to :student
 	belongs_to :problem
 
-
-	
-	
-	#Scoops
-
 	#Methods
 	# [Compiler: Validate - Story 3.5]
-	# checks the validity of a submitted solution  
-	# and show the #compilation, runtime and logic errors if exist
+	# Checks the validity of a submitted solution  
+	# and show the runtime and logic errors if exist
 	# Parameters: 
 	# 	code: the code written in the editor from the form_for
 	#   testcases: the testcases for the given problem 
 	#   file: the name of the file which is compiled successfully
-	#			without errors
+	#		  without errors
 	# Returns: a hash response containing status for the solution,
-	# 			solution errors or success message.
+	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
 	def self.validate(code, testcases, file)
 		response = {status: 0, success: [], failure: []}
@@ -31,7 +26,7 @@ class Solution < ActiveRecord::Base
 		testcases.each do |testcase| 
 			input = testcase.input 
 			expected_output = testcase.output
-			runtime_check = Executer.execute(file , input)
+			runtime_check = Executer.execute(file, input)
 			if(runtime_check)
 				output = Executer.get_output() 
 				if output != expected_output?
@@ -42,7 +37,7 @@ class Solution < ActiveRecord::Base
 						response[:status] = 5
 					end
 				else
-					response[:success] << "Your Solution is correct , Passed"
+					response[:success] << "Your Solution is correct, Passed"
 					unless(response[:status] == 4 | 5)
 						response[:status] = 1 	
 					end
@@ -64,13 +59,13 @@ class Solution < ActiveRecord::Base
 	# [Compiler: Validate - Story 3.5]
 	# Parameters: 
 	# 	s_id : the id of the current Student
-	#   p_id : the id of the current Problem
+	# 	p_id : the id of the current Problem
 	# Returns: the number of trials the student made for this problem
 	# Author: MOHAMEDSAEED
 	def self.get_num_of_trials(s_id , p_id)
 		num_of_trials = Solution.distinct.count(:all,
-						:conditions => [" student_id = ? AND problem_id = ? AND status != ? " ,
-						s_id , p_id , 3])
+						:conditions => ["student_id = ? AND problem_id = ? AND status != ?",
+						s_id, p_id, 3])
 	end
 
 	#Constants

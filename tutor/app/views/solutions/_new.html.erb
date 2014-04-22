@@ -1,17 +1,12 @@
-<!-- The flash messages for the succes and failure scenarios -->
-<p style="color: green"><%= flash[:success] %></p>
-<p style="color: red"><%= flash[:alert] %></p>
-
 <!-- Timer that starts when problem is shown -->
 <b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
 
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
-	:html => {:method => :post} , remote: true do |f| %>
-	<%= @code = f.text_area :code, placeholder: "Write your code here and then click submit",
+	:html => {:method => :post}, remote: true do |f| %>
+	<%= f.text_area :code, placeholder: "Write your code here and then click submit",
 				class: "editor" %>
-	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>
 		<tr>
@@ -46,7 +41,7 @@
 		Output response
 		<div style="color: red" id="validate_error">
 		</div>
-		<div  style="color: green" id="validate_success">
+		<div style="color: green" id="validate_success">
 		</div>
 	</p>
 <% end %>

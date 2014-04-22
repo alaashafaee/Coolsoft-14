@@ -7,7 +7,6 @@ root = exports ? this
 #	none
 # Returns: none
 # Author: Rami Khalil (Temporary)
-
 root.toggleDebug = () ->
 	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
 	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
@@ -71,6 +70,14 @@ root.previous = () ->
 root.stop = () ->
 	toggleDebug()
 
+# [Compiler: Validate - Story 3.5]
+# submits a solution in the form without refreshing 
+# 	using ajax showing an alert box for success and failure scenarios
+# Parameters: 
+# 	problem_id: the id of the problem being solved
+# Returns: a json object containing two arrays one for the errors
+#	of the current code and the other containing success messages
+# Author: MOHAMEDSAEED
 @validate_code = (problem_id) ->
 	code = $('#solution_code').val()
 	mins = parseInt($('#mins').text())
