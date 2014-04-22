@@ -4,6 +4,10 @@ class TeachingAssistant < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :trackable, :validatable
 	
+	#Elasticsearch
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+
 	#concerns
 	include Searchable
 
