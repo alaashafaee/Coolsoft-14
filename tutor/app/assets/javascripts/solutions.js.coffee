@@ -102,7 +102,7 @@ indexNumber = 0
 # Returns: none
 # Author: Rami Khalil
 @highlight_line = (line) ->
-	text_area = $('#solution_code')
+	text_area = document.getElementById "solution_code"
 	code_lines = text_area.value.split '\n'
 	start_offset = 0
 	for i in[0...code_lines.length]
@@ -112,7 +112,7 @@ indexNumber = 0
 	end_offset = start_offset + code_lines[line].length
 
 	# Chrome / Firefox
-	if typeof(tarea.selectionStart) != "undefined"
+	if typeof(text_area.selectionStart) != "undefined"
 		text_area.focus()
 		text_area.selectionStart = start_offset
 		text_area.selectionEnd = end_offset
