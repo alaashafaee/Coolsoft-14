@@ -1,7 +1,7 @@
 # The list of variables
 variables = null
 # The number of the current index of the line to be executed
-indexNumber = 0
+index_number = 0
 
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
@@ -76,9 +76,9 @@ indexNumber = 0
 # Returns: none
 # Author: Rami Khalil
 @next = () ->
-	if indexNumber + 1 < variables.length
-		jump_state ++indexNumber
-	else if(indexNumber == 99)
+	if index_number + 1 < variables.length
+		jump_state ++index_number
+	else if(index_number == 99)
 		alert "The online debugger can only step forward 100 times."
 	else
 		alert "The program has terminated."
@@ -90,8 +90,8 @@ indexNumber = 0
 # Returns: none
 # Author: Rami Khalil
 @previous = () ->
-	if indexNumber > 0
-		jump_state --indexNumber
+	if index_number > 0
+		jump_state --index_number
 	else
 		alert "This is the first step in the program."
 
@@ -144,5 +144,5 @@ indexNumber = 0
 # Author: Rami Khalil (Temporary)
 @stop = () ->
 	toggleDebug()
-	indexNumber = 0;
+	index_number = 0;
 	variables = null;
