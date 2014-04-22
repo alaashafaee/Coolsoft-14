@@ -43,6 +43,7 @@ function add_params(field)
 		}
 	}
 }
+
 function remove_params(field)
 {	
 	var index = field.id.split("_")[1];
@@ -107,6 +108,7 @@ function add_variable(field)
 		}
 	}
 }
+
 function remove_variable(field)
 {	
 	var index = field.id.split("_")[1];
@@ -131,40 +133,31 @@ function remove_variable(field)
 }
 
 function submitParams()
-{	hash = {}
+{	var hash_p = []
+	var hash_v = []
 	for (var i = 0; i < type.length; i++) {
-		hash += {params_name[i]:type[i]}
+		hash_p.push({
+			type: type[i] ,
+			name: param_name[i]
+		});
+	};
+	for (var i = 0; i < type.length; i++) {
+		hash_v.push({
+			type: var_type[i] ,
+			name: var_name[i]
+		});
 	};
 	method = $('#_constrain_method_return').val()
 	name = $('#_constrain_method_name').val()
 	$.ajax({
 		type: "POST",
 		url: "/solutions_constraints",
-		data:{	p_type: JSON.stringify(type),
-				p_hash: JSON.stringify(hash),
-				p_name: JSON.stringify(param_name),
-				v_type: JSON.stringify(var_type),
-				v_name: JSON.stringify(var_name),
+		data:{	parameter_constraint: JSON.stringify(hash_p),
+				variable_constraint: JSON.stringify(hash_v),
 				method_return: JSON.stringify(method),
 				method_name: JSON.stringify(name),
 			},
-		datatype: "JSON",
 		success: function(){},
 		error: function(){alert("failed");},
 	});
 }
-
-
-// function sendparams(){
-// 	alert("doog");
-// 	$.ajax({
-// 	    data: { depart: type.toString(), return_date: param_name},
-// 	    type: 'post',
-// 	    url: "/payment/create",
-// 	});
-// }
-// $('#account_settings').on('ajax:error', function(event, xhr, status) {
-//   // insert the failure message inside the "#account_settings" element
-//   $(this).append(xhr.responseText)
-//   $ajax:beforeSend()
-// });

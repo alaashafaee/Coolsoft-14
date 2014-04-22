@@ -6,22 +6,7 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	def create
-		param_type = params[:p_type]
-		param_name = params[:p_name]
-		var_type = params[:v_type]
-		var_name = params[:v_type]
-		method_return = params[:method_return]
-		method_name = params[:method_name]
-
-		myhash = {}
-		param_name.each_with_index do |k,i|
-			myhash[k] = param_type[i]
-		end
-
-		myhash.each do |key, value|
-			puts(key + value)
-		end
-
+		@method_cons = params[:paramter_constraint]
 
 	end
 
