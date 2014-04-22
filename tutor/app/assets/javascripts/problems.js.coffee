@@ -7,6 +7,13 @@ min = 0
 time = 0
 timer_is_on = 0
 
+# [Give Hints - Story 3.6, Problem Timer - Story 3.10]
+# Counts up the time spent so far on the problem since the page opened
+# 	and displays hints accordingly
+# Parameters:
+# 	none
+# Returns: none
+# Author: Mohamed Fadel + Rami Khalil
 timer = ->
 	digit++
 	if digit > 59
