@@ -1,6 +1,6 @@
 # [Post to Facebook - Story 5.1]
 # Opens popup window for the facebook popup
-# Parameters: 
+# Parameters:
 # 	url: url to open in popup window
 # 	popName: name of popup window
 # Returns: none
