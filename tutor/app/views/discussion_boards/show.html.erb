@@ -5,8 +5,8 @@
 				<% unless @posts.blank? %>
 					<% @posts.each do |post| %>
 						<div>
-										<td><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id, 
-							:method => :get, class: "btn btn-success" %></td>
+							<td><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id,:method => :get, class: "btn btn-success" %>
+							</td>
 						<%= post.views_count %>
 						</div>
 					<br>

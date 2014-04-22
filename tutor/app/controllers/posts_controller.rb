@@ -73,5 +73,6 @@
 
 		def discussion_board_params 
 			params.require(:post).permit(:discussion_board_id)
-		end		
+		end	
+			
 end
