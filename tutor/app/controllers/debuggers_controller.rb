@@ -1,4 +1,4 @@
-class DebugController < ApplicationController
+class DebuggersController < ApplicationController
 
 	# [Debugger: Debug - Story 3.6]
 	# Send the recieved code to be debugged 
@@ -21,4 +21,5 @@ class DebugController < ApplicationController
 		p result
 		render json: result
 	end
+
 end

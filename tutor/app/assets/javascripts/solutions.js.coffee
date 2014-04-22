@@ -17,7 +17,7 @@ IndexNumber = 0
 	start_spin()
 	$.ajax
 		type: "POST"
-		url: '/debug/' + problem_id
+		url: '/debuggers/' + problem_id
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
