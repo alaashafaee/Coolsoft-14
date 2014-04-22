@@ -36,7 +36,7 @@ class Solution < ActiveRecord::Base
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's java file name
 	# Author: Rami Khalil
-	def java_file_name prepend_path = false, append_extension = false
+	def java_file_name(prepend_path = false, append_extension = false)
 		jfile_name = file_name
 		jfile_name += ".java" if append_extension
 		jfile_name = JAVA_PATH + jfile_name if prepend_path
@@ -54,7 +54,7 @@ class Solution < ActiveRecord::Base
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's class file name
 	# Author: Rami Khalil
-	def class_file_name prepend_path = false, append_extension = false
+	def class_file_name(prepend_path = false, append_extension = false)
 		jfile_name = file_name
 		jfile_name += ".class" if append_extension
 		jfile_name = CLASS_PATH + jfile_name if prepend_path
