@@ -16,30 +16,31 @@
 	<%= @code = f.hidden_field "code", :id =>'result' %>  
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
-	<table width='100%'>
-		<tr>
-			<td>
-				<%= button_tag 'Compile', id:'compile' %>
-				<%= button_tag 'Test', id: 'test' %>
-				<%= button_tag 'Debug', id: 'debug' %>
-				<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
-				<%= button_tag 'Next Step', id: 'next', disabled: true %>
-			</td>
-			<td style='text-align:right;'>					
-				<b class='accepted'>Accepted</b>
-				<b class='wrong_answer'>Wrong Answer</b>
-				<b class='runtime_error'>Runtime Error</b>
-				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit"%>
-			</td>
-		</tr>
-	</table>
-	<br /><br />
-	<textarea class='test'>Test Input</textarea><br /><br />
-	<b>Output:</b><br />
-	<p class='output'>
-		Output response
-	</p>
+<table width='100%'>
+	<tr>
+		<td>
+			<%= button_tag 'Compile', id:'compile' %>
+			<%= button_tag 'Test', id: 'test' %>
+			<%= button_tag 'Debug', id: 'debug' %>
+			<%= button_tag 'Previous Step', id: 'previous', disabled: true %>
+			<%= button_tag 'Next Step', id: 'next', disabled: true %>
+		</td>
+		<td style='text-align:right;'>					
+			<b class='accepted'>Accepted</b>
+			<b class='wrong_answer'>Wrong Answer</b>
+			<b class='runtime_error'>Runtime Error</b>
+			<b class='compilation_error'>Compilation Error</b>
+			<%= f.submit "Submit"%>
+		</td>
+	</tr>
+</table>
+<br /><br />
+<textarea class='test'>Test Input</textarea><br /><br />
+<b>Output:</b>
+<br />
+<p class='output'>
+Output response
+</p>
 <!-- create an "ace" editor" to run -->
 <script>
     var editor = ace.edit("editor");

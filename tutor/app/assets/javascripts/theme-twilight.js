@@ -1,3 +1,5 @@
+// Source: Ace edtitor
+// Integrated by: Mimi
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
