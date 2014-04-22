@@ -152,18 +152,31 @@ function submitParams()
 	$.ajax({
 		type: "POST",
 		url: "/solutions_constraints",
-		data:{	parameter_constraint: JSON.stringify(hash_p),
-				variable_constraint: JSON.stringify(hash_v),
-				method_return: JSON.stringify(method),
-				method_name: JSON.stringify(name)
+		data:{	parameter_constraint: hash_p,
+				variable_constraint: hash_v,
+				method_return: method,
+				method_name: name
 			},
 		success: function(data){
-			alert("Data have been Added successfully");
-			window.location = window.location
+			if (data) {
+				alert("Data have been Added successfully");
+				window.location = window.location
+			}else{
+				alert("Data messigin/incorrect !");
+				validate(method,name);
+			}
 		},
 		datatype: "JSON",
 		error: function(){
 			alert("failed");
 		}
 	});
+}
+
+function validate(method, name)
+{
+	if ( (method == "" || name == "") && type.length > 0)  
+	{
+		
+	};
 }
