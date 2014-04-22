@@ -1,12 +1,15 @@
 <%= form_for :test_case , url: test_cases_path do |f| %>
+
+<h2>Please Insert your Test case</h2>
 <p>
 	<%= flash[:notice]%><br>
 	<%= f.label :Input %>
 	<%= f.text_field :input %>
 	<%= f.label :Output %>
 	<%= f.text_field :output  %>
+	<%= f.hidden_field :problem_id, value: params[:id] %>
 </p>
 <p >
-	<%= f.submit 'Add' %>
+	<%= f.submit 'Add test case',class: "btn btn-large btn-primary" %>
 </p>
 <% end %>

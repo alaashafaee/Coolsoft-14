@@ -1,4 +1,5 @@
-<%= render "form"%>
+
+
 <body>
 <script type="text/javascript">
 function toggle_visibility(id) {
@@ -10,9 +11,11 @@ e.style.display = 'block';
 }
 </script>
 </body>
-
+<br><ul class="navbar-brand pull-right"><%= link_to "Create New Test case"  , {:controller => 'test_cases',:action => 'new',
+    :method => :get, :problem_id => @problem.id },{class: 'btn btn-primary btn' }  %> </ul></br>
 <a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous test case(s)</a>
 <div id="foo" style="display:none;">
+
 
 <table class="table table-striped", style = "width:60%">
 

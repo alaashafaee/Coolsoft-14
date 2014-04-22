@@ -16,7 +16,8 @@
 
          
         
-
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @test_case.problem_id,
+              :method => :get, class: 'btn btn-default btn-xs' %></ul>
         
           
 <%end%>
