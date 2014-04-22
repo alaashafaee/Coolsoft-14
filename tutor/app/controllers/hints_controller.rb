@@ -10,15 +10,22 @@ class HintsController < ApplicationController
 		@hints = Hint.all
 		@hints_check=Hint.all
 	end
-		# [Add Problem - 4.4]
+	# [Adding Helping Hints - 4.12]
 	# Creates a new record to Problem Table
 	# Parameters:
 	#   title: problem's title through permitCreate action
 	#   description: problem's description through permitCreate action
 	# Returns: Redirects to edit page on success, refreshes on failure
-	# Author: Abdullrahman Elhusseny
+	# Author: Mohamed Fadel
 	def create
 		p = Hint.new(permitCreate)
+		if lecturer_signed_in?
+			p.owner_id = current_lecturer.id
+			p.owner_type = "lecturer"
+		else
+			p.owner_id = current_teaching_assistant.id
+			p.owner_type = "teaching_assistant"
+		end
 
 		if p.save
 			redirect_to :action => "new", :id => p.id
@@ -28,15 +35,17 @@ class HintsController < ApplicationController
 		end
 	end
 
-	# [Add Problem - 4.4]
+	# [Adding Helping Hints - 4.12]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:
-	#   title: problem's title
-	#   description: problem's description
+	#   title: hint's title
+	#   category: hint's category
+	#   submission_counter: hint's submission counter
+	#   message: hint's message
 	# Returns: params to create action
-	# Author: Abdullrahman Elhusseny
+	# Author: Mohamed Fadel
 	def permitCreate
-		params.require(:Hint).permit(:title , :category, :submission_counter, :message)
+		params.require(:Hint).permit(:category, :submission_counter, :message)
 	end
 	def create_new
 	end	

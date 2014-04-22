@@ -4,10 +4,6 @@
   through two text fields :title and description -->
 <%= form_for :Hint, url: {action: "create"} do |p| %>
 	<p>
-		<%= p.label :title %><br>
-		<%= p.text_field :title %>
-	</p>
-	<p>
 		<%= p.label :category %><br>
 		<%= p.text_field :category %>
 	</p>
