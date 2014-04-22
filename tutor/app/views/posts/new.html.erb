@@ -5,9 +5,6 @@
 <div align="center">
     <h1>New Post</h1>
     <br/>
-    <% if flash[:notice] -%>
-        <div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
-    <% end %>
     <br/><br/><br/>
     <%= form_for :post, url: {action: "create"} do  |f| %>
         <p>

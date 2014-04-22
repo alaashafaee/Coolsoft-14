@@ -48,7 +48,6 @@
 		end
 		@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 		if @new_post.save
-			flash[:notice] = "Post successfully created"
 			@discussion_board.posts << @new_post
 			redirect_to :controller => 'posts', :action => 'show', :id => @new_post.id
 		else

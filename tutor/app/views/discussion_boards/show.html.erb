@@ -4,7 +4,7 @@
 			<h3><%=@discussionBoard.title%></h3>
 				<% unless @posts.blank? %>
 					<% @posts.each do |post| %>
-						<div style="background-color: #A8A8A8">
+						<div>
 										<td><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id, 
 							:method => :get, class: "btn btn-success" %></td>
 						<%= post.views_count %>
