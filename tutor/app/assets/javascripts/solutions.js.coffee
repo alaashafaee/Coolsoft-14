@@ -102,7 +102,30 @@ indexNumber = 0
 # Returns: none
 # Author: Rami Khalil
 @highlight_line = (line) ->
-	alert "At line: " + line
+	text_area = $('#solution_code')
+	code_lines = text_area.value.split '\n'
+	start_offset = 0
+	for i in[0...code_lines.length]
+		if i == line
+			break
+		start_offset += code_lines.length+1
+	end_offset = start_offset + code_lines[line].length
+
+	# Chrome / Firefox
+	if typeof(tarea.selectionStart) != "undefined"
+		text_area.focus()
+		text_area.selectionStart = start_offset
+		text_area.selectionEnd = end_offset
+
+	# IE
+	if document.selection && document.selection.createRange
+		text_area.focus()
+		text_area.select()
+		document.selection.createRange()
+		text_area.collapse(true)
+		text_area.moveEnd("character", end_offset)
+		text_area.moveStart("character", start_offset)
+		text_area.select()
 
 # [Execute Line By Line - Story 3.8]
 # Jumps to the target state by highlighting the line and showing variables
