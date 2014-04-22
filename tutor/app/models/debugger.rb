@@ -64,7 +64,7 @@ class Debugger < ActiveRecord::Base
 	# 	file_path : The path of the file to debugged
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
-	# Author: Mussab ElDash
+	# Author: Mussab ElDash + Rami Khalil
 	def start(file_path, input)
 		to_be_compiled = file_path
 		if file_path =~ /.*\.java/

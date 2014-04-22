@@ -1,7 +1,7 @@
 # The list of variables
-Variables = null
+variables = null
 # The number of the current index of the line to be executed
-IndexNumber = 0
+indexNumber = 0
 
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
@@ -12,8 +12,6 @@ IndexNumber = 0
 @start_debug = (problem_id) ->
 	input = $('#solution_code').val()
 	test = $('#testcases').val()
-	alert input
-	alert test
 	start_spin()
 	$.ajax
 		type: "POST"
@@ -21,14 +19,10 @@ IndexNumber = 0
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
-			$('#nextButton').attr "disabled", false
-			$('#previousButton').attr "disabled", true
 			toggleDebug()
-			Variables = data
+			variables = data
 			stop_spin()
-			for datum in data
-				alert "#{datum['line']}=>#{datum['locals']}locals is Empty for now"
-			return
+			highlight_line data[0]['line']
 		error: ->
 			stop_spin()
 			return
@@ -82,7 +76,12 @@ IndexNumber = 0
 # Returns: none
 # Author: Rami Khalil
 @next = () ->
-	alert "Next Step"
+	if indexNumber + 1 < variables.length
+		jump_state ++indexNumber
+	else if(indexNumber == 99)
+		alert "The online debugger can only step forward 100 times."
+	else
+		alert "The program has terminated."
 
 # [Execute Line By Line - Story 3.8]
 # Moves to the previous state of execution.
@@ -91,7 +90,28 @@ IndexNumber = 0
 # Returns: none
 # Author: Rami Khalil
 @previous = () ->
-	alert "Previous Step"
+	if indexNumber > 0
+		jump_state --indexNumber
+	else
+		alert "This is the first step in the program."
+
+# [Execute Line By Line - Story 3.8]
+# Highlights the target line number in the editor
+# Parameters:
+#	line: The line number to highlight.
+# Returns: none
+# Author: Rami Khalil
+@highlight_line = (line) ->
+	alert "At line: " + line
+
+# [Execute Line By Line - Story 3.8]
+# Jumps to the target state by highlighting the line and showing variables
+# Parameters:
+#	stateNumber: The target state number.
+# Returns: none
+# Author: Rami Khalil
+@jump_state = (stateNumber) ->
+	highlight_line variables[stateNumber]['line']
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
@@ -101,3 +121,5 @@ IndexNumber = 0
 # Author: Rami Khalil (Temporary)
 @stop = () ->
 	toggleDebug()
+	indexNumber = 0;
+	variables = null;
