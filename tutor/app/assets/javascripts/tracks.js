@@ -16,7 +16,7 @@ function fill(data, problem_id, recommender_id){
 	elem = $('#container');
 	elem.html("");
 	if(Object.keys(data).length == 0){
-		elem.html("<div align='center'>Empty</div>");
+		elem.html("<div align='center'>No classmates to recommend this problem to</div>");
 		$('.classmates_list').bPopup();
 		return;
 	}
@@ -46,6 +46,7 @@ function recommend(problem_id, recommender_id, student_id){
 				s_id : student_id
 			}
 	});
+	showdialog(problem_id, recommender_id);
 
 }
 // ;

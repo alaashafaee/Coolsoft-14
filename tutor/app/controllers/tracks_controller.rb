@@ -79,7 +79,12 @@ class TracksController < ApplicationController
 		students_enrolled.each do |student|
 			student_level = TrackProgression.get_progress(student.id,topic.id)
 			if (student_level == track.difficulty)
-				students_receiving_recommendation[student.id] = student.name
+				if (!Recommendation.where(
+					:problem_id => problem.id,
+				 	:recommender_id => current_student.id,
+				 	:student_id => student.id).present?)
+						students_receiving_recommendation[student.id] = student.name
+				end
 			end
 		end
 		render json: students_receiving_recommendation
