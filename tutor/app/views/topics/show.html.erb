@@ -5,7 +5,6 @@
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 
-
 <script>
 
 $(document).ready(function() {
@@ -45,6 +44,8 @@ $(document).ready(function() {
      				data: { 'methodParam' : array }, //use it as a key value pair
      				success: function (data) {
          				alert("success");
+         				location.reload();
+         				//redirect_to:back ; 
      				},
      				error: function (args) {
          				alert("Error on ajax post");
@@ -117,6 +118,7 @@ $(document).ready(function() {
 <!-- thats a form for creating a track which is intially hidden
 		until the new button clicked -->
 <% if @can_edit %>
+
 	<span class="label label-default" onclick="newTrack()">New</span><br><br>
 	<% if !flash[:title] && !flash[:difficulty] %>
 		<% hide = 'hidden=true' %>
@@ -139,6 +141,8 @@ $(document).ready(function() {
 
 
 
+
+
 <div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
 <p>This is the list of tracks that should be sortable
 
@@ -151,5 +155,6 @@ $(document).ready(function() {
 </p>
 </div>
 
-<button id="opener">Edit Track Rating</button>
-
+<% if @can_edit %>
+<button id="opener" , class="btn btn-default btn-mini" >Edit Track Rating</button>
+<% end %>
