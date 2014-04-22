@@ -1,1 +1,0 @@
-$("#replies").html("<%= escape_javascript(render "form" ) %>");

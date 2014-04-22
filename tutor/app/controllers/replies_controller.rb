@@ -1,24 +1,23 @@
 class RepliesController < ApplicationController
 
 	def index
-		@replies =  Post.find_by_id(params[:id]).replies
+		@replies = Post.find_by_id(params[:id]).replies
 	end
 
 	def show
-		@replies =  Reply.find_by_id(params[:id])
+		@replies = Reply.find_by_id(params[:id])
 		render "index"
 	end
 
-
 	def edit	
-		@replies =  Reply.find(params[:id])
+		@replies = Reply.find(params[:id])
 		respond_to do |format|
 			format.html { render action:"edit"}
         	format.js { render :layout=>false }
    		end
 	end
 
-	def new
+	def create
 		line = params[:reply]
 		post = Post.find_by_id(params[:post_id])
 		reply = Reply.new
@@ -31,13 +30,17 @@ class RepliesController < ApplicationController
 		else
 			current_student.replies << reply				
 		end
-		reply.save
 		respond_to do |format|
-			format.html { render action:"edit"}
-        	format.json { render "new.js"}
-        	format.js { render "new"}
-   		end
-
+			if reply.save
+				format.html { redirect_to action: "index" }
+				format.json { render json: reply, status: :created, location: reply }
+				format.js
+			else
+				format.html { render action: "new" }
+				format.json { render json: reply.errors, status: :unprocessable_entity }
+				format.js
+			end
+		end
 	end
 
 	def destroy

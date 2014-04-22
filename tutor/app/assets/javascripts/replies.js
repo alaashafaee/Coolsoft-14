@@ -8,8 +8,8 @@ function post(id){
 	// postId = window.location.search.substring(4);
 	postId = id;
 	$.ajax({
-		type:"GET",
-		url:'/replies/new',
+		type:"POST",
+		url:'/replies',
 		data : {
 			reply: input,
 			post_id: postId
