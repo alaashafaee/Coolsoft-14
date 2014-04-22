@@ -7,10 +7,26 @@
 <span id="mins">0</span>:<span id="secs">00</span>
 
 <%= form_for :solution, url: {controller: 'solutions', action: 'create'},
-	html: {method: 'post'} do |f| %>
-	<%= @code = f.text_area :code,
-		value: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}",
-		class: "editor" %>
+		html: {method: 'post'} do |f| %>
+
+	<!--Author: Ahmed Moataz-->
+	<div class="editor_border">
+		<div class="editor_top">
+			<div style="margin-left: 2px;">
+				public class CoolSoft {
+			</div>
+		</div>
+		<%= @code = f.text_area :code,
+			value: "\tpublic static void main(String [] args) {\n\t\t\n\t}",
+			placeholder: "Write your code here and then click submit",
+			class: "editor" %>
+		<div class="editor_bottom">
+			<div style="margin-left: 2px;">
+				}
+			</div>
+		</div>
+	</div>
+
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
 	<table width='100%'>
