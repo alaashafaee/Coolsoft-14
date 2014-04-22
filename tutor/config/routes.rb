@@ -73,6 +73,7 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :acknowledgements
 	end
 
 	# Example resource route with concerns:
