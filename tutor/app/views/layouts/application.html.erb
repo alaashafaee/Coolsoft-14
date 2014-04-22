@@ -4,35 +4,67 @@
 # Author: Ahmed Elassuty
 -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>CoolSoft - Java Tutor</title>
-		<%= stylesheet_link_tag "application", "bootstrap", "bootstrap.min", :media => "all"%>
-		<%= javascript_include_tag "application","jquery"%>
+		<%= stylesheet_link_tag "application", "bootstrap", :media => "all"%>
+		<%= javascript_include_tag "application","bootstrap","jquery"%>
 		<%= csrf_meta_tags%>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="nav navbar-nav navbar-left" style="margin-right:12px">
-					<%= link_to image_tag("logo.png" , { :title => "Tutor Java !" , size: "50x50"})%>
+					<%= link_to image_tag("logo.png" , { :title => "Java Tutor!" , size: "50x50"})%>
 				</div>
 				<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
-				<%- if signed_in?%>	
+				<% if signed_in? %>
 					<%= render "layouts/signed_in_header"%>
-				<%end%>
+				<% else %>
+					<div class="navbar-collapse collapse" id="navbar-main">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Sign in
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu" aria-labelledby="themes">
+									<li>
+										<a href="../lecturers/sign_in">Lecturer</a>
+									</li>
+									<li>
+										<a href="../teaching_assistants/sign_in">Teaching Assistant</a>
+									</li>
+									<li>
+										<a href="../students/sign_in">Student</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				<% end %>
 			</div>
 		</div>
-		<%- if signed_in?%>
-			<%= render "layouts/left_side_bar"%>
-			<%= render "layouts/right_side_bar"%>
-		<%end%>
-		<div class="container well main-content" align="center">
-			<%= render "problems/system_recommendation" if student_signed_in? %>
-			<%= yield %>
+		</br>
+		<div id="main" class="auto-height">
+			<% if signed_in? %>
+				<div class="row">
+					<%= render "layouts/right_side_bar"%>
+					<div class="well main-content">
+						<%= render "problems/system_recommendation" if student_signed_in? %>
+						<%= yield %>
+					</div>
+				</div>
+			<% else %>
+				<div class="well container main-content">
+					<%= yield %>
+				</div>
+			<% end %>
 		</div>
-		<div id="footer" align="center" class="navbar navbar-default navbar-fixed-bottom">
-			<%= render "layouts/footer"%>
+		</br>
+		<div align="center" class="navbar navbar-default navbar-static-bottom footer">
+			<div class="container">
+				<%= render "layouts/footer"%>
+			</div>
 		</div>
 	</body>
 </html>

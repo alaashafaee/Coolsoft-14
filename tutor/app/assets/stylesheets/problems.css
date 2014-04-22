@@ -1,0 +1,15 @@
+.editor {
+	background-color: black;
+	color: white;
+	width: 100%;
+	min-height: 500px;
+	margin-top:  -1px;
+	border: none;
+	font-family: monospace;
+}
+
+.test {
+	width: 100%;
+	min-height: 200px;
+}
+
