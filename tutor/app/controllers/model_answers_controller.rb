@@ -36,6 +36,27 @@ class ModelAnswersController < ApplicationController
 		end
 	end
 
+	# [Remove Answer - Story 4.17]
+	# This action takes the model answer id, and check if it is not last model answer in the problem 
+	#	and remove it from the database and then redirects the user to the edit problem page of 
+	#	the problem that had the answerwith a "Model Answer successfully Deleted" message.
+	# Parameters:
+	#	params[:id]: The current model answer's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+		@model_answer = ModelAnswer.find_by_id(params[:id])
+		@current = Problem.find_by_id(@model_answer.problem_id)
+		if(@current.model_answers.count == 1)
+			flash[:notice] = "Cannot delete problem's last model answer"
+			redirect_to :back and return
+		elsif @model_answer.destroy
+			flash[:notice] = "Answer successfully Deleted"
+			redirect_to(:controller => 'problems' , :action => 'edit' ,:id => @current.id)
+		end
+	end
+
 	# [Add answer story 4.6]
 	# It shows answer that was entered before.
 	# Parameters:
