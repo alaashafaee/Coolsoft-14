@@ -82,8 +82,8 @@ end
 
 	# [System Reminders - Story 5.4]
 	# sends reminder e-mails to inactive users
-	# Parameters: None
-	# Returns: None
+	# Parameters: none
+	# Returns: none
 	# Author: Amir George
 	def self.send_reminder_mails
 		Student.find_each do |student|
