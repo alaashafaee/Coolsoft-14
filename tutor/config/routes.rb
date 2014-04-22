@@ -11,6 +11,7 @@ Tutor::Application.routes.draw do
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
 	post 'courses/new' => 'courses#new'
+	post '/hints/:id' => 'hints#edit'
 	get 'courses/sign_up'
 
 
@@ -30,7 +31,6 @@ Tutor::Application.routes.draw do
 	resources :problems
 	resources :topics
 	resources :hints
-
 	# Example resource route with options:
 	#   resources :products do
 	#     member do

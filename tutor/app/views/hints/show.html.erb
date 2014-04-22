@@ -1,19 +1,22 @@
 <% if flash[:notice] -%>
-		<div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
-	<% end %>
-	<br/><br/><br/>
-	<!-- Rendering the form fields -->
-	<%= form_for :hint, url: { :controller => "hints",action: "create"} do  |f| %>
+		<div class="alert alert-warning", style="width:180px;display:inline">
+		<%= flash[:notice] %>
+		</div>
+<% end %>	
+<br/>
+<br/>
+<br/>	
+<!-- Rendering the form fields -->
+<%= form_for :hint,url:{:controller => "hints",action:"edit"} do  |f| %> 
+		<%= f.hidden_field :id , value: params[:id] %>
 		<p>
-			<%= f.label "text" %><br>
-			<%= f.text_field :message, autofocus: true, class:"form-control", style: "width:300px", placeholder:  Hint.find_by_id(params[:id]).message, value: params[:message] %>
+			<%= f.label "Hint description" %><br>
+			<%= f.text_area :message, :cols => "100" , :rows => "8",autofocus:true,class:"form-control",style:"width:300px",value:Hint.find_by_id(params[:id]).message %>
 		</p>
 		<p>
 			<%= f.label :"The number of wrong submissions that hint appears after"  %><br>
-			<%= f.text_area :submission_counter, class:"form-control", style: "margin-left:auto;
-			margin-right:auto;height:50px;width:500px;resize:none",placeholder: Hint.find_by_id(params[:id]).submission_counter, value:params[:submission_counter] %>
-		</p>
+			<%= f.text_area :submission_counter, :rows => "1", class:"form-control", style: "width:300px",value:Hint.find_by_id(params[:id]).submission_counter %>
 		<p>
-			<%= f.submit "Save", class: "btn btn-success"%>
+			<%= f.submit"Save",class:"btn btn-success"%>
 		</p>
 <% end %>

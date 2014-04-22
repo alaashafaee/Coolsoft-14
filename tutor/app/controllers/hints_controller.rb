@@ -16,8 +16,8 @@ class HintsController < ApplicationController
 	# Returns: 
 	# 	flash[:notice]: A message indicating the success or failure of the edit
 	# Author: Mimi
-	def create
-		@new_Tip = Hint.find_by_id(params[:id])
+	def edit
+		@new_Tip = Hint.find_by_id(hint_params[:id])
 		@new_Tip.message = hint_params[:message]
 		@new_Tip.submission_counter = hint_params[:submission_counter]
 		bool = @new_Tip.save
@@ -28,13 +28,12 @@ class HintsController < ApplicationController
 			if @new_Tip.errors.any?
 			flash[:notice] = @new_Tip.errors.full_messages.first
 			end
-			#render "create"
 			redirect_to :back
 		end
 	end	
 
 	private
 		def hint_params
-			params.require(:hint).permit(:message,:submission_counter)
+			params.require(:hint).permit(:message,:submission_counter,:id)
 		end
 end
