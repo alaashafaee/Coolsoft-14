@@ -18,7 +18,7 @@ class RepliesController < ApplicationController
 	    end
 	end
 
-	def edit
+	def edit	
 		@replies =  Reply.find(params[:id])
 		respond_to do |format|
 			format.html { render action:"edit"}
@@ -27,20 +27,22 @@ class RepliesController < ApplicationController
 	end
 
 	def create
-		@reply = Reply.new(reply_params)
-		current_lecturer.replies << @reply
-		Post.find_by_id(1).replies << @reply
-		respond_to do |format|
-			if @reply.save
-				format.html { redirect_to action: "index" }
-				format.json { render json: @reply, status: :created, location: @reply }
-				format.js
-			else
-				format.html { render action: "new" }
-				format.json { render json: @reply.errors, status: :unprocessable_entity }
-				format.js
-			end
-	    end
+		line = params[:reply]
+		post = Post.find_by_id(params[:post_id])
+		reply = Reply.new
+		reply.content = line
+		post.replies << reply
+		if lecturer_signed_in?
+			current.lecturer.replies << reply
+		elsif teaching_assistant_signed_in?
+			current.teaching_assistant.replies << reply
+		else
+			current.student.replies << reply				
+		end
+		reply.save
+		@replies = Reply.all
+		render json: reply.id
+
 	end
 
 	def destroy

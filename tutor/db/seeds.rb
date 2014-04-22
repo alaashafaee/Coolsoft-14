@@ -88,10 +88,10 @@ puts("# -----------------------Problems---------------------------")
 	Problem.create(title:"Problem 5", description:"This is very easy Problem")
 
 puts("# -----------------------Tracks---------------------------")
-	Track.create(title: "Track 1", difficulty: 1)
-	Track.create(title: "Track 2", difficulty: 2)
-	Track.create(title: "Track 3", difficulty: 3)
-	Track.create(title: "Track 4", difficulty: 4)
+	Track.create(title: "Track 1" , difficulty: 0)
+	Track.create(title: "Track 2" , difficulty: 1)
+	Track.create(title: "Track 3" , difficulty: 2)
+	Track.create(title: "Track 4" , difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
 	Solution.create(code:"println(My first solution)", length:5, status:0)
@@ -207,5 +207,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
+	
 puts("# ---------------------------------------------------------")
