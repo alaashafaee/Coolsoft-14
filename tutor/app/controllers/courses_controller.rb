@@ -154,12 +154,12 @@ class CoursesController < ApplicationController
 		if @course.update(course_params)
 			render 'show'
 			else 
-				render 'edit'
-			end 
-		end
+				render 'edit' 
+			end
 	end
 
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
+end
