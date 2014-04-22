@@ -16,7 +16,10 @@
 		<% @tips1.push(tip2) %>
 	<%end%>
 <%end%>
-				
+	<br><ul class="navbar-brand pull-right"><%= link_to "Create New Tip"  , {:controller => 'tips',:action => 'new',
+    :method => :get, :model_answer_id => @answer.id },{class: 'btn btn-primary btn' }  %> </ul></br>
+<br>
+			
 <a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo3'); return false;"  style="font:120px"> Previous Tips</a>
 <div id="foo3" style="display:none;">
 	<% if !@tips1.any? %>

@@ -12,4 +12,7 @@ class HintsController < ApplicationController
 		@hints = Hint.all
 		@hints_check=Hint.all
 	end
+	def new
+
+	end
 end
