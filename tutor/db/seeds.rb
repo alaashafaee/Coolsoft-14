@@ -69,6 +69,9 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
+	TestCase.create(output: "5", input:"10 2")
+	TestCase.create(output: "2.5", input:"5 2")
+	TestCase.create(output: "x", input:"10 0")
 
 puts("# -----------------------Method Parameters---------------------------")
 	MethodParameter.create(parameter:"MethodParameters 1")
@@ -82,7 +85,7 @@ puts("# -----------------------Variable Constraints---------------------------")
 
 puts("# -----------------------Problems---------------------------")
 
-	Problem.create(title:"Problem 1", description:"This will be very hard Problem")
+	Problem.create(title:"Problem 1", description:"Given two numbers a and b, output a/b")
 	Problem.create(title:"Problem 2", description:"This is very hard Problem" )
 	Problem.create(title:"Problem 3", description:"This wont be a hard Problem")
 	Problem.create(title:"Problem 4", description:"This will be very easy Problem")
@@ -158,7 +161,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
 	Problem.first.model_answers << ModelAnswer.first
 	Problem.first.model_answers << ModelAnswer.find_by_id(2)
-	Problem.first.test_cases << TestCase.first
+	Problem.first.test_cases << TestCase.find_by_id(4)
+	Problem.first.test_cases << TestCase.find_by_id(5)
+	Problem.first.test_cases << TestCase.find_by_id(6)
 	Problem.first.solutions << Solution.first
 
 	Problem.find_by_id(2).model_answers << ModelAnswer.find_by_id(3)
