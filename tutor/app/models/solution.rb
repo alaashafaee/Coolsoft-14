@@ -69,4 +69,5 @@ class Solution < ActiveRecord::Base
 
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
+
 end
