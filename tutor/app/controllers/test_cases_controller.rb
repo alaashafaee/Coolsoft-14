@@ -52,16 +52,15 @@ class TestCasesController < ApplicationController
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef
 	def destroy
-			@Problem = TestCase.find_by_id(params[:id]).problem_id
-			@Current = Problem.find_by_id(@Problem)
-			if(@Current.test_cases.count == 1)
-				flash[:notice] = "Cannot delete problem's last test case"
-				redirect_to :back
-			end	
-			if Problem.find_by_id(params[:id]).destroy
-				flash[:notice] = "Problem successfully Deleted"
-				redirect_to(:controller => 'problems' , :action => 'edit' ,:id => @Problem)
-			end
+		@test_case = TestCase.find_by_id(params[:id])
+		@current = Problem.find_by_id(@test_case.problem_id)
+		if(@current.test_cases.count == 1)
+			flash[:notice] = "Cannot delete problem's last test case"
+			redirect_to :back and return
+		elsif @test_case.destroy
+			flash[:notice] = "Test case successfully Deleted"
+			redirect_to(:controller => 'problems' , :action => 'edit' ,:id => @current.id)
+		end
 	end
 
 	# [Add test case-story 4.8]
