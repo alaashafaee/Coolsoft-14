@@ -15,7 +15,8 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	# [Edit Solutions' Constraints - Story 4.14]
-	# Display only one record
+	# Display only one record for the method parameter and the variable constraint and
+	# the method constraint
 	# Parameters: 
 	#   params[:id]: The method parameter and the variable constraint and the method variable
 	# Returns: null
@@ -30,11 +31,12 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	# [Edit Solutions' Constraints - Story 4.14]
-	# Brief description of method
+	# Display only one record for the method parameter and the variable constraint and
+	# the method constraint
 	# Parameters: 
-	#   Parameter: description
-	# Returns: in case of success or failure
-	# Author: Your Name
+	#   params[:id]: The method parameter and the variable constraint and the method variable
+	# Returns: null
+	# Author: Rania Abdel Fattah
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?
 			@parameters = MethodParameter.find_by_id(params[:id])
@@ -48,16 +50,20 @@ class SolutionsConstraintsController < ApplicationController
 	# Parameters: 
 	#   Parameter: description
 	# Returns: in case of success or failure
-	# Author: Your Name
+	# =>  Author: Your Name
 	def update
-		if @parameters = MethodParameter.find_by_id(params[:id]) &&
-			@variables = VariableConstraint.find_by_id(params[:id]) &&
-			@methods = MethodConstraint.find_by_id(params[:id])
-			@parameters.update_attributes(constraint_params) 
-			@variables.update_attributes(constraint_params) 
-			@methods.update_attributes(constraint_params)
-			flash[:notice] = "Constraints updated"
-			redirect_to :action => 'show'
+		@parameters = MethodParameter.find_by_id(params[:id])
+		@variables = VariableConstraint.find_by_id(params[:id])
+		@methods = MethodConstraint.find_by_id(params[:id])
+		if  @parameters && @variables && @methods
+				@parameters.parameter = constraint_params[:parameters] 
+				@variables.variable_name = constraint_params[:variables] 
+				@methods.method_name = constraint_params[:methods]
+				@parameters.save
+				@variables.save
+				@methods.save
+				flash[:notice] = "Constraints updated"
+				redirect_to :action => 'show'
 		else
 			redirect_to :action => 'index'
 		end
@@ -68,7 +74,7 @@ class SolutionsConstraintsController < ApplicationController
 			variables = VariableConstraint.find_by_id(params[:id]).destroy &&
 			methods = MethodConstraint.find_by_id(params[:id]).destroy	
 			flash[:notice] = "Constraints deleted."
-			redirect_to :action => 'edit'
+			redirect_to :back
 		else
 			flash[:error] = "Constraints is not deleted."
 			redirect_to :action => 'show'
