@@ -1,0 +1,2 @@
+class CompilersController < ApplicationController
+end
