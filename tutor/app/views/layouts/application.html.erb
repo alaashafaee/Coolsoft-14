@@ -28,12 +28,12 @@
 				<% end %>
 				<ul class="nav navbar-nav navbar-right">
 					<% if signed_in? %>
-					<li style="margin-right:10px">
+					<li style="padding-right:10px">
 						<%= render "layouts/log_out_form" %>
 					</li>
 					
 					<% else %>
-						<li class="dropdown" style="margin-right:10px">
+						<li class="dropdown" style="padding-right:10px">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="../lecturers/sign_in">Lecturer</a></li>
@@ -46,26 +46,24 @@
 			</div>
 		</div>
 		</br>
-		<div id="main" class="auto-height">
+		<div id="main" class="container" style="width:100%">
 			<% if signed_in? %>
 				<div class="row">
 					<%= render "layouts/right_side_bar"%>
-					<div class="well main-content">
+					<div class="well main-content" style="min-height:500px">
 						<%= render "problems/system_recommendation" if student_signed_in? %>
 						<%= yield %>
 					</div>
 				</div>
 			<% else %>
-				<div class="well container main-content">
+				<div class="well container main-content" style="min-height:500px">
 					<%= yield %>
 				</div>
 			<% end %>
 		</div>
 		</br>
-		<div align="center" class="navbar navbar-default navbar-static-bottom footer" style="height:10px">
-			<div class="container">
-				<%= render "layouts/footer"%>
-			</div>
+		<div align="center" class="navbar navbar-default navbar-static-bottom footer">
+			<%= render "layouts/footer"%>
 		</div>
 	</body>
 </html>

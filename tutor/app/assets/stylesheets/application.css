@@ -18,18 +18,16 @@
 }
 
 .side-right {
-	margin-top:70px;
+	margin-top:80px;
 	height:auto;
-	margin-right:1.5%;
+	margin-right:0.5%;
 }
 
 .main-content {
-	margin-top:70px;
+	margin-top:80px;
 	margin-bottom:70px;
-	height:auto;
-	width:76%;
-	margin-left:2%;
-	margin-bottom: 100px;
+	width:78%;
+	margin-left:1%;
 }
 
 .footer {
