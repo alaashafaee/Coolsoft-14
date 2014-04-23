@@ -1,5 +1,20 @@
 <% provide(:title, "Edit Test case") %>
 <%= form_for(@test_case) do |f| %>
+<% if @test_case.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@test_case.errors.count, "error") %> prohibited this course from being saved:
+		</h2>
+		<ul>
+			<% @test_case.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+
+<% end %>
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', 
+			:action => 'edit', :id => @test_case.problem_id,
+ 			:method => :get, class: 'btn btn-default btn-xs' %></ul> 
 	<h2>Test Case </h2>
 	<%= flash[:notice]%>
 	<br><%= f.label :Input %>
@@ -9,9 +24,7 @@
 			
     <br> <%= f.submit "Save changes", class: "btn btn-large btn-primary" %><br>
 
-<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', 
-			:action => 'edit', :id => @test_case.problem_id,
- 			:method => :get, class: 'btn btn-default btn-xs' %></ul>          
+         
 <%end%>
 
 <style type="text/css" />

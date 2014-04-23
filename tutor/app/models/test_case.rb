@@ -1,7 +1,7 @@
 class TestCase < ActiveRecord::Base
 	#Validations
+	validates :input,:presence => true 
 	validates :output ,:presence => true 
-	validates :output, :length => { :minimum => 1 }
 
 	#Relations
 	belongs_to :owner, polymorphic: true

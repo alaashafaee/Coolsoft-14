@@ -1,5 +1,5 @@
 class TestCasesController < ApplicationController
-	@@problemid = nil
+	
 	# [Add test case-story 4.8]
 	# Shows all the test cases.
 	# Parameters: None
@@ -16,8 +16,10 @@ class TestCasesController < ApplicationController
 	# Author: Lin
 	def new
 		@problem = Problem.find(params[:problem_id])
-		@@problemid =params[:problem_id]
+		session[:problem_id] = params[:problem_id]
+		if(@test_case == nil)
 		@test_case = TestCase.new()
+	end
 	end
 
 	# [Add test case-story 4.8]
@@ -27,25 +29,25 @@ class TestCasesController < ApplicationController
 	#          In case of failure a flash notice will appear:"Can't add test case!"
 	# Author: Lin
 	def create
-		@problems =Problem.find_by_id(@@problemid)
+		@problems =Problem.find_by_id(session[:problem_id])
 		if lecturer_signed_in?
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_lecturer.id
 			@test_case.owner_type = "lecturer"
-			@test_case.problem_id=@@problemid
+			@test_case.problem_id=session[:problem_id]
 		elsif teaching_assistant_signed_in?
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_teaching_assistant.id
 			@test_case.owner_type = "teaching assistant"
-			@test_case.problem_id=@@problemid
+			@test_case.problem_id=session[:problem_id]
 		end
 		if @test_case.save
 			@problems.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
-			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
+			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
 		else
-			flash[:notice] = "Your test case cannot added"
-			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
+			
+			render :action=>'new' , :problem_id => @test_case.problem_id
 		end
 	end
 
@@ -57,6 +59,7 @@ class TestCasesController < ApplicationController
 	# Author: Nadine Adel
 	def edit
 		@test_case =TestCase.find(params[:id])
+		session[:problem_id] = params[:problem_id]
 	end
 
 	# [Edit test case-story 4.9]
@@ -71,7 +74,7 @@ class TestCasesController < ApplicationController
 			flash[:notice] = "Your Testcase is now updated"
 			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
 		else
-			flash[:notice] = "Your Answer is not updated"
+			render :action=>'edit' , :problem_id => @test_case.problem_id
 		end
 	end
 
