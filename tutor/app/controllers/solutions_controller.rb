@@ -22,7 +22,7 @@ class SolutionsController < ApplicationController
 		elsif params[:commit] == 'Compile'
 			compile_solution
 		elsif params[:commit] == 'Run Test Case'
-			compile_solution
+			compile_solution(false)
 			if flash[:compiler_fail] || flash[:alert]
 				redirect_to :back and return
 			end
@@ -57,7 +57,7 @@ class SolutionsController < ApplicationController
 	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: Ahmed Moataz
-	def compile_solution
+	def compile_solution(flag = true)
 		@solution = Solution.new(solution_params)
 		@solution.student_id = current_student.id
 		@solution.length = @solution.code.length
@@ -76,6 +76,9 @@ class SolutionsController < ApplicationController
 			@solution.save
 		else
 			flash[:alert] = "You did not write any code!"
+		end
+		if flag 
+			redirect_to :back
 		end
 	end
 

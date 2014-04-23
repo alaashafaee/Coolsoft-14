@@ -35,15 +35,15 @@
 		<tr>
 			<td>
 				<%= button_tag 'Compile', type: 'Button',
-					id: 'compileButton', onClick: 'compile()' %>
+					id: 'compileButton', onClick: 'compile()', class: "btn btn-info" %>
 				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-					onclick: "start_debug(#{params[:id]})" %>
+					onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>
 				<%= button_tag 'Previous', type: 'Button',
 					id: 'previousButton', onClick: 'previous()', hidden: true %>
 				<%= button_tag 'Next', type: 'Button',
 					id: 'nextButton', onClick: 'next()', hidden: true %>
 				<%= button_tag 'Stop Debugging', type: 'Button',
-					id: 'stopButton', onClick: 'stop()', hidden: true %>
+					id: 'stopButton', onClick: 'stop()', hidden: true%>
 				<span id="spinner" class="" align="center"></span>
 			</td>
 			<td style='text-align:right;'>
@@ -51,9 +51,9 @@
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?' %>
-				<%= f.submit "Compile" %>
-				<%= f.submit "Run Test Case" %>
+				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?', class: "btn btn-info" %>
+				<%= f.submit "Compile", class: "btn btn-info" %>
+				<%= f.submit "Run Test Case", class: "btn btn-info", id: 'testButton' %>
 			</td>
 		</tr>
 	</table>
@@ -64,10 +64,14 @@
 			value: @input, class: "form-control", style: "width:400px" %>
 	</div>
 	</br>
-	<div>
-		<b>Output:</b>
+	<!--Author: Ahmed Moataz-->
+	<b>Console:</b><br/>
+	<div class="console">
+		<p class="compilation_succeeded"><%= flash[:compiler_success] %></p>
+		<p class="compilation_failed"><%= flash[:compiler_fail] %></p>
+		<p class="compilation_feedback"><%= flash[:compiler_feedback] %></p>
 		<% if flash[:exp] %>
-			<div class="panel panel-danger fixed-content", style="white-space: pre">
+			<div class="panel-danger", style="white-space: pre">
 				<div class="panel-heading", style="min-height: 30px;
 				max-height: 30px; line-height:0.25px; margin-top: -45px">
 					<h3 class="panel-title"> Error </h3>
@@ -79,22 +83,16 @@
 				max-height: 30px; line-height:0.25px; margin-top: -90px">
 					<h3 class="panel-title"> Explanation </h3>
 				</div>
-				<div class="panel-body", style= "margin-top:-100px">
+				<div class="panel-body", style= "margin-top:-100px; min-height: 50px;
+				max-height: 50px;">
 					<p><%= flash[:exp] %></p>
 				</div>
 			</div>
 		<% else %>
-			<div>
+			<div style= "color: white; font-weight: bold; font-size: 15px">
 				<p><%= flash[:msg] %></p>
 			</div>
 		<% end %>
-	</div>
-	<!--Author: Ahmed Moataz-->
-	<b>Console:</b><br/>
-	<div class="console">
-		<p class="compilation_succeeded"><%= flash[:compiler_success] %></p>
-		<p class="compilation_failed"><%= flash[:compiler_fail] %></p>
-		<p class="compilation_feedback"><%= flash[:compiler_feedback] %></p>
 	</div>
 
 <% end %>
