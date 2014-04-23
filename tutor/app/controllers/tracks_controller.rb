@@ -68,6 +68,11 @@ class TracksController < ApplicationController
 		end
 	end
 
+	# [Recommendatio to students - Story 5.7]
+	# returns a json object contains a Hash of classmates
+	# Parameters: none 
+	# Returns: json
+	# Author: Mohab Ghanim
 	def show_classmates
 		problem = Problem.find_by_id(params[:id])
 		track = problem.track
@@ -93,6 +98,11 @@ class TracksController < ApplicationController
 		render json: students_receiving_recommendation
 	end
 
+	# [Recommendatio to students - Story 5.7]
+	# Inserts a record in recommendation table
+	# Parameters: none 
+	# Returns: json
+	# Author: Mohab Ghanim
 	def insert_recommendation
 		problem_id = params[:p_id]
 		student_id = params[:s_id]
