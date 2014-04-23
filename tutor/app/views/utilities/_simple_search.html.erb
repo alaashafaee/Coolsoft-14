@@ -1,31 +1,32 @@
 <div id="result_body">
 	<div class="panel-body">
 		<div id="results">
-			<% unless @lecturers.present? or @teaching_assisstants.present? or @courses.present? or @students.present?%>
+			<% unless @lecturers.present? or @teaching_assisstants.present?
+						or @courses.present? or @students.present? %>
 				<div style="text-align:center">
-					<p> No Result match </p>
+					<p>No Result match</p>
 				</div>
 			<% else %>
-				<% if @lecturers.present?%>
+				<% if @lecturers.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form" , objects: @lecturers %>
+						<%= render "result_form", objects: @lecturers %>
 					</div>
-				<%end%>
-				<% if @students.present?%>
+				<% end %>
+				<% if @students.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form" , objects: @students %>
+						<%= render "result_form", objects: @students %>
 					</div>
-				<%end%>
+				<% end %>
 				<% if @teaching_assisstants.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form" , objects: @teaching_assisstants %>
+						<%= render "result_form", objects: @teaching_assisstants %>
 					</div>
-				<%end%>
+				<% end %>
 				<% if @courses.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form" , objects: @courses %>
+						<%= render "result_form", objects: @courses %>
 					</div>
-				<%end%>
+				<% end %>
 			<% end %>
 		</div>
 	</div>

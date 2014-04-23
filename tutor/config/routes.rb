@@ -1,6 +1,6 @@
 Tutor::Application.routes.draw do
 
-  get "utilities/simple_search"
+	get "utilities/simple_search"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers

@@ -7,7 +7,8 @@
 	<%= form_tag utilities_simple_search_path, :method => 'get',
 			remote: controller?("utilities"), class: "navbar-form navbar-left"  do %>
 		<p>
-			<%= text_field_tag :search, params[:search], class: "form-control", size: "30", placeholder: "Search for Users and Courses"  %>
+			<%= text_field_tag :search, params[:search], class: "form-control",
+					size: "30", placeholder: "Search for Users and Courses" %>
 		</p>
 	<% end %>
 </div>
