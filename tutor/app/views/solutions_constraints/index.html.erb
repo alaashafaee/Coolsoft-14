@@ -1,10 +1,28 @@
 	<h1>Solutions' Constraints</h1>
 	<p style="color: green"><%= flash[:notice] %></p>
 		<p style="color: red" ><%= flash[:error] %></p>
-	<table class = "table table-striped", style = "width:80%">
-		<% @parameters.each do |params| %>
+	<table class = "table table-striped">
+	<h3>Methods Constraints</h3>
+		<tr>
+			<th>Method Name</th>
+			<th>Type</th>
+		</tr>
+		<% @methods.each do |method| %>
 			<tr>
-				<td><%= link_to params.parameter, :controller => 'solutions_constraints', :action => 'show', :id => params.id %></td>
+				<td><%= link_to method.method_name, :controller => 'solutions_constraints', :action => 'show', :id => method.id, :type => 'meth' %></td>
+					<% end %>
+				</td>
+			</tr>
+	</table>
+	<table class = "table table-striped">
+	<h3>Variables Constraints</h3>
+		<tr>
+			<th>Variable Name</th>
+			<th>Type</th>
+		</tr>
+		<% @variables.each do |variable| %>
+			<tr>
+				<td><%= link_to variable.variable_name, :controller => 'solutions_constraints', :action => 'show', :id => variable.id, :type => 'var' %></td>
 					<% end %>
 				</td>
 			</tr>
