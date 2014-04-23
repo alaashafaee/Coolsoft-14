@@ -158,7 +158,7 @@ index_number = 0
 	code = $('#solution_code').val()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
-	time = mins*60 + secseol
+	time = mins*60 + secs
 	start_spin()
 	$.ajax
 		type: "POST"
