@@ -14,7 +14,7 @@ class TeachingAssistantsController < ApplicationController
 # [Add TA - Story 1.5,1.6]
 # Adds the TA selected from the dropdown list in the view to the course and to the lecturer's history
 # Parameters: teaching_assistant_id , course_id
-# Returns: None
+# Returns: flash[:notice] that shows the result of trying to add the TA
 # Author: Muhammad Mamdouh
 	def create
 		begin
