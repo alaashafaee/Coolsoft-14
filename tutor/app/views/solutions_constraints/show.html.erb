@@ -1,6 +1,6 @@
 	<%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
 	<p style="color: green"><%= flash[:notice] %></p>
-	<% "?type=meth;" %>
+	<% if "?type=meth;" %>
 		<h3>Method Constraints</h3>
 		<table class = "table table-striped">
 			<tr>
