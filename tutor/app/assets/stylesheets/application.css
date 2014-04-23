@@ -11,20 +11,6 @@
  *= require_self
  *= require_tree .
  */
-.center {
-	margin: 0 auto;
-	width: 80%;
-}
-
-.home-banner {
-	margin: 10px 0;
-	font-family: 'Telex', sans-serif;
-	font-weight: bold;
-	line-height: 20px;
-	color: #317eac;
-	text-rendering: optimizelegibility;
-	font-size:38.5px;
-}
 
 .side-left {
 	height:700px;
@@ -32,7 +18,28 @@
 }
 
 .side-right {
-	height:700px;
-	margin-right:6px;
+	margin-top:70px;
+	height:auto;
+	margin-right:1.5%;
 }
 
+.main-content {
+	margin-top:70px;
+	margin-bottom:70px;
+	height:auto;
+	width:71%;
+	margin-left:2%;
+	margin-bottom: 100px;
+}
+
+.footer {
+	height:20px;
+	width:96%;
+	border-radius: 2px;
+	margin-left:2%;
+	margin-right:2%;
+}
+
+.auto-height {
+	height: auto;
+}

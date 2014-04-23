@@ -8,14 +8,17 @@ class Student < ActiveRecord::Base
 
 	#Relations
 	has_many :solutions, dependent: :destroy
+	has_many :attempts, dependent: :destroy
 	has_many :progressions, class_name: "TrackProgression"
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
+	has_many :acknowledgements, dependent: :destroy
 
 	has_many :recommendations
 	has_many :recommended_problems, class_name: 'Problem', through: :recommendations, source: :problem
 	
-	has_and_belongs_to_many :courses, join_table: 'courses_students'
+	has_many :course_students
+	has_many :courses, through: :course_students, dependent: :destroy
 	
 	#Scoops
 
@@ -48,6 +51,31 @@ class Student < ActiveRecord::Base
 		# Convert suggestions from set to array
 		# Return random element from array
 		return suggestions.to_a().sample()
+	end
+
+	# [Integrating_Akram_Device - Story 4.1]
+	# Gets all the problem that this student attempted and puts each
+	# state of attempt in a list : success , failure , other
+	# Parameters: None
+	# Returns: A hash with 3 list of the succeeded , failed problems
+	# 	and the third in case there is another state yet to be known
+	# Author: Mussab ElDash
+	def getProblemsStatus
+		res = {:success => [] , :failure => [] , :other => []}
+		res[:success] = []
+		res[:failure] = []
+		res[:other] = []
+		solutions = self.solutions
+		solutions.each do |s|
+			if s.status == 0
+				res[:success] << s.problem
+			elsif s.status == 1
+				res[:failure] << s.problem
+			else
+				res[:other] << s.problem
+			end
+		end
+		return res
 	end
 end
 

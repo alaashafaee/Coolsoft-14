@@ -1,41 +1,38 @@
 Tutor::Application.routes.draw do
 
+	devise_for :teaching_assistants
+	devise_for :students
+	devise_for :lecturers
+
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
+	# 	get 'products/index'
+	post 'solutions/compile_solution' => 'problems#show'
+	post 'courses/new' => 'courses#new'
+	get 'courses/sign_up'
+	post 'solutions/execute' => 'problems#show'
+	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"
-
 	root 'site#index'
-	resources :tracks do
-		post 'getProblems', on: :member
-	end
-	resources :problems_by_tas
-	resources :solutions
-	resources :problems
-	resources :discussion_boards do
-		post 'toggle', on: :member
-	end
-	post 'courses/new' => 'courses#new'
-	resources :courses do
-		post 'topics/new' => 'topics#new'
-		resources :topics
-	end
-	resources :model_answers do
-		post "model_answers/new"
-	end
-	resources :test_cases
-	devise_for :teaching_assistants
-	devise_for :students
-	devise_for :lecturers
+
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 	# Example resource route (maps HTTP verbs to controller actions automatically):
 	#   resources :products
+	resources :courses
+	resources :test_cases
+	resources :model_answers
+	resources :problems_by_tas
+	resources :solutions
+	resources :problems
+	resources :topics
+	resources :facebook
 
 	# Example resource route with options:
 	#   resources :products do
@@ -48,7 +45,19 @@ Tutor::Application.routes.draw do
 	#       get 'sold'
 	#     end
 	#   end
-
+	resources :tracks do
+		member do
+			get 'getProblems'
+		end
+	end
+	resources :discussion_boards do
+		member do
+			post 'toggle'
+		end
+	end
+	resources :model_answers do
+		post "model_answers/new"
+	end
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales
@@ -62,6 +71,10 @@ Tutor::Application.routes.draw do
 	#       get 'recent', on: :collection
 	#     end
 	#   end
+	resources :courses do
+		post 'topics/new' => 'topics#new'
+		resources :topics
+	end
 
 	# Example resource route with concerns:
 	#   concern :toggleable do
