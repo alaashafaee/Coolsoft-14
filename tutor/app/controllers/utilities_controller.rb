@@ -54,7 +54,8 @@ class UtilitiesController < ApplicationController
 	def auto_complete
 		@objects = Lecturer.simple_search(params[:q]).take(1)
 		respond_to do |format|
-			format.json {render :template => 'utilities/auto_complete',:formats => [],:handlers => [:json_builder],:layout=>false}
+			format.json {render :template => 'utilities/auto_complete',
+				:formats => [], :handlers => [:json_builder], :layout=>false}
 		end
 	end
 
