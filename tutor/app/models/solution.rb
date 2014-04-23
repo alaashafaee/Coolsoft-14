@@ -19,7 +19,7 @@ class Solution < ActiveRecord::Base
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
 	def self.validate(file, problem_id)
-		response = {status: 0, success: [], runtime_error: [],runtime_error_exp: [],
+		response = {status: 0, success: [], runtime_error: [], runtime_error_exp: [],
 					 logic_error: []}
 		testcases = Problem.find_by_id(problem_id).test_cases
 		testcases.each do |testcase|
@@ -30,8 +30,8 @@ class Solution < ActiveRecord::Base
 				output = Executer.get_output()
 				if (output != expected_output)
 					response[:logic_error] << "Logic error: for input: " +
-					 input + " ,expected output: " +
-					 expected_output + " but your output was: " + output
+					input + " ,expected output: " +
+					expected_output + " but your output was: " + output
 					unless response[:status] == 4
 						response[:status] = 5
 					end
