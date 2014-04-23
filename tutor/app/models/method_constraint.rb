@@ -6,6 +6,8 @@ class MethodConstraint < ActiveRecord::Base
 	belongs_to :model_answer
 	belongs_to :owner, polymorphic: true
 	
+	has_many :method_parameter, dependent: :destroy
+
 	#Scoops
 	
 	#Methods

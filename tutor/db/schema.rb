@@ -11,15 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327152228) do
+ActiveRecord::Schema.define(version: 20140422211341) do
+
+  create_table "acknowledgements", force: true do |t|
+    t.string   "message"
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.integer  "lecturer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admins", force: true do |t|
     t.string   "name"
-    t.boolean  "verified_type"
     t.date     "dob"
-    t.integer  "age"
-    t.string   "profile_image"
+    t.string   "img"
     t.boolean  "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attempts", force: true do |t|
+    t.integer  "student_id"
+    t.integer  "problem_id"
+    t.boolean  "failure",    default: false
+    t.boolean  "success",    default: false
+    t.boolean  "incomplete", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,6 +50,16 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "course_students", force: true do |t|
+    t.boolean  "share",      default: false
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_students", ["course_id", "student_id"], name: "index_course_students_on_course_id_and_student_id", unique: true
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -51,13 +78,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   end
 
   add_index "courses_lecturers", ["course_id", "lecturer_id"], name: "index_courses_lecturers_on_course_id_and_lecturer_id", unique: true
-
-  create_table "courses_students", id: false, force: true do |t|
-    t.integer "course_id",  null: false
-    t.integer "student_id", null: false
-  end
-
-  add_index "courses_students", ["course_id", "student_id"], name: "index_courses_students_on_course_id_and_student_id", unique: true
 
   create_table "courses_teaching_assistants", id: false, force: true do |t|
     t.integer "course_id",             null: false
@@ -94,10 +114,10 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "lecturers", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
+    t.string   "university"
     t.string   "department"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -111,8 +131,13 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "lecturers", ["confirmation_token"], name: "index_lecturers_on_confirmation_token", unique: true
   add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true
   add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true
 
@@ -125,7 +150,9 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
+    t.string   "method_return"
     t.integer  "model_answer_id"
+    t.integer  "method_constraint_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -134,6 +161,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
+    t.string   "params_type"
     t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -142,6 +170,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   end
 
   create_table "model_answers", force: true do |t|
+    t.string   "title"
     t.text     "answer"
     t.integer  "problem_id"
     t.integer  "owner_id"
@@ -159,6 +188,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   end
 
   create_table "posts", force: true do |t|
+    t.string   "title"
+    t.string   "img"
     t.text     "content"
     t.integer  "views_count"
     t.integer  "discussion_board_id"
@@ -172,8 +203,6 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.string   "title"
     t.text     "description"
     t.boolean  "incomplete"
-    t.integer  "success_attempts"
-    t.integer  "failure_attempts"
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
@@ -182,6 +211,8 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "problems", ["track_id", "title"], name: "index_problems_on_track_id_and_title", unique: true
 
   create_table "recommendations", force: true do |t|
     t.integer  "problem_id"
@@ -195,6 +226,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "replies", force: true do |t|
     t.text     "content"
+    t.string   "img"
     t.integer  "post_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -216,17 +248,14 @@ ActiveRecord::Schema.define(version: 20140327152228) do
   create_table "students", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
+    t.string   "university"
     t.string   "faculty"
     t.string   "major"
-    t.integer  "year"
     t.integer  "semester"
     t.boolean  "advising"
     t.boolean  "probation"
-    t.integer  "failure_attempts"
-    t.integer  "success_attempts"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -239,21 +268,26 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.integer  "age"
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "graduated_from"
     t.integer  "graduated_year"
-    t.boolean  "type"
     t.string   "department"
+    t.string   "university"
+    t.string   "degree"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -266,8 +300,13 @@ ActiveRecord::Schema.define(version: 20140327152228) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true
   add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true
   add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true
 
@@ -315,7 +354,7 @@ ActiveRecord::Schema.define(version: 20140327152228) do
 
   create_table "variable_constraints", force: true do |t|
     t.string   "variable_name"
-    t.string   "type"
+    t.string   "variable_type"
     t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
