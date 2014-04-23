@@ -14,11 +14,11 @@ class HintsController < ApplicationController
 	def create
 		new_hint = Hint.new(permitCreate)
 		if lecturer_signed_in?
-			current_lecturer.hints <= new_hint
+			current_lecturer.hints << new_hint
 			new_hint.category = false
 			new_hint.model_answer_id = @@answer_id
 		else
-			current_teaching_assistant.hints <= new_hint
+			current_teaching_assistant.hints << new_hint
 			new_hint.category = false
 			new_hint.model_answer_id = @@answer_id
 		end
