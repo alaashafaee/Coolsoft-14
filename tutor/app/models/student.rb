@@ -76,6 +76,12 @@ class Student < ActiveRecord::Base
 		return res
 	end
 
+	# [Get Recommended Problems - Story 5.6]
+	# Gets the recommended problems for this student by classmates
+	# Parameters: none
+	# Returns: A hash with 'problem_id' as a key and a value of a hash containing
+	# 'recommender_name' and 'problem_title'  
+	# Author: Mohab Ghanim
 	def getClassMatesRecommendations
 		recommended_problems = Recommendation.where(:student_id => self.id)
 		recommended_problems_hash = Hash.new

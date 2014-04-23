@@ -4,6 +4,11 @@
 # Author: Ahmed Elassuty
 -->
 <div id="right_side_bar" class="well pull-right side-right" style="width:25%">
+	<!--
+	# [Get Recommended Problems - Story 5.6]
+	# Displays the recommende problem hash in a table as [recommender_name | problem]
+	# Author: Mohab Ghanim
+	-->
 	<% if student_signed_in? %>
 		<div>
 			<% recommended_problems = current_student.getClassMatesRecommendations 
