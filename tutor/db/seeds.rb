@@ -101,7 +101,7 @@ puts("# -----------------------Solutions---------------------------")
 
 puts("# -----------------------TrackProgression---------------------------")
 	TrackProgression.create(level: 2, student_id: 1, topic_id: 1) 
-	TrackProgression.create(level: 0, student_id: 1, topic_id: 2) 
+	TrackProgression.create(level: 3, student_id: 1, topic_id: 2)
 	
 puts("# -------------------------------------------------------")
 
