@@ -33,6 +33,14 @@ class TipsController < ApplicationController
 	def index
 	end
 
+	# [Remove tip - Story 4.20]
+	# Allows Lecturer/TA to delete a tip related to certain answer.
+	# Parameters: 
+	#   :message is the content of the tip.
+	#   :time is a countdown timer that tip will appear after it ends.
+	# Returns: @tip : tip which will be removed.
+	# Author: Ahmed Osam
+
 	def destroy
 		@tips = Hint.find(params[:id]) 
 		@tip = Hint.find(params[:id])
