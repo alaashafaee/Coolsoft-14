@@ -159,9 +159,9 @@ class CoursesController < ApplicationController
 	# Author: Rania Abdel Fattah
 	def duplicate
 		@course = Course.find_by_id(permitd_up[:id])
-		new_course = @course.dup
-		if new_course.save
-			redirect_to :action => 'index'
+		@new_course = @course.dup
+		if @new_course.save
+			render "courses/duplicate"
 		else
 			redirect_to :back
 		end
@@ -175,10 +175,6 @@ class CoursesController < ApplicationController
 		def permitd_up
 			params.require(:course).permit(:id)
 		end
-
-	def choose
-	end
-
 
 	private
 		def course_params 

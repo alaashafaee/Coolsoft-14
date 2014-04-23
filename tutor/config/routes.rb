@@ -48,9 +48,7 @@ Tutor::Application.routes.draw do
 		post "model_answers/new"
 	end
 	resources :test_cases
-	devise_for :teaching_assistants
-	devise_for :students
-	devise_for :lecturers
+	
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -58,7 +56,7 @@ Tutor::Application.routes.draw do
 	# Example resource route (maps HTTP verbs to controller actions automatically):
 	#   resources :products
 	resources :courses
-	resources :test_cases
+	#resources :test_cases
 	resources :model_answers
 	resources :problems_by_tas
 	resources :solutions
