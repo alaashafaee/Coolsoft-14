@@ -1,13 +1,11 @@
-
-
 <body>
 	<script type="text/javascript">
 		function toggle_visibility(id) {
-			var e = document.getElementById(id);
-			if(e.style.display == 'block')
-				e.style.display = 'none';
+			var element = document.getElementById(id);
+			if(element.style.display == 'block')
+				element.style.display = 'none';
 			else
-				e.style.display = 'block';
+				element.style.display = 'block';
 		}
 	</script>
 </body>
@@ -18,17 +16,18 @@
 		<% @tips1.push(tip2) %>
 	<%end%>
 <%end%>
-	<br><ul class="navbar-brand pull-right"><%= link_to "Create New Tip"  , {:controller => 'tips',:action => 'new',
-    :method => :get, :model_answer_id => @answer.id },{class: 'btn btn-primary btn' }  %> </ul></br>
+	<br><ul class="navbar-brand pull-right"><%= link_to "Create New Tip", {:controller => 'tips',:action => 'new',
+    :method => :get, :model_answer_id => @answer.id }, {class: 'btn btn-primary btn' } %> </ul></br>
 <br>
 			
-<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo3'); return false;"  style="font:120px"> Previous Tips</a>
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo3'); return false;"
+	style="font:120px"> Previous Tips</a>
 <div id="foo3" style="display:none;">
 	<% if !@tips1.any? %>
 		<p>No previous Tips</p>
 	<% end %>
-	<%if !@tips1.empty?%>
-		<table class="table table-striped", style = "width:60%">
+	<% if !@tips1.empty? %>
+		<table class="table table-striped" style = "width:60%">
 			<thead>
 				<tr>
 					<th style = "width:30%"  >Tips</th>
@@ -40,15 +39,16 @@
 				<tr>
 					<% @tips.each do |tip1| %>
 					<% if tip1.category == true %>
-						<td style = "max-width: 300px; word-wrap:break-word;"><%= tip1.message %>	</td>
-						<td style ="width:20%"><%= tip1.time  %></td>
-						<td><%= button_to "Edit"  , {:action => 'new', :controller => 'tips',:method => :post},{class: 'btn btn-primary btn-xs' }   %></td>
+						<td style = "max-width: 300px; word-wrap:break-word;"><%= tip1.message %></td>
+						<td style ="width:20%"><%= tip1.time %></td>
+						<td><%= button_to "Edit", {:action => 'new', :controller => 'tips',
+							:method => :post}, {class: 'btn btn-primary btn-xs'}   %></td>
 				</tr>
 			</tbody>    
 					<% end %>
 					<% end %>
 		</table>
-	<%end%>
+	<% end %>
 </div>
 
 <style type="text/css" />

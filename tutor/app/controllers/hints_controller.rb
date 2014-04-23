@@ -1,5 +1,5 @@
 class HintsController < ApplicationController
-  # [View hints and tips-Story 4.22]
+  	# [View hints and tips-Story 4.22]
 	# It fetches from database all the previous hints.
 	# Parameters: 
 	#   @hints: All the previous hints that had been entered before.
@@ -7,7 +7,6 @@ class HintsController < ApplicationController
 	# Return : table with all previous hints
 	# Author: Nadine Adel
 	def index
-
 		@hints = Hint.all
 		@hints_check=Hint.all
 	end
