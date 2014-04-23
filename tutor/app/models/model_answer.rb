@@ -2,7 +2,6 @@ class ModelAnswer < ActiveRecord::Base
 
 	#Validations
 	validates :title , presence: true,:length => { :minimum => 1 }
-	
 	validates :answer , presence: true, :length => { :minimum => 1 }
 
 	#Relations

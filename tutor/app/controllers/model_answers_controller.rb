@@ -119,7 +119,5 @@ class ModelAnswersController < ApplicationController
 	private
 	def post_params
 		params.require(:model_answer).permit(:title,:answer,:problem_id)
-	end
-
-	
+	end	
 end

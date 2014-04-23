@@ -1,9 +1,9 @@
 
 <%= form_for :model_answer, url: model_answers_path  do |f| %>
-
 <% if @new_answer.errors.any? %>
 	<div id="error_explanation">
-		<h2><%= pluralize(@new_answer.errors.count, "error") %> prohibited this course from being saved:</h2>
+		<h2><%= pluralize(@new_answer.errors.count, "error") %> prohibited this course from being saved:
+		</h2>
 		<ul>
 			<% @new_answer.errors.full_messages.each do |msg| %>
 				<li><%= msg %></li>
@@ -12,22 +12,16 @@
 	</div>
 <% else %> 
 <%= f.hidden_field :problem_id, :value => @problem.id %>
-
 <% end %>
-
-
-<br>
-
 <p>
 	<h2>Please Insert your model answer</h2>
 	<br><%= f.label :Title %>
 		<%= f.text_field :title  %></br>
 		<br><%= f.label :Answer %> </br>
 	<%= f.text_area :answer,:cols => "50", :rows => "15" %>
-	
 </p>
 <br>
- <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
+<%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>
 </br>
 <br> </br>
 <% end %>
