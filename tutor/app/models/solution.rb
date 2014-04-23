@@ -128,5 +128,5 @@ class Solution < ActiveRecord::Base
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
-	
+
 end

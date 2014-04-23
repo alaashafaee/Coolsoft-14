@@ -111,5 +111,5 @@ class SolutionsController < ApplicationController
 	def input
 		params.require(:solution).permit(:input)
 	end
-	
+
 end
