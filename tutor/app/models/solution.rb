@@ -29,9 +29,9 @@ class Solution < ActiveRecord::Base
 			if(runtime_check)
 				output = Executer.get_output() 
 				if (output != expected_output)
-					response[:logic_error] << "Logic error: for input: " + input\
-					" ,expected output: " + expected_output\
-					" but your output was: " + output  
+					response[:logic_error] << "Logic error: for input: " +
+					 input + " ,expected output: " +
+					 expected_output + " but your output was: " + output  
 					unless response[:status] == 4
 						response[:status] = 5
 					end
