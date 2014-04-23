@@ -36,7 +36,7 @@ class ProblemsController < ApplicationController
 		begin
 			if p.save
 				redirect_to :action => "edit", :id => p.id
-			else 
+			else
 				flash.keep[:notice] = "Problem is missing paramaters"
 				redirect_to :back
 			end
@@ -119,7 +119,7 @@ class ProblemsController < ApplicationController
 	# [Edit Problem - 4.5]
 	# Checks if problem is complete or not by checking the number of test cases and answers
 	# Parameters:
-	#  problem_id: ID of the problem being edited
+	#	problem_id: ID of the problem being edited
 	# Returns: On success redirects to the track page, on failure redirects to the edit page
 	# Author: Abdullrahman Elhusseny
 	def done
@@ -148,8 +148,8 @@ class ProblemsController < ApplicationController
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:
-	#   title: problem's title
-	#   description: problem's description
+	#	title: problem's title
+	#	description: problem's description
 	# Returns: params to create action
 	# Author: Abdullrahman Elhusseny
 	private
