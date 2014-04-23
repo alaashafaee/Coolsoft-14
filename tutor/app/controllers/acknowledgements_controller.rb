@@ -25,23 +25,25 @@ class AcknowledgementsController < ApplicationController
 	# 	flash[:notice]: A message indicating the success or failure of the creation
 	# Author: Muhammad Mamdouh
 	def create
-		@student = Student.find_by_id(params[:student][:id])
-		@course = Course.find_by_id(params[:course_id])
-		@acknowledgement = Acknowledgement.new
-		@acknowledgement.message = params[:acknowledgement][:description]
-		bool = @acknowledgement.save
-		if bool == true
-			if @student == nil
-				flash[:notice]= "Please choose a student to acknowledge."
+		params[:students].each do |student|
+			@student = Student.find_by_id(student)
+			@course = Course.find_by_id(params[:course_id])
+			@acknowledgement = Acknowledgement.new
+			@acknowledgement.message = params[:acknowledgement][:description]
+			bool = @acknowledgement.save
+			if bool == true
+				if @student == nil
+					flash[:notice]= "Please choose a student to acknowledge."
+				else
+				flash[:notice] = "Acknowledgement successfully created"
+				@student.acknowledgements << @acknowledgement
+				current_lecturer.acknowledgements << @acknowledgement
+				@course.acknowledgements << @acknowledgement
+				end
 			else
-			flash[:notice] = "Acknowledgement successfully created"
-			@student.acknowledgements << @acknowledgement
-			current_lecturer.acknowledgements << @acknowledgement
-			@course.acknowledgements << @acknowledgement
+				flash[:notice] = "Acknowledgement failed."
 			end
-		else
-			flash[:notice] = "Acknowledgement failed."
-		end
+		end	
 		redirect_to :action => 'new'
-	end	
+	end
 end
