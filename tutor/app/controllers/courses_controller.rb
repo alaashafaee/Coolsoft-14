@@ -136,8 +136,24 @@ class CoursesController < ApplicationController
 		@course = Course.find_by_id(params[:id])
 		@discussionBoard = @course.discussion_board
 	end
-
+	
+	# [View a course - story 1.21]
+	#Description: This action is resposible for the view of a specific course.
+	#Parameters: 
+	#   id: Course id
+	# Returns: The view of the requested course
+	# Author: Mohamed Metawaa
 	def show
+		@course = Course.find_by_id(params[:id])
+		if @course
+			@topics = @course.topics
+			tracks = []
+			@topics.each do |t|
+				tracks = tracks + t.tracks
+			end
+		else
+			render ('public/404')
+		end
 	end
 
 	def manage
@@ -153,6 +169,7 @@ class CoursesController < ApplicationController
 	def update
 		@course = Course.find_by_id(params[:id])
 		if @course.update(course_params)
+			@topics = @course.topics
 			render 'show'
 		else 
 			render 'edit' 
@@ -163,4 +180,5 @@ class CoursesController < ApplicationController
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
+
 end
