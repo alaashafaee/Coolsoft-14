@@ -100,6 +100,7 @@
 	<b>Console:</b><br/>
 	<div class="console">
 		<p class="compilation_succeeded" > <%= flash[:compiler_success] %> </p>
+		<p class="compilation_failed" ><%= flash[:compiler_fail] %></p>
 		<% if flash[:compiler_success_2] %>
 			<% flash[:compiler_success_2].each do |message| %>
 			<p class="compilation_succeeded"> <%= message %> </p>
