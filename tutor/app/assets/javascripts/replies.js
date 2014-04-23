@@ -2,7 +2,11 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-
+// # Description: Ajax for createing a record in the database
+// # Parameters:
+// #	id : id of the current Post
+// # Returns: JSON Request
+// # Author: Ahmed Mohamed Magdi
 function post(id){
 	input= $("#input_field").val();
 	// postId = window.location.search.substring(4);
@@ -18,6 +22,10 @@ function post(id){
 	});
 }
 
+// # Description: 
+// # Parameters:
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function append(data){
 	container = $('#text_holder');
 	container.html("");

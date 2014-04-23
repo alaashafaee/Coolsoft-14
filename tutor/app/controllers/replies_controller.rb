@@ -1,14 +1,28 @@
 class RepliesController < ApplicationController
 
+	# Description: fetch all replies from db to view
+	# Parameters:
+	#	@replies : Containg all the replies
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def index
 		@replies = Post.find_by_id(params[:id]).replies
 	end
 
+	# Description: Shows the replies with id
+	# Parameters:
+	#	@replies: reply with spacific id
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def show
 		@replies = Reply.find_by_id(params[:id])
 		render "index"
 	end
 
+	# Description: edit reply 
+	# Parameters: none
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def edit	
 		@replies = Reply.find(params[:id])
 		respond_to do |format|
@@ -17,6 +31,13 @@ class RepliesController < ApplicationController
    		end
 	end
 
+	# Description: Creates New reply 
+	# Parameters:
+	#	line: Hash containting the Variables Constraints
+	#	method: value of the method name.
+	#	method_returned: value of the method return type
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def create
 		line = params[:reply]
 		post = Post.find_by_id(params[:post_id])
@@ -43,6 +64,11 @@ class RepliesController < ApplicationController
 		end
 	end
 
+	# Description: Deleting reply from the database
+	#	method_returned: value of the method return type
+	# Parameters: 
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def destroy
 		@reply =  Reply.find(params[:id])
 		respond_to do |format|
@@ -57,6 +83,10 @@ class RepliesController < ApplicationController
 
 	end
 
+	# Description: Updating a reply in the database
+	# Parameters: none
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def update
 	    @reply = Reply.find(params[:id])
 	    respond_to do |format|
@@ -70,6 +100,10 @@ class RepliesController < ApplicationController
 	end
 
 	private
+	# Description: To permit vairble to be saved
+	# Parameters:none
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
 	def reply_params
 		params.require(:reply).permit(:content)
 	end
