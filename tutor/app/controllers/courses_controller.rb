@@ -136,6 +136,7 @@ class CoursesController < ApplicationController
 		@course = Course.find_by_id(params[:id])
 		@discussionBoard = @course.discussion_board
 	end
+	
 	# [View a course - story 1.21]
 	#Description: This action is resposible for the view of a specific course.
 	#Parameters: 
@@ -179,4 +180,5 @@ class CoursesController < ApplicationController
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
+
 end
