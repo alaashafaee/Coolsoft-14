@@ -19,20 +19,19 @@ class Solution < ActiveRecord::Base
 	# Returns: a hash response containing status for the solution,
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
-	def self.validate(code, testcases, file)
-		response = {status: 0, success: [], failure: []}
+	def self.validate(file, problem_id)
+		response = {status: 0, success: [], runtime_error: [] , logic_error: []}
+		testcases = Problem.find_by_id(problem_id).test_cases
 		#compile_result = Compiler.compile(code)
 		#if(compile_result[:sucess])
 		testcases.each do |testcase| 
-			input = testcase.input 
-			expected_output = testcase.output
-			runtime_check = Executer.execute(file, input)
+			input = testcase.input
+			expected_output = testcase.output 
+			runtime_check = Executer.execute(file, input, problem_id)
 			if(runtime_check)
 				output = Executer.get_output() 
-				if output != expected_output?
-					response[:failure] << "Logic error: for input: " + input +" , 
-					expected output: " + expected_output +" but your output was: "
-					+ output  
+				if (output != expected_output)
+					response[:logic_error] << "Logic error: for input: " + input +" ,expected output: " + expected_output +" but your output was: " + output  
 					unless response[:status] == 4
 						response[:status] = 5
 					end
@@ -43,9 +42,10 @@ class Solution < ActiveRecord::Base
 					end
 				end
 			else
-				runtime_error = Executer.get_runtime_error()
+				runtime_error = Executer.get_runtime_error(file, 'CoolSoft')
+				runtime_error[:error] = "for input: " + input + " " + runtime_error[:error]
 				response[:status] = 4
-				response[:failure] << execute_message
+				response[:runtime_error] << runtime_error
 			end
 		end
 		#else 
@@ -68,6 +68,57 @@ class Solution < ActiveRecord::Base
 						s_id, p_id, 3])
 	end
 
+	# [
+	#	Compiler: Compile - Story 3.4
+	# 	Compiler: Validate - Story 3.5
+	# 	Debugger: Debug - Story 3.6
+	# 	Compiler: Test - Story 3.15
+	# ]
+	# Returns the file name associated with this solution code.
+	# Parameters:
+	# 	append_extension: A boolean value deciding whether the file extension should be appended.
+	# Returns: The solution's java file name
+	# Author: Rami Khalil
+	def file_name
+		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s
+	end
+
+	# [
+	#	Compiler: Compile - Story 3.4
+	# 	Compiler: Validate - Story 3.5
+	# 	Debugger: Debug - Story 3.6
+	# 	Compiler: Test - Story 3.15
+	# ]
+	# Returns the java file name associated with this solution code.
+	# Parameters:
+	# 	append_extension: A boolean value deciding whether the file extension should be appended.
+	# Returns: The solution's java file name
+	# Author: Rami Khalil
+	def java_file_name(prepend_path = false, append_extension = false)
+		jfile_name = file_name
+		jfile_name += ".java" if append_extension
+		jfile_name = JAVA_PATH + jfile_name if prepend_path
+		return jfile_name
+	end
+
+	# [
+	#	Compiler: Compile - Story 3.4
+	# 	Compiler: Validate - Story 3.5
+	# 	Debugger: Debug - Story 3.6
+	# 	Compiler: Test - Story 3.15
+	# ]
+	# Returns the class file name associated with this solution code.
+	# Parameters:
+	# 	append_extension: A boolean value deciding whether the file extension should be appended.
+	# Returns: The solution's class file name
+	# Author: Rami Khalil
+	def class_file_name(prepend_path = false, append_extension = false)
+		jfile_name = file_name
+		jfile_name += ".class" if append_extension
+		jfile_name = CLASS_PATH + jfile_name if prepend_path
+		return jfile_name
+	end
+
 	#Constants
 	STATUS_SUBMITTED	= 	0
 	STATUS_ACCEPTED		=	1
@@ -76,4 +127,6 @@ class Solution < ActiveRecord::Base
 	STATUS_EXECUTED_WITH_RUNTIME_ERRORS	=	4
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
 
+	JAVA_PATH	=	'students_solutions/Java/'
+	CLASS_PATH	=	'students_solutions/Class/'
 end

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140419085448) do
+ActiveRecord::Schema.define(version: 20140422100002) do
+
+  create_table "acknowledgements", force: true do |t|
+    t.string   "message"
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.integer  "lecturer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -27,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140419085448) do
     t.integer  "problem_id"
     t.boolean  "failure",    default: false
     t.boolean  "success",    default: false
+    t.boolean  "incomplete", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -132,7 +142,9 @@ ActiveRecord::Schema.define(version: 20140419085448) do
 
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
+    t.string   "method_return"
     t.integer  "model_answer_id"
+    t.integer  "method_constraint_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -141,6 +153,7 @@ ActiveRecord::Schema.define(version: 20140419085448) do
 
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
+    t.string   "params_type"
     t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -190,6 +203,8 @@ ActiveRecord::Schema.define(version: 20140419085448) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "problems", ["track_id", "title"], name: "index_problems_on_track_id_and_title", unique: true
 
   create_table "recommendations", force: true do |t|
     t.integer  "problem_id"
@@ -322,7 +337,7 @@ ActiveRecord::Schema.define(version: 20140419085448) do
 
   create_table "variable_constraints", force: true do |t|
     t.string   "variable_name"
-    t.string   "type"
+    t.string   "variable_type"
     t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
