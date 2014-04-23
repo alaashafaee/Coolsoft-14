@@ -11,7 +11,7 @@
 	<p>
 		<%=select_tag 'students[]', options_for_select(
 		@course.students.map {|p| [p.name, p.id]}
-), :multiple => true%>
+), :multiple => true %>
 
 	</p>
 
@@ -21,6 +21,6 @@
 	</p>
 
 	<p>
-			<%= f.submit "Send Acknowledgement", class: "btn btn-success"%>
+			<%= f.submit "Send Acknowledgement", class: "btn btn-success" %>
 	</p>	
 <% end %>
