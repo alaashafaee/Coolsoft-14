@@ -98,7 +98,7 @@ class TracksController < ApplicationController
 		render json: students_receiving_recommendation
 	end
 
-	# [Recommendatio to students - Story 5.7]
+	# [Recommendation to students - Story 5.7]
 	# Inserts a record in the recommendation table containing the id of the problem, 
 	# the id of the students recommending the problem, the id of the student recieving
 	# the recommendation
