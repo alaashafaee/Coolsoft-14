@@ -3,9 +3,8 @@ class AcknowledgementsController < ApplicationController
 	# Description: This action takes the passed course id and assings
 	#              the respective course to an instance variable.
 	# Parameters:
-	#	params[:course_id]: The current course id
-	# Returns: 
-	# 	none
+	#		params[:course_id]: The current course id
+	# Returns: none
 	# Author: Muhammad Mamdouh
 	def new 
 		@course = Course.find(params[:course_id])
@@ -18,11 +17,10 @@ class AcknowledgementsController < ApplicationController
 	#              creation fails the user is redirected to the form
 	#              with an appropriate message.
 	# Parameters:
-	# 	array "students" which has the students selected
-	# 	the ID of the course
-	# 	the description of the acknowledgement.
-	# Returns: 
-	# 	flash[:notice]: A message indicating the success or failure of the creation
+	# 		array "students" which has the students selected
+	# 		the ID of the course
+	# 		the description of the acknowledgement.
+	# Returns: A message indicating the success or failure of the creation
 	# Author: Muhammad Mamdouh
 	def create
 		if params[:students] == nil
@@ -38,10 +36,10 @@ class AcknowledgementsController < ApplicationController
 					if @student == nil
 						flash[:notice]= "Please choose a student to acknowledge."
 					else
-					flash[:notice] = "Acknowledgement successfully created"
-					@student.acknowledgements << @acknowledgement
-					current_lecturer.acknowledgements << @acknowledgement
-					@course.acknowledgements << @acknowledgement
+						flash[:notice] = "Acknowledgement successfully created"
+						@student.acknowledgements << @acknowledgement
+						current_lecturer.acknowledgements << @acknowledgement
+						@course.acknowledgements << @acknowledgement
 					end
 				else
 					flash[:notice] = "Acknowledgement failed."
