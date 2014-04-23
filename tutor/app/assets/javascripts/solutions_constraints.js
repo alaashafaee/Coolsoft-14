@@ -147,33 +147,48 @@ function remove_variable(field)
 	$('#variable').append("</table>");
 }
 
+// # Description: TO show the error massages
+// # Parameters:
+// #		errorArray: array of Error, for multi error massage show
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function showErrorMessage(arrayOfErrors){
 	for (var i = 0; i < arrayOfErrors.length; i++) {
 		$("#errors").append("<div class=\"alert alert-danger\">"+arrayOfErrors[i]+"</div>");
 	};
 }
 
-function testingValidation(errorArray){
-	method = $('#_constrain_method_return').val()
-	name = $('#_constrain_method_name').val()
+// # Description: Validates Data before sending it to the Server side
+// # Parameters:
+// #		errorArray: array of Error, for multi error massage show
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
+function testingValidation(errorArray,method,name){
+	if (type.length == 0 &&
+		var_type.length == 0 &&
+		method == 0 &&
+		name == 0 ) 
+	{
+		errorArray.push("Can not submit an empty Data, Try filling either Method Constraint for Variable Constraint");
+		return false;
+	};
 	if ( type.length > 0) {
 		if ( method == "" && name == ""){
 			document.getElementById("_constrain_method_return").style.border= "red 1px solid";
 			document.getElementById("_constrain_method_name").style.border= "red 1px solid";
 			errorArray.push("Enter method name and return type ..");
-			return false;
-		}else if(method == ""){
-			document.getElementById("_constrain_method_name").style.border= "";
-			document.getElementById("_constrain_method_return").style.border= "red 1px solid";
-			errorArray.push("Enter method return type ..");
-			return false;
-		}else if(name == ""){
-			document.getElementById("_constrain_method_name").style.border= "red 1px solid";
-			document.getElementById("_constrain_method_return").style.border= "";
-			errorArray.push("Enter method name ..");
-			return false;
 		}
 	};
+	if(method == ""){
+		document.getElementById("_constrain_method_name").style.border= "";
+		document.getElementById("_constrain_method_return").style.border= "red 1px solid";
+		errorArray.push("Enter method return type ..");
+	}else if(name == ""){
+		document.getElementById("_constrain_method_name").style.border= "red 1px solid";
+		document.getElementById("_constrain_method_return").style.border= "";
+		errorArray.push("Enter method name ..");
+	}
+	return errorArray.length == 0;
 }
 
 // # Description: submits via ajax to the controller
@@ -183,11 +198,15 @@ function testingValidation(errorArray){
 function submitParams()
 {	
 	$("#errors").html("");
-	errorArray = []
-	if (!testingValidation(errorArray)) {
+	errorArray = new Array();
+
+	method = $('#_constrain_method_return').val()
+	name = $('#_constrain_method_name').val()
+	if (!testingValidation(errorArray,method,name)) {
 		showErrorMessage(errorArray);
 		return;
 	};
+
 	var hash_p = []
 	var hash_v = []
 	for (var i = 0; i < type.length; i++) {
@@ -202,8 +221,6 @@ function submitParams()
 			name: var_name[i]
 		});
 	};
-	method = $('#_constrain_method_return').val()
-	name = $('#_constrain_method_name').val()
 	$.ajax({
 		type: "POST",
 		url: "/solutions_constraints",
@@ -218,20 +235,11 @@ function submitParams()
 				window.location = window.location
 			}else{
 				alert("Data messigin/incorrect !");
-				validate(method,name);
 			}
 		},
 		datatype: "JSON",
 		error: function(){
-			alert("failed");
+			alert("Failed to Add Constraints, Check again");
 		}
 	});
-}
-
-function validate(method, name)
-{
-	if ( (method == "" || name == "") && type.length > 0)  
-	{
-		
-	};
 }

@@ -1,6 +1,6 @@
 class SolutionsConstraintsController < ApplicationController
 
-	# Description: Creates New record for either Method or vairable constraints
+	# Description: Creates New record for either Method or variable constraints
 	# Parameters:
 	#	method_cons: Hash containting the Method parameters
 	#	var_cons: Hash containting the Variables Constraints
@@ -18,21 +18,27 @@ class SolutionsConstraintsController < ApplicationController
 			constarint = MethodConstraint.new
 			constarint.method_name = method
 			constarint.method_return = method_returned
-			
 			if method_cons.present?
-				method_cons.each do |cons|
+				method_cons.each do |index,value|
 					parameters = MethodParameter.new
-					parameters.parameter = method_cons[:name]
-					parameters.params_type = method_cons[:type]
-					# constarint.parameters << parameters
+					parameters.parameter = value[:name]
+					parameters.params_type = value[:type]
 					parameters.save
+					constarint.method_parameter << parameters
 				end
-				render json: true
-				constarint.save
-			else
-				render json: false
+			end
+			constarint.save
+		end
+		if var_cons.present?
+			var_cons.each do |index,value|
+				variable = VariableConstraint.new
+				variable.variable_name = value[:name]
+				variable.variable_type = value[:type]
+				variable.save
 			end
 		end
+
+		render json: true
 	end
 
 	# Description: init New record
@@ -41,6 +47,5 @@ class SolutionsConstraintsController < ApplicationController
 	# Author: Ahmed Mohamed Magdi
 	def new
 		constrain = MethodConstraint.new
-		parameters = MethodParameter.new
 	end
 end
