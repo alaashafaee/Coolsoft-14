@@ -1,10 +1,12 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
 <%= column_chart [
   [ "Solved ones",  @solved ],
-  [ "Wrong answers", @failed ],
-  [ "Attempted ones", '8']
+  [ "Wrong attempts", @failed ],
+  [ "Uncompleted ones", '8']
  ],
  
  library: {bar: {groupWidth: "10%"}},
-colors: ["lightblue","grey","darkgrey"]
+colors: ["lightblue"]
  %>
+ 

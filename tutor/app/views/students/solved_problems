@@ -1,0 +1,6 @@
+
+Solved Problems :-<br>
+<% @solved_list.each do |c| %>
+<pre> Problem: <%= c.problem_id %>         Date: <br>
+</pre>
+<% end %>
