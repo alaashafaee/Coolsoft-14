@@ -1,5 +1,5 @@
 class ModelAnswersController < ApplicationController
-	@@problemid = nil
+
 	# [Add answer story 4.6]
 	# It creates the new answer.
 	# Parameters:
@@ -12,7 +12,6 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	def new
 		@problem = Problem.find(params[:problem_id])
-		@@problemid = params[:problem_id]
 		session[:problem_id] = params[:problem_id]
 		if(@new_answer == nil)
 			@new_answer =ModelAnswer.new
@@ -61,12 +60,12 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 
 	def edit
-		@new_answer = ModelAnswer.find(params[:id])
-		@problem = Problem.find(@new_answer.problem_id)
-		@tips = @new_answer.hints
-		@tips_check = @new_answer.hints
-		@hints = @new_answer.hints
-		@hints_check = @new_answer.hints
+		@answer = ModelAnswer.find(params[:id])
+		@problem = Problem.find(@answer.problem_id)
+		@tips = @answer.hints
+		@tips_check = @answer.hints
+		@hints = @answer.hints
+		@hints_check = @answer.hints
 	end
 
 	# [Edit answer story 4.7]
@@ -80,10 +79,10 @@ class ModelAnswersController < ApplicationController
 		@answer = ModelAnswer.find(params[:id])
 		if @answer.update_attributes(post_params)
 			flash[:notice] = "Your Answer is now updated"
-  			redirect_to :controller => 'problems', :action => 'edit', :id => @@problemid
+  			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
 		else
-			session[:errorsupdate] = @answer.errors.full_messages
-			redirect_to :back
+		render :action=>'edit' , :problem_id => @answer.problem_id
+
 		end
 	end
 	

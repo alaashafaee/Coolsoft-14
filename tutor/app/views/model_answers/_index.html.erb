@@ -9,10 +9,10 @@
     }
   </script>
 </body>
-<br><ul class="navbar-brand pull-right"><%= link_to "Create New Model Answer"  , {:controller => 'model_answers',:action => 'new',
+<br><ul class="navbar-brand pull-right"><%= link_to "Create model answer"  , {:controller => 'model_answers',:action => 'new',
      :problem_id => @problem.id },{class: 'btn btn-primary btn' }  %> </ul></br>
 <br>
-<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Previous Answers</a>
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo'); return false;"  style="font:120px"> Answers</a>
 </br>
 
 <div id="foo" style="display:none;">

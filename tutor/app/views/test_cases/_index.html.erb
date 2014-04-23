@@ -11,9 +11,9 @@ e.style.display = 'block';
 </script>
 </body>
 
-<br><ul class="navbar-brand pull-right"><%= link_to "Create New Test case"  , {:controller => 'test_cases',:action => 'new',
+<br><ul class="navbar-brand pull-right"><%= link_to "Create test case"  , {:controller => 'test_cases',:action => 'new',
     :method => :get, :problem_id => @problem.id },{class: 'btn btn-primary btn' }  %> </ul></br>
-<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo1'); return false;"  style="font:120px"> Previous test case(s)</a>
+<a href="#" return:false; class="Lst"  onclick="toggle_visibility('foo1'); return false;"  style="font:120px"> Test cases</a>
   
 <div id="foo1" style="display:none;">
 	<% if !@test_cases.any? %>

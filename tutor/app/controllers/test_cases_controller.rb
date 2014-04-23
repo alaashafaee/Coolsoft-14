@@ -1,5 +1,5 @@
 class TestCasesController < ApplicationController
-	
+
 	# [Add test case-story 4.8]
 	# Shows all the test cases.
 	# Parameters: None
@@ -29,7 +29,7 @@ class TestCasesController < ApplicationController
 	#          In case of failure a flash notice will appear:"Can't add test case!"
 	# Author: Lin
 	def create
-		@problems =Problem.find_by_id(session[:problem_id])
+		@problem =Problem.find_by_id(session[:problem_id])
 		if lecturer_signed_in?
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_lecturer.id
@@ -42,7 +42,7 @@ class TestCasesController < ApplicationController
 			@test_case.problem_id=session[:problem_id]
 		end
 		if @test_case.save
-			@problems.test_cases << @test_case
+			@problem.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
 			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
 		else
@@ -58,7 +58,7 @@ class TestCasesController < ApplicationController
 	# Returns: None
 	# Author: Nadine Adel
 	def edit
-		@test_case =TestCase.find(params[:id])
+		@test_case =TestCase.find(params[:id])		
 		session[:problem_id] = params[:problem_id]
 	end
 
