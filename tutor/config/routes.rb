@@ -33,6 +33,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :posts
 	resources :facebook
 
 	# Example resource route with options:
