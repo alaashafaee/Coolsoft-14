@@ -94,7 +94,7 @@ class SolutionsController < ApplicationController
 			file = @solution.file_name
 			#s_id = solution_params[:problem_id].to_i + 1
 			response_message = Solution.validate(file, solution_params[:problem_id])
-			flash[:compiler_success] = response_message[:success] unless response_message[:success].empty?
+			flash[:compiler_success] = response_message[:success]
 			flash[:msg] = response_message[:runtime_error]
 			flash[:compiler_fail] = response_message[:logic_error]
 			@solution.status = response_message[:status]

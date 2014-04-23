@@ -91,16 +91,20 @@
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div class="console">
-		<div style="color: red" id="validate_error">
+<!-- 		<div style="color: red" id="validate_error">
 		</div>
 		<div style="color: green" id="validate_success">
-		</div>
+		</div> -->
+		<% if flash[:compiler_success] %>
+			<% flash[:compiler_success].each do |message|%>
+			<p class="compilation_succeeded"> <%= message %> </p>
+			<% end %>
+		<% end %>
 		<% if flash[:compiler_fail] %>
-		<% flash[:compiler_fail].each do |message|%>
-			<p class="compilation_failed"> message </p>
+			<% flash[:compiler_fail].each do |message|%>
+			<p class="compilation_failed"> <%= message %> </p>
+			<% end %>
 		<% end %>
-		<% end %>
-		<p class="compilation_succeeded"><%= flash[:compiler_success] %></p>
 		<p class="compilation_feedback"><%= flash[:compiler_feedback] %></p>
 	</div>
 <% end %>
