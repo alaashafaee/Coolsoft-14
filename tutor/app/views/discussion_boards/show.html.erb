@@ -17,8 +17,9 @@
 			<% end %>
 		</div>
 		<div>
-			<%= link_to "Add Post", new_post_path(discussion_board_id: @discussionBoard.id), 
-				class: "btn btn-success", style: "float: left;margin-left: 15px" %> 
+			<%= link_to "Add Post", new_post_path(discussion_board_id:
+				@discussionBoard.id), class: "btn btn-success",
+					 style: "float: left;margin-left: 15px" %> 
 		</div> 	
 	<% else %>
 		The discusstion board is deactivated
