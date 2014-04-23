@@ -165,7 +165,7 @@ class CoursesController < ApplicationController
 
 	private
 		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description)
+			params.require(:course).permit(:name, :code, :year, :semester, :description)
 		end
 		def topic_params
 			params.permit(:order_factor)
