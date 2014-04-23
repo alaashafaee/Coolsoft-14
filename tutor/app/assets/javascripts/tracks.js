@@ -1,6 +1,5 @@
-// Semicolon (;) to ensure closing of earlier scripting
-// Encapsulation
-// $ is assigned to jQuery
+// # [Recommendation to students]
+// # Author: Mohab Ghanim
 
 function showdialog(problem_id, recommender_id){
 	$.ajax({ 
