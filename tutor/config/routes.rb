@@ -12,7 +12,9 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
+	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
+	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"
