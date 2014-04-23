@@ -12,8 +12,7 @@ class Solution < ActiveRecord::Base
 	# Checks the validity of a submitted solution  
 	# and show the runtime and logic errors if exist
 	# Parameters: 
-	# 	code: the code written in the editor from the form_for
-	#   testcases: the testcases for the given problem 
+	# 	problem_id: id of the problem being answered
 	#   file: the name of the file which is compiled successfully
 	#		  without errors
 	# Returns: a hash response containing status for the solution,
@@ -22,8 +21,6 @@ class Solution < ActiveRecord::Base
 	def self.validate(file, problem_id)
 		response = {status: 0, success: [], runtime_error: [] ,runtime_error_exp: [] , logic_error: []}
 		testcases = Problem.find_by_id(problem_id).test_cases
-		#compile_result = Compiler.compile(code)
-		#if(compile_result[:sucess])
 		testcases.each do |testcase| 
 			input = testcase.input
 			expected_output = testcase.output 
@@ -46,17 +43,11 @@ class Solution < ActiveRecord::Base
 				response[:status] = 4
 				response[:runtime_error] << runtime_error[:error]
 				response[:runtime_error_exp] << runtime_error[:explanation]
-				#response[:runtime_error] = runtime_error
 			end
 		end
 		if response[:status] == 1
 			response[:success] << "Your Solution is correct, Passed"
 		end
-		#else 
-			#compile_message = Compiler.compileFeedback(compile_result)
-			#response[:status] = 2
-			#response[:failure] << compile_message 
-		#end
 		return response
 	end
 
@@ -130,7 +121,7 @@ class Solution < ActiveRecord::Base
 	STATUS_COMPILED_WITHOUT_ERRORS		= 	3
 	STATUS_EXECUTED_WITH_RUNTIME_ERRORS	=	4
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
-
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
+	
 end

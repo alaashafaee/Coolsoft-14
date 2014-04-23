@@ -145,6 +145,7 @@ index_number = 0
 	index_number = 0;
 	variables = null;
 
+#To be Used when changing to ajax
 # [Compiler: Validate - Story 3.5]
 # submits a solution in the form without refreshing 
 # 	using ajax showing an alert box for success and failure scenarios
