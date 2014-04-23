@@ -1,7 +1,7 @@
 <div align="center">
 	<% if @discussionBoard.activated == true %>
 		<div style="width: 50%; margin-left:25%">
-			<h3><%=@discussionBoard.title%></h3>
+			<h3><%= @discussionBoard.title %></h3>
 				<% unless @posts.blank? %>
 					<% @posts.each do |post| %>
 						<div>
@@ -17,7 +17,8 @@
 		</div>
 		<div>
 			<%= button_to "Add Post", {:controller => 'posts', :action => 'new',
-					:discussion_board_id => @discussionBoard.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
+					:discussion_board_id => @discussionBoard.id}, class: "btn btn-success" , 
+						style: "float: left;margin-left: 15px",method: :post %> 
 		</div> 	
 	<% else %>
 		The discusstion board is deactivated

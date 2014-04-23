@@ -24,12 +24,16 @@
     <%= form_for :post, url: {action: "create"} do  |f| %>
         <p>
             <%= f.label "Title" %><br>
-            <%= f.text_field :title, autofocus: true, class:"form-control", style: "width:300px", placeholder: "Title",:value => @new_post.title%>
+            <%= f.text_field :title, autofocus: true, class:"form-control",
+                 style: "width:300px", placeholder: "Title",:value => @new_post.title%>
         </p>
         <p>
             <%= f.label :content %><br>
-            <%= f.text_area :content, class:"form-control", style: "height:200px;width:500px", placeholder: "Enter your post",:value => @new_post.content%>
-            <%= f.hidden_field :discussion_board_id, value: params[:discussion_board_id], :value => @discussion_board.id%>
+            <%= f.text_area :content, class:"form-control",
+                    style: "height:200px;width:500px", placeholder: "Enter your post",
+                    :value => @new_post.content%>
+            <%= f.hidden_field :discussion_board_id, value: params[:discussion_board_id],
+                    :value => @discussion_board.id%>
         </p>
         <p>
             <%= f.submit "Save", class: "btn btn-success"%>
