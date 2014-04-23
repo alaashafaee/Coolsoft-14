@@ -37,11 +37,13 @@
 			</div>
 			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
 				<%= p.description %>
-				<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
+				<% if @can_edit %>
+					<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
+				<% end %>
 			</div>
 		</div>
 	<% end %>
 </div>
-<% if true %>
+<% if @can_edit %>
 	<Button><%= link_to "Add", new_problem_path(:id => @track.id )%></button>
 <% end %>
