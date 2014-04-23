@@ -19,7 +19,8 @@ class Solution < ActiveRecord::Base
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
 	def self.validate(file, problem_id)
-		response = {status: 0, success: [], runtime_error: [] ,runtime_error_exp: [] , logic_error: []}
+		response = {status: 0, success: [], runtime_error: [],runtime_error_exp: [],
+					 logic_error: []}
 		testcases = Problem.find_by_id(problem_id).test_cases
 		testcases.each do |testcase| 
 			input = testcase.input
@@ -28,7 +29,9 @@ class Solution < ActiveRecord::Base
 			if(runtime_check)
 				output = Executer.get_output() 
 				if (output != expected_output)
-					response[:logic_error] << "Logic error: for input: " + input +" ,expected output: " + expected_output +" but your output was: " + output  
+					response[:logic_error] << "Logic error: for input: " + input\
+					" ,expected output: " + expected_output\
+					" but your output was: " + output  
 					unless response[:status] == 4
 						response[:status] = 5
 					end
@@ -71,7 +74,7 @@ class Solution < ActiveRecord::Base
 	# ]
 	# Returns the file name associated with this solution code.
 	# Parameters:
-	# 	append_extension: A boolean value deciding whether the file extension should be appended.
+	# 	none
 	# Returns: The solution's java file name
 	# Author: Rami Khalil
 	def file_name
@@ -86,6 +89,7 @@ class Solution < ActiveRecord::Base
 	# ]
 	# Returns the java file name associated with this solution code.
 	# Parameters:
+	#	prepend_path: A boolean value deciding whether the java file folder path should be prepended.
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's java file name
 	# Author: Rami Khalil
@@ -104,6 +108,7 @@ class Solution < ActiveRecord::Base
 	# ]
 	# Returns the class file name associated with this solution code.
 	# Parameters:
+	#	prepend_path: A boolean value deciding whether the java file folder path should be prepended.
 	# 	append_extension: A boolean value deciding whether the file extension should be appended.
 	# Returns: The solution's class file name
 	# Author: Rami Khalil

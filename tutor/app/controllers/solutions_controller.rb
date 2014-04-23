@@ -77,40 +77,39 @@ class SolutionsController < ApplicationController
 	end
 
 	def submit_no_ajax
-			#testcases = @solution.problem.test_cases
-			file = @solution.file_name
-			#s_id = solution_params[:problem_id].to_i + 1
-			response_message = Solution.validate(file, solution_params[:problem_id])
-			flash[:compiler_success_2] = response_message[:success]
-			flash[:msg_2] = response_message[:runtime_error]
-			flash[:exp_2] = response_message[:runtime_error_exp]
-			flash[:compiler_fail_2] = response_message[:logic_error]
-			@solution.status = response_message[:status]
-			@solution.save
-			redirect_to :back
+		file = @solution.file_name
+		response_message = Solution.validate(file, solution_params[:problem_id])
+		flash[:compiler_success_2] = response_message[:success]
+		flash[:msg_2] = response_message[:runtime_error]
+		flash[:exp_2] = response_message[:runtime_error_exp]
+		flash[:compiler_fail_2] = response_message[:logic_error]
+		@solution.status = response_message[:status]
+		@solution.save
+		redirect_to :back
 	end
 
 	private
-		# [Code Editor: Write Code - Story 3.3]
-		# Permits the id of the problem, code from the form_for
-		# Parameters:
-		# 	code: The written code for the problem
-		# 	problem_id: Hidden field for problem id
-		# Returns:
-		# 	none
-		# Author: MOHAMEDSAEED
-		def solution_params
-			params.require(:solution).permit(:code, :problem_id)
-		end
+	# [Code Editor: Write Code - Story 3.3]
+	# Permits the id of the problem, code from the form_for
+	# Parameters:
+	# 	code: The written code for the problem
+	# 	problem_id: Hidden field for problem id
+	# Returns:
+	# 	none
+	# Author: MOHAMEDSAEED
+	def solution_params
+		params.require(:solution).permit(:code, :problem_id)
+	end
 
-		# [Compiler: Test - Story 3.15]
-		# Permits the input
-		# Parameters:
-		#	none
-		# Returns:
-		# 	params[:input]: The test case entered by the solver
-		# Author: Ahmed Akram
-		def input
-			params.require(:solution).permit(:input)
-		end
+	# [Compiler: Test - Story 3.15]
+	# Permits the input
+	# Parameters:
+	#	none
+	# Returns:
+	# 	params[:input]: The test case entered by the solver
+	# Author: Ahmed Akram
+	def input
+		params.require(:solution).permit(:input)
+	end
+	
 end

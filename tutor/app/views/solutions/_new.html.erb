@@ -72,8 +72,8 @@
 				<div class="panel-body", style= "margin-top:-100px">
 					<p><%= flash[:msg] %></p>
 					<% if flash[:msg_2] %>
-						<% flash[:msg_2].each do |message|%>
-						<p><%= message%></p>
+						<% flash[:msg_2].each do |message| %>
+						<p><%= message %></p>
 						<% end %>
 					<% end %>
 				</div>
@@ -84,7 +84,7 @@
 				<div class="panel-body", style= "margin-top:-100px">
 					<p><%= flash[:exp] %></p>
 					<% if flash[:exp_2] %>
-						<% flash[:exp_2].each do |message|%>
+						<% flash[:exp_2].each do |message| %>
 						<p><%= message %></p>
 						<% end %>
 					<% end %>
@@ -99,17 +99,17 @@
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div class="console">
-		<p class="compilation_succeeded"> <%= flash[:compiler_success] %> </p>
+		<p class="compilation_succeeded" > <%= flash[:compiler_success] %> </p>
 		<% if flash[:compiler_success_2] %>
-			<% flash[:compiler_success_2].each do |message|%>
+			<% flash[:compiler_success_2].each do |message| %>
 			<p class="compilation_succeeded"> <%= message %> </p>
 			<% end %>
 		<% end %>
 		<% if flash[:compiler_fail_2] %>
-			<% flash[:compiler_fail_2].each do |message|%>
-			<p class="compilation_failed"> <%= message %> </p>
+			<% flash[:compiler_fail_2].each do |message| %>
+			<p class="compilation_failed" > <%= message %> </p>
 			<% end %>
 		<% end %>
-		<p class="compilation_feedback"><%= flash[:compiler_feedback] %></p>
+		<p class="compilation_feedback" ><%= flash[:compiler_feedback] %></p>
 	</div>
 <% end %>
