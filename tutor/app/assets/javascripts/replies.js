@@ -7,35 +7,35 @@
 // #	id : id of the current Post
 // # Returns: JSON Request
 // # Author: Ahmed Mohamed Magdi
-function post(id){
-	input= $("#input_field").val();
-	// postId = window.location.search.substring(4);
-	postId = id;
-	$.ajax({
-		type:"POST",
-		url:'/replies',
-		data : {
-			reply: input,
-			post_id: postId
-		},
-		datatype : 'json'
-	});
-}
+// function post(_id){
+// 	input= $("#input_field").val();
+// 	// postId = window.location.search.substring(4);
+// 	postId = _id;
+// 	$.ajax({
+// 		type:"POST",
+// 		url:'/replies',
+// 		data : {
+// 			reply: input,
+// 			id: postId
+// 		},
+// 		datatype : 'json'
+// 	});
+// }
 
-// # Description: 
-// # Parameters:
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
-function append(data){
-	container = $('#text_holder');
-	container.html("");
-	input = $("#input_field").val();
-	if(!Object.keys(data).length == 0){
-		$.each(data, function(i){
-			link_edit = ""
-			line = "<p>" + input + "</p>";
-			container.append(line);
-		});
-	}
-}
+// // # Description: 
+// // # Parameters:
+// // # Returns: none
+// // # Author: Ahmed Mohamed Magdi
+// function append(data){
+// 	container = $('#text_holder');
+// 	container.html("");
+// 	input = $("#input_field").val();
+// 	if(!Object.keys(data).length == 0){
+// 		$.each(data, function(i){
+// 			link_edit = ""
+// 			line = "<p>" + input + "</p>";
+// 			container.append(line);
+// 		});
+// 	}
+// }
 

@@ -21,8 +21,8 @@ class CoursesController < ApplicationController
 				@courses = Course.select(:university).distinct
 				@status = "1"
 			when "2"
-				@courses = Course.where("university= " + "\"" + params[:university]
-					+ "\"").select(:semester).distinct
+				@courses = Course.where("university= " + "\"" + params[:university] +
+					"\"").select(:semester).distinct
 			when "3"
 				@courses = Course.where("semester= " + params[:semester] +
 					" AND university = " + "\"" + params[:university] + "\"")
@@ -143,9 +143,24 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
+	# [Edit a course - story 1.17]
+	#Description: This action is resposible for editing a specific course.
+	#Parameters: 
+	#   id: Course id
+	# Returns:
+	# 	null
+	# Author: Mohamed Metawaa
+	def update
+		@course = Course.find_by_id(params[:id])
+		if @course.update(course_params)
+			render 'show'
+		else 
+			render 'edit' 
+		end
+	end
+
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
-
 end

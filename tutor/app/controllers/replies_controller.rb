@@ -27,7 +27,7 @@ class RepliesController < ApplicationController
 		@replies = Reply.find(params[:id])
 		respond_to do |format|
 			format.html { render action:"edit"}
-        	format.js { render :layout=>false }
+        	format.js {render "edit"}
    		end
 	end
 
@@ -39,8 +39,8 @@ class RepliesController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Mohamed Magdi
 	def create
-		line = params[:reply]
-		post = Post.find_by_id(params[:post_id])
+		@reply = params[:reply]
+		post = Post.find_by_id(params[:id])
 		reply = Reply.new
 		reply.content = line
 		post.replies << reply
@@ -51,17 +51,17 @@ class RepliesController < ApplicationController
 		else
 			current_student.replies << reply				
 		end
-		respond_to do |format|
-			if reply.save
-				format.html { redirect_to action: "index" }
-				format.json { render json: reply, status: :created, location: reply }
-				format.js
-			else
-				format.html { render action: "new" }
-				format.json { render json: reply.errors, status: :unprocessable_entity }
-				format.js
-			end
-		end
+	end
+
+	# Description: Creates New reply 
+	# Parameters:
+	#	line: Hash containting the Variables Constraints
+	#	method: value of the method name.
+	#	method_returned: value of the method return type
+	# Returns: none
+	# Author: Ahmed Mohamed Magdi
+	def new
+		reply = Reply.new
 	end
 
 	# Description: Deleting reply from the database

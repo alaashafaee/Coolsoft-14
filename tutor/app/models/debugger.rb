@@ -15,7 +15,7 @@ class Debugger < ActiveRecord::Base
 	# 	regex : The input regex to be encountered to return
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
-	def buffer_until regex
+	def buffer_until(regex)
 		buffer = ""
 		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
 			begin
@@ -53,7 +53,7 @@ class Debugger < ActiveRecord::Base
 	# 	input : The input to be written in the sub stream
 	# Returns: none
 	# Author: Rami Khalil
-	def input input
+	def input(input)
 		$input.puts input
 	end
 
@@ -64,7 +64,7 @@ class Debugger < ActiveRecord::Base
 	# 	file_path : The path of the file to debugged
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
-	# Author: Mussab ElDash
+	# Authors: Mussab ElDash + Rami Khalil
 	def start(file_path, input)
 		to_be_compiled = file_path
 		if file_path =~ /.*\.java/
