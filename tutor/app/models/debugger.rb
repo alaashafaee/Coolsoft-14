@@ -150,17 +150,16 @@ class Debugger < ActiveRecord::Base
 			problem_id: problem_id })
 		compile_status = Compiler.compiler_feedback(solution)
 		unless compile_status[:success]
-			return {:success => false , data: compile_status}
-		 end
+			return {:success => false, data: compile_status}
+		end
 		debugger = Debugger.new
 		class_name = solution.class_file_name
 		debugging = debugger.start(class_name, input)
-		puts "-----------------------------------------------------"
 		p debugging
 		java_file = solution.java_file_name true, true
 		class_file = solution.class_file_name true, true
 		File.delete(java_file)
 		File.delete(class_file)
-		return {:success => true , data: debugging}
+		return {:success => true, data: debugging}
 	end
 end
