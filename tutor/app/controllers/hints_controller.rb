@@ -12,20 +12,18 @@ class HintsController < ApplicationController
 	#	Redirects to edit page on success, refreshes on failure
 	# Author: Mohamed Fadel
 	def create
-		p = Hint.new(permitCreate)
+		new_hint = Hint.new(permitCreate)
 		if lecturer_signed_in?
-			p.owner_id = current_lecturer.id
-			p.owner_type = "lecturer"
-			p.category = false
-			p.model_answer_id = @@answer_id
+			new_hint.owner_id = current_lecturer.id
+			new_hint.owner_type = "lecturer"
+			new_hint.category = false
+			new_hint.model_answer_id = @@answer_id
 		else
-			p.owner_id = current_teaching_assistant.id
-			p.owner_type = "teaching_assistant"
-			p.category = false
-			p.model_answer_id = @@answer_id
+			new_hint.category = false
+			new_hint.model_answer_id = @@answer_id
 		end
 
-		if p.save
+		if new_hint.save
 			redirect_to :controller => 'model_answers', :action => 'edit', :id => @@answer_id
 		else 
 			flash.keep[:notice] = "Hint is missing paramaters"
@@ -41,6 +39,7 @@ class HintsController < ApplicationController
 	# Returns: 
 	#	params to create action
 	# Author: Mohamed Fadel
+	private
 	def permitCreate
 		params.require(:Hint).permit(:submission_counter, :message)
 	end
