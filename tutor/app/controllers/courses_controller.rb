@@ -168,6 +168,7 @@ class CoursesController < ApplicationController
 	def update
 		@course = Course.find_by_id(params[:id])
 		if @course.update(course_params)
+			@topics = @course.topics
 			render 'show'
 		else 
 			render 'edit' 
