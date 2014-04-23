@@ -36,6 +36,14 @@ class TipsController < ApplicationController
 	def destroy
 	end
 
+	# [Edit tip - Story 4.11]
+	# Allows Lecturer/TA to edit a tip related to certain answer.
+	# Parameters: 
+	#   :message is the content of the tip.
+	#   :time is a countdown timer that tip will appear after it ends.
+	# Returns: @tip : a new updated tip to specific answer.
+	# Author: Ahmed Osam
+
 	def edit
 		@tip = Hint.find_by_id(params[:id])
 	end
