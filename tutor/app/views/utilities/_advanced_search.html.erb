@@ -4,7 +4,7 @@
 		<div class="form-group">
 			<label class="col-lg-2 control-label">Keyword</label>
 			<div class="col-lg-10">
-				<%= text_field_tag :keyword, "" , class: "form-control" %>
+				<%= text_field_tag :keyword, "", class: "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">
@@ -13,32 +13,32 @@
 				<div class="checkbox">
 					<div>
 						<label>
-							<%= check_box_tag :lecturers%> Lecturers
+							<%= check_box_tag :lecturers %> Lecturers
 						</label>
 					</div>
 					<div>
 						<label>
-							<%= check_box_tag :teaching_assistants%>Teaching Assistant
+							<%= check_box_tag :teaching_assistants %>Teaching Assistant
 						</label>
 					</div>
 					<div>
 						<label>
-							<%= check_box_tag :students%>Students
+							<%= check_box_tag :students %>Students
 						</label>
 					</div>
 					<div>
 						<label>
-							<%= check_box_tag :courses%>Courses
+							<%= check_box_tag :courses %>Courses
 						</label>
 					</div>
 					<div>
 						<label>
-							<%= check_box_tag :topics%>Topics
+							<%= check_box_tag :topics %>Topics
 						</label>
 					</div>
 					<div>
 						<label>
-							<%= check_box_tag :posts%>Posts
+							<%= check_box_tag :posts %>Posts
 						</label>
 					</div>
 				</div>
@@ -49,7 +49,7 @@
 			<div class="col-lg-10">
 				<%= select_tag :options , "<option>excatly match</option>
 						<option>includes</option><option>starts with</option>
-						<option>ends with</option>".html_safe,class: "form-control"%>
+						<option>ends with</option>".html_safe,class: "form-control" %>
 			</div>
 		</div>
 		<div class="form-group">

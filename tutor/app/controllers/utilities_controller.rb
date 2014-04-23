@@ -1,5 +1,5 @@
 class UtilitiesController < ApplicationController
-	
+
 	# [Simple Search - Story 1.22]
 	# search for users and courses
 	# Parameters: search
@@ -57,4 +57,5 @@ class UtilitiesController < ApplicationController
 			format.json {render :template => 'utilities/auto_complete',:formats => [],:handlers => [:json_builder],:layout=>false}
 		end
 	end
+
 end
