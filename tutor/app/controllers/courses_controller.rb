@@ -161,13 +161,13 @@ class CoursesController < ApplicationController
 	end
 
 	# [Share Performance - Story 5.2, 5.13]
-	# Description: Updates the database with the value of whether to share
+	# Updates the database with the value of whether to share
 	# 	performance or not and it redirects to an error page if an error
 	# 	occurs
 	# Parameters:
 	#	params[:id]: The course id
 	# 	params[:value]: The decision of the student whether to share his
-	# 					performance or not
+	# 		performance or not
 	# Returns: none
 	# Author: Khaled Helmy
 	def share
@@ -193,7 +193,7 @@ class CoursesController < ApplicationController
 		end
 
 		# [Share Performance - Story 5.2, 5.13]
-		# Description: Fetches the sharing status for each course that the current
+		# Fetches the sharing status for each course that the current
 		# 	signed in student is subscribing to in the database, appends them in
 		# 	a list and returns that list
 		# Parameters: none
@@ -218,12 +218,12 @@ class CoursesController < ApplicationController
 		end
 
 		# [Share Performance - Story 5.2, 5.13]
-		# Description: Converts a string consisting of either "true" or "false"
+		# Converts a string consisting of either "true" or "false"
 		# 	into the corresponding boolean value
 		# Parameters:
 		# 	value: String consisting of "true" or "false" to be converted to boolean
 		# Returns:
-		# 	Boolean
+		# 	A boolean converted from a string
 		# Author: Khaled Helmy
 		def to_boolean value
 			if value == "true"
