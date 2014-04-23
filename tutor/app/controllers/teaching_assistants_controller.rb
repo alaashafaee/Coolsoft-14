@@ -25,8 +25,7 @@ class TeachingAssistantsController < ApplicationController
 			flash[:notice]='TA added!'
 			redirect_to :action => 'index'
 		rescue
-			flash[:notice]='Error! TA is probably already added to the course. 
-			That or something went terribly wrong on our side. Either way lamo2a5za.'
+			flash[:notice]='Error! TA is already added to the course.'
 			redirect_to :action => 'new'
 		end	
 	end	
