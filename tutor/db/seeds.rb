@@ -123,7 +123,6 @@ puts("# -----------------------Attempts---------------------------")
 	Attempt.create(failure: true) 
 	Attempt.create(failure: true) 
 	Attempt.create(failure: true) 
->>>>>>> 9f7a6eaedbbd7f2e4949ff654b51b31f498dc8af
 	
 puts("# -------------------------------------------------------")
 
