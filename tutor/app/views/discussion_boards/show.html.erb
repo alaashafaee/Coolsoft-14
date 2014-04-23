@@ -5,7 +5,8 @@
 				<% unless @posts.blank? %>
 					<% @posts.each do |post| %>
 						<div>
-							<td><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id,:method => :get, class: "btn btn-success" %>
+							<td><%= link_to post.title, :controller => 'posts', :action=> 'show',
+								 :id => post.id,:method => :get, class: "btn btn-success" %>
 							</td>
 						<%= post.views_count %>
 						</div>
@@ -16,9 +17,9 @@
 			<% end %>
 		</div>
 		<div>
-			<%= button_to "Add Post", {:controller => 'posts', :action => 'new',
-					:discussion_board_id => @discussionBoard.id}, class: "btn btn-success" , 
-						style: "float: left;margin-left: 15px",method: :post %> 
+			<%= link_to "Add Post", new_post_path(discussion_board_id: @discussionBoard.id), 
+				class: "btn btn-success", 
+						style: "float: left;margin-left: 15px" %> 
 		</div> 	
 	<% else %>
 		The discusstion board is deactivated

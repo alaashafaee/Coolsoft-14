@@ -13,7 +13,6 @@ Tutor::Application.routes.draw do
 	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
 	get 'courses/sign_up'
- 	post 'posts/new' => 'posts#new'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
