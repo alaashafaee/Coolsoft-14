@@ -2,7 +2,7 @@
 	<div style="width: 50%; margin-left:25%">
 		<h3><%=@post.title%></h3>
 			<%= @post.content %>
-				<br>
+			<br>
 			<% unless @replies.blank? %>
 				<% @replies.each do |reply| %>
 					<div style="background-color: #A8A8A8">
@@ -11,7 +11,7 @@
 					<br>
 				<% end %>
 			<% else %>
-			No Replies in this post yet .
-		<% end %>
+				No Replies in this post yet .
+			<% end %>
 	</div>
 </div>
