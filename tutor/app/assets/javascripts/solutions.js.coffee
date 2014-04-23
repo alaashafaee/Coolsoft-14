@@ -83,7 +83,7 @@ debug_console = ->
 	return
 
 # [Debugger: Debug - Story 3.6]
-# Stops the Spinner
+# Toggles the Spinner
 # Parameters: noe
 # Returns: none
 # Author: Mussab ElDash
