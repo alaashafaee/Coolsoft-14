@@ -147,7 +147,7 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def self.debug(student_id, problem_id, code, input)
 		solution = Solution.create({code: code, student_id: student_id,
-			problem_id: problem_id })
+			problem_id: problem_id})
 		compile_status = Compiler.compiler_feedback(solution)
 		unless compile_status[:success]
 			return {:success => false, data: compile_status}
