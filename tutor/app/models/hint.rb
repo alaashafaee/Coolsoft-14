@@ -1,5 +1,7 @@
 class Hint < ActiveRecord::Base
 	
+	# Validations to ensure that content and time of tips are not empty and time is integer. 
+	# Author:Ahmed Osam
 	#Validations
 	validates :message, presence: true 
 	validates :time, presence: true  
