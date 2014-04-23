@@ -3,7 +3,12 @@
 # General layout for right side bar
 # Author: Ahmed Elassuty
 -->
-<div id="right_side_bar" class="well pull-right side-right" style="width:25%">
+<div id="right_side_bar" class="well pull-right side-right">
+	<!--
+	# [Next problems to solve - Story 5.5]
+	# displays a table of next problems to solve in each topic
+	# Author: Mohab Ghanim
+	-->
 	<% if student_signed_in? %>
 		<% next_problems_to_solve = current_student.get_next_problems_to_solve 
 		if next_problems_to_solve != nil then %>
@@ -22,5 +27,4 @@
 			</table>
 		<% end %>
 	<% end %>
-
 </div>

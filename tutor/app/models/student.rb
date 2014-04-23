@@ -84,11 +84,9 @@ class Student < ActiveRecord::Base
 	# Author: Mohab Ghanim (Modified from Rami Khalil's Story 3.9)
 	def get_next_problems_to_solve
 		next_problems_to_solve = Hash.new
-
 		courses.each do |course|
 			course.topics.each do |topic|
 				level = TrackProgression.get_progress(self.id, topic.id)
-
 				topic.tracks.each do |track|
 					if(track.difficulty == level)
 						track.problems.each do |problem|
