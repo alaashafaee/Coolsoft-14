@@ -18,7 +18,7 @@ class AcknowledgementsController < ApplicationController
 	#              creation fails the user is redirected to the form
 	#              with an appropriate message.
 	# Parameters:
-	# 	the ID of the student
+	# 	array "students" which has the students selected
 	# 	the ID of the course
 	# 	the description of the acknowledgement.
 	# Returns: 
