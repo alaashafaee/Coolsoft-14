@@ -2,7 +2,7 @@ class SolutionsConstraintsController < ApplicationController
 	# [Edit Solutions' Constraints - Story 4.14]
 	# Display all the parameters and the names of the method and the variables
 	# Parameters: 
-	#   Parameter: null
+	#   Parameter: none
 	# Returns: 
 	# 	@parameters: A list of all the methods parameters
 	# 	@variables: A list of all the variables constraints
@@ -19,15 +19,15 @@ class SolutionsConstraintsController < ApplicationController
 	# the method constraint
 	# Parameters: 
 	#   params[:id]: The method parameter and the variable constraint and the method variable
-	# Returns: null
+	# Returns: 
+	# 	@parameters: one record of the methods parameters
+	# 	@variables: one record of the variables constraints
+	# 	@methods: one record of the methods constraints
 	# Author: Rania Abdel Fattah
 	def show
 		@parameters = MethodParameter.find_by_id(params[:id])
 		@variables = VariableConstraint.find_by_id(params[:id])
 		@methods = MethodConstraint.find_by_id(params[:id])
-		if @parameters.nil?
-			redirect_to :action => 'index'
-		end
 	end
 
 	# [Edit Solutions' Constraints - Story 4.14]
@@ -35,7 +35,10 @@ class SolutionsConstraintsController < ApplicationController
 	# the method constraint
 	# Parameters: 
 	#   params[:id]: The method parameter and the variable constraint and the method variable
-	# Returns: null
+	# Returns: 
+	# 	@parameters: one record of the methods parameters
+	# 	@variables: one record of the variables constraints
+	# 	@methods: one record of the methods constraints
 	# Author: Rania Abdel Fattah
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?
@@ -46,11 +49,14 @@ class SolutionsConstraintsController < ApplicationController
 	end
 
 	# [Edit Solutions' Constraints - Story 4.14]
-	# Brief description of method
+	# Update the given record
 	# Parameters: 
-	#   Parameter: description
-	# Returns: in case of success or failure
-	# =>  Author: Your Name
+	#   params[:id]: The method parameter and the variable constraint and the method variable
+	# Returns: 
+	# 	@parameters: one record of the methods parameters
+	# 	@variables: one record of the variables constraints
+	# 	@methods: one record of the methods constraints
+	# =>  Author: Rania Abdel Fattah
 	def update
 		@parameters = MethodParameter.find_by_id(params[:id])
 		@variables = VariableConstraint.find_by_id(params[:id])
@@ -69,6 +75,16 @@ class SolutionsConstraintsController < ApplicationController
 		end
 	end
 
+	# [Remove Solution Constraint - Story 4.19]
+	# Display only one record for the method parameter and the variable constraint and
+	# the method constraint
+	# Parameters: 
+	#   params[:id]: The method parameter and the variable constraint and the method variable
+	# Returns: 
+	# 	@parameters: one record of the methods parameters
+	# 	@variables: one record of the variables constraints
+	# 	@methods: one record of the methods constraints
+	# Author: Rania Abdel Fattah
 	def destroy
 		if parameters = MethodParameter.find_by_id(params[:id]).destroy &&
 			variables = VariableConstraint.find_by_id(params[:id]).destroy &&
@@ -81,12 +97,6 @@ class SolutionsConstraintsController < ApplicationController
 		end
 	end
 
-	# [Edit Solutions' Constraints - Story 4.14]
-	# Brief description of method
-	# Parameters: 
-	#   Parameter: description
-	# Returns: in case of success or failure
-	# Author: Your Name
 	private
 	def constraint_params
 		params.require(:parameter).permit(:parameters, :variables, :methods)
