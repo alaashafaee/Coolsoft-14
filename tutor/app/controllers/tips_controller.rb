@@ -8,6 +8,13 @@ class TipsController < ApplicationController
 	def show
 	end
 
+	# [Add tip - Story 4.10]
+	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem.
+	# Parameters: 
+	#   :message is the content of the tip.
+	#   :time is a countdown timer that tip will appear after it ends.
+	# Returns: @tips : a new created tip to specific answer.
+	# Author: Ahmed Osam
 	def create
 		@tips = Hint.new
 		@tips.message = tip_params[:message]
