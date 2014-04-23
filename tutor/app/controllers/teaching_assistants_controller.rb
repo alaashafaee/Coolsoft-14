@@ -19,11 +19,20 @@ class TeachingAssistantsController < ApplicationController
 	def create
 		begin
 			@teaching_assistant = TeachingAssistant.find_by_id(params[:teaching_assistant][:id])
-			@course = Course.find_by_id(params[:course_id])
-			@course.TAs << @teaching_assistant
-			current_lecturer.worked_with << @teaching_assistant
-			flash[:notice]='TA added!'
-			redirect_to :action => 'index'
+				if params[:teaching_assistant][:id] == ''
+ 					flash[:notice] = 'Error! you need to select a TA'
+					redirect_to :action => 'new'
+			else
+				@course = Course.find_by_id(params[:course_id])
+				@course.TAs << @teaching_assistant
+				flash[:notice]='TA added!'
+				@notification = NotificationMail.new
+				@notification.subject = 'Invitation to join tutor'
+				@notification.email = @teaching_assistant.email
+				@notification.content = 'You have been added to a course on Tutor!' 
+				@notification.save
+				redirect_to :action => 'index'
+			end
 		rescue
 			flash[:notice]='Error! TA is already added to the course.'
 			redirect_to :action => 'new'
