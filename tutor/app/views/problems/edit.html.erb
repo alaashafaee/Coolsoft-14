@@ -9,4 +9,6 @@ and a paragraph to view the problem description of the instance variable @proble
 <% if flash[:notice] %>
 	<div class="notice"><%= flash[:notice] %></div>
 <% end %>
-    <%= button_to "Delete Problem", {:action => 'destroy'}, method: :delete,class: 'btn btn-primary',:id => params[:id] , :confirm => "Are you sure you want to delete this problem ??" %>
+    <%= button_to "Delete Problem", {:action => 'destroy'}, method: :delete,
+    	class: 'btn btn-primary',:id => params[:id] ,
+    		 :confirm => "Are you sure you want to delete this problem ??" %>
