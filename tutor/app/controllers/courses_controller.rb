@@ -151,7 +151,7 @@ class CoursesController < ApplicationController
 	# Parameters:
 	#	params[:id]: The course id
 	# 	params[:value]: The decision of the student whether to share his
-	# 							performance or not
+	# 					performance or not
 	# Returns: none
 	# Author: Khaled Helmy
 	def share
@@ -163,8 +163,7 @@ class CoursesController < ApplicationController
 			if result.share == value
 				render ('public/404')
 			else
-				result.share = value
-				result.save
+				result.update(share: value)
 				redirect_to "/courses"
 			end
 		else
