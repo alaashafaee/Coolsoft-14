@@ -10,13 +10,17 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
+	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
+	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
- 	post 'posts/new' => 'posts#new'
  	post '/posts/:id' => 'posts#update'
+	post 'solutions/execute' => 'problems#show'
+	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
+
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -31,7 +35,8 @@ Tutor::Application.routes.draw do
 	resources :problems
 	resources :topics
 	resources :posts
-	
+	resources :facebook
+
 	# Example resource route with options:
 	#   resources :products do
 	#     member do

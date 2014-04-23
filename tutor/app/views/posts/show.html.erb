@@ -10,6 +10,8 @@
 				<%end%>
 <div style="width: 50%; margin-left:25%">
 	<h3><%=@post.title%></h3>
+	<%= @post.content %>
+	<br>
 	<% unless @replies.blank? %>
 		<% @replies.each do |reply| %>
 			<div style="background-color: #A8A8A8">
@@ -25,4 +27,5 @@
 		<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
 			class: 'btn btn-primary',:id => @post.id} %>
 	<% end %>
+
 </div>
