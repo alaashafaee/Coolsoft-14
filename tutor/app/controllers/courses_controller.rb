@@ -144,6 +144,22 @@ class CoursesController < ApplicationController
 	def manage
 	end
 
+	# [Edit a course - story 1.17]
+	#Description: This action is resposible for editing a specific course.
+	#Parameters: 
+	#   id: Course id
+	# Returns:
+	# 	null
+	# Author: Mohamed Metawaa
+	def update
+		@course = Course.find_by_id(params[:id])
+		if @course.update(course_params)
+			render 'show'
+		else 
+			render 'edit' 
+		end
+	end
+
 	# [Share Performance - Story 5.2, 5.13]
 	# Description: Updates the database with the value of whether to share
 	# 	performance or not and it redirects to an error page if an error
