@@ -165,9 +165,9 @@ class Debugger < ActiveRecord::Base
 	# [Debugger: View Variables - Story 3.7]
 	# Takes a line containing an object assignment and extracts
 	# 	the object name
-	# Parameters: 
+	# Parameters:
 	#   variable: A string containing an object assignment
-	# Returns: 
+	# Returns:
 	# 	A string. It contains the object name
 	# Author: Khaled Helmy
 	def get_name variable
@@ -177,9 +177,9 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: View Variables - Story 3.7]
 	# Takes an object and evaluates its value
-	# Parameters: 
+	# Parameters:
 	#   variable: a string containing an instance object
-	# Returns: 
+	# Returns:
 	# 	An array. It contains the values inside an object
 	# Author: Khaled Helmy
 	def get_value variable
@@ -204,7 +204,7 @@ class Debugger < ActiveRecord::Base
 	# Return the list of instance and static variables of the
 	# 	class from within static methods
 	# Parameters: none
-	# Returns: 
+	# Returns:
 	# 	An array. It contains the list of instance and static
 	# 	variables and their associated values
 	# Author: Khaled Helmy
@@ -242,11 +242,11 @@ class Debugger < ActiveRecord::Base
 	end
 
 	# [Debugger: View Variables - Story 3.7]
-	# Fetches the variables found in the class and returns 
-	# 	a list of all variables in the class with their 
+	# Fetches the variables found in the class and returns
+	# 	a list of all variables in the class with their
 	#	associated values
 	# Parameters: none
-	# Returns: 
+	# Returns:
 	# 	An array. It contains the list of variables and their values
 	# Author: Khaled Helmy
 	def get_variables
