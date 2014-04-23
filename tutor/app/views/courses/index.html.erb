@@ -33,10 +33,10 @@
 				</td>
 				<td>
 					<% if current_student %>
-						<% if s %>
-							<%= link_to "Share", {:controller => 'courses', :action => 'share', :method => :post, :id => c.id}, :share_value => true, class: "btn btn-success", style: "text-decoration:none" %>
+						<% if s == "Show" %>
+							<%= button_to "Show Performance", {:controller => 'courses', :action => 'share', :id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
 						<% else %>
-							<%= link_to "Hide", {:controller => 'courses', :action => 'share', :method => :post, :id => c.id}, :share_value => false, class: "btn btn-success", style: "text-decoration:none" %>
+							<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share', :id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
 						<% end %>
 					<% end %>
 				</td>

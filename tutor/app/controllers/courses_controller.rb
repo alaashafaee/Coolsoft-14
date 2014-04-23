@@ -150,23 +150,22 @@ class CoursesController < ApplicationController
 	# 	occurs
 	# Parameters:
 	#	params[:id]: The course id
-	# 	params[:share_value]: The decision of the student whether to share his
+	# 	params[:value]: The decision of the student whether to share his
 	# 							performance or not
 	# Returns: none
 	# Author: Khaled Helmy
 	def share
-		if student_signed_in
+		if student_signed_in?
 			student_id = current_student.id
 			course_id = params[:id]
-			share_value = params[:share_value]
-			result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)
-			if result.share == true and share_value == true
-				render ('public/404')
-			elsif result.share == false and share_value == false
+			value = to_boolean params[:value]
+			result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)[0]
+			if result.share == value
 				render ('public/404')
 			else
-				result.share = share_value
+				result.share = value
 				result.save
+				redirect_to "/courses"
 			end
 		else
 			render ('public/404')
@@ -190,16 +189,33 @@ class CoursesController < ApplicationController
 		def find_state courses
 			states = []
 			student_id = current_student.id
+			puts student_id
 			courses.each do |c|
 				course_id = c.id
-				result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)
-				if result.share == true
-					states << "Share"
+				result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)[0]
+				if result.share == false
+					states << "Show"
 				else
 					states << "Hide"
 				end
 			end
 			return states
+		end
+
+		# [Share Performance - Story 5.2, 5.13]
+		# Description: Converts a string consisting of either "true" or "false"
+		# 	into the corresponding boolean value
+		# Parameters:
+		# 	value: String consisting of "true" or "false" to be converted to boolean
+		# Returns:
+		# 	Boolean
+		# Author: Khaled Helmy
+		def to_boolean value
+			if value == "true"
+				return true
+			else
+				return false
+			end
 		end
 
 end
