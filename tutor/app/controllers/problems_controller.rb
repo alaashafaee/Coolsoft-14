@@ -92,10 +92,11 @@ class ProblemsController < ApplicationController
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef
 	def destroy
-			@track = Problem.find_by_id(params[:id]).track_id
-			if Problem.find_by_id(params[:id]).destroy
-				flash[:notice] = "Problem successfully Deleted"
-				redirect_to(:controller => 'tracks' , :action => 'show' ,:id => @track)
-			end
+		@track = Problem.find_by_id(params[:id]).track_id
+		if Problem.find_by_id(params[:id]).destroy
+			flash[:notice] = "Problem successfully Deleted"
+			redirect_to(:controller => 'tracks' , :action => 'show' ,:id => @track)
+		end
 	end
+
 end
