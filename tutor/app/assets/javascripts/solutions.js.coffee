@@ -11,6 +11,9 @@ index_number = 0
 # Author: Mussab ElDash
 @start_debug = (problem_id) ->
 	input = $('#solution_code').val()
+	if input.length is 0
+		alert "You didn't write any code"
+		return
 	test = $('#testcases').val()
 	start_spin()
 	$.ajax
