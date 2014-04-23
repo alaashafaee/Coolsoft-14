@@ -9,7 +9,7 @@
 			<ul class="tab-links">
 				<li class="active"><a href="#tab1">Course</a></li>
 				<li><a href="#tab2">Info</a></li>
-				<li><a href="#tab3">Statistics</a></li>
+				<li><a href="#tab3">Performance</a></li>
 			</ul>
 			<div class="tab-content">
 				<div id="tab1" class="tab active">
@@ -42,7 +42,7 @@
 					<p> <b>Email:</b> <%= @student.email %> </p>
 				</div>
 				<div id="tab3" class="tab">
-					<p> @student.getStat() "to be reviewed" </p>
+					<%= link_to "Statistics", { :controller => 'students', :action => 'get_performance', :id => @student.id }, :method => :get, class: "btn btn-success" %>
 				</div>
 			</div>
 		</div>
