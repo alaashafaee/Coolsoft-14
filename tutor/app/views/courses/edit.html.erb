@@ -7,33 +7,7 @@
  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
  <link rel="stylesheet" href="/resources/demos/style.css">
 
-<script>
-	
-	$(function () {
-		$('.list-of-topics').sortable().bind("sortupdate", function() {
-		//alert("testing that sorting is occuring") ; //this alert appears
-		updateValues();
-		});
-	});
-	
-	function updateValues() {
-		var newOrder = $('#list-of-topics').sortable('toArray').toString(); 
 
-		var jsonData = JSON.stringify(newOrder);	
-	
-		$.ajax ({
-		url: "/topics",
-		type: "POST",  
-		data: jsonData,
-		dataType: "json",
-		contentType: "application/json; charset=utf-8",
-		success: function(){
-			alert("success") 
-		},
-		error: function(){}
-		});
-	};
-</script>
 <div>
 	<!-- This button shows all topics of the course -->
 	<div>

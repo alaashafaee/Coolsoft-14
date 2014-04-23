@@ -154,10 +154,9 @@ class CoursesController < ApplicationController
 		@topic = Topic.find_by_id(params[:methodParam][0])  
 		@course = @topic.course 
 		@topics = @course.topics
-		new_Order_Array = params[:methodParam]
 
 		@topics.each do |t|
-			t.order_factor = (params[:methodParam]).index(t.id.to_s) + 1 
+			t.order_factor = (params[:methodParam]).index(t.id.to_s)
 			puts(t.save)
 		end
 		render :nothing => true
