@@ -8,7 +8,7 @@ textarea  {
 
 .accepted {
 	display: none;
-	color: green;	
+	color: green;
 }
 
 .wrong_answer {
@@ -29,6 +29,25 @@ textarea  {
 .presentation_error {
 	display: none;
 	color: blue;
+}
+
+.fixed-content {
+	max-height: 200px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+
+.editor {
+	background-color: black;
+	color: white;
+	width: 100%;
+	min-height: 500px;
+}
+
+.test {
+	width: 100%;
+	min-height: 200px;
+	float: left;
 }
 
 .console {
@@ -72,7 +91,7 @@ textarea  {
 	background-color: black;
 	color: white;
 	width: 100%;
-	margin-top:  -6px;
+	margin-top: -6px;
 }
 
 .editor_border {
