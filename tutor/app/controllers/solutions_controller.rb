@@ -8,7 +8,7 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		if params[:commit] == 'Submit2'
+		if params[:commit] == 'Submit'
 			compile_solution
 			if flash[:compiler_fail] || flash[:alert]
 				redirect_to :back and return
