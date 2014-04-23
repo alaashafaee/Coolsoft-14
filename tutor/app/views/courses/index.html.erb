@@ -2,7 +2,7 @@
 	<h1>You have no courses</h1>
 <% end %>
 <% if current_lecturer %>
-	<%= button_to "Create course", {:action => 'new', :controller => 'courses'}, {
+	<%= button_to "Create course", { :action => 'new', :controller => 'courses' }, {
 		class: 'btn btn-primary'} %>
 <% end %>
 <br>
@@ -19,16 +19,16 @@
 		</tr>
 		<% @courses.each do |c| %>
 			<tr>
-				<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
+				<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, 
 							:method => :get, class: "btn btn-success" %></td>
 				<td><%= c.code %></td>
 				<td>
 					<% if current_lecturer %>
-						<%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+						<%= link_to "Manage Course", { :controller => 'courses', :action => 'edit', :method => :get, :id => c.id }, class: "btn btn-success", style: "text-decoration:none" %>
 					<% end %>
 				</td>
 				<td>
-					<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+					<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id }, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
 				</td>
 			</tr>
 		<% end %>
