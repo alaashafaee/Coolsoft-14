@@ -32,7 +32,7 @@ function add_params(field)
 			$('#parameter').append("<td width = \"10px\"></td>");
 			$('#parameter').append("<td><label>"+param_name[i]+"</label></td>");
 			$('#parameter').append("<td width = \"20px\"></td>");
-			$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:15%;height:15%;margin_top:10px;;cursor:pointer\"></td>");
+			$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 			$('#parameter').append("</tr>");
 		}
 		$('#parameter').append("</table>");
@@ -71,7 +71,7 @@ function remove_params(field)
 		$('#parameter').append("<td width = \"10px\"></td>");
 		$('#parameter').append("<td><label>"+param_name[i]+"</label></td>");
 		$('#parameter').append("<td width = \"20px\"></td>");
-		$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:15%;height:15%;margin_top:10px;;cursor:pointer\"></td>");
+		$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 		$('#parameter').append("</tr>");
 	}
 	$('#parameter').append("</table>");
@@ -102,7 +102,7 @@ function add_variable(field)
 			$('#variable').append("<td width = \"10px\"></td>");
 			$('#variable').append("<td><label>"+var_name[i]+"</label></td>");
 			$('#variable').append("<td width = \"20px\"></td>");
-			$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_variable(this);\" src=\"/assets/delete_button.png\" style=\"width:15%;height:15%;margin_top:10px;;cursor:pointer\"></td>");
+			$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_variable(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 			$('#variable').append("</tr>");
 		}
 		$('#variable').append("</table>");
@@ -141,10 +141,39 @@ function remove_variable(field)
 		$('#variable').append("<td width = \"10px\"></td>");
 		$('#variable').append("<td><label>"+var_name[i]+"</label></td>");
 		$('#variable').append("<td width = \"20px\"></td>");
-		$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:15%;height:15%;margin_top:10px;;cursor:pointer\"></td>");
+		$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 		$('#variable').append("</tr>");
 	}
 	$('#variable').append("</table>");
+}
+
+function showErrorMessage(arrayOfErrors){
+	for (var i = 0; i < arrayOfErrors.length; i++) {
+		$("#errors").append("<div class=\"alert alert-danger\">"+arrayOfErrors[i]+"</div>");
+	};
+}
+
+function testingValidation(errorArray){
+	method = $('#_constrain_method_return').val()
+	name = $('#_constrain_method_name').val()
+	if ( type.length > 0) {
+		if ( method == "" && name == ""){
+			document.getElementById("_constrain_method_return").style.border= "red 1px solid";
+			document.getElementById("_constrain_method_name").style.border= "red 1px solid";
+			errorArray.push("Enter method name and return type ..");
+			return false;
+		}else if(method == ""){
+			document.getElementById("_constrain_method_name").style.border= "";
+			document.getElementById("_constrain_method_return").style.border= "red 1px solid";
+			errorArray.push("Enter method return type ..");
+			return false;
+		}else if(name == ""){
+			document.getElementById("_constrain_method_name").style.border= "red 1px solid";
+			document.getElementById("_constrain_method_return").style.border= "";
+			errorArray.push("Enter method name ..");
+			return false;
+		}
+	};
 }
 
 // # Description: submits via ajax to the controller
@@ -152,7 +181,14 @@ function remove_variable(field)
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function submitParams()
-{	var hash_p = []
+{	
+	$("#errors").html("");
+	errorArray = []
+	if (!testingValidation(errorArray)) {
+		showErrorMessage(errorArray);
+		return;
+	};
+	var hash_p = []
 	var hash_v = []
 	for (var i = 0; i < type.length; i++) {
 		hash_p.push({
