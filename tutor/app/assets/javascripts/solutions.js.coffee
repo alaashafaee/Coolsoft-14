@@ -37,8 +37,7 @@ index_number = 0
 
 # [Debugger: Debug - Story 3.6]
 # Fills the console with the compilation errors
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 compilation_error = (data) ->
@@ -48,8 +47,7 @@ compilation_error = (data) ->
 
 # [Debugger: Debug - Story 3.6]
 # Clears the console
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 clear_console = ->
@@ -59,8 +57,7 @@ clear_console = ->
 
 # [Debugger: Debug - Story 3.6]
 # Write successful debug in the console
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 debug_console = ->
@@ -69,8 +66,7 @@ debug_console = ->
 
 # [Debugger: Debug - Story 3.6]
 # Starts the Spinner
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 @start_spin = ->
@@ -79,8 +75,7 @@ debug_console = ->
 
 # [Debugger: Debug - Story 3.6]
 # Stops the Spinner
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 @stop_spin = ->
@@ -89,8 +84,7 @@ debug_console = ->
 
 # [Debugger: Debug - Story 3.6]
 # Toggles the Spinner
-# Parameters:
-#	none
+# Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 @toggle_spin = ->
