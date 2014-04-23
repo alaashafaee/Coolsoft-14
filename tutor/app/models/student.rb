@@ -92,19 +92,19 @@ class Student < ActiveRecord::Base
 		if params[:keyword].present?
 			case params[:options]
 				when "exactly match"
-					tire.search  do
+					tire.search do
 						query { string "name:#{params[:keyword]}" }
 					end
 				when "includes"
-					tire.search  do
+					tire.search do
 						query { string "name:*#{params[:keyword]}*" }
 					end
 				when "starts with"
-					tire.search  do
+					tire.search do
 						query { string "name:#{params[:keyword]}*" }
 					end
 				when "ends with"
-					tire.search  do
+					tire.search do
 						query { string "name:*#{params[:keyword]}" }
 					end
 			end

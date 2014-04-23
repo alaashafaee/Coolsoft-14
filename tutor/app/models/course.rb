@@ -42,7 +42,7 @@ class Course < ActiveRecord::Base
 	# Returns: A hash with search results according to the keyword
 	# Author: Ahmed Elassuty
 	def self.simple_search(keyword)
-		where("name LIKE ? or code LIKE ?", "%#{keyword}%" , "%#{keyword}%") if keyword.present?
+		where("name LIKE ? or code LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword.present?
 	end
 
 	# [Advanced Search - Story 1.23]
@@ -54,19 +54,19 @@ class Course < ActiveRecord::Base
 		if params[:keyword].present?
 			case params[:options]
 				when "exactly match"
-					tire.search  do
+					tire.search do
 						query { string "name:#{params[:keyword]}" }
 					end
 				when "includes"
-					tire.search  do
+					tire.search do
 						query { string "name:*#{params[:keyword]}*" }
 					end
 				when "starts with"
-					tire.search  do
+					tire.search do
 						query { string "name:#{params[:keyword]}*" }
 					end
 				when "ends with"
-					tire.search  do
+					tire.search do
 						query { string "name:*#{params[:keyword]}" }
 					end
 			end
