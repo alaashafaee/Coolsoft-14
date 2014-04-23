@@ -142,7 +142,7 @@ class CoursesController < ApplicationController
 
 	def manage
 	end
-
+	#please delete this line
 	#[Find Recommendations - Story 4.9]
 	# Description: This action orders the topics of a specific course
 	# Parameters:
