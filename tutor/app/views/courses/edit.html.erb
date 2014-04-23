@@ -1,64 +1,39 @@
 <!--	Name: Course Edit Page
 		Author: Ahmed Akram
 -->
-<meta charset="utf-8">
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
+ <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+ <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+ <link rel="stylesheet" href="/resources/demos/style.css">
 
 <script>
-$(document).ready(function() {
-  $("#list-of-topics").sortable({
-    placeholder: "ui-state-highlight",
-    axis: "y",
-    tolerance: "pointer",
-    forcePlaceholderSize: true,
-    cursor: "move",
-    containment: "parent"
-  });
-  $("#dialog").dialog({
-    autoOpen: false,
-    modal: true,
-    width: "auto",
-    height: "auto",
-    autoResize: false,
-    buttons: {
-      Done: function() {
-        var array;
-        array = $("#list-of-topics").sortable("toArray");
-        $.ajax({
-          url: "/courses/sort",
-          type: "POST",
-          beforeSend: function(xhr) {
-            xhr.setRequestHeader("X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content"));
-          },
-          data: {
-            methodParam: array
-          },
-          success: function(data) {
-            alert("New order saved!");
-            location.reload();
-          },
-          error: function(args) {
-            alert("Error on ajax post");
-          }
-        });
-        $(this).dialog("close");
-      },
-      Cancel: function() {
-        $(this).dialog("close");
-        alert("Changes will not be saved !");
-      }
-    }
-  });
-  $("#opener").click(function() {
-    $("#dialog").dialog("open");
-    $("#dialog").css("overflow", "hidden");
-  }).disableSelection();
-});
-</script>
+	
+	$(function () {
+		$('.list-of-topics').sortable().bind("sortupdate", function() {
+		//alert("testing that sorting is occuring") ; //this alert appears
+		updateValues();
+		});
+	});
+	
+	function updateValues() {
+		var newOrder = $('#list-of-topics').sortable('toArray').toString(); 
 
+		var jsonData = JSON.stringify(newOrder);	
+	
+		$.ajax ({
+		url: "/topics",
+		type: "POST",  
+		data: jsonData,
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		success: function(){
+			alert("success") 
+		},
+		error: function(){}
+		});
+	};
+</script>
 <div>
 	<!-- This button shows all topics of the course -->
 	<div>
@@ -72,19 +47,19 @@ $(document).ready(function() {
 			:course_id => @course.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
 	</div>
 
-	<div id="dialog" title="order topics" hidden = "true">
-		<p>Order topics
-			<ul id="#list-of-topics" >
-				<%- @topics.each do |t| %>
- 				<li id="<%= t.id %>" ><%= t.title %> </li> 
+	<div id="order_topics_dialog" title="Order topics" hidden = "true">
+		<p>Hold Press and Drag to sort the topics 
+			<ul id="list-of-topics" >
+				<%= @topics.each do |topic| %>
+					<li id="<%= topic.id %>" ><%= topic.title %> </li> 
 				<% end %>
 			</ul>
 		</p>
 	</div>
-	<!-- This button activates the topics sorting -->
-	<div>
-		<button id="opener" , class="btn btn-success", style= "float: left;margin-left: 15px" >Order topics</button>
-	</div>
+
+	<button id="opener", class= "btn btn-success", style= "float: left;margin-left: 15px", 
+	style = "margin-top:10px;">Order topics
+		</button>
 
 	<!-- This button activates the add TA action -->
 	<div><%= button_to "Add a TA", {:action => 'show'}, class: "btn btn-success" , style: "float: left; margin-left: 15px", :method => :get%> 

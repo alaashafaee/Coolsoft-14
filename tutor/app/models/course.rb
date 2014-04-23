@@ -14,7 +14,7 @@ class Course < ActiveRecord::Base
 	has_and_belongs_to_many :students, join_table: "courses_students"
 	
 	has_one :discussion_board, dependent: :destroy	
-	has_many :topics, dependent: :destroy
+	has_many :topics, :order => 'order_factor', dependent: :destroy
 	has_many :acknowledgements, dependent: :destroy
 	
 	#Scoops

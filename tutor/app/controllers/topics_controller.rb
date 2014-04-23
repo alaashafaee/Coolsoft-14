@@ -57,7 +57,7 @@ class TopicsController < ApplicationController
 	# Author: Ahmed Akram
 	def index
 		@course = Course.find(params[:course_id])
-		@topics = @course.topics.order("created_at desc")
+		@topics = @course.topics
 	end
 
 	# [Specify Topics - Story 1.2]
