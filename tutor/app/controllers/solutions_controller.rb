@@ -9,18 +9,14 @@ class SolutionsController < ApplicationController
 	# Author: MOHAMEDSAEED
 	def create
 		if params[:commit] == 'Submit'
-			@solution = Solution.new(solution_params)
-			@solution.student_id = current_student.id
-			@solution.status = 0
-			@solution.length = @solution.code.length
-			if @solution.save
-				flash[:success] = "Your solution has been submitted successfully"
-			else
-				flash[:alert] = "Blank submissions are not allowed!!!"
+			compile_solution
+			if flash[:compiler_fail] || flash[:alert]
+				redirect_to :back and return
 			end
-			redirect_to :back
+			submit_no_ajax
 		elsif params[:commit] == 'Compile'
 			compile_solution
+			redirect_to :back and return
 		elsif params[:commit] == 'Run Test Case'
 			compile_solution
 			if flash[:compiler_fail] || flash[:alert]
@@ -61,6 +57,7 @@ class SolutionsController < ApplicationController
 		@solution = Solution.new(solution_params)
 		@solution.student_id = current_student.id
 		@solution.length = @solution.code.length
+		@solution.status = 0
 		if @solution.save
 			compiler_feedback = Compiler.compiler_feedback(@solution)
 			if compiler_feedback[:success]
@@ -77,6 +74,20 @@ class SolutionsController < ApplicationController
 		else
 			flash[:alert] = "You did not write any code!"
 		end
+	end
+
+	def submit_no_ajax
+			#testcases = @solution.problem.test_cases
+			file = @solution.file_name
+			#s_id = solution_params[:problem_id].to_i + 1
+			response_message = Solution.validate(file, solution_params[:problem_id])
+			flash[:compiler_success_2] = response_message[:success]
+			flash[:msg_2] = response_message[:runtime_error]
+			flash[:exp_2] = response_message[:runtime_error_exp]
+			flash[:compiler_fail_2] = response_message[:logic_error]
+			@solution.status = response_message[:status]
+			@solution.save
+			redirect_to :back
 	end
 
 	private
@@ -102,5 +113,4 @@ class SolutionsController < ApplicationController
 		def input
 			params.require(:solution).permit(:input)
 		end
-
 end
