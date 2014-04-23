@@ -8,9 +8,11 @@ class Student < ActiveRecord::Base
 
 	#Relations
 	has_many :solutions, dependent: :destroy
+	has_many :attempts, dependent: :destroy
 	has_many :progressions, class_name: "TrackProgression"
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
+	has_many :acknowledgements, dependent: :destroy
 
 	has_many :recommendations
 	has_many :recommended_problems, class_name: 'Problem', through: :recommendations, source: :problem

@@ -11,6 +11,7 @@ class Problem < ActiveRecord::Base
 	has_many :model_answers, dependent: :destroy
 	has_many :test_cases, dependent: :destroy
 	has_many :solutions
+	has_many :attempts, dependent: :destroy
 
 	#Scoops
 	
