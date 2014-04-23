@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.tokeninput
+//= require utilities
 
 $(document).ready(function () {
 	$("#search_txt_bar").tokenInput("/utilities/auto_complete");
