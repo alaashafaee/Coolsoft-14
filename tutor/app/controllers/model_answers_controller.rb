@@ -61,12 +61,12 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 
 	def edit
-		@answer = ModelAnswer.find(params[:id])
-		@problem = Problem.find(@answer.problem_id)
-		@tips = @answer.hints
-		@tips_check = @answer.hints
-		@hints = @answer.hints
-		@hints_check = @answer.hints
+		@new_answer = ModelAnswer.find(params[:id])
+		@problem = Problem.find(@new_answer.problem_id)
+		@tips = @new_answer.hints
+		@tips_check = @new_answer.hints
+		@hints = @new_answer.hints
+		@hints_check = @new_answer.hints
 	end
 
 	# [Edit answer story 4.7]

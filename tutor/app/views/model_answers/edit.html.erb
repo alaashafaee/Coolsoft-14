@@ -1,18 +1,20 @@
 <% provide(:title, "Edit Answer") %>
-<%if session[:errorsupdate] %>
-		<span class ="red"><h4> Model Answer can't be updated </h2></span>
+
+<%= form_for(@new_answer) do |f| %>
+<% if @new_answer.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@new_answer.errors.count, "error") %> prohibited this course from being saved:</h2>
 		<ul>
-		<% session[:errorsupdate].each do |msg| %>
-				<li>
-				<span class="red">	<%= msg %> </span>
-				</li>
+			<% @new_answer.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
 			<% end %>
-				
-		
 		</ul>
-	<% end %>
-<%= form_for(@answer) do |f| %>
-<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @answer.problem_id,
+	</div>
+<% else %> 
+<%= f.hidden_field :problem_id, :value => @problem.id %>
+
+<% end %>
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @new_answer.problem_id,
               :method => :get, class: 'btn btn-default btn-xs' %></ul>
 
 
