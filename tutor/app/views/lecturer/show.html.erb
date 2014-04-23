@@ -9,11 +9,10 @@
 			[ "average number of trials", @average]] %>
 
 		<!-- view to show the attempts to answer a specific problem -->
-		<% @attempt.each do |a| %>
+		<% @attempts.each do |a| %>
 		<tr>
 			<td><%= a.problem_id %></td>
 			<td><%= a.code %></td>
- 			</td>
-    	</tr>
+		</tr>
 	<% end %>
  </table>
