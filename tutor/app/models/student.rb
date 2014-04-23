@@ -95,4 +95,3 @@ class Student < ActiveRecord::Base
 		return recommended_problems_hash
 	end
 end
-
