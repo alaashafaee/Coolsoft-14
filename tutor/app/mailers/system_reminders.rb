@@ -1,7 +1,7 @@
 class SystemReminders < ActionMailer::Base
 	default from: "from@example.com"
 	# [System Reminders - Story 5.4]
-	# sends reminder e-mail to given user
+	# Sends reminder e-mail to given user
 	# Parameters:
 	# 	user: user instance
 	# Returns: none
