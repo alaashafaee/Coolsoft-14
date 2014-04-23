@@ -135,6 +135,7 @@ class CoursesController < ApplicationController
 	def edit
 		@course = Course.find_by_id(params[:id])
 		@discussionBoard = @course.discussion_board
+		@topics = @course.topics
 	end
 
 	def show
@@ -157,7 +158,7 @@ class CoursesController < ApplicationController
 
 		@topics.each do |t|
 			t.order_factor = (params[:methodParam]).index(t.id.to_s) + 1 
-			t.save
+			puts(t.save)
 		end
 		render :nothing => true
 	end
@@ -165,6 +166,9 @@ class CoursesController < ApplicationController
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
+		end
+		def topic_params
+			params.permit(:order_factor)
 		end
 
 end

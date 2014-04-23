@@ -9,50 +9,53 @@
 
 <script>
 $(document).ready(function() {
-
-	$("#list-of-topics").sortable({
-	placeholder: "ui-state-highlight" , 
-	axis:"y",
-	tolerance: 'pointer',
-	forcePlaceholderSize: true,
-	cursor: "move",
-	containment: "parent" 
-	});
-
-	$("#order_topics_dialog").dialog({
-		autoOpen: false,
-		modal: true,
-		width: 'auto',
-		height: 'auto',
-		autoResize:false,
-		buttons: {
-			Done: function(){
-				var array = $("#list-of-topics").sortable('toArray') ;
-				$.ajax({
-					url: '/courses/sort',
-					type: 'POST',
-					beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-					data: { 'methodParam' : array },
-					success: function (data) {
-						alert("success");
-						location.reload();
-					},
-					error: function (args) {
-						alert("Error on ajax post");
-					}
-				}); 
-				$(this).dialog("close");  
-			} ,
-			Cancel: function(){
-				$(this).dialog("close");
-			} 
-		}
-	});
-
-	$("#opener").click(function() {
-		$("#order_topics_dialog").dialog("open");
-		$("#order_topics_dialog").css('overflow', 'hidden');
-	}).disableSelection();
+  $("#list-of-topics").sortable({
+    placeholder: "ui-state-highlight",
+    axis: "y",
+    tolerance: "pointer",
+    forcePlaceholderSize: true,
+    cursor: "move",
+    containment: "parent"
+  });
+  $("#dialog").dialog({
+    autoOpen: false,
+    modal: true,
+    width: "auto",
+    height: "auto",
+    autoResize: false,
+    buttons: {
+      Done: function() {
+        var array;
+        array = $("#list-of-topics").sortable("toArray");
+        $.ajax({
+          url: "/courses/sort",
+          type: "POST",
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content"));
+          },
+          data: {
+            methodParam: array
+          },
+          success: function(data) {
+            alert("New order saved!");
+            location.reload();
+          },
+          error: function(args) {
+            alert("Error on ajax post");
+          }
+        });
+        $(this).dialog("close");
+      },
+      Cancel: function() {
+        $(this).dialog("close");
+        alert("Changes will not be saved !");
+      }
+    }
+  });
+  $("#opener").click(function() {
+    $("#dialog").dialog("open");
+    $("#dialog").css("overflow", "hidden");
+  }).disableSelection();
 });
 </script>
 
@@ -69,6 +72,15 @@ $(document).ready(function() {
 			:course_id => @course.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
 	</div>
 
+	<div id="dialog" title="order topics" hidden = "true">
+		<p>Order topics
+			<ul id="#list-of-topics" >
+				<%- @topics.each do |t| %>
+ 				<li id="<%= t.id %>" ><%= t.title %> </li> 
+				<% end %>
+			</ul>
+		</p>
+	</div>
 	<!-- This button activates the topics sorting -->
 	<div>
 		<button id="opener" , class="btn btn-success", style= "float: left;margin-left: 15px" >Order topics</button>
@@ -89,6 +101,7 @@ $(document).ready(function() {
 		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
 	</div> 
 </div>
+
 <br/>
 
 <!-- This button deletes the course -->
