@@ -1,36 +1,45 @@
 class TipsController < ApplicationController
+
+	# [Add tip - Story 4.10]
+	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem.
+	# Parameters: 
+	#   :message is the content of the tip.
+	#   :time is a countdown timer that tip will appear after it ends.
+	# Returns: @tip : a new created tip to specific answer.
+	# Author: Ahmed Osam
+
 	def new
-		if(@tips == nil)
-			@tips = Hint.new
+		if(@tip == nil)
+			@tip = Hint.new
+		end
+	end
+
+	def create
+		@tip = Hint.new
+		@tip.message = tip_params[:message]
+		@tip.time = tip_params[:time]
+		@tip.category = true
+		@tip.model_answer_id = @@answer_id
+		if @tip.save
+			render :action => 'show'
+		else
+			render :action=>'new'
 		end
 	end
 
 	def show
-		@tips = Hint.find_by_id(params[:id])
-		@tip = Hint.find_by_id(params[:id])
 	end
-
-	def create
-		@tips = Hint.new
-		@tips.message = tip_params[:message]
-		@tips.time = tip_params[:time]
-		@tips.category = true
-		if @tips.save
-			if lecturer_signed_in?
-				current_lecturer.hints << @tips
-			elsif teaching_assistant_signed_in?
-				current_teaching_assistant.hints << @tips
-			end	
-			@tip = @tips
-			render :action => 'show'
-		else
-	  		render :action=>'new'
-		end
-	end
-
 
 	def index
 	end
+
+	# [Remove tip - Story 4.20]
+	# Allows Lecturer/TA to delete a tip related to certain answer.
+	# Parameters: 
+	#   :message is the content of the tip.
+	#   :time is a countdown timer that tip will appear after it ends.
+	# Returns: @tip : tip which will be removed.
+	# Author: Ahmed Osam
 
 	def destroy
 		@tips = Hint.find(params[:id]) 
@@ -40,6 +49,14 @@ class TipsController < ApplicationController
 		redirect_to :action => 'index'
 
 	end
+
+	# [Edit tip - Story 4.11]
+	# Allows Lecturer/TA to edit a tip related to certain answer.
+	# Parameters: 
+	#   :message is the content of the tip.
+	#   :time is a countdown timer that tip will appear after it ends.
+	# Returns: @tip : a new updated tip to specific answer.
+	# Author: Ahmed Osam
 
 	def edit
 		@tip = Hint.find_by_id(params[:id])

@@ -50,7 +50,7 @@
 				<div class="row">
 					<%= render "layouts/right_side_bar"%>
 					<div class="well main-content">
-						<%= render "problems/system_recommendation" if student_signed_in?%>
+						<%= render "problems/system_recommendation" if student_signed_in? %>
 						<%= yield %>
 					</div>
 				</div>
