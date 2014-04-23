@@ -37,9 +37,9 @@
 			</div>
 			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
 				<%= p.description %>
+				<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
 			</div>
 		</div>
-		<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
 	<% end %>
 </div>
 <% if true %>

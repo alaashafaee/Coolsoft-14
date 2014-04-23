@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
 	#	id: The problem statement id
 	# Returns: none
 	# Author: MIMI
-	def show 
+	def show
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.nil?
 			render "problem_not_found"
@@ -19,8 +19,8 @@ class ProblemsController < ApplicationController
 	# [Add Problem - 4.4]
 	# Creates a new record to Problem Table
 	# Parameters:
-	#   title: problem's title through permitCreate action
-	#   description: problem's description through permitCreate action
+	#	title: problem's title through permitCreate action
+	#	description: problem's description through permitCreate action
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def create
@@ -43,13 +43,13 @@ class ProblemsController < ApplicationController
 		rescue
 			flash.keep[:notice] = "The track has a problem with the same title"
 			redirect_to :back
-		end	
+		end
 	end
 
 	# [Edit Problem - 4.5]
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters:
-	#   id: The id of the problem to be edited or newly created
+	#	id: The id of the problem to be edited or newly created
 	# Returns: Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def edit
@@ -66,7 +66,7 @@ class ProblemsController < ApplicationController
 	# Checks if a lecturer or TA is signed in and shows the problem's add page(title & description)
 	# on success and renders 404 on failure
 	# Parameters:
-	#  none
+	#	none
 	# Returns: Redirects to add page on success or 404 on failure
 	# Author: Abdullrahman Elhusseny
 	def new
@@ -80,24 +80,35 @@ class ProblemsController < ApplicationController
 	# [Edit Problem - 4.5]
 	# Update the problem's title or description
 	# Parameters:
-	#  problem_params: a problem's title & description
+	#	problem_params: a problem's title & description
 	# Returns: refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
 	def update
 		@problem = Problem.find_by_id(params[:id])
 		if (problem_params[:title] == @problem.title)
-			@message = "Description updated"
-		else
+			if (problem_params[:description] != @problem.description)
+				@message = "Description updated"
+			end
+		elsif (problem_params[:title] != @problem.title)
 			@message = "Title updated"
 		end
-		if @problem.update_attributes(problem_params)
+		begin
+			if @problem.update_attributes(problem_params)
 				flash.keep[:notice] = @message
-			respond_to do |format|
-				format.html {redirect_to :action => "edit", :id => @problem.id}
-				format.js
+				respond_to do |format|
+					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.js
+				end
+			else
+				flash.keep[:notice] = "Update paramater is empty"
+				respond_to do |format|
+					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.js
+				end
 			end
-		else
-			flash.keep[:notice] = "Update paramater is empty"
+		rescue
+			flash.keep[:notice] = "The track has a problem with the same title"
+			@problem = Problem.find_by_id(params[:id])
 			respond_to do |format|
 				format.html {redirect_to :action => "edit", :id => @problem.id}
 				format.js
@@ -116,14 +127,20 @@ class ProblemsController < ApplicationController
 		if @problem.test_cases.empty?
 			@failure = true
 			flash.keep[:notice] = "Test cases are empty"
-			redirect_to :action => "edit", :id => @problem.id
+			respond_to do |format|
+				format.html {redirect_to :action => "edit", :id => @problem.id}
+				format.js
+			end
 		elsif @problem.model_answers.empty?
 			@failure = true
 			flash.keep[:notice] = "Answers are empty"
-			redirect_to :back
+			respond_to do |format|
+				format.html {redirect_to :action => "edit", :id => @problem.id}
+				format.js
+			end
 		else
 			@problem.incomplete = false
-			flash.keep[:notice] = ""
+			@problem.save
 			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
 	end
@@ -136,7 +153,7 @@ class ProblemsController < ApplicationController
 	# Returns: params to create action
 	# Author: Abdullrahman Elhusseny
 	private
-	def problem_params
-		params.require(:Problem).permit(:title , :description, :track_id)
-	end
+		def problem_params
+			params.require(:Problem).permit(:title , :description, :track_id)
+		end
 end
