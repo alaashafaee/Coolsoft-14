@@ -1,8 +1,4 @@
-<% unless objects.present? %>
-	<div class="no_results" style="text-align:center">
-		<p> No Result match </p>
-	</div>
-<% else %>
+<% if objects.present? %>
 	<div class="panel panel-default">
 		<div class="panel-title list-group-item list-group-item-info"
 				data-toggle="collapse" data-parent="#accordion" 
