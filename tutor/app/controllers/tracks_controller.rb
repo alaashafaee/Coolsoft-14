@@ -99,9 +99,11 @@ class TracksController < ApplicationController
 	end
 
 	# [Recommendatio to students - Story 5.7]
-	# Inserts a record in recommendation table
+	# Inserts a record in the recommendation table containing the id of the problem, 
+	# the id of the students recommending the problem, the id of the student recieving
+	# the recommendation
 	# Parameters: none 
-	# Returns: json
+	# Returns: none
 	# Author: Mohab Ghanim
 	def insert_recommendation
 		problem_id = params[:p_id]
