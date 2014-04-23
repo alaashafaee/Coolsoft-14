@@ -118,6 +118,8 @@ puts("# -----------------------Users---------------------------")
 	Lecturer.first.courses << Course.first
 	Lecturer.first.courses << Course.find_by_id(2)
 	Student.first.courses << Course.first
+	TeachingAssistant.first.courses << Course.first
+
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
