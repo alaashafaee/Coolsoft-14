@@ -4,12 +4,11 @@ class HintsController < ApplicationController
 
 	# [Delete a Hint - Story 4.21]
 	# This action takes the hint id, removes it from the database
-	# and then redirects the user to the edit page accompanied
-	# with a "Hint deleted" message.
+	#	and then redirects the user to the edit page accompanied
+	#	with a "Hint deleted" message.
 	# Parameters:
 	#	params[:id]: The current hint's id
-	# Returns: 
-	#	none
+	# Returns: none
 	# Author: Mohamed Fadel
 	def destroy
 		hint = Hint.find_by_id(params[:id])
