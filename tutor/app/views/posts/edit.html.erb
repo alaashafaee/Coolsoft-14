@@ -5,8 +5,20 @@
 <div align="center">
     <h1>Edit Post</h1>
     <br/>
-    <% if flash[:notice] -%>
-        <div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
+<% if @post.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@post.errors.count, "error") %>
+                prohibited the Post from being edited:
+            </h2>
+        </div>
+        <ul>
+            <% @post.errors.full_messages.each do |msg| %>
+                <li>
+                    <%= msg %>
+                </li>
+            <% end %>
+        </ul>
     <% end %>
     <br/><br/><br/>
     <%= form_for :post, url: {action: "update", :id => @post.id} do  |f| %>
