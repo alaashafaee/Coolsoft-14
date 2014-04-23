@@ -29,7 +29,7 @@
 				<div class="panel-title list-group-item list-group-item-info"
 					data-toggle="collapse" data-parent="#accordion"
 					href="#<%= t.id.to_s %>">
-						<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
+						<b onclick="window.open('/topics/<%= t.id.to_s %>', '_self')">
 							<%= link_to t.title, t, style: 'color:#003366;'%></b>
 						<span class="badge"><%= t.tracks.count %></span>
 				</div>
