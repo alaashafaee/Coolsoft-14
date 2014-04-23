@@ -9,9 +9,9 @@ class Solution < ActiveRecord::Base
 
 	#Methods
 	# [Compiler: Validate - Story 3.5]
-	# Checks the validity of a submitted solution  
+	# Checks the validity of a submitted solution
 	# and show the runtime and logic errors if exist
-	# Parameters: 
+	# Parameters:
 	# 	problem_id: id of the problem being answered
 	#   file: the name of the file which is compiled successfully
 	#		  without errors
@@ -22,22 +22,22 @@ class Solution < ActiveRecord::Base
 		response = {status: 0, success: [], runtime_error: [],runtime_error_exp: [],
 					 logic_error: []}
 		testcases = Problem.find_by_id(problem_id).test_cases
-		testcases.each do |testcase| 
+		testcases.each do |testcase|
 			input = testcase.input
-			expected_output = testcase.output 
+			expected_output = testcase.output
 			runtime_check = Executer.execute(file, input, problem_id)
 			if(runtime_check)
-				output = Executer.get_output() 
+				output = Executer.get_output()
 				if (output != expected_output)
 					response[:logic_error] << "Logic error: for input: " +
 					 input + " ,expected output: " +
-					 expected_output + " but your output was: " + output  
+					 expected_output + " but your output was: " + output
 					unless response[:status] == 4
 						response[:status] = 5
 					end
 				else
 					unless(response[:status] == 4 | 5)
-						response[:status] = 1 	
+						response[:status] = 1
 					end
 				end
 			else
@@ -55,7 +55,7 @@ class Solution < ActiveRecord::Base
 	end
 
 	# [Compiler: Validate - Story 3.5]
-	# Parameters: 
+	# Parameters:
 	# 	s_id : the id of the current Student
 	# 	p_id : the id of the current Problem
 	# Returns: the number of trials the student made for this problem
