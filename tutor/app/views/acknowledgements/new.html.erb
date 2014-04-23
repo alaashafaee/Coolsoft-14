@@ -9,7 +9,7 @@
 <%= form_for :acknowledgement, url: {action: "create"} do  |f| %>
 
 	<p>
-		<%= select("student", "id", @course.students.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+		<%= select("student", "id", @course.students.find(:all).collect {|p| [p.name ,p.id ]}, {:prompt => 'Select', :multiple => true}) %>
 	</p>
 
 	<p>
