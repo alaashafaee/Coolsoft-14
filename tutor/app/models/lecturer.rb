@@ -1,6 +1,6 @@
 class Lecturer < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
-			:recoverable, :rememberable, :trackable, 
+			:recoverable, :rememberable, :trackable,
 			:validatable, :confirmable
 
 	#Uploader

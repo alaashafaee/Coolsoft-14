@@ -1,7 +1,8 @@
 <div align="center">
 	<h2>Sign in</h2>
 
-	<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => 'form-devise' }) do |f| %>
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name), 
+		:html => { :class => 'form-devise' }) do |f| %>
 		<% if flash[:alert] or flash[:notice] %>
 			<br />
 			<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
@@ -12,11 +13,12 @@
 		<% end %>
 
 		<div>
-			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email"%>
+			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
 		</div>
 
 		<div>
-			<%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password"%>
+			<%= f.password_field :password, autocomplete: "off", 
+				class:"form-control", placeholder:"Password" %>
 		</div>
 
 		<% if devise_mapping.rememberable? -%>

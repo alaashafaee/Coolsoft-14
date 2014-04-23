@@ -1,6 +1,6 @@
 class Student < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
-			:recoverable, :rememberable, :trackable, 
+			:recoverable, :rememberable, :trackable,
 			:validatable, :confirmable
 
 	mount_uploader :profile_image, ProfileImageUploader
@@ -29,7 +29,8 @@ class Student < ActiveRecord::Base
 	has_many :recommendations
 	has_many :recommended_problems, class_name: 'Problem', through: :recommendations, source: :problem
 	
-	has_and_belongs_to_many :courses, join_table: 'courses_students'
+	has_many :course_students
+	has_many :courses, through: :course_students, dependent: :destroy
 
 	#Methods
 
@@ -100,4 +101,3 @@ class Student < ActiveRecord::Base
 		return res
 	end
 end
-
