@@ -164,7 +164,7 @@ class CoursesController < ApplicationController
 	#[Find Recommendations - Story 4.9]
 	# Description: This action orders the topics of a specific course
 	# Parameters:
-	#	params[:id]: The current course's id
+	# 	:id : The current course's id
 	# Returns: none
 	# Author: Mohamed Metawaa
 	def sort
@@ -182,9 +182,8 @@ class CoursesController < ApplicationController
 	# [Edit a course - story 1.17]
 	#Description: This action is resposible for editing a specific course.
 	#Parameters: 
-	#   id: Course id
-	# Returns:
-	# 	null
+	#	id: Course id
+	# Returns: none
 	# Author: Mohamed Metawaa
 	def update
 		@course = Course.find_by_id(params[:id])
