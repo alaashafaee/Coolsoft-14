@@ -81,7 +81,7 @@ end
 
 
 	# [System Reminders - Story 5.4]
-	# sends reminder e-mails to inactive users
+	# Sends reminder e-mails to inactive users
 	# Parameters: none
 	# Returns: none
 	# Author: Amir George
