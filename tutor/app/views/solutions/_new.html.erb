@@ -36,14 +36,19 @@
 			<td>
 				<%= button_tag 'Compile', type: 'Button',
 					id: 'compileButton', onClick: 'compile()', class: "btn btn-info" %>
+				<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', type: 'Button' %>
 				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-					onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>
-				<%= button_tag 'Previous', type: 'Button',
-					id: 'previousButton', onClick: 'previous()', hidden: true %>
-				<%= button_tag 'Next', type: 'Button',
-					id: 'nextButton', onClick: 'next()', hidden: true %>
-				<%= button_tag 'Stop Debugging', type: 'Button',
-					id: 'stopButton', onClick: 'stop()', hidden: true%>
+					onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+				<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
+					style: "display: none", id: 'previousButton', 
+					onClick: 'previous()', hidden: true %>
+				<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
+					style: "display: none", id: 'nextButton',
+					onClick: 'next()', hidden: true %>
+				<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
+					style: "display: none", id: 'stopButton', 
+					onClick: 'stop()', hidden: true%>
+					
 				<span id="spinner" class="" align="center"></span>
 			</td>
 			<td style='text-align:right;'>
@@ -53,7 +58,7 @@
 				<b class='compilation_error'>Compilation Error</b>
 				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?', class: "btn btn-info" %>
 				<%= f.submit "Compile", class: "btn btn-info" %>
-				<%= f.submit "Run Test Case", class: "btn btn-info", id: 'testButton' %>
+				
 			</td>
 		</tr>
 	</table>

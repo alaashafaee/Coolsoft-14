@@ -100,3 +100,7 @@ textarea  {
 	border-width: 3px;
 	font-family: monospace;
 }
+
+.hidden {
+	visibility: false;
+}

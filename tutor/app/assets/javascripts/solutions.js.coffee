@@ -19,7 +19,7 @@ index_number = 0
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
-			toggleDebug()
+			toggleDebug(1)
 			variables = data
 			stop_spin()
 			jump_state 0
@@ -41,14 +41,13 @@ index_number = 0
 # Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
-@toggleDebug = () ->
-	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
-	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
-	$('#testButton').prop 'hidden', !$('#testButton').prop 'hidden'
-
-	$('#nextButton').prop 'hidden', !$('#nextButton').prop 'hidden'
-	$('#previousButton').prop 'hidden', !$('#previousButton').prop 'hidden'
-	$('#stopButton').prop 'hidden', !$('#stopButton').prop 'hidden'
+@toggleDebug = (state) ->
+	$('#debugButton').toggle(!state)
+	$('#compileButton').toggle(!state)
+	$('#testButton').toggle(!state)
+	$('#nextButton').toggle(state)
+	$('#previousButton').toggle(state)
+	$('#stopButton').toggle(state)
 
 # [Compile - Story 3.4]
 # Sends the code to the server to be compiled.
@@ -140,6 +139,6 @@ index_number = 0
 # Returns: none
 # Author: Rami Khalil (Temporary)
 @stop = () ->
-	toggleDebug()
+	toggleDebug(0)
 	index_number = 0;
 	variables = null;
