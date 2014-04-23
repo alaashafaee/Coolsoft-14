@@ -4,7 +4,13 @@
 
 var type = new Array();
 var param_name = new Array();
+var var_type = new Array();
+var var_name = new Array();
 
+// # Description: Adds the parameters from the text_fields to array
+// # Parameters:none
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function add_params(field)
 {	
 	var tmp_type = document.getElementById("params_type").value;
@@ -44,6 +50,10 @@ function add_params(field)
 	}
 }
 
+// # Description: removes selected variable from method Contraints
+// # Parameters:none
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function remove_params(field)
 {	
 	var index = field.id.split("_")[1];
@@ -67,9 +77,10 @@ function remove_params(field)
 	$('#parameter').append("</table>");
 }
 
-var var_type = new Array();
-var var_name = new Array();
-
+// # Description: Adds the parameters from the text_fields to array
+// # Parameters:none
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function add_variable(field)
 {	
 	var tmp_type = document.getElementById("variable_type").value;
@@ -109,6 +120,10 @@ function add_variable(field)
 	}
 }
 
+// # Description: removes selected variable from Variable Contraints
+// # Parameters:none
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function remove_variable(field)
 {	
 	var index = field.id.split("_")[1];
@@ -132,6 +147,10 @@ function remove_variable(field)
 	$('#variable').append("</table>");
 }
 
+// # Description: submits via ajax to the controller
+// # Parameters:none
+// # Returns: none
+// # Author: Ahmed Mohamed Magdi
 function submitParams()
 {	var hash_p = []
 	var hash_v = []
