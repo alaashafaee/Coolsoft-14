@@ -72,8 +72,8 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
-	TestCase.create(output: "5", input:"10 2")
-	TestCase.create(output: "2.5", input:"5 2")
+	TestCase.create(output: "5\n", input:"10 2")
+	TestCase.create(output: "2.5\n", input:"5 2")
 	TestCase.create(output: "x", input:"10 0")
 
 puts("# -----------------------Method Parameters---------------------------")
@@ -123,6 +123,11 @@ puts("# -----------------------Attempts---------------------------")
 	Attempt.create(failure: true) 
 	Attempt.create(failure: true) 
 	Attempt.create(failure: true) 
+
+puts("#-----------------------Recommendations-----------------------")
+	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
+	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
+	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)		
 	
 puts("# -------------------------------------------------------")
 
