@@ -29,6 +29,7 @@ class Lecturer < ActiveRecord::Base
 	has_many :variable_constraints, as: :owner
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
+	has_many :acknowledgements, dependent: :destroy
 	
 	#Scoops
 	
