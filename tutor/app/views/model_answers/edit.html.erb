@@ -1,10 +1,10 @@
 <% provide(:title, "Edit Answer") %>
-<%= form_for(@new_answer) do |f| %>
-	<% if @new_answer.errors.any? %>
+<%= form_for(@answer) do |f| %>
+	<% if @answer.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@new_answer.errors.count, "error") %> prohibited this course from being saved:</h2>
+			<h2><%= pluralize(@answer.errors.count, "error") %> prohibited this course from being saved:</h2>
 			<ul>
-				<% @new_answer.errors.full_messages.each do |msg| %>
+				<% @answer.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 				<% end %>
 			</ul>
@@ -12,7 +12,7 @@
 	<% else %> 
 		<%= f.hidden_field :problem_id, :value => @problem.id %>
 	<% end %>
-	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @new_answer.problem_id,
+	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @answer.problem_id,
 		:method => :get, class: 'btn btn-default btn-xs' %></ul>
 	<%= flash[:notice]%>
 	<br><%= f.label :Title %>
