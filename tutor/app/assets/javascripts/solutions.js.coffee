@@ -67,7 +67,7 @@ debug_console = ->
 # Returns: none
 # Author: Mussab ElDash
 @start_spin = ->
-	$('#spinner').attr "class" , "spinner"
+	$('#spinner').addClass "spinner"
 	return
 
 # [Debugger: Debug - Story 3.6]
@@ -76,18 +76,27 @@ debug_console = ->
 # Returns: none
 # Author: Mussab ElDash
 @stop_spin = ->
-	$('#spinner').attr "class" , ""
+	$('#spinner').removeClass "spinner"
 	return
+
+# [Debugger: Debug - Story 3.6]
+# Stops the Spinner
+# Parameters: noe
+# Returns: none
+# Author: Mussab ElDash
+@toggle_spin = ->
+	$('#spinner').toggleClass "spinner"
 
 # [Execute Line By Line - Story 3.8]
 # Toggles debugging mode by changing the available buttons.
 # Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
-@toggleDebug = () ->
+@toggleDebug = ->
 	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
 	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
 	$('#testButton').prop 'hidden', !$('#testButton').prop 'hidden'
+	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
 
 	$('#nextButton').prop 'hidden', !$('#nextButton').prop 'hidden'
 	$('#previousButton').prop 'hidden', !$('#previousButton').prop 'hidden'
