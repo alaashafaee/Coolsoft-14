@@ -20,7 +20,7 @@ class Solution < ActiveRecord::Base
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
 	def self.validate(file, problem_id)
-		response = {status: 0, success: [], runtime_error: [] , logic_error: []}
+		response = {status: 0, success: [], runtime_error: [] ,runtime_error_exp: [] , logic_error: []}
 		testcases = Problem.find_by_id(problem_id).test_cases
 		#compile_result = Compiler.compile(code)
 		#if(compile_result[:sucess])
@@ -36,7 +36,6 @@ class Solution < ActiveRecord::Base
 						response[:status] = 5
 					end
 				else
-					response[:success] << "Your Solution is correct, Passed"
 					unless(response[:status] == 4 | 5)
 						response[:status] = 1 	
 					end
@@ -45,8 +44,13 @@ class Solution < ActiveRecord::Base
 				runtime_error = Executer.get_runtime_error(file, 'CoolSoft')
 				runtime_error[:error] = "for input: " + input + " " + runtime_error[:error]
 				response[:status] = 4
-				response[:runtime_error] << runtime_error
+				response[:runtime_error] << runtime_error[:error]
+				response[:runtime_error_exp] << runtime_error[:explanation]
+				#response[:runtime_error] = runtime_error
 			end
+		end
+		if response[:status] == 1
+			response[:success] << "Your Solution is correct, Passed"
 		end
 		#else 
 			#compile_message = Compiler.compileFeedback(compile_result)
