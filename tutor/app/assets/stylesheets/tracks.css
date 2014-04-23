@@ -1,17 +1,16 @@
 .classmates_list {
-    background-color:#fff;
-    border-radius:10px;
-    color:#000;
-    display:none;
-    padding:10px;
-    min-width:400px;
-    min-height: 600px;
-	}
+	background-color:#fff;
+	border-radius:10px;
+	color:#000;
+	display:none;
+	padding:10px;
+	min-width:400px;
+	min-height: 600px;
+}
 #container li{
 	padding: 10px;
 	list-style: none;
 }
-
 .recommend {
 	float: right;
 }
