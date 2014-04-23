@@ -80,43 +80,52 @@ class ProblemsController < ApplicationController
 		end
 	end
 
-	# [Edit track of a problem - 4.2]
-	# Updates title, description or track of a problem
+	# [Edit Problem - 4.5]
+	# Update the problem's title or description
 	# Parameters:
-	#   problem_params: passes title and description from the update form 
-	#   update_track_params: passes track_id from the update form
-	# Returns: Refreshes the track name if changed
-	#		   Refreshes the page on title or description change
-	#          Refreshes the flash notice with the right message
+	#  problem_params: a problem's title & description
+	# Returns: refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
-	def update		
+	def update
 		@problem = Problem.find_by_id(params[:id])
-		@track = Track.find_by_id(update_track_params[:track_id])
-		if update_track_params[:track_id].blank?
-			if @problem.update_attributes(update_problem_params)
-				flash.keep[:notice] = "Paramaters updated"
+		if (problem_params[:title] == @problem.title)
+			if (problem_params[:description] == @problem.description)
+				@message = "Problem moved to Track #{problem_params[:track_id]}"
+			else
+				@message = "Description updated"
+				@flag = true
+			end
+		else
+			@message = "Title updated"
+			@flag = true
+		end
+		@problem = Problem.find_by_id(params[:id])
+		@track = Track.find_by_id(problem_params[:track_id])
+		if @flag == true
+			if @problem.update_attributes(problem_params)
+				flash.keep[:notice] = @message
 				respond_to do |format|
 					format.html {redirect_to :action => "edit", :id => @problem.id}
-					format.js 
+					format.js
 				end
 			else
 				flash.keep[:notice] = "Update paramater is empty"
 				respond_to do |format|
 					format.html {redirect_to :action => "edit", :id => @problem.id}
-					format.js 
+					format.js
 				end
 			end
-		elsif (@problem.track_id == update_track_params[:track_id].to_i)
+		elsif (@problem.track_id == problem_params[:track_id].to_i)
 			flash.keep[:notice] = "The problem already belongs to this track"
 			respond_to do |format|
 				format.html {redirect_to :action => "edit", :id => @problem.id}
 				format.js 
 			end
-		else		
+		else
 			@problems_in_track = @track.problems.find_all_by_title(@problem.title)
 			if(Array(@problems_in_track).size == 0)
-				if @problem.update_attributes(update_track_params)
-					flash.keep[:notice] = "Problem is moved to #{@track.title}"
+				if @problem.update_attributes(problem_params)
+					flash.keep[:notice] = @message
 					respond_to do |format|
 						format.html {redirect_to :action => "edit", :id => @problem.id}
 						format.js 
@@ -135,9 +144,9 @@ class ProblemsController < ApplicationController
 					format.html {redirect_to :action => "edit", :id => @problem.id}
 					format.js 
 				end
-			end		
+			end
 		end
-	end
+	end	
 
 	# [Edit Problem - 4.5]
 	# Checks if the problem can be saved as incomplete or not
@@ -174,25 +183,4 @@ class ProblemsController < ApplicationController
 	def problem_params
 		params.require(:Problem).permit(:title , :description, :track_id)
 	end
-
-	# [Edit Problem - 4.5]
-	# Passes the input of the form as paramaters for update action to use it
-	# Parameters:
-	#   title: problem's title
-	#   description: problem's description
-	# Returns: params to update action
-	# Author: Abdullrahman Elhusseny
-	def update_problem_params
-		params.require(:Problem).permit(:title , :description)
-	end	
-
-	# [Edit Problem - 4.5]
-	# Passes the input of the form as paramaters for update action to use it
-	# Parameters:
-	#   track_id: problem's track_id
-	# Returns: params to update action
-	# Author: Abdullrahman Elhusseny
-	def update_track_params
-		params.require(:Problem).permit(:track_id)
-	end	
-end
+end	

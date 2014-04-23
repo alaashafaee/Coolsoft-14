@@ -1,1 +1,7 @@
-Current Track: <%= @track.title %>
+<p>Current Track: <%= @track.title %></p>
+<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
+	<% if Array(@tracks).size > 1 %>
+		<%= p.collection_select(:track_id, @tracks, :id,:title ) %>
+		<%= p.submit('Change Track') %>
+	<% end %>
+<% end %>
