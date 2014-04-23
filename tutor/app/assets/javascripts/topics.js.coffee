@@ -6,6 +6,11 @@
 	create.hidden = !create.hidden
 	return
 
+# [Edit Track Rating - Story 4.13]
+# Makes the list of track sortable.
+# Sends array of new order of tracks to the sort action 
+#	in topic's controller.  
+# Author: Lin Kassem
 $(document).ready ->
 	$("#list-of-tracks").sortable
 		placeholder: "ui-state-highlight"
