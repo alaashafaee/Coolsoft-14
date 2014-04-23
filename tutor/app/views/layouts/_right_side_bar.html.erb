@@ -21,7 +21,8 @@
 								<%= value["recommender_name"] %>
 							</td>
 							<td>
-								<%= link_to value["problem_title"], controller: "problems", action: "show", id: key %>
+								<%= link_to value["problem_title"], 
+								controller: "problems", action: "show", id: key %>
 							</td>
 						</tr>
 					<% end %>
