@@ -4,8 +4,6 @@ class ModelAnswersController < ApplicationController
 	# It creates the new answer.
 	# Parameters:
 	#   @problem:To fetch the problem to which the answer is added.
-	#   @@problemid :this is a global variable to save the id of the problem to which the answer is added to be able to use 
-	#                it in another views. 
 	#   @answer: the new answer the user enters.
 	#   @answers: All the previous answers that had been entered before.
 	#   Return : none
