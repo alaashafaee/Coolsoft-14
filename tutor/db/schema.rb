@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422211341) do
+ActiveRecord::Schema.define(version: 20140423104456) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140422211341) do
   create_table "admins", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.string   "img"
+    t.string   "profile_image"
     t.boolean  "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(version: 20140422211341) do
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
-    t.string   "university"
     t.string   "department"
+    t.string   "university"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
