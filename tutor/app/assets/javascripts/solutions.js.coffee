@@ -198,3 +198,43 @@ debug_console = ->
 	toggleDebug()
 	index_number = 0;
 	variables = null;
+
+# To be Used when changing to ajax in order not to refresh page
+# [Compiler: Validate - Story 3.5]
+# submits a solution in the form without refreshing
+# 	using ajax showing an alert box for success and failure scenarios
+# Parameters:
+# 	problem_id: the id of the problem being solved
+# Returns: a json object containing two arrays one for the errors
+#	of the current code and the other containing success messages
+# Author: MOHAMEDSAEED
+@validate_code = (problem_id) ->
+	code = $('#solution_code').val()
+	mins = parseInt($('#mins').text())
+	secs = parseInt($('#secs').text())
+	time = mins*60 + secs
+	start_spin()
+	$.ajax
+		type: "POST"
+		url: '/solutions'
+		data: {problem_id: problem_id, code: code, time: time}
+		datatype: 'json'
+		success: (data) ->
+			stop_spin()
+			success = $('#validate_success')
+			errors = $('#validate_error')
+			success.html("")
+			for i in data["success"]
+				success.append("#{i}<br>")
+			errors.html("")
+			for i in data["failure"]
+				errors.append("#{i}<br>")
+			if code.length isnt 0
+				alert 'Solution has been submitted successfully'
+			else
+				alert 'Blank submissions are not allowed'
+			return
+		error: (data) ->
+			stop_spin()
+			return
+	return
