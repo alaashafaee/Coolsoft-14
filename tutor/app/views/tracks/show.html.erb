@@ -32,7 +32,8 @@
 					<%= link_to p.title , p , style: 'color:#003366;' ,
 					class: color %></b>
 					<span class="badge">
-						<div onclick="showdialog(<%= p.id.to_s %>,<%=current_student.id%>)">Recommend to classmates</div>
+						<div onclick="showdialog(<%= p.id.to_s %>,
+							<%=current_student.id%>)">Recommend to classmates</div>
 					</span>
 			</div>
 			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
