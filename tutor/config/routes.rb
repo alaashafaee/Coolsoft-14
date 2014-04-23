@@ -1,5 +1,9 @@
 Tutor::Application.routes.draw do
 
+  get "lecturer/showCorrectAnswers"
+  get "lecturer/average"
+  get "lecturer/time"
+  get "lecturer/showAttempts"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
