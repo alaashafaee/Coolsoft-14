@@ -14,7 +14,7 @@ index_number = 0
 	if input.length is 0
 		alert "You didn't write any code"
 		return
-	test = $('#testcases').val()
+	test = $('#solution_input').val()
 	start_spin()
 	$.ajax
 		type: "POST"
