@@ -177,7 +177,7 @@ class CoursesController < ApplicationController
 
 		@topics.each do |t|
 			t.order_factor = (params[:methodParam]).index(t.id.to_s)
-			puts(t.save)
+			t.save
 		end
 		render :nothing => true
 	end
