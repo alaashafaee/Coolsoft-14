@@ -3,12 +3,6 @@
 -->
 
 <div>
-	<!-- This button shows all topics of the course -->
-	<div>
-		<%= button_to "Topics", {:controller => 'topics', :action => 'index',
-			:course_id => @course.id}, class: "btn btn-success", style: "float: left;", method: :get %> 
-	</div>
-
 	<!-- This button activates the new topic action and passes the course id  -->
 	<div>
 		<%= button_to "Add Topics", {:controller => 'topics', :action => 'new',
