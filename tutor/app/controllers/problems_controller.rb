@@ -21,7 +21,8 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#	title: problem's title through permitCreate action
 	#	description: problem's description through permitCreate action
-	# Returns: Redirects to edit page on success, refreshes on failure
+	# Returns:
+	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def create
 		p = Problem.new(problem_params)
@@ -65,9 +66,9 @@ class ProblemsController < ApplicationController
 	# [Edit Problem - 4.5]
 	# Checks if a lecturer or TA is signed in and shows the problem's add page(title & description)
 	# on success and renders 404 on failure
-	# Parameters:
-	#	none
-	# Returns: Redirects to add page on success or 404 on failure
+	# Parameters: none
+	# Returns:
+	#	Redirects to add page on success or 404 on failure
 	# Author: Abdullrahman Elhusseny
 	def new
 		if lecturer_signed_in? || teaching_assistant_signed_in?
@@ -81,7 +82,8 @@ class ProblemsController < ApplicationController
 	# Update the problem's title or description
 	# Parameters:
 	#	problem_params: a problem's title & description
-	# Returns: refreshes divisions in the page using AJAX without refreshing the whole page
+	# Returns:
+	#	Refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
 	def update
 		@problem = Problem.find_by_id(params[:id])
@@ -121,7 +123,8 @@ class ProblemsController < ApplicationController
 	# Checks if problem is complete or not by checking the number of test cases and answers
 	# Parameters:
 	#	problem_id: ID of the problem being edited
-	# Returns: On success redirects to the track page, on failure redirects to the edit page
+	# Returns:
+	#	On success redirects to the track page, on failure redirects to the edit page
 	# Author: Abdullrahman Elhusseny
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
@@ -141,7 +144,8 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#	title: problem's title
 	#	description: problem's description
-	# Returns: params to create action
+	# Returns:
+	#	Params to create action
 	# Author: Abdullrahman Elhusseny
 	private
 		def problem_params
