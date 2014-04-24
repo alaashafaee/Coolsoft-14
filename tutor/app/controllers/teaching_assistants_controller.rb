@@ -31,7 +31,7 @@ class TeachingAssistantsController < ApplicationController
 			else
 				@course = Course.find_by_id(params[:course_id])
 				@course.TAs << @teaching_assistant
-				flash[:success_notice]='TA added!'
+				flash[:success_notice] = 'TA added!'
 				@notification = NotificationMail.new
 				@notification.subject = 'Invitation to join tutor'
 				@notification.email = @teaching_assistant.email
