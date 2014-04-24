@@ -12,7 +12,7 @@
 	<!-- This button activates the add TA action -->
 	<div>
 		<%= button_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
-			:course_id => @course.id}, class: "btn btn-success", style: "float: left; margin-left: 15px", :method => :get%>
+			:course_id => @course.id}, class: "btn btn-success", style: "float: left; margin-left: 15px", :method => :get %>
 	</div>
 
 	<!-- This button activates the acknowledge a student action -->
@@ -25,9 +25,9 @@
 	<!-- This if statement checks for the condition of the discussion board -->
 	<div>
 		<% if @discussion_board.activated == true %>
-			<%str = "Deactivate DiscussionBoard" %>
+			<% str = "Deactivate DiscussionBoard" %>
 		<% else %>
-			<%str = "Activate DiscussionBoard"%>
+			<% str = "Activate DiscussionBoard" %>
 		<% end %>
 		<!-- This button toggles the activation of the discussion board -->
 		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussion_board.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
