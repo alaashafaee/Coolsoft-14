@@ -12,11 +12,13 @@ class Student < ActiveRecord::Base
 	has_many :progressions, class_name: "TrackProgression"
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
+	has_many :acknowledgements, dependent: :destroy
 
 	has_many :recommendations
 	has_many :recommended_problems, class_name: 'Problem', through: :recommendations, source: :problem
 	
-	has_and_belongs_to_many :courses, join_table: 'courses_students'
+	has_many :course_students
+	has_many :courses, through: :course_students, dependent: :destroy
 	
 	#Scoops
 
@@ -75,5 +77,23 @@ class Student < ActiveRecord::Base
 		end
 		return res
 	end
-end
 
+	# [Get Recommended Problems - Story 5.6]
+	# Gets the recommended problems for this student by classmates
+	# Parameters: none
+	# Returns: A hash with 'problem_id' as a key and a value of a hash containing
+	# 'recommender_name' and 'problem_title'  
+	# Author: Mohab Ghanim
+	def getClassMatesRecommendations
+		recommended_problems = Recommendation.where(:student_id => self.id)
+		recommended_problems_hash = Hash.new
+		recommended_problems.each do |problem|
+			recommended_problems_hash[problem.problem_id] = Hash.new
+			recommender_name = Student.where(:id => problem.recommender_id).take.name
+			problem_title = Problem.where(:id => problem.problem_id).take.title
+			recommended_problems_hash[problem.problem_id]['recommender_name'] = recommender_name
+			recommended_problems_hash[problem.problem_id]['problem_title'] = problem_title
+		end
+		return recommended_problems_hash
+	end
+end
