@@ -25,12 +25,9 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-<<<<<<< HEAD
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
-=======
     ansi (1.4.3)
->>>>>>> 85740f0a67bd22755a66ea253020f17756f3f87b
     arel (4.0.2)
     bcrypt (3.1.7)
     builder (3.1.4)
