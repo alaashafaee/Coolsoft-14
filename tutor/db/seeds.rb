@@ -37,6 +37,18 @@ puts("# ---------------------------Students-----------------------------")
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
 		advising: true, probation: true)
 	s.save!
+	s = Student.new(email: '3@student.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'StudentIII',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
+		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
+		advising: false, probation: true)
+	s.save!
+	s = Student.new(email: '4@student.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'StudentIV',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		faculty: "Fac", university: "Uni", major: "Maj", semester: 8, 
+		advising: true, probation: false)
+	s.save!
 
 puts("# ---------------------------TeachingAssistants-----------------------------")
 	t = TeachingAssistant.new(email: '1@ta.com', password: '123456789', 
