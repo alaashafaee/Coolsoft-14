@@ -192,7 +192,8 @@ class CoursesController < ApplicationController
 			student_id = current_student.id
 			course_id = params[:id]
 			value = to_boolean params[:value]
-			result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)[0]
+			result = CourseStudent.where("student_id = ? AND course_id = ?",
+			student_id, course_id)[0]
 			if result.share == value
 				render ('public/404')
 			else
@@ -224,7 +225,8 @@ class CoursesController < ApplicationController
 			puts student_id
 			courses.each do |c|
 				course_id = c.id
-				result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)[0]
+				result = CourseStudent.where("student_id = ? AND course_id = ?",
+				student_id, course_id)[0]
 				if result.share == false
 					states[result.course_id] = "Show"
 				else
