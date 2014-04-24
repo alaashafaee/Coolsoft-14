@@ -67,7 +67,8 @@ class ProblemsController < ApplicationController
 	# [Edit Problem - 4.5]
 	# Checks if a lecturer or TA is signed in and shows the problem's add page(title & description)
 	# on success and renders 404 on failure
-	# Parameters: none
+	# Parameters:
+	#	track_id: The track id of the track that the problem will be added to
 	# Returns:
 	#	Redirects to add page on success or 404 on failure
 	# Author: Abdullrahman Elhusseny
