@@ -67,9 +67,9 @@ class Debugger < ActiveRecord::Base
 			begin
 				$input, $output, $error, $wait_thread = Open3.popen3("jdb",
 					"-sourcepath", source_path, class_name, *input)
-				puts buffer_until_ready
+				buffer_until_ready
 				input "stop in #{class_name}.main"
-				puts buffer_until_ready
+				buffer_until_ready
 				input "run"
 				nums = get_line
 				locals = get_variables
@@ -78,7 +78,7 @@ class Debugger < ActiveRecord::Base
 				debug
 			rescue => e
 				unless e.message === 'Exited'
-					p e.message
+					e.message
 					return false
 				end
 			end
@@ -122,13 +122,12 @@ class Debugger < ActiveRecord::Base
 		exceptions = has_exception out_stream
 		/,\sline=\d+/ =~ out_stream
 		line_first = $&
-		puts "line #{line_first}"
+		"line #{line_first}"
 		input "list"
 		out_stream = buffer_until_complete
-		puts "line_start\n#{out_stream}\nline_end"
+		"line_start\n#{out_stream}\nline_end"
 		/\n\d+\s=>/ =~ out_stream
 		line_second = $&
-		puts "list #{line_second}"
 		if line_first
 			line_first = line_first[7..-1]
 			exceptions[:line] = line_first.to_i
@@ -153,7 +152,6 @@ class Debugger < ActiveRecord::Base
 		if $&
 			/Exception occurred:.*\(uncaught\)/ =~ line
 			exception = $&
-			puts "here #{line}"
 			return {:status => false, :exception => {:error => exception[20..-11],
 					:explanation => Executer.get_runtime_explaination(exception)}}
 		else
