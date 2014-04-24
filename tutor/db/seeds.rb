@@ -169,6 +169,8 @@ puts("# -----------------------Students---------------------------")
 	# since the table has key on (student_id and course_id)then the array will always be 1 elemet [0]
 	Student.find_by_id(2).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:2, course_id:2)[0].update(share: true)
+	Student.find_by_id(1).courses << Course.find_by_id(2)
+	CourseStudent.where(student_id:1, course_id:2)[0].update(share: true)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
