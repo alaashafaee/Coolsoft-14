@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
 	before_action :authenticate!
 	protect_from_forgery with: :exception
 	before_action :update_sanitized_params, if: :devise_controller?
+	before_action :check_resource, if: :devise_controller?
+
+	private
 
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Permits some fields to be passed through sign up forms to update the lecturer,
@@ -12,7 +15,6 @@ class ApplicationController < ActionController::Base
 	# Parameters: None
 	# Returns: None
 	# Author: Khaled Helmy
-	private
 	def update_sanitized_params
 		if "#{resource_name}" == "lecturer"
 			devise_parameter_sanitizer.for(:sign_up) {
@@ -30,6 +32,29 @@ class ApplicationController < ActionController::Base
 					:graduated_from, :graduated_year, :degree, :university, :department, 
 					:profile_image, :profile_image_cache)
 			}
+		end
+	end
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks which type of users is currently signed in and if there
+	# 	is any, it blocks other types of users from using the 
+	# 	authentication system
+	# Parameters: None
+	# Returns: None
+	# Author: Khaled Helmy
+	def check_resource
+		if student_signed_in?
+			if "#{resource_name}" == "lecturer" or "#{resource_name}" == "teaching_assistant"
+				redirect_to :root
+			end
+		elsif lecturer_signed_in?
+			if "#{resource_name}" == "student" or "#{resource_name}" == "teaching_assistant"
+				redirect_to :root
+			end
+		elsif teaching_assistant_signed_in?
+			if "#{resource_name}" == "lecturer" or "#{resource_name}" == "student"
+				redirect_to :root
+			end
 		end
 	end
 
