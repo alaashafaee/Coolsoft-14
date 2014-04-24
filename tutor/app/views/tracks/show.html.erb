@@ -94,5 +94,3 @@
 <% if @can_edit %>
 	<Button><%= link_to "Add", new_problem_path(:id => @track.id) %></button>
 <% end %>
-
-<%= link_to ('Open Popup-Window', popup_window_path, 'data-pop' => true ) %>
