@@ -149,7 +149,6 @@ class Debugger < ActiveRecord::Base
 		debugger = Debugger.new
 		class_name = solution.class_file_name
 		debugging = debugger.start(class_name, input)
-		p debugging
 		java_file = solution.java_file_name true, true
 		class_file = solution.class_file_name true, true
 		File.delete(java_file)
