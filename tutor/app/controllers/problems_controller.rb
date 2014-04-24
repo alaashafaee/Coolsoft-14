@@ -101,6 +101,7 @@ class ProblemsController < ApplicationController
 				end
 			else
 				flash.keep[:notice] = "Update paramater is empty"
+				@problem = Problem.find_by_id(params[:id])
 				respond_to do |format|
 					format.html {redirect_to :action => "edit", :id => @problem.id}
 					format.js
