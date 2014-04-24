@@ -84,7 +84,6 @@ class ProblemsController < ApplicationController
 		end
 	end
 
-<<<<<<< HEAD
 	# [Remove Problem - Story 4.18]
 	# This action takes the problem id, remove it from the database
 	#	and then redirects the user to the show page of the track that had the problem
@@ -103,7 +102,6 @@ class ProblemsController < ApplicationController
 		end
 	end
 
-=======
 	# [Edit Problem - 4.5]
 	# Update the problem's title or description
 	# Parameters:
@@ -178,5 +176,5 @@ class ProblemsController < ApplicationController
 		def problem_params
 			params.require(:Problem).permit(:title, :description, :track_id)
 		end
->>>>>>> master
+
 end
