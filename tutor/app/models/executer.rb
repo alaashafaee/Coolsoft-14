@@ -87,9 +87,9 @@ class Executer
 	# Returns: The Explanation of the exception given
 	# Author: Mussab ElDash
 	def self.get_runtime_explaination(exception)
-		if exception.include?("/ by zero")
-			message = "Division by Zero results in infinity, "\
-						"which computers can not understand. Be careful !"
+		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
+			message = "Division by Zero results in infinity, " +
+				"which computers can not understand. Be careful !"
 			return message
 		else
 			message = "To be set Runtime Error!"
