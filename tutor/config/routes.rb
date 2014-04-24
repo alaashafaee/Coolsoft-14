@@ -37,6 +37,9 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :lecturers
+	resources :teaching_assistants
+	resources :students
 	resources :posts
 	resources :facebook
 
@@ -98,5 +101,4 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
-
 end
