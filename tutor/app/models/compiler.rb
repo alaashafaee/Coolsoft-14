@@ -63,7 +63,7 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
 		header = solution.file_name
-		return feedback.gsub('students_solutions/Java/' + header, 'CoolSoft')
+		return feedback.gsub('students_solutions/Java/' + header, 'CoolSoft').gsub(header, 'CoolSoft')
 	end
 
 end
