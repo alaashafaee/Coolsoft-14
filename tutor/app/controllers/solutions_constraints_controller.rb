@@ -48,4 +48,5 @@ class SolutionsConstraintsController < ApplicationController
 	def new
 		constrain = MethodConstraint.new
 	end
+	
 end
