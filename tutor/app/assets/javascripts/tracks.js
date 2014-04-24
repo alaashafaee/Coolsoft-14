@@ -45,7 +45,7 @@ function fill(data, problem_id, recommender_id){
 						}else {
 							temp += ">recommend";
 						} 
-					temp += "</button>" + 
+					temp += "</button>" +
 				"</li>"
 		elem.append(temp);
 	});
