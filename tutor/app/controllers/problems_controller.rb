@@ -25,18 +25,18 @@ class ProblemsController < ApplicationController
 	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def create
-		p = Problem.new(problem_params)
+		problem = Problem.new(problem_params)
 		if lecturer_signed_in?
-			p.owner_id = current_lecturer.id
-			p.owner_type = "lecturer"
+			problem.owner_id = current_lecturer.id
+			problem.owner_type = "lecturer"
 		elsif teaching_assistant_signed_in?
-			p.owner_id = current_teaching_assistant.id
-			p.owner_type = "teaching assistant"
+			problem.owner_id = current_teaching_assistant.id
+			problem.owner_type = "teaching assistant"
 		end
-		p.incomplete = true
+		problem.incomplete = true
 		begin
-			if p.save
-				redirect_to :action => "edit", :id => p.id
+			if problem.save
+				redirect_to :action => "edit", :id => problem.id
 			else
 				flash.keep[:notice] = "Problem is missing paramaters"
 				redirect_to :back
@@ -150,6 +150,6 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	private
 		def problem_params
-			params.require(:Problem).permit(:title , :description, :track_id)
+			params.require(:Problem).permit(:title, :description, :track_id)
 		end
 end

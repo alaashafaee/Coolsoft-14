@@ -1,17 +1,17 @@
 <h1 align ="center">Add a problem</h1>
 <br>
-	<%= form_for :Problem, url: {action: "create"} do |p| %>
+	<%= form_for :Problem, url: {action: "create"} do |problem| %>
 		<p>
-			<%= p.label :title %><br>
-			<%= p.text_field :title %>
+			<%= problem.label :title %><br>
+			<%= problem.text_field :title %>
 		</p>
 		<p>
-			<%= p.label :description  %><br>
-			<%= p.text_area :description , :cols => "50", :rows => "10" %>
+			<%= problem.label :description %><br>
+			<%= problem.text_area :description, :cols => "50", :rows => "10" %>
 		</p>
-		<%= p.hidden_field :track_id, value: params[:id] %>
+		<%= problem.hidden_field :track_id, value: params[:id] %>
 		<p>
-			<%= p.submit %>
+			<%= problem.submit %>
 		</p>
 	<% end %>
 <% if flash[:notice] %>

@@ -31,7 +31,6 @@ Tutor::Application.routes.draw do
 	resources :courses
 	resources :test_cases
 	resources :model_answers
-	resources :problems_by_tas
 	resources :solutions
 	
 	resources :topics
@@ -66,7 +65,7 @@ Tutor::Application.routes.draw do
 	resources :problems do
 		get 'done'
 		get 'destroy_problem'
-	end	
+	end
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales

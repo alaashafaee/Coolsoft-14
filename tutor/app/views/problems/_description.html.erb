@@ -1,10 +1,10 @@
 <p><%= @problem.description %></p>
-<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
+<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 
-	<%= p.text_area :description, :cols => "50", :rows => "10" %>
+	<%= problem.text_area :description, :cols => "50", :rows => "10" %>
 	<p>
-	<%= p.submit('update description') %>
+	<%= problem.submit('update description') %>
 	</p>
-	<%= p.hidden_field :title, value: @problem.title %>
+	<%= problem.hidden_field :title, value: @problem.title %>
 	
 <% end %>
