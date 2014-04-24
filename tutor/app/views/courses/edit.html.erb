@@ -33,7 +33,9 @@
 			<% str = "Activate DiscussionBoard" %>
 		<% end %>
 		<!-- This button toggles the activation of the discussion board -->
-		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussion_board.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
+		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle',
+					:id => @discussion_board.id}, class: "btn btn-success",
+					 style: "float: left; margin-left: 15px" %>
 	</div> 
 </div>
 <br>
