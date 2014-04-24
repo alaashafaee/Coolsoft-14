@@ -9,11 +9,11 @@
 <%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
 	<% if @checkbox == true %>
 		<p>
-			<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+			<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
 		</p>
 	<% else %>
 		<p>
-			<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect {|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+			<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
 		</p>
 	<% end %>
 
