@@ -9,8 +9,8 @@ gem 'rails', '4.0.4'
 gem 'devise'
 
 # File uploading
-gem 'carrierwave'
-gem 'rmagick'
+# gem 'carrierwave'
+# gem 'rmagick'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
