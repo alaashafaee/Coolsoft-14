@@ -193,7 +193,7 @@ class CoursesController < ApplicationController
 			course_id = params[:id]
 			value = to_boolean params[:value]
 			result = CourseStudent.where("student_id = ? AND course_id = ?",
-			student_id, course_id)[0]
+				student_id, course_id)[0]
 			if result.share == value
 				render ('public/404')
 			else
