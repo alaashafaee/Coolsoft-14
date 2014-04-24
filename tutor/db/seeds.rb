@@ -19,6 +19,8 @@ puts("# ---------------------------Lecturers-----------------------------")
 puts("# ---------------------------Students-----------------------------")
 	Student.create!(name:"Student1", email:"1@student.com", password:"123456789")
 	Student.create!(name:"Student2", email:"2@student.com", password:"123456789")
+	Student.create!(name:"Student3", email:"3@student.com", password:"123456789")
+	Student.create!(name:"Student4", email:"4@student.com", password:"123456789")
 
 puts("# ---------------------------TeachingAssistants-----------------------------")
 	TeachingAssistant.create(name:"TA1", email:"1@ta.com", password:"123456789")
@@ -164,6 +166,9 @@ puts("# -----------------------Students---------------------------")
 	Student.first.attempts << Attempt.find_by_id(11)
 	Student.first.attempts << Attempt.find_by_id(12)
 	Student.first.attempts << Attempt.find_by_id(13)
+	Student.find(2).courses << Course.first
+	Student.find(3).courses << Course.first
+	Student.find(4).courses << Course.first
 
 	# Other way to add Course into student, but it will require getting Course_student via searching
 	# since the table has key on (student_id and course_id)then the array will always be 1 elemet [0]
@@ -228,5 +233,15 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
+
+puts("# ----------------- Track Progressions ----------------------")
+	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
+	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
+	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
+puts("# ---------------------------------------------------------")
+puts("# -----------------------Solution---------------------------")
+	Student.first.solutions << Solution.first
+	Student.first.solutions << Solution.find_by_id(2)
+	Student.first.solutions << Solution.find_by_id(3)
 
 puts("# ---------------------------------------------------------")
