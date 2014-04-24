@@ -5,11 +5,11 @@
 <div align="center">
     <h1>Edit Post</h1>
     <br/>
-<% if @post.errors.any? %>
+    <% if @post.errors.any? %>
         <div id="error_explanation">
             <h2>
                 <%= pluralize(@post.errors.count, "error") %>
-                prohibited the Post from being edited:
+                    prohibited the Post from being edited:
             </h2>
         </div>
         <ul>
