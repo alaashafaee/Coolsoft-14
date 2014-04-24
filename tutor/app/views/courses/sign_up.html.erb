@@ -69,7 +69,7 @@
 						<% when "6" %>
 							<h2><%=@status%> / 6</h2>
 							<h4>You have signed up to:</h4>
-							<h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
+							<h4>Semester: <%=@course.semester%> - Course: <%= @course.name %> - Instructor: <%= @lecturer.name %></h4>
 						<% when "7" %>
 							<h3>You are already signed up to this course!</h3>	
 					<% end %>
