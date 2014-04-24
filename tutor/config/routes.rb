@@ -14,13 +14,20 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
-	get 'students/get_performance' => 'students#get_performance'
-    get 'students/solved_problems' => 'students#solved_problems'
-    get 'students/failed_problems' => 'students#failed_problems'
-    post 'students/get_performance' => 'students#get_performance'
-    post 'students/solved_problems' => 'students#solved_problems'
-    post 'students/failed_problems' => 'students#failed_problems'
-    get 'students/incomplete_problems' => 'students#incomplete_problems'
+	get 'students/get_performance' => 
+	'students#get_performance'
+    get 'students/solved_problems' => 
+    'students#solved_problems'
+    get 'students/failed_problems' => 
+    'students#failed_problems'
+    post 'students/get_performance' => 
+    'students#get_performance'
+    post 'students/solved_problems' => 
+    'students#solved_problems'
+    post 'students/failed_problems' => 
+    'students#failed_problems'
+    get 'students/incomplete_problems' => 
+    'students#incomplete_problems'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
