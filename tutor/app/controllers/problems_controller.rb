@@ -87,6 +87,24 @@ class ProblemsController < ApplicationController
 		end
 	end
 
+	# [Remove Problem - Story 4.18]
+	# This action takes the problem id, remove it from the database
+	#	and then redirects the user to the show page of the track that had the problem
+	#	with a "Problem successfully Deleted" message.
+	# Parameters:
+	#	params[:id]: The current problem's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+		@track = Problem.find_by_id(params[:id]).track_id
+		if Problem.find_by_id(params[:id]).destroy
+			flash[:notice] = "Problem successfully Deleted"
+			redirect_to(:controller => 'tracks',
+				 :action => 'show' ,:id => @track)
+		end
+	end
+
 	# [Edit Problem - 4.5]
 	# Update the problem's title, description or track
 	# Parameters:
@@ -196,4 +214,5 @@ class ProblemsController < ApplicationController
 		def problem_params
 			params.require(:Problem).permit(:title, :description, :track_id)
 		end
+
 end
