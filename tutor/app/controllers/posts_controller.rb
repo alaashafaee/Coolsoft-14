@@ -80,7 +80,7 @@
 	# Returns: 
 	# 	flash[:notice]: A message indicating the success or failure of the creation
 	# Author: Ahmed Atef
-		def update
+	def update
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params) 
 			flash[:notice] = "Post successfully updated"
