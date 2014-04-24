@@ -214,7 +214,9 @@ class CoursesController < ApplicationController
 	# [Create from Existant Course - Story 2.5]
 	# Return the courses
 	# Parameters:
-	#	null
+	#	none
+	# Returns:
+	# 	Return all the courses
 	# Author: Rania Abdel Fattah 
 	def existing
 		@courses = Course.all
@@ -223,6 +225,8 @@ class CoursesController < ApplicationController
 	# Duplicate the courses that it is found and save them in a new course
 	# Parameters:
 	#	id: The course id
+	# Returns:
+	# 	Return the course with the given id
 	# Author: Rania Abdel Fattah
 	def duplicate
 		@course = Course.find_by_id(permitd_up[:id])
