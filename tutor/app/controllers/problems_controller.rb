@@ -115,14 +115,16 @@ class ProblemsController < ApplicationController
 					if @problem.update_attributes(problem_params)
 						flash.keep[:notice] = @message
 						respond_to do |format|
-							format.html {redirect_to :action => "edit", :id => @problem.id}
+							format.html {redirect_to :action => "edit",
+								:id => @problem.id}
 							format.js
 						end
 					else
 						flash.keep[:notice] = "Update paramater is empty"
 						@problem = Problem.find_by_id(params[:id])
 						respond_to do |format|
-							format.html {redirect_to :action => "edit", :id => @problem.id}
+							format.html {redirect_to :action => "edit",
+								:id => @problem.id}
 							format.js
 						end
 					end
@@ -130,7 +132,8 @@ class ProblemsController < ApplicationController
 					flash.keep[:notice] = "The track has a problem with the same title"
 					@problem = Problem.find_by_id(params[:id])
 					respond_to do |format|
-						format.html {redirect_to :action => "edit", :id => @problem.id}
+						format.html {redirect_to :action => "edit",
+							:id => @problem.id}
 						format.js
 					end
 				end
@@ -142,7 +145,8 @@ class ProblemsController < ApplicationController
 				if @problem.update_attributes(problem_params)
 					flash.keep[:notice] = @message
 					respond_to do |format|
-						format.html {redirect_to :action => "edit", :id => @problem.id}
+						format.html {redirect_to :action => "edit",
+							:id => @problem.id}
 						format.js
 					end
 				end
@@ -150,7 +154,8 @@ class ProblemsController < ApplicationController
 				flash.keep[:notice] = "#{@track.title} has a problem with the same title"
 				@track = Track.find_by_id(@problem.track_id)
 				respond_to do |format|
-					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.html {redirect_to :action => "edit",
+						:id => @problem.id}
 					format.js
 				end
 			end
