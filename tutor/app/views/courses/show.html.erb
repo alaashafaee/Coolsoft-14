@@ -31,7 +31,8 @@
 				</div>
 
 				<div>
-					<%= link_to "View Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => @course.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+					<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
+						:action => 'show', :id => @course.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
 				</div>
 
 				<div class="panel-group list-group" id="accordion">
