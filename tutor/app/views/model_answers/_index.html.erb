@@ -2,16 +2,16 @@
 	<script type="text/javascript">
 		function toggle_visibility(id) {
 			var element = document.getElementById(id);
-				if(element.style.display == 'block')
-					element.style.display = 'none';
-				else
+			if(element.style.display == 'block')
+				element.style.display = 'none';
+			else
 				element.style.display = 'block';
 		}
 	</script>
 </body>
-<br><ul class="navbar-brand pull-right"><%= link_to "Create New Model Answer",
-		{:controller => 'model_answers', :action => 'new',
-		:problem_id => @problem.id }, {class: 'btn btn-primary btn'} %> </ul></br>
+<br><ul class= "navbar-brand pull-right"><%= link_to "Create New Model Answer",
+			{:controller => 'model_answers', :action => 'new',
+			:problem_id => @problem.id }, {class: 'btn btn-primary btn'} %></ul></br>
 <br>
 <a href="#" return:false; class="Lst" onclick="toggle_visibility('foo'); return false;"
 	style="font:120px"> Previous Answers</a>
@@ -33,8 +33,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<% @answers.each do |answer1| %>
+				<% @answers.each do |answer1| %>
+					<tr>
  						<td><%= answer1.title %></td>
 						<td><%= answer1.created_at %></td>
 						<td><%= answer1.updated_at %></td>
@@ -43,9 +43,9 @@
 								{class: 'btn btn-primary btn-xs',
 								style: "text-decoration:none"} %></td>
 						<td><a href="#" class="btn btn-danger btn-xs">Delete</a></td>
-				</tr>
-			</tbody>
-					<% end %>
+					</tr>
+				<% end %>
+			</tbody>					
 	</table>
 	<% end %>
-</div>
+</div> 
