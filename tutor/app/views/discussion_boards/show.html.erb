@@ -1,27 +1,47 @@
-<div align="center">
-	<% if @discussionBoard.activated == true %>
-		<div style="width: 50%; margin-left:25%">
-			<h3><%= @discussionBoard.title %></h3>
-				<% unless @posts.blank? %>
-					<% @posts.each do |post| %>
-						<div>
-							<td><%= link_to post.title, :controller => 'posts', :action=> 'show',
-								 :id => post.id,:method => :get, class: "btn btn-success" %>
-							</td>
-						<%= post.views_count %>
-						</div>
-					<br>
-				<% end %>
-			<% else %>
-				No Posts Yet .. Try Creating a Post
-			<% end %>
-		</div>
-		<div>
-			<%= link_to "Add Post", new_post_path(discussion_board_id:
-				@discussionBoard.id), class: "btn btn-success",
-					 style: "float: left;margin-left: 15px" %> 
-		</div> 	
-	<% else %>
-		The discusstion board is deactivated
-	<% end %>
-</div>
+
+<table class="table table-striped table-bordered table-responsive">
+  <tr>
+    <td>Post</td>
+    <td>Replies</td>
+    <td>Post Owner</td>
+    <td>Last Reply </td>
+    <td>Created</td>
+    <td>Views</td>
+  </tr>
+  <% @posts.each do |post| %>
+    <tr>
+      	<td><h4><%= link_to post.title, :controller => 'posts', :action=> 'show',
+ 			:id => post.id,:method => :get, class: "btn btn-success" %></h4>
+    </td>
+       <td> 
+        <small><%= post.replies.count %> replies</small><br/>
+       </td>
+        <td>
+          <small><%= post.owner.name %>'s post</small><br/>
+        </td>
+       <td>
+        <% if post.most_recent_reply%><%= distance_of_time_in_words_to_now post.most_recent_reply.created_at %> ago by 
+       	<% if post.most_recent_reply.owner_type == "Lecturer" %>
+       <%= link_to post.most_recent_reply.owner.name %>
+         <%end%>
+                	<% if post.most_recent_reply.owner_type == "Student" %>
+       <%= link_to post.most_recent_reply.owner.name %>
+         <%end%>
+                	<% if post.most_recent_reply.owner_type == "TeachingAssistant" %>
+       <%= link_to post.most_recent_reply.owner.name %>
+         <%end%>
+       <% else %>no Replies<% end %></td>
+          </td>
+          <td> 
+        <small><%=distance_of_time_in_words_to_now post.created_at %> ago</small><br/>
+       </td>
+       <td> 
+        <small><%=post.views_count%></small><br/>
+       </td>
+    </tr>
+  <% end %>
+</table>
+<div>
+            <%= link_to "Add Post", new_post_path(discussion_board_id:
+                @discussionBoard.id), class: "btn btn-success" %> 
+        </div>
