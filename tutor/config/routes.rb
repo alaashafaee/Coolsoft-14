@@ -1,13 +1,9 @@
 Tutor::Application.routes.draw do
 
-<<<<<<< HEAD
-  get "hints/index"
-  get "tips/index"
-=======
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
->>>>>>> d4fc8be54f6ff0c0ac11959372a536eacc032cfd
+
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -63,6 +59,7 @@ Tutor::Application.routes.draw do
 			get 'getProblems'
 		end
 	end
+
 	resources :discussion_boards do
 		member do
 			post 'toggle'
@@ -70,6 +67,12 @@ Tutor::Application.routes.draw do
 	end
 	resources :model_answers do
 		post "model_answers/new"
+	end
+	resources :tips do
+		 get "tips/index"
+	end
+	resources :hints do
+		 get "hints/index"
 	end
 
 	resources :problems do

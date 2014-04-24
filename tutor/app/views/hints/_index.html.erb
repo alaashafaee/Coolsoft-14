@@ -17,14 +17,14 @@
 	<% end %>
 <% end %>
 <br><ul class="navbar-brand pull-right"><%= link_to "Create New Hint", 
-	{:controller => 'hints', :action => 'new',
-    :method => :get, :model_answer_id => @answer.id }, {class: 'btn btn-primary btn' } %> </ul></br>
+		{:controller => 'hints', :action => 'new',
+		:method => :get, :model_answer_id => @answer.id }, {class: 'btn btn-primary btn'} %></ul></br>
 <br>
 
-<a href="#" return:false; class="Lst" onclick="toggle_visibility('foo2'); return false;" 
-	 style="font:120px"> Previous Hints</a>
+<a href="#" return:false; class = "Lst" onclick = "toggle_visibility('foo2'); return false;" 
+	 style= "font:120px"> Previous Hints</a>
 
-<div id="foo2" style="display:none;">
+<div id= "foo2" style= "display:none;">
 	<% if !@hints1.any? %>
 		<p>You have no previous Hints</p>
 	<% end %>
@@ -38,28 +38,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<% @hints.each do |hint1| %>
+				<% @hints.each do |hint1| %>
+					<tr>
 						<% if hint1.category == false %>
 							<td style = "max-width: 300px; word-wrap:break-word;">
 							<%= hint1.message %>
 							</td>
-							<td style="width:20%"><%= hint1.submission_counter %></td>
-							<td><%= button_to "Edit"  , {:action => 'new', :controller => 'hints',
+							<td style = "width:20%"><%= hint1.submission_counter %></td>
+							<td><%= button_to "Edit", {:action => 'new', :controller => 'hints',
 								:method => :post}, {class: 'btn btn-primary btn-xs' } %></td>
-				</tr>
-			</tbody>    
+					</tr>
 						<% end %>
-					<% end %>
+				<% end %>
+			</tbody>    				
 		</table>
 	<% end %>
 </div>
-
-<style type="text/css" />
-a.Lst {
-    font-size: 30px;
-    line-height: 0px;
-    padding-left: 0px;
-    font-weight: normal;
-}
-</style>
