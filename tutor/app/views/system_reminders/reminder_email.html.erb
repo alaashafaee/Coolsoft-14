@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>We miss you at our Tutors website, <%= @user.name %></h1>
+		<p>
+			Your beloved Tutors website has missed you !<br>
+		</p>
+		<p>
+			To login to the site, just follow this link: <%= @url %>.
+		</p>
+		<p>
+			<%= suggestion = @user.get_a_system_suggested_problem
+			if suggestion != nil then
+				link_to "And if you are still up to it can you solve this problem ? ;) ", suggestion
+			end %>
+		</p>
+		<p>Hoping to see you soon and have a great day!</p>
+	</body>
+</html>

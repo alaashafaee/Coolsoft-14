@@ -11,7 +11,10 @@ index_number = 0
 # Author: Mussab ElDash
 @start_debug = (problem_id) ->
 	input = $('#solution_code').val()
-	test = $('#testcases').val()
+	if input.length is 0
+		alert "You didn't write any code"
+		return
+	test = $('#solution_input').val()
 	start_spin()
 	$.ajax
 		type: "POST"
@@ -19,32 +22,84 @@ index_number = 0
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
-			toggleDebug()
-			variables = data
 			stop_spin()
+			if !data["success"]
+				compilation_error data["data"]["errors"]
+				return
+			variables = data["data"]
+			toggleDebug()
+			debug_console()
 			jump_state 0
 		error: ->
 			stop_spin()
 			return
 	return
 
-@start_spin = ->
-	$('#spinner').attr "class" , "spinner"
+# [Debugger: Debug - Story 3.6]
+# Fills the console with the compilation errors
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
+compilation_error = (data) ->
+	$('.compilation_failed').html("Compilation Failed!")
+	$('.compilation_feedback').html(data)
 	return
 
-@stop_spin = ->
-	$('#spinner').attr "class" , ""
+# [Debugger: Debug - Story 3.6]
+# Clears the console
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
+clear_console = ->
+	$('.compilation_failed').html("")
+	$('.compilation_feedback').html("")
 	return
+
+# [Debugger: Debug - Story 3.6]
+# Write successful debug in the console
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
+debug_console = ->
+	$('.compilation_succeeded').html("Debugging Succeeded!")
+	return
+
+# [Debugger: Debug - Story 3.6]
+# Starts the Spinner
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
+@start_spin = ->
+	$('#spinner').addClass "spinner"
+	return
+
+# [Debugger: Debug - Story 3.6]
+# Stops the Spinner
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
+@stop_spin = ->
+	$('#spinner').removeClass "spinner"
+	return
+
+# [Debugger: Debug - Story 3.6]
+# Toggles the Spinner
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
+@toggle_spin = ->
+	$('#spinner').toggleClass "spinner"
 
 # [Execute Line By Line - Story 3.8]
 # Toggles debugging mode by changing the available buttons.
 # Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
-@toggleDebug = () ->
+@toggleDebug = ->
 	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
 	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
 	$('#testButton').prop 'hidden', !$('#testButton').prop 'hidden'
+	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
 
 	$('#nextButton').prop 'hidden', !$('#nextButton').prop 'hidden'
 	$('#previousButton').prop 'hidden', !$('#previousButton').prop 'hidden'
@@ -132,7 +187,7 @@ index_number = 0
 # Returns: none
 # Author: Rami Khalil
 @jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line'] - 1
+	highlight_line variables[stateNumber]['line'] - 2
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
@@ -143,3 +198,43 @@ index_number = 0
 	toggleDebug()
 	index_number = 0;
 	variables = null;
+
+# To be Used when changing to ajax in order not to refresh page
+# [Compiler: Validate - Story 3.5]
+# submits a solution in the form without refreshing
+# 	using ajax showing an alert box for success and failure scenarios
+# Parameters:
+# 	problem_id: the id of the problem being solved
+# Returns: a json object containing two arrays one for the errors
+#	of the current code and the other containing success messages
+# Author: MOHAMEDSAEED
+@validate_code = (problem_id) ->
+	code = $('#solution_code').val()
+	mins = parseInt($('#mins').text())
+	secs = parseInt($('#secs').text())
+	time = mins*60 + secs
+	start_spin()
+	$.ajax
+		type: "POST"
+		url: '/solutions'
+		data: {problem_id: problem_id, code: code, time: time}
+		datatype: 'json'
+		success: (data) ->
+			stop_spin()
+			success = $('#validate_success')
+			errors = $('#validate_error')
+			success.html("")
+			for i in data["success"]
+				success.append("#{i}<br>")
+			errors.html("")
+			for i in data["failure"]
+				errors.append("#{i}<br>")
+			if code.length isnt 0
+				alert 'Solution has been submitted successfully'
+			else
+				alert 'Blank submissions are not allowed'
+			return
+		error: (data) ->
+			stop_spin()
+			return
+	return
