@@ -38,7 +38,7 @@ class Student < ActiveRecord::Base
 				topic.tracks.each do |track|
 						if(track.difficulty == level)
 							track.problems.each do |problem|
-								if(!problem.is_solved_by_student(self.id))
+								if !problem.is_solved_by_student(self.id)
 									suggestions.add(problem)
 									break
 								end
@@ -77,5 +77,67 @@ class Student < ActiveRecord::Base
 		end
 		return res
 	end
-end
 
+	#Methods
+	# [Problem Assined - Story 5.5]
+	# Returns a Hash containing the next problem to solve in each course - topic - track
+	# Parameters: None
+	# Returns: A Hash of key as 'Course-Topic-track' and value as a Problem model instance
+	# Author: Mohab Ghanim (Modified from Rami Khalil's Story 3.9)
+	def get_next_problems_to_solve
+		next_problems_to_solve = Hash.new
+		courses.each do |course|
+			course.topics.each do |topic|
+				level = TrackProgression.get_progress(self.id, topic.id)
+				topic.tracks.each do |track|
+					if track.difficulty == level
+						track.problems.each do |problem|
+							if !problem.is_solved_by_student(self.id)
+								key = course.name
+								key += " - " + topic.title
+								key += " - " + track.title
+								next_problems_to_solve[key] = problem
+								break
+							end
+						end
+					end
+				end
+			end
+		end
+		return next_problems_to_solve
+	end
+
+	# [Get Recommended Problems - Story 5.6]
+	# Gets the recommended problems for this student by classmates
+	# Parameters: none
+	# Returns: A hash with 'problem_id' as a key and a value of a hash containing
+	# 'recommender_name' and 'problem_title'  
+	# Author: Mohab Ghanim
+	def getClassMatesRecommendations
+		recommended_problems = Recommendation.where(:student_id => self.id)
+		recommended_problems_hash = Hash.new
+		recommended_problems.each do |problem|
+			recommended_problems_hash[problem.problem_id] = Hash.new
+			recommender_name = Student.where(:id => problem.recommender_id).take.name
+			problem_title = Problem.where(:id => problem.problem_id).take.title
+			recommended_problems_hash[problem.problem_id]['recommender_name'] = recommender_name
+			recommended_problems_hash[problem.problem_id]['problem_title'] = problem_title
+		end
+		return recommended_problems_hash
+	end
+
+	# [System Reminders - Story 5.4]
+	# Sends reminder e-mails to inactive users
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
+	def self.send_reminder_mails
+		all.each do |student|
+			if student.last_sign_in_at < Time.now - 7.days
+				SystemReminders.reminder_email(student).deliver
+			end
+
+		end
+	end
+
+end
