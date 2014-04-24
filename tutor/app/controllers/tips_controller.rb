@@ -8,6 +8,6 @@ class TipsController < ApplicationController
 	# Author: Nadine Adel
 	def index
 		@tips= Hint.all
-		@tips_check =Hint.all
+		@tips_check = Hint.all
 	end
 end

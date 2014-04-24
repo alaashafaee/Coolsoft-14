@@ -8,6 +8,6 @@ class HintsController < ApplicationController
 	# Author: Nadine Adel
 	def index
 		@hints = Hint.all
-		@hints_check=Hint.all
+		@hints_check = Hint.all
 	end
 end

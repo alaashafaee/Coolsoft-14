@@ -1,21 +1,9 @@
-<body>
-	<script type="text/javascript">
-		function toggle_visibility(id) {
-			var element = document.getElementById(id);
-			if(element.style.display == 'block')
-				element.style.display = 'none';
-			else
-				element.style.display = 'block';
-		}
-	</script>
-</body>
-
 <% @tips1=Array.new %>
 <% @tips_check.each do |tip2| %>
 	<% if tip2.category == true %>
 		<% @tips1.push(tip2) %>
-	<%end%>
-<%end%>
+	<% end %>
+<% end %>
 	<br><ul class="navbar-brand pull-right"><%= link_to "Create New Tip",
 			{:controller => 'tips',:action => 'new',
 			:method => :get, :model_answer_id => @answer.id },
