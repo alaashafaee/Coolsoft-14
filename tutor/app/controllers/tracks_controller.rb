@@ -69,7 +69,7 @@ class TracksController < ApplicationController
 	end
 
 	# [Recommendatio to students - Story 5.7]
-	# Gets students who can be recommende by problem of id :id
+	# Gets students who can be recommended by problem of id :id
 	# Parameters: none
 	# Returns: json containing a Hash of classmates 
 	# Author: Mohab Ghanim
@@ -100,8 +100,8 @@ class TracksController < ApplicationController
 
 	# [Recommendation to students - Story 5.7]
 	# Inserts a record in the recommendation table containing the id of the problem, 
-	# the id of the students recommending the problem, the id of the student recieving
-	# the recommendation
+	#	the id of the students recommending the problem, the id of the student recieving
+	# 	the recommendation
 	# Parameters: none 
 	# Returns: none
 	# Author: Mohab Ghanim
