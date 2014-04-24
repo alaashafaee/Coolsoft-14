@@ -226,7 +226,7 @@ class CoursesController < ApplicationController
 			courses.each do |c|
 				course_id = c.id
 				result = CourseStudent.where("student_id = ? AND course_id = ?",
-				student_id, course_id)[0]
+					student_id, course_id)[0]
 				if result.share == false
 					states[result.course_id] = "Show"
 				else
