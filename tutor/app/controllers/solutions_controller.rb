@@ -14,15 +14,6 @@ class SolutionsController < ApplicationController
 				redirect_to :back and return
 			end
 			submit_no_ajax
-		elsif params[:commit] == 'Compile'
-			compile_solution
-			redirect_to :back and return
-		elsif params[:commit] == 'Run Test Case'
-			compile_solution(false)
-			if flash[:compiler_fail] || flash[:alert]
-				redirect_to :back and return
-			end
-			execute
 		end
 	end
 
@@ -34,16 +25,22 @@ class SolutionsController < ApplicationController
 	# 	A flash message containing the appropriate reply
 	# Author: Ahmed Akram
 	def execute
-		file_name = @solution.file_name
-		if Executer.execute(file_name, input[:input], solution_params[:problem_id])
-			output = Executer.get_output()
-			flash[:msg] = output
-		else
-			output = Executer.get_runtime_error(file_name, 'CoolSoft')
-			flash[:msg] = output[:error]
-			flash[:exp] = output[:explanation]
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			render json: {}
 		end
-		redirect_to :back
+		id = current_student.id
+		pid = params[:problem_id]
+		input = params[:code]
+		cases = if params[:input] then params[:input] else "" end
+		result = Executer.execute(id, pid, input, cases)
+		puts "****************"
+		puts result
+		# if !result[:compiler_feedback]
+		# 	output = result[:compiler_errors]
+		# elsif !result[:executer_feedback]
+		# 	output = result[:executer_output]
+		# end
+		render json: result
 	end
 
 	# [Compiler: Compile - Story 3.4]
@@ -54,34 +51,19 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		puts "***********************"
-		puts solution_params
-		@solution = Solution.new(solution_params)
-		@solution.student_id = current_student.id
-		@solution.length = @solution.code.length
-		if @solution.save
-			compiler_feedback = Compiler.compiler_feedback(@solution)
+		solution = Solution.new(solution_params)
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		if solution.save
+			compiler_feedback = Compiler.compiler_feedback(solution)
 			if compiler_feedback[:success]
-				@solution.status = 3
-				# flash[:compiler_success] = "Compilation Succeeded!"
-				# flash[:previous_code] = compiler_feedback[:previous_code]
+				solution.status = 3
 			else
-				@solution.status = 2
-				# flash[:compiler_fail] = "Compilation Failed!"
-				# flash[:compiler_feedback] = compiler_feedback[:errors]
-				# flash[:previous_code] = compiler_feedback[:previous_code]
+				solution.status = 2
 			end
-			@solution.save
-			puts "******************************"
-			puts compiler_feedback
+			solution.save
 			render json: compiler_feedback
-		else
-
-			flash[:alert] = "You did not write any code!"
 		end
-		# if flag 
-		# 	redirect_to :back
-		# end
 	end
 
 	def submit_no_ajax

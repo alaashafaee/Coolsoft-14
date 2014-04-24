@@ -10,11 +10,11 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
-	post 'solutions/compile_solution' => 'problems#show'
+	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
-	post 'solutions/execute' => 'problems#show'
+	post 'solutions/execute' => 'solutions#execute'
 	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"

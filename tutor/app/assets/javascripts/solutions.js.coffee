@@ -16,12 +16,14 @@ index_number = 0
 		return
 	test = $('#solution_input').val()
 	start_spin()
+	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
+			clear_console()
 			variables = data
 			stop_spin()
 			if !data["success"]
@@ -32,31 +34,120 @@ index_number = 0
 			debug_console()
 			jump_state 0
 		error: ->
+			clear_console()
 			stop_spin()
+			toggle_code_area()
 			return
 	return
 
+# [Compiler: Test - Story 3.15]
+# Sends the code to the server to be compiled
+# Parameters:
+# 	problem_id: The id of the problem being solved
+# Returns: 
+#	none
+# Author: Ahmed Akram
 @compile = (problem_id) ->
 	input = $('#solution_code').val()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
+	start_spin()
+	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
 		data: {code : input, problem_id : problem_id}
 		datatype: 'json'
-		alert data["data"]["errors"]
-		success: (data) ->
+		success: (unique) ->
 			clear_console()
-			alert data["data"]["errors"]
-			if !data["success"]
-				compiler_feedback data["data"]["errors"]
+			stop_spin()
+			toggle_code_area()
+			if !unique["success"]
+				compilation_error unique["errors"]
 				return
+			$('.compilation_succeeded').html("Compilation Succeeded!")
 		error: ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
 			return
 	return
 
+# [Compiler: Test - Story 3.15]
+# Sends the code and the test case to the server to be tested
+# Parameters:
+# 	problem_id: The id of the problem being solved
+# Returns: 
+#	none
+# Author: Ahmed Akram
+@run_input = (problem_id) ->
+	code = $('#solution_code').val()
+	if code.length is 0
+		alert "You didn't write any code"
+		return
+	test = $('#solution_input').val()
+	start_spin()
+	toggle_code_area()
+	$.ajax
+		type: "POST"
+		url: '/solutions/execute'
+		data: {code : code, problem_id : problem_id, input: test}
+		datatype: 'json'
+		success: (data) ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			if data["compiler_error"]
+				compilation_error data["compiler_output"]
+				return
+			else if data["executer_feedback"]
+				input_test_output data["executer_output"]
+				return
+			else
+				runtime_error data["executer_output"]
+				return
+		error: ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			return
+	return
+
+# [Compiler: Test - Story 3.15]
+# Fills the console with the runtime errors
+# Parameters:
+# 	data: The hash containing the response
+# Returns: 
+#	none
+# Author: Ahmed Akram
+input_test_output = (data) ->
+	$('#output_section').html(data["message"])
+	return
+
+# [Compiler: Test - Story 3.15]
+# Disables the code and input area while debugging, compiling or running test case
+# Parameters:
+# 	none
+# Returns: 
+#	none
+# Author: Ahmed Akram
+toggle_code_area = ->
+	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
+	$('#solution_input').prop 'disabled', !$('#solution_input').prop 'disabled'
+
+# [Compiler: Test - Story 3.15]
+# Fills the console with the runtime errors
+# Parameters:
+# 	data: The hash containing the response
+# Returns: 
+#	none
+# Author: Ahmed Akram
+runtime_error = (data) ->
+	$('#runtime_error').toggle(true)
+	$('#error_section').html(if data["errors"] then data["errors"] else data)
+	$('#explanation_section').html(data["explanation"])
+	return
 
 # [Debugger: Debug - Story 3.6]
 # Fills the console with the compilation errors
@@ -68,17 +159,13 @@ compilation_error = (data) ->
 	$('.compilation_feedback').html(data)
 	return
 
-compiler_feedback = (data) ->
-	$('.compilation_failed').html("Compilation Failed!")
-	$('.compilation_feedback').html(data["errors"])
-	return
-
 # [Debugger: Debug - Story 3.6]
 # Clears the console
 # Parameters: none
 # Returns: none
 # Author: Mussab ElDash
 clear_console = () ->
+	$('#runtime_error').toggle(false)
 	$('.compilation_succeeded').html("")
 	$('.compilation_failed').html("")
 	$('.compilation_feedback').html("")
@@ -119,11 +206,13 @@ debug_console = ->
 @toggle_spin = ->
 	$('#spinner').toggleClass "spinner"
 
-# [Execute Line By Line - Story 3.8]
+# [Compiler: Test - Story 3.15]
 # Toggles debugging mode by changing the available buttons.
-# Parameters: none
-# Returns: none
-# Author: Rami Khalil (Temporary)
+# Parameters: 
+#	none
+# Returns: 
+#	none
+# Author: Ahmed Akram
 @toggleDebug = (state) ->
 	$('#debugButton').toggle(!state)
 	$('#compileButton').toggle(!state)
@@ -131,15 +220,6 @@ debug_console = ->
 	$('#nextButton').toggle(state)
 	$('#previousButton').toggle(state)
 	$('#stopButton').toggle(state)
-	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
-
-# [Test - Story 3.15]
-# Sends the code and the input to be processed on the server.
-# Parameters: none
-# Returns: none
-# Author: Rami Khalil (Temporary)
-@test = () ->
-	alert "Testing"
 
 # [Execute Line By Line - Story 3.8]
 # Moves to the next state of execution.
@@ -239,6 +319,7 @@ debug_console = ->
 @stop = () ->
 	toggleDebug(0)
 	index_number = 0;
+	toggle_code_area()
 	variables = null;
 
 # To be Used when changing to ajax in order not to refresh page
