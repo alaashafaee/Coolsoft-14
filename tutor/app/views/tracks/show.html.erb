@@ -30,19 +30,16 @@
 					<div class="panel-title list-group-item list-group-item-info"
 						data-toggle="collapse" data-parent="#accordion"
 						href="#<%= problem.id.to_s %>">
-							<b onclick="window.open('/problems/<%= problem.id.to_s %>', '_self')">
-							<%= link_to problem.title, problem , style: 'color:#003366;' ,
-							class: color %></b>
-							<span class="badge">
-								<% if student_signed_in? %>
-									<div onclick="showdialog(<%= problem.id.to_s %>,
-										<%= current_student.id %>)">
-										Recommend to classmates</div>
-								<% end %>
-							</span>
-							<!-- <span class="badge">p.success_attempts</span> -->
-							<!-- Reminder for me to uncomment this line 
-								when it is supported again in the database -->
+						<b onclick="window.open('/problems/<%= problem.id.to_s %>', '_self')">
+						<%= link_to problem.title, problem , style: 'color:#003366;' ,
+						class: color %></b>
+						<span class="badge">
+							<% if student_signed_in? %>
+								<div onclick="showdialog(<%= problem.id.to_s %>,
+									<%= current_student.id %>)">
+									Recommend to classmates</div>
+							<% end %>
+						</span>
 					</div>
 					<div id="<%= problem.id.to_s %>" class="panel-collapse collapse">
 						<%= problem.description %>
@@ -67,19 +64,16 @@
 				<div class="panel-title list-group-item list-group-item-info"
 					data-toggle="collapse" data-parent="#accordion"
 					href="#<%= problem.id.to_s %>">
-						<b onclick="window.open('/problems/<%= problem.id.to_s %>', '_self')">
-						<%= link_to problem.title, problem , style: 'color:#003366;' ,
-						class: color %></b>
-						<span class="badge">
-							<% if student_signed_in? %>
-								<div onclick="showdialog(<%= problem.id.to_s %>,
-									<%= current_student.id %>)">
-									Recommend to classmates</div>
-							<% end %>
-						</span>
-						<!-- <span class="badge">p.success_attempts</span> -->
-						<!-- Reminder for me to uncomment this line 
-							when it is supported again in the database -->
+					<b onclick="window.open('/problems/<%= problem.id.to_s %>', '_self')">
+					<%= link_to problem.title, problem , style: 'color:#003366;' ,
+					class: color %></b>
+					<span class="badge">
+						<% if student_signed_in? %>
+							<div onclick="showdialog(<%= problem.id.to_s %>,
+								<%= current_student.id %>)">
+								Recommend to classmates</div>
+						<% end %>
+					</span>
 				</div>
 				<div id="<%= problem.id.to_s %>" class="panel-collapse collapse">
 					<%= problem.description %>
