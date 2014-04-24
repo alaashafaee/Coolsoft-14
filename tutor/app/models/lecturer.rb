@@ -24,10 +24,9 @@ class Lecturer < ActiveRecord::Base
 	
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
-
 	has_many :topics
 	has_many :tracks, as: :owner
-	has_many :problems, as: :ownerm
+	has_many :problems, as: :owner
 	has_many :model_answers, as: :owner
 	has_many :method_constraints, as: :owner
 	has_many :method_parameters, as: :owner
@@ -38,6 +37,7 @@ class Lecturer < ActiveRecord::Base
 
 	#Methods
 
+<<<<<<< HEAD
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Checks if the email is already registered in tables: Student and TeachingAssistant
 	# 	before registering the email for table: Lecturer
@@ -50,4 +50,6 @@ class Lecturer < ActiveRecord::Base
 		end
 	end
 
+=======
+>>>>>>> 7a2782c115057f5a1727019edd7769639fc15b87
 end
