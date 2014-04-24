@@ -1,0 +1,32 @@
+<%= form_for :@constrain do |f| %>
+	<table>
+		<tr>
+			<th>Method Constrains</th>
+			<td width="10px"></td>
+			<td><%= f.text_field :method_return, placeholder: "Return Type" %></td>
+			<td width="10px"></td>
+			<td><%= f.text_field :method_name, placeholder: "Method Name" %></td>
+			<br>
+		</tr>
+		<tr height="10px"></tr>
+		<tr>
+			<%= fields_for :@params do |u| %>
+				<th>Method Parameter</th>
+				<td width="10px"></td>
+				<td><%= u.text_field :params_type, placeholder: "Variable Type", id:"params_type" %></td>
+				<td width="10px"></td>
+				<td><%= u.text_field :parameter, placeholder: "Variable Name", id:"params_name" %></td>
+				<td width="20px"></td>
+				<td><%= image_tag "add_buttom.png", id:"params", 
+						style: "width:15%;height:15%;margin_top:10px;cursor:pointer",
+						onclick: "add_params(this);" %></td>
+ 			<% end %>
+		</tr>
+	</table>
+	<div id="parameter">
+		<h3>Paramter</h3>
+		<p>No paramters</p>
+	</div>
+	<br>
+	<%= f.submit "Save Changes", class: "btn btn-default", onclick:"submitParams();" %>	
+<% end %>
