@@ -2,8 +2,8 @@
 // Shows the dialog containing names of students
 // 	who can recieve recommendation and a button to send recommendation
 // Parameters: 
-//	problem_id : id of problem
-//	recommender_id : id of student recommending the problem 
+//	problem_id: id of problem
+//	recommender_id: id of student recommending the problem 
 // Returns: calls the function which fills the dialog with student names
 // Author: Mohab Ghanim
 function showdialog(problem_id, recommender_id){
@@ -19,9 +19,9 @@ function showdialog(problem_id, recommender_id){
 // [Recommendation to students]
 // Fills the dialog with student names and recommend buttons
 // Parameters: 
-//	problem_id : id of problem
-//	recommender_id : id of student recommending the problem
-//	data : data returned from the above method
+//	problem_id: id of problem
+//	recommender_id: id of student recommending the problem
+//	data: data returned from the above method
 // Returns: appends html in /tracks/id
 // Author: Mohab Ghanim
 function fill(data, problem_id, recommender_id){
@@ -57,9 +57,9 @@ function fill(data, problem_id, recommender_id){
 // Sends problem id , recommender id, student getting recommendation id
 // 	to the controller to be inserted in the database
 // Parameters: 
-//	problem_id : id of problem
-//	recommender_id : id of student recommending the problem
-//	student_id : id of student recieving the problem 
+//	problem_id: id of problem
+//	recommender_id: id of student recommending the problem
+//	student_id: id of student recieving the problem 
 // Returns: none
 // Author: Mohab Ghanim
 function recommend(problem_id, recommender_id, student_id){
