@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
 
-# [Add tip - Story 4.10]
+	# [Add tip - Story 4.10]
 	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem
 	# Parameters:
 	#     none
