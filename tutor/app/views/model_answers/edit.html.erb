@@ -12,7 +12,8 @@
 	<% else %> 
 		<%= f.hidden_field :problem_id, :value => @problem.id %>
 	<% end %>
-	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @answer.problem_id,
+	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page",
+		:controller => 'problems', :action => 'edit', :id => @answer.problem_id,
 		:method => :get, class: 'btn btn-default btn-xs' %></ul>
 	<%= flash[:notice]%>
 	<br><%= f.label :Title %>

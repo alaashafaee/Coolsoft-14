@@ -1,4 +1,3 @@
-
 <%= form_for :model_answer, url: model_answers_path  do |f| %>
 <% if @new_answer.errors.any? %>
 	<div id="error_explanation">
@@ -18,7 +17,7 @@
 	<br><%= f.label :Title %>
 		<%= f.text_field :title  %></br>
 		<br><%= f.label :Answer %> </br>
-	<%= f.text_area :answer,:cols => "50", :rows => "15" %>
+	<%= f.text_area :answer, :cols => "50", :rows => "15" %>
 </p>
 <br>
 <%= f.submit "Save Model Answer", class: "btn btn-large btn-primary"  %>

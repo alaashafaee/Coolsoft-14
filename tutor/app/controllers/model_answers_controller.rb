@@ -12,7 +12,7 @@ class ModelAnswersController < ApplicationController
 		@problem = Problem.find(params[:problem_id])
 		session[:problem_id] = params[:problem_id]
 		if(@new_answer == nil)
-			@new_answer =ModelAnswer.new
+			@new_answer = ModelAnswer.new
 		end
 	end
 
@@ -42,7 +42,7 @@ class ModelAnswersController < ApplicationController
 			@problems.model_answers << @new_answer
 			redirect_to :controller => 'model_answers', :action => 'edit', :id => @new_answer.id
 		else
-			render :action=>'new' , :problem_id => post_params[:problem_id]
+			render :action=>'new', :problem_id => post_params[:problem_id]
 		end
 	end
 
@@ -77,10 +77,10 @@ class ModelAnswersController < ApplicationController
 		@answer = ModelAnswer.find(params[:id])
 		if @answer.update_attributes(post_params)
 			flash[:notice] = "Your Answer is now updated"
-  			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
+  			redirect_to :controller => 'problems', :action => 'edit',
+  				:id => session[:problem_id]
 		else
-		render :action=>'edit' , :problem_id => @answer.problem_id
-
+		render :action=>'edit', :problem_id => @answer.problem_id
 		end
 	end
 	
@@ -102,7 +102,7 @@ class ModelAnswersController < ApplicationController
 	# Returns: none
 	# Author: Nadine Adel
 	def index
-		@problem =Problem.find_by_id(params[:id])
+		@problem = Problem.find_by_id(params[:id])
 		@answers = ModelAnswer.all
 	end
 
