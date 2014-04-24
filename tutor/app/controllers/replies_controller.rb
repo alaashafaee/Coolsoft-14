@@ -33,16 +33,12 @@ class RepliesController < ApplicationController
 
 	# Description: Creates New reply 
 	# Parameters:
-	#	line: Hash containting the Variables Constraints
-	#	method: value of the method name.
-	#	method_returned: value of the method return type
 	# Returns: none
 	# Author: Ahmed Mohamed Magdi
 	def create
-		@reply = params[:reply]
-		post = Post.find_by_id(params[:id])
-		reply = Reply.new
-		reply.content = line
+		reply = Reply.new(reply_params)
+		puts (params[:post])
+		post = params[:@post]
 		post.replies << reply
 		if lecturer_signed_in?
 			current_lecturer.replies << reply
@@ -51,13 +47,16 @@ class RepliesController < ApplicationController
 		else
 			current_student.replies << reply				
 		end
+		respond_to do |format|
+	        if reply.save
+	            format.html { redirect_to "show"}
+	            format.js
+	        end
+	    end
 	end
 
 	# Description: Creates New reply 
 	# Parameters:
-	#	line: Hash containting the Variables Constraints
-	#	method: value of the method name.
-	#	method_returned: value of the method return type
 	# Returns: none
 	# Author: Ahmed Mohamed Magdi
 	def new
@@ -65,7 +64,6 @@ class RepliesController < ApplicationController
 	end
 
 	# Description: Deleting reply from the database
-	#	method_returned: value of the method return type
 	# Parameters: 
 	# Returns: none
 	# Author: Ahmed Mohamed Magdi

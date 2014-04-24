@@ -1,7 +1,7 @@
-<%= form_for :reply, url: { :controller => "replies", :action => "create" }, :remote => true do  |f| %>
+<%= form_for :reply, url: { :controller => "replies", :action => "create" }, :remote => true  do  |f| %>
 	
 	<%= f.text_field :content, style: "width:300px", placeholder: "Content" %>
 
-	<%= button_tag "Submit" %>
+	<%= f.submit "Submit",class: "btn btn-failuer" %>
 	
 <% end %>
