@@ -40,10 +40,11 @@
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef
 	def destroy
-			@dis = Post.find_by_id(params[:id]).discussion_board_id
+			@disscusion_board = Post.find_by_id(params[:id]).discussion_board_id
 			if Post.find_by_id(params[:id]).destroy
 				flash[:notice] = "Post successfully Deleted"
-				redirect_to(:controller => 'discussion_boards' , :action => 'show' ,:id => @dis)
+				redirect_to(:controller => 'discussion_boards' ,
+					:action => 'show' ,:id => @disscussion_board)
 			end
 	end		
 	# [Add Post - Story 1.13]
