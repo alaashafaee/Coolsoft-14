@@ -12,7 +12,6 @@ class Lecturer < ActiveRecord::Base
 	
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
-
 	has_many :topics
 	has_many :tracks, as: :owner
 	has_many :problems, as: :owner
