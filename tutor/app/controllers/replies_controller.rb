@@ -37,6 +37,7 @@ class RepliesController < ApplicationController
 	# Author: Ahmed Mohamed Magdi
 	def create
 		reply = Reply.new(reply_params)
+		puts (params[:id])
 		post = params[:@post]
 		post.replies << reply
 		if lecturer_signed_in?

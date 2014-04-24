@@ -89,6 +89,14 @@ puts("# --------------------------Replies---------------------------")
 	Reply.create(content: "Reply3")
 	Reply.create(content: "Reply4")
 	Reply.create(content: "Reply5")
+	Reply.create(content: "Reply6")
+	Reply.create(content: "Reply7")
+	Reply.create(content: "Reply8")
+	Reply.create(content: "Reply9")
+	Reply.create(content: "Reply10")
+	Reply.create(content: "Reply11")
+	Reply.create(content: "Reply12")
+	Reply.create(content: "Reply13")
 
 puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic1", description: "This is Topic1 description")
@@ -187,6 +195,7 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
 	Lecturer.first.replies << Reply.find_by_id(3)
+	Lecturer.first.replies << Reply.find_by_id(4)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
@@ -222,6 +231,25 @@ puts("# -----------------------Students---------------------------")
 	CourseStudent.where(student_id:2, course_id:2)[0].update(share: true)
 	Student.find_by_id(1).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:1, course_id:2)[0].update(share: true)
+
+puts("# -----------------------TeachingAssistants---------------------------")
+	TeachingAssistant.first.courses << Course.first
+	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
+
+puts("# -----------------------Posts---------------------------")
+	Post.first.replies << Reply.first
+	Post.first.replies << Reply.find_by_id(2)
+	Post.first.replies << Reply.find_by_id(3)
+	Post.first.replies << Reply.find_by_id(4)
+	Post.first.replies << Reply.find_by_id(5)
+	Post.first.replies << Reply.find_by_id(6)
+	Post.first.replies << Reply.find_by_id(7)
+	Post.first.replies << Reply.find_by_id(8)
+	Post.first.replies << Reply.find_by_id(9)
+	Post.first.replies << Reply.find_by_id(10)
+	Post.first.replies << Reply.find_by_id(11)
+	Post.first.replies << Reply.find_by_id(12)
+	Post.first.replies << Reply.find_by_id(13)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -279,14 +307,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
-puts("# ----------------- Track Progressions ----------------------")
-	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
-
-puts("# -----------------------TeachingAssistants---------------------------")
-	TeachingAssistant.first.courses << Course.first
-	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
 puts("# ---------------------------------------------------------")
