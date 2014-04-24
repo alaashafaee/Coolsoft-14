@@ -1,50 +1,47 @@
-<!-- The html web page consists of two tags
-	a header to view the problem title of the instance variable @problem
-and a paragraph to view the problem description of the instance variable @problem -->
 <div id="div1">
-	<h2 align ="center"><%= @problem.title %></h2>
-	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
-
-			<%= p.text_field :title %>
-			<%= p.hidden_field :description, value: @problem.description %>
-			<%= p.submit('update title') %>
-		
-	<% end %>
-</div>
-<div id="div2">
-	<p><%= @problem.description %></p>
-	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
-
-			<%= p.text_area :description, :cols => "50", :rows => "10" %>
-			<%= p.hidden_field :title, value: @problem.title %>
-			<p>
-			<%= p.submit('update description') %>
-			</p>
-	<% end %>
-</div>
-
-<div id = "div3">
-	<p>Current Track: <%= @track.title %></p>
-</div>	
-	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |p| %>
-		<% if Array(@tracks).size > 1 %>
-			<%= p.collection_select(:track_id, @tracks, :id,:title ) %>
-			<%= p.hidden_field :title, value: @problem.title %>
-			<%= p.hidden_field :description, value: @problem.description %>
-			<%= p.submit('Change Track') %>
-		<% end %>
-	<% end %>
-
-<br>
-<%= render partial: "test_cases/index" %>
-<%= render partial: "model_answers/new" %>
-<br>
-<%= render partial: "problems/success_options" %>
-<%= render partial: "problems/failure_options" %>
-<br>
-<div id="div4">
 	<% if flash[:notice] %>
 		<div class="notice"><%= flash[:notice] %></div>
 	<% end %>
 </div>
 
+<div id="div2">
+	<h2 align ="center"><%= @problem.title %></h2>
+	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
+		<%= problem.text_field :title %>
+		<%= problem.submit('update title') %>
+		<%= problem.hidden_field :description, value: @problem.description %>
+		<%= problem.hidden_field :track_id, value: @problem.track_id %>
+	<% end %>
+</div>
+
+<div id="div3">
+	<p><%= @problem.description %></p>
+	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
+		<%= problem.text_area :description, :cols => "50", :rows => "10" %>
+		<p>
+			<%= problem.submit('update description') %>
+		</p>
+		<%= problem.hidden_field :title, value: @problem.title %>
+		<%= problem.hidden_field :track_id, value: @problem.track_id %>
+	<% end %>
+</div>
+
+<div id = "div4">
+	<p>Current Track: <%= @track.title %></p>
+	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
+		<% if Array(@tracks).size > 1 %>
+			<%= problem.collection_select(:track_id, @tracks, :id,:title ) %>
+			<%= problem.submit('Change Track') %>
+			<%= problem.hidden_field :title, value: @problem.title %>
+			<%= problem.hidden_field :description, value: @problem.description %>
+		<% end %>
+	<% end %>
+</div>
+<br>
+<%= render partial: "test_cases/index" %>
+<%= render partial: "model_answers/new" %>
+<br>
+<%= render partial: "problems/success_options" %>
+<% if @problem.model_answers.empty? || @problem.test_cases.empty? %>
+	<%= render partial: "problems/failure_options" %>
+<% end %>

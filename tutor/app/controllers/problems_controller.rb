@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
 	#	id: The problem statement id
 	# Returns: none
 	# Author: MIMI
-	def show 
+	def show
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.nil?
 			render "problem_not_found"
@@ -19,29 +19,30 @@ class ProblemsController < ApplicationController
 	# [Add Problem - 4.4]
 	# Creates a new record to Problem Table
 	# Parameters:
-	#   title: problem's title through permitCreate action
-	#   description: problem's description through permitCreate action
-	# Returns: Redirects to edit page on success, refreshes on failure
+	#	title: problem's title through permitCreate action
+	#	description: problem's description through permitCreate action
+	# Returns:
+	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def create
-		p = Problem.new(problem_params)
+		problem = Problem.new(problem_params)
 		if lecturer_signed_in?
-			p.owner_id = current_lecturer.id
-			p.owner_type = "lecturer"
+			problem.owner_id = current_lecturer.id
+			problem.owner_type = "lecturer"
 		elsif teaching_assistant_signed_in?
-			p.owner_id = current_teaching_assistant.id
-			p.owner_type = "teaching assistant"
+			problem.owner_id = current_teaching_assistant.id
+			problem.owner_type = "teaching assistant"
 		end
-		p.incomplete = true
+		problem.incomplete = true
 		begin
-			if p.save
-				redirect_to :controller => "tracks", :action => "show", :id => p.track_id
-			else 
+			if problem.save
+				redirect_to :action => "edit", :id => problem.id
+			else
 				flash.keep[:notice] = "Problem is missing paramaters"
 				redirect_to :back
 			end
 		rescue
-			flash.keep[:notice] = "Problem with the same title exists in this track"
+			flash.keep[:notice] = "The track has a problem with the same title"
 			redirect_to :back
 		end
 	end
@@ -49,8 +50,9 @@ class ProblemsController < ApplicationController
 	# [Edit Problem - 4.5]
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters:
-	#   id: The id of the problem to be edited or newly created
-	# Returns: Redirects to edit page on success, refreshes on failure
+	#	id: The id of the problem to be edited or newly created
+	# Returns:
+	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?
@@ -69,72 +71,79 @@ class ProblemsController < ApplicationController
 	# Checks if a lecturer or TA is signed in and shows the problem's add page(title & description)
 	# on success and renders 404 on failure
 	# Parameters:
-	#  none
-	# Returns: Redirects to add page on success or 404 on failure
+	#	track_id: The track id of the track that the problem will be added to
+	# Returns:
+	#	Redirects to add page on success or 404 on failure
 	# Author: Abdullrahman Elhusseny
 	def new
 		if lecturer_signed_in? || teaching_assistant_signed_in?
-			render ('new')
+			if params[:id].blank?
+				render ('public/404')
+			else
+				render ('new')
+			end
 		else
 			render ('public/404')
 		end
 	end
 
 	# [Edit Problem - 4.5]
-	# Update the problem's title or description
+	# Update the problem's title, description or track
 	# Parameters:
-	#  problem_params: a problem's title & description
-	# Returns: refreshes divisions in the page using AJAX without refreshing the whole page
+	#	problem_params: a problem's title, description & track_id
+	# Returns:
+	#	Refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
 	def update
 		@problem = Problem.find_by_id(params[:id])
-		if (problem_params[:title] == @problem.title)
-			if (problem_params[:description] == @problem.description)
-				@message = "Problem moved to Track #{problem_params[:track_id]}"
-			else
-				@message = "Description updated"
-				@flag = true
-			end
-		else
+		@track = Track.find_by_id(@problem.track_id)
+		@tracks = Track.find_all_by_topic_id(@track.topic_id)
+		if (problem_params[:title] != @problem.title)
 			@message = "Title updated"
-			@flag = true
+		elsif (problem_params[:description] != @problem.description)
+			@message = "Description updated"
+		elsif (problem_params[:track_id].to_i != @problem.track_id)
+			@message = "Problem moved to Track #{problem_params[:track_id]}"
+		else
+			flash.keep[:notice] = ""
 		end
-		@problem = Problem.find_by_id(params[:id])
-		@track = Track.find_by_id(problem_params[:track_id])
-		if @flag == true
-			if @problem.update_attributes(problem_params)
-				flash.keep[:notice] = @message
-				respond_to do |format|
-					format.html {redirect_to :action => "edit", :id => @problem.id}
-					format.js
+
+		if (problem_params[:track_id].to_i == @problem.track_id)
+			if (problem_params[:title] != @problem.title) ||
+				(problem_params[:description] != @problem.description)
+				begin
+					if @problem.update_attributes(problem_params)
+						flash.keep[:notice] = @message
+						respond_to do |format|
+							format.html {redirect_to :action => "edit", :id => @problem.id}
+							format.js
+						end
+					else
+						flash.keep[:notice] = "Update paramater is empty"
+						@problem = Problem.find_by_id(params[:id])
+						respond_to do |format|
+							format.html {redirect_to :action => "edit", :id => @problem.id}
+							format.js
+						end
+					end
+				rescue
+					flash.keep[:notice] = "The track has a problem with the same title"
+					@problem = Problem.find_by_id(params[:id])
+					respond_to do |format|
+						format.html {redirect_to :action => "edit", :id => @problem.id}
+						format.js
+					end
 				end
-			else
-				flash.keep[:notice] = "Update paramater is empty"
-				respond_to do |format|
-					format.html {redirect_to :action => "edit", :id => @problem.id}
-					format.js
-				end
-			end
-		elsif (@problem.track_id == problem_params[:track_id].to_i)
-			flash.keep[:notice] = "The problem already belongs to this track"
-			respond_to do |format|
-				format.html {redirect_to :action => "edit", :id => @problem.id}
-				format.js 
 			end
 		else
+			@track = Track.find_by_id(problem_params[:track_id])
 			@problems_in_track = @track.problems.find_all_by_title(@problem.title)
 			if(Array(@problems_in_track).size == 0)
 				if @problem.update_attributes(problem_params)
 					flash.keep[:notice] = @message
 					respond_to do |format|
 						format.html {redirect_to :action => "edit", :id => @problem.id}
-						format.js 
-					end	
-				else 
-					flash.keep[:notice] = " Cannot change track"
-					respond_to do |format|
-						format.html {redirect_to :action => "edit", :id => @problem.id}
-						format.js 
+						format.js
 					end
 				end
 			else
@@ -142,45 +151,44 @@ class ProblemsController < ApplicationController
 				@track = Track.find_by_id(@problem.track_id)
 				respond_to do |format|
 					format.html {redirect_to :action => "edit", :id => @problem.id}
-					format.js 
+					format.js
 				end
 			end
 		end
-	end	
+	end
 
 	# [Edit Problem - 4.5]
-	# Checks if the problem can be saved as incomplete or not
+	# Checks if problem is complete or not by checking the number of test cases and answers
 	# Parameters:
-	#   params[:problem_id]: the id of the problem that was being edited
-	# Returns: On success returns to the track page, on failure redirects to edit page
+	#	problem_id: ID of the problem being edited
+	# Returns:
+	#	On success redirects to the track page, on failure redirects to the edit page
 	# Author: Abdullrahman Elhusseny
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
-		if @problem.test_cases.empty?
+		if @problem.model_answers.empty? || @problem.test_cases.empty?
 			@failure = true
-			flash.keep[:notice] = "Test cases are empty #{@failure}"
+			flash.keep[:notice] = "Problem is incomplete, 
+			please add necessary paramaters or save as incomplete"
 			redirect_to :action => "edit", :id => @problem.id
-		elsif @problem.model_answers.empty?
-			@failure = true
-			flash.keep[:notice] = "Answers are empty"
-			redirect_to :back
 		else
 			@problem.incomplete = false
-			flash.keep[:notice] = "Problem is saved as complete"
+			@problem.save
 			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
-	end	
+	end
 
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:
-	#   title: problem's title
-	#   description: problem's description
-	#   track_id: problem's track_id
-	# Returns: params to create action
+	#	title: problem's title
+	#	description: problem's description
+	#	track_id: problem's track id
+	# Returns:
+	#	Params to create action & update action
 	# Author: Abdullrahman Elhusseny
 	private
-	def problem_params
-		params.require(:Problem).permit(:title , :description, :track_id)
-	end
-end	
+		def problem_params
+			params.require(:Problem).permit(:title, :description, :track_id)
+		end
+end

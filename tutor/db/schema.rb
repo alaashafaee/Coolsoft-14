@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422100002) do
+ActiveRecord::Schema.define(version: 20140423104456) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140422100002) do
   create_table "admins", force: true do |t|
     t.string   "name"
     t.date     "dob"
-    t.string   "img"
+    t.string   "profile_image"
     t.boolean  "gender"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.datetime "updated_at"
   end
 
+  create_table "course_students", force: true do |t|
+    t.boolean  "share",      default: false
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "course_students", ["course_id", "student_id"], name: "index_course_students_on_course_id_and_student_id", unique: true
+
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "code"
@@ -68,13 +78,6 @@ ActiveRecord::Schema.define(version: 20140422100002) do
   end
 
   add_index "courses_lecturers", ["course_id", "lecturer_id"], name: "index_courses_lecturers_on_course_id_and_lecturer_id", unique: true
-
-  create_table "courses_students", id: false, force: true do |t|
-    t.integer "course_id",  null: false
-    t.integer "student_id", null: false
-  end
-
-  add_index "courses_students", ["course_id", "student_id"], name: "index_courses_students_on_course_id_and_student_id", unique: true
 
   create_table "courses_teaching_assistants", id: false, force: true do |t|
     t.integer "course_id",             null: false
@@ -114,8 +117,8 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.string   "profile_image"
     t.boolean  "gender"
     t.string   "degree"
-    t.string   "university"
     t.string   "department"
+    t.string   "university"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -128,8 +131,13 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "lecturers", ["confirmation_token"], name: "index_lecturers_on_confirmation_token", unique: true
   add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true
   add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true
 
@@ -144,7 +152,6 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.string   "method_name"
     t.string   "method_return"
     t.integer  "model_answer_id"
-    t.integer  "method_constraint_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -154,6 +161,7 @@ ActiveRecord::Schema.define(version: 20140422100002) do
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
     t.string   "params_type"
+    t.integer  "method_constraint_id"
     t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -242,7 +250,6 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.date     "dob"
     t.string   "profile_image"
     t.boolean  "gender"
-    t.boolean  "share",                  default: false
     t.string   "university"
     t.string   "faculty"
     t.string   "major"
@@ -251,18 +258,23 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.boolean  "probation"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
 
@@ -288,8 +300,13 @@ ActiveRecord::Schema.define(version: 20140422100002) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true
   add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true
   add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true
 
