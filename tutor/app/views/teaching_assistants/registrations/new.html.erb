@@ -2,14 +2,40 @@
 	<h2>Sign up</h2>
 	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
 		:html => { :multipart => true, :class => 'form-devise' }) do |f| %>
-		<%= devise_error_messages! %>
+
+		<div>
+			<% unless resource.errors[:email].blank? %>
+				<span id="error_explanation">
+					Email <%= resource.errors[:email].join(", ") %> 
+				</span>
+			<br>
+		<% end %>
+		</div>
 		
 		<div>
 			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
 		</div>
 
 		<div>
+			<% unless resource.errors[:name].blank? %>
+				<span id="error_explanation">
+					Name <%= resource.errors[:name].join(", ") %> 
+				</span>
+			<br>
+		<% end %>
+		</div>
+
+		<div>
 			<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:password].blank? %>
+				<span id="error_explanation">
+					Password <%= resource.errors[:password].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -18,8 +44,26 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:password_confirmation].blank? %>
+				<span id="error_explanation">
+					Password Confirmation <%= resource.errors[:password_confirmation].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", 
 				placeholder: "Confirm Password" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:gender].blank? %>
+				<span id="error_explanation">
+					gender <%= resource.errors[:gender].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -28,8 +72,26 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:dob].blank? %>
+				<span id="error_explanation">
+					Date Of Birth <%= resource.errors[:dob].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.label :date_of_birth %><br />
 			<%= f.date_select :dob, {:start_year => Date.today.year-90, :end_year => Date.today.year} %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:graduated_from].blank? %>
+				<span id="error_explanation">
+					University you graduated from <%= resource.errors[:graduated_from].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -37,7 +99,25 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:graduated_year].blank? %>
+				<span id="error_explanation">
+					Graduation Year <%= resource.errors[:graduated_year].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.number_field :graduated_year, class: "form-control", placeholder: "Graduation Year" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:degree].blank? %>
+				<span id="error_explanation">
+					Degree <%= resource.errors[:degree].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -45,11 +125,25 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:university].blank? %>
+				<span id="error_explanation">
+					University <%= resource.errors[:university].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.text_field :university, class: "form-control", placeholder: "University" %>
 		</div>
 
 		<div>
-			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
+			<% unless resource.errors[:profile_image].blank? %>
+				<span id="error_explanation">
+					Profile Image <%= resource.errors[:profile_image].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -59,6 +153,19 @@
 			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
 			<%= f.hidden_field :profile_image_cache %>
 			<br />
+		</div>
+
+		<div>
+			<% unless resource.errors[:department].blank? %>
+				<span id="error_explanation">
+					Department <%= resource.errors[:department].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+		</div>
+
+		<div>
+			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
 		</div>
 
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
