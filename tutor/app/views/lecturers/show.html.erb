@@ -16,16 +16,16 @@
 					<th>Options</th>
 					<th></th>
 				</tr>
-				<% @courses.each do |c| %>
+				<% @courses.each do |course| %>
 					<tr>
 						<td>
-							<%= link_to c.name,
+							<%= link_to course.name,
 								:controller => 'courses',
 								:action => 'show',
-								:id => c.id, :method => :get,
+								:id => course.id, :method => :get,
 								class: "btn btn-success" %>
 						</td>
-						<td><%= c.code %></td>
+						<td><%= course.code %></td>
 						<% if current_lecturer %>
 							<td>
 								<%= link_to "Manage Course",
@@ -33,7 +33,7 @@
 										:controller => 'courses',
 										:action => 'edit',
 										:method => :get,
-										:id => c.id
+										:id => course.id
 									},
 									class: "btn btn-success",
 									style: "text-decoration:none" %>
@@ -44,8 +44,8 @@
 								{
 									:controller => 'discussion_boards',
 									:action => 'show',
-									:id => c.id
-									},
+									:id => course.id
+								},
 								class: "btn btn-success",
 								method: :get,
 								style: "text-decoration:none" %>
