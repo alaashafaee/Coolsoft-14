@@ -3,7 +3,7 @@ class ModelAnswersController < ApplicationController
 	# [Add answer story 4.6]
 	# It creates the new answer.
 	# Parameters:
-	#	@problem:To fetch the problem to which the answer is added.
+	#	@problem: To fetch the problem to which the answer is added.
 	#	@answer: The new answer the user enters.
 	#	@answers: All the previous answers that had been entered before.
 	# Returns : None
@@ -19,10 +19,10 @@ class ModelAnswersController < ApplicationController
 	# [Add answer story 4.6]
 	# The new answer is saved and check that the user is a lecturer or TA.
 	# Parameters:
-	#	@new_answer:Answer provided by the user.
-	#	@problems:The problem to which the answer is linked.
+	#	@new_answer: Answer provided by the user.
+	#	@problems: The problem to which the answer is linked.
 	# Returns:
-	#	Returns a message if the answer is added and another message if answer was not added.
+	#	A message if the answer is added and another message if answer was not added.
 	# Author: Nadine Adel
 	def create
 		@new_answer = ModelAnswer.new
@@ -56,7 +56,7 @@ class ModelAnswersController < ApplicationController
 	#	@hints: Hints that are linked to the answer being edited.
 	#	@hints_check: Used to check the type of Hint.
 	# Returns:
-	#	Returns a message if the answer is edited and another message if answer was not edited.
+	#	A message if the answer is edited and another message if answer was not edited.
 	# Author: Nadine Adel
 	def edit
 		@answer = ModelAnswer.find(params[:id])
