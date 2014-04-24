@@ -1,11 +1,11 @@
 class TeachingAssistantsController < ApplicationController
 
-# [Add TA - Story 1.4]
-# this action renders the form and sets the value for checkbox
-# Parameters: 
-#   check : contains the value from the previous instance of the form
-# Returns: None
-# Author: Muhammad Mamdouh
+	# [Add TA - Story 1.4]
+	# this action renders the form and sets the value for checkbox
+	# Parameters: 
+	#   check : contains the value from the previous instance of the form
+	# Returns: None
+	# Author: Muhammad Mamdouh
 	def new 
 		if @checkbox == nil
 			@checkbox = true
@@ -13,11 +13,11 @@ class TeachingAssistantsController < ApplicationController
 		@checkbox = !params[:check]
 	end
 
-# [Add TA - Story 1.4,1.5,1.6]
-# Adds the TA selected from the dropdown list in the view to the course and to the lecturer's history
-# Parameters: teaching_assistant_id , course_id
-# Returns: flash[:notice] that shows the result of trying to add the TA
-# Author: Muhammad Mamdouh
+	# [Add TA - Story 1.4,1.5,1.6]
+	# Adds the TA selected from the dropdown list in the view to the course and to the lecturer's history
+	# Parameters: teaching_assistant_id , course_id
+	# Returns: flash[:notice] that shows the result of trying to add the TA
+	# Author: Muhammad Mamdouh
 	def create
 		begin
 			@teaching_assistant = TeachingAssistant.find_by_id(params[:teaching_assistant][:id])
@@ -41,13 +41,13 @@ class TeachingAssistantsController < ApplicationController
 		end	
 	end
 
-# [Add TA - Story 1.4, 1.5, 1.6]
-# lists the TAs added to the course.
-# Parameters: course_id
-# Returns:
-# @course
-# @course_teaching_assistants
-# Author: Muhammad Mamdouh	
+	# [Add TA - Story 1.4, 1.5, 1.6]
+	# lists the TAs added to the course.
+	# Parameters: course_id
+	# Returns:
+	# @course
+	# @course_teaching_assistants
+	# Author: Muhammad Mamdouh	
 	def index
 		@course = Course.find(params[:course_id])
 		@course_teaching_assistants = @course.TAs.order('name')
