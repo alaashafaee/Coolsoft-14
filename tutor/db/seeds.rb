@@ -189,6 +189,7 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.find_by_id(2)
 	Lecturer.first.replies << Reply.find_by_id(3)
 	Lecturer.first.replies << Reply.find_by_id(4)
+	Lecturer.first.replies << Reply.find_by_id(5)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
