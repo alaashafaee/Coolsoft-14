@@ -53,13 +53,13 @@
 			<% end %>
 		<% else %>
 			<% if @problems_status %>
-					<% if @problems_status[:success].include?(p) %>
-						<% color = "label label-success" %>
-					<% elsif @problems_status[:failure].include?(p) %>
-						<% color = "label label-warning" %>
-					<% else %>
-						<% color = "label label-default" %>
-					<% end %>
+				<% if @problems_status[:success].include?(p) %>
+					<% color = "label label-success" %>
+				<% elsif @problems_status[:failure].include?(p) %>
+					<% color = "label label-warning" %>
+				<% else %>
+					<% color = "label label-default" %>
+				<% end %>
 			<% end %>
 			<div class="panel panel-default">
 				<div class="panel-title list-group-item list-group-item-info"
