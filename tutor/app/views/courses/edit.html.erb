@@ -20,7 +20,7 @@
 		<%= button_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
 		:course_id => @course.id}, class: "btn btn-success", style: "float: left; margin-left: 15px", :method => :get%>
 	</div>
-		 
+
 	<!-- This button activates the acknowledge a student action -->
 	<div>
 		<%= button_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
