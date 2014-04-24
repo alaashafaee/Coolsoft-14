@@ -39,7 +39,9 @@
 </div>
 <br>
 <%= render partial: "test_cases/index" %>
-<%= render partial: "model_answers/new" %>
+<br>
+<%= render partial: "model_answers/index" %>
+<br>
 <br>
 <%= render partial: "problems/success_options" %>
 <% if @problem.model_answers.empty? || @problem.test_cases.empty? %>
