@@ -51,16 +51,7 @@
 		<div>
 			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
 		</div>
-
-		<div>
-			<br />
-			<%= f.label :profile_image %><br />
-			<%= image_tag(@teaching_assistant.profile_image_url.to_s) if @teaching_assistant.profile_image? %>
-			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
-			<%= f.hidden_field :profile_image_cache %>
-			<br />
-		</div>
-
+		
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
 	<% end %>
 

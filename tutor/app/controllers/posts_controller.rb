@@ -12,12 +12,7 @@
 		@discussion_board = DiscussionBoard.find_by_id(params[:discussion_board_id])
 		@new_post = Post.new
 	end
-
-	def show
-	  	@post = Post.find(params[:id])
-	  	@replies = @post.replies.order("created_at desc")
-	end	  	
-
+	
 	# [Edit Post - Story 1.18]
 	# Description: This action takes the passed post id 
 	#               to be passed to the Edit form.
@@ -102,7 +97,7 @@
 	# Returns: 
 	# 	flash[:notice]: A message indicating the success or failure of the creation
 	# Author: Ahmed Atef
-		def update
+	def update
 		@post = Post.find(params[:id])
 		if @post.update_attributes(post_params) 
 			flash[:notice] = "Post successfully updated"

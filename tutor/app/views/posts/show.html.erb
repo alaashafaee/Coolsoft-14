@@ -1,16 +1,28 @@
+<!--  Name: The Show Post Form 
+    Author: Ahmed Atef
+-->
+
+<%= link_to "back", {:action => 'show', :controller => 'discussion_boards',
+	:id => DiscussionBoard.find_by_id(@post.discussion_board_id).course_id}, {
+		class: 'btn btn-primary'} %>
 <div align="center">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9f5d2de792278daa7a008d66fca60495ffe3465e
 	<% if current_lecturer %>
 		<% @userID = current_lecturer.id %>
 	<% end %>
-			<% if current_student %>
-				<% @userID = current_student.id %>
-			<% end %>	
-				<%if current_teaching_assistant %>
-					<% @userID = current_teaching_assistant.id %>
-				<%end%>
+	<% if current_student %>
+		<% @userID = current_student.id %>
+	<% end %>	
+	<%if current_teaching_assistant %>
+		<% @userID = current_teaching_assistant.id %>
+	<% end %>
 <div style="width: 50%; margin-left:25%">
 	<h3><%=@post.title%></h3>
+	<%= @post.content %>
+	<br>
 	<% unless @replies.blank? %>
 		<% @replies.each do |reply| %>
 			<div style="background-color: #A8A8A8">
@@ -26,6 +38,7 @@
 		<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
 			class: 'btn btn-primary',:id => @post.id} %>			
 	<% end %>
+<<<<<<< HEAD
 =======
 	<div style="width: 50%; margin-left:25%">
 		<h3><%=@post.title%></h3>
@@ -43,4 +56,6 @@
 		<% end %>
 	</div>
 >>>>>>> 7eb9faa02cd949c47035b7b7f69f9e74a5f97b7d
+=======
+>>>>>>> 9f5d2de792278daa7a008d66fca60495ffe3465e
 </div>
