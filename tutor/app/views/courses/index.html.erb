@@ -26,21 +26,21 @@
 				<td>
 					<% if current_lecturer %>
 						<%= link_to "Manage Course", { :controller => 'courses', :action => 'edit',
-						:method => :get, :id => c.id }, class: "btn btn-success", style: "text-decoration:none" %>
+							:method => :get, :id => c.id }, class: "btn btn-success", style: "text-decoration:none" %>
 					<% end %>
 				</td>
 				<td>
 					<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id },
-					class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+						class: "btn btn-success", method: :get, style: "text-decoration:none" %>
 				</td>
 				<td>
 					<% if current_student %>
 						<% if @share[c.id] == "Show" %>
 							<%= button_to "Show Performance", {:controller => 'courses', :action => 'share',
-							:id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
+								:id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
 						<% else %>
 							<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share',
-							:id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
+								:id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
 						<% end %>
 					<% end %>
 				</td>
