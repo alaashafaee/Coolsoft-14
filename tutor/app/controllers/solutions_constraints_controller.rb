@@ -3,7 +3,7 @@ class SolutionsConstraintsController < ApplicationController
 	# [Add Solutions' constraints - Story 4.14]
 	# Description: Creates new record for either method or variable constraints
 	# Parameters:
-	#	method_cons: Hash containting the Method parameters
+	# 	method_cons: Hash containting the Method parameters
 	#	var_cons: Hash containting the Variables Constraints
 	#	method: value of the method name.
 	#	method_returned: value of the method return type

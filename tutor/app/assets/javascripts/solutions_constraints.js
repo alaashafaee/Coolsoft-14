@@ -15,7 +15,6 @@ var var_name = new Array();
 function add_params(field) {
 	var tmp_type = document.getElementById("params_type").value;
 	var tmp_name = document.getElementById("params_name").value;
-
 	if (tmp_name != "" && tmp_type != "") {
 		document.getElementById("params_type").style.border= "";
 		document.getElementById("params_name").style.border= "";
@@ -24,7 +23,6 @@ function add_params(field) {
 		param_name[param_name.length] = tmp_name;
 		document.getElementById("params_name").value = "";
 		document.getElementById("parameter").innerHTML = "<h3>Paramters Constraints</h3><table>";
-
 		for (var i = 0; i < type.length; i++) {
 			$('#parameter').append("<tr>");
 			$('#parameter').append("<td width = \"10px\"></td>");
@@ -91,7 +89,6 @@ function remove_params(field) {
 function add_variable(field) {
 	var tmp_type = document.getElementById("variable_type").value;
 	var tmp_name = document.getElementById("variable_name").value;
-
 	if (tmp_name != "" && tmp_type != "") {
 		document.getElementById("variable_type").style.border= "";
 		document.getElementById("variable_name").style.border= "";
@@ -100,7 +97,6 @@ function add_variable(field) {
 		var_name[var_name.length] = tmp_name;
 		document.getElementById("variable_name").value = "";
 		document.getElementById("variable").innerHTML = "<h3>Variables Constraints</h3><table>";
-
 		for (var i = 0; i < var_type.length; i++) {
 			$('#variable').append("<tr>");
 			$('#variable').append("<td width = \"10px\"></td>");
@@ -218,7 +214,6 @@ function submitParams() {
 	var hash_v = new Array();
 	method = $('#_constrain_method_return').val()
 	name = $('#_constrain_method_name').val()
-	
 	if (!testingValidation(errorArray,method,name)) {
 		showErrorMessage(errorArray);
 		return;
