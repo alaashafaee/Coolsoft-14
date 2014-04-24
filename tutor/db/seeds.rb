@@ -101,12 +101,12 @@ puts("# -----------------------Hints---------------------------")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
 puts("# -----------------------ModelAnswer---------------------------")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-1")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-2")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-3")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-4")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-5")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
+	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
+	ModelAnswer.create(title: "Answer3", answer: "System.out.println('SQL baaaad')-3")
+	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
+	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
+	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
 
 puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -117,9 +117,9 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "x", input:"10 0")
 
 puts("# -----------------------Method Parameters---------------------------")
-	MethodParameter.create(parameter:"MethodParameters 1")
-	MethodParameter.create(parameter:"MethodParameters 2")
-	MethodParameter.create(parameter:"MethodParameters 3")
+	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")
@@ -187,6 +187,8 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
+	Lecturer.first.replies << Reply.find_by_id(3)
+	Lecturer.first.replies << Reply.find_by_id(4)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
@@ -222,6 +224,10 @@ puts("# -----------------------Students---------------------------")
 	CourseStudent.where(student_id:2, course_id:2)[0].update(share: true)
 	Student.find_by_id(1).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:1, course_id:2)[0].update(share: true)
+
+puts("# -----------------------TeachingAssistants---------------------------")
+	TeachingAssistant.first.courses << Course.first
+	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -279,19 +285,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
-puts("# ----------------- Track Progressions ----------------------")
-	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
-puts("# ---------------------------------------------------------")
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
-
-puts("# -----------------------TeachingAssistants---------------------------")
-	TeachingAssistant.first.courses << Course.first
-	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
 puts("# ---------------------------------------------------------")
