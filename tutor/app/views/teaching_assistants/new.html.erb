@@ -18,7 +18,7 @@
 	<% end %>
 
 	<p>
-			<%= f.submit "Add TA", class: "btn btn-success"%>
+		<%= f.submit "Add TA", class: "btn btn-success"%>
 	</p>	
 <% end %>
 
@@ -32,6 +32,5 @@
 	<div> <%= button_to str, {:controller => 'teaching_assistants', :action => 'new', check: @checkbox}, class: "btn btn-success" , style: "float: left; margin-left: 15px" %> 
 	</div> 
 </div>
-
 
 <%= button_to "Back", {:controller => 'courses', :action =>'index'}, class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
