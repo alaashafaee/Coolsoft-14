@@ -40,7 +40,7 @@ class TeachingAssistantsController < ApplicationController
 				redirect_to :action => 'index'
 			end
 		rescue
-			flash[:failure_notice]='Error! TA is already added to the course.'
+			flash[:failure_notice] = 'Error! TA is already added to the course.'
 			redirect_to :action => 'new'
 		end	
 	end
