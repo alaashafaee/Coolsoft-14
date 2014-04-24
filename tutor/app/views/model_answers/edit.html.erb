@@ -12,19 +12,15 @@
 	<% else %> 
 		<%= f.hidden_field :problem_id, :value => @problem.id %>
 	<% end %>
-	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page", :controller => 'problems', :action => 'edit', :id => @answer.problem_id,
+	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page",
+		:controller => 'problems', :action => 'edit', :id => @answer.problem_id,
 		:method => :get, class: 'btn btn-default btn-xs' %></ul>
-	<%= flash[:notice]%>
+	<%= flash[:notice] %>
 	<br><%= f.label :Title %>
 		<%= f.text_field :title %></br>
 	<br><%= f.label :Answer %></br> 
-	<p><%= f.text_area :answer,:cols => "50", :rows => "15" %></p> 
+	<p><%= f.text_area :answer, :cols => "50", :rows => "15" %></p> 
 	<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-	<br> <%= render partial: "tips/index" %> </br>
-	<br> <%= render partial: "hints/index" %> </br>
-<%end%>
-
-<style type="text/css" />
-	.red { color: #FF0000; }
-	.bold { font-weight: bold; }
-</style>
+	<br><%= render partial: "tips/index" %></br>
+	<br><%= render partial: "hints/index" %></br>
+<% end %>
