@@ -5,8 +5,6 @@ class TeachingAssistant < ActiveRecord::Base
 	     :recoverable, :rememberable, :trackable, :validatable
 	
 	#Validations
-	 
-
 
 	#Relations
 	has_many :posts, as: :owner, dependent: :destroy

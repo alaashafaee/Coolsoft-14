@@ -6,7 +6,7 @@ class TeachingAssistantsController < ApplicationController
 # Returns: None
 # Author: Muhammad Mamdouh
 	def new 
-		if(@checkbox == nil)
+		if @checkbox == nil
 			@checkbox = true
 		end
 		@checkbox = !params[:check]
