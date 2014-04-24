@@ -13,12 +13,13 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
+	get 'courses/sign_up'
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
-	get 'courses/sign_up'
 	post 'solutions/execute' => 'solutions#execute'
-	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+ 	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
 
@@ -66,11 +67,16 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
-
+	resources :solutions_constraints do
+		collection do
+			post "new"
+		end
+	end
 	resources :problems do
 		get 'done'
 		get 'destroy_problem'
 	end
+
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales

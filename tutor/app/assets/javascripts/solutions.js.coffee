@@ -92,7 +92,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
-		data: {code : code, problem_id : problem_id, input: test}
+		data: {code : code, problem_id : problem_id, input : test}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
