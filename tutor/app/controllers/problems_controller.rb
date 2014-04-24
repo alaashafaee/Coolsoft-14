@@ -136,7 +136,8 @@ class ProblemsController < ApplicationController
 		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.model_answers.empty? || @problem.test_cases.empty?
 			@failure = true
-			flash.keep[:notice] = "Problem is incomplete, please add necessary paramaters or save as incomplete"
+			flash.keep[:notice] = "Problem is incomplete, 
+			please add necessary paramaters or save as incomplete"
 			redirect_to :action => "edit", :id => @problem.id
 		else
 			@problem.incomplete = false

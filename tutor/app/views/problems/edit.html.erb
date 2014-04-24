@@ -7,23 +7,20 @@
 <div id="div2">
 	<h2 align ="center"><%= @problem.title %></h2>
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
-
 		<%= problem.text_field :title %>
 		<%= problem.hidden_field :description, value: @problem.description %>
 		<%= problem.submit('update title') %>
-	
 	<% end %>
 </div>
+
 <div id="div3">
 	<p><%= @problem.description %></p>
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
-
 		<%= problem.text_area :description, :cols => "50", :rows => "10" %>
 		<p>
-		<%= problem.submit('update description') %>
+			<%= problem.submit('update description') %>
 		</p>
 		<%= problem.hidden_field :title, value: @problem.title %>
-		
 	<% end %>
 </div>
 
