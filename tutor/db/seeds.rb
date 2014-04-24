@@ -38,10 +38,10 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(content: "The Main Objective is to be a winner", views_count: 20)
-	Post.create(content: "It is very hard to keep in this life, be happy", views_count: 100)
-	Post.create(content: "Post3")
-	Post.create(content: "Post4")
+	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
+	Post.create(title:"My 2nd Post", content: "It is very hard to keep in this life, be happy", views_count: 100)
+	Post.create(title:"My 3th Post", content: "Post3")
+	Post.create(title:"My 4th Post", content: "Post4")
 
 puts("# --------------------------Replies---------------------------")
 	Reply.create(content: "Reply1")
@@ -108,27 +108,27 @@ puts("# -----------------------Solutions---------------------------")
 puts("# -----------------------TrackProgression---------------------------")
 	TrackProgression.create(level: 0, student_id: 1, topic_id: 1)
 	TrackProgression.create(level: 2, student_id: 1, topic_id: 2)
-	
+
 puts("# -----------------------Attempts---------------------------")
-	Attempt.create(success: true) 
+	Attempt.create(success: true)
 	Attempt.create(failure: true)
-	Attempt.create(success: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(failure: true) 
+	Attempt.create(success: true)
+	Attempt.create(failure: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(failure: true)
+	Attempt.create(failure: true)
+	Attempt.create(failure: true)
+	Attempt.create(failure: true)
 
 puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
-	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)		
-	
+	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
+
 puts("# -------------------------------------------------------")
 
 puts("**************************************************************")
@@ -228,10 +228,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
 
 puts("# ---------------------------------------------------------")
