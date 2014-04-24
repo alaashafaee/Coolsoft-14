@@ -185,9 +185,31 @@ debug_console = ->
 # Parameters:
 #	stateNumber: The target state number.
 # Returns: none
-# Author: Rami Khalil
+# Author: Rami Khalil + Khaled Helmy
 @jump_state = (stateNumber) ->
 	highlight_line variables[stateNumber]['line'] - 2
+	update_memory_contents stateNumber
+
+# [View Variables - Story 3.7]
+# Updates the variables values according to a certain state
+# Parameters:
+#	stateNumber: The target state number.
+# Returns: none
+# Author: Khaled Helmy
+@update_memory_contents = (stateNumber) ->
+	div = document.getElementById("memory")
+	list_of_variables = variables[stateNumber]["locals"]
+	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
+	i = 0
+	while i < list_of_variables.length
+		values = list_of_variables[i].split " = "
+		content += "<tr class='success'><td>" + values[0] + "</td>"
+		content += "<td>" + values[1] + "</td></tr>"
+		i++
+	content += "</table>"
+	div.innerHTML = content
+	return
 
 # [Debug - Story 3.6]
 # Stops the debugging session.

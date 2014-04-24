@@ -43,6 +43,9 @@ class TopicsController < ApplicationController
 	# Author: Ahmed Akram
 	def new
 		@course = Course.find(params[:course_id])
+		if !@course.can_edit(current_lecturer)
+			redirect_to :root
+		end
 		@new_topic = Topic.new
 	end
 
