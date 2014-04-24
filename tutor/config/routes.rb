@@ -32,7 +32,6 @@ Tutor::Application.routes.draw do
 	resources :test_cases
 	resources :model_answers
 	resources :solutions
-	
 	resources :topics
 	resources :posts
 	resources :facebook
