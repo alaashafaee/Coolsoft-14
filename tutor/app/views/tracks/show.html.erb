@@ -15,37 +15,77 @@
 
 <div class="panel-group list-group" id="accordion">
 	<% @problems.each do |p| %>
-		<% if @problems_status %>
-			<% if @problems_status[:success].include?(p) %>
-				<% color = "label label-success" %>
-			<% elsif @problems_status[:failure].include?(p) %>
-				<% color = "label label-warning" %>
-			<% else %>
-				<% color = "label label-default" %>
-			<% end %>
-		<% end %>
-		<div class="panel panel-default">
-			<div class="panel-title list-group-item list-group-item-info"
-				data-toggle="collapse" data-parent="#accordion"
-				href="#<%= p.id.to_s %>">
-					<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
-					<%= link_to p.title , p , style: 'color:#003366;' ,
-					class: color %></b>
-					<span class="badge">
-						<div onclick="showdialog(<%= p.id.to_s %>,
-							<%=current_student.id%>)">Recommend to classmates</div>
-					</span>
-					<!-- <span class="badge">p.success_attempts</span> -->
-					<!-- Reminder for me to uncomment this line 
-						when it is supported again in the database -->
-			</div>
-			<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
-				<%= p.description %>
-				<% if @can_edit %>
-					<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
+		<% if p.incomplete? %>
+			<% if @can_edit %>
+				<% if @problems_status %>
+					<% if @problems_status[:success].include?(p) %>
+						<% color = "label label-success" %>
+					<% elsif @problems_status[:failure].include?(p) %>
+						<% color = "label label-warning" %>
+					<% else %>
+						<% color = "label label-default" %>
+					<% end %>
 				<% end %>
+				<div class="panel panel-default">
+					<div class="panel-title list-group-item list-group-item-info"
+						data-toggle="collapse" data-parent="#accordion"
+						href="#<%= p.id.to_s %>">
+							<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
+							<%= link_to p.title , p , style: 'color:#003366;' ,
+							class: color %></b>
+							<span class="badge">
+								<% if student_signed_in? %>
+									<div onclick="showdialog(<%= p.id.to_s %>,
+										<%=current_student.id%>)">Recommend to classmates</div>
+								<% end %>
+							</span>
+							<!-- <span class="badge">p.success_attempts</span> -->
+							<!-- Reminder for me to uncomment this line 
+								when it is supported again in the database -->
+					</div>
+					<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
+						<%= p.description %>
+						<% if @can_edit %>
+							<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		<% else %>
+			<% if @problems_status %>
+					<% if @problems_status[:success].include?(p) %>
+						<% color = "label label-success" %>
+					<% elsif @problems_status[:failure].include?(p) %>
+						<% color = "label label-warning" %>
+					<% else %>
+						<% color = "label label-default" %>
+					<% end %>
+			<% end %>
+			<div class="panel panel-default">
+				<div class="panel-title list-group-item list-group-item-info"
+					data-toggle="collapse" data-parent="#accordion"
+					href="#<%= p.id.to_s %>">
+						<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
+						<%= link_to p.title , p , style: 'color:#003366;' ,
+						class: color %></b>
+						<span class="badge">
+							<% if student_signed_in? %>
+								<div onclick="showdialog(<%= p.id.to_s %>,
+									<%=current_student.id%>)">Recommend to classmates</div>
+							<% end %>
+						</span>
+						<!-- <span class="badge">p.success_attempts</span> -->
+						<!-- Reminder for me to uncomment this line 
+							when it is supported again in the database -->
+				</div>
+				<div id="<%= p.id.to_s %>" class="panel-collapse collapse">
+					<%= p.description %>
+					<% if @can_edit %>
+						<Button><%= link_to "Edit", edit_problem_path(:id => p.id)%></button>
+					<% end %>
+				</div>
 			</div>
-		</div>
+		<% end %>
 	<% end %>
 	<div class="classmates_list">
 		<div id="container">
