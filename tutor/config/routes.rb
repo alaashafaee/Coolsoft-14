@@ -47,6 +47,7 @@ Tutor::Application.routes.draw do
 	resources :students
 	resources :posts
 	resources :facebook
+	resources :tips
 
 	# Example resource route with options:
 	#   resources :products do
