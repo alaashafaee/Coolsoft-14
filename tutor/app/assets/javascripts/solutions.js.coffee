@@ -183,33 +183,33 @@ debug_console = ->
 # [Execute Line By Line - Story 3.8]
 # Jumps to the target state by highlighting the line and showing variables
 # Parameters:
-#	stateNumber: The target state number.
+#	state_number: The target state number.
 # Returns: none
 # Author: Rami Khalil + Khaled Helmy
-@jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line'] - 2
-	show_runtime stateNumber
-	update_memory_contents stateNumber
+@jump_state = (state_number) ->
+	highlight_line variables[state_number]['line'] - 2
+	show_runtime state_number
+	update_memory_contents state_number
 
 # [Debugger: Debug - Story 3.6]
 # Shows the runtime error in its corresponding section in the page
 # Parameters:
-# 	stateNumber: The target state number.
+# 	state_number: The target state number.
 # Returns: none
 # Author: Mussab ElDash
-show_runtime = (stateNumber) ->
-	runtime = variables[stateNumber]['exception']
-	explain = variables[stateNumber]['explain']
+show_runtime = (state_number) ->
+	runtime = variables[state_number]['exception']
+	explain = variables[state_number]['explain']
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
 # Parameters:
-#	stateNumber: The target state number.
+#	state_number: The target state number.
 # Returns: none
 # Author: Khaled Helmy
-@update_memory_contents = (stateNumber) ->
+@update_memory_contents = (state_number) ->
 	div = document.getElementById("memory")
-	list_of_variables = variables[stateNumber]["locals"]
+	list_of_variables = variables[state_number]["locals"]
 	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
 	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
 	i = 0
