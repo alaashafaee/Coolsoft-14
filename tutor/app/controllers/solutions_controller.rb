@@ -32,14 +32,7 @@ class SolutionsController < ApplicationController
 		pid = params[:problem_id]
 		input = params[:code]
 		cases = if params[:input] then params[:input] else "" end
-		result = Executer.execute(id, pid, input, cases)
-		puts "****************"
-		puts result
-		# if !result[:compiler_feedback]
-		# 	output = result[:compiler_errors]
-		# elsif !result[:executer_feedback]
-		# 	output = result[:executer_output]
-		# end
+		result = Executer.create_solution(id, pid, input, cases)
 		render json: result
 	end
 

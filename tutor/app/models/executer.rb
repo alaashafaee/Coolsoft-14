@@ -8,16 +8,15 @@ class Executer
 	# Returns:
 	# 	@execute_res: The execution result
 	# Author: Ahmed Akram
-	def self.execute(student_id, problem_id, code, input)
-		@solution = Solution.create({code: code, student_id: student_id,
-			problem_id: problem_id})
+	def self.execute(sol, input)
+		@solution = sol
 		compile_status = Compiler.compiler_feedback(@solution)
 		class_path = Solution::CLASS_PATH
 		file_name = @solution.file_name
 		unless compile_status[:success]
 			return {compiler_error: true, compiler_output: compile_status}
 		end
-		validity = check_input_validity(input, problem_id)
+		validity = check_input_validity(input, @solution.problem.id)
 		if validity[:status]
 			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
 			if @execute_res.include?("Exception")
@@ -28,6 +27,12 @@ class Executer
 		else
 			return {executer_feedback: false, executer_output: validity[:msg]}
 		end
+	end
+
+	def self.create_solution(student_id, problem_id, code, input)
+		solution = Solution.create({code: code, student_id: student_id,
+			problem_id: problem_id})
+		return execute(solution, input)
 	end
 
 	# [Compiler: Test - Story 3.15]
