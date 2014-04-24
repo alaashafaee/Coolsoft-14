@@ -213,4 +213,8 @@ puts("# -----------------------Solution---------------------------")
 	Student.first.solutions << Solution.find_by_id(2)
 	Student.first.solutions << Solution.find_by_id(3)
 
+puts("# -----------------------TeachingAssistants---------------------------")
+	TeachingAssistant.first.courses << Course.first
+	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
+
 puts("# ---------------------------------------------------------")
