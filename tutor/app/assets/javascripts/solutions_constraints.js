@@ -237,8 +237,7 @@ function submitParams() {
 			method_return: method,
 			method_name: name
 		},
-		success: function(data) 
-		{
+		success: function(data) {
 			if (data) {
 				alert("Data have been Added successfully");
 				window.location = window.location
