@@ -1,6 +1,7 @@
 class SolutionsConstraintsController < ApplicationController
 
-	# Description: Creates New record for either Method or variable constraints
+	# [Add Solutions' constraints - Story 4.14]
+	# Description: Creates new record for either method or variable constraints
 	# Parameters:
 	#	method_cons: Hash containting the Method parameters
 	#	var_cons: Hash containting the Variables Constraints
@@ -39,7 +40,8 @@ class SolutionsConstraintsController < ApplicationController
 		render json: true
 	end
 
-	# Description: init New record
+	# [Add Solutions' constraints - Story 4.14]
+	# Description: init new record
 	# Parameters: none
 	# Returns: none
 	# Author: Ahmed Mohamed Magdi

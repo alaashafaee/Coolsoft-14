@@ -7,8 +7,9 @@ var param_name = new Array();
 var var_type = new Array();
 var var_name = new Array();
 
+// # [Add Solutions' constraints - Story 4.14]
 // # Description: Adds the parameters from the text_fields to array
-// # Parameters:none
+// # Parameters: none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function add_params(field) {
@@ -54,8 +55,9 @@ function add_params(field) {
 	}
 }
 
+// # [Add Solutions' constraints - Story 4.14]
 // # Description: removes selected variable from method Contraints
-// # Parameters:none
+// # Parameters: none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function remove_params(field) {
@@ -81,8 +83,9 @@ function remove_params(field) {
 	$('#parameter').append("</table>");
 }
 
+// # [Add Solutions' constraints - Story 4.14]
 // # Description: Adds the parameters from the text_fields to array
-// # Parameters:none
+// # Parameters: none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function add_variable(field) {
@@ -128,8 +131,9 @@ function add_variable(field) {
 	}
 }
 
+// # [Add Solutions' constraints - Story 4.14]
 // # Description: removes selected variable from Variable Contraints
-// # Parameters:none
+// # Parameters: none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function remove_variable(field) {
@@ -155,9 +159,10 @@ function remove_variable(field) {
 	$('#variable').append("</table>");
 }
 
-// # Description: TO show the error massages
+// # [Add Solutions' constraints - Story 4.14]
+// # Description: for showing the error massages for the user
 // # Parameters:
-// #		errorArray: array of Error, for multi error massage show
+// #	errorArray: array of Error, for multi error massage show
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function showErrorMessage(arrayOfErrors) {
@@ -166,9 +171,10 @@ function showErrorMessage(arrayOfErrors) {
 	};
 }
 
+// # [Add Solutions' constraints - Story 4.14]
 // # Description: Validates Data before sending it to the Server side
 // # Parameters:
-// #		errorArray: array of Error, for multi error massage show
+// #	errorArray: array of Error, for multi error massage show
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function testingValidation(errorArray,method,name) {
@@ -200,8 +206,9 @@ function testingValidation(errorArray,method,name) {
 	return errorArray.length == 0;
 }
 
+// # [Add Solutions' constraints - Story 4.14]
 // # Description: submits via ajax to the controller
-// # Parameters:none
+// # Parameters: none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function submitParams() {
