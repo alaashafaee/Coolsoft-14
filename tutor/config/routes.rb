@@ -1,11 +1,6 @@
 Tutor::Application.routes.draw do
 
-  get "tips/new"
-  get "tips/create"
-  get "tips/show"
-  get "tips/index"
-  get "tips/edit"
-  get "tips/destroy"
+
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
@@ -27,6 +22,12 @@ Tutor::Application.routes.draw do
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
+	get "tips/new"
+	get "tips/create"
+	get "tips/show"
+	get "tips/index"
+	get "tips/edit"
+	get "tips/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
