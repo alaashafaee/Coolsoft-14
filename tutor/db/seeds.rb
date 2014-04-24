@@ -190,9 +190,6 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.find_by_id(3)
 	Lecturer.first.replies << Reply.find_by_id(4)
 
-puts("# -----------------------TeachingAssistants---------------------------")
-	TeachingAssistant.first.courses << Course.first
-
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
 	Student.first.solutions << Solution.first
