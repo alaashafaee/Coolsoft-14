@@ -64,22 +64,28 @@ class Debugger < ActiveRecord::Base
 		$all = []
 		Dir.chdir(Solution::CLASS_PATH){
 			begin
-				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, input)
+				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
 				buffer_until_ready
 				input "stop in #{class_name}.main"
 				buffer_until_ready
 				input "run"
 				num = get_line
-				# locals = get_variables
-				hash = {:line => num, :locals => []}
+				locals = get_variables
+				hash = {:line => num, :locals => locals}
 				$all << hash
 				debug
 			rescue => e
 				unless e.message === 'Exited'
+					p e.message
 					return false
 				end
 			end
 		}
+		begin
+			Process.kill("TERM", $wait_thread.pid)
+		rescue => e
+			p e.message
+		end
 		return $all
 	end
 
@@ -149,7 +155,7 @@ class Debugger < ActiveRecord::Base
 		end
 		debugger = Debugger.new
 		class_name = solution.class_file_name
-		debugging = debugger.start(class_name, input)
+		debugging = debugger.start(class_name, input.split(" "))
 		p debugging
 		java_file = solution.java_file_name true, true
 		class_file = solution.class_file_name true, true
