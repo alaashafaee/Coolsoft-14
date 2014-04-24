@@ -6,28 +6,27 @@
 		<%= f.label :Name %><br>
 		<% unless @new_course.errors[:name].blank? %>
 			<span id="error_explanation">
-					Name <%= @new_course.errors[:name].join(", ") %> 
+				Name <%= @new_course.errors[:name].join(", ") %> 
 			</span>
 		<% end %>
 		<br>
-		<%= f.text_field :name, :value => @new_course.name%>
-		
+		<%= f.text_field :name, :value => @new_course.name, class:"form-control", style: "width:300px" %>
 	</p>
 	<p>
 		<%= f.label :Code %><br>
 		<% unless @new_course.errors[:code].blank? %>
 			<span id="error_explanation">
-					Code <%= @new_course.errors[:code].join(", ") %> 
+				Code <%= @new_course.errors[:code].join(", ") %> 
 			</span>
 		<% end %>
 		<br>
-		<%= f.text_field :code, :value => @new_course.code %>
+		<%= f.text_field :code, :value => @new_course.code, class:"form-control", style: "width:300px" %>
 	</p>
 	<p>
 		<%= f.label :Description %><br>
 		<% unless @new_course.errors[:description].blank? %>
 			<span id="error_explanation">
-					Description <%= @new_course.errors[:description].join(", ") %> 
+				Description <%= @new_course.errors[:description].join(", ") %> 
 			</span>
 		<% end %>
 		<br>
@@ -37,23 +36,23 @@
 		<%= f.label :Semester %><br>
 		<% unless @new_course.errors[:semester].blank? %>
 			<span id="error_explanation">
-					Semester <%= @new_course.errors[:semester].join(", ") %> 
+				Semester <%= @new_course.errors[:semester].join(", ") %> 
 			</span>
 		<% end %>
 		<br>
-		<%= f.text_field :semester, :value => @new_course.semester %>
+		<%= f.text_field :semester, :value => @new_course.semester, class:"form-control", style: "width:50px" %>
 	</p>
 	<p>
 		<%= f.label :Year %><br>
 		<% unless @new_course.errors[:year].blank? %>
 			<span id="error_explanation">
-					Year <%= @new_course.errors[:year].join(", ") %> 
+				Year <%= @new_course.errors[:year].join(", ") %> 
 			</span>
 		<% end %>
 		<br>
-		<%= f.text_field :year, :value => @new_course.year %>
+		<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:100px" %>
 	</p>
 	<p>
-		<%= f.submit %>
+		<%= f.submit "Save", class: "btn btn-success" %>
 	</p>
 <% end %>
