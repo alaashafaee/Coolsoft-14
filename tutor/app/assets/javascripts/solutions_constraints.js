@@ -179,11 +179,11 @@ function testingValidation(errorArray,method,name){
 			errorArray.push("Enter method name and return type ..");
 		}
 	};
-	if(method == ""){
+	if(method == "" && name != ""){
 		document.getElementById("_constrain_method_name").style.border= "";
 		document.getElementById("_constrain_method_return").style.border= "red 1px solid";
 		errorArray.push("Enter method return type ..");
-	}else if(name == ""){
+	}else if(name == "" && method != ""){
 		document.getElementById("_constrain_method_name").style.border= "red 1px solid";
 		document.getElementById("_constrain_method_return").style.border= "";
 		errorArray.push("Enter method name ..");

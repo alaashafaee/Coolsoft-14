@@ -24,20 +24,20 @@ class SolutionsConstraintsController < ApplicationController
 					parameters.parameter = value[:name]
 					parameters.params_type = value[:type]
 					parameters.save
-					constarint.method_parameter << parameters
+					constarint.parameters << parameters
 				end
 			end
 			constarint.save
 		end
+
 		if var_cons.present?
 			var_cons.each do |index,value|
 				variable = VariableConstraint.new
-				variable.variable_name = value[:name]
-				variable.variable_type = value[:type]
+				variable.variable_name = var_cons[index][:name]
+				variable.variable_type = var_cons[index][:type]
 				variable.save
 			end
 		end
-
 		render json: true
 	end
 
