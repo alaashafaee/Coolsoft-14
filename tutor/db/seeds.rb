@@ -171,7 +171,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-	
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -187,6 +187,8 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
+	Lecturer.first.replies << Reply.find_by_id(3)
+	Lecturer.first.replies << Reply.find_by_id(4)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
@@ -222,6 +224,10 @@ puts("# -----------------------Students---------------------------")
 	CourseStudent.where(student_id:2, course_id:2)[0].update(share: true)
 	Student.find_by_id(1).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:1, course_id:2)[0].update(share: true)
+
+puts("# -----------------------TeachingAssistants---------------------------")
+	TeachingAssistant.first.courses << Course.first
+	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -276,28 +282,8 @@ puts("# --------------------- Courses -------------------------")
 	Course.find_by_id(2).discussion_board = DiscussionBoard.last
 	Course.first.course_students << CourseStudent.first
 
-
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
 
-puts("# ----------------- Track Progressions ----------------------")
-	#TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
-	#TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
-	#TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
 puts("# ---------------------------------------------------------")
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
-
-puts("# -----------------------TeachingAssistants---------------------------")
-	TeachingAssistant.first.courses << Course.first
-	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
-
-puts("# ---------------------------------------------------------")
-
-puts("# -------------------------------------------------------")
-
-puts("# -------------------------------------------------------")
-
