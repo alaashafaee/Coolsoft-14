@@ -29,25 +29,25 @@ class TestCasesController < ApplicationController
 	#          In case of failure a flash notice will appear:"Can't add test case!"
 	# Author: Lin
 	def create
-		@problem =Problem.find_by_id(session[:problem_id])
+		@problem = Problem.find_by_id(session[:problem_id])
 		if lecturer_signed_in?
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_lecturer.id
 			@test_case.owner_type = "lecturer"
-			@test_case.problem_id=session[:problem_id]
+			@test_case.problem_id = session[:problem_id]
 		elsif teaching_assistant_signed_in?
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_teaching_assistant.id
 			@test_case.owner_type = "teaching assistant"
-			@test_case.problem_id=session[:problem_id]
+			@test_case.problem_id = session[:problem_id]
 		end
 		if @test_case.save
 			@problem.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
-			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
+			redirect_to :controller => 'problems', :action => 'edit',
+				:id => session[:problem_id]
 		else
-			
-			render :action=>'new' , :problem_id => @test_case.problem_id
+			render :action=>'new', :problem_id => @test_case.problem_id
 		end
 	end
 
@@ -72,9 +72,10 @@ class TestCasesController < ApplicationController
 		@test_case = TestCase.find(params[:id])
 		if @test_case.update_attributes(post_params)
 			flash[:notice] = "Your Testcase is now updated"
-			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
+			redirect_to :controller => 'problems', :action => 'edit',
+				:id => @test_case.problem_id
 		else
-			render :action=>'edit' , :problem_id => @test_case.problem_id
+			render :action=>'edit', :problem_id => @test_case.problem_id
 		end
 	end
 
