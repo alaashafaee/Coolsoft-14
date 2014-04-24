@@ -31,7 +31,6 @@ Tutor::Application.routes.draw do
 	resources :courses
 	resources :test_cases
 	resources :model_answers
-	resources :problems_by_tas
 	resources :solutions
 	resources :problems
 	resources :topics
