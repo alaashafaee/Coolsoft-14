@@ -23,13 +23,13 @@
 				<% if post.most_recent_reply%>
 					<%= distance_of_time_in_words_to_now post.most_recent_reply.created_at %> ago by 
 					<% if post.most_recent_reply.owner_type == "Lecturer" %>
-						<%= link_to post.most_recent_reply.owner.name, "/lecturer/{post.most_recent_reply.owner_id}" %>
+						<%= link_to post.most_recent_reply.owner.name, "/lecturers/{post.most_recent_reply.owner_id}" %>
 					<% end %>
 					<% if post.most_recent_reply.owner_type == "Student" %>
-						<%= link_to post.most_recent_reply.owner.name %>
+						<%= link_to post.most_recent_reply.owner.name,"/students/{post.most_recent_reply.owner_id}"  %>
 					<% end %>
 					<% if post.most_recent_reply.owner_type == "TeachingAssistant" %>
-						<%= link_to post.most_recent_reply.owner.name %>
+						<%= link_to post.most_recent_reply.owner.name,"/teachingassistants/{post.most_recent_reply.owner_id}"  %>
 					<% end %>
 				<% else %>no Replies
 				<% end %>
