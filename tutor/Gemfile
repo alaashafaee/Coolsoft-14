@@ -56,3 +56,6 @@ gem 'foreman'
 
 # Use composite primary keys in models
 gem 'composite_primary_keys', '~> 6.0.1'
+
+# whenever gem for scheduling tasks
+gem 'whenever', :require => false
