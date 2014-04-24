@@ -13,7 +13,7 @@ class TeachingAssistantsController < ApplicationController
 		@checkbox = !params[:check]
 	end
 
-# [Add TA - Story 1.5,1.6]
+# [Add TA - Story 1.4,1.5,1.6]
 # Adds the TA selected from the dropdown list in the view to the course and to the lecturer's history
 # Parameters: teaching_assistant_id , course_id
 # Returns: flash[:notice] that shows the result of trying to add the TA
@@ -41,7 +41,7 @@ class TeachingAssistantsController < ApplicationController
 		end	
 	end
 
-# [Add TA - Story /]
+# [Add TA - Story 1.4, 1.5, 1.6]
 # lists the TAs added to the course.
 # Parameters: course_id
 # Returns:
