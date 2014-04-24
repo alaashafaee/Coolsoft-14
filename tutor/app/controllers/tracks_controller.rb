@@ -13,11 +13,11 @@ class TracksController < ApplicationController
 
 	def show
 		id = params[:id]
-		track = Track.find_by_id(id)
-		if track
-			@topic = track.topic
+		@track = Track.find_by_id(id)
+		if @track
+			@topic = @track.topic
 			@course = @topic.course
-			@problems = track.problems
+			@problems = @track.problems
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 			if student_signed_in?
@@ -71,6 +71,57 @@ class TracksController < ApplicationController
 			flash[:difficulty] = params[:Track][:difficulty]
 			redirect_to :back
 		end
+	end
+
+	# [Recommendatio to students - Story 5.7]
+	# Gets students who can be recommended a problem of id :id
+	# Parameters: none
+	# Returns: json containing a Hash of classmates
+	# Author: Mohab Ghanim
+	def show_classmates
+		problem = Problem.find_by_id(params[:id])
+		track = problem.track
+		topic = problem.track.topic
+		course = problem.track.topic.course
+		students_enrolled = course.students
+		students_receiving_recommendation = Hash.new
+
+		students_enrolled.each do |student|
+			student_level = TrackProgression.get_progress(student.id,topic.id)
+			if (student_level == track.difficulty)
+				students_receiving_recommendation[student.id] = Hash.new
+				students_receiving_recommendation[student.id]['student_name'] = student.name
+				students_receiving_recommendation[student.id]['recommended_before'] = 'false'
+				if (Recommendation.where(
+					:problem_id => problem.id,
+				 	:recommender_id => current_student.id,
+				 	:student_id => student.id).present?)
+						students_receiving_recommendation[student.id]['recommended_before'] = 'true'
+				end
+			end
+		end
+		render json: students_receiving_recommendation
+	end
+
+	# [Recommendation to students - Story 5.7]
+	# Inserts a record in the recommendation table containing the id of the problem,
+	#	the id of the students recommending the problem, the id of the student recieving
+	#	the recommendation
+	# Parameters: none
+	# Returns: none
+	# Author: Mohab Ghanim
+	def insert_recommendation
+		problem_id = params[:p_id]
+		student_id = params[:s_id]
+		recommender_id = params[:r_id]
+
+		recommendation = Recommendation.new
+		recommendation.problem_id = problem_id
+		recommendation.student_id = student_id
+		recommendation.recommender_id = recommender_id
+		recommendation.save
+
+		render :nothing => true
 	end
 
 	# [Create Track - Story 4.1]

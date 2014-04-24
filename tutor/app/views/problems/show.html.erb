@@ -1,5 +1,5 @@
-<label><%= @course.name %></label> / 
-<label><%= @topic.title %></label> / 
+<label><%= @course.name %></label>\
+<label><%= @topic.title %></label>\
 <label><%= @track.title %></label>
 <br /><br />
 <div id="fb-root"></div>
@@ -17,17 +17,18 @@
  						<%= render partial: "solutions/new"%>
  						<td style='vertical-align:top;'>
 							<div style='margin-left:1em;'>
-								<b>Memory Contents:</b><br /><br />
-								<br /><br />
+								<b>Memory Contents:</b>
+								<div id="memory" class="fixed-horizontal"></div>
+								<br /><br /><br /><br />
 								<b>Hints:</b><br /><br />
 								<%= render partial: "hints/give" %>
 								<br /><br />
 								<b>Tips:</b><br /><br />
 							</div>
 						</td>
-					<% end %> 
+					<% end %>
 				<% end %>
 			</td>
-		</tr>					
+		</tr>
 	</table>
 </div>

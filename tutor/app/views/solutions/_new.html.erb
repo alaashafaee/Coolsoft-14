@@ -1,12 +1,10 @@
-<!-- The flash messages for the succes and failure scenarios -->
-<p style="color: green"><%= flash[:success] %></p>
-<p style="color: red"><%= flash[:alert] %></p>
+<p class="compilation_failed" ><%= flash[:alert] %></p>
 <!-- Timer that starts when problem is shown -->
 <b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
-
-<%= form_for :solution, url: {controller: 'solutions', action: 'create'},
-	html: {method: 'post'} do |f| %>
+<%= form_for :solution,
+	:url => { :controller => "solutions", :action => "create" },
+	:html => {:method => :post} do |f| %>
 
 	<!--Author: Ahmed Moataz-->
 	<div class="editor_border">
@@ -35,8 +33,6 @@
 			<td>
 				<%= button_tag 'Compile', type: 'Button',
 					id: 'compileButton', onClick: 'compile()' %>
-				<%= button_tag 'Test', type: 'Button',
-					id: 'testButton', onClick: 'test()' %>
 				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
 					onclick: "start_debug(#{params[:id]})" %>
 				<%= button_tag 'Previous', type: 'Button',
@@ -52,24 +48,69 @@
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?' %>
 				<%= f.submit "Compile" %>
+				<%= f.submit "Run Test Case" %>
+				<%= f.submit "Submit" %>
 			</td>
 		</tr>
 	</table>
 	<br /><br />
-	<textarea id='testcases' class='test'>Test Input</textarea><br /><br />
-	<b>Output:</b><br />
-	<p class='output'>
-		Output response
-	</p>
-
+	<div>
+		<b>Input:</b></br>
+		<%= f.text_area :input, placeholder: "Write your test case here", 
+			value: @input, class: "form-control", style: "width:400px" %>
+	</div>
+	</br>
+	<div>
+		<b>Output:</b>
+		<% if flash[:exp] || flash[:exp_2] %>
+			<div class="panel panel-danger fixed-content", style="white-space: pre">
+				<div class="panel-heading", style="min-height: 30px;
+				max-height: 30px; line-height:0.25px; margin-top: -45px">
+					<h3 class="panel-title"> Error </h3>
+				</div>
+				<div class="panel-body", style= "margin-top:-100px">
+					<p><%= flash[:msg] %></p>
+					<% if flash[:msg_2] %>
+						<% flash[:msg_2].each do |message| %>
+						<p><%= message %></p>
+						<% end %>
+					<% end %>
+				</div>
+				<div class="panel-heading", style="min-height: 30px;
+				max-height: 30px; line-height:0.25px; margin-top: -90px">
+					<h3 class="panel-title"> Explanation </h3>
+				</div>
+				<div class="panel-body", style= "margin-top:-100px">
+					<p><%= flash[:exp] %></p>
+					<% if flash[:exp_2] %>
+						<% flash[:exp_2].each do |message| %>
+						<p><%= message %></p>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		<% else %>
+			<div>
+				<p><%= flash[:msg] %></p>
+			</div>
+		<% end %>
+	</div>
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div class="console">
-		<p class="compilation_succeeded"><%= flash[:compiler_success] %></p>
-		<p class="compilation_failed"><%= flash[:compiler_fail] %></p>
-		<p class="compilation_feedback"><%= flash[:compiler_feedback] %></p>
+		<p class="compilation_succeeded" > <%= flash[:compiler_success] %> </p>
+		<p class="compilation_failed" ><%= flash[:compiler_fail] %></p>
+		<% if flash[:compiler_success_2] %>
+			<% flash[:compiler_success_2].each do |message| %>
+			<p class="compilation_succeeded"> <%= message %> </p>
+			<% end %>
+		<% end %>
+		<% if flash[:compiler_fail_2] %>
+			<% flash[:compiler_fail_2].each do |message| %>
+			<p class="compilation_failed" > <%= message %> </p>
+			<% end %>
+		<% end %>
+		<p class="compilation_feedback" ><%= flash[:compiler_feedback] %></p>
 	</div>
-
 <% end %>
