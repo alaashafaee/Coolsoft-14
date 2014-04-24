@@ -3,7 +3,7 @@ class Executer
 	# [Compiler: Test - Story 3.15]
 	# Runs the solution submitted on the submitted test case
 	# Parameters:
-	#	file_name: The submitted file name
+	#	sol: The created solution
 	# 	input: Test case entered by the user
 	# Returns:
 	# 	@execute_res: The execution result
@@ -29,6 +29,16 @@ class Executer
 		end
 	end
 
+	# [Compiler: Test - Story 3.15]
+	# Creates a new solution with the passed parameters
+	# Parameters:
+	#	student_id: The solver id
+	#	problem_id: The problem id
+	#	code: The submitted code
+	# 	input: Test case entered by the user
+	# Returns:
+	# 	none
+	# Author: Ahmed Akram
 	def self.create_solution(student_id, problem_id, code, input)
 		solution = Solution.create({code: code, student_id: student_id,
 			problem_id: problem_id})

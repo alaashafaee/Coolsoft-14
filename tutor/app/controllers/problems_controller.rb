@@ -34,7 +34,7 @@ class ProblemsController < ApplicationController
 		end
 		if p.save
 			redirect_to :action => "edit", :id => p.id
-		else 
+		else
 			flash.keep[:notice] = "Problem is missing paramaters"
 			redirect_to :back
 		end

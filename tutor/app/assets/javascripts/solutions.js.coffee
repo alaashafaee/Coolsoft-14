@@ -44,7 +44,7 @@ index_number = 0
 # Sends the code to the server to be compiled
 # Parameters:
 # 	problem_id: The id of the problem being solved
-# Returns: 
+# Returns:
 #	none
 # Author: Ahmed Akram
 @compile = (problem_id) ->
@@ -78,7 +78,7 @@ index_number = 0
 # Sends the code and the test case to the server to be tested
 # Parameters:
 # 	problem_id: The id of the problem being solved
-# Returns: 
+# Returns:
 #	none
 # Author: Ahmed Akram
 @run_input = (problem_id) ->
@@ -118,7 +118,7 @@ index_number = 0
 # Fills the console with the runtime errors
 # Parameters:
 # 	data: The hash containing the response
-# Returns: 
+# Returns:
 #	none
 # Author: Ahmed Akram
 input_test_output = (data) ->
@@ -129,7 +129,7 @@ input_test_output = (data) ->
 # Disables the code and input area while debugging, compiling or running test case
 # Parameters:
 # 	none
-# Returns: 
+# Returns:
 #	none
 # Author: Ahmed Akram
 toggle_code_area = ->
@@ -140,7 +140,7 @@ toggle_code_area = ->
 # Fills the console with the runtime errors
 # Parameters:
 # 	data: The hash containing the response
-# Returns: 
+# Returns:
 #	none
 # Author: Ahmed Akram
 runtime_error = (data) ->
@@ -208,9 +208,9 @@ debug_console = ->
 
 # [Compiler: Test - Story 3.15]
 # Toggles debugging mode by changing the available buttons.
-# Parameters: 
+# Parameters:
 #	none
-# Returns: 
+# Returns:
 #	none
 # Author: Ahmed Akram
 @toggleDebug = (state) ->
