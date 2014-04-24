@@ -1,10 +1,13 @@
-<p class="compilation_failed" ><%= flash[:alert] %></p>
+<!-- The flash messages for the succes and failure scenarios -->
+<p style="color: green"><%= flash[:success] %></p>
+<p style="color: red"><%= flash[:alert] %></p>
+
 <!-- Timer that starts when problem is shown -->
 <b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
-<%= form_for :solution,
-	:url => { :controller => "solutions", :action => "create" },
-	:html => {:method => :post} do |f| %>
+
+<%= form_for :solution, url: {controller: 'solutions', action: 'create'},
+	html: {method: 'post'} do |f| %>
 
 	<!--Author: Ahmed Moataz-->
 	<div class="editor_border">
@@ -52,8 +55,10 @@
 				<b class='accepted'>Accepted</b>
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
-				<b class='compilation_error'>Compilation Error</b>		
-
+				<b class='compilation_error'>Compilation Error</b>
+				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?', class: "btn btn-info" %>
+				<%= f.submit "Compile", class: "btn btn-info" %>
+				
 			</td>
 		</tr>
 	</table>
@@ -64,68 +69,35 @@
 			value: @input, class: "form-control", style: "width:400px" %>
 	</div>
 	</br>
-
-
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div class="console">
 		<p class="compilation_succeeded"></p>
 		<p class="compilation_failed"></p>
 		<p class="compilation_feedback"></p>
-		<div>
-			<% if flash[:exp] || flash[:exp_2] %>
-				<div class="panel panel-danger fixed-content", style="white-space: pre">
-
-					<div class="panel-heading", style="min-height: 30px;
-					max-height: 30px; line-height:0.25px; margin-top: -45px">
-						<h3 class="panel-title"> Error </h3>
-					</div>
-					<div class="panel-body", style= "margin-top:-100px">
-						<p><%= flash[:msg] %></p>
-						<% if flash[:msg_2] %>
-							<% flash[:msg_2].each do |message| %>
-							<p><%= message %></p>
-							<% end %>
-						<% end %>
-					</div>
-					<div class="panel-heading", style="min-height: 30px;
-					max-height: 30px; line-height:0.25px; margin-top: -90px">
-						<h3 class="panel-title"> Explanation </h3>
-					</div>
-					<div class="panel-body", style= "margin-top:-100px; min-height: 50px;
-					max-height: 50px;">
-						<p><%= flash[:exp] %></p>
-						<% if flash[:exp_2] %>
-							<% flash[:exp_2].each do |message| %>
-							<p><%= message %></p>
-							<% end %>
-						<% end %>
-					</div>
+		<% if flash[:exp] %>
+			<div class="panel-danger", style="white-space: pre">
+				<div class="panel-heading", style="min-height: 30px;
+				max-height: 30px; line-height:0.25px; margin-top: -45px">
+					<h3 class="panel-title"> Error </h3>
 				</div>
-			<% else %>
-				<div style= "color: white; font-weight: bold; font-size: 15px">
+				<div class="panel-body", style= "margin-top:-100px">
 					<p><%= flash[:msg] %></p>
 				</div>
-			<% end %>
-		</div>
-	</div>
-
-	<!--Author: Ahmed Moataz-->
-	<b>Console:</b><br/>
-	<div class="console">
-		<p class="compilation_succeeded" > <%= flash[:compiler_success] %> </p>
-		<p class="compilation_failed" ><%= flash[:compiler_fail] %></p>
-		<% if flash[:compiler_success_2] %>
-			<% flash[:compiler_success_2].each do |message| %>
-			<p class="compilation_succeeded"> <%= message %> </p>
-			<% end %>
+				<div class="panel-heading", style="min-height: 30px;
+				max-height: 30px; line-height:0.25px; margin-top: -90px">
+					<h3 class="panel-title"> Explanation </h3>
+				</div>
+				<div class="panel-body", style= "margin-top:-100px; min-height: 50px;
+				max-height: 50px;">
+					<p><%= flash[:exp] %></p>
+				</div>
+			</div>
+		<% else %>
+			<div style= "color: white; font-weight: bold; font-size: 15px">
+				<p><%= flash[:msg] %></p>
+			</div>
 		<% end %>
-		<% if flash[:compiler_fail_2] %>
-			<% flash[:compiler_fail_2].each do |message| %>
-			<p class="compilation_failed" > <%= message %> </p>
-			<% end %>
-		<% end %>
-		<p class="compilation_feedback" ><%= flash[:compiler_feedback] %></p>
 	</div>
 
 <% end %>

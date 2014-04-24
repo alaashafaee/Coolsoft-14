@@ -14,7 +14,7 @@ index_number = 0
 	if input.length is 0
 		alert "You didn't write any code"
 		return
-	test = $('#solution_input').val()
+	test = $('#testcases').val()
 	start_spin()
 	$.ajax
 		type: "POST"
@@ -22,7 +22,6 @@ index_number = 0
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
-			variables = data
 			stop_spin()
 			if !data["success"]
 				compilation_error data["data"]["errors"]
@@ -36,6 +35,9 @@ index_number = 0
 			return
 	return
 
+
+
+
 @compile = (problem_id) ->
 	input = $('#solution_code').val()
 	if input.length is 0
@@ -46,17 +48,16 @@ index_number = 0
 		url: '/solutions/compile_solution'
 		data: {code : input, problem_id : problem_id}
 		datatype: 'json'
-		alert data["data"]["errors"]
 		success: (data) ->
 			clear_console()
-			alert data["data"]["errors"]
+			$('.compilation_succeeded').val(data["previous_code"])
 			if !data["success"]
-				compiler_feedback data["data"]["errors"]
+				compiler_feedback data
 				return
+			$('.compilation_succeeded').html("Compilation Succeeded!")
 		error: ->
 			return
 	return
-
 
 # [Debugger: Debug - Story 3.6]
 # Fills the console with the compilation errors
@@ -67,6 +68,7 @@ compilation_error = (data) ->
 	$('.compilation_failed').html("Compilation Failed!")
 	$('.compilation_feedback').html(data)
 	return
+
 
 compiler_feedback = (data) ->
 	$('.compilation_failed').html("Compilation Failed!")
@@ -124,6 +126,7 @@ debug_console = ->
 # Parameters: none
 # Returns: none
 # Author: Rami Khalil (Temporary)
+
 @toggleDebug = (state) ->
 	$('#debugButton').toggle(!state)
 	$('#compileButton').toggle(!state)
@@ -132,6 +135,14 @@ debug_console = ->
 	$('#previousButton').toggle(state)
 	$('#stopButton').toggle(state)
 	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
+
+# [Compile - Story 3.4]
+# Sends the code to the server to be compiled.
+# Parameters: none
+# Returns: none
+# Author: Rami Khalil (Temporary)
+@compile = () ->
+	alert "Compiling"
 
 # [Test - Story 3.15]
 # Sends the code and the input to be processed on the server.
@@ -205,31 +216,9 @@ debug_console = ->
 # Parameters:
 #	stateNumber: The target state number.
 # Returns: none
-# Author: Rami Khalil + Khaled Helmy
+# Author: Rami Khalil
 @jump_state = (stateNumber) ->
 	highlight_line variables[stateNumber]['line'] - 2
-	update_memory_contents stateNumber
-
-# [View Variables - Story 3.7]
-# Updates the variables values according to a certain state
-# Parameters:
-#	stateNumber: The target state number.
-# Returns: none
-# Author: Khaled Helmy
-@update_memory_contents = (stateNumber) ->
-	div = document.getElementById("memory")
-	list_of_variables = variables[stateNumber]["locals"]
-	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
-	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
-	i = 0
-	while i < list_of_variables.length
-		values = list_of_variables[i].split " = "
-		content += "<tr class='success'><td>" + values[0] + "</td>"
-		content += "<td>" + values[1] + "</td></tr>"
-		i++
-	content += "</table>"
-	div.innerHTML = content
-	return
 
 # [Debug - Story 3.6]
 # Stops the debugging session.
@@ -240,43 +229,3 @@ debug_console = ->
 	toggleDebug(0)
 	index_number = 0;
 	variables = null;
-
-# To be Used when changing to ajax in order not to refresh page
-# [Compiler: Validate - Story 3.5]
-# submits a solution in the form without refreshing
-# 	using ajax showing an alert box for success and failure scenarios
-# Parameters:
-# 	problem_id: the id of the problem being solved
-# Returns: a json object containing two arrays one for the errors
-#	of the current code and the other containing success messages
-# Author: MOHAMEDSAEED
-@validate_code = (problem_id) ->
-	code = $('#solution_code').val()
-	mins = parseInt($('#mins').text())
-	secs = parseInt($('#secs').text())
-	time = mins*60 + secs
-	start_spin()
-	$.ajax
-		type: "POST"
-		url: '/solutions'
-		data: {problem_id: problem_id, code: code, time: time}
-		datatype: 'json'
-		success: (data) ->
-			stop_spin()
-			success = $('#validate_success')
-			errors = $('#validate_error')
-			success.html("")
-			for i in data["success"]
-				success.append("#{i}<br>")
-			errors.html("")
-			for i in data["failure"]
-				errors.append("#{i}<br>")
-			if code.length isnt 0
-				alert 'Solution has been submitted successfully'
-			else
-				alert 'Blank submissions are not allowed'
-			return
-		error: (data) ->
-			stop_spin()
-			return
-	return
