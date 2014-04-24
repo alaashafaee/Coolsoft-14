@@ -48,6 +48,13 @@
 			<%= f.number_field :semester, class: "form-control", placeholder: "Semester" %>
 		</div>
 
+		<div>
+			<%= f.label :advising %>
+			<%= f.select(:advising, [['No', false], ['Yes', true]]) %>
+			<%= f.label :probation %>
+			<%= f.select(:probation, [['No', false], ['Yes', true]]) %>
+		</div>
+
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
 	<% end %>
 
