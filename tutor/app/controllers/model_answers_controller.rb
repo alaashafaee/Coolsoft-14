@@ -6,7 +6,7 @@ class ModelAnswersController < ApplicationController
 	#	@problem: To fetch the problem to which the answer is added.
 	#	@answer: The new answer the user enters.
 	#	@answers: All the previous answers that had been entered before.
-	# Returns: None
+	# Returns: none
 	# Author: Nadine Adel
 	def new
 		@problem = Problem.find(params[:problem_id])
