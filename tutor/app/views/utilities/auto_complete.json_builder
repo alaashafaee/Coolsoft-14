@@ -1,4 +1,4 @@
 array @objects.each do |object|
-  id object
-  name object.name
+	id object
+	name object.name
 end
