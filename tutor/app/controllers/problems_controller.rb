@@ -51,7 +51,8 @@ class ProblemsController < ApplicationController
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters:
 	#	id: The id of the problem to be edited or newly created
-	# Returns: Redirects to edit page on success, refreshes on failure
+	# Returns:
+	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?

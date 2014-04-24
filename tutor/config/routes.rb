@@ -12,7 +12,11 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
+	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
+	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"
@@ -31,6 +35,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	
 	resources :topics
+	resources :posts
 	resources :facebook
 
 	# Example resource route with options:
@@ -78,6 +83,7 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :acknowledgements
 	end
 
 	# Example resource route with concerns:
