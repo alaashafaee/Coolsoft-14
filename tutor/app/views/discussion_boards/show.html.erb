@@ -4,14 +4,16 @@
 	 <% end %>
 	<% if @discussionBoard.activated == true %>
 		<div style="width: 50%; margin-left:25%">
-			<h3><%=@discussionBoard.title%></h3>
-			<% unless @posts.blank? %>
-				<% @posts.each do |post| %>
-					<div style="background-color: #A8A8A8">
-										<td><%= link_to post.title, :controller => 'posts', :action => 'show', :id => post.id, 
-							:method => :get, class: "btn btn-success" %></td>
+			<h3><%= @discussionBoard.title %></h3>
+				<% unless @posts.blank? %>
+					<% @posts.each do |post| %>
+						<div>
+							<td><%= link_to post.title, :controller => 'posts', :action=> 'show',
+								 :id => post.id,:method => :get, class: "btn btn-success" %>
+							</td>
+>>>>>>> 7eb9faa02cd949c47035b7b7f69f9e74a5f97b7d
 						<%= post.views_count %>
-					</div>
+						</div>
 					<br>
 				<% end %>
 			<% else %>
@@ -19,9 +21,10 @@
 			<% end %>
 		</div>
 		<div>
-			<%= button_to "Add Post", {:controller => 'posts', :action => 'new',
-			:discussion_board_id => @discussionBoard.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
-	</div> 	
+			<%= link_to "Add Post", new_post_path(discussion_board_id:
+				@discussionBoard.id), class: "btn btn-success",
+					 style: "float: left;margin-left: 15px" %> 
+		</div> 	
 	<% else %>
 		The discusstion board is deactivated
 	<% end %>

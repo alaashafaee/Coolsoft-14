@@ -1,5 +1,9 @@
 class Course < ActiveRecord::Base
 	
+	#Elasticsearch
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+	
 	#Validations
 	validates :name, presence: true 
 	validates :description, presence: true
@@ -11,11 +15,14 @@ class Course < ActiveRecord::Base
 	#Relations
 	has_and_belongs_to_many :TAs, class_name:"TeachingAssistant", join_table: "courses_teaching_assistants"
 	has_and_belongs_to_many :lecturers, join_table: "courses_lecturers"
-	has_and_belongs_to_many :students, join_table: "courses_students"
 	
 	has_one :discussion_board, dependent: :destroy	
 	has_many :topics, dependent: :destroy
-	
+	has_many :acknowledgements, dependent: :destroy
+
+	has_many :course_students
+	has_many :students, through: :course_students
+
 	#Scoops
 	
 	#Methods
@@ -29,6 +36,43 @@ class Course < ActiveRecord::Base
 			can_edit = user.courses.include?(self)
 		else
 			false
+		end
+	end
+
+	# [Simple Search - Story 1.22]
+	# search for courses
+	# Parameters: keyword
+	# Returns: A hash with search results according to the keyword
+	# Author: Ahmed Elassuty
+	def self.simple_search(keyword)
+		where("name LIKE ? or code LIKE ?", "%#{keyword}%", "%#{keyword}%") if keyword.present?
+	end
+
+	# [Advanced Search - Story 1.23]
+	# search for courses
+	# Parameters: hash of search options
+	# Returns: A hash with search results according to the keyword and other options
+	# Author: Ahmed Elassuty
+	def self.search(params)
+		if params[:keyword].present?
+			case params[:options]
+				when "exactly match"
+					tire.search do
+						query { string "name:#{params[:keyword]}" }
+					end
+				when "includes"
+					tire.search do
+						query { string "name:*#{params[:keyword]}*" }
+					end
+				when "starts with"
+					tire.search do
+						query { string "name:#{params[:keyword]}*" }
+					end
+				when "ends with"
+					tire.search do
+						query { string "name:*#{params[:keyword]}" }
+					end
+			end
 		end
 	end
 

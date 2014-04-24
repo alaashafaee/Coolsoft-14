@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+	class PostsController < ApplicationController
 
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed discussion board id and assigns
@@ -47,6 +47,18 @@ class PostsController < ApplicationController
 			end
 	end		
 	# [Add Post - Story 1.13]
+	# Description: Displays the post that the user chose
+	# Parameters:
+	#	@post: The current post the user is in.
+	#	@posts = The list of replies of @post
+	# Returns: The view of the post
+	# Author: Ahmed Atef
+	def show
+	  	@post = Post.find(params[:id])
+	  	@replies = @post.replies.order("created_at desc")
+	end
+
+	# [Add Post - Story 1.13]
 	# Description: This action takes the passed parameters from 
 	#              the add post form, creates a new Post record
 	#              and assigns it to the respective discussion board.If the 
@@ -61,24 +73,21 @@ class PostsController < ApplicationController
 		@new_post = Post.new(post_params)
 		@new_post.views_count = 0
 		if lecturer_signed_in?
-			@new_post.owner_id = current_lecturer.id
-			@new_post.owner_type = "lecturer"
+			current_lecturer.posts << @new_post
 		elsif teaching_assistant_signed_in?
-			@new_post.owner_id = current_teaching_assistant.id
-			@new_post.owner_type = "teaching assistant"
-		elsif student_signed_in
-			@new_post.owner_id = current_student.id
-			@new_post.owner_type = "student"
+			current_teaching_assistant.posts << @new_post
+		elsif student_signed_in?
+			current_student.posts << @new_post
 		end
+		@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 		if @new_post.save
-			flash[:notice] = "Post successfully created"
-			@discussion_board = DiscussionBoard.find(discussion_board_params[:discussion_board_id])
 			@discussion_board.posts << @new_post
+			redirect_to :controller => 'posts', :action => 'show', :id => @new_post.id
 		else
 			if @new_post.errors.any?
 				flash[:notice] = @new_post.errors.full_messages.first
 			end
-			render :action => 'new'  
+			render :action => 'new' 
 		end
 	end
 
@@ -120,5 +129,6 @@ class PostsController < ApplicationController
 
 		def discussion_board_params 
 			params.require(:post).permit(:discussion_board_id)
-		end		
+		end	
+			
 end
