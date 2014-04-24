@@ -3,7 +3,7 @@ class AcknowledgementsController < ApplicationController
 	# Description: This action takes the passed course id and assings
 	#              the respective course to an instance variable.
 	# Parameters:
-	#  params[:course_id]: The current course id
+	#	params[:course_id]: The current course id
 	# Returns: none
 	# Author: Muhammad Mamdouh
 	def new 
@@ -17,9 +17,9 @@ class AcknowledgementsController < ApplicationController
 	#              creation fails the user is redirected to the form
 	#              with an appropriate message.
 	# Parameters:
-	#   array "students" which has the students selected
-	#   the ID of the course
-	#   the description of the acknowledgement.
+	#	array "students" which has the students selected
+	#	the ID of the course
+	#	the description of the acknowledgement.
 	# Returns: A message indicating the success or failure of the creation
 	# Author: Muhammad Mamdouh
 	def create
