@@ -80,6 +80,12 @@ class Executer
 		end
 	end
 
+	# [Debugger: Debug - Story 3.6]
+	# Returns a message explaining what this error is
+	# Parameters:
+	#	exception: The exception to be explained
+	# Returns: The Explanation of the exception given
+	# Author: Mussab ElDash
 	def self.get_runtime_explaination(exception)
 		if exception.include?("/ by zero")
 			message = "Division by Zero results in infinity, "\
