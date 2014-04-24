@@ -1,6 +1,6 @@
 	<%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
 	<p style="color: green"><%= flash[:notice] %></p>
-	<% if "?type=meth;" %>
+	<% if params[:type] == "meth" %>
 		<h3>Method Constraints</h3>
 		<table class = "table table-striped">
 			<tr>
@@ -13,8 +13,14 @@
 			<tr>
 				<td><%= @parameters.parameter %></td>
 			</tr>
+			<tr>
+			<td class="actions">
+				<%= link_to "Edit", :controller => 'solutions_constraints', :action => 'edit',type:"meth" %>
+				<%= link_to "Delete", {:action => "destroy"}, method: :delete, data: { confirm: 'Are you sure you want to delete this Constraints?' } %> 
+			</td>
+		</tr>
 		</table>
-		<% "?type=var;" %>
+	<%else%>
 		<h3>Variables Constraints</h3>
 		<table class = "table table-striped">
 		<tr>
@@ -23,13 +29,15 @@
 		</tr>
 		<tr>
 			<td><%= @variables.variable_name %></td>
+			<td><%= @variables.variable_type %></td>
 		</tr>
 		</table>
 	
 		<tr>
 			<td class="actions">
-				<%= link_to "Edit", :controller => 'solutions_constraints', :action => 'edit' %>
+				<%= link_to "Edit", edit_solutions_constraint_path(@variables, type:"var") %>
 				<%= link_to "Delete", {:action => "destroy"}, method: :delete, data: { confirm: 'Are you sure you want to delete this Constraints?' } %> 
 			</td>
 		</tr>
+	<%end%>
 	

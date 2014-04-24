@@ -3,31 +3,60 @@
 # General layout for right side bar
 # Author: Ahmed Elassuty
 -->
-<div id="right_side_bar" class="well pull-right side-right" style="width:25%">
+<div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;position:static;overflow:scroll">
+	<div style="margin-bottom:12px" class="well">
+		Navigation.
+	</div>
+
 	<!--
-	# [Get Recommended Problems - Story 5.6]
-	# Displays the recommende problem hash in a table as [recommender_name | problem]
+	# [Next problems to solve - Story 5.5]
+	# displays a table of next problems to solve in each topic
 	# Author: Mohab Ghanim
 	-->
-	<% if student_signed_in? %>
-		<div>
-			<% recommended_problems = current_student.getClassMatesRecommendations 
-			if recommended_problems != nil then %>
-				<table class="table table-striped table-bordered table-responsive">
-					<caption><b>Recommendations by classmates<b></caption>
-					<% recommended_problems.each do |key , value| %>
-						<tr>
-							<td>
-								<%= value["recommender_name"] %>
-							</td>
-							<td>
-								<%= link_to value["problem_title"], 
-								controller: "problems", action: "show", id: key %>
-							</td>
-						</tr>
-					<% end %>
-				</table>
-			<% end %>
-		</div>
-	<% end %>
+	<div class="well">
+		<% if student_signed_in? %>
+			<div>
+				<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
+				<% if next_problems_to_solve != nil then %>
+					<table class="table table-striped table-bordered table-responsive">
+						<caption><b>Your Next Problems<b></caption>
+						<% next_problems_to_solve.each do |key , value| %>
+							<tr>
+								<td>
+									<%= link_to value.title, controller: "problems", action: "show", id: value.id %>
+								</td>
+								<td>
+									<%= key %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+		<!--
+		# [Get Recommended Problems - Story 5.6]
+		# Displays the recommende problem hash in a table as [recommender_name | problem]
+		# Author: Mohab Ghanim
+		-->
+			<div>
+				<% recommended_problems = current_student.getClassMatesRecommendations 
+				if recommended_problems != nil then %>
+					<table class="table table-striped table-bordered table-responsive">
+						<caption><b>Recommendations by classmates<b></caption>
+						<% recommended_problems.each do |key , value| %>
+							<tr>
+								<td>
+									<%= value["recommender_name"] %>
+								</td>
+								<td>
+									<%= link_to value["problem_title"], 
+									controller: "problems", action: "show", id: key %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
 </div>
