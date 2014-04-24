@@ -35,6 +35,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :posts
 	resources :facebook
 
 	# Example resource route with options:
@@ -77,6 +78,7 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :acknowledgements
 	end
 
 	# Example resource route with concerns:
