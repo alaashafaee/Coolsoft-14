@@ -1,25 +1,41 @@
-<%= form_for :model_answer, url: model_answers_path do |f| %>
-<% if @new_answer.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= pluralize(@new_answer.errors.count, "error") %> prohibited this course from being saved:
-		</h2>
-		<ul>
-			<% @new_answer.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-		</ul>
-	</div>
-<% else %> 
-<%= f.hidden_field :problem_id, :value => @problem.id %>
-<% end %>
-<p>
-	<h2>Please Insert your model answer</h2>
-	<br><%= f.label :Title %>
-		<%= f.text_field :title %></br>
-		<br><%= f.label :Answer %> </br>
-	<%= f.text_area :answer, :cols => "50", :rows => "15" %>
-</p>
-<br>
-<%= f.submit "Save Model Answer", class: "btn btn-large btn-primary" %>
-</br>
+	<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
+		<h2>Create Tip</h2>
+		<% if @tip.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@tip.errors.count, "error") %>
+					prohibited the Tip from being saved:
+				</h2>
+			</div>
+			<ul>
+				<% @tip.errors.full_messages.each do |msg| %>
+					<li>
+						<%= msg %>
+					</li>
+				<% end %>
+			</ul>
+		<% end %>
+		<div style= " vertical-align: auto; horizontal-align: auto; float:center;">
+			<%= form_for :tip, url: tips_path   do |t| %>
+			<p>
+				<%= t.label :Content %><br>
+				<%= t.text_area :message, class:"form-control", style:"width:350px", placeholder:"Content", 	:value => @tip.message %>
+			</p>
+			<p>
+				<%= t.label :Time_in_seconds  %><br>
+				<%= t.text_field :time , style:"width:55px; height:35px;",:value => @tip.time %>
+			</p>
+			<p>
+				<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
+			</p>
+			<p>
+				<div data-role="main" class="ui-content">
+					<a  t.submit; return false; onclick=" showNotification(); t.submit; return false;"  > 
+						<%= t.submit class: 'btn btn-primary' , onclick: 'showNotification()' %>
+					</a> 
+				</div>
+			</p>
+		</div>
+	<% end %>
+
 <% end %>
