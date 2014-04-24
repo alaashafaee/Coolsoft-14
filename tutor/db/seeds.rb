@@ -38,10 +38,10 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(content: "The Main Objective is to be a winner", views_count: 20)
-	Post.create(content: "It is very hard to keep in this life, be happy", views_count: 100)
-	Post.create(content: "Post3")
-	Post.create(content: "Post4")
+	Post.create(title: "Post1", content: "The Main Objective is to be a winner", views_count: 20)
+	Post.create(title: "Post1", content: "It is very hard to keep in this life, be happy", views_count: 100)
+	Post.create(title: "Post1", content: "Post3")
+	Post.create(title: "Post1", content: "Post4")
 
 puts("# --------------------------Replies---------------------------")
 	Reply.create(content: "Reply1")

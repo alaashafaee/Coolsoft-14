@@ -131,7 +131,7 @@ class Student < ActiveRecord::Base
 		end
 		return recommended_problems_hash
 	end
-	
+
 	# [System Reminders - Story 5.4]
 	# Sends reminder e-mails to inactive users
 	# Parameters: none
