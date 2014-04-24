@@ -1,40 +1,30 @@
-<style>
-.kbera {
-  border-bottom: 1px solid #D0D0D0;
-} 
-.reply{
-	padding-left:30px;
-	border-bottom: 1px solid #D0D0D0;
-}
-</style>
 <div>
 	<div>
 		<h2><%=@post.title%></h2>
 	</div>
-	<div class = "kbera">
+	<div class = "greyLine">
 		<p><font size="5"><%= @post.owner.name %></font> </p>
 		<p><%= @post.content %> </p>
-		<p><font size="1"><%=distance_of_time_in_words_to_now @post.created_at %> ago </p>
-		</font>
+		<p><font size="1"><%=distance_of_time_in_words_to_now @post.created_at %>ago</p></font>
 	</div>
 </div>
-<div class>	
-		<% unless @replies.blank? %>
-			<% @replies.each do |reply| %>
-			<div class = "reply">
-				<div>
-				<font size="5"><%= reply.owner.name %> </font>
-			</div>
-				<div>
-					<p><%= reply.content %><br></p>
-					<p><font size="1"><%=distance_of_time_in_words_to_now reply.created_at %> ago </p>
+<div>	
+	<% unless @replies.blank? %>
+		<% @replies.each do |reply| %>
+				<div class = "reply">
+					<div>
+						<font size="5"><%= reply.owner.name %> </font>
+					</div>
+					<div>
+						<p><%= reply.content %><br></p>
+						<p><font size="1"><%= distance_of_time_in_words_to_now reply.created_at %> ago </p>
+					</div>
+					<br>
 				</div>
-				<br>
-				</div>
-			<% end %>
-		<% else %>
-			No Replies in this post yet .
 		<% end %>
-
-	</div>
+	<% else %>
+		<div align="center">
+			No Replies in this post yet. 
+		</div>
+	<% end %>
 </div>
