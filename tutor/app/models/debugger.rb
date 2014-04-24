@@ -153,9 +153,9 @@ class Debugger < ActiveRecord::Base
 		if $&
 			/Exception occurred:.*\(uncaught\)/ =~ line
 			exception = $&
-			puts "here #{exception[20..-11]}"
-			return {:status => false, :exception => exception[20..-11],
-					:explain => Executer.get_runtime_explaination(exception)}
+			puts "here #{line}"
+			return {:status => false, :exception => {:error => exception[20..-11],
+					:explanation => Executer.get_runtime_explaination(exception)}}
 		else
 			return {:status => true}
 		end
