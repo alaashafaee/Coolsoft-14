@@ -1,4 +1,7 @@
-<h1> <%= image_tag(@teaching_assistant.profile_image_url.to_s) if @teaching_assistant.profile_image? %> <%= @teaching_assistant.name %>'s Profile </h1>
+<h1>
+	<%= image_tag(@teaching_assistant.profile_image_url.to_s)
+		if @teaching_assistant.profile_image? %> <%= @teaching_assistant.name %>'s Profile
+</h1>
 <div class="tabs">
 	<ul class="tab-links">
 		<li class="active"><a href="#tab1">Course</a></li>
@@ -15,16 +18,22 @@
 				</tr>
 				<% @courses.each do |c| %>
 					<tr>
-						<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
-									:method => :get, class: "btn btn-success" %></td>
+						<td>
+							<%= link_to c.name, :controller => 'courses', :action => 'show',
+								:id => c.id, :method => :get, class: "btn btn-success" %>
+						</td>
 						<td><%= c.code %></td>
 						<% if current_lecturer %>
 							<td>
-							<%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+								<%= link_to "Manage Course", {:controller => 'courses',
+									:action => 'edit', :method => :get, :id => c.id},
+									class: "btn btn-success", style: "text-decoration:none" %>
 							</td>
 						<% end %>
 						<td>
-							<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+							<%= link_to "Discussion Board", {:controller => 'discussion_boards',
+								:action => 'show', :id => c.id}, class: "btn btn-success",
+								method: :get, style: "text-decoration:none" %>
 						</td>
 					</tr>
 				<% end %>
