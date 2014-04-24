@@ -121,7 +121,7 @@ class ProblemsController < ApplicationController
 		elsif (problem_params[:description] != @problem.description)
 			@message = "Description updated"
 		elsif (problem_params[:track_id].to_i != @problem.track_id)
-			@message = "Problem moved to Track #{problem_params[:track_id]}"
+			@message = "Problem is moved to Track #{problem_params[:track_id]}"
 		else
 			flash.keep[:notice] = "You have entered the same paramater no change has been made!"
 		end
