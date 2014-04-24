@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
@@ -30,6 +31,7 @@ class Student < ActiveRecord::Base
 	#Scoops
 
 	#Methods
+
 	# [Find Recommendations - Story 3.9]
 	# Returns a suggested problem to solve for this user
 	# Parameters: None
@@ -37,26 +39,21 @@ class Student < ActiveRecord::Base
 	# Author: Rami Khalil
 	def get_a_system_suggested_problem
 		suggestions = Set.new
-
 		courses.each do |course|
 			course.topics.each do |topic|
 				level = TrackProgression.get_progress(self.id, topic.id)
-
 				topic.tracks.each do |track|
-						if(track.difficulty == level)
-							track.problems.each do |problem|
-								if(!problem.is_solved_by_student(self.id))
-									suggestions.add(problem)
-									break
-								end
+					if(track.difficulty == level)
+						track.problems.each do |problem|
+							if !problem.is_solved_by_student(self.id)
+								suggestions.add(problem)
+								break
 							end
 						end
+					end
 				end
 			end
 		end
-
-		# Convert suggestions from set to array
-		# Return random element from array
 		return suggestions.to_a().sample()
 	end
 
@@ -113,6 +110,34 @@ class Student < ActiveRecord::Base
 		end
 	end
 
+	# [Problem Assined - Story 5.5]
+	# Returns a Hash containing the next problem to solve in each course - topic - track
+	# Parameters: None
+	# Returns: A Hash of key as 'Course-Topic-track' and value as a Problem model instance
+	# Author: Mohab Ghanim (Modified from Rami Khalil's Story 3.9)
+	def get_next_problems_to_solve
+		next_problems_to_solve = Hash.new
+		courses.each do |course|
+			course.topics.each do |topic|
+				level = TrackProgression.get_progress(self.id, topic.id)
+				topic.tracks.each do |track|
+					if track.difficulty == level
+						track.problems.each do |problem|
+							if !problem.is_solved_by_student(self.id)
+								key = course.name
+								key += " - " + topic.title
+								key += " - " + track.title
+								next_problems_to_solve[key] = problem
+								break
+							end
+						end
+					end
+				end
+			end
+		end
+		return next_problems_to_solve
+	end
+
 	# [Get Recommended Problems - Story 5.6]
 	# Gets the recommended problems for this student by classmates
 	# Parameters: none
@@ -145,4 +170,5 @@ class Student < ActiveRecord::Base
 
 		end
 	end
+
 end

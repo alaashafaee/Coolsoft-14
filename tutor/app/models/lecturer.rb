@@ -1,4 +1,5 @@
 class Lecturer < ActiveRecord::Base
+	
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
@@ -19,10 +20,9 @@ class Lecturer < ActiveRecord::Base
 	
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
-
 	has_many :topics
 	has_many :tracks, as: :owner
-	has_many :problems, as: :ownerm
+	has_many :problems, as: :owner
 	has_many :model_answers, as: :owner
 	has_many :method_constraints, as: :owner
 	has_many :method_parameters, as: :owner
@@ -62,4 +62,5 @@ class Lecturer < ActiveRecord::Base
 			end
 		end
 	end
+
 end
