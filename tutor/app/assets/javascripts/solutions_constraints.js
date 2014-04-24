@@ -11,8 +11,7 @@ var var_name = new Array();
 // # Parameters:none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function add_params(field)
-{	
+function add_params(field) {
 	var tmp_type = document.getElementById("params_type").value;
 	var tmp_name = document.getElementById("params_name").value;
 
@@ -23,9 +22,9 @@ function add_params(field)
 		document.getElementById("params_type").value = "";
 		param_name[param_name.length] = tmp_name;
 		document.getElementById("params_name").value = "";
-
 		document.getElementById("parameter").innerHTML = "<h3>Paramters Constraints</h3><table>";
-		for (var i = 0; i < type.length; i++) {	
+
+		for (var i = 0; i < type.length; i++) {
 			$('#parameter').append("<tr>");
 			$('#parameter').append("<td width = \"10px\"></td>");
 			$('#parameter').append("<td><label>"+type[i]+"</label></td>");
@@ -41,10 +40,12 @@ function add_params(field)
 		if (tmp_name == "" && tmp_type == "") {
 			document.getElementById("params_type").style.border= "red 1px solid";
 			document.getElementById("params_name").style.border= "red 1px solid";
-		}else if(tmp_name == "") {
+		}
+		else if(tmp_name == "") {
 			document.getElementById("params_type").style.border= "";
 			document.getElementById("params_name").style.border= "red 1px solid";
-		}else{
+		}
+		else{
 			document.getElementById("params_type").style.border= "red 1px solid";
 			document.getElementById("params_name").style.border= "";
 		}
@@ -55,14 +56,12 @@ function add_params(field)
 // # Parameters:none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function remove_params(field)
-{	
+function remove_params(field) {
 	var index = field.id.split("_")[1];
 	type.splice(index,1);
 	param_name.splice(index,1);
 	document.getElementById("parameter").innerHTML = "<h3>Paramters Constraints</h3><table>";
-	if(type.length == 0)
-	{
+	if(type.length == 0) {
 		$('#parameter').append("No paramter");
 	}
 	for (var i = 0; i < type.length; i++) {
@@ -82,8 +81,7 @@ function remove_params(field)
 // # Parameters:none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function add_variable(field)
-{	
+function add_variable(field) {
 	var tmp_type = document.getElementById("variable_type").value;
 	var tmp_name = document.getElementById("variable_name").value;
 
@@ -94,9 +92,9 @@ function add_variable(field)
 		document.getElementById("variable_type").value = "";
 		var_name[var_name.length] = tmp_name;
 		document.getElementById("variable_name").value = "";
-
 		document.getElementById("variable").innerHTML = "<h3>Variables Constraints</h3><table>";
-		for (var i = 0; i < var_type.length; i++) {	
+
+		for (var i = 0; i < var_type.length; i++) {
 			$('#variable').append("<tr>");
 			$('#variable').append("<td width = \"10px\"></td>");
 			$('#variable').append("<td><label>"+var_type[i]+"</label></td>");
@@ -107,14 +105,17 @@ function add_variable(field)
 			$('#variable').append("</tr>");
 		}
 		$('#variable').append("</table>");
-	}else {
+	}
+	else {
 		if (tmp_name == "" && tmp_type == "") {
 			document.getElementById("variable_type").style.border= "red 1px solid";
 			document.getElementById("variable_name").style.border= "red 1px solid";
-		}else if(tmp_name == "") {
+		}
+		else if(tmp_name == "") {
 			document.getElementById("variable_type").style.border= "";
 			document.getElementById("variable_name").style.border= "red 1px solid";
-		}else{
+		}
+		else {
 			document.getElementById("variable_type").style.border= "red 1px solid";
 			document.getElementById("variable_name").style.border= "";
 		}
@@ -125,14 +126,12 @@ function add_variable(field)
 // # Parameters:none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function remove_variable(field)
-{	
+function remove_variable(field){
 	var index = field.id.split("_")[1];
 	var_type.splice(index,1);
 	var_name.splice(index,1);
 	document.getElementById("variable").innerHTML = "<h3>Variables Constraints</h3><table>";
-	if(var_type.length == 0)
-	{
+	if(var_type.length == 0) {
 		$('#variable').append("No Variables");
 	}
 	for (var i = 0; i < var_type.length; i++) {
@@ -168,9 +167,9 @@ function testingValidation(errorArray,method,name) {
 	if (type.length == 0 &&
 		var_type.length == 0 &&
 		method == 0 &&
-		name == 0) 
-	{
-		errorArray.push("Can not submit an empty Data, Try filling either Method Constraint for Variable Constraint");
+		name == 0) {
+		errorArray.push("Can not submit an empty Data,
+						 Try filling either Method Constraint for Variable Constraint");
 		return false;
 	};
 	if (type.length > 0) {
@@ -184,7 +183,8 @@ function testingValidation(errorArray,method,name) {
 		document.getElementById("_constrain_method_name").style.border= "";
 		document.getElementById("_constrain_method_return").style.border= "red 1px solid";
 		errorArray.push("Enter method return type ..");
-	}else if(name == "" && method != "") {
+	}
+	else if(name == "" && method != "") {
 		document.getElementById("_constrain_method_name").style.border= "red 1px solid";
 		document.getElementById("_constrain_method_return").style.border= "";
 		errorArray.push("Enter method name ..");
@@ -196,20 +196,18 @@ function testingValidation(errorArray,method,name) {
 // # Parameters:none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function submitParams()
-{	
+function submitParams() {
 	$("#errors").html("");
 	errorArray = new Array();
-
+	var hash_p = new Array();
+	var hash_v = new Array();
 	method = $('#_constrain_method_return').val()
 	name = $('#_constrain_method_name').val()
+	
 	if (!testingValidation(errorArray,method,name)) {
 		showErrorMessage(errorArray);
 		return;
 	};
-
-	var hash_p = []
-	var hash_v = []
 	for (var i = 0; i < type.length; i++) {
 		hash_p.push({
 			type: type[i] ,
@@ -237,7 +235,7 @@ function submitParams()
 				alert("Data have been Added successfully");
 				window.location = window.location
 			}
-			else{
+			else {
 				alert("Data messigin/incorrect !");
 			}
 		},

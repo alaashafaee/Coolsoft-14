@@ -13,7 +13,6 @@ class SolutionsConstraintsController < ApplicationController
 		var_cons = params[:variable_constraint]
 		method = params[:method_name]
 		method_returned = params[:method_return]
-
 		unless method == ""
 			constarint = MethodConstraint.new
 			constarint.method_name = method
@@ -29,7 +28,6 @@ class SolutionsConstraintsController < ApplicationController
 			end
 			constarint.save
 		end
-
 		if var_cons.present?
 			var_cons.each do |index,value|
 				variable = VariableConstraint.new
