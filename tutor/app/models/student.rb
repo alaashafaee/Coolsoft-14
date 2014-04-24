@@ -1,10 +1,22 @@
 class Student < ActiveRecord::Base
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, :validatable
+			:recoverable, :rememberable, :trackable,
+			:validatable, :confirmable
+
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
+	validate :duplicate_email
+	validates :name, presence: true
+	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :university, presence: true
+	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :faculty, presence: true
+	validates_format_of :faculty, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :major, presence: true
+	validates_format_of :major, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+	validates :semester, presence: false, numericality: {only_integer: true, greater_than: 0, less_than: 11}
+	validates :dob, presence: true
 
 	#Relations
 	has_many :solutions, dependent: :destroy
@@ -19,10 +31,21 @@ class Student < ActiveRecord::Base
 	
 	has_many :course_students
 	has_many :courses, through: :course_students, dependent: :destroy
-	
-	#Scoops
 
 	#Methods
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks if the email is already registered in tables: Lecturer and TeachingAssistant
+	# 	before registering the email for table: Student
+	# Parameters: None
+	# Returns: None
+	# Author: Khaled Helmy
+	def duplicate_email
+		if Lecturer.find_by email: email or TeachingAssistant.find_by email: email
+			errors.add(:email, "has already been taken")
+		end
+	end
+
 	# [Find Recommendations - Story 3.9]
 	# Returns a suggested problem to solve for this user
 	# Parameters: None

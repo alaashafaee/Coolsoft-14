@@ -43,3 +43,12 @@
 .auto-height {
 	height: auto;
 }
+
+.form-devise > div {
+	margin: 10px;
+	width: 300px;
+}
+
+.button-devise {
+	margin-top: 10px;
+}
