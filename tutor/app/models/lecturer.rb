@@ -35,7 +35,7 @@ class Lecturer < ActiveRecord::Base
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
 	has_many :acknowledgements, dependent: :destroy
-	
+
 	#Methods
 
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
