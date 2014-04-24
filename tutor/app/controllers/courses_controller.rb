@@ -233,6 +233,10 @@ class CoursesController < ApplicationController
 			redirect_to :back
 		end
 	end
+
+	def choose
+		
+	end
 	# [Create from Existant Course - Story 2.5]
 	# Choose which parameter should be listed
 	# Parameters:

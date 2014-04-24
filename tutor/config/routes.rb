@@ -17,6 +17,7 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
+	get 'courses/choose'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'solutions/execute' => 'problems#show'
@@ -31,7 +32,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :courses
-	post "courses/choose"
+	#post "courses/choose"
 	post "courses/existing"
   	post "courses/duplicate"
 	get "model_answers/new"
@@ -97,11 +98,16 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
-
+	resources :solutions_constraints do
+		collection do
+			post "new"
+		end
+	end
 	resources :problems do
 		get 'done'
 		get 'destroy_problem'
 	end
+
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales
