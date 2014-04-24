@@ -31,7 +31,9 @@ function add_params(field) {
 			$('#parameter').append("<td width = \"10px\"></td>");
 			$('#parameter').append("<td><label>"+param_name[i]+"</label></td>");
 			$('#parameter').append("<td width = \"20px\"></td>");
-			$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
+			$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" \
+				onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" \
+				style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 			$('#parameter').append("</tr>");
 		}
 		$('#parameter').append("</table>");
@@ -71,7 +73,9 @@ function remove_params(field) {
 		$('#parameter').append("<td width = \"10px\"></td>");
 		$('#parameter').append("<td><label>"+param_name[i]+"</label></td>");
 		$('#parameter').append("<td width = \"20px\"></td>");
-		$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
+		$('#parameter').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" \
+			onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" \
+			style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 		$('#parameter').append("</tr>");
 	}
 	$('#parameter').append("</table>");
@@ -101,7 +105,9 @@ function add_variable(field) {
 			$('#variable').append("<td width = \"10px\"></td>");
 			$('#variable').append("<td><label>"+var_name[i]+"</label></td>");
 			$('#variable').append("<td width = \"20px\"></td>");
-			$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_variable(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
+			$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" \
+				onclick=\"remove_variable(this);\" src=\"/assets/delete_button.png\" \
+				style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 			$('#variable').append("</tr>");
 		}
 		$('#variable').append("</table>");
@@ -126,7 +132,7 @@ function add_variable(field) {
 // # Parameters:none
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function remove_variable(field){
+function remove_variable(field) {
 	var index = field.id.split("_")[1];
 	var_type.splice(index,1);
 	var_name.splice(index,1);
@@ -141,7 +147,9 @@ function remove_variable(field){
 		$('#variable').append("<td width = \"10px\"></td>");
 		$('#variable').append("<td><label>"+var_name[i]+"</label></td>");
 		$('#variable').append("<td width = \"20px\"></td>");
-		$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
+		$('#variable').append("<td><img alt=\"delete buttom\" id=\"params_"+i+"\" \
+			onclick=\"remove_params(this);\" src=\"/assets/delete_button.png\" \
+			style=\"width:8%;height:8%;margin_top:10px;;cursor:pointer\"></td>");
 		$('#variable').append("</tr>");
 	}
 	$('#variable').append("</table>");
@@ -168,8 +176,8 @@ function testingValidation(errorArray,method,name) {
 		var_type.length == 0 &&
 		method == 0 &&
 		name == 0) {
-		errorArray.push("Can not submit an empty Data,
-						 Try filling either Method Constraint for Variable Constraint");
+		errorArray.push("Can not submit an empty Data,\
+			Try filling either Method Constraint for Variable Constraint");
 		return false;
 	};
 	if (type.length > 0) {
