@@ -8,6 +8,9 @@ class AcknowledgementsController < ApplicationController
 	# Author: Muhammad Mamdouh
 	def new 
 		@course = Course.find(params[:course_id])
+		if !@course.can_edit(current_lecturer)
+			redirect_to :root
+		end
 	end
 
 	# [Student Acknowledgement - Story 1.7]

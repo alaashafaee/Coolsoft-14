@@ -1,4 +1,15 @@
 class Student < ActiveRecord::Base
+
+	devise :database_authenticatable, :registerable,
+		:recoverable, :rememberable, :trackable, :validatable
+	
+	#Elasticsearch
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+	
+	#concerns
+	include Searchable
+
 	devise :database_authenticatable, :registerable,
 			:recoverable, :rememberable, :trackable,
 			:validatable, :confirmable
@@ -53,26 +64,21 @@ class Student < ActiveRecord::Base
 	# Author: Rami Khalil
 	def get_a_system_suggested_problem
 		suggestions = Set.new
-
 		courses.each do |course|
 			course.topics.each do |topic|
 				level = TrackProgression.get_progress(self.id, topic.id)
-
 				topic.tracks.each do |track|
-						if(track.difficulty == level)
-							track.problems.each do |problem|
-								if !problem.is_solved_by_student(self.id)
-									suggestions.add(problem)
-									break
-								end
+					if(track.difficulty == level)
+						track.problems.each do |problem|
+							if !problem.is_solved_by_student(self.id)
+								suggestions.add(problem)
+								break
 							end
 						end
+					end
 				end
 			end
 		end
-
-		# Convert suggestions from set to array
-		# Return random element from array
 		return suggestions.to_a().sample()
 	end
 
@@ -101,7 +107,34 @@ class Student < ActiveRecord::Base
 		return res
 	end
 
-	#Methods
+	# [Advanced Search - Story 1.23]
+	# search for students
+	# Parameters: hash of search options
+	# Returns: A hash with search results according to the keyword and other options
+	# Author: Ahmed Elassuty
+	def self.search(params)
+		if params[:keyword].present?
+			case params[:options]
+				when "exactly match"
+					tire.search do
+						query { string "name:#{params[:keyword]}" }
+					end
+				when "includes"
+					tire.search do
+						query { string "name:*#{params[:keyword]}*" }
+					end
+				when "starts with"
+					tire.search do
+						query { string "name:#{params[:keyword]}*" }
+					end
+				when "ends with"
+					tire.search do
+						query { string "name:*#{params[:keyword]}" }
+					end
+			end
+		end
+	end
+
 	# [Problem Assined - Story 5.5]
 	# Returns a Hash containing the next problem to solve in each course - topic - track
 	# Parameters: None

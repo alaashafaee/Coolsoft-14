@@ -1,4 +1,14 @@
 class TeachingAssistantsController < ApplicationController
+	# [Profile - Story 5.8]
+	# Displays the profile of the teaching assistant chosen
+	# Parameters:
+	#	id: the Teaching Assistant's id
+	# Returns: none
+	# Author: Serag
+	def show
+		@teaching_assistant = TeachingAssistant.find(params[:id])
+		@courses = @teaching_assistant.courses.order("created_at desc")
+	end
 
 	# [Add TA - Story 1.4]
 	# this action renders the form and sets the value for checkbox
@@ -7,6 +17,10 @@ class TeachingAssistantsController < ApplicationController
 	# Returns: None
 	# Author: Muhammad Mamdouh
 	def new 
+		@course = Course.find_by_id(params[:course_id])
+		if !@course.can_edit(current_lecturer)
+			redirect_to :root
+		end
 		if @checkbox == nil
 			@checkbox = true
 		end
@@ -52,5 +66,4 @@ class TeachingAssistantsController < ApplicationController
 		@course = Course.find(params[:course_id])
 		@course_teaching_assistants = @course.TAs.order('name')
 	end
-
 end
