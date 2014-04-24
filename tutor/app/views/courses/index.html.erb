@@ -4,7 +4,7 @@
 		<li class="active"><a href="#">My Courses</a></li>
 		<% if lecturer_signed_in? %>
 			<li><a href="/courses/new">Create new Course</a></li>
-		<% else %>
+		<% elsif student_signed_in? %>
 			<li><a href="/courses/sign_up">Sign up for a course</a></li>
 		<% end %>
 	</ul>
