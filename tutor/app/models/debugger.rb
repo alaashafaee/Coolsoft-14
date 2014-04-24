@@ -64,8 +64,6 @@ class Debugger < ActiveRecord::Base
 		$all = []
 		Dir.chdir(Solution::CLASS_PATH){
 			begin
-				puts input
-				input = input.split(" ")
 				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, input)
 				buffer_until_ready
 				input "stop in #{class_name}.main"
@@ -114,7 +112,6 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until_complete
-		puts out_stream
 		list_of_lines = out_stream.split(/\n+/)
 		before_last_line = list_of_lines[-2]
 		/, line=\d+/ =~ before_last_line
