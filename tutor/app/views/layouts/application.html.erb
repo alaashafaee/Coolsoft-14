@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		</br>
-		<div id="main" class="container" style="width:100%">
+		<div id="main" class="container" style="width:100%;overflow-y:scroll">
 			<% if signed_in? %>
 				<div class="row">
 					<%= render "layouts/right_side_bar"%>
@@ -55,7 +55,7 @@
 					</div>
 				</div>
 			<% else %>
-				<div class="well container main-content" style="min-height:500px">
+				<div class="well container main-content" style="min-height:500px;">
 					<%= yield %>
 				</div>
 			<% end %>
