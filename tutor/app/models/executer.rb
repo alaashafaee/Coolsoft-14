@@ -80,6 +80,17 @@ class Executer
 		end
 	end
 
+	def self.get_runtime_explaination(exception)
+		if exception.include?("/ by zero")
+			message = "Division by Zero results in infinity, "\
+						"which computers can not understand. Be careful !"
+			return message
+		else
+			message = "To be set Runtime Error!"
+			return message
+		end
+	end
+
 	# [Compiler: Test - Story 3.15]
 	# Returns the output for the test case in case it ran successfully
 	# Parameters:

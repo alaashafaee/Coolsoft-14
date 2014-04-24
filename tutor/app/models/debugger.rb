@@ -62,17 +62,19 @@ class Debugger < ActiveRecord::Base
 	# Authors: Mussab ElDash + Rami Khalil
 	def start(class_name, input)
 		$all = []
+		source_path = "#{Rails.root.to_s}/#{Solution::JAVA_PATH}"
 		Dir.chdir(Solution::CLASS_PATH){
 			begin
-				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
-				buffer_until_ready
+				$input, $output, $error, $wait_thread = Open3.popen3("jdb",
+					"-sourcepath", source_path, class_name, *input)
+				puts buffer_until_ready
 				input "stop in #{class_name}.main"
-				buffer_until_ready
+				puts buffer_until_ready
 				input "run"
-				num = get_line
+				nums = get_line
 				locals = get_variables
-				hash = {:line => num, :locals => locals}
-				$all << hash
+				nums[:locals] = locals
+				$all << nums
 				debug
 			rescue => e
 				unless e.message === 'Exited'
@@ -84,7 +86,6 @@ class Debugger < ActiveRecord::Base
 		begin
 			Process.kill("TERM", $wait_thread.pid)
 		rescue => e
-			p e.message
 		end
 		return $all
 	end
@@ -99,10 +100,10 @@ class Debugger < ActiveRecord::Base
 		while counter < 100 && !$input.closed? do
 			begin
 				input "step"
-				num = get_line
+				nums = get_line
 				locals = get_variables
-				hash = {:line => num, :locals => locals}
-				$all << hash
+				nums[:locals] = locals
+				$all << nums
 				counter += 1
 			rescue => e
 				$input.close
@@ -118,22 +119,44 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until_complete
-		puts out_stream
-		list_of_lines = out_stream.split(/\n+/)
-		before_last_line = list_of_lines[-2]
-		/, line=\d+/ =~ before_last_line
-		before_last_regex_capture = $&
-		/\d+/ =~ before_last_regex_capture
-		before_last_regex_capture = $&
-		last_line = list_of_lines[-2]
-		/^\d+/=~ last_line
-		last_regex_capture = $&
-		if last_regex_capture
-			return last_regex_capture.to_i
-		elsif before_last_regex_capture
-			return before_last_regex_capture.to_i
+		exceptions = has_exception out_stream
+		/,\sline=\d+/ =~ out_stream
+		line_first = $&
+		puts "line #{line_first}"
+		input "list"
+		out_stream = buffer_until_complete
+		puts "line_start\n#{out_stream}\nline_end"
+		/\n\d+\s=>/ =~ out_stream
+		line_second = $&
+		puts "list #{line_second}"
+		if line_first
+			line_first = line_first[7..-1]
+			exceptions[:line] = line_first.to_i
+			return exceptions
+		elsif line_second
+			line_second = line_second[0..-4]
+			exceptions[:line] = line_second.to_i
+			return exceptions
 		else
 			raise 'Exited'
+		end
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Gets the number of the line to be executed
+	# Parameters: none
+	# Returns: The number of the line to be executed
+	# Author: Mussab ElDash
+	def has_exception(line)
+		/Exception occurred: / =~ line
+		if $&
+			/Exception occurred:.*\(uncaught\)/ =~ line
+			exception = $&
+			puts "here #{exception[20..-11]}"
+			return {:status => false, :exception => exception[20..-11],
+					:explain => Executer.get_runtime_explaination(exception)}
+		else
+			return {:status => true}
 		end
 	end
 
@@ -154,9 +177,8 @@ class Debugger < ActiveRecord::Base
 			return {:success => false, data: compile_status}
 		end
 		debugger = Debugger.new
-		class_name = solution.class_file_name
+		class_name = solution.file_name
 		debugging = debugger.start(class_name, input.split(" "))
-		p debugging
 		java_file = solution.java_file_name true, true
 		class_file = solution.class_file_name true, true
 		File.delete(java_file)

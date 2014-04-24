@@ -188,7 +188,18 @@ debug_console = ->
 # Author: Rami Khalil + Khaled Helmy
 @jump_state = (stateNumber) ->
 	highlight_line variables[stateNumber]['line'] - 2
+	show_runtime stateNumber
 	update_memory_contents stateNumber
+
+# [Debugger: Debug - Story 3.6]
+# Shows the runtime error in its correcsponding section in the page
+# Parameters:
+# 	stateNumber: The target state number.
+# Returns: none
+# Author: Mussab ElDash
+show_runtime = (stateNumber) ->
+	runtime = variables[stateNumber]['exception']
+	explain = variables[stateNumber]['explain']
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
