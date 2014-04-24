@@ -30,13 +30,13 @@
 
 	<!-- This if statement checks for the condition of the discussion board -->
 	<div>
-		<% if @discussionBoard.activated == true %>
+		<% if @discussion_board.activated == true %>
 			<%str = "Deactivate DiscussionBoard" %>
 		<% else %>
 			<%str = "Activate DiscussionBoard"%>
 		<% end %>
 		<!-- This button toggles the activation of the discussion board -->
-		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
+		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussion_board.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
 	</div> 
 </div>
 <br>
