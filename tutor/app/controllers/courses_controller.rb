@@ -174,7 +174,6 @@ class CoursesController < ApplicationController
 		@topic = Topic.find_by_id(params[:methodParam][0])  
 		@course = @topic.course 
 		@topics = @course.topics
-
 		@topics.each do |t|
 			t.order_factor = (params[:methodParam]).index(t.id.to_s)
 			t.save

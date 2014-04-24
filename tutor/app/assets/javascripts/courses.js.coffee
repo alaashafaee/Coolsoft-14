@@ -26,28 +26,21 @@ $(document).ready ->
 					beforeSend: (xhr) ->
 						xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
 						return
-
 					data:
 						methodParam: array
-
 					success: (data) ->
 						alert "New topics order saved!"
 						location.reload()
 						return
-
 					error: (args) ->
 						alert "This is embarrasing :)"
 						return
-
 				$(this).dialog "close"
 				return
-
 			Cancel: ->
 				$(this).dialog "close"
-				alert "Changes will not be saved !"
-				
+				alert "Changes will not be saved !"				
 				return
-
 	$("#opener").click(->
 		$("#order_topics_dialog").dialog "open"
 		$("#order_topics_dialog").css "overflow", "hidden"
