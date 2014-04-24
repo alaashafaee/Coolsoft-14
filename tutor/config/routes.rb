@@ -65,20 +65,30 @@ Tutor::Application.routes.draw do
 			post 'toggle'
 		end
 	end
+	
 	resources :model_answers do
 		post "model_answers/new"
 	end
+
 	resources :tips do
 		 get "tips/index"
 	end
+
 	resources :hints do
 		 get "hints/index"
+	end
+
+	resources :solutions_constraints do
+		collection do
+			post "new"
+		end
 	end
 
 	resources :problems do
 		get 'done'
 		get 'destroy_problem'
 	end
+
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales
