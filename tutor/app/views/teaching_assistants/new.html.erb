@@ -23,12 +23,11 @@
 <% end %>
 
 <div>
-		<% if @checkbox == true %>
-			<% str = "Show only TAs I worked with" %>
-		<% else %>
-			<% str = "Show All TAs" , @checkbox = nil%>
-		<% end %>
-
+	<% if @checkbox == true %>
+		<% str = "Show only TAs I worked with" %>
+	<% else %>
+		<% str = "Show All TAs" , @checkbox = nil%>
+	<% end %>
 	<div> <%= button_to str, {:controller => 'teaching_assistants', :action => 'new', check: @checkbox}, class: "btn btn-success" , style: "float: left; margin-left: 15px" %> 
 	</div> 
 </div>
