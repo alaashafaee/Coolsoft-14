@@ -4,9 +4,9 @@ class ModelAnswersController < ApplicationController
 	# It creates the new answer.
 	# Parameters:
 	#	@problem:To fetch the problem to which the answer is added.
-	#	@answer: the new answer the user enters.
+	#	@answer: The new answer the user enters.
 	#	@answers: All the previous answers that had been entered before.
-	# Returns : none
+	# Returns : None
 	# Author: Nadine Adel
 	def new
 		@problem = Problem.find(params[:problem_id])
@@ -19,7 +19,7 @@ class ModelAnswersController < ApplicationController
 	# [Add answer story 4.6]
 	# The new answer is saved and check that the user is a lecturer or TA.
 	# Parameters:
-	#	@new_answer:answer provided by the user.
+	#	@new_answer:Answer provided by the user.
 	#	@problems:The problem to which the answer is linked.
 	# Returns:
 	#	Returns a message if the answer is added and another message if answer was not added.
@@ -49,12 +49,12 @@ class ModelAnswersController < ApplicationController
 	# [Edit answer story 4.7]
 	# Answer that has been created before is edited
 	# Parameters:
-	#	@answer:answerthat is being edited.
-	#	@problem:The problem to which the answer is linked.
-	#	@tips:Tips that are linked to the answer being edited.
-	#	@tips_check:used to check the type of Hint.
-	#	@hints:Hints that are linked to the answer being edited.
-	#	@hints_check:used to check the type of Hint.
+	#	@answer: Answer that is being edited.
+	#	@problem: The problem to which the answer is linked.
+	#	@tips: Tips that are linked to the answer being edited.
+	#	@tips_check: Used to check the type of Hint.
+	#	@hints: Hints that are linked to the answer being edited.
+	#	@hints_check: Used to check the type of Hint.
 	# Returns:
 	#	Returns a message if the answer is edited and another message if answer was not edited.
 	# Author: Nadine Adel
@@ -70,7 +70,7 @@ class ModelAnswersController < ApplicationController
 	# [Edit answer story 4.7]
 	# Answer is updated in the database. 
 	# Parameters:
-	#	@answer:answer that is being updated.
+	#	@answer: Answer that is being updated.
 	# Returns: None.
 	# Author: Nadine Adel
 	def update
@@ -87,8 +87,8 @@ class ModelAnswersController < ApplicationController
 	# [Add answer story 4.6]
 	# It shows answer that was entered before.
 	# Parameters:
-	#	@answer:previous answer.
-	# Returns : None.
+	#	@answer: Previous answer.
+	# Returns: None.
 	# Author: Nadine Adel
 	def show
 		@answer = ModelAnswer.find(params[:problem_id])
@@ -97,9 +97,9 @@ class ModelAnswersController < ApplicationController
 	# [Add answer story 4.6]
 	# It shows all the answers that are saved in the database.
 	# Parameters:
-	#	@answers:previous answers that are saved in the database.
-	#	@problem:problem to which the current answer is added.
-	# Returns : None
+	#	@answers: Previous answers that are saved in the database.
+	#	@problem: Problem to which the current answer is added.
+	# Returns: None
 	# Author: Nadine Adel
 	def index
 		@problem =Problem.find_by_id(params[:id])
@@ -108,8 +108,8 @@ class ModelAnswersController < ApplicationController
 
 	# [Add answer story 4.6]
 	# It requires the attributes from the form that we are interested in.
-	# Parameters:None.
-	# Returns : None.
+	# Parameters: None.
+	# Returns: None.
 	# Author: Nadine Adel
 	private
 	def post_params
