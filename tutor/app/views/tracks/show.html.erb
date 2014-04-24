@@ -31,6 +31,10 @@
 					<b onclick="window.open('/problems/<%= p.id.to_s %>', '_self')">
 					<%= link_to p.title , p , style: 'color:#003366;' ,
 					class: color %></b>
+					<span class="badge">
+						<div onclick="showdialog(<%= p.id.to_s %>,
+							<%=current_student.id%>)">Recommend to classmates</div>
+					</span>
 					<!-- <span class="badge">p.success_attempts</span> -->
 					<!-- Reminder for me to uncomment this line 
 						when it is supported again in the database -->
@@ -40,6 +44,10 @@
 			</div>
 		</div>
 	<% end %>
+	<div class="classmates_list">
+		<div id="container">
+		</div>
+	</div>
 </div>
 
 <% if @can_edit %>

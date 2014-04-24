@@ -19,6 +19,8 @@ puts("# ---------------------------Lecturers-----------------------------")
 puts("# ---------------------------Students-----------------------------")
 	Student.create!(name:"Student1", email:"1@student.com", password:"123456789")
 	Student.create!(name:"Student2", email:"2@student.com", password:"123456789")
+	Student.create!(name:"Student3", email:"3@student.com", password:"123456789")
+	Student.create!(name:"Student4", email:"4@student.com", password:"123456789")
 
 puts("# ---------------------------TeachingAssistants-----------------------------")
 	TeachingAssistant.create(name:"TA1", email:"1@ta.com", password:"123456789")
@@ -38,10 +40,10 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(content: "The Main Objective is to be a winner", views_count: 20)
-	Post.create(content: "It is very hard to keep in this life, be happy", views_count: 100)
-	Post.create(content: "Post3")
-	Post.create(content: "Post4")
+	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
+	Post.create(title:"My 2nd Post", content: "It is very hard to keep in this life, be happy", views_count: 100)
+	Post.create(title:"My 3th Post", content: "Post3")
+	Post.create(title:"My 4th Post", content: "Post4")
 
 puts("# --------------------------Replies---------------------------")
 	Reply.create(content: "Reply1")
@@ -110,25 +112,25 @@ puts("# -----------------------TrackProgression---------------------------")
 	TrackProgression.create(level: 2, student_id: 1, topic_id: 2)
 
 puts("# -----------------------Attempts---------------------------")
-	Attempt.create(success: true) 
+	Attempt.create(success: true)
 	Attempt.create(failure: true)
-	Attempt.create(success: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(success: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(failure: true) 
-	Attempt.create(failure: true) 
+	Attempt.create(success: true)
+	Attempt.create(failure: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(success: true)
+	Attempt.create(failure: true)
+	Attempt.create(failure: true)
+	Attempt.create(failure: true)
+	Attempt.create(failure: true)
 
 puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
-	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)		
-	
+	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
+
 puts("# -------------------------------------------------------")
 
 puts("**************************************************************")
@@ -164,6 +166,9 @@ puts("# -----------------------Students---------------------------")
 	Student.first.attempts << Attempt.find_by_id(11)
 	Student.first.attempts << Attempt.find_by_id(12)
 	Student.first.attempts << Attempt.find_by_id(13)
+	Student.find(2).courses << Course.first
+	Student.find(3).courses << Course.first
+	Student.find(4).courses << Course.first
 
 	# Other way to add Course into student, but it will require getting Course_student via searching
 	# since the table has key on (student_id and course_id)then the array will always be 1 elemet [0]
@@ -229,6 +234,11 @@ puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
 
+puts("# ----------------- Track Progressions ----------------------")
+	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
+	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
+	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
+puts("# ---------------------------------------------------------")
 puts("# -----------------------Solution---------------------------")
 	Student.first.solutions << Solution.first
 	Student.first.solutions << Solution.find_by_id(2)

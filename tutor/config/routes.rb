@@ -14,6 +14,8 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
