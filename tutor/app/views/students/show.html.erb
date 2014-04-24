@@ -1,50 +1,42 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>CoolSoft - Java tutor | <%= @student.id %>'s Profile</title>
-	</head>
-	<body>
-		<h1> <%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %> <%= @student.name %>'s Profile </h1>
-		<div class="tabs">
-			<ul class="tab-links">
-				<li class="active"><a href="#tab1">Course</a></li>
-				<li><a href="#tab2">Info</a></li>
-				<li><a href="#tab3">Performance</a></li>
-			</ul>
-			<div class="tab-content">
-				<div id="tab1" class="tab active">
-					<table class = "table table-striped", style = "width:80%">
-						<tr>
-							<th>Name</th>
-							<th>Code</th>
-							<th>Options</th>
-							<th></th>
-						</tr>
-						<% @courses.each do |c| %>
-							<tr>
-								<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
-											:method => :get, class: "btn btn-success" %></td>
-								<td><%= c.code %></td>
-								<% if current_lecturer %>
-									<td>
-									<%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
-									</td>
-								<% end %>
-								<td>
-									<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
-								</td>
-							</tr>
+<h1> <%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %> <%= @student.name %>'s Profile </h1>
+<div class="tabs">
+	<ul class="tab-links">
+		<li class="active"><a href="#tab1">Course</a></li>
+		<li><a href="#tab2">Info</a></li>
+		<li><a href="#tab3">Performance</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+			<table class = "table table-striped", style = "width:80%">
+				<tr>
+					<th>Name</th>
+					<th>Code</th>
+					<th>Options</th>
+					<th></th>
+				</tr>
+				<% @courses.each do |c| %>
+					<tr>
+						<td><%= link_to c.name, :controller => 'courses', :action => 'show', :id => c.id, 
+									:method => :get, class: "btn btn-success" %></td>
+						<td><%= c.code %></td>
+						<% if current_lecturer %>
+							<td>
+							<%= link_to "Manage Course", {:controller => 'courses', :action => 'edit', :method => :get, :id => c.id}, class: "btn btn-success", style: "text-decoration:none" %>
+							</td>
 						<% end %>
-					</table>
-				</div>
-				<div id="tab2" class="tab">
-					<p> <b>Name:</b> <%= @student.name %> </p>
-					<p> <b>Email:</b> <%= @student.email %> </p>
-				</div>
-				<div id="tab3" class="tab">
-					<%= link_to "Statistics", { :controller => 'students', :action => 'get_performance', :id => @student.id }, :method => :get, class: "btn btn-success" %>
-				</div>
-			</div>
+						<td>
+							<%= link_to "Discussion Board", {:controller => 'discussion_boards', :action => 'show', :id => c.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
 		</div>
-	</body>
-</html>
+		<div id="tab2" class="tab">
+			<p> <b>Name:</b> <%= @student.name %> </p>
+			<p> <b>Email:</b> <%= @student.email %> </p>
+		</div>
+		<div id="tab3" class="tab">
+			<%= link_to "Statistics", { :controller => 'students', :action => 'get_performance', :id => @student.id }, :method => :get, class: "btn btn-success" %>
+		</div>
+	</div>
+</div>
