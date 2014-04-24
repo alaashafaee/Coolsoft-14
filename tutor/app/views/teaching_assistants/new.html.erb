@@ -16,7 +16,6 @@
 			<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
 		</p>
 	<% end %>
-
 	<p>
 		<%= f.submit "Add TA", class: "btn btn-success"%>
 	</p>	
