@@ -135,6 +135,9 @@ class CoursesController < ApplicationController
 	# Author: Mohamed Mamdouh
 	def edit
 		@course = Course.find_by_id(params[:id])
+		if !@course.can_edit(current_lecturer)
+			redirect_to :root
+		end
 		@discussionBoard = @course.discussion_board
 	end
 	

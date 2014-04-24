@@ -7,6 +7,10 @@ class TeachingAssistantsController < ApplicationController
 	# Returns: None
 	# Author: Muhammad Mamdouh
 	def new 
+		@course = Course.find_by_id(params[:course_id])
+		if !@course.can_edit(current_lecturer)
+			redirect_to :root
+		end
 		if @checkbox == nil
 			@checkbox = true
 		end
