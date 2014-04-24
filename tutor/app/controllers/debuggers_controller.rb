@@ -16,9 +16,8 @@ class DebuggersController < ApplicationController
 		id = current_student.id
 		pid = params[:id]
 		input = params[:code]
-		cases = params[:case]
+		cases = if params[:case] then params[:case] else "" end
 		result = Debugger.debug(id, pid, input, cases)
-		p result
 		render json: result
 	end
 
