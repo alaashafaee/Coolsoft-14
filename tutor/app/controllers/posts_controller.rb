@@ -60,7 +60,7 @@
 	#              and assigns it to the respective discussion board.If the 
 	#              creation fails the user is redirected to the form
 	# Parameters:
-	#	topic_params[]: A list that has all fields entered by the user to in the
+	# 	topic_params[]: A list that has all fields entered by the user to in the
 	# 					add_post_form
 	# Returns: 
 	# 	flash[:notice]: A message indicating the success or failure of the creation
