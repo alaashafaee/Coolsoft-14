@@ -1,7 +1,13 @@
 Tutor::Application.routes.draw do
 
+<<<<<<< HEAD
   get "hints/index"
   get "tips/index"
+=======
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
+>>>>>>> d4fc8be54f6ff0c0ac11959372a536eacc032cfd
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -14,7 +20,10 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
+	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
@@ -30,10 +39,12 @@ Tutor::Application.routes.draw do
 	resources :courses
 	resources :test_cases
 	resources :model_answers
-	resources :problems_by_tas
 	resources :solutions
-	resources :problems
 	resources :topics
+	resources :lecturers
+	resources :teaching_assistants
+	resources :students
+	resources :posts
 	resources :facebook
 
 	# Example resource route with options:
@@ -60,6 +71,11 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
+
+	resources :problems do
+		get 'done'
+		get 'destroy_problem'
+	end
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales
@@ -76,6 +92,9 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :teaching_assistants
+		post 'teaching_assistants/new' => 'teaching_assistants#new'
+		resources :acknowledgements
 	end
 
 	# Example resource route with concerns:
@@ -91,5 +110,4 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
-
 end
