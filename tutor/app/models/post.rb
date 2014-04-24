@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
 	include Tire::Model::Callbacks
 		
 	#Validations
+	validates :title, :content, presence: true
 	
 	#Relations
 	belongs_to :owner, polymorphic: true
