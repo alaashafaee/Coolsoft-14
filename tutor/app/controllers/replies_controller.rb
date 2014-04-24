@@ -37,7 +37,6 @@ class RepliesController < ApplicationController
 	# Author: Ahmed Mohamed Magdi
 	def create
 		reply = Reply.new(reply_params)
-		puts (params[:post])
 		post = params[:@post]
 		post.replies << reply
 		if lecturer_signed_in?
@@ -47,12 +46,7 @@ class RepliesController < ApplicationController
 		else
 			current_student.replies << reply				
 		end
-		respond_to do |format|
-	        if reply.save
-	            format.html { redirect_to "show"}
-	            format.js
-	        end
-	    end
+		reply.save
 	end
 
 	# Description: Creates New reply 
@@ -68,7 +62,9 @@ class RepliesController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Mohamed Magdi
 	def destroy
-		@reply =  Reply.find(params[:id])
+		@reply = Reply.find(params[:id])
+		@post = @reply.post
+		@replies = @post.replies
 		respond_to do |format|
 	        if @reply.destroy
 	            format.html { redirect_to action:"index"}

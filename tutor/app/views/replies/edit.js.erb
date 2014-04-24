@@ -1,2 +1,1 @@
-alert("dd");
-$("#text_holder").innerHTML("<%== escape_javascript(render "form" )%>");
+$("#<%= escape_javascript(params[:div_id])%>").html("<%= escape_javascript(render 'form'"");
