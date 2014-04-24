@@ -1,0 +1,3 @@
+array @objects.each do |object|
+	name object.name
+end unless @objects.empty?

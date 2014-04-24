@@ -7,19 +7,19 @@
 <html lang="en">
 	<head>
 		<title>CoolSoft - Java Tutor</title>
-		<%= stylesheet_link_tag "application", "bootstrap", :media => "all"%>
-		<%= javascript_include_tag "application","bootstrap","jquery"%>
-		<%= csrf_meta_tags%>
+		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
+		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
+		<%= csrf_meta_tags %>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="nav navbar-nav navbar-left" style="margin-right:12px">
-					<%= link_to image_tag("logo.png" , { :title => "Java Tutor!" , size: "50x50"})%>
+					<%= link_to image_tag("logo.png" , { :title => "Java Tutor!" , size: "50x50"}) %>
 				</div>
 				<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
 				<% if signed_in? %>
-					<%= render "layouts/signed_in_header"%>
+					<%= render "layouts/signed_in_header" %>
 				<% else %>
 					<div class="navbar-collapse collapse" id="navbar-main">
 						<ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
 		<div id="main" class="auto-height">
 			<% if signed_in? %>
 				<div class="row">
-					<%= render "layouts/right_side_bar"%>
+					<%= render "layouts/right_side_bar" %>
 					<div class="well main-content">
 						<%= render "problems/system_recommendation" if student_signed_in? %>
 						<%= yield %>
@@ -63,7 +63,7 @@
 		</br>
 		<div align="center" class="navbar navbar-default navbar-static-bottom footer">
 			<div class="container">
-				<%= render "layouts/footer"%>
+				<%= render "layouts/footer" %>
 			</div>
 		</div>
 	</body>

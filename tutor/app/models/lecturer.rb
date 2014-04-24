@@ -2,7 +2,14 @@ class Lecturer < ActiveRecord::Base
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
-	     :recoverable, :rememberable, :trackable, :validatable
+		:recoverable, :rememberable, :trackable, :validatable
+
+	#Elasticsearch
+	include Tire::Model::Search
+	include Tire::Model::Callbacks
+	
+	#concerns
+	include Searchable
 
 	#Validations
 
