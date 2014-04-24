@@ -70,8 +70,8 @@ class Debugger < ActiveRecord::Base
 				buffer_until_ready
 				input "run"
 				num = get_line
-				# locals = get_variables
-				hash = {:line => num, :locals => []}
+				locals = get_variables
+				hash = {:line => num, :locals => locals}
 				$all << hash
 				debug
 			rescue => e
