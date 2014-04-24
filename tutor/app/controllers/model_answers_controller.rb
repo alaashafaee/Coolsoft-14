@@ -71,7 +71,7 @@ class ModelAnswersController < ApplicationController
 	# Answer is updated in the database. 
 	# Parameters:
 	#	@answer: Answer that is being updated.
-	# Returns: none.
+	# Returns: none
 	# Author: Nadine Adel
 	def update
 		@answer = ModelAnswer.find(params[:id])
@@ -88,7 +88,7 @@ class ModelAnswersController < ApplicationController
 	# It shows answer that was entered before.
 	# Parameters:
 	#	@answer: Previous answer.
-	# Returns: none.
+	# Returns: none
 	# Author: Nadine Adel
 	def show
 		@answer = ModelAnswer.find(params[:problem_id])
@@ -108,8 +108,8 @@ class ModelAnswersController < ApplicationController
 
 	# [Add answer story 4.6]
 	# It requires the attributes from the form that we are interested in.
-	# Parameters: none.
-	# Returns: none.
+	# Parameters: none
+	# Returns: none
 	# Author: Nadine Adel
 	private
 	def post_params
