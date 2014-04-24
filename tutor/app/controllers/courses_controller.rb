@@ -140,7 +140,7 @@ class CoursesController < ApplicationController
 		if !@course.can_edit(current_lecturer)
 			redirect_to :root
 		end
-		@discussionBoard = @course.discussion_board
+		@discussion_board = @course.discussion_board
 	end
 	
 	# [View a course - story 1.21]
@@ -174,6 +174,7 @@ class CoursesController < ApplicationController
 	# Author: Mohamed Metawaa
 	def update
 		@course = Course.find_by_id(params[:id])
+		@discussion_board = @course.discussion_board
 		if @course.update(course_params)
 			@topics = @course.topics
 			render 'show'

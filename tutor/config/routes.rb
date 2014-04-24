@@ -66,8 +66,10 @@ Tutor::Application.routes.draw do
 	#resources :test_cases
 	resources :model_answers
 	resources :solutions
-	resources :problems
 	resources :topics
+	resources :lecturers
+	resources :teaching_assistants
+	resources :students
 	resources :posts
 	resources :facebook
 
@@ -94,6 +96,11 @@ Tutor::Application.routes.draw do
 	end
 	resources :model_answers do
 		post "model_answers/new"
+	end
+
+	resources :problems do
+		get 'done'
+		get 'destroy_problem'
 	end
 	# Example resource route with sub-resources:
 	#   resources :products do
@@ -129,5 +136,4 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
-
 end
