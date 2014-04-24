@@ -12,6 +12,7 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
+	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
@@ -32,6 +33,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :posts
 	resources :facebook
 
 	# Example resource route with options:
@@ -81,6 +83,7 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :acknowledgements
 	end
 
 	# Example resource route with concerns:
