@@ -1,8 +1,11 @@
 <h1>Acknowledge A student</h1>
 
 <br/>
-<% if flash[:notice] -%>
-	<div class="alert alert-warning", style="display: inline-block;"><%= flash[:notice] %></div>
+<% if flash[:failure_notice] -%>
+	<div class="alert alert-danger", style="display: inline-block;"><%= flash[:failure_notice] %></div>
+<% end %>
+<% if flash[:success_notice] -%>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_notice] %></div>
 <% end %>
 <br/>
 
