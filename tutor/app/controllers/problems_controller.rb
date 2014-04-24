@@ -61,7 +61,7 @@ class ProblemsController < ApplicationController
 			@answers = @problem.model_answers
 			@track = Track.find_by_id(@problem.track_id)
 			@topic = Topic.find_by_id(@track.topic_id)
-			@tracks = Track.find_all_by_topic_id(@track.topic_id)
+			@tracks = Track.where(topic_id: @track.topic_id)
 		else
 			render ('public/404')
 		end
@@ -97,7 +97,7 @@ class ProblemsController < ApplicationController
 	def update
 		@problem = Problem.find_by_id(params[:id])
 		@track = Track.find_by_id(@problem.track_id)
-		@tracks = Track.find_all_by_topic_id(@track.topic_id)
+		@tracks = Track.where(topic_id: @track.topic_id)
 		if (problem_params[:title] != @problem.title)
 			@message = "Title updated"
 		elsif (problem_params[:description] != @problem.description)
@@ -140,8 +140,8 @@ class ProblemsController < ApplicationController
 			end
 		else
 			@track = Track.find_by_id(problem_params[:track_id])
-			@problems_in_track = @track.problems.find_all_by_title(@problem.title)
-			if(Array(@problems_in_track).size == 0)
+			@problems_in_track = @track.problems.where(title: @problem.title)
+			if(@problems_in_track.size == 0)
 				if @problem.update_attributes(problem_params)
 					flash.keep[:notice] = @message
 					respond_to do |format|

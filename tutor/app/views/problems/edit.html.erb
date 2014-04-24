@@ -29,7 +29,7 @@
 <div id = "div4">
 	<p>Current Track: <%= @track.title %></p>
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
-		<% if Array(@tracks).size > 1 %>
+		<% if @tracks.size > 1 %>
 			<%= problem.collection_select(:track_id, @tracks, :id, :title) %>
 			<%= problem.submit('Change Track') %>
 			<%= problem.hidden_field :title, value: @problem.title %>
