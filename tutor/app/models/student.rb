@@ -90,7 +90,7 @@ class Student < ActiveRecord::Base
 			course.topics.each do |topic|
 				level = TrackProgression.get_progress(self.id, topic.id)
 				topic.tracks.each do |track|
-					if(track.difficulty == level)
+					if track.difficulty == level
 						track.problems.each do |problem|
 							if(!problem.is_solved_by_student(self.id))
 								key = course.name
