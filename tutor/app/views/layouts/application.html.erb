@@ -45,11 +45,11 @@
 			</div>
 		</div>
 		</br>
-		<div id="main" class="container" style="width:100%;overflow-y:scroll">
+		<div id="main home" class="container" style="width:100%;min-width:1000px;">
 			<% if signed_in? %>
 				<div class="row">
-					<%= render "layouts/right_side_bar"%>
-					<div class="well main-content" style="min-height:500px">
+					<%= render "layouts/right_side_bar" %>
+					<div class="well main-content" style="min-height:500px;">
 						<%= render "problems/system_recommendation" if student_signed_in? %>
 						<%= yield %>
 					</div>
@@ -61,7 +61,8 @@
 			<% end %>
 		</div>
 		</br>
-		<div align="center" class="navbar navbar-default navbar-static-bottom footer">
+		<div align="center" class="navbar navbar-default
+				navbar-static-bottom footer" style="width:100%;min-width:1000px;">
 			<%= render "layouts/footer" %>
 		</div>
 	</body>
