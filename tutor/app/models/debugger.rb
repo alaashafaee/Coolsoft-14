@@ -64,14 +64,16 @@ class Debugger < ActiveRecord::Base
 		$all = []
 		Dir.chdir(Solution::CLASS_PATH){
 			begin
+				puts input
+				input = input.split(" ")
 				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, input)
 				buffer_until_ready
 				input "stop in #{class_name}.main"
 				buffer_until_ready
 				input "run"
 				num = get_line
-				# locals = get_variables
-				hash = {:line => num, :locals => []}
+				locals = get_variables
+				hash = {:line => num, :locals => locals}
 				$all << hash
 				debug
 			rescue => e
@@ -186,9 +188,13 @@ class Debugger < ActiveRecord::Base
 			output_buffer1 = buffer_until_complete.split("main").first
 			input "print " + variable_name
 			output_buffer2 = buffer_until_complete.split("main").first
-			result << output_buffer1
+			unless output_buffer1.match("instance")
+				result << output_buffer1
+			end
 			if output_buffer1 != output_buffer2
-				result << output_buffer2
+				unless output_buffer2.match("instance")
+					result << output_buffer2
+				end
 			end
 		else
 			result << variable
