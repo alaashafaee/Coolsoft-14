@@ -3,7 +3,8 @@
 # General layout for right side bar
 # Author: Ahmed Elassuty
 <<<<<<< HEAD-->
-  
+<!--right nagigation bar
+Author:Rania Abdel Fattah -->
 <div id="right_side_bar" class="pull-right side-right" style="width:20%">
 	<div style="margin-bottom:12px" class="well">
 		<div class="row">
@@ -31,41 +32,11 @@
 			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_280_settings.png",{:a => "Settings", size: "15x15"})%> Settings</a></li>
 			            <% end %>
 		          		</ul>
-        			</div><!--/.nav-collapse -->
+        			</div>
       			</div>
       		</div>
 		</div>
-
-
-	<!--
-	# [Next problems to solve - Story 5.5]
-	# displays a table of next problems to solve in each topic
-	# Author: Mohab Ghanim
-	-->
-<!--<<<<<<< HEAD
-	<% if student_signed_in? %>
-		<div>
-			<% recommended_problems = current_student.getClassMatesRecommendations 
-			if recommended_problems != nil then %>
-				<table class="table table-striped table-bordered table-responsive">
-					<caption><b>Recommendations by classmates<b></caption>
-					<% recommended_problems.each do |key , value| %>
-						<tr>
-							<td>
-								<%= value["recommender_name"] %>
-							</td>
-							<td>
-								<%= link_to value["problem_title"], 
-								controller: "problems", action: "show", id: key %>
-							</td>
-						</tr>
-					<% end %>
-				</table>
-			<% end %>
-		</div>
-	<% end %>
-</div>-->
-
+<!--end of Rania's story -->
 	<div class="well">
 		<% if student_signed_in? %>
 			<div>
