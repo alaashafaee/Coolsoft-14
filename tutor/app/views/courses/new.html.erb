@@ -1,58 +1,68 @@
-<h1>Create New Course</h1>
+<!--Author: Mohab Ghanim -->
+<div class ="tabs">
+	<ul class="tab-links">
+		<li ><a href="/courses">My Courses</a></li>
+		<li class="active"><a href="#">Create new Course</a></li>
 
-
-<%= form_for :course, url: courses_path do |f| %>
-	<p>
-		<%= f.label :Name %><br>
-		<% unless @new_course.errors[:name].blank? %>
-			<span id="error_explanation">
-				Name <%= @new_course.errors[:name].join(", ") %> 
-			</span>
-			<br>
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+		<h1>Create New Course</h1>
+		<%= form_for :course, url: courses_path do |f| %>
+			<p>
+				<%= f.label :Name %><br>
+				<% unless @new_course.errors[:name].blank? %>
+					<span id="error_explanation">
+						Name <%= @new_course.errors[:name].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_field :name, :value => @new_course.name, class:"form-control", style: "width:300px" %>
+			</p>
+			<p>
+				<%= f.label :Code %><br>
+				<% unless @new_course.errors[:code].blank? %>
+					<span id="error_explanation">
+						Code <%= @new_course.errors[:code].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_field :code, :value => @new_course.code, class:"form-control", style: "width:300px" %>
+			</p>
+			<p>
+				<%= f.label :Description %><br>
+				<% unless @new_course.errors[:description].blank? %>
+					<span id="error_explanation">
+						Description <%= @new_course.errors[:description].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_area :description, class:"form-control", style:"width:300px",placeholder:"Description", :value => @new_course.description %>
+			</p>
+			<p>
+				<%= f.label :Semester %><br>
+				<% unless @new_course.errors[:semester].blank? %>
+					<span id="error_explanation">
+						Semester <%= @new_course.errors[:semester].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_field :semester, :value => @new_course.semester, class:"form-control", style: "width:50px" %>
+			</p>
+			<p>
+				<%= f.label :Year %><br>
+				<% unless @new_course.errors[:year].blank? %>
+					<span id="error_explanation">
+						Year <%= @new_course.errors[:year].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:100px" %>
+			</p>
+			<p>
+				<%= f.submit "Save", class: "btn btn-success" %>
+			</p>
 		<% end %>
-		<%= f.text_field :name, :value => @new_course.name, class:"form-control", style: "width:300px" %>
-	</p>
-	<p>
-		<%= f.label :Code %><br>
-		<% unless @new_course.errors[:code].blank? %>
-			<span id="error_explanation">
-				Code <%= @new_course.errors[:code].join(", ") %> 
-			</span>
-			<br>
-		<% end %>
-		<%= f.text_field :code, :value => @new_course.code, class:"form-control", style: "width:300px" %>
-	</p>
-	<p>
-		<%= f.label :Description %><br>
-		<% unless @new_course.errors[:description].blank? %>
-			<span id="error_explanation">
-				Description <%= @new_course.errors[:description].join(", ") %> 
-			</span>
-			<br>
-		<% end %>
-		<%= f.text_area :description, class:"form-control", style:"width:300px",placeholder:"Description", :value => @new_course.description %>
-	</p>
-	<p>
-		<%= f.label :Semester %><br>
-		<% unless @new_course.errors[:semester].blank? %>
-			<span id="error_explanation">
-				Semester <%= @new_course.errors[:semester].join(", ") %> 
-			</span>
-			<br>
-		<% end %>
-		<%= f.text_field :semester, :value => @new_course.semester, class:"form-control", style: "width:50px" %>
-	</p>
-	<p>
-		<%= f.label :Year %><br>
-		<% unless @new_course.errors[:year].blank? %>
-			<span id="error_explanation">
-				Year <%= @new_course.errors[:year].join(", ") %> 
-			</span>
-			<br>
-		<% end %>
-		<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:100px" %>
-	</p>
-	<p>
-		<%= f.submit "Save", class: "btn btn-success" %>
-	</p>
-<% end %>
+		</div>
+	</div>
+</div>

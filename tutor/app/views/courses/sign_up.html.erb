@@ -1,69 +1,81 @@
-<!--Author: Ahmed Moataz-->
-<h1>Course Sign-Up</h1>
-<table>
-	<tbody>
-		<% case @status%>
-			<% when "0" %>
-				<h3>Sorry, only students can sign up for courses!</h3>
-			<% when "1" %>
-				<h2><%=@status%> / 6</h2>
-				<h3>Please choose a University</h3>
-				<% @courses.each do |course| %>
-					<tr>
-						<td>
-							<%= link_to(course.university, {:action => "sign_up", :university => course.university,
-							:status => "2"}) %>
-						</td>
-					</tr>
-				<% end %>
-			<% when "2" %>
-				<h2><%=@status%> / 6</h2>
-				<h3>Please choose a Semester</h3>
-				<% @courses.each do |course| %>
-					<tr>
-						<td>
-							<%= link_to(course.semester, {:action => "sign_up", :university => params[:university],
-							:semester => course.semester, :status => "3"}) %>
-						</td>
-					</tr>
-				<% end %>
-			<% when "3" %>
-				<h2><%=@status%> / 6</h2>
-				<h3>Please choose a Course</h3>
-				<% @courses.each do |course| %>
-					<tr>
-						<td>
-							<%= link_to(course.name, {:action => "sign_up", :university => params[:university],
-							:semester =>course.semester, :id => course.id, :status => "4"} )%>
-						</td>
-					</tr>
-				<% end %>
-			<% when "4" %>
-				<h2><%=@status%> / 6</h2>
-				<h3>Pleas choose an Instructor</h3>
-				<% @course.lecturers.each do |lecturer| %>
-					<tr>
-						<td>
-							<%= link_to(lecturer.name, {:action => "sign_up", :university => params[:university],
-							:semester =>@course.semester, :id => @course.id, :lecturer => lecturer.id, :status => "5"} )%>
-						</td>
-					</tr>
-				<% end %>
-			<% when "5" %>
-				<h2><%=@status%> / 6</h2>
-				<h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
-				<tr>
-					<td>
-						<%= link_to("Sign-Up!", {:action => "sign_up", :university => params[:university],
-						:semester => @course.semester, :id => @course.id, :lecturer => params[:lecturer], :status => "6"} )%>
-					</td>
-				</tr>
-			<% when "6" %>
-				<h2><%=@status%> / 6</h2>
-				<h4>You have signed up to:</h4>
-				<h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
-			<% when "7" %>
-				<h3>You are already signed up to this course!</h3>	
-		<% end %>
-	</tbody>
-</table>
+<!--Author: Mohab Ghanim -->
+<div class ="tabs">
+	<ul class="tab-links">
+		<li ><a href="/courses">My Courses</a></li>
+		<li class="active"><a href="/courses/sign_up">Sign up for a course</a></li>
+
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+			<!--Author: Ahmed Moataz-->
+			<h1>Course Sign-Up</h1>
+			<table>
+				<tbody>
+					<% case @status%>
+						<% when "0" %>
+							<h3>Sorry, only students can sign up for courses!</h3>
+						<% when "1" %>
+							<h2><%=@status%> / 6</h2>
+							<h3>Please choose a University</h3>
+							<% @courses.each do |course| %>
+								<tr>
+									<td>
+										<%= link_to(course.university, {:action => "sign_up", :university => course.university,
+										:status => "2"}) %>
+									</td>
+								</tr>
+							<% end %>
+						<% when "2" %>
+							<h2><%=@status%> / 6</h2>
+							<h3>Please choose a Semester</h3>
+							<% @courses.each do |course| %>
+								<tr>
+									<td>
+										<%= link_to(course.semester, {:action => "sign_up", :university => params[:university],
+										:semester => course.semester, :status => "3"}) %>
+									</td>
+								</tr>
+							<% end %>
+						<% when "3" %>
+							<h2><%=@status%> / 6</h2>
+							<h3>Please choose a Course</h3>
+							<% @courses.each do |course| %>
+								<tr>
+									<td>
+										<%= link_to(course.name, {:action => "sign_up", :university => params[:university],
+										:semester =>course.semester, :id => course.id, :status => "4"} )%>
+									</td>
+								</tr>
+							<% end %>
+						<% when "4" %>
+							<h2><%=@status%> / 6</h2>
+							<h3>Pleas choose an Instructor</h3>
+							<% @course.lecturers.each do |lecturer| %>
+								<tr>
+									<td>
+										<%= link_to(lecturer.name, {:action => "sign_up", :university => params[:university],
+										:semester =>@course.semester, :id => @course.id, :lecturer => lecturer.id, :status => "5"} )%>
+									</td>
+								</tr>
+							<% end %>
+						<% when "5" %>
+							<h2><%=@status%> / 6</h2>
+							<h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
+							<tr>
+								<td>
+									<%= link_to("Sign-Up!", {:action => "sign_up", :university => params[:university],
+									:semester => @course.semester, :id => @course.id, :lecturer => params[:lecturer], :status => "6"} )%>
+								</td>
+							</tr>
+						<% when "6" %>
+							<h2><%=@status%> / 6</h2>
+							<h4>You have signed up to:</h4>
+							<h4>Semester: <%=@course.semester%> - Course: <%=@course.name%> - Instructor: <%=@lecturer.name%></h4>
+						<% when "7" %>
+							<h3>You are already signed up to this course!</h3>	
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
