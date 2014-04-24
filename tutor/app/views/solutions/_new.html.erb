@@ -31,8 +31,8 @@
 	<table width='100%'>
 		<tr>
 			<td>
-				<%= button_tag 'Compile', type: 'Button',
-					id: 'compileButton', onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
+				<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
+					onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
 				<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
 					type: 'Button', onClick: "run_input(#{params[:id]})" %>
 				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
@@ -54,8 +54,9 @@
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit", confirm: 'Are you sure you want to submit your solution?', class: "btn btn-info" %>
-				<%= f.submit "Compile", class: "btn btn-info" %>
+				<%= f.submit "Submit", 
+				confirm: 'Are you sure you want to submit your solution?', 
+				class: "btn btn-info" %>
 			</td>
 		</tr>
 	</table>
