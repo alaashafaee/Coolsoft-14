@@ -71,7 +71,7 @@ class TracksController < ApplicationController
 	# [Recommendatio to students - Story 5.7]
 	# Gets students who can be recommended a problem of id :id
 	# Parameters: none
-	# Returns: json containing a Hash of classmates 
+	# Returns: json containing a Hash of classmates
 	# Author: Mohab Ghanim
 	def show_classmates
 		problem = Problem.find_by_id(params[:id])
