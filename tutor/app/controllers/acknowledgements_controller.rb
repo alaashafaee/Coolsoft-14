@@ -11,7 +11,6 @@ class AcknowledgementsController < ApplicationController
 		if !@course.can_edit(current_lecturer)
 			redirect_to :root
 		end
-
 	end
 
 	# [Student Acknowledgement - Story 1.7]
