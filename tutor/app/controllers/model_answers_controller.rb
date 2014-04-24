@@ -113,6 +113,6 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	private
 	def post_params
-		params.require(:model_answer).permit(:title,:answer,:problem_id)
+		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end	
 end
