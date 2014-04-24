@@ -73,7 +73,11 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def new
 		if lecturer_signed_in? || teaching_assistant_signed_in?
-			render ('new')
+			if params[:id].blank?
+				render ('public/404')
+			else
+				render ('new')
+			end
 		else
 			render ('public/404')
 		end
