@@ -1,4 +1,8 @@
-<div id="div1"></div>
+<div id="div1">
+	<% if flash[:notice] %>
+		<div class="notice"><%= flash[:notice] %></div>
+	<% end %>
+</div>
 
 <div id="div2">
 	<h2 align ="center"><%= @problem.title %></h2>
@@ -27,4 +31,6 @@
 <%= render partial: "model_answers/new" %>
 
 <%= render partial: "problems/success_options" %>
-<%= render partial: "problems/failure_options" %>
+<% if @problem.model_answers.empty? || @problem.test_cases.empty? %>
+	<%= render partial: "problems/failure_options" %>
+<% end %>

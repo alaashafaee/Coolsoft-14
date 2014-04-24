@@ -124,20 +124,10 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
-		if @problem.test_cases.empty?
+		if @problem.model_answers.empty? || @problem.test_cases.empty?
 			@failure = true
-			flash.keep[:notice] = "Test cases are empty"
-			respond_to do |format|
-				format.html {redirect_to :action => "edit", :id => @problem.id}
-				format.js
-			end
-		elsif @problem.model_answers.empty?
-			@failure = true
-			flash.keep[:notice] = "Answers are empty"
-			respond_to do |format|
-				format.html {redirect_to :action => "edit", :id => @problem.id}
-				format.js
-			end
+			flash.keep[:notice] = "Problem is incomplete, please add necessary paramaters or save as incomplete"
+			redirect_to :action => "edit", :id => @problem.id
 		else
 			@problem.incomplete = false
 			@problem.save
