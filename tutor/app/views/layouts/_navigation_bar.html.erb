@@ -1,0 +1,13 @@
+<div id="nav_bar">
+	<tr>
+		<td><%= button_to "Courses", {:controller => 'courses', :action => 'index',
+			:course_id => @course.id} %> </td>
+	</tr>
+	<style>
+	div.nav_bar {
+		float: right;
+		width: 30px;
+		background-color: black;
+	}
+	</style>
+</div>

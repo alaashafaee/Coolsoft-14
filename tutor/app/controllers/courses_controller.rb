@@ -290,4 +290,3 @@ class CoursesController < ApplicationController
 		end
 
 end
-
