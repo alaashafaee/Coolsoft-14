@@ -82,11 +82,11 @@ puts("# -----------------------Variable Constraints---------------------------")
 
 puts("# -----------------------Problems---------------------------")
 
-	Problem.create(title:"Problem 1", description:"This will be very hard Problem", track_id: 1)
-	Problem.create(title:"Problem 2", description:"This is very hard Problem", track_id: 1)
-	Problem.create(title:"Problem 3", description:"This wont be a hard Problem", track_id: 1)
-	Problem.create(title:"Problem 4", description:"This will be very easy Problem", track_id: 2)
-	Problem.create(title:"Problem 5", description:"This is very easy Problem", track_id: 2)
+	Problem.create(title:"Problem 1", description:"This will be very hard Problem", incomplete: true)
+	Problem.create(title:"Problem 2", description:"This is very hard Problem", incomplete: true)
+	Problem.create(title:"Problem 3", description:"This wont be a hard Problem", incomplete: true)
+	Problem.create(title:"Problem 4", description:"This will be very easy Problem", incomplete: true)
+	Problem.create(title:"Problem 5", description:"This is very easy Problem", incomplete: true)
 
 puts("# -----------------------Tracks---------------------------")
 	Track.create(title: "Track 1" , difficulty: 0)
