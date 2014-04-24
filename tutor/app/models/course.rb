@@ -7,8 +7,8 @@ class Course < ActiveRecord::Base
 	validates :year, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: Date.today.year,
 													 message: "is not valid"}
 	validates :semester, presence: true, numericality: {only_integer: true, 
-															greater_than_or_equal_to: 1,
-													 			message: "is not valid"}
+		greater_than_or_equal_to: 1,
+			message: "is not valid"}
 
 	#Relations
 	has_and_belongs_to_many :TAs, class_name:"TeachingAssistant", join_table: "courses_teaching_assistants"
