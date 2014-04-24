@@ -161,8 +161,8 @@ function remove_variable(field) {
 
 //# [Add Solutions' constraints - Story 4.14]
 //# Description: for showing the error massages for the user
-//# Parameters:
-//#		errorArray: array of Errors, for multi error massage show
+//# Parameters: 
+//# 	errorArray: array of Errors,for multi error massage show
 //# Returns: none
 //# Author: Ahmed Mohamed Magdi
 function showErrorMessage(arrayOfErrors) {
@@ -173,8 +173,8 @@ function showErrorMessage(arrayOfErrors) {
 
 //# [Add Solutions' constraints - Story 4.14]
 //# Description: Validates Data before sending it to the Server side
-//# Parameters:
-//#		errorArray: array of Errors, for multi error massage show
+//# Parameters: 
+//# 	method_cons: Hash containting the Method parameters
 //# Returns: none
 //# Author: Ahmed Mohamed Magdi
 function testingValidation(errorArray,method,name) {
