@@ -1,0 +1,27 @@
+<h2>The Course's Teaching Assistants</h2>
+
+<br/>
+	<% if flash[:notice] -%>
+		<div class="alert alert-success", style="display: inline-block;"><%= flash[:notice] %></div>
+	<% end %>
+<br/>
+
+<!-- Creating a table for the teaching assistants -->
+<table class = "table table-striped", style = "width:50%", border = "1">
+	<tr>
+    	<!-- Listing the heads -->
+		<th>Name</th>
+		<th>Email</th>
+	</tr>
+  
+	<!-- Looping on the array of teaching assistants of the course -->
+	<% @course_teaching_assistants.each do |teaching_assistant| %>
+		<tr>
+      		<!-- Inserting the records to the table -->
+			<td><%= teaching_assistant.name %></td>
+			<td><%= teaching_assistant.email %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
