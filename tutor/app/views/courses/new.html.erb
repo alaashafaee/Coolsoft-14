@@ -1,35 +1,56 @@
 <h1>Create New Course</h1>
 
-<% if @new_course.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= pluralize(@new_course.errors.count, "error") %> prohibited this course from being saved:</h2>
-		<ul>
-			<% @new_course.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-		</ul>
-	</div>
-<% end %>
 
 <%= form_for :course, url: courses_path do |f| %>
 	<p>
 		<%= f.label :Name %><br>
+		<% unless @new_course.errors[:name].blank? %>
+			<span id="error_explanation">
+					Name <%= @new_course.errors[:name].join(", ") %> 
+			</span>
+		<% end %>
+		<br>
 		<%= f.text_field :name, :value => @new_course.name%>
+		
 	</p>
 	<p>
 		<%= f.label :Code %><br>
+		<% unless @new_course.errors[:code].blank? %>
+			<span id="error_explanation">
+					Code <%= @new_course.errors[:code].join(", ") %> 
+			</span>
+		<% end %>
+		<br>
 		<%= f.text_field :code, :value => @new_course.code %>
 	</p>
 	<p>
 		<%= f.label :Description %><br>
+		<% unless @new_course.errors[:description].blank? %>
+			<span id="error_explanation">
+					Description <%= @new_course.errors[:description].join(", ") %> 
+			</span>
+		<% end %>
+		<br>
 		<%= f.text_area :description, class:"form-control", style:"width:300px",placeholder:"Description", :value => @new_course.description %>
 	</p>
 	<p>
 		<%= f.label :Semester %><br>
+		<% unless @new_course.errors[:semester].blank? %>
+			<span id="error_explanation">
+					Semester <%= @new_course.errors[:semester].join(", ") %> 
+			</span>
+		<% end %>
+		<br>
 		<%= f.text_field :semester, :value => @new_course.semester %>
 	</p>
 	<p>
 		<%= f.label :Year %><br>
+		<% unless @new_course.errors[:year].blank? %>
+			<span id="error_explanation">
+					Year <%= @new_course.errors[:year].join(", ") %> 
+			</span>
+		<% end %>
+		<br>
 		<%= f.text_field :year, :value => @new_course.year %>
 	</p>
 	<p>

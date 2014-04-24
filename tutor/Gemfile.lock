@@ -52,6 +52,7 @@ GEM
     dotenv (0.11.0)
       dotenv-deployment (= 0.0.1)
     dotenv-deployment (0.0.1)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (2.0.2)
     foreman (0.63.0)
@@ -145,6 +146,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   composite_primary_keys (~> 6.0.1)
   devise
+  dynamic_form
   foreman
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)

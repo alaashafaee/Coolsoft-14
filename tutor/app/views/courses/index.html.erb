@@ -5,9 +5,16 @@
 	<%= button_to "Create course", { :action => 'new', :controller => 'courses' }, {
 		class: 'btn btn-primary'} %>
 <% end %>
-<br>
-<%= flash[:success_deletion] %>
-<%= flash[:success_creation] %>
+
+<br/>
+<% if flash[:success_creation] -%>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_creation] %></div>
+<% end %>
+<% if flash[:success_deletion] -%>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_deletion] %></div>
+<% end %>
+<br/>
+
 <% if @courses.any? %>
 	<h1>Your Courses</h1>
 	<table class = "table table-striped", style = "width:80%">
