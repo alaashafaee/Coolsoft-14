@@ -77,17 +77,11 @@ class ModelAnswersController < ApplicationController
 		@answer = ModelAnswer.find(params[:id])
 		if @answer.update_attributes(post_params)
 			flash[:notice] = "Your Answer is now updated"
-<<<<<<< HEAD
-  			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
-		else
-		render :action=>'edit' , :problem_id => @answer.problem_id
-
-=======
   			redirect_to :controller => 'problems', :action => 'edit',
-  				:id => session[:problem_id]
+  			:id => session[:problem_id]
 		else
 		render :action=>'edit', :problem_id => @answer.problem_id
->>>>>>> 59cda44592ffc1b61ebb28783eb3ef90a1031a62
+
 		end
 	end
 	
