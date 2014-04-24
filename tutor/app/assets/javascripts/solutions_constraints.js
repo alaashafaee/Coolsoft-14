@@ -1,17 +1,17 @@
-// # Place all the behaviors and hooks related to the matching controller here.
-// # All this logic will automatically be available in application.js.
-// # You can use CoffeeScript in this file: http://coffeescript.org/
+//# Place all the behaviors and hooks related to the matching controller here.
+//# All this logic will automatically be available in application.js.
+//# You can use CoffeeScript in this file: http://coffeescript.org/
 
 var type = new Array();
 var param_name = new Array();
 var var_type = new Array();
 var var_name = new Array();
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: Adds the parameters from the text_fields to array
-// # Parameters: none
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: Adds the parameters from the text_fields to array
+//# Parameters: none
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function add_params(field) {
 	var tmp_type = document.getElementById("params_type").value;
 	var tmp_name = document.getElementById("params_name").value;
@@ -55,11 +55,11 @@ function add_params(field) {
 	}
 }
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: removes selected variable from method Contraints
-// # Parameters: none
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: removes selected variable from method Contraints
+//# Parameters: none
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function remove_params(field) {
 	var index = field.id.split("_")[1];
 	type.splice(index,1);
@@ -83,11 +83,11 @@ function remove_params(field) {
 	$('#parameter').append("</table>");
 }
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: Adds the parameters from the text_fields to array
-// # Parameters: none
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: Adds the parameters from the text_fields to array
+//# Parameters: none
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function add_variable(field) {
 	var tmp_type = document.getElementById("variable_type").value;
 	var tmp_name = document.getElementById("variable_name").value;
@@ -131,11 +131,11 @@ function add_variable(field) {
 	}
 }
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: removes selected variable from Variable Contraints
-// # Parameters: none
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: removes selected variable from Variable Contraints
+//# Parameters: none
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function remove_variable(field) {
 	var index = field.id.split("_")[1];
 	var_type.splice(index,1);
@@ -159,24 +159,24 @@ function remove_variable(field) {
 	$('#variable').append("</table>");
 }
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: for showing the error massages for the user
-// # Parameters:
-// #	errorArray: array of Error, for multi error massage show
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: for showing the error massages for the user
+//# Parameters:
+//#		errorArray: array of Errors, for multi error massage show
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function showErrorMessage(arrayOfErrors) {
 	for (var i = 0; i < arrayOfErrors.length; i++) {
 		$("#errors").append("<div class=\"alert alert-danger\">"+arrayOfErrors[i]+"</div>");
 	};
 }
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: Validates Data before sending it to the Server side
-// # Parameters:
-// #	errorArray: array of Error, for multi error massage show
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: Validates Data before sending it to the Server side
+//# Parameters:
+//#		errorArray: array of Errors, for multi error massage show
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function testingValidation(errorArray,method,name) {
 	if (type.length == 0 &&
 		var_type.length == 0 &&
@@ -206,11 +206,11 @@ function testingValidation(errorArray,method,name) {
 	return errorArray.length == 0;
 }
 
-// # [Add Solutions' constraints - Story 4.14]
-// # Description: submits via ajax to the controller
-// # Parameters: none
-// # Returns: none
-// # Author: Ahmed Mohamed Magdi
+//# [Add Solutions' constraints - Story 4.14]
+//# Description: submits via ajax to the controller
+//# Parameters: none
+//# Returns: none
+//# Author: Ahmed Mohamed Magdi
 function submitParams() {
 	$("#errors").html("");
 	errorArray = new Array();
