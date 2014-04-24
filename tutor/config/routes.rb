@@ -1,5 +1,8 @@
 Tutor::Application.routes.draw do
 
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -81,6 +84,8 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :teaching_assistants
+		post 'teaching_assistants/new' => 'teaching_assistants#new'
 		resources :acknowledgements
 	end
 
