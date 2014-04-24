@@ -137,7 +137,10 @@ class CoursesController < ApplicationController
 	# Author: Mohamed Mamdouh
 	def edit
 		@course = Course.find_by_id(params[:id])
-		@discussionBoard = @course.discussion_board
+		if !@course.can_edit(current_lecturer)
+			redirect_to :root
+		end
+		@discussion_board = @course.discussion_board
 	end
 	
 	# [View a course - story 1.21]
@@ -171,6 +174,7 @@ class CoursesController < ApplicationController
 	# Author: Mohamed Metawaa
 	def update
 		@course = Course.find_by_id(params[:id])
+		@discussion_board = @course.discussion_board
 		if @course.update(course_params)
 			@topics = @course.topics
 			render 'show'
@@ -194,7 +198,8 @@ class CoursesController < ApplicationController
 			student_id = current_student.id
 			course_id = params[:id]
 			value = to_boolean params[:value]
-			result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)[0]
+			result = CourseStudent.where("student_id = ? AND course_id = ?",
+				student_id, course_id)[0]
 			if result.share == value
 				render ('public/404')
 			else
@@ -256,16 +261,17 @@ class CoursesController < ApplicationController
 		# 	current signed in student
 		# Author: Khaled Helmy
 		def find_state courses
-			states = []
+			states = Hash.new
 			student_id = current_student.id
 			puts student_id
 			courses.each do |c|
 				course_id = c.id
-				result = CourseStudent.where("student_id = ? AND course_id = ?", student_id, course_id)[0]
+				result = CourseStudent.where("student_id = ? AND course_id = ?",
+					student_id, course_id)[0]
 				if result.share == false
-					states << "Show"
+					states[result.course_id] = "Show"
 				else
-					states << "Hide"
+					states[result.course_id] = "Hide"
 				end
 			end
 			return states
@@ -286,6 +292,5 @@ class CoursesController < ApplicationController
 				return false
 			end
 		end
-
 end
 

@@ -8,9 +8,16 @@
 	<%= button_to "Create course", { :action => 'new', :controller => 'courses' }, {
 		class: 'btn btn-primary'} %>
 <% end %>
-<br>
-<%= flash[:success_deletion] %>
-<%= flash[:success_creation] %>
+
+<br/>
+<% if flash[:success_creation] %>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_creation] %></div>
+<% end %>
+<% if flash[:success_deletion] %>
+	<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_deletion] %></div>
+<% end %>
+<br/>
+
 <% if @courses.any? %>
 	<h1>Your Courses</h1>
 	<table class = "table table-striped", style = "width:80%">
@@ -21,25 +28,29 @@
 			<th></th>
 			<th></th>
 		</tr>
-		<% @courses.zip(@share).each do |c, s| %>
+		<% @courses.each do |c| %>
 			<tr>
 				<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, 
 							:method => :get, class: "btn btn-success" %></td>
 				<td><%= c.code %></td>
 				<td>
 					<% if current_lecturer %>
-						<%= link_to "Manage Course", { :controller => 'courses', :action => 'edit', :method => :get, :id => c.id }, class: "btn btn-success", style: "text-decoration:none" %>
+						<%= link_to "Manage Course", { :controller => 'courses', :action => 'edit',
+							:method => :get, :id => c.id }, class: "btn btn-success", style: "text-decoration:none" %>
 					<% end %>
 				</td>
 				<td>
-					<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id }, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+					<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id },
+						class: "btn btn-success", method: :get, style: "text-decoration:none" %>
 				</td>
 				<td>
 					<% if current_student %>
-						<% if s == "Show" %>
-							<%= button_to "Show Performance", {:controller => 'courses', :action => 'share', :id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
+						<% if @share[c.id] == "Show" %>
+							<%= button_to "Show Performance", {:controller => 'courses', :action => 'share',
+								:id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
 						<% else %>
-							<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share', :id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
+							<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share',
+								:id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
 						<% end %>
 					<% end %>
 				</td>
@@ -47,7 +58,4 @@
 		<% end %>
 	</table>
 <% end %>
-<<<<<<< HEAD
 
-=======
->>>>>>> 25045f42d314cdc7383d7218161840e93908a97c

@@ -2,28 +2,47 @@
 # [View Layout - Story 1.2]
 # General layout for right side bar
 # Author: Ahmed Elassuty
--->  
-<div id="right_side_bar" class="well pull-right side-right" style="width:20%">
-<div>
-	<div class="row">
+<<<<<<< HEAD-->
   
-      <div class="navbar navbar-default" role="navigation">
-        	
-          <ul class="nav nav-list">
-            <li><a href="#"><%= image_tag("glyphicons_003_user.png" , { :a => "Profile" , size: "15x15"})%> Profile </a></li>
-            <li><a href="#"><%= image_tag("glyphicons_136_cogwheel.png",{:a => "Dashboard", size: "15x15"})%>Dashboard </a></li>
-            <li><a href="#"><%= image_tag("glyphicons_318_more_items.png",{:a => "Courses", size: "15x15"})%> Courses</a></li>
-            <li><a href="#"><%= image_tag("glyphicons_280_settings.png",{:a => "Settings", size: "15x15"})%> Settings</a></li>
-            <!--<li><a href="#">Reviews <span class="badge">1,118</span></a></li>-->
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-      </div>
+<div id="right_side_bar" class="pull-right side-right" style="width:20%">
+	<div style="margin-bottom:12px" class="well">
+		<div class="row">
+  			<div class="sidebar-nav">
+      			<div class="navbar navbar-default" role="navigation">
+        			<div class="navbar-header">
+					    <button type="button" class="navbar-toggle" data-toggle="collapse" 
+					        data-target=".sidebar-navbar-collapse">
+						    <span class="sr-only">Toggle navigation</span>
+						    <span class="icon-bar"></span>
+						    <span class="icon-bar"></span>
+						    <span class="icon-bar"></span>
+					    </button>
+          					<span class="visible-xs navbar-brand">Sidebar menu</span>
+        			</div>
+          				<ul class="nav nav-list">
+          				<% if student_signed_in? %>
+			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_003_user.png" , { :a => "Profile" , size: "15x15"})%> Profile </a></li>
+			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_136_cogwheel.png",{:a => "Dashboard", size: "15x15"})%>Dashboard <!--<span class="badge"></span>--></a></li>
+			            	<li><a href="../courses?" target="_blank"><%= image_tag("glyphicons_318_more_items.png",{:a => "Courses", size: "15x15"})%> Courses</a></li>
+			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_280_settings.png",{:a => "Settings", size: "15x15"})%> Settings</a></li>
+			            <% else %>
+			             	<li><a href="#" target="_blank"><%= image_tag("glyphicons_003_user.png" , { :a => "Profile" , size: "15x15"})%> Profile </a></li>
+			            	<li><a href="../courses?" target="_blank"><%= image_tag("glyphicons_318_more_items.png",{:a => "Courses", size: "15x15"})%> Courses</a></li>
+			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_280_settings.png",{:a => "Settings", size: "15x15"})%> Settings</a></li>
+			            <% end %>
+		          		</ul>
+        			</div><!--/.nav-collapse -->
+      			</div>
+      		</div>
+		</div>
+
+
 	<!--
-	# [Get Recommended Problems - Story 5.6]
-	# Displays the recommende problem hash in a table as [recommender_name | problem]
+	# [Next problems to solve - Story 5.5]
+	# displays a table of next problems to solve in each topic
 	# Author: Mohab Ghanim
 	-->
+<!--<<<<<<< HEAD
 	<% if student_signed_in? %>
 		<div>
 			<% recommended_problems = current_student.getClassMatesRecommendations 
@@ -45,5 +64,54 @@
 			<% end %>
 		</div>
 	<% end %>
+</div>-->
+
+	<div class="well">
+		<% if student_signed_in? %>
+			<div>
+				<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
+				<% if next_problems_to_solve != nil then %>
+					<table class="table table-striped table-bordered table-responsive">
+						<caption><b>Your Next Problems<b></caption>
+						<% next_problems_to_solve.each do |key , value| %>
+							<tr>
+								<td>
+									<%= link_to value.title, controller: "problems", action: "show", id: value.id %>
+								</td>
+								<td>
+									<%= key %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+
+		<!--
+		# [Get Recommended Problems - Story 5.6]
+		# Displays the recommende problem hash in a table as [recommender_name | problem]
+		# Author: Mohab Ghanim
+		-->
+			<div>
+				<% recommended_problems = current_student.getClassMatesRecommendations 
+				if recommended_problems != nil then %>
+					<table class="table table-striped table-bordered table-responsive">
+						<caption><b>Recommendations by classmates<b></caption>
+						<% recommended_problems.each do |key , value| %>
+							<tr>
+								<td>
+									<%= value["recommender_name"] %>
+								</td>
+								<td>
+									<%= link_to value["problem_title"], 
+									controller: "problems", action: "show", id: key %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
 </div>
 
