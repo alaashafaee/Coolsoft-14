@@ -36,12 +36,12 @@ class TeachingAssistantsController < ApplicationController
 		begin
 			@teaching_assistant = TeachingAssistant.find_by_id(params[:teaching_assistant][:id])
 			if params[:teaching_assistant][:id] == ''
- 				flash[:notice] = 'Error! you need to select a TA'
+ 				flash[:failure_notice] = 'Error! you need to select a TA'
 				redirect_to :action => 'new'
 			else
 				@course = Course.find_by_id(params[:course_id])
 				@course.TAs << @teaching_assistant
-				flash[:notice]='TA added!'
+				flash[:success_notice] = 'TA added!'
 				@notification = NotificationMail.new
 				@notification.subject = 'Invitation to join tutor'
 				@notification.email = @teaching_assistant.email
@@ -50,7 +50,7 @@ class TeachingAssistantsController < ApplicationController
 				redirect_to :action => 'index'
 			end
 		rescue
-			flash[:notice]='Error! TA is already added to the course.'
+			flash[:failure_notice] = 'Error! TA is already added to the course.'
 			redirect_to :action => 'new'
 		end	
 	end

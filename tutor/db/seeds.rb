@@ -101,12 +101,12 @@ puts("# -----------------------Hints---------------------------")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
 puts("# -----------------------ModelAnswer---------------------------")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-1")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-2")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-3")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-4")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-5")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
+	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
+	ModelAnswer.create(title: "Answer3", answer: "System.out.println('SQL baaaad')-3")
+	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
+	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
+	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
 
 puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -187,6 +187,8 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
+	Lecturer.first.replies << Reply.find_by_id(3)
+	Lecturer.first.replies << Reply.find_by_id(4)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
