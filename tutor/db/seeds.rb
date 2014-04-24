@@ -131,6 +131,11 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
 
+puts("# ----------------- Track Progressions ----------------------")
+	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
+	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
+	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
+
 puts("# -------------------------------------------------------")
 
 puts("**************************************************************")
@@ -233,15 +238,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
-puts("# ----------------- Track Progressions ----------------------")
-	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
-puts("# ---------------------------------------------------------")
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
 
 puts("# ---------------------------------------------------------")
