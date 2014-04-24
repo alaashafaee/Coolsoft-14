@@ -144,7 +144,8 @@ class Debugger < ActiveRecord::Base
 
 	# [Debugger: Debug - Story 3.6]
 	# Checks if there is a runtime error thrown
-	# Parameters: none
+	# Parameters: 
+	# 	line: The line to be checked if has a runtime error
 	# Returns: A hash of the exception and its explaination it existed
 	# Author: Mussab ElDash
 	def has_exception(line)
