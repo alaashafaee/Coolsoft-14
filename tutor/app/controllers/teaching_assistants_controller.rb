@@ -21,9 +21,9 @@ class TeachingAssistantsController < ApplicationController
 	def create
 		begin
 			@teaching_assistant = TeachingAssistant.find_by_id(params[:teaching_assistant][:id])
-				if params[:teaching_assistant][:id] == ''
- 					flash[:notice] = 'Error! you need to select a TA'
-					redirect_to :action => 'new'
+			if params[:teaching_assistant][:id] == ''
+ 				flash[:notice] = 'Error! you need to select a TA'
+				redirect_to :action => 'new'
 			else
 				@course = Course.find_by_id(params[:course_id])
 				@course.TAs << @teaching_assistant
