@@ -37,7 +37,6 @@ class Lecturer < ActiveRecord::Base
 
 	#Methods
 
-<<<<<<< HEAD
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Checks if the email is already registered in tables: Student and TeachingAssistant
 	# 	before registering the email for table: Lecturer
@@ -50,6 +49,4 @@ class Lecturer < ActiveRecord::Base
 		end
 	end
 
-=======
->>>>>>> 7a2782c115057f5a1727019edd7769639fc15b87
 end
