@@ -192,7 +192,7 @@ debug_console = ->
 	update_memory_contents stateNumber
 
 # [Debugger: Debug - Story 3.6]
-# Shows the runtime error in its correcsponding section in the page
+# Shows the runtime error in its corresponding section in the page
 # Parameters:
 # 	stateNumber: The target state number.
 # Returns: none
