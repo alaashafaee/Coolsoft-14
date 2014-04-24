@@ -36,11 +36,12 @@ function add_params(field)
 			$('#parameter').append("</tr>");
 		}
 		$('#parameter').append("</table>");
-	}else {
-		if (tmp_name == "" && tmp_type == ""){
+	}
+	else {
+		if (tmp_name == "" && tmp_type == "") {
 			document.getElementById("params_type").style.border= "red 1px solid";
 			document.getElementById("params_name").style.border= "red 1px solid";
-		}else if(tmp_name == ""){
+		}else if(tmp_name == "") {
 			document.getElementById("params_type").style.border= "";
 			document.getElementById("params_name").style.border= "red 1px solid";
 		}else{
@@ -107,10 +108,10 @@ function add_variable(field)
 		}
 		$('#variable').append("</table>");
 	}else {
-		if (tmp_name == "" && tmp_type == ""){
+		if (tmp_name == "" && tmp_type == "") {
 			document.getElementById("variable_type").style.border= "red 1px solid";
 			document.getElementById("variable_name").style.border= "red 1px solid";
-		}else if(tmp_name == ""){
+		}else if(tmp_name == "") {
 			document.getElementById("variable_type").style.border= "";
 			document.getElementById("variable_name").style.border= "red 1px solid";
 		}else{
@@ -152,7 +153,7 @@ function remove_variable(field)
 // #		errorArray: array of Error, for multi error massage show
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function showErrorMessage(arrayOfErrors){
+function showErrorMessage(arrayOfErrors) {
 	for (var i = 0; i < arrayOfErrors.length; i++) {
 		$("#errors").append("<div class=\"alert alert-danger\">"+arrayOfErrors[i]+"</div>");
 	};
@@ -163,27 +164,27 @@ function showErrorMessage(arrayOfErrors){
 // #		errorArray: array of Error, for multi error massage show
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
-function testingValidation(errorArray,method,name){
+function testingValidation(errorArray,method,name) {
 	if (type.length == 0 &&
 		var_type.length == 0 &&
 		method == 0 &&
-		name == 0 ) 
+		name == 0) 
 	{
 		errorArray.push("Can not submit an empty Data, Try filling either Method Constraint for Variable Constraint");
 		return false;
 	};
-	if ( type.length > 0) {
-		if ( method == "" && name == ""){
+	if (type.length > 0) {
+		if (method == "" && name == "") {
 			document.getElementById("_constrain_method_return").style.border= "red 1px solid";
 			document.getElementById("_constrain_method_name").style.border= "red 1px solid";
 			errorArray.push("Enter method name and return type ..");
 		}
 	};
-	if(method == "" && name != ""){
+	if(method == "" && name != "") {
 		document.getElementById("_constrain_method_name").style.border= "";
 		document.getElementById("_constrain_method_return").style.border= "red 1px solid";
 		errorArray.push("Enter method return type ..");
-	}else if(name == "" && method != ""){
+	}else if(name == "" && method != "") {
 		document.getElementById("_constrain_method_name").style.border= "red 1px solid";
 		document.getElementById("_constrain_method_return").style.border= "";
 		errorArray.push("Enter method name ..");
@@ -224,21 +225,24 @@ function submitParams()
 	$.ajax({
 		type: "POST",
 		url: "/solutions_constraints",
-		data:{	parameter_constraint: hash_p,
-				variable_constraint: hash_v,
-				method_return: method,
-				method_name: name
-			},
-		success: function(data){
+		data:{
+			parameter_constraint: hash_p,
+			variable_constraint: hash_v,
+			method_return: method,
+			method_name: name
+		},
+		success: function(data) 
+		{
 			if (data) {
 				alert("Data have been Added successfully");
 				window.location = window.location
-			}else{
+			}
+			else{
 				alert("Data messigin/incorrect !");
 			}
 		},
 		datatype: "JSON",
-		error: function(){
+		error: function() {
 			alert("Failed to Add Constraints, Check again");
 		}
 	});
