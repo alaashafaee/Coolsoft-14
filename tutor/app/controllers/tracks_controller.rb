@@ -6,7 +6,6 @@ class TracksController < ApplicationController
 	#   id: The id of the Track
 	# Returns: Page with list of the problems
 	# Author: Mussab ElDash
-
 	def index
 		@tracks= Track.all
 	end

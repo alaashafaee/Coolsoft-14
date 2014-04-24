@@ -76,7 +76,7 @@
 <p>Hold Press and Drag to sort the tracks 
 
 	<ul id="list-of-tracks" >
-	<%- @tracks.each do |track| %>
+	<% @tracks.each do |track| %>
 		<li id="<%= track.id %>" ><%= track.title %> </li> 
 	<% end %>
 	</ul>
