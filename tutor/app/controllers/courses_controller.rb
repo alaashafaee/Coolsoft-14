@@ -135,15 +135,11 @@ class CoursesController < ApplicationController
 	# Author: Mohamed Mamdouh
 	def edit
 		@course = Course.find_by_id(params[:id])
-<<<<<<< HEAD
-		@discussionBoard = @course.discussion_board
-		@topics = @course.topics
-=======
 		if !@course.can_edit(current_lecturer)
 			redirect_to :root
 		end
 		@discussion_board = @course.discussion_board
->>>>>>> 85740f0a67bd22755a66ea253020f17756f3f87b
+		@topics = @course.topics
 	end
 	
 	# [View a course - story 1.21]
