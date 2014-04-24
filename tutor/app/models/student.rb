@@ -38,7 +38,7 @@ class Student < ActiveRecord::Base
 				topic.tracks.each do |track|
 						if(track.difficulty == level)
 							track.problems.each do |problem|
-								if(!problem.is_solved_by_student(self.id))
+								if !problem.is_solved_by_student(self.id)
 									suggestions.add(problem)
 									break
 								end
