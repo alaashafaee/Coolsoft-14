@@ -1,5 +1,8 @@
 Tutor::Application.routes.draw do
 
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -10,9 +13,14 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
+	post 'solutions/compile_solution' => 'problems#show'
 	post 'courses/new' => 'courses#new'
+	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
-
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
+	post 'solutions/execute' => 'problems#show'
+	post 'debuggers/:id' => 'debuggers#start'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -50,6 +58,7 @@ Tutor::Application.routes.draw do
 	resources :test_cases
 	
 
+
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
@@ -58,10 +67,11 @@ Tutor::Application.routes.draw do
 	resources :courses
 	#resources :test_cases
 	resources :model_answers
-	resources :problems_by_tas
 	resources :solutions
 	resources :problems
 	resources :topics
+	resources :posts
+	resources :facebook
 
 	# Example resource route with options:
 	#   resources :products do
@@ -103,6 +113,9 @@ Tutor::Application.routes.draw do
 	resources :courses do
 		post 'topics/new' => 'topics#new'
 		resources :topics
+		resources :teaching_assistants
+		post 'teaching_assistants/new' => 'teaching_assistants#new'
+		resources :acknowledgements
 	end
 
 	# Example resource route with concerns:
