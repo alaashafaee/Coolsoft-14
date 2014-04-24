@@ -15,7 +15,7 @@ class Lecturer < ActiveRecord::Base
 
 	has_many :topics
 	has_many :tracks, as: :owner
-	has_many :problems, as: :ownerm
+	has_many :problems, as: :owner
 	has_many :model_answers, as: :owner
 	has_many :method_constraints, as: :owner
 	has_many :method_parameters, as: :owner

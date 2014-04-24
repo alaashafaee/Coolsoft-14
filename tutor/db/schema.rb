@@ -152,7 +152,6 @@ ActiveRecord::Schema.define(version: 20140423104456) do
     t.string   "method_name"
     t.string   "method_return"
     t.integer  "model_answer_id"
-    t.integer  "method_constraint_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -162,6 +161,7 @@ ActiveRecord::Schema.define(version: 20140423104456) do
   create_table "method_parameters", force: true do |t|
     t.string   "parameter"
     t.string   "params_type"
+    t.integer  "method_constraint_id"
     t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
