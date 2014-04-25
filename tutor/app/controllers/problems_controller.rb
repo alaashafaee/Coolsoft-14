@@ -59,6 +59,9 @@ class ProblemsController < ApplicationController
 			@problem = Problem.find_by_id(params[:id])
 			@test_cases = @problem.test_cases
 			@answers = @problem.model_answers
+			@track = Track.find_by_id(@problem.track_id)
+			@topic = Topic.find_by_id(@track.topic_id)
+			@tracks = Track.where(topic_id: @track.topic_id)
 		else
 			render ('public/404')
 		end
@@ -84,43 +87,95 @@ class ProblemsController < ApplicationController
 		end
 	end
 
-	# [Edit Problem - 4.5]
-	# Update the problem's title or description
+	# [Remove Problem - Story 4.18]
+	# This action takes the problem id, remove it from the database
+	#	and then redirects the user to the show page of the track that had the problem
+	#	with a "Problem successfully Deleted" message.
 	# Parameters:
-	#	problem_params: a problem's title & description
+	#	params[:id]: The current problem's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+		@track = Problem.find_by_id(params[:id]).track_id
+		if Problem.find_by_id(params[:id]).destroy
+			flash[:notice] = "Problem successfully Deleted"
+			redirect_to(:controller => 'tracks',
+				 :action => 'show' ,:id => @track)
+		end
+	end
+
+	# [Edit Problem - 4.5]
+	# Update the problem's title, description or track
+	# Parameters:
+	#	problem_params: a problem's title, description & track_id
 	# Returns:
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
 	def update
 		@problem = Problem.find_by_id(params[:id])
-		if (problem_params[:title] == @problem.title)
-			if (problem_params[:description] != @problem.description)
-				@message = "Description updated"
-			end
-		elsif (problem_params[:title] != @problem.title)
+		@track = Track.find_by_id(@problem.track_id)
+		@tracks = Track.where(topic_id: @track.topic_id)
+		if problem_params[:title] != @problem.title
 			@message = "Title updated"
+		elsif problem_params[:description] != @problem.description
+			@message = "Description updated"
+		elsif problem_params[:track_id].to_i != @problem.track_id
+			@message = "Problem is moved to Track #{problem_params[:track_id]}"
+		else
+			flash.keep[:notice] = "You have entered the same paramater no change has been made!"
 		end
-		begin
-			if @problem.update_attributes(problem_params)
-				flash.keep[:notice] = @message
-				respond_to do |format|
-					format.html {redirect_to :action => "edit", :id => @problem.id}
-					format.js
+
+		if problem_params[:track_id].to_i == @problem.track_id
+			if problem_params[:title] != @problem.title ||
+				problem_params[:description] != @problem.description
+				begin
+					if @problem.update_attributes(problem_params)
+						flash.keep[:notice] = @message
+						respond_to do |format|
+							format.html {redirect_to :action => "edit",
+								:id => @problem.id}
+							format.js
+						end
+					else
+						flash.keep[:notice] = "Update paramater is empty"
+						@problem = Problem.find_by_id(params[:id])
+						respond_to do |format|
+							format.html {redirect_to :action => "edit",
+								:id => @problem.id}
+							format.js
+						end
+					end
+				rescue
+					flash.keep[:notice] = "The track has a problem with the same title"
+					@problem = Problem.find_by_id(params[:id])
+					respond_to do |format|
+						format.html {redirect_to :action => "edit",
+							:id => @problem.id}
+						format.js
+					end
+				end
+			end
+		else
+			@track = Track.find_by_id(problem_params[:track_id])
+			@problems_in_track = @track.problems.where(title: @problem.title)
+			if @problems_in_track.size == 0
+				if @problem.update_attributes(problem_params)
+					flash.keep[:notice] = @message
+					respond_to do |format|
+						format.html {redirect_to :action => "edit",
+							:id => @problem.id}
+						format.js
+					end
 				end
 			else
-				flash.keep[:notice] = "Update paramater is empty"
-				@problem = Problem.find_by_id(params[:id])
+				flash.keep[:notice] = "#{@track.title} has a problem with the same title"
+				@track = Track.find_by_id(@problem.track_id)
 				respond_to do |format|
-					format.html {redirect_to :action => "edit", :id => @problem.id}
+					format.html {redirect_to :action => "edit",
+						:id => @problem.id}
 					format.js
 				end
-			end
-		rescue
-			flash.keep[:notice] = "The track has a problem with the same title"
-			@problem = Problem.find_by_id(params[:id])
-			respond_to do |format|
-				format.html {redirect_to :action => "edit", :id => @problem.id}
-				format.js
 			end
 		end
 	end
@@ -151,11 +206,13 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#	title: problem's title
 	#	description: problem's description
+	#	track_id: problem's track id
 	# Returns:
-	#	Params to create action
+	#	Params to create action & update action
 	# Author: Abdullrahman Elhusseny
 	private
 		def problem_params
 			params.require(:Problem).permit(:title, :description, :track_id)
 		end
+
 end
