@@ -8,7 +8,7 @@
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
 <%=
-	@code = f.hidden_field "code", :id =>'result',
+	@code = f.hidden_field "code", :id =>'solution_code',
 	value: flash[:previous_code]==nil ?
 		"public static void main(String [] args) {\n\t\n}" : flash[:previous_code].to_s
 %>
@@ -119,7 +119,7 @@
 	</div>
 <script>
 	var editor = ace.edit("editor");
-	var hidden_code_field = document.getElementById('result')
+	var hidden_code_field = document.getElementById('solution_code')
 
 	editor.setTheme("ace/theme/twilight");
 	editor.getSession().setMode("ace/mode/java");
