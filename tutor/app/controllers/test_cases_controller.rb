@@ -18,8 +18,8 @@ class TestCasesController < ApplicationController
 		@problem = Problem.find(params[:problem_id])
 		session[:problem_id] = params[:problem_id]
 		if(@test_case == nil)
-		@test_case = TestCase.new()
-	end
+			@test_case = TestCase.new()
+		end
 	end
 
 	# [Add test case-story 4.8]
@@ -44,8 +44,7 @@ class TestCasesController < ApplicationController
 		if @test_case.save
 			@problem.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
-			redirect_to :controller => 'problems', :action => 'edit',
-				:id => session[:problem_id]
+			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
 		else
 			render :action=>'new', :problem_id => @test_case.problem_id
 		end
@@ -72,8 +71,7 @@ class TestCasesController < ApplicationController
 		@test_case = TestCase.find(params[:id])
 		if @test_case.update_attributes(post_params)
 			flash[:notice] = "Your Testcase is now updated"
-			redirect_to :controller => 'problems', :action => 'edit',
-				:id => @test_case.problem_id
+			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
 		else
 			render :action=>'edit', :problem_id => @test_case.problem_id
 		end
