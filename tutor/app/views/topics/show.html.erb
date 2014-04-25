@@ -2,20 +2,22 @@
 	<h1><%= link_to @course.name , @course %>
 		<small><%= link_to @topic.title , @topic %></small></h1>
 </div>
-<% if @can_edit %>
-	<% if flash[:error] %>
-		<div align="center" class="alert alert-warning" ><%= flash[:error] %>
-		</div><br>
-	<% end %>
-	<% if flash[:success] %>
-		<div align="center" class="alert alert-success" ><%= flash[:success] %>
-		</div><br>
+	<% if @can_edit %>
+		<% if flash[:error] %>
+			<div class = "alert alert-danger" style = "width:25%; 
+					color: back" ><%= flash[:error] %>
+			</div><br>
 		<% end %>
-<% end %>
+		<% if flash[:success] %>
+			<div class = "alert alert-success" style = "
+					width:25%;" ><%= flash[:success] %>
+			</div><br>
+		<% end %>
+	<% end %>
 
 <div class="panel-group list-group" id="accordion">
 	<% @tracks.each do |t| %>
-		<div class="panel panel-default">
+		<div class = "panel panel-default" style = "width:50%">
 			<div class="panel-title list-group-item list-group-item-info"
 				data-toggle="collapse" data-parent="#accordion"
 				href="#<%= t.id.to_s %>">
