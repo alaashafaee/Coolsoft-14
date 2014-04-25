@@ -81,7 +81,7 @@ class CoursesController < ApplicationController
 		redirect_to :action => 'index'
 	end
 
-
+	# [Define a Course - Story 1.1]
 	# Description: This action creates a new instance variable for the course
 	# Parameters:
 	#	none
