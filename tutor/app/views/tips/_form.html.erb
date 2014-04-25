@@ -14,7 +14,7 @@
 		<% end %>
 		</ul>
 	<% end %>
-	<%= form_for :tip_edit , :html => { :method => :post } , url: edit_tip_path do |t| %>
+	<%= form_for :tip_edit, :html => {:method => :post}, url: edit_tip_path do |t| %>
 		<p>
 			<%= t.label :Content %><br>
 			<%= t.text_area :message, :cols => "40", :rows => "5", :value => @tip.message %>
