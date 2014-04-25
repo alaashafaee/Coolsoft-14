@@ -101,12 +101,12 @@ puts("# -----------------------Hints---------------------------")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
 puts("# -----------------------ModelAnswer---------------------------")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-1")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-2")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-3")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-4")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-5")
-	ModelAnswer.create(answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
+	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
+	ModelAnswer.create(title: "Answer3", answer: "System.out.println('SQL baaaad')-3")
+	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
+	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
+	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
 
 puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -117,9 +117,9 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "x", input:"10 0")
 
 puts("# -----------------------Method Parameters---------------------------")
-	MethodParameter.create(parameter:"MethodParameters 1")
-	MethodParameter.create(parameter:"MethodParameters 2")
-	MethodParameter.create(parameter:"MethodParameters 3")
+	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")
@@ -128,17 +128,17 @@ puts("# -----------------------Variable Constraints---------------------------")
 
 puts("# -----------------------Problems---------------------------")
 
-	Problem.create(title:"Problem 1", description:"Given two numbers a and b, output a/b")
-	Problem.create(title:"Problem 2", description:"This is very hard Problem" )
-	Problem.create(title:"Problem 3", description:"This wont be a hard Problem")
-	Problem.create(title:"Problem 4", description:"This will be very easy Problem")
-	Problem.create(title:"Problem 5", description:"This is very easy Problem")
+	Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b", incomplete: false)
+	Problem.create(title: "Problem 2", description: "This is very hard Problem", incomplete: false)
+	Problem.create(title: "Problem 3", description: "This wont be a hard Problem", incomplete: false)
+	Problem.create(title: "Problem 4", description: "This will be very easy Problem", incomplete: true)
+	Problem.create(title: "Problem 5", description: "This is very easy Problem", incomplete: true)
 
 puts("# -----------------------Tracks---------------------------")
-	Track.create(title: "Track 1" , difficulty: 0)
-	Track.create(title: "Track 2" , difficulty: 1)
-	Track.create(title: "Track 3" , difficulty: 2)
-	Track.create(title: "Track 4" , difficulty: 3)
+	Track.create(title: "Track 1", difficulty: 0)
+	Track.create(title: "Track 2", difficulty: 1)
+	Track.create(title: "Track 3", difficulty: 2)
+	Track.create(title: "Track 4", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
 	Solution.create(code:"println(My first solution)", length:5, status:0)
@@ -146,8 +146,11 @@ puts("# -----------------------Solutions---------------------------")
 	Solution.create(code:"println(My third solution)", length:5, status:3)
 
 puts("# -----------------------TrackProgression---------------------------")
-	TrackProgression.create(level: 0, student_id: 1, topic_id: 1)
-	TrackProgression.create(level: 2, student_id: 1, topic_id: 2)
+	TrackProgression.create(:level => 1, :topic_id => 1)
+	TrackProgression.create(:level => 1, :topic_id => 1)
+	TrackProgression.create(:level => 1, :topic_id => 1)
+	TrackProgression.create(level: 0, topic_id: 1)
+	TrackProgression.create(level: 2, topic_id: 2)
 
 puts("# -----------------------Attempts---------------------------")
 	Attempt.create(success: true)
@@ -168,7 +171,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-
+	
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -184,6 +187,8 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
+	Lecturer.first.replies << Reply.find_by_id(3)
+	Lecturer.first.replies << Reply.find_by_id(4)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
@@ -207,12 +212,22 @@ puts("# -----------------------Students---------------------------")
 	Student.find(3).courses << Course.first
 	Student.find(4).courses << Course.first
 
+	Student.find_by_id(2).progressions << TrackProgression.first
+	Student.find_by_id(3).progressions << TrackProgression.find_by_id(2)
+	Student.find_by_id(4).progressions << TrackProgression.find_by_id(3)
+	Student.first.progressions << TrackProgression.find_by_id(4)
+	Student.first.progressions << TrackProgression.find_by_id(5)
+
 	# Other way to add Course into student, but it will require getting Course_student via searching
 	# since the table has key on (student_id and course_id)then the array will always be 1 elemet [0]
 	Student.find_by_id(2).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:2, course_id:2)[0].update(share: true)
 	Student.find_by_id(1).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:1, course_id:2)[0].update(share: true)
+
+puts("# -----------------------TeachingAssistants---------------------------")
+	TeachingAssistant.first.courses << Course.first
+	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
@@ -270,15 +285,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
-puts("# ----------------- Track Progressions ----------------------")
-	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
-puts("# ---------------------------------------------------------")
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
 
 puts("# ---------------------------------------------------------")
