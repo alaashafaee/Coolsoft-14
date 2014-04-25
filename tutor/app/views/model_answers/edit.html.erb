@@ -21,6 +21,8 @@
 	<br><%= f.label :Answer %></br> 
 	<p><%= f.text_area :answer, :cols => "50", :rows => "15" %></p> 
 	<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-	<br><%= render partial: "tips/index" %></br>
-	<br><%= render partial: "hints/index" %></br>
+	<% if !@answer.errors.any? %>
+		<br><%= render partial: "tips/index" %></br>
+		<br><%= render partial: "hints/index" %></br>
+	<% end %>
 <% end %>

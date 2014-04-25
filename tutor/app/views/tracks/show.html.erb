@@ -1,6 +1,6 @@
 <div class="page-header">
-	<h1><%= link_to @course.name , @course %>
-		<small><%= link_to @topic.title , @topic %></small></h1>
+	<h1><%= link_to @course.name, @course, style: "color: black" %>
+		<small><%= link_to @topic.title, @topic, style:"color: black" %></small></h1>
 </div>
 <% if @can_edit %>
 	<% if flash[:error] %>
@@ -45,7 +45,7 @@
 						<%= problem.description %>
 						<% if @can_edit %>
 							<%= link_to "Edit",
-							edit_problem_path(:id => problem.id), class: 'btn btn-primary' %>
+							edit_problem_path(:id => problem.id), class: 'btn btn-info' %>
 						<% end %>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 					<%= problem.description %>
 					<% if @can_edit %>
 						<%= link_to "Edit",
-						edit_problem_path(:id => problem.id), class: 'btn btn-primary' %>
+						edit_problem_path(:id => problem.id), class: 'btn btn-info', style: 'margin-left:100px' %>
 					<% end %>
 				</div>
 			</div>
@@ -92,5 +92,5 @@
 </div>
 
 <% if @can_edit %>
-	<%= link_to "Add", new_problem_path(:id => @track.id), class: 'btn btn-primary' %>
+	<%= link_to "Add", new_problem_path(:id => @track.id), class: "btn btn-info" %>
 <% end %>

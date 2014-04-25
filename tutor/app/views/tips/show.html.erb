@@ -1,2 +1,38 @@
-<h1>Tips#show</h1>
-<p>Find me in app/views/tips/show.html.erb</p>
+<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
+	<div>
+		<h1>
+			Tip content:
+		</h1>
+		<h3>
+			"<%= @tip.message %>"
+		</h3>
+		<p>
+			<h1>
+				Time:
+			</h1>
+			<h3>
+				<%= @tip.time %> seconds
+			</h3>
+		</p><br>
+		<p>
+			You will be redirected to the model answer page shortly...
+		</p>
+		<p>
+			<%= link_to "Edit Tip", edit_tip_path(@tip), class: "btn btn-primary btn-xs",
+				 style: "float:left" %>
+		</p>
+	</div>
+	<script type="text/javascript">
+		// [Recommendation to students]
+		// Redirect the user to model answer page
+		// Parameters:
+		//	_id: id of model answer
+		// Returns: none
+		// Author: Ahmed Osam
+		function delayedRedirect(){
+			var _id = <%= @tip.model_answer_id %>
+			window.location = "/model_answers/"+_id+"/edit"
+		}
+		setTimeout('delayedRedirect()', 6000)()
+	</script>
+<% end %>

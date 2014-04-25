@@ -30,7 +30,7 @@
 	width:78%;
 	margin-left:1%;
 	min-width:500px;
-	overflow:scroll;
+	overflow:auto;
 	position:static;
 }
 
@@ -53,5 +53,5 @@
 }
 
 .home {
-	overflow:scroll;
+	overflow:auto;
 }
