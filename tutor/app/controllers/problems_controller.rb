@@ -116,19 +116,19 @@ class ProblemsController < ApplicationController
 		@problem = Problem.find_by_id(params[:id])
 		@track = Track.find_by_id(@problem.track_id)
 		@tracks = Track.where(topic_id: @track.topic_id)
-		if (problem_params[:title] != @problem.title)
+		if problem_params[:title] != @problem.title
 			@message = "Title updated"
-		elsif (problem_params[:description] != @problem.description)
+		elsif problem_params[:description] != @problem.description
 			@message = "Description updated"
-		elsif (problem_params[:track_id].to_i != @problem.track_id)
+		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem is moved to Track #{problem_params[:track_id]}"
 		else
 			flash.keep[:notice] = "You have entered the same paramater no change has been made!"
 		end
 
-		if (problem_params[:track_id].to_i == @problem.track_id)
-			if (problem_params[:title] != @problem.title) ||
-				(problem_params[:description] != @problem.description)
+		if problem_params[:track_id].to_i == @problem.track_id
+			if problem_params[:title] != @problem.title ||
+				problem_params[:description] != @problem.description
 				begin
 					if @problem.update_attributes(problem_params)
 						flash.keep[:notice] = @message
@@ -159,7 +159,7 @@ class ProblemsController < ApplicationController
 		else
 			@track = Track.find_by_id(problem_params[:track_id])
 			@problems_in_track = @track.problems.where(title: @problem.title)
-			if(@problems_in_track.size == 0)
+			if @problems_in_track.size == 0
 				if @problem.update_attributes(problem_params)
 					flash.keep[:notice] = @message
 					respond_to do |format|
