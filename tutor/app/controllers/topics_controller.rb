@@ -93,13 +93,33 @@ class TopicsController < ApplicationController
 		end
 	end
 
+	# [Edit Track Rating - Story 4.3]
+	# Changes the difficulty of tracks that belong to a certain topic  
+	#	to match the order specified by TA/Lecturer through 
+	#	drag and drop sortable list. 
+	# Parameters: 
+	#	params[:methodParam]: The array of the sorted trackes.
+	# Returns: none
+	# Author: Lin Kassem
+	def sort
+		@track = Track.find_by_id(params[:methodParam][0])  
+		@topic = @track.topic 
+		@tracks = @topic.tracks
+		new_Order_Array = params[:methodParam]
+		@tracks.each do |track|
+			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1 
+			puts(track.save)
+		end
+		render :nothing => true
+	end
+
 	private
 		def topic_params
 			params.require(:topic).permit(:title,:description)
 		end
 
 		def course_params
-			params.permit(:course_id)
+				params.permit(:course_id)
 		end
 
 end
