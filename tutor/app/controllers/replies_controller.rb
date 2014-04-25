@@ -5,7 +5,7 @@ class RepliesController < ApplicationController
 	# Parameters:
 	#	replies: reply with spacific id
 	# Returns:
-	# 	returns a the record in JSON form 
+	# 	returns a the record in JSON form
 	# Author: Ahmed Mohamed Magdi
 	def show
 		reply = Reply.find_by_id(params[:id])
@@ -18,7 +18,7 @@ class RepliesController < ApplicationController
 	#	reply_content: The content of the reply
 	#	id: Post id for getting the post
 	# Returns:
-	# 	returns a the record in JSON form 
+	# 	returns a the record in JSON form
 	# Author: Ahmed Mohamed Magdi
 	def create
 		reply_content = params[:content]
@@ -30,7 +30,7 @@ class RepliesController < ApplicationController
 		elsif teaching_assistant_signed_in?
 			current_teaching_assistant.replies << reply
 		else
-			current_student.replies << reply				
+			current_student.replies << reply
 		end
 		post.replies << reply
 		render json: reply
@@ -40,7 +40,7 @@ class RepliesController < ApplicationController
 	# Description: Deleting reply from the database
 	# Parameters:
 	#	id: reply id for getting the reply
-	# Returns: 
+	# Returns:
 	# 	true: if it successed is destroying the reply
 	# 	false: if it fails is destroying the reply
 	# Author: Ahmed Mohamed Magdi
@@ -65,7 +65,7 @@ class RepliesController < ApplicationController
 		reply = Reply.find(params[:id])
 		data = params[:content]
 		reply.content = data
-		f reply.save
+		if reply.save
 			render json: true
 		else
 			render json: false
