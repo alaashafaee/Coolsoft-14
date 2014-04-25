@@ -1,0 +1,22 @@
+<%= render 'layouts/profile' %> 
+		<li class = "active"><a href = "#tab1">Info</a></li>
+		<li><a href = "#tab2">Performance</a></li>
+		<li><a href = "#tab3">Statistics</a></li>
+	</ul>
+	<div class = "tab-content">
+		<div id = "tab1" class = "tab active">
+			<p><b>Name: </b><%= current_student.name %></p>
+			<p><b>Email: </b><%= current_student.email %></p>
+			<p><b>University: </b><%= current_student.university %></p>
+			<p><b>Faculty: </b><%= current_student.faculty %></p>
+			<p><b>Major: </b><%= current_student.major %></p>
+			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
+		</div>
+		<div id = "tab2" class = "tab">
+			Performance under construction
+		</div>
+		<div id = "tab3" class = "tab">
+			Statistics under construction
+		</div>
+	</div>	
+</div>
