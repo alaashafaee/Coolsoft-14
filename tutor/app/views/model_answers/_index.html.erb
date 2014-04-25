@@ -43,7 +43,8 @@
 								{class: 'btn btn-primary btn-xs',
 								style: "text-decoration:none"} %></td>
 						<th style = "width:20%">Delete</th>
-								<td><%= button_to "Delete", {controller: :hints, action: :destroy, id: hint1.id},
+								<td><%= button_to "Delete", 
+								{controller: :hints, action: :destroy, id: hint1.id},
 								:method => :delete, class: 'btn btn-primary btn-xs' %></td>
 						<td><a href="#" class="btn btn-danger btn-xs">Delete</a></td>
 					</tr>
