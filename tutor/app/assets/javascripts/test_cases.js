@@ -3,6 +3,6 @@ function toggle_visibility(id) {
 	if(element.style.display == 'block')
 		element.style.display = 'none';
 	else
-	element.style.display = 'block';
+		element.style.display = 'block';
 }
 
