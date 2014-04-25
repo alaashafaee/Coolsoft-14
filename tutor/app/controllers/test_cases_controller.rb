@@ -54,12 +54,12 @@ class TestCasesController < ApplicationController
 	def destroy
 		@test_case = TestCase.find_by_id(params[:id])
 		@current = Problem.find_by_id(@test_case.problem_id)
-		if(@current.test_cases.count == 1)
+		if @current.test_cases.count == 1
 			flash[:notice] = "Cannot delete problem's last test case"
 			redirect_to :back and return
 		elsif @test_case.destroy
 			flash[:notice] = "Test case successfully Deleted"
-			redirect_to(:controller => 'problems' , :action => 'edit' ,:id => @current.id)
+			redirect_to(:controller => 'problems', :action => 'edit', :id => @current.id)
 		end
 	end
 
