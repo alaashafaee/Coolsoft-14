@@ -1,4 +1,12 @@
+<!--  Name: The Show Post Form 
+    Author: Ahmed Atef
+-->
+
+<%= link_to "back", {:action => 'show', :controller => 'discussion_boards',
+	:id => DiscussionBoard.find_by_id(@post.discussion_board_id).course_id}, {
+		class: 'btn btn-primary'} %>
 <div align="center">
+
 	<div >
 		<h3><%=@post.title%></h3>
 		<%= @post.content %>
@@ -7,6 +15,33 @@
 			<%= render "/replies/index", :@replies => @replies , :@post => @post %>
 		<% else %>
 			No Replies in this post yet .
+	<% if current_lecturer %>
+		<% @userID = current_lecturer.id %>
+	<% end %>
+	<% if current_student %>
+		<% @userID = current_student.id %>
+	<% end %>	
+	<%if current_teaching_assistant %>
+		<% @userID = current_teaching_assistant.id %>
+	<% end %>
+<div style="width: 50%; margin-left:25%">
+	<h3><%=@post.title%></h3>
+	<%= @post.content %>
+	<br>
+	<% unless @replies.blank? %>
+		<% @replies.each do |reply| %>
+			<div style="background-color: #A8A8A8">
+				<%= reply.content %><br>
+			</div>
+			<br>
+>>>>>>> cedf0f550c87868b8219d33995a4cc14033c83d1
 		<% end %>
-	</div>
+	<% else %>
+		No Replies in this post yet .
+	<% end %>
+</div>
+	<% if @post.owner_id == @userID %>
+		<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
+			class: 'btn btn-primary',:id => @post.id} %>
+	<% end %>
 </div>

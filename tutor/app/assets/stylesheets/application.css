@@ -28,6 +28,9 @@
 	margin-bottom:70px;
 	width:78%;
 	margin-left:1%;
+	min-width:500px;
+	overflow:scroll;
+	position:static;
 }
 
 .footer {
@@ -46,4 +49,8 @@
 
 .button-devise {
 	margin-top: 10px;
+}
+
+.home {
+	overflow:scroll;
 }

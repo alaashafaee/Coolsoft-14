@@ -104,10 +104,11 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-	Hint.create(message: "Do not Try to Solve CS problem-1")
-	Hint.create(message: "Do not Try to Solve CS problem-2")
-	Hint.create(message: "Do not Try to Solve CS problem-3")
 
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
+	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
+	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
+	
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -125,9 +126,9 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "x", input:"10 0")
 
 puts("# -----------------------Method Parameters---------------------------")
-	MethodParameter.create(parameter:"MethodParameters 1")
-	MethodParameter.create(parameter:"MethodParameters 2")
-	MethodParameter.create(parameter:"MethodParameters 3")
+	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")
@@ -178,7 +179,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-	
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -282,6 +283,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(11)
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
+
+puts("# -----------------------Hints---------------------------")
+	Problem.first.model_answers.first.hints << Hint.first
 
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first

@@ -1,0 +1,63 @@
+<%= form_for :@constrain, url:{action:"create"} do |f| %>
+	<table>
+		<tr>
+			<th>Method Constrains</th>
+			<td width = "10px"></td>
+			<td><%= f.text_field :method_return, placeholder: "Return Type" %></td>
+			<td width = "10px"></td>
+			<td><%= f.text_field :method_name, placeholder: "Method Name" %></td>
+			<br>
+		</tr>
+		<tr height="10px"></tr>
+		<tr>
+			<%= fields_for :@params do |u| %>
+				<th>Method Parameter</th>
+				<td width = "10px"></td>
+				<td><%= u.text_field :params_type, placeholder: "Variable Type", id:"params_type" %></td>
+				<td width = "10px"></td>
+				<td><%= u.text_field :parameter, placeholder: "Variable Name", id:"params_name" %></td>
+				<td width = "20px"></td>
+				<td><%= image_tag "add_buttom.png", 
+						style: "width:15%;height:15%;margin_top:10px;cursor:pointer", 
+						onclick: "add_params(this);" %></td>
+			<% end %>
+		</tr>
+		<tr height="10px"></tr>
+		<tr colspan="7">
+			<td colspan="7">
+				<h1>Add Variable Constraints</h1>
+				<hr style="
+					display: block; 
+					height: 1px;
+					border: 0; 
+					border-top: 1px solid #ccc;
+					margin: 1em 0; 
+					padding: 0;">
+			</td>
+		</tr>
+		<tr>
+			<%= fields_for :@variables do |u| %>
+				<th>Variable Constraints</th>
+				<td width = "10px"></td>
+				<td><%= u.text_field :variable_type, placeholder: "Variable Type", id:"variable_type" %></td>
+				<td width = "10px"></td>
+				<td><%= u.text_field :variable_name, placeholder: "Variable Name", id:"variable_name" %></td>
+				<td width = "20px"></td>
+				<td><%= image_tag "add_buttom.png", 
+						style: "width:15%;height:15%;margin_top:10px;cursor:pointer", 
+						onclick: "add_variable(this);" %></td>
+			<% end %>
+		</tr>
+	</table>
+	<div id="parameter">
+		<h3>Paramters Constraints</h3>
+		<p>No paramters</p>
+	</div>
+	<div id="variable">
+		<h3>Variables Constraints</h3>
+		<p>No variables</p>
+	</div>
+	<br>
+	<%= button_tag "Save Changes", type: "button",
+		 class: "btn btn-large btn-success", onclick:"submitParams();" %>	
+<% end %>
