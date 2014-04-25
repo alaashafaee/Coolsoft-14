@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  */
+= require posts
 
 .side-left {
 	height:700px;
