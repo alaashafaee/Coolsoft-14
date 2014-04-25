@@ -1,7 +1,7 @@
 <%
 	hint_count = 0;
 	@problem.model_answers.each do |model_answer|
-		model_answer.hints.each do |hint|
+		model_answer.hints.where(category: false).each do |hint|
 			%>
 				<div id='hint<%= hint_count %>' time='<%= hint.time %>' class='hidden'>
 					<%= hint.message %>
