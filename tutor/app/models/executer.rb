@@ -68,16 +68,8 @@ class Executer
 	# 		is a custom message to explain the error
 	# Author: Ahmed Akram
 	def self.get_runtime_error(file_name, sub_name)
-		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
-
-		if @execute_res.include?("/ by zero")
-			message = "Division by Zero results in infinity, "\
-						"which computers can not understand. Be careful !"
-			return msg = {error: @execute_res, explanation: message}
-		else
-			message = "To be set Runtime Error!"
-			return msg = {error: @execute_res, explanation: message}
-		end
+		execute_res = remove_class_name(file_name, execute_res, sub_name)
+		return get_runtime_explaination(execute_res)
 	end
 
 	# [Debugger: Debug - Story 3.6]
