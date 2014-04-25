@@ -16,9 +16,9 @@ class TipsController < ApplicationController
 	# [Add tip - Story 4.10]
 	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem
 	# Parameters: 
-	#     :message => is the content of the tip
-	#     :time => is a countdown timer that tip will appear after it ends
-	#     :model_answer_id => is the id of the answer the tip related to
+	#     message: is the content of the tip
+	#     time: is a countdown timer that tip will appear after it ends
+	#     model_answer_id: is the id of the answer the tip related to
 	# Returns:
 	#     @tip: a new created tip to specific answer
 	# Author: Ahmed Osam
@@ -46,8 +46,8 @@ class TipsController < ApplicationController
 	# [Show tip - Story 4.23]
 	# Show the content of the tip that was created or edited with edit and delete buttons
 	# Parameters: 
-	#     :model_answer_id => The model answer id
-	#     :id => tip id that should be viewed
+	#     model_answer_id: The model answer id
+	#     id: tip id that should be viewed
 	# Returns: 
 	#     @tip: tip that will be viewed
 	# Author: Ahmed Osam
