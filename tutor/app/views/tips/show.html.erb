@@ -29,5 +29,6 @@
 			var _id = <%= @tip.model_answer_id %>
 			window.location = "/model_answers/"+_id+"/edit"
 		}
+		setTimeout('delayedRedirect()', 6000)()
 	</script>
 <% end %>
