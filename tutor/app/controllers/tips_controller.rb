@@ -9,6 +9,5 @@ class TipsController < ApplicationController
 	def index
 		@tips= Hint.all
 		@tips_check = Hint.all
-		#User.where(["name = ? and email = ?", "Joe", "joe@example.com"])
 	end
 end
