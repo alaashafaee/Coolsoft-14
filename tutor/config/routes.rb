@@ -100,6 +100,11 @@ Tutor::Application.routes.draw do
 			get 'getProblems'
 		end
 	end
+	resources :topics do
+		collection do           
+			post 'sort'
+		end
+	end
 	resources :discussion_boards do
 		member do
 			post 'toggle'
