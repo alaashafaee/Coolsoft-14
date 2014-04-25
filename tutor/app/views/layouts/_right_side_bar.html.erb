@@ -57,6 +57,16 @@
 					</table>
 				<% end %>
 			</div>
+			<div>
+				<table class="table table-striped table-bordered table-responsive">
+					<caption><b>System Recommendations<b></caption>
+					<tr>
+						<td style="text-align : center">
+						<%= render "problems/system_recommendation" if student_signed_in? %>
+						</td>
+					</tr>
+				</table>
+			</div>
 		<% end %>
 	</div>
 </div>
