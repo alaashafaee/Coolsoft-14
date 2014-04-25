@@ -9,26 +9,17 @@
 	:html => {:method => :post} do |f| %>
 <%=
 	@code = f.hidden_field "code", :id =>'solution_code',
-	value: flash[:previous_code]==nil ?
-		"public static void main(String [] args) {\n\t\n}" : flash[:previous_code].to_s
+	value: flash[:previous_code] == nil ?
+		"\tpublic static void main(String [] args) {\n\t\t\n\t}"
+		 : flash[:previous_code].to_s
 %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
 	<!--Author: Ahmed Moataz-->
 	<div class="">
-		<div class="editor_top">
-			<div style="margin-left: 2px;">
-				public class CoolSoft {
-			</div>
-		</div>
 		<!-- Add editor -->
 		<pre id="editor">
 		</pre>
-		<div class="editor_bottom">
-			<div style="margin-left: 2px;">
-				}
-			</div>
-		</div>
 	</div>
 	<%= f.hidden_field :problem_id, value: params[:id] %>
 	<br>
@@ -119,14 +110,30 @@
 	</div>
 <script>
 	var editor = ace.edit("editor");
+	var edit_session = editor.getSession();
 	var hidden_code_field = document.getElementById('solution_code')
+	var code_header = "public class CoolSoft {\n";
+	var code_footer = "\n}";
 
 	editor.setTheme("ace/theme/twilight");
-	editor.getSession().setMode("ace/mode/java");
-	editor.getSession().setValue(hidden_code_field.value);
+	edit_session.setMode("ace/mode/java");
+	edit_session.setValue(code_header + hidden_code_field.value + code_footer);
 
-	editor.getSession().on('change', function(){ 
-		hidden_code_field.value = editor.getSession().getValue();   
-	});
+	var code_filter_function = function(event_handler) {
+
+		var unfiltered_code = edit_session.getValue();
+		var code_len = unfiltered_code.length;
+		var line_count = edit_session.doc.getAllLines().length;
+		
+		if(unfiltered_code.indexOf(code_header) != 0) {
+			edit_session.doc.insertLines(0, [code_header]);
+			return;
+		} else {
+			hidden_code_field.value = unfiltered_code.slice(code_header.length)
+		}
+	};
+	
+
+	edit_session.on('change', code_filter_function);
 </script> 
 <% end %>
