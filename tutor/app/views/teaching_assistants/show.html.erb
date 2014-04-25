@@ -1,10 +1,11 @@
 <h1>
 	<%= image_tag(@teaching_assistant.profile_image_url.to_s)\
-		if @teaching_assistant.profile_image %> <%= @teaching_assistant.name %>'s Profile
+		if @teaching_assistant.profile_image %> <%= @teaching_assistant.name %>
 </h1>
-<div class="tabs">
+<div class = "profile_picture" ></div>
+<div class = "tabs" style = "float:left; margin-left:10px;">
 	<ul class="tab-links">
-		<li class="active"><a href="#tab1">Course</a></li>
+		<li class="active"><a href="#tab1">Courses</a></li>
 		<li><a href="#tab2">Info</a></li>
 	</ul>
 	<div class="tab-content">
@@ -57,6 +58,10 @@
 		<div id="tab2" class="tab">
 			<p> <b>Name:</b> <%= @teaching_assistant.name %> </p>
 			<p> <b>Email:</b> <%= @teaching_assistant.email %> </p>
+			<p><b>Degree: </b><%= @teaching_assistant.degree %></p>
+			<p><b>Department: </b><%= @teaching_assistant.department %></p>
+			<p><b>University: </b><%= @teaching_assistant.university %></p>
+			<p><b>Joined on: </b><%= @teaching_assistant.created_at.to_date %></p>
 		</div>
 	</div>
 </div>
