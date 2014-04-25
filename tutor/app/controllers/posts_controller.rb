@@ -53,7 +53,9 @@
 	# Author: Ahmed Atef
 	def show
 	  	@post = Post.find(params[:id])
-	  	@replies = @post.replies.order("created_at desc")
+	  	@post.views_count = @post.views_count + 1
+	  	@post.save
+	  	@replies = @post.replies.order("created_at asc")
 	end
 
 	# [Add Post - Story 1.13]
