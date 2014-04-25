@@ -27,7 +27,7 @@ class AcknowledgementsController < ApplicationController
 	# Author: Muhammad Mamdouh
 	def create
 		if params[:students] == nil
-			flash[:notice] = "Acknowledgement failed. Please select a student"
+			flash[:failure_notice] = "Acknowledgement failed. Please select a student"
 		else	
 			params[:students].each do |student|
 				@student = Student.find_by_id(student)
@@ -37,15 +37,15 @@ class AcknowledgementsController < ApplicationController
 				bool = @acknowledgement.save
 				if bool == true
 					if @student == nil
-						flash[:notice]= "Please choose a student to acknowledge."
+						flash[:failure_notice]= "Please choose a student to acknowledge."
 					else
-						flash[:notice] = "Acknowledgement successfully created"
+						flash[:success_notice] = "Acknowledgement successfully created"
 						@student.acknowledgements << @acknowledgement
 						current_lecturer.acknowledgements << @acknowledgement
 						@course.acknowledgements << @acknowledgement
 					end
 				else
-					flash[:notice] = "Acknowledgement failed."
+					flash[:failure_notice] = "Acknowledgement failed."
 				end
 			end	
 		end

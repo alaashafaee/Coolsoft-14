@@ -1,42 +1,47 @@
+<div class ="tabs">
+	<ul class="tab-links">
+		<li><a href="/courses/">My Courses</a></li>
+		<li><a href="/courses/new">Create new Course</a></li>
+	</ul>
+	<div class="tab-content">
 <!--	Name: Course Edit Page
 		Author: Ahmed Akram
 -->
 
 <div>
-	<!-- This button shows all topics of the course -->
-	<div>
-		<%= button_to "Topics", {:controller => 'topics', :action => 'index',
-			:course_id => @course.id}, class: "btn btn-success", style: "float: left;", method: :get %> 
-	</div>
-
 	<!-- This button activates the new topic action and passes the course id  -->
 	<div>
 		<%= button_to "Add Topics", {:controller => 'topics', :action => 'new',
-			:course_id => @course.id}, class: "btn btn-success", style: "float: left;margin-left: 15px",method: :post %> 
+			:course_id => @course.id}, class: "btn btn-success", 
+				style: "float: left;margin-left: 15px",method: :post %> 
 	</div> 
 
 	<!-- This button activates the add TA action -->
 	<div>
 		<%= button_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
-			:course_id => @course.id}, class: "btn btn-success", style: "float: left; margin-left: 15px", :method => :get%>
+			:course_id => @course.id}, class: "btn btn-success",
+				 style: "float: left; margin-left: 15px", :method => :get %>
 	</div>
 
 	<!-- This button activates the acknowledge a student action -->
 	<div>
 		<%= button_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
-			:course_id => @course.id}, class: "btn btn-success", style: "float: left; margin-left: 15px", method: :get
-				%> 
+			:course_id => @course.id}, class: "btn btn-success",
+				 style: "float: left; margin-left: 15px", method: :get
+					%> 
 	</div>
 
 	<!-- This if statement checks for the condition of the discussion board -->
 	<div>
-		<% if @discussionBoard.activated == true %>
-			<%str = "Deactivate DiscussionBoard" %>
+		<% if @discussion_board.activated == true %>
+			<% str = "Deactivate DiscussionBoard" %>
 		<% else %>
-			<%str = "Activate DiscussionBoard"%>
+			<% str = "Activate DiscussionBoard" %>
 		<% end %>
 		<!-- This button toggles the activation of the discussion board -->
-		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
+		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle',
+					:id => @discussion_board.id}, class: "btn btn-success",
+					 style: "float: left; margin-left: 15px" %>
 	</div> 
 </div>
 <br>
@@ -78,5 +83,8 @@
 	<%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger", style: "margin-top: 100px; float: right", method: :delete %> 
 </div>
 
-<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success" , style: "margin-left:
-	600px; margin-top: 250px", :method => :get%>
+<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success",
+	style: "margin-left:600px; margin-top: 250px", :method => :get %>
+	<div id="tab2" class="tab">
+		</div>
+</div>
