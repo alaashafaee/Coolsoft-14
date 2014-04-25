@@ -35,11 +35,12 @@
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef
 	def destroy
-			@disscusion_board = Post.find_by_id(params[:id]).discussion_board_id
+			@disscusion_board = DiscussionBoard.find_by_id
+				(Post.find_by_id(params[:id]).discussion_board_id)
 			if Post.find_by_id(params[:id]).destroy
 				flash[:notice] = "Post successfully Deleted"
 				redirect_to(:controller => 'discussion_boards' ,
-					:action => 'show' ,:id => @disscussion_board)
+					:action => 'show' ,:id => @disscusion_board.course_id)
 			end
 	end		
 	# [Add Post - Story 1.13]
@@ -93,7 +94,7 @@
 	#              update fails the user is redirected to the form
 	# Parameters:
 	#	topic_params[]: A list that has all fields entered by the user to in the
-	# 					Edit_post_form
+	# 						Edit_post_form
 	# Returns: 
 	# 	flash[:notice]: A message indicating the success or failure of the creation
 	# Author: Ahmed Atef
