@@ -17,7 +17,11 @@
 		You will be redirected to the model answer page shortly...
 	</p>
 	<p>
-		<%= link_to "Edit Tip", edit_tip_path(@tip),class: "btn btn-primary btn-xs", style: "float:left"%>
+		<%= link_to "Edit Tip", edit_tip_path(@tip),class: "btn btn-primary btn-xs", style: "float:left"%><br>
+		<br><%= link_to "Delete Tip", {:controller => 'tips', :action => "destroy",
+				:id => @tip.id,:answer_id => @tip.model_answer_id},
+				data: {confirm: "Are you sure you want to delete this Tip?"},
+				class: "btn btn-danger btn-xs", style: "float:left" , method: :delete %>
 	</p>
 </body>
 <script type="text/javascript">

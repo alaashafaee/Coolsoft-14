@@ -63,6 +63,9 @@ class TipsController < ApplicationController
 	end
 
 	def destroy
+		@tip = Hint.find_by_id(params[:id])
+		@tip.destroy
+		redirect_to :controller => 'model_answers', :action => 'edit', :id => params[:answer_id]
 	end
 
 	# [Edit tip - Story 4.10]
