@@ -93,7 +93,7 @@ class TipsController < ApplicationController
 		if @tip.save
 			render :action => 'show'
 		else
-			render :action=>'edit'
+			render :action => 'edit'
 		end
 	end
 
