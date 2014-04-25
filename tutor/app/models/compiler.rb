@@ -50,7 +50,7 @@ class Compiler < ActiveRecord::Base
 	def self.append_class(solution)
 		name = solution.file_name 
 		code = solution.code
-		return 'public class ' + name + " {\n" + code + "\n}"
+		return 'public class ' + name + " {\n" + code
 	end
 
 	# [Compiler: Compile - Story 3.4]

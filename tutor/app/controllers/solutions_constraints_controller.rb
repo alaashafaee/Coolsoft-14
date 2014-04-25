@@ -85,17 +85,33 @@ class SolutionsConstraintsController < ApplicationController
 	# 	@variables: one record of the variables constraints
 	# 	@methods: one record of the methods constraints
 	# Author: Rania Abdel Fattah
-	def destroy
-		methods = MethodConstraint.find_by_id(params[:id])
+	def destroy_methods
 		parameters = MethodParameter.find_by_id(params[:id])
-		variables = VariableConstraint.find_by_id(params[:id])
-		if !params[:type] == "meth"
-			methods.destroy && parameters.destroy
+		methods = MethodConstraint.find_by_id(params[:id])
+		
+		if parameters && methods
+			parameters = MethodParameter.find_by_id(params[:id]).destroy
+		methods = MethodConstraint.find_by_id(params[:id]).destroy
+		flash[:notice] = "deleted"
+		redirect_to :action => 'index'
 		else
-			variables.destroy
-		end	
-			flash[:notice] = "Constraints deleted."
-			redirect_to :action => 'index'
+			flash[:error] = "not"
+			redirect_to :back
+		end
+	end
+
+	def destroy_methods
+	
+		variables = VariableConstraint.find_by_id(params[:id])
+		if variables 
+			variables = VariableConstraint.find_by_id(params[:id]).destroy
+		
+		flash[:notice] = "deleted"
+		redirect_to :action => 'index'
+		else
+			flash[:error] = "not"
+			redirect_to :back
+		end
 	end
 
 	# [Add Solutions' constraints - Story 4.14]
