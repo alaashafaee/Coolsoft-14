@@ -3,6 +3,7 @@ Tutor::Application.routes.draw do
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
+
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -103,24 +104,37 @@ Tutor::Application.routes.draw do
 			get 'getProblems'
 		end
 	end
+
 	resources :topics do
 		collection do           
 			post 'sort'
 		end
 	end
+
 	resources :discussion_boards do
 		member do
 			post 'toggle'
 		end
 	end
+	
 	resources :model_answers do
 		post "model_answers/new"
 	end
+
+	resources :tips do
+		 get "tips/index"
+	end
+
+	resources :hints do
+		 get "hints/index"
+	end
+
 	resources :solutions_constraints do
 		collection do
 			post "new"
 		end
 	end
+
 	resources :problems do
 		get 'done'
 		get 'destroy_problem'
