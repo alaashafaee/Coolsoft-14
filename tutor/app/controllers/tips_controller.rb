@@ -79,9 +79,9 @@ class TipsController < ApplicationController
 	# [Edit tip - Story 4.11]
 	# update the tip with the new parameters
 	# Parameters: 
-	#     :id => id of the tip required to be edited
-	#     :time => udated time in which tip will be shown after
-	#     :message => updated content of tip
+	#     id: id of the tip required to be edited
+	#     time: udated time in which tip will be shown after
+	#     message: updated content of tip
 	# Returns:
 	#     @tip: new updated tip
 	# Author: Ahmed Osam
@@ -100,9 +100,9 @@ class TipsController < ApplicationController
 	# [Add tip - Story 4.10]
 	# Take information from the form on create tip page
 	# Parameters: 
-	#     :tip => name of the form
-	#     :message => is the content of the tip
-	#     :time => is a countdown timer that tip will appear after it ends
+	#     tip: name of the form
+	#     message: is the content of the tip
+	#     time: is a countdown timer that tip will appear after it ends
 	# Returns:
 	#     none
 	# Author: Ahmed Osam
@@ -114,9 +114,9 @@ class TipsController < ApplicationController
 	# [Edit tip - Story 4.11]
 	# Take new information from a form on edit tip page
 	# Parameters: 
-	#     :tip_edit => name of the form
-	#     :time => udated time in which tip will be shown after
-	#     :message => updated content of tip
+	#     tip_edit: name of the form
+	#     time: udated time in which tip will be shown after
+	#     message: updated content of tip
 	# Returns:
 	#     none
 	# Author: Ahmed Osam
