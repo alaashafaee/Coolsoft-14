@@ -1,7 +1,7 @@
 class CreateProblemOpeningTimes < ActiveRecord::Migration
   def change
     create_table :problem_opening_times do |t|
-      t.time :start_time
+      t.integer :time
       t.integer :student_id
       t.integer :problem_id
 
