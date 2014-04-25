@@ -1,19 +1,21 @@
 <h1 align ="center">Add a problem</h1>
 <br>
-	<%= form_for :Problem, url: {action: "create"} do |problem| %>
-		<p>
-			<%= problem.label :title %><br>
-			<%= problem.text_field :title %>
-		</p>
-		<p>
-			<%= problem.label :description %><br>
-			<%= problem.text_area :description, :cols => "50", :rows => "10" %>
-		</p>
-		<%= problem.hidden_field :track_id, value: params[:id] %>
-		<p>
-			<%= problem.submit %>
-		</p>
-	<% end %>
 <% if flash[:notice] %>
-	<div class="notice"><%= flash[:notice] %></div>
+	<div class = "alert alert-danger" style = "width: 50%;"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_for :Problem, url: {action: "create"} do |problem| %>
+	<p>
+		<%= problem.label :title %><br> 
+		<%= problem.text_field :title, class: "form-control", style: "width:60%" %>
+	</p>
+	<p>
+		<%= problem.label :description %><br>
+		<%= problem.text_area :description, :cols => "50", :rows => "10",
+			 class: "form-control", style: "width:60%" %>
+	</p>
+	<%= problem.hidden_field :track_id, value: params[:id] %>
+	<p>
+		<%= problem.submit "Save Problem", class: "btn btn-info" %>
+	</p>
 <% end %>
