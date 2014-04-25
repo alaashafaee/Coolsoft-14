@@ -1,6 +1,7 @@
 <%= render 'layouts/profile' %> 
 		<li class = "active"><a href = "#tab1">Info</a></li>
 		<li><a href = "#tab2">Performance</a></li>
+		<li><a href = "#tab3">Statistics</a></li>
 	</ul>
 	<div class = "tab-content">
 		<div id = "tab1" class = "tab active">
@@ -12,7 +13,10 @@
 			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 		</div>
 		<div id = "tab2" class = "tab">
-			Statistics under construction
+			Performance under construction
+		</div>
+		<div id = "tab3" class = "tab">
+			Statistics	 under construction
 		</div>
 	</div>	
 </div>
