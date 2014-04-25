@@ -100,7 +100,7 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-	Hint.create(message: "Do not Try to Solve CS problem-1")
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
 	Hint.create(message: "Do not Try to Solve CS problem-2")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
@@ -131,7 +131,6 @@ puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 3")
 
 puts("# -----------------------Problems---------------------------")
-
 	Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b", incomplete: false)
 	Problem.create(title: "Problem 2", description: "This is very hard Problem", incomplete: false)
 	Problem.create(title: "Problem 3", description: "This wont be a hard Problem", incomplete: false)
@@ -175,7 +174,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-	
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -268,6 +267,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(11)
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
+
+puts("# -----------------------Hints---------------------------")
+	Problem.first.model_answers.first.hints << Hint.first
 
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first
