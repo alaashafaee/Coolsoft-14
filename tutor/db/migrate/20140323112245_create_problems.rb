@@ -8,7 +8,6 @@ class CreateProblems < ActiveRecord::Migration
       t.integer :time_limit
       t.integer :track_id
 
-      
       t.references :owner, polymorphic: true
       t.timestamps
     end

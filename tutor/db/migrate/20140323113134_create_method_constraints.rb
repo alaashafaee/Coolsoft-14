@@ -4,7 +4,6 @@ class CreateMethodConstraints < ActiveRecord::Migration
       t.string :method_name
       t.string :method_return
       t.integer :model_answer_id
-      t.integer :method_constraint_id
 
       
       t.references :owner, polymorphic: true

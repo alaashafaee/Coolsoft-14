@@ -4,6 +4,6 @@ class JoinTableCourseTeachingAssistant < ActiveRecord::Migration
       # t.index [:course_id, :teaching_assistant_id]
       # t.index [:teaching_assistant_id, :course_id]
     end
-    add_index(:courses_teaching_assistants, [:course_id,:teaching_assistant_id], :unique => true, :name => "TACourses")
+    add_index :courses_teaching_assistants, [:course_id,:teaching_assistant_id], :unique => true, :name => "TACourses"
   end
 end
