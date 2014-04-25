@@ -230,7 +230,7 @@ class CoursesController < ApplicationController
 	# 	Return the course with the given id
 	# Author: Rania Abdel Fattah
 	def duplicate
-		@course = Course.find_by_id(permitd_up[:id])
+		@course = Course.find_by_id(course_params[:id])
 		@new_course = @course.dup
 		if @new_course.save
 			render "courses/duplicate"
@@ -242,16 +242,7 @@ class CoursesController < ApplicationController
 
 	private
 		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description)
-		end
-		
-	# [Create from Existant Course - Story 2.5]
-	# Choose which parameter should be listed
-	# Parameters:
-	#	id: The course id
-	# Author: Rania A0bdel Fattah
-		def permitd_up
-			params.require(:course).permit(:id)
+			params.require(:course).permit(:name,:code,:year,:semester,:description, :id)
 		end
 
 		# [Share Performance - Story 5.2, 5.13]
