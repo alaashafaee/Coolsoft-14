@@ -47,9 +47,9 @@ class ModelAnswersController < ApplicationController
 	end
 
 	# [Remove Answer - Story 4.17]
-	# This action takes the model answer id, and check if it is not last model answer in the problem 
-	#	and remove it from the database and then redirects the user to the edit problem page of 
-	#	the problem that had the answerwith a "Model Answer successfully Deleted" message.
+	# This action takes the model answer id, and check if it is not the last model answer in the
+	#	problem and remove it from the database and then redirects the user to the edit problem 
+	#	page of the problem that had the answer with a "Model Answer successfully Deleted" message.
 	# Parameters:
 	#	params[:id]: The current model answer's id
 	# Returns: 
