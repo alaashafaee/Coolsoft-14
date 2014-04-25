@@ -196,7 +196,7 @@ class Debugger < ActiveRecord::Base
 		regex_second = /[[:space:]]+The application exited\n*/
 		regex = /#{ragex_first}#{regex_second}/
 		out_stream = out_stream.sub(regex, "")
-		return out_stream[1..-1]
+		return out_stream
 	end
 
 	# [Debugger: Debug - Story 3.6]
