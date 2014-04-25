@@ -2,8 +2,9 @@ class TestCasesController < ApplicationController
 
 	# [Add test case-story 4.8]
 	# Shows all the test cases.
-	# Parameters: None
-	# Returns:List of all the test cases related to a certain problem.
+	# Parameters: none
+	# Returns:
+	#	List of all the test cases related to a certain problem.
 	# Author: Lin
 	def index
 		@test_cases = TestCase.all
@@ -11,8 +12,8 @@ class TestCasesController < ApplicationController
 
 	# [Add test case-story 4.8]
 	# Display the form that is used to add a test case.
-	# Parameters: None
-	# Returns: None
+	# Parameters: none
+	# Returns: none
 	# Author: Lin
 	def new
 		@problem = Problem.find(params[:problem_id])
@@ -25,8 +26,9 @@ class TestCasesController < ApplicationController
 	# [Add test case-story 4.8]
 	# Saves the new test case into the database.(What the form the 'new' method will submit to)
 	# Parameters: None
-	# Returns: In case of success a flash notice will appear:"Post created successfully"
-	#          In case of failure a flash notice will appear:"Can't add test case!"
+	# Returns: 
+	#	In case of success a flash notice will appear:"Post created successfully"
+	#	In case of failure a flash notice will appear:"Can't add test case!"
 	# Author: Lin
 	def create
 		@problem = Problem.find_by_id(session[:problem_id])
@@ -53,8 +55,8 @@ class TestCasesController < ApplicationController
 	# [Edit test case-story 4.9]
 	# Edit test case 
 	# Parameters: 
-	#    @test_case:Test case to be edited.
-	# Returns: None
+	#	@test_case:Test case to be edited.
+	# Returns: none
 	# Author: Nadine Adel
 	def edit
 		@test_case =TestCase.find(params[:id])		
@@ -64,8 +66,9 @@ class TestCasesController < ApplicationController
 	# [Edit test case-story 4.9]
 	# Update test case in the database
 	# Parameters: 
-	#    @test_case:Test case to be updated.
-	# Returns: flash message if the test case is updated or not
+	#	 @test_case:Test case to be updated.
+	# Returns: 
+	#	Flash message if the test case is updated or not
 	# Author: Nadine Adel
 	def update
 		@test_case = TestCase.find(params[:id])
@@ -78,9 +81,9 @@ class TestCasesController < ApplicationController
 	end
 
 	# [Add test case-story 4.8]
-	# private method. Controls the test case parameters that can be accessed.
-	# Parameters: None
-	# Returns: None
+	# Private method. Controls the test case parameters that can be accessed.
+	# Parameters: none
+	# Returns: none
 	# Author: Lin
 	private
 	def post_params
