@@ -31,7 +31,8 @@ Tutor::Application.routes.draw do
 	get "tips/show"
 	get "tips/index"
 	get "tips/edit"
-	get "tips/destroy"
+	get "tips/destroy"	
+	post "tips/:id/edit" => 'tips#update'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -80,6 +81,7 @@ Tutor::Application.routes.draw do
 	resources :model_answers
 	resources :solutions
 	resources :topics
+	resources :replies
 	resources :hints
 	resources :lecturers
 	resources :teaching_assistants
