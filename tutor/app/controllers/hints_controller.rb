@@ -80,10 +80,6 @@ class HintsController < ApplicationController
 	# Returns: 
 	#	Redirects to edit page on success, refreshes on failure
 	# Author: Mohamed Fadel
-	def new
-		@answer = ModelAnswer.find(params[:model_answer_id])
-		@@answer_id = params[:model_answer_id]
-	end
 	def create
 		new_hint = Hint.new(permitCreate)
 		if lecturer_signed_in?
@@ -114,6 +110,5 @@ class HintsController < ApplicationController
 	private
 	def permitCreate
 		params.require(:Hint).permit(:submission_counter, :message)
-
 	end
 end	

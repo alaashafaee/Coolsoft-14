@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 <br><ul class="navbar-brand pull-right"><%= link_to "Create New Hint", 
 	{:controller => 'hints', :action => 'new',
 	:model_answer_id => @answer.id }, {class: 'btn btn-primary btn' } %> </ul></br>
-=======
 <% @hints1=Array.new %>
 <% @hints_check.each do |hint2| %>
 	<% if hint2.category == false %>
@@ -45,4 +43,3 @@
 		</table>
 	<% end %>
 </div>
->>>>>>> 88f2b270d1a8ecddbd770e5e3f082f70feca7095
