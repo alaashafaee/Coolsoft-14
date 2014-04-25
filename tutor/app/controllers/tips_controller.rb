@@ -38,7 +38,7 @@ class TipsController < ApplicationController
 		if @tip.save
 			render :action => 'show'
 		else
-			render :action=>'new'
+			render :action => 'new'
 		end
 	end
 
