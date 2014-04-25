@@ -50,12 +50,11 @@
 				<div class="row">
 					<%= render "layouts/right_side_bar" %>
 					<div class="well main-content" style="min-height:600px;">
-						<%= render "problems/system_recommendation" if student_signed_in? %>
 						<%= yield %>
 					</div>
 				</div>
 			<% else %>
-				<div class="well container main-content" style="min-height:500px;">
+				<div class="well container main-content" style="min-height:700px;">
 					<%= yield %>
 				</div>
 			<% end %>
