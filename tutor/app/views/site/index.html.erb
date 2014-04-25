@@ -53,9 +53,11 @@
 	 Author: Ahmed Akram
 -->
 <% if signed_in? %>
-	<%= button_to "My Courses", {:controller => 'courses', :action => 'index'}, class: "btn btn-success", style: "margin-left:auto; margin-right:auto; margin-top: 80px", method: :get %>
-	<br/><br/><br/>
-	<% if(lecturer_signed_in?) %>
-		<%= button_to "New Course", {:controller => 'courses', :action => 'new'}, class: "btn btn-success", style: "margin-left:auto; margin-right:auto;", :method => :get %>
+	<% if student_signed_in?%>
+		<%= render 'students/show' %>
+	<% elsif lecturer_signed_in? %>
+		<%= render 'lecturers/show' %>
+	<% elsif teaching_assistant_signed_in? %>
+		<%= render 'teaching_assistants/show'%>
 	<% end %>
 <% end %>

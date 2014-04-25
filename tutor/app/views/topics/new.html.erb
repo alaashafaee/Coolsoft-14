@@ -1,37 +1,77 @@
-<!-- 	Name: The New Topic Form 
+<div class ="tabs">
+	<ul class="tab-links">
+		<li><a href="/courses/">My Courses</a></li>
+		<li><a href="/courses/new">Create new Course</a></li>
+	</ul>
+	<div class="tab-content">
+<!--	Name: Course Edit Page
 		Author: Ahmed Akram
 -->
+		<ul class="tab-links">
+			<!-- This button activates the new topic action and passes the course id  -->
+			<li>
+				<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
+					:course_id => @course.id}, class: "btn btn-success", 
+						style: "float: left;margin-left: 15px",method: :post %>  
+			</li> 
+			<li>
+				<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success", 
+						style: "float: left;margin-left: 15px",method: :post %> 
+			</li> 
 
-<div>
-	<h1>New Topic</h1>
+			<!-- This button activates the add TA action -->
+			<li>
+				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success",
+						 style: "float: left; margin-left: 15px", :method => :get %>
+			</li>
 
-	<!-- Rendering the form fields -->
-	<%= form_for :topic, url: {action: "create"} do  |f| %>
-		<p>
-			<%= f.label "Title" %><br>
-			<% unless @new_topic.errors[:title].blank? %>
-				<span id="error_explanation">
-					Name <%= @new_topic.errors[:title].join(", ") %> 
-				</span>
-				<br>
+			<!-- This button activates the acknowledge a student action -->
+			<li>
+				<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success",
+						 style: "float: left; margin-left: 15px", method: :get
+							%> 
+			</li>
+		</ul>
+		<!-- 	Name: The New Topic Form 
+		Author: Ahmed Akram
+		-->
+		<div>
+			<h1>New Topic</h1>
+
+			<!-- Rendering the form fields -->
+			<%= form_for :topic, url: {action: "create"} do  |f| %>
+				<p>
+					<%= f.label "Title" %><br>
+					<% unless @new_topic.errors[:title].blank? %>
+						<span id="error_explanation">
+							Name <%= @new_topic.errors[:title].join(", ") %> 
+						</span>
+						<br>
+					<% end %>
+					<%= f.text_field :title, autofocus: true, class:"form-control",
+					 style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
+				</p>
+				<p>
+					<%= f.label :description %><br>
+						<% unless @new_topic.errors[:description].blank? %>
+							<span id="error_explanation">
+								Description <%= @new_topic.errors[:description].join(", ") %> 
+							</span>
+							<br>
+						<% end %>
+					<%= f.text_area :description, class:"form-control", style: "height:200px;width:500px;resize:none", placeholder: "Description", :value => @new_topic.description  %>
+				</p>
+				<p>
+					<%= f.submit "Save", class: "btn btn-success"%>
+				</p>
 			<% end %>
-			<%= f.text_field :title, autofocus: true, class:"form-control", style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
-		</p>
-		<p>
-			<%= f.label :description %><br>
-				<% unless @new_topic.errors[:description].blank? %>
-					<span id="error_explanation">
-						Description <%= @new_topic.errors[:description].join(", ") %> 
-					</span>
-					<br>
-				<% end %>
-			<%= f.text_area :description, class:"form-control", style: "height:200px;width:500px;resize:none", placeholder: "Description", :value => @new_topic.description  %>
-		</p>
-		<p>
-			<%= f.submit "Save", class: "btn btn-success"%>
-		</p>
-	<% end %>
 
-	<!-- A back to courses list button -->
-	<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
+			<!-- A back to courses list button -->
+			<%= button_to "Back", {:controller => 'courses', :action => 'index'},
+			 class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
+		</div>
+	</div>
 </div>
