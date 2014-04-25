@@ -1,4 +1,5 @@
 class HintsController < ApplicationController
+	
 	# [Edit helping hints - Story 4.13 ]
 	# This action creates the form and retrives the data of the selected problem 
 	#	to be being edited
