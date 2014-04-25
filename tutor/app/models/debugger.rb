@@ -78,7 +78,6 @@ class Debugger < ActiveRecord::Base
 				debug
 			rescue => e
 				unless e.message === 'Exited'
-					e.message
 					return false
 				end
 			end
