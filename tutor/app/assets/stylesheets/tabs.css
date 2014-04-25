@@ -58,7 +58,7 @@ li.active a, li.active a:hover {
 	float:left;"	
 }
 
-.mylist li{
+.navigation-list li{
 	border-radius:3px 3px 0px 0px;
 	background:#7FB5DA;
 	font-size:16px;
@@ -66,8 +66,7 @@ li.active a, li.active a:hover {
 	color:#4c4c4c;
 
 }
-
-.mylist li a{
+.navigation-list li a{
 	color : black;
 	font-weight:600;
 	text-align: center;
@@ -75,28 +74,28 @@ li.active a, li.active a:hover {
 
 }	
 
-.mylist {
+.navigation-list {
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
 }
 
-.mylist > li {
+.navigation-list > li {
   position: relative;
   display: block;
 }
 
-.mylist > li > a {
+.navigation-list > li > a {
   position: relative;
   display: block;
   padding: 10px 15px;
 }
 
-.mylist > li > a:hover{
+.navigation-list > li > a:hover{
   text-decoration: none;
   background-color: #a7cce5;
 }
 
-.mylist > li.disabled > a {
+.navigation-list > li.disabled > a {
   color: #b4bcc2;
 }
