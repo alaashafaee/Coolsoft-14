@@ -1,4 +1,4 @@
-// Source: Ace edtitor
+// Source: Ace editor
 // Integrated by: Rami Khalil
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
