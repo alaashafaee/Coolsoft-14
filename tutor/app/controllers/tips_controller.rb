@@ -8,6 +8,7 @@ class TipsController < ApplicationController
 	# Author: Nadine Adel
 	def index
 		@tips= Hint.all
-		@tips_check = Hints.where(category: true)
+		@tips_check = Hint.all
+		#User.where(["name = ? and email = ?", "Joe", "joe@example.com"])
 	end
 end

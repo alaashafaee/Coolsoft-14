@@ -1,3 +1,9 @@
+<% @tips1=Array.new %>
+<% @tips_check.each do |tip2| %>
+	<% if tip2.category == true %>
+		<% @tips1.push(tip2) %>
+	<% end %>
+<% end %>
 <br><ul class="navbar-brand pull-right"><%= link_to "Create New Tip",
 			{:controller => 'tips',:action => 'new',
 			:method => :get, :model_answer_id => @answer.id },
@@ -7,10 +13,10 @@
 <a href="#" return:false; class="Lst" onclick="toggle_visibility('foo3'); return false;"
 	style="font:120px"> Previous Tips</a>
 <div id="foo3" style="display:none;">
-	<% if !@tips_check.any? %>
+	<% if !@tips1.any? %>
 		<p>No previous Tips</p>
 	<% end %>
-	<% if !@tips_check.empty? %>
+	<% if !@tips1.empty? %>
 		<table class="table table-striped" style = "width:60%">
 			<thead>
 				<tr>
