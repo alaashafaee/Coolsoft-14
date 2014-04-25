@@ -214,7 +214,7 @@ debug_console = ->
 #	none
 # Returns:
 #	none
-# Author: Ahmed Akram
+# Author: Ahmed Akram + Rami Khalil
 @toggleDebug = (state) ->
 	$('#debugButton').toggle(!state)
 	$('#compileButton').toggle(!state)
@@ -223,7 +223,7 @@ debug_console = ->
 	$('#previousButton').toggle(state)
 	$('#stopButton').toggle(state)
 	editor = ace.edit("editor")
-	editor.setReadOnly !editor.getReadOnly(state)
+	editor.setReadOnly(state)
 	normal_theme = "ace/theme/twilight"
 	debug_theme = normal_theme + "-debug"
 	if editor.getTheme() == normal_theme
@@ -344,15 +344,15 @@ debug_console = ->
 				return
 			out = $('#validate_case')
 			out.html("")
-			x = ""
+			content = ""
 			for i in data
 				if data["success"]
-					x += "<p style='color:green'>#{i['test_case']}, \
+					content += "<p style='color:green'>#{i['test_case']}, \
 							#{i['response']}</p>"
 				else
-					x += "<p style='color:red'>#{i['test_case']}, \
+					content += "<p style='color:red'>#{i['test_case']}, \
 							#{i['response']}</p>"
-			out.html(x)
+			out.html(content)
 			return
 		error: (data) ->
 			clear_console()
