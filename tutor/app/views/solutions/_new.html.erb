@@ -4,10 +4,6 @@
 <span id="mins">0</span>:<span id="secs">00</span>
 
 
-<!-- Add editor -->
-<pre id="editor">
-</pre>
-
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
@@ -15,13 +11,18 @@
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
 	<!--Author: Ahmed Moataz-->
-	<div class="editor_border">
+	<div class="">
 		<div class="editor_top">
 			<div style="margin-left: 2px;">
+				public class CoolSoft {
 			</div>
 		</div>
+		<!-- Add editor -->
+		<pre id="editor">
+		</pre>
 		<div class="editor_bottom">
 			<div style="margin-left: 2px;">
+				}
 			</div>
 		</div>
 	</div>
@@ -118,8 +119,8 @@
     editor.getSession().setMode("ace/mode/java");
     var code = editor.getSession().getValue();
     editor.getSession().on('change', function(){ 
-    code = editor.getSession().getValue(); 
-    document.getElementById('result').value = code;   
-});
+		code = editor.getSession().getValue(); 
+		document.getElementById('result').value = code;   
+	});
 </script> 
 <% end %>
