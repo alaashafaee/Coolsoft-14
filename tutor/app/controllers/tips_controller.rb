@@ -72,7 +72,7 @@ class TipsController < ApplicationController
 	end
 
 	private
-	def tip_params 
+	def tip_params
 		params.require(:tip).permit(:message, :time)
 	end
 
