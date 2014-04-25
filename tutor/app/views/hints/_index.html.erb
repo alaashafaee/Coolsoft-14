@@ -1,9 +1,3 @@
-<% @hints1=Array.new %>
-<% @hints_check.each do |hint2| %>
-	<% if hint2.category == false %>
-		<% @hints1.push(hint2) %>
-	<% end %>
-<% end %>
 <br><ul class="navbar-brand pull-right"><%= link_to "Create New Hint", 
 		{:controller => 'hints', :action => 'new',
 		:method => :get, :model_answer_id => @answer.id },
@@ -14,10 +8,10 @@
 	return false;" style= "font:120px"> Previous Hints</a>
 
 <div id= "foo2" style= "display:none;">
-	<% if !@hints1.any? %>
+	<% if !@hints_check.any? %>
 		<p>You have no previous Hints</p>
 	<% end %>
-	<% if !@hints1.empty? %>
+	<% if !@hints_check.empty? %>
 		<table class="table table-striped" style = "width:60%">
 			<thead>
 				<tr>
@@ -34,12 +28,13 @@
 							<%= hint1.message %>
 							</td>
 							<td style = "width:20%"><%= hint1.submission_counter %></td>
-							<td><%= button_to "Edit", {:action => 'new', :controller => 'hints',
-								:method => :post}, {class: 'btn btn-primary btn-xs' } %></td>
-					</tr>
+							<td><%= button_to "Edit", {:action => 'new',
+									:controller => 'hints', :method => :post},
+									{class: 'btn btn-primary btn-xs' } %></td>
 						<% end %>
+					</tr>
 				<% end %>
-			</tbody>    				
+			</tbody>
 		</table>
 	<% end %>
 </div>
