@@ -81,6 +81,10 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard1", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard2", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard4", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard5", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard6", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard7", activated: true)
 
 puts("# --------------------------Posts------------------------------")
 	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
@@ -323,8 +327,13 @@ puts("# --------------------- Courses -------------------------")
 	Course.first.discussion_board = DiscussionBoard.first
 	Course.first.topics << Topic.find_by_id(2)
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
-	Course.find_by_id(2).discussion_board = DiscussionBoard.last
+	Course.find_by_id(2).discussion_board = DiscussionBoard.find_by_id(2)
 	Course.first.course_students << CourseStudent.first
+	Course.find_by_id(3).discussion_board = DiscussionBoard.find_by_id(3)
+	Course.find_by_id(4).discussion_board = DiscussionBoard.find_by_id(4)
+	Course.find_by_id(5).discussion_board = DiscussionBoard.find_by_id(5)
+	Course.find_by_id(6).discussion_board = DiscussionBoard.find_by_id(6)
+	Course.find_by_id(7).discussion_board = DiscussionBoard.find_by_id(7)
 
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first

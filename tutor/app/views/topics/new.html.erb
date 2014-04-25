@@ -11,9 +11,10 @@
 			<!-- This button activates the new topic action and passes the course id  -->
 			<li>
 				<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
-					:course_id => @course.id}, class: "btn btn-success", 
-						style: "float: left;margin-left: 15px",method: :post %>  
+					:id => @course.id}, class: "btn btn-success", 
+						style: "float: left;margin-left: 15px",method: :get	 %> 
 			</li> 
+
 			<li>
 				<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
 					:course_id => @course.id}, class: "btn btn-success", 
