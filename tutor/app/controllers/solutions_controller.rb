@@ -8,22 +8,14 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		if params[:commit] == 'Submit'
-			compile_solution
-			if flash[:compiler_fail] || flash[:alert]
-				redirect_to :back and return
-			end
-			submit_no_ajax
-		elsif params[:commit] == 'Compile'
-			compile_solution
-			redirect_to :back and return
-		elsif params[:commit] == 'Run Test Case'
-			compile_solution
-			if flash[:compiler_fail] || flash[:alert]
-				redirect_to :back and return
-			end
-			execute
-		end
+		solution = Solution.new(solution_params)
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		solution.status = 0
+		solution.save
+		test_cases = solution.problem.test_cases
+		result = Solution.validate(solution, test_cases)
+		render json: result
 	end
 
 	# [Compiler: Test - Story 3.15]
@@ -34,16 +26,15 @@ class SolutionsController < ApplicationController
 	# 	A flash message containing the appropriate reply
 	# Author: Ahmed Akram
 	def execute
-		file_name = @solution.file_name
-		if Executer.execute(file_name, input[:input], solution_params[:problem_id])
-			output = Executer.get_output()
-			flash[:msg] = output
-		else
-			output = Executer.get_runtime_error(file_name, 'CoolSoft')
-			flash[:msg] = output[:error]
-			flash[:exp] = output[:explanation]
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			render json: {}
 		end
-		redirect_to :back
+		id = current_student.id
+		pid = params[:problem_id]
+		input = params[:code]
+		cases = if params[:input] then params[:input] else "" end
+		result = Executer.create_solution(id, pid, input, cases)
+		render json: result
 	end
 
 	# [Compiler: Compile - Story 3.4]
@@ -54,25 +45,18 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		@solution = Solution.new(solution_params)
-		@solution.student_id = current_student.id
-		@solution.length = @solution.code.length
-		@solution.status = 0
-		if @solution.save
-			compiler_feedback = Compiler.compiler_feedback(@solution)
+		solution = Solution.new(solution_params)
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		if solution.save
+			compiler_feedback = Compiler.compiler_feedback(solution)
 			if compiler_feedback[:success]
-				@solution.status = 3
-				flash[:compiler_success] = "Compilation Succeeded!"
-				flash[:previous_code] = compiler_feedback[:previous_code]
+				solution.status = 3
 			else
-				@solution.status = 2
-				flash[:compiler_fail] = "Compilation Failed!"
-				flash[:compiler_feedback] = compiler_feedback[:errors]
-				flash[:previous_code] = compiler_feedback[:previous_code]
+				solution.status = 2
 			end
-			@solution.save
-		else
-			flash[:alert] = "You did not write any code!"
+			solution.save
+			render json: compiler_feedback
 		end
 	end
 
@@ -98,7 +82,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.require(:solution).permit(:code, :problem_id)
+		params.permit(:code, :problem_id, :time)
 	end
 
 	# [Compiler: Test - Story 3.15]

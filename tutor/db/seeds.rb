@@ -96,10 +96,11 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
-	Hint.create(message: "Do not Try to Solve CS problem-2")
-	Hint.create(message: "Do not Try to Solve CS problem-3")
 
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
+	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
+	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
+	
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -170,7 +171,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-	
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
