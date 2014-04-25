@@ -1,4 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+	# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
@@ -65,9 +65,13 @@ puts("# ---------------------------TeachingAssistants---------------------------
 	t.save!
 
 puts("# --------------------------Courses------------------------------")
-	Course.create(name:"Course1", description:"This is course one", code:1, year:2014, semester:1)
-	Course.create(name:"Course2", description:"This is course two", code:2, year:2014, semester:1)
-	Course.create(name:"Course3", description:"This is course three", code:3, year:2014, semester:1)
+	Course.create(name:"Course1", description:"This is course one", code:1, year:2014, semester:1, :university => "GUC")
+	Course.create(name:"Course2", description:"This is course two", code:2, year:2014, semester:1, :university => "GUC")
+	Course.create(name:"Course3", description:"This is course three", code:3, year:2014, semester:1, :university => "GUC")
+	Course.create(:name => "CS 2", description:"This is course four", :code => "cs2", :year => 2014, :semester => 2, :university => "GUC")
+	Course.create(:name => "CS 3", description:"This is course five", :code => "cs3", :year => 2014, :semester => 3, :university => "GUC")
+	Course.create(:name => "CS 4", description:"This is course six", :code => "cs4", :year => 2014, :semester => 4, :university => "AUC")
+	Course.create(:name => "CS 5", description:"This is course seven", :code => "cs5", :year => 2014, :semester => 5, :university => "AUC")
 
 puts("# --------------------------Course_Student------------------------------")
 	CourseStudent.create(share: true)
@@ -189,6 +193,10 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.find_by_id(2)
 	Lecturer.first.replies << Reply.find_by_id(3)
 	Lecturer.first.replies << Reply.find_by_id(4)
+	Lecturer.find_by_id(1).courses << Course.find_by_code("cs2")
+	Lecturer.find_by_id(1).courses << Course.find_by_code("cs3")
+	Lecturer.find_by_id(2).courses << Course.find_by_code("cs4")
+	Lecturer.find_by_id(2).courses << Course.find_by_code("cs5")
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first

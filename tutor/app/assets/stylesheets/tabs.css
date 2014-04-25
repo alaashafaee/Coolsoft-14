@@ -1,5 +1,5 @@
 .tabs {
-	width:85%;
+	width:80%;
 	display:inline-block;
 }
 .tab-links:after {
@@ -41,4 +41,10 @@ li.active a, li.active a:hover {
 }
 .tab.active {
 	display:block;
+}
+.profile_picture {
+	width:200px;
+	height:200px;
+	background-color:#999;
+	float:left;"	
 }
