@@ -23,9 +23,9 @@
 			<%= t.label :Time_in_seconds %><br>
 			<%= t.text_field :time, style:"width:55px; height:35px;", :value => @tip.time %>
 		</p>	
-		<%= t.submit "Save changes", class: "btn btn-large btn-primary" , style: "float:left" %>
+		<%= t.submit "Save changes", class: "btn btn-large btn-primary", style: "float:left" %>
 		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',
-			:id => @tip.model_answer_id},class: "btn btn-success",
+			:id => @tip.model_answer_id}, class: "btn btn-success",
 			style: "text-decoration:none; float:right" %>
 	<% end %>
 <% end %>
