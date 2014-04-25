@@ -1,45 +1,30 @@
 class RepliesController < ApplicationController
 
-	# Description: fetch all replies from db to view
-	# Parameters:
-	#	@replies : Containg all the replies
-	# Returns: none
-	# Author: Ahmed Mohamed Magdi
-	def index
-		@replies = Post.find_by_id(params[:id]).replies
-	end
-
+	# [Edit a Reply - Story 1.19]
 	# Description: Shows the replies with id
 	# Parameters:
-	#	@replies: reply with spacific id
-	# Returns: none
+	#	replies: reply with spacific id
+	# Returns:
+	# 	returns a the record in JSON form 
 	# Author: Ahmed Mohamed Magdi
 	def show
-		@replies = Reply.find_by_id(params[:id])
-		render "index"
+		reply = Reply.find_by_id(params[:id])
+		render json: reply
 	end
 
-	# Description: edit reply 
-	# Parameters: none
-	# Returns: none
-	# Author: Ahmed Mohamed Magdi
-	def edit	
-		@replies = Reply.find(params[:id])
-		respond_to do |format|
-			format.html { render action:"edit"}
-        	format.js {render "edit"}
-   		end
-	end
-
-	# Description: Creates New reply 
+	# [Post a Reply - Story 1.14]
+	# Description: Creates new reply and save to the database
 	# Parameters:
-	# Returns: none
+	#	reply_content: The content of the reply
+	#	id: Post id for getting the post
+	# Returns:
+	# 	returns a the record in JSON form 
 	# Author: Ahmed Mohamed Magdi
 	def create
-		reply = Reply.new(reply_params)
-		puts (params[:id])
-		post = params[:@post]
-		post.replies << reply
+		reply_content = params[:content]
+		post = Post.find_by_id(params[:id])
+		reply = Reply.new
+		reply.content = reply_content
 		if lecturer_signed_in?
 			current_lecturer.replies << reply
 		elsif teaching_assistant_signed_in?
@@ -47,60 +32,44 @@ class RepliesController < ApplicationController
 		else
 			current_student.replies << reply				
 		end
-		reply.save
+		post.replies << reply
+		render json: reply
 	end
 
-	# Description: Creates New reply 
-	# Parameters:
-	# Returns: none
-	# Author: Ahmed Mohamed Magdi
-	def new
-		reply = Reply.new
-	end
-
+	# [Delete a Reply - Story 1.16]
 	# Description: Deleting reply from the database
-	# Parameters: 
-	# Returns: none
+	# Parameters:
+	#	id: reply id for getting the reply
+	# Returns: 
+	# 	true: if it successed is destroying the reply
+	# 	false: if it fails is destroying the reply
 	# Author: Ahmed Mohamed Magdi
 	def destroy
-		@reply = Reply.find(params[:id])
-		@post = @reply.post
-		@replies = @post.replies
-		respond_to do |format|
-	        if @reply.destroy
-	            format.html { redirect_to action:"index"}
-	            format.js 
-	        else
-	            format.html { render action: "new" }
-	            format.js
-	        end
-	    end
-
+		reply = Reply.find(params[:id])
+        if reply.destroy
+            render json: true
+        else
+        	render json: false
+        end
 	end
 
+	# [Edit a Reply - Story 1.19]
 	# Description: Updating a reply in the database
-	# Parameters: none
-	# Returns: none
+	# Parameters:
+	#	id: reply id for getting the reply
+	# Returns:
+	# 	true: if it successed is saving the reply
+	# 	false: if it fails is saving the reply
 	# Author: Ahmed Mohamed Magdi
 	def update
-	    @reply = Reply.find(params[:id])
-	    respond_to do |format|
-	        if @reply.save
-	            format.html { redirect_to "show"}
-	            format.js
-	        else
-	            format.html { render action: "new" }
-	        end
-	    end
-	end
-
-	private
-	# Description: To permit vairble to be saved
-	# Parameters:none
-	# Returns: none
-	# Author: Ahmed Mohamed Magdi
-	def reply_params
-		params.require(:reply).permit(:content)
+	    reply = Reply.find(params[:id])
+	    data = params[:content]
+	    reply.content = data
+        if reply.save
+            render json: true
+        else
+            render json: false
+        end
 	end
 
 end

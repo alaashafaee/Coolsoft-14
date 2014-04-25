@@ -1,5 +1,6 @@
 <div id="text_holder">
 	<%= render "/replies/load_replies" %>
 </div>
+<%= text_field_tag 'input_field' , nil, style: "width:500px; height:100px" %>
+<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})" %>
 
-<%= render "/replies/form" , :post=>@post %>

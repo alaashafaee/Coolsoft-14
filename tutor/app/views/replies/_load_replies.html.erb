@@ -1,15 +1,51 @@
-<% if !@replies.blank? %>
-	<table>
-		<% for reply in @replies %>
-				<tr id="reply_<%=reply.id%>" >
-					<td width= "60%"><%= reply.content %></td>
-					<td width= "20px"></td>
-					<td><%= link_to "edit", edit_reply_path(reply, div_id:"reply_#{reply.id}"),:remote => true%></td>
-					<td width= "20px"></td>
-					<td><%= link_to "Destroy", reply,  :remote => true, :method => :delete, :class => 'delete_reply', div_id:"reply_#{reply.id}"%></td>
-				</tr>
-				<tr height= "10px"></tr>
-		<% end %> 
-		<br>
-	</table>
+<% unless @replies.blank? %>
+	<% @replies.each do |reply| %>
+		<div class = "reply", id="reply_<%=reply.id%>" >
+			<div>
+				<h4><%= link_to reply.owner.name, reply.owner %></h4>
+			</div>
+			<div id="reply_content_<%=reply.id%>" >
+				<p>
+					<%= reply.content %>
+					<br>
+				</p>
+				<p><font size="1"><%= distance_of_time_in_words_to_now reply.created_at %> ago </p>
+			</div>
+			<div>
+				<% if lecturer_signed_in? %>
+					<% if current_lecturer.email == reply.owner.email %>
+						<td><%= image_tag "delete_button_2.png", 
+								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+								onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
+						<td><%= image_tag "edit_button.png", 
+								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+								onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+					<% end %>
+				<% elsif teaching_assistant_signed_in? %>
+					<% if current_teaching_assistant.email == reply.owner.email %>
+						<td><%= image_tag "delete_button_2.png", 
+								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+								onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
+						<td><%= image_tag "edit_button.png", 
+								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+								onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+					<% end %>
+				<% else %>
+					<% if current_student.email == reply.owner.email %>
+						<td><%= image_tag "delete_button_2.png", 
+								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+								onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
+						<td><%= image_tag "edit_button.png", 
+								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+								onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+					<% end %>
+				<% end %>
+			</div>
+			<br>
+		</div>
+	<% end %>
+<% else %>
+	<div align="center">
+		No Replies in this post yet. 
+	</div>
 <% end %>
