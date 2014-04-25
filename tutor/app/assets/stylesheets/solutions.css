@@ -30,6 +30,7 @@ textarea  {
 	display: none;
 	color: blue;
 }
+
 #editor {
     position: relative; 
     left:0;
@@ -37,6 +38,7 @@ textarea  {
     top: 0;
     bottom: 0;
     height: 20pc;
+}
 
 .fixed-content {
 	max-height: 200px;

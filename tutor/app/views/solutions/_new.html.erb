@@ -113,13 +113,13 @@
 		<p class="compilation_feedback" ><%= flash[:compiler_feedback] %></p>
 	</div>
 <script>
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/twilight");
-    editor.getSession().setMode("ace/mode/java");
-    var code = editor.getSession().getValue();
-    editor.getSession().on('change', function(){ 
-    code = editor.getSession().getValue(); 
-    document.getElementById('result').value = code;   
-});
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/twilight");
+	editor.getSession().setMode("ace/mode/java");
+	var code = editor.getSession().getValue();
+	editor.getSession().on('change', function(){
+		code = editor.getSession().getValue(); 
+		document.getElementById('result').value = code;   
+	});
 </script> 
 <% end %>
