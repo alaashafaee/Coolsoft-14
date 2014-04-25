@@ -39,5 +39,6 @@ activate = ->
 		timer
 
 jQuery ->
-	activate()
+	if element_exists("mins") and element_exists("secs")
+		activate()
 	return
