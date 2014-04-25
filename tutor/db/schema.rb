@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(version: 20140425003102) do
   end
 
   create_table "problem_opening_times", force: true do |t|
-    t.time     "start_time"
+    t.integer  "time"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.datetime "created_at"
