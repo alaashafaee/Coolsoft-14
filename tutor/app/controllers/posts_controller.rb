@@ -12,6 +12,18 @@
 		@discussion_board = DiscussionBoard.find_by_id(params[:discussion_board_id])
 		@new_post = Post.new
 	end
+	
+	# [Edit Post - Story 1.18]
+	# Description: This action takes the passed post id 
+	#               to be passed to the Edit form.
+	# Parameters:
+	#	params[:id]: The post id
+	# Returns: 
+	# 	none
+	# Author: Ahmed Atef
+	def edit
+		@post = Post.find(params[:id])
+	end
 
 	# [Add Post - Story 1.13]
 	# Description: Displays the post that the user chose
@@ -55,6 +67,29 @@
 				flash[:notice] = @new_post.errors.full_messages.first
 			end
 			render :action => 'new' 
+		end
+	end
+
+	# [Edit Post - Story 1.18]
+	# Description: This action takes the passed parameters from 
+	#              the edit post form, updates the passed post parameters.If the 
+	#              update fails the user is redirected to the form
+	# Parameters:
+	#	topic_params[]: A list that has all fields entered by the user to in the
+	# 					Edit_post_form
+	# Returns: 
+	# 	flash[:notice]: A message indicating the success or failure of the creation
+	# Author: Ahmed Atef
+	def update
+		@post = Post.find(params[:id])
+		if @post.update_attributes(post_params) 
+			flash[:notice] = "Post successfully updated"
+			redirect_to(:action => 'show' ,:id => @post.id)
+		else
+			if @post.errors.any?
+				flash[:notice] = @post.errors.full_messages.first
+			end
+			render :action => 'edit'  
 		end
 	end
 
