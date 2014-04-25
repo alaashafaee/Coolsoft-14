@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+	<div class="alert alert-warning",
+		 style="width:180px;display:inline"><%= flash[:notice] %></div>
+<% end %>
+<% if @discussionBoard.activated == true %>
 <table class="table table-striped table-bordered table-responsive">
 	<tr>
 		<td>Post</td>
@@ -48,3 +53,6 @@
 	<%= link_to "Add Post", new_post_path(discussion_board_id:
 		@discussionBoard.id), class: "btn btn-success" %> 
 </div>
+<% else %>
+	The discusstion board is deactivated
+<% end %>
