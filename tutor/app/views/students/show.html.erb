@@ -1,20 +1,19 @@
-<div class="well" style="width:170px; height:170px; background-color:#999; float:left;"></div>
-<div class="tabs" style="float:left; margin-left:10px;">
-	<ul class="tab-links">
-		<li class="active"><a href="#tab1">Info</a></li>
-		<li><a href="#tab2">Performance</a></li>
+<div class = "well" style = "width:170px; height:170px; background-color:#999; float:left;"></div>
+<div class = "tabs" style = "float:left; margin-left:10px;">
+	<ul class = "tab-links">
+		<li class = "active"><a href = "#tab1">Info</a></li>
+		<li><a href = "#tab2">Performance</a></li>
 	</ul>
-	<div class="tab-content">
-		<div id="tab1" class="tab active">
-			<p> <b>Name:</b> <%= @student.name %> </p>
-			<p> <b>Email:</b> <%= @student.email %> </p>
-			<p> <b>University:</b> <%= @student.university %> </p>
-			<p> <b>Faculty:</b> <%= @student.faculty %> </p>
-			<p> <b>Major:</b> <%= @student.major %> </p>
-			<p> <b>Joined on:</b> <%= @student.created_at.to_date %> </p>
-
+	<div class = "tab-content">
+		<div id = "tab1" class = "tab active">
+			<p><b>Name: </b><%= @student.name %></p>
+			<p><b>Email: </b><%= @student.email %></p>
+			<p><b>University: </b><%= @student.university %></p>
+			<p><b>Faculty: </b><%= @student.faculty %></p>
+			<p><b>Major: </b><%= @student.major %></p>
+			<p><b>Joined on: </b><%= @student.created_at.to_date %></p>
 		</div>
-		<div id="tab2" class="tab">
+		<div id = "tab2" class = "tab">
 			Statistics under construction
 		</div>
 	</div>
