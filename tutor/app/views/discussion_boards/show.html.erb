@@ -1,4 +1,7 @@
 <div align="center">
+	<% if flash[:notice] %>
+		<div class="alert alert-warning", style="width:180px;display:inline"><%= flash[:notice] %></div>
+	<% end %>
 	<% if @discussionBoard.activated == true %>
 		<div style="width: 50%; margin-left:25%">
 			<h3><%= @discussionBoard.title %></h3>
