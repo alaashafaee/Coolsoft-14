@@ -7,35 +7,43 @@
 			<li><a href="/courses/sign_up">Sign up for a course</a></li>
 		<% end %>
 	</ul>
-	<div class="tab-content">
+	<div class = "tab-content" style = "min-height: 400px">
 		<div id="tab1" class="tab active">
-			<h1><%= @course.name %></h1>
-			<div>
-				<div>
-					<p>
-						<b>Code:</b>
-						<%= @course.code %>
-					</p>
-					<p>
-						<b>Year:</b>
-						<%= @course.year %>
-					</p>
-					<p>
-						<b>Semester:</b>
-						<%= @course.semester %>
-					</p>
-					<p>
-						<b>Description:</b>
-						<%= @course.description %>
-					</p>
-				</div>
+			<div class = "panel-body" style = "font-family: Lucida Sans Unicode">
+				<h1><%= @course.name %></h1>
+			</div>
+			<div style = "float:top">
+				<p>
+					<b>Code:</b>
+					</br>
+					<%= @course.code %>
+				</p>
+				</br>
+				<p>
+					<b>Year:</b>
+					</br>
+					<%= @course.year %>
+				</p>
+				</br>
+				<p>
+					<b>Semester:</b>
+					</br>
+					<%= @course.semester %>
+				</p>
+				</br>
+				<p>
+					<b>Description:</b>
+					</br>
+					<%= @course.description %>
+				</p>
+			</div>
 
+			<div  style="margin-left:70%; margin-top: -300px";>
 				<div>
 					<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
-						:action => 'show', :id => @course.id	}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+						:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
 				</div>
-
-				<div class="panel-group list-group" id="accordion">
+				<div class="panel-group list-group" id="accordion" style="width:100%;">
 					<% @topics.each do |t| %>
 						<div class="panel panel-default">
 							<div class="panel-title list-group-item list-group-item-info"
@@ -49,7 +57,7 @@
 								<ul class="list-group">
 									<% t.tracks.each do |tt|%>
 										<% color = "label label-default" %>
-										<li class="list-group-item" data-toggle="tooltip"
+										<li style="border-style:hidden;" class="list-group-item" data-toggle="tooltip"
 											data-placement="top" title="<%= tt.difficulty %>">
 											<%= link_to tt.title, tt, class: color %>
 										</li>

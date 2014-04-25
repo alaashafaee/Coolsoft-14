@@ -1,17 +1,36 @@
-<div align="center">
-	<div style="width: 50%; margin-left:25%">
-		<h3><%=@post.title%></h3>
-		<%= @post.content %>
-		<br>
-		<% unless @replies.blank? %>
-			<% @replies.each do |reply| %>
-				<div style="background-color: #A8A8A8">
-					<%= reply.content %><br>
-				</div>
-				<br>
-			<% end %>
-		<% else %>
-			No Replies in this post yet .
-		<% end %>
+<!--  Name: The Show Post Form 
+    Author: Ahmed Atef
+-->
+
+<%= link_to "back", {:action => 'show', :controller => 'discussion_boards',
+	:id => DiscussionBoard.find_by_id(@post.discussion_board_id).course_id}, {
+		class: 'btn btn-info pull-right'} %>
+<% if current_lecturer %>
+	<% @userID = current_lecturer.id %>
+<% end %>
+<% if current_student %>
+	<% @userID = current_student.id %>
+<% end %>	
+<%if current_teaching_assistant %>
+	<% @userID = current_teaching_assistant.id %>
+<% end %>
+<% if @post.owner_id == @userID %>
+	<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
+		class: 'btn btn-info pull-right', :id => @post.id, style: "margin-right:1%;"} %>
+<% end %>
+<div>
+	<div>
+		<h1><%= @post.title %></h1>
+	</div>
+	<div class = "greyLine">
+		<p><font size="3"><%= @post.owner.name %></font> </p>
+		<div class="panel panel-primary">
+			<div style="margin-left:1%;">
+				<h2><%= @post.content %></h2>
+				<p><font size="3"><%= distance_of_time_in_words_to_now @post.
+					created_at %> ago</p></font>
+			</div>
+		</div>
 	</div>
 </div>
+<%= render "/replies/index", :@replies => @replies, :@post => @post %>

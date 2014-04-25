@@ -25,6 +25,8 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    acts_as_list (0.4.0)
+      activerecord (>= 3.0)
     ansi (1.4.3)
     arel (4.0.2)
     bcrypt (3.1.7)
@@ -46,9 +48,7 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    dotenv (0.11.0)
-      dotenv-deployment (= 0.0.1)
-    dotenv-deployment (0.0.1)
+    dotenv (0.7.0)
     erubis (2.7.0)
     execjs (2.0.2)
     foreman (0.63.0)
@@ -131,8 +131,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.2)
-      coffee-rails
     tzinfo (0.3.39)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
@@ -152,6 +150,7 @@ PLATFORMS
 
 DEPENDENCIES
   chartkick
+  acts_as_list
   coffee-rails (~> 4.0.0)
   composite_primary_keys (~> 6.0.1)
   devise
@@ -165,7 +164,6 @@ DEPENDENCIES
   sdoc
   sqlite3
   tire
-  turbolinks
   uglifier (>= 1.3.0)
   unicorn
   whenever

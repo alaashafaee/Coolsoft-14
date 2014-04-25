@@ -1,7 +1,8 @@
 class Lecturer < ActiveRecord::Base
 	
 	devise :database_authenticatable, :registerable,
-		:recoverable, :rememberable, :trackable, :validatable, :confirmable
+		:recoverable, :rememberable, :trackable,
+		:validatable, :confirmable
 
 	#Elasticsearch
 	include Tire::Model::Search
@@ -71,6 +72,7 @@ class Lecturer < ActiveRecord::Base
 			end
 		end
 	end
+	
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Checks if the email is already registered in tables: Student and TeachingAssistant
 	# 	before registering the email for table: Lecturer
