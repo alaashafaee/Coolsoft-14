@@ -1,6 +1,6 @@
 <div id="div1">
 	<% if flash[:notice] %>
-		<div class="notice"><%= flash[:notice] %></div>
+		<div class= "alert alert-danger"><%= flash[:notice] %></div>
 	<% end %>
 </div>
 
@@ -8,8 +8,9 @@
 	<h2 align ="center"><%= @problem.title %></h2>
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 		<%= problem.text_field :title %>
-		<%= problem.hidden_field :description, value: @problem.description %>
 		<%= problem.submit('update title') %>
+		<%= problem.hidden_field :description, value: @problem.description %>
+		<%= problem.hidden_field :track_id, value: @problem.track_id %>
 	<% end %>
 </div>
 
@@ -21,20 +22,32 @@
 			<%= problem.submit('update description') %>
 		</p>
 		<%= problem.hidden_field :title, value: @problem.title %>
+		<%= problem.hidden_field :track_id, value: @problem.track_id %>
 	<% end %>
 </div>
 
-<%= render partial: "test_cases/index" %>
+<div id = "div4">
+	<p>Current Track: <%= @track.title %></p>
+	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
+		<% if @tracks.size > 1 %>
+			<%= problem.collection_select(:track_id, @tracks, :id, :title) %>
+			<%= problem.submit('Change Track') %>
+			<%= problem.hidden_field :title, value: @problem.title %>
+			<%= problem.hidden_field :description, value: @problem.description %>
+		<% end %>
+	<% end %>
+</div>
+<br>
 <%= render partial: "model_answers/index" %>
+<br>
+<%= render partial: "test_cases/index" %>
+<br>
+<br>
 <%= render partial: "problems/success_options" %>
-<!-- A division for the flash message output to view the action's output -->
-<% if flash[:notice] %>
-	<div class="notice"><%= flash[:notice] %></div>
-<% end %>
-    <%= button_to "Delete Problem", {:action => 'destroy'}, method: :delete,
-		class: 'btn btn-primary', :id => params[:id],
-			:confirm => "Are you sure you want to delete this problem ??" %>
-
+<%= button_to "Delete Problem", {:action => 'destroy'}, method: :delete,
+	class: 'btn btn-primary', :id => params[:id],
+	:confirm => "Are you sure you want to delete this problem ??" %>
 <% if @problem.model_answers.empty? || @problem.test_cases.empty? %>
 	<%= render partial: "problems/failure_options" %>
 <% end %>
+<br>

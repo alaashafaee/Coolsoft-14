@@ -1,3 +1,27 @@
-<%= button_to "Delete Test Case", {:action => 'destroy', :id => params[:id]},
-	method: :delete, class:'btn btn-primary',
-		:confirm => "Are you sure you want to delete this test case ?" %>
+<% provide(:title, "Edit Test case") %>
+<%= form_for(@test_case) do |f| %>
+<% if @test_case.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@test_case.errors.count, "error") %>
+			prohibited this course from being saved:
+		</h2>
+		<ul>
+			<% @test_case.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page",
+		:controller => 'problems', :action => 'edit',
+		:id => @test_case.problem_id, :method => :get,
+		class: 'btn btn-default btn-xs' %></ul> 
+<h2>Test Case </h2>
+<%= flash[:notice] %>
+<br><%= f.label :Input %>
+	<%= f.text_field :input %></br>
+<br><%= f.label :Output %>
+	<%= f.text_field :output %></br>
+<br> <%= f.submit "Save changes", class: "btn btn-large btn-primary" %><br>         
+<% end %>

@@ -1,3 +1,4 @@
+
 <div class="page-header">
 	<h1><%= link_to @course.name , @course %>
 		<small><%= link_to @topic.title , @topic %></small></h1>
@@ -49,6 +50,7 @@
 <!-- thats a form for creating a track which is intially hidden
 		until the new button clicked -->
 <% if @can_edit %>
+
 	<span class="label label-default" onclick="newTrack()">New</span><br><br>
 	<% if !flash[:title] && !flash[:difficulty] %>
 		<% hide = 'hidden=true' %>
@@ -68,3 +70,23 @@
 		<% end %><!-- /form -->
 	</div><!-- /create_track -->
 <% end %><!-- /can_edit -->
+
+<!-- Generates list of tracks in the topic -->
+<div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
+<p>Hold Press and Drag to sort the tracks 
+
+	<ul id="list-of-tracks" >
+	<% @tracks.each do |track| %>
+		<li id="<%= track.id %>" ><%= track.title %> </li> 
+	<% end %>
+	</ul>
+
+</p>
+</div>
+
+<!-- On click dialog appears with the sortable list of tracks inside it -->
+<% if @can_edit %>
+<button id="opener" , class="btn btn-default btn-mini" , 
+		style = "margin-top:10px;">Edit Track Rating
+		</button>
+<% end %>
