@@ -88,7 +88,6 @@ class TipsController < ApplicationController
 
 	def update
 		@tip = Hint.find(params[:id])
-		@tip.category = true
 		@tip.time = tip_params_edit[:time]
 		@tip.message = tip_params_edit[:message]
 		if @tip.save
