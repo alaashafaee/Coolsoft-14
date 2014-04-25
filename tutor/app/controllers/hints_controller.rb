@@ -2,15 +2,32 @@ class HintsController < ApplicationController
 
 	@@answer_id = nil
 
-	#Not my part but needed for code to run
+  	# [View hints and tips-Story 4.22]
+	# It fetches from database all the previous hints.
+	# Parameters: 
+	#	@hints: All the previous hints that had been entered before.
+	#	@hints_check: All the previous hints that had been entered before to check if it is a hint or a tip.
+	# Returns: none
+	# Author: Nadine Adel
 	def index
 		@hints = Hint.all
-		@hints_check=Hint.all
+		@hints_check = Hint.all
 	end
-	def new
-		@answer = ModelAnswer.find(params[:model_answer_id])
-		@@answer_id = params[:model_answer_id]
-	end
+	
+	# [Edit helping hints - Story 4.13 ]
+	# This action creates the form and retrives the data of the selected problem 
+	#	to be being edited
+	# Parameters:
+	#	ID of the hint  
+	# Returns: none
+	# Author: Mimi
+	def edit
+		if current_lecturer or current_teaching_assistant
+		@new_tip = Hint.find_by_id(params[:id])
+		else
+		render "public/500.html"
+		end
+	end	
 
 	# [Adding Helping Hints - 4.12]
 	# Creates a new record to Hint Table
@@ -21,6 +38,10 @@ class HintsController < ApplicationController
 	# Returns: 
 	#	Redirects to edit page on success, refreshes on failure
 	# Author: Mohamed Fadel
+	def new
+		@answer = ModelAnswer.find(params[:model_answer_id])
+		@@answer_id = params[:model_answer_id]
+	end
 	def create
 		new_hint = Hint.new(permitCreate)
 		if lecturer_signed_in?
@@ -52,5 +73,8 @@ class HintsController < ApplicationController
 	def permitCreate
 		params.require(:Hint).permit(:submission_counter, :message)
 
+	end
+	def hint_params
+			params.require(:hint).permit(:message, :submission_counter, :id)
 	end
 end
