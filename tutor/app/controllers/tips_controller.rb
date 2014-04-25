@@ -65,7 +65,7 @@ class TipsController < ApplicationController
 	# [Remove tip - Story 4.20]
 	# Finds the tip that wanted to be removed
 	# Parameters: 
-	#     :id => id of the tip required to be removed
+	#     id: id of the tip required to be removed
 	# Returns: 
 	#     @tip: tip which will be removed
 	# Author: Ahmed Osam
@@ -78,7 +78,7 @@ class TipsController < ApplicationController
 	# [Edit tip - Story 4.10]
 	# Finds the tip that wanted to be edited
 	# Parameters: 
-	#     :id => id of the tip required to be edited
+	#     id: id of the tip required to be edited
 	# Returns: 
 	#     @tip: tip which will be edited
 	# Author: Ahmed Osam
