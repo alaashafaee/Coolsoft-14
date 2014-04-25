@@ -96,7 +96,7 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-	Hint.create(message: "Do not Try to Solve CS problem-1")
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
 	Hint.create(message: "Do not Try to Solve CS problem-2")
 	Hint.create(message: "Do not Try to Solve CS problem-3")
 
@@ -259,6 +259,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(11)
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
+
+puts("# -----------------------Hints---------------------------")
+	Problem.first.model_answers.first.hints << Hint.first
 
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first
