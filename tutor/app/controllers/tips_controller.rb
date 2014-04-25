@@ -2,8 +2,7 @@ class TipsController < ApplicationController
 
 	# [Add tip - Story 4.10]
 	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem
-	# Parameters:
-	#     none
+	# Parameters: none
 	# Returns:
 	#     @tip: a new created tip to specific answer
 	# Author: Ahmed Osam
@@ -39,7 +38,7 @@ class TipsController < ApplicationController
 		if @tip.save
 			render :action => 'show'
 		else
-			render :action=>'new'
+			render :action => 'new'
 		end
 	end
 
