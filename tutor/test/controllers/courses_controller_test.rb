@@ -37,7 +37,7 @@ class CoursesControllerTest < ActionController::TestCase
 	end
 
 	test "should get new" do
-    get :new
-    assert_response :success
-  end
+	    get :new
+	    assert_response :success
+  	end
 end
