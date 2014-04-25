@@ -18,18 +18,15 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	get 'courses/sign_up'
-<<<<<<< HEAD
 	get 'students/get_performance' => 'students#get_performance'
-    get 'students/solved_problems' => 'students#solved_problems'
-    get 'students/failed_problems' => 'students#failed_problems'
-    post 'students/get_performance' => 'students#get_performance'
-    post 'students/solved_problems' => 'students#solved_problems'
-    post 'students/failed_problems' => 'students#failed_problems'
-    get 'students/incomplete_problems' => 'students#incomplete_problems'
-=======
+	get 'students/solved_problems' => 'students#solved_problems'
+	get 'students/failed_problems' => 'students#failed_problems'
+	post 'students/get_performance' => 'students#get_performance'
+	post 'students/solved_problems' => 'students#solved_problems'
+	post 'students/failed_problems' => 'students#failed_problems'
+	get 'students/incomplete_problems' => 'students#incomplete_problems'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
->>>>>>> 1a8a4d0b4ffe1f0a90ff57e6b95af88959deb394
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 	get "tips/new"

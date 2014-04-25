@@ -1,5 +1,4 @@
 class StudentsController < ApplicationController
-<<<<<<< HEAD
 
     #[Performance of a student - Story 5.3]
     #This method retrieve variables from tables in the database
@@ -11,9 +10,9 @@ class StudentsController < ApplicationController
     #@incomplete: [int] The number of incomplete problems
     #Author : Mahdi
     def get_performance
-  	@solved = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id").count
-  	@failed = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id").count
-  	@incomplete = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id").count        
+        @solved = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id").count
+        @failed = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id").count
+        @incomplete = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id").count
     end
 
     #[Performance of a student - Story 5.3]
@@ -24,7 +23,7 @@ class StudentsController < ApplicationController
     #An array of solved problems
     #Author : Mahdi
     def solved_problems
-  	@solved_list = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id")
+        @solved_list = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id")
     end
 
     #[Performance of a student - Story 5.3]
@@ -35,7 +34,7 @@ class StudentsController < ApplicationController
     #An array of failed problems
     #Author : Mahdi
     def failed_problems
-  	@failure_list = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id")
+        @failure_list = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id")
     end
 
     #[Performance of a student - Story 5.3]
@@ -46,11 +45,11 @@ class StudentsController < ApplicationController
     #An array of incomplete problems  
     #Author : Mahdi  
     def incomplete_problems
-  	@incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id")
+        @incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id")
     end
 
 end
-=======
+
 	# [Profile - Story 5.8]
 	# Displays the profile of the student chosen
 	# Parameters:
@@ -62,4 +61,4 @@ end
 		@courses = @student.courses.order("created_at desc")
 	end
 end
->>>>>>> 1a8a4d0b4ffe1f0a90ff57e6b95af88959deb394
+

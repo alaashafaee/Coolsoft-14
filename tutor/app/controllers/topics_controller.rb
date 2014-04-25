@@ -49,7 +49,6 @@ class TopicsController < ApplicationController
 		@new_topic = Topic.new
 	end
 
-
 	# [Specify Topics - Story 1.2]
 	# Description: This action takes the passed course id and assings
 	#              the respective topics of that course to an instance
