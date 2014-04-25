@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
 	#An array of solved problems
 	#Author : Mahdi
 	def solved_problems
-		@solved_list = Attempt.where(student_id:1, success:true).select("DISTINCT problem_id")
+		@solved_list = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id")
 	end
 
 	#[Performance of a student - Story 5.3]
