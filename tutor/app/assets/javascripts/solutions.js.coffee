@@ -174,7 +174,7 @@ debug_console = ->
 # Returns: none
 # Author: Rami Khalil + Khaled Helmy
 @jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line'] - 1
+	highlight_line variables[stateNumber]['line']
 	update_memory_contents stateNumber
 
 # [View Variables - Story 3.7]
