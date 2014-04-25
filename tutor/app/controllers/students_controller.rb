@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
 	# [Performance of a student - Story 5.3]
 	# This method retrieve variables from tables in the database
 	# Parameters:
-	# 	params: A hash of the request URL attributes
+	# params: A hash of the request URL attributes
 	# 	success, failure, incomplete: Booleans represent the status of the problem
 	# Returns:
 	# 	@solved: [int] The number of solved problems
