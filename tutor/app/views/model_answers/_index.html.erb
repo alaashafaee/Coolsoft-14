@@ -42,10 +42,10 @@
 								:action => 'edit', :method => :get, :id => answer1.id},
 								{class: 'btn btn-primary btn-xs',
 								style: "text-decoration:none"} %></td>
-						<td><%= button_to "Delete", {:action => 'destroy', :id => answer1.id}
-							, method: :delete, class: 'btn btn-primary', 
+						<td><%= button_to "Delete", {:controller => 'model_answers',:action => 'destroy',
+								:id => answer1.id}, method: :delete, class: 'btn btn-primary', 
 								:confirm => "Are you sure you want to delete 
-									this Answer ??" %></td>
+									this Answer ?" %></td>
 					</tr>
 				<% end %>
 			</tbody>					
