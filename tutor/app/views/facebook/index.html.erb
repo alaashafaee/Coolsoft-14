@@ -1,0 +1,36 @@
+<!-- [Post to Facebook - Story 5.1] -->
+<!-- Facebook SDK for Javascript code to handle posting to facebook -->
+<!-- Parameters: none -->
+<!-- Returns: none -->
+<!-- Author: Amir George -->
+<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '623954164351291',
+				status     : true,
+				xfbml      : true
+			});
+			FB.ui(
+				{
+					method: 'feed'
+				},
+				function(response) {
+					if (response && response.post_id) {
+						alert('Post was published.');
+						window.close();
+					} else {
+						alert('Post was not published.');
+						window.close();
+					}
+				}
+			);
+		};
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
