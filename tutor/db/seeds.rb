@@ -127,7 +127,6 @@ puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 3")
 
 puts("# -----------------------Problems---------------------------")
-
 	Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b", incomplete: false)
 	Problem.create(title: "Problem 2", description: "This is very hard Problem", incomplete: false)
 	Problem.create(title: "Problem 3", description: "This wont be a hard Problem", incomplete: false)

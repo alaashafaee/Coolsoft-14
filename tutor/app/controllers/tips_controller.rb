@@ -58,8 +58,8 @@ class TipsController < ApplicationController
 	end
 
 	def index
-		@tips= Hint.all
-		@tips_check =Hint.all
+		@tips = Hint.all
+		@tips_check = Hint.all
 	end
 
 	def destroy
