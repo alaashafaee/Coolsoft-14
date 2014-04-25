@@ -1,0 +1,26 @@
+<% provide(:title, "Edit Answer") %>
+<%= form_for(@answer) do |f| %>
+	<% if @answer.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@answer.errors.count, "error") %> prohibited this course from being saved:</h2>
+			<ul>
+				<% @answer.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% else %> 
+		<%= f.hidden_field :problem_id, :value => @problem.id %>
+	<% end %>
+	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page",
+		:controller => 'problems', :action => 'edit', :id => @answer.problem_id,
+		:method => :get, class: 'btn btn-default btn-xs' %></ul>
+	<%= flash[:notice] %>
+	<br><%= f.label :Title %>
+		<%= f.text_field :title %></br>
+	<br><%= f.label :Answer %></br> 
+	<p><%= f.text_area :answer, :cols => "50", :rows => "15" %></p> 
+	<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+	<br><%= render partial: "tips/index" %></br>
+	<br><%= render partial: "hints/index" %></br>
+<% end %>

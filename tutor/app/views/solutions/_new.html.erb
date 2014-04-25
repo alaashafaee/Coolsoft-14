@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- The flash messages for the succes and failure scenarios -->
 <p style="color: green"><%= flash[:success] %></p>
 <p style="color: red"><%= flash[:alert] %></p>
@@ -39,4 +40,124 @@
 	<p class='output'>
 		Output response
 	</p>
+=======
+<!-- Timer that starts when problem is shown -->
+<b>Time spent:</b>
+<span id="mins">0</span>:<span id="secs">00</span>
+<%= form_for :solution,
+	:url => { :controller => "solutions", :action => "create" },
+	:html => {:method => :post} do |f| %>
+<%=
+	@code = f.hidden_field "code", :id =>'solution_code',
+	value: flash[:previous_code] == nil ?
+		"\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+		 : flash[:previous_code].to_s
+%>
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<br>
+
+<!-- Add editor -->
+<pre id="editor">
+</pre>
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<br>
+<table width='100%'>
+	<tr>
+		<td>
+			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
+				onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
+			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
+				type: 'Button', onClick: "run_input(#{params[:id]})" %>
+			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
+				onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
+				style: "display: none", id: 'previousButton', 
+				onClick: 'previous()', hidden: true %>
+			<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
+				style: "display: none", id: 'nextButton',
+				onClick: 'next()', hidden: true %>
+			<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
+				style: "display: none", id: 'stopButton', 
+				onClick: 'stop()', hidden: true %>
+			<span id="spinner" class="" align="center"></span>
+		</td>
+		<td style='text-align:right;'>
+			<b class='accepted'>Accepted</b>
+			<b class='wrong_answer'>Wrong Answer</b>
+			<b class='runtime_error'>Runtime Error</b>
+			<b class='compilation_error'>Compilation Error</b>
+			<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
+				onClick: "validate_code(#{params[:id]})", class: "btn btn-info" %>
+		</td>
+	</tr>
+</table>
+<br /><br />
+
+<div>
+	<b>Input:</b></br>
+	<%= f.text_area :solution_input, placeholder: "Write your test case here", 
+		id: "solution_input", class: "form-control", style: "width:400px" %>
+</div>
+</br>
+
+<!--Author: Ahmed Moataz-->
+<b>Console:</b><br/>
+<div class="console">	
+	<!-- Compiler -->
+	<p class="compilation_succeeded"></p>
+	<p class="compilation_failed"></p>
+	<p class="compilation_feedback"></p>
+	<!-- Test Cases -->
+	<div id="validate_case" >
+	</div>
+	<div id="output_section" style = "color: black; font-weight: bold; font-size: 20px"></div>
+	<!-- Runtime Messages -->
+	<div id="runtime_error", style="display: none">
+		<div class="panel-danger", style="white-space: pre">
+			<div class="panel-heading", style="min-height: 30px;
+				max-height: 30px; line-height:0.25px; margin-top: -45px">
+				<h3 class="panel-title"> Error </h3>
+			</div>
+			<br/>
+			<div id="error_section" class="panel-body" style= "margin-top:-100px">
+			</div>
+			
+			<div class="panel-heading", style="min-height: 30px;
+				max-height: 30px; line-height:0.25px; margin-top: -90px">
+				<h3 class="panel-title"> Explanation </h3>
+			</div>
+			<br/>
+			<div id="explanation_section" class = "panel-body" 
+				style = "margin-top:-100px; min-height: 50px;max-height: 50px;"></div>
+		</div>
+	</div>
+</div>
+<script>
+	var editor = ace.edit("editor");
+	var edit_session = editor.getSession();
+	var hidden_code_field = document.getElementById('solution_code')
+	var code_header = "public class CoolSoft {\n";
+	var code_footer = "\n}";
+
+	editor.setTheme("ace/theme/twilight");
+	edit_session.setMode("ace/mode/java");
+
+	edit_session.setValue(code_header + hidden_code_field.value);
+
+	var code_filter_function = function(event_handler) {
+		var unfiltered_code = edit_session.getValue();
+		var code_len = unfiltered_code.length;
+		var line_count = edit_session.doc.getAllLines().length;
+		
+		if(unfiltered_code.indexOf(code_header) != 0) {
+			edit_session.doc.insertLines(0, [code_header]);
+			return;
+		} else {
+			hidden_code_field.value = unfiltered_code.slice(code_header.length)
+		}
+	};
+
+	edit_session.on('change', code_filter_function);
+</script> 
+>>>>>>> acaa004ca8afec6a724e30b55455c6113f2f00a6
 <% end %>
