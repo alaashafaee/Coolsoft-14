@@ -2,9 +2,10 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-// # Description: It is used to post a reply to the Database
+// # [Post a Reply - Story 1.14]
+// # It is used to post a reply to the Database
 // # Parameters:
-// #	id : id of the current Post
+// #	id: id of the current Post
 // # Returns: JSON Request
 // # Author: Ahmed Mohamed Magdi
 function post_reply(_id) {
@@ -26,10 +27,11 @@ function post_reply(_id) {
 	});
 }
 
-// # Description: For show the form for editing a reply
+// # [Edit a Reply - Story 1.19]
+// # For show the form for editing a reply
 // # Parameters:
-// #	reply_id : for getting the id of the reply
-// #	data : the content of the reply
+// #	reply_id: for getting the id of the reply
+// #	data: the content of the reply
 // # Returns: none
 // # Author: Ahmed Mohamed Magdi
 function edit_form_reply(reply_id,data) {
@@ -40,10 +42,12 @@ function edit_form_reply(reply_id,data) {
 		onclick=\"update_reply("+reply_id+")\" type=\"submit\" value=\"Update\"></td></tr></table>");
 }
 
-// # Description: For updating reply in the database
+// # [Edit a Reply - Story 1.19]
+// # For updating reply in the database
 // # Parameters:
-// #	reply_id : for getting the id of the reply
-// # Returns: JSON Request
+// #	reply_id: for getting the id of the reply
+// # Returns: 
+// # 	JSON Request
 // # Author: Ahmed Mohamed Magdi
 function update_reply(reply_id) {
 	input_data = $("#textarea_"+reply_id).val();
@@ -64,11 +68,13 @@ function update_reply(reply_id) {
 	});
 }
 
-// # Description: For getting the content of a reply
+// # [Edit a Reply - Story 1.19]
+// # For getting the content of a reply
 // # Parameters:
-// #	reply_id : for getting the id of the reply
-// #	post_id : for getting the id of the post
-// # Returns: JSON Request
+// #	reply_id: for getting the id of the reply
+// #	post_id: for getting the id of the post
+// # Returns:
+// # 	JSON Request
 // # Author: Ahmed Mohamed Magdi
 function edit_reply(reply_id,post_id) {
 	$.ajax({
@@ -88,11 +94,13 @@ function edit_reply(reply_id,post_id) {
 	});
 }
 
-// # Description: For deleting a reply from the database
+// # [Delete a Reply - Story 1.16]
+// # For deleting a reply from the database
 // # Parameters:
-// #	reply_id : for getting the id of the reply
-// #	post_id : for getting the id of the post
-// # Returns: JSON Request
+// #	reply_id: for getting the id of the reply
+// #	post_id: for getting the id of the post
+// # Returns:
+// # 	JSON Request
 // # Author: Ahmed Mohamed Magdi
 function delete_reply(reply_id,post_id) {
 	$.ajax({
