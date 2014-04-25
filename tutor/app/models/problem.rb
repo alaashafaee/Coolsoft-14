@@ -12,6 +12,7 @@ class Problem < ActiveRecord::Base
 	has_many :test_cases, dependent: :destroy
 	has_many :solutions
 	has_many :attempts, dependent: :destroy
+	has_many :problems_start_time, class_name: 'ProblemOpeningTime', dependent: :destroy
 
 	#Scoops
 	
