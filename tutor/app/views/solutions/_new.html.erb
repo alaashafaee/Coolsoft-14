@@ -2,8 +2,6 @@
 <!-- Timer that starts when problem is shown -->
 <b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
-
-
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
@@ -132,7 +130,6 @@
 			hidden_code_field.value = unfiltered_code.slice(code_header.length)
 		}
 	};
-	
 
 	edit_session.on('change', code_filter_function);
 </script> 
