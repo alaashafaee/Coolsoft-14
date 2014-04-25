@@ -24,30 +24,51 @@
 					    </button>
           				<span class="visible-xs navbar-brand">Sidebar menu</span>
         			</div>
-          				<ul class="nav nav-list">
+          				<ul class="nav">
           					<% if student_signed_in? %>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_003_user.png" , { :a => "Profile", 
-				            		size: "15x15"}) %> Profile </a></li>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_136_cogwheel.png",{:a => "Dashboard",
-				            		size: "15x15"}) %>Dashboard <!--<span class="badge"></span>--></a></li>
-				            	<li><a href="../courses?" target="_blank">
-				            	<%= image_tag("glyphicons_318_more_items.png",{:a => "Courses",
-				            		size: "15x15"}) %> Courses</a></li>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_280_settings.png",{:a => "Settings",
-				            		size: "15x15"}) %> Settings</a></li>
+				            	<li><%= link_to image_tag("glyphicons_003_user.png") + "Profile", 
+										{:controller => 'site', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:auto; margin-bottom: 5px;
+										width: 100%", method: :get %>
+								</li>
+				            	<li><%= link_to image_tag("glyphicons_136_cogwheel.png") + "Dashboard", 
+										{:controller => 'site', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:auto; margin-bottom: 5px;
+										width: 100%", method: :get %>
+								</li>
+				            	<li><%= link_to image_tag("glyphicons_318_more_items.png") + "Courses", 
+										{:controller => 'courses', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:autox; margin-bottom: 5px;
+										width: 100%", method: :get %>
+								</li>
+				            	<li><%= link_to image_tag("glyphicons_280_settings.png") + "Settings", 
+										{:controller => 'site', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:auto;
+										width: 100%", method: :get %>
+								</li>
 			            	<% else %>
-				             	<li><a href="#" target="_blank">
-				             	<%= image_tag("glyphicons_003_user.png" , { :a => "Profile", 
-				             		size: "15x15"}) %> Profile </a></li>
-				            	<li><a href="../courses?" target="_blank">
-				            	<%= image_tag("glyphicons_318_more_items.png",{:a => "Courses",
-				            		size: "15x15"}) %> Courses</a></li>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_280_settings.png",{:a => "Settings",
-				            		size: "15x15"}) %> Settings</a></li>
+				             	<li><%= link_to image_tag("glyphicons_003_user.png") + "Profile", 
+										{:controller => 'site', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:auto; margin-bottom: 5px;
+										width: 100%", method: :get %>
+								</li>
+				            	<li><%= link_to image_tag("glyphicons_318_more_items.png") + "Courses", 
+										{:controller => 'courses', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:auto; margin-bottom: 5px;
+										width: 100%", method: :get %>
+								</li>
+				            	<li><%= link_to image_tag("glyphicons_280_settings.png") + "Settings", 
+										{:controller => 'site', :action => 'index'}, 
+										class: "btn btn-success", style: "margin-left:auto; 
+										margin-right:auto;
+										width: 100%", method: :get %>
+								</li>
 			            	<% end %>
 		          		</ul>
         			</div>
