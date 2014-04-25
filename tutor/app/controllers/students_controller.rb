@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+<<<<<<< HEAD
 
     #[Performance of a student - Story 5.3]
     #This method retrieve variables from tables in the database
@@ -49,3 +50,16 @@ class StudentsController < ApplicationController
     end
 
 end
+=======
+	# [Profile - Story 5.8]
+	# Displays the profile of the student chosen
+	# Parameters:
+	#	id: the Student's id
+	# Returns: none
+	# Author: Serag
+	def show
+		@student = Student.find(params[:id])
+		@courses = @student.courses.order("created_at desc")
+	end
+end
+>>>>>>> 1a8a4d0b4ffe1f0a90ff57e6b95af88959deb394
