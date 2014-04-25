@@ -31,6 +31,15 @@ textarea  {
 	color: blue;
 }
 
+#editor {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 20pc;
+}
+
 .fixed-content {
 	max-height: 200px;
 	overflow-y:scroll;
@@ -38,7 +47,7 @@ textarea  {
 }
 
 .fixed-horizontal {
-	max-width: 250px;
+	max-width: 175px;
 	overflow-x:scroll;
 	overflow-y:hidden;
 }
@@ -97,7 +106,7 @@ textarea  {
 	background-color: black;
 	color: white;
 	width: 100%;
-	margin-top: -6px;
+	margin-top: -12px;
 }
 
 .editor_border {
