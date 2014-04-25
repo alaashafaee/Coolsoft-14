@@ -13,99 +13,83 @@
 %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
-	<!--Author: Ahmed Moataz-->
-	<div class="">
-		<!-- Add editor -->
-		<pre id="editor">
-		</pre>
+
+<!-- Add editor -->
+<pre id="editor">
+</pre>
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<br>
+<table width='100%'>
+	<tr>
+		<td>
+			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
+				onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
+			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
+				type: 'Button', onClick: "run_input(#{params[:id]})" %>
+			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
+				onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
+				style: "display: none", id: 'previousButton', 
+				onClick: 'previous()', hidden: true %>
+			<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
+				style: "display: none", id: 'nextButton',
+				onClick: 'next()', hidden: true %>
+			<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
+				style: "display: none", id: 'stopButton', 
+				onClick: 'stop()', hidden: true %>
+			<span id="spinner" class="" align="center"></span>
+		</td>
+		<td style='text-align:right;'>
+			<b class='accepted'>Accepted</b>
+			<b class='wrong_answer'>Wrong Answer</b>
+			<b class='runtime_error'>Runtime Error</b>
+			<b class='compilation_error'>Compilation Error</b>
+			<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
+				onClick: "validate_code(#{params[:id]})", class: "btn btn-info" %>
+		</td>
+	</tr>
+</table>
+<br /><br />
+
+<div>
+	<b>Input:</b></br>
+	<%= f.text_area :solution_input, placeholder: "Write your test case here", 
+		id: "solution_input", class: "form-control", style: "width:400px" %>
+</div>
+</br>
+
+<!--Author: Ahmed Moataz-->
+<b>Console:</b><br/>
+<div class="console">	
+	<!-- Compiler -->
+	<p class="compilation_succeeded"></p>
+	<p class="compilation_failed"></p>
+	<p class="compilation_feedback"></p>
+	<!-- Test Cases -->
+	<div id="validate_case" >
 	</div>
-	<%= f.hidden_field :problem_id, value: params[:id] %>
-	<br>
-	<table width='100%'>
-		<tr>
-			<td>
-				<%= button_tag 'Compile', type: 'Button',
-					id: 'compileButton', onClick: 'compile()' %>
-				<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-					onclick: "start_debug(#{params[:id]})" %>
-				<%= button_tag 'Previous', type: 'Button',
-					id: 'previousButton', onClick: 'previous()', hidden: true %>
-				<%= button_tag 'Next', type: 'Button',
-					id: 'nextButton', onClick: 'next()', hidden: true %>
-				<%= button_tag 'Stop Debugging', type: 'Button',
-					id: 'stopButton', onClick: 'stop()', hidden: true %>
-				<span id="spinner" class="" align="center"></span>
-			</td>
-			<td style='text-align:right;'>
-				<b class='accepted'>Accepted</b>
-				<b class='wrong_answer'>Wrong Answer</b>
-				<b class='runtime_error'>Runtime Error</b>
-				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Compile" %>
-				<%= f.submit "Run Test Case" %>
-				<%= f.submit "Submit" %>
-			</td>
-		</tr>
-	</table>
-	<br /><br />
-	<div>
-		<b>Input:</b></br>
-		<%= f.text_area :input, placeholder: "Write your test case here", 
-			value: @input, class: "form-control", style: "width:400px" %>
-	</div>
-	</br>
-	<div>
-		<b>Output:</b>
-		<% if flash[:exp] || flash[:exp_2] %>
-			<div class="panel panel-danger fixed-content", style="white-space: pre">
-				<div class="panel-heading", style="min-height: 30px;
+	<div id="output_section" style = "color: black; font-weight: bold; font-size: 20px"></div>
+	<!-- Runtime Messages -->
+	<div id="runtime_error", style="display: none">
+		<div class="panel-danger", style="white-space: pre">
+			<div class="panel-heading", style="min-height: 30px;
 				max-height: 30px; line-height:0.25px; margin-top: -45px">
-					<h3 class="panel-title"> Error </h3>
-				</div>
-				<div class="panel-body", style= "margin-top:-100px">
-					<p><%= flash[:msg] %></p>
-					<% if flash[:msg_2] %>
-						<% flash[:msg_2].each do |message| %>
-						<p><%= message %></p>
-						<% end %>
-					<% end %>
-				</div>
-				<div class="panel-heading", style="min-height: 30px;
+				<h3 class="panel-title"> Error </h3>
+			</div>
+			<br/>
+			<div id="error_section" class="panel-body" style= "margin-top:-100px">
+			</div>
+			
+			<div class="panel-heading", style="min-height: 30px;
 				max-height: 30px; line-height:0.25px; margin-top: -90px">
-					<h3 class="panel-title"> Explanation </h3>
-				</div>
-				<div class="panel-body", style= "margin-top:-100px">
-					<p><%= flash[:exp] %></p>
-					<% if flash[:exp_2] %>
-						<% flash[:exp_2].each do |message| %>
-						<p><%= message %></p>
-						<% end %>
-					<% end %>
-				</div>
+				<h3 class="panel-title"> Explanation </h3>
 			</div>
-		<% else %>
-			<div>
-				<p><%= flash[:msg] %></p>
-			</div>
-		<% end %>
+			<br/>
+			<div id="explanation_section" class = "panel-body" 
+				style = "margin-top:-100px; min-height: 50px;max-height: 50px;"></div>
+		</div>
 	</div>
-	<!--Author: Ahmed Moataz-->
-	<b>Console:</b><br/>
-	<div class="console">
-		<p class="compilation_succeeded" > <%= flash[:compiler_success] %> </p>
-		<p class="compilation_failed" ><%= flash[:compiler_fail] %></p>
-		<% if flash[:compiler_success_2] %>
-			<% flash[:compiler_success_2].each do |message| %>
-			<p class="compilation_succeeded"> <%= message %> </p>
-			<% end %>
-		<% end %>
-		<% if flash[:compiler_fail_2] %>
-			<% flash[:compiler_fail_2].each do |message| %>
-			<p class="compilation_failed" > <%= message %> </p>
-			<% end %>
-		<% end %>
-		<p class="compilation_feedback" ><%= flash[:compiler_feedback] %></p>
-	</div>
+</div>
 <script>
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
