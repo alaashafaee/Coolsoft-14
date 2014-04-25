@@ -13,14 +13,14 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
-	post 'solutions/compile_solution' => 'problems#show'
+	get 'courses/sign_up'
+	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
-	get 'courses/sign_up'
+	post 'solutions/execute' => 'solutions#execute'
  	post '/posts/:id' => 'posts#update'
-	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
-	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
 
 	get 'problems/edit'
