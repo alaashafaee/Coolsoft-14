@@ -277,6 +277,11 @@ debug_console = ->
 # Author: Rami Khalil + Khaled Helmy
 @jump_state = (state_number) ->
 	highlight_line variables[state_number]['line']
+	if state_number isnt 0
+		clear_console()
+	$("#output_section").html variables[state_number]["stream"]
+	if variables[state_number]["exception"]
+		runtime_error variables[state_number]["exception"]
 	update_memory_contents state_number
 
 # [View Variables - Story 3.7]
