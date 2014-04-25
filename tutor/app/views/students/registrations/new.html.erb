@@ -2,14 +2,40 @@
 	<h2>Sign up</h2>
 	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
 		:html => { :multipart => true, :class => 'form-devise' }) do |f| %>
-		<%= devise_error_messages! %>
-		
+
+		<div>
+			<% unless resource.errors[:email].blank? %>
+				<span id="error_explanation">
+					Email <%= resource.errors[:email].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
 		<div>
 			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
 		</div>
 
 		<div>
+			<% unless resource.errors[:name].blank? %>
+				<span id="error_explanation">
+					Name <%= resource.errors[:email].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:password].blank? %>
+				<span id="error_explanation">
+					password <%= resource.errors[:password].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -18,8 +44,26 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:password_confirmation].blank? %>
+				<span id="error_explanation">
+					<%= resource.errors[:password_confirmation].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control", 
 				placeholder: "Confirm Password" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:gender].blank? %>
+				<span id="error_explanation">
+					Gender <%= resource.errors[:gender].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -28,8 +72,26 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:dob].blank? %>
+				<span id="error_explanation">
+					Date of Birth <%= resource.errors[:dob].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.label :date_of_birth %><br />
 			<%= f.date_select :dob, {:start_year => Date.today.year-90, :end_year => Date.today.year} %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:university].blank? %>
+				<span id="error_explanation">
+					University <%= resource.errors[:university].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -37,7 +99,25 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:faculty].blank? %>
+				<span id="error_explanation">
+					Faculty <%= resource.errors[:faculty].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.text_field :faculty, class: "form-control", placeholder: "Faculty" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:major].blank? %>
+				<span id="error_explanation">
+					Major <%= resource.errors[:major].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
 		</div>
 
 		<div>
@@ -45,7 +125,59 @@
 		</div>
 
 		<div>
+			<% unless resource.errors[:semester].blank? %>
+				<span id="error_explanation">
+					Semester <%= resource.errors[:semester].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
 			<%= f.number_field :semester, class: "form-control", placeholder: "Semester" %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:advising].blank? %>
+				<span id="error_explanation">
+					Advising <%= resource.errors[:advising].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:probation].blank? %>
+				<span id="error_explanation">
+					Probation <%= resource.errors[:probation].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
+			<%= f.label :advising %>
+			<%= f.select(:advising, [['No', false], ['Yes', true]]) %>
+			<%= f.label :probation %>
+			<%= f.select(:probation, [['No', false], ['Yes', true]]) %>
+		</div>
+
+		<div>
+			<% unless resource.errors[:profile_image].blank? %>
+				<span id="error_explanation">
+					<%= resource.errors[:profile_image].join(", ") %> 
+				</span>
+			<br>
+			<% end %>
+		</div>
+
+		<div>
+			<br />
+			<%= f.label :profile_image %><br />
+			<%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %>
+			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
+			<%= f.hidden_field :profile_image_cache %>
+			<br />
 		</div>
 
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
