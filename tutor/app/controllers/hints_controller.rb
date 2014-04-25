@@ -43,3 +43,4 @@ class HintsController < ApplicationController
 		params.require(:Hint).permit(:submission_counter, :message)
 		
 	end
+end
