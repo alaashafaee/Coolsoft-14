@@ -18,7 +18,9 @@ class LecturersController < ApplicationController
 	# Parameters :
 >>>>>>> Stashed changes
 	# 	success_attempts:an intger value that shows how many times does the problem have to be answered correctly
-	# Returns: an integer value 	in case of failure : a message "No problem is answered correctly"
+	# Returns:
+	# 	an integer value : number of problems answered correctly	
+	# 	in case of failure : a message "No problem is answered correctly"
 	# Author: Rana ElNagar
   	def showCorrectAnswers
   		@solutions = Problem.count(:success_attempts).where.not(:success_attempts == 0)
@@ -42,7 +44,9 @@ class LecturersController < ApplicationController
 	# 	student_id:a unique value for every student who try to answer a problem
 	# 	problem_id:a unique value for every problem
 <<<<<<< Updated upstream
-	# Returns: an integer value		in case of failure : a message "No one answered this problem "
+	# Returns: 
+	# 	an integer value : number of trials to answer a specific problem		
+	# 	in case of failure : a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def average
  		@problem=Problem.find_by_id(params[:id])
@@ -75,7 +79,9 @@ class LecturersController < ApplicationController
 	# 	student_id:a unique value for every student who try to answer a problem
 	# 	problem_id:a unique value for every problem
 	# 	time:an intger value to show the time taken to write a specific solution
-	# Returns: an integer value 	in case of failure : a message "No one answered this problem "
+	# Returns: 
+	# 	an integer value : average time taken to answer a specific problem	
+	# 	in case of failure : a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def time
  		@problem=Problem.find_by_id(params[:id])
@@ -102,7 +108,9 @@ class LecturersController < ApplicationController
 	# Parameters :
 	# 	problem_id:a unique value for every problem
 	# 	code:a text to show the solution of a problem
-	# Returns: text 	in case of failure : a message "No one answered this problem "
+	# Returns: 
+	# 	text : trials for answering a problem
+	# 	in case of failure : a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def showAttempts
  		@problem=Problem.find_by_id(params[:id])
