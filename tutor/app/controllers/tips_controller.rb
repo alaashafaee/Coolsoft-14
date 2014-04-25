@@ -46,8 +46,8 @@ class TipsController < ApplicationController
 	# [Show tip - Story 4.23]
 	# Show the content of the tip that was created or edited with edit and delete buttons
 	# Parameters: 
-	#     :model_answer_id => The model answer id
-	#     :id => tip id that should be viewed
+	#     model_answer_id: The model answer id
+	#     id: tip id that should be viewed
 	# Returns: 
 	#     @tip: tip that will be viewed
 	# Author: Ahmed Osam
