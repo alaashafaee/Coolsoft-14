@@ -39,10 +39,11 @@
 				(Post.find_by_id(params[:id]).discussion_board_id)
 			if Post.find_by_id(params[:id]).destroy
 				flash[:notice] = "Post successfully Deleted"
-				redirect_to(:controller => 'discussion_boards' ,
-					:action => 'show' ,:id => @disscusion_board.course_id)
+				redirect_to(:controller => 'discussion_boards', 
+					:action => 'show', :id => @disscusion_board.course_id)
 			end
-	end		
+	end	
+
 	# [Add Post - Story 1.13]
 	# Description: Displays the post that the user chose
 	# Parameters:
