@@ -24,6 +24,7 @@ Tutor::Application.routes.draw do
 	post 'debuggers/:id' => 'debuggers#start'
 	get 'hints/new' => 'hints#new'
 	post 'hints/new' => 'hints#create'
+	get 'problems/edit'
 	get "tips/new"
 	get "tips/create"
 	get "tips/show"
