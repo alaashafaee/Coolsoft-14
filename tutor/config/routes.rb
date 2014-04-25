@@ -1,6 +1,5 @@
 Tutor::Application.routes.draw do
 
-
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
