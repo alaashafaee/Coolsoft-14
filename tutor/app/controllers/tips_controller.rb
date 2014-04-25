@@ -67,23 +67,23 @@ class TipsController < ApplicationController
 
 	# [Edit tip - Story 4.10]
 	# Finds the tip that wanted to be edited
-	# Parameters: 
-	#     :id => id of the tip required to be edited
+	# Parameters:
+	#	id: id of the tip required to be edited
 	# Returns: 
-	#     @tip: tip which will be edited
-	# Author: Ahmed Osam	
+	#	@tip: tip which will be edited
+	# Author: Ahmed Osam
 	def edit
 		@tip = Hint.find_by_id(params[:id])
 	end
 
 	# [Edit tip - Story 4.11]
 	# update the tip with the new parameters
-	# Parameters: 
-	#     id: id of the tip required to be edited
-	#     time: udated time in which tip will be shown after
-	#     message: updated content of tip
+	# Parameters:
+	#	id: id of the tip required to be edited
+	#	time: udated time in which tip will be shown after
+	#	message: updated content of tip
 	# Returns:
-	#     @tip: new updated tip
+	#	@tip: new updated tip
 	# Author: Ahmed Osam
 
 	def update
@@ -99,12 +99,12 @@ class TipsController < ApplicationController
 
 	# [Add tip - Story 4.10]
 	# Take information from the form on create tip page
-	# Parameters: 
-	#     tip: name of the form
-	#     message: is the content of the tip
-	#     time: is a countdown timer that tip will appear after it ends
+	# Parameters:
+	#	tip: name of the form
+	#	message: is the content of the tip
+	#	time: is a countdown timer that tip will appear after it ends
 	# Returns:
-	#     none
+	#	none
 	# Author: Ahmed Osam
 	private
 	def tip_params 
@@ -113,12 +113,12 @@ class TipsController < ApplicationController
 
 	# [Edit tip - Story 4.11]
 	# Take new information from a form on edit tip page
-	# Parameters: 
-	#     tip_edit: name of the form
-	#     time: udated time in which tip will be shown after
-	#     message: updated content of tip
+	# Parameters:
+	#	tip_edit: name of the form
+	#	time: udated time in which tip will be shown after
+	#	message: updated content of tip
 	# Returns:
-	#     none
+	#	none
 	# Author: Ahmed Osam
 	private
 	def tip_params_edit 
