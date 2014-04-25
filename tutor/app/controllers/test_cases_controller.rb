@@ -81,7 +81,7 @@ class TestCasesController < ApplicationController
 	end
 
 	# [Remove Test Case - Story 4.16]
-	# This action takes the test case id, and check if it is not last test case in the problem 
+	# This action takes the test case id, and check if it is not the last test case in the problem 
 	#	and removes it from the database and then redirects the user to the edit problem page of 
 	#	the problem that had the test case with a "Test case successfully Deleted" message.
 	# Parameters:
