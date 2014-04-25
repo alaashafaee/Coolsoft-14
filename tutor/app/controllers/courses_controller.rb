@@ -221,6 +221,7 @@ class CoursesController < ApplicationController
 	def existing
 		@courses = Course.all
 	end
+
 	# [Create from Existant Course - Story 2.5]
 	# Duplicate the courses that it is found and save them in a new course
 	# Parameters:
@@ -238,19 +239,19 @@ class CoursesController < ApplicationController
 		end
 	end
 
+
+	private
+		def course_params 
+			params.require(:course).permit(:name,:code,:year,:semester,:description)
+		end
+		
 	# [Create from Existant Course - Story 2.5]
 	# Choose which parameter should be listed
 	# Parameters:
 	#	id: The course id
 	# Author: Rania A0bdel Fattah
-	private
 		def permitd_up
 			params.require(:course).permit(:id)
-		end
-
-	private
-		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description)
 		end
 
 		# [Share Performance - Story 5.2, 5.13]
