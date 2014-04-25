@@ -23,7 +23,6 @@
 				<tr>
 					<th style = "width:30%">Hints</th>
 					<th style = "width:10%">Number of submissions</th>
-					<th style = "width:20%">Edit</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,9 +33,6 @@
 							<%= hint1.message %>
 							</td>
 							<td style = "width:20%"><%= hint1.submission_counter %></td>
-							<td><%= button_to "Edit", {:action => 'new',
-									:controller => 'hints', :method => :post},
-									{class: 'btn btn-primary btn-xs' } %></td>
 						<% end %>
 					</tr>
 				<% end %>
