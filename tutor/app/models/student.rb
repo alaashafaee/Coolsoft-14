@@ -1,7 +1,8 @@
 class Student < ActiveRecord::Base
 
 	devise :database_authenticatable, :registerable,
-		:recoverable, :rememberable, :trackable, :validatable
+		:recoverable, :rememberable, :trackable,
+		:validatable, :confirmable
 	
 	#Elasticsearch
 	include Tire::Model::Search
@@ -10,11 +11,8 @@ class Student < ActiveRecord::Base
 	#concerns
 	include Searchable
 
-	devise :database_authenticatable, :registerable,
-			:recoverable, :rememberable, :trackable,
-			:validatable, :confirmable
-
-	# mount_uploader :profile_image, ProfileImageUploader
+	#Uploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email
