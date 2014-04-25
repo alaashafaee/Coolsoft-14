@@ -8,6 +8,22 @@
 puts("**************************************************************")
 puts("                      Creating records                    ")
 puts("**************************************************************")
+
+puts("# ---------------------------Admins-----------------------------------")
+	Admin.create(name: "Admin")
+
+puts("# ---------------------------Lecturers-----------------------------")
+	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'LecturerI',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		degree: "PhD", university: "GUC", department: "MET")
+	l.save!
+	l = Lecturer.new(email: '2@lecturer.com', password: '123456789', 
+		password_confirmation: '123456789', name: 'LecturerII',
+		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+		degree: "PhD", university: "Uni", department: "Dep")
+	l.save!
+
 puts("# ---------------------------Students-----------------------------")
 	s = Student.new(email: '1@student.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'StudentI',
@@ -33,22 +49,6 @@ puts("# ---------------------------Students-----------------------------")
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 8, 
 		advising: true, probation: false)
 	s.save!
-puts("# ---------------------------Admins-----------------------------------")
-	Admin.create(name: "Admin")
-
-puts("# ---------------------------Lecturers-----------------------------")
-	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'LecturerI',
-		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-		degree: "PhD", university: "GUC", department: "MET")
-	l.save!
-	l = Lecturer.new(email: '2@lecturer.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'LecturerII',
-		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-		degree: "PhD", university: "Uni", department: "Dep")
-	l.save!
-
-
 
 puts("# ---------------------------TeachingAssistants-----------------------------")
 	t = TeachingAssistant.new(email: '1@ta.com', password: '123456789', 
