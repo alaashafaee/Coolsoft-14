@@ -2,16 +2,19 @@
 	width:80%;
 	display:inline-block;
 }
+
 .tab-links:after {
 	display:block;
 	clear:both;
 	content:'';
 }
+
 .tab-links li {
 	margin:0px 5px;
 	float:left;
 	list-style:none;
 }
+
 .tab-links a {
 	padding:9px 15px;
 	display:inline-block;
@@ -22,26 +25,32 @@
 	color:#4c4c4c;
 	transition:all linear 0.15s;
 }
+
 .tab-links a:hover {
 	background:#a7cce5;
 	text-decoration:none;
 }
+
 li.active a, li.active a:hover {
 	background:#fff;
 	color:#4c4c4c;
 }
+
 .tab-content {
 	padding:15px;
 	border-radius:3px;
 	box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
 	background:#fff;
 }
+
 .tab {
 	display:none;
 }
+
 .tab.active {
 	display:block;
 }
+
 .profile_picture {
 	width:200px;
 	height:200px;

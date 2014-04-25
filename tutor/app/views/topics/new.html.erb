@@ -51,7 +51,8 @@
 						</span>
 						<br>
 					<% end %>
-					<%= f.text_field :title, autofocus: true, class:"form-control", style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
+					<%= f.text_field :title, autofocus: true, class:"form-control",
+					 style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
 				</p>
 				<p>
 					<%= f.label :description %><br>
@@ -69,7 +70,8 @@
 			<% end %>
 
 			<!-- A back to courses list button -->
-			<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
+			<%= button_to "Back", {:controller => 'courses', :action => 'index'},
+			 class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
 		</div>
 	</div>
 </div>
