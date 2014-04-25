@@ -254,9 +254,13 @@ class Debugger < ActiveRecord::Base
 			output_buffer1 = buffer_until_complete.split("main").first
 			input "print " + variable_name
 			output_buffer2 = buffer_until_complete.split("main").first
-			result << output_buffer1
+			unless output_buffer1.match("instance")
+				result << output_buffer1
+			end
 			if output_buffer1 != output_buffer2
-				result << output_buffer2
+				unless output_buffer2.match("instance")
+					result << output_buffer2
+				end
 			end
 		else
 			result << variable
