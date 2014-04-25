@@ -5,8 +5,8 @@
 
 <!--right nagigation bar
 # Author:Rania Abdel Fattah-->
-
-<div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;position:static;overflow:scroll">
+<div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;
+	position:static;overflow:scroll">
 	<div style="margin-bottom:12px" class="well">
 		<div class="row">
   			<div class="sidebar-nav">
@@ -23,14 +23,28 @@
         			</div>
           				<ul class="nav nav-list">
           				<% if student_signed_in? %>
-			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_003_user.png" , { :a => "Profile" , size: "15x15"}) %> Profile </a></li>
-			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_136_cogwheel.png",{:a => "Dashboard", size: "15x15"}) %>Dashboard <!--<span class="badge"></span>--></a></li>
-			            	<li><a href="../courses?" target="_blank"><%= image_tag("glyphicons_318_more_items.png",{:a => "Courses", size: "15x15"}) %> Courses</a></li>
-			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_280_settings.png",{:a => "Settings", size: "15x15"}) %> Settings</a></li>
+			            	<li><a href="#" target="_blank">
+			            	<%= image_tag("glyphicons_003_user.png" , { :a => "Profile", 
+			            		size: "15x15"}) %> Profile </a></li>
+			            	<li><a href="#" target="_blank">
+			            	<%= image_tag("glyphicons_136_cogwheel.png",{:a => "Dashboard",
+			            		size: "15x15"}) %>Dashboard <!--<span class="badge"></span>--></a></li>
+			            	<li><a href="../courses?" target="_blank">
+			            	<%= image_tag("glyphicons_318_more_items.png",{:a => "Courses",
+			            		size: "15x15"}) %> Courses</a></li>
+			            	<li><a href="#" target="_blank">
+			            	<%= image_tag("glyphicons_280_settings.png",{:a => "Settings",
+			            		size: "15x15"}) %> Settings</a></li>
 			            <% else %>
-			             	<li><a href="#" target="_blank"><%= image_tag("glyphicons_003_user.png" , { :a => "Profile" , size: "15x15"}) %> Profile </a></li>
-			            	<li><a href="../courses?" target="_blank"><%= image_tag("glyphicons_318_more_items.png",{:a => "Courses", size: "15x15"}) %> Courses</a></li>
-			            	<li><a href="#" target="_blank"><%= image_tag("glyphicons_280_settings.png",{:a => "Settings", size: "15x15"}) %> Settings</a></li>
+			             	<li><a href="#" target="_blank">
+			             	<%= image_tag("glyphicons_003_user.png" , { :a => "Profile", 
+			             		size: "15x15"}) %> Profile </a></li>
+			            	<li><a href="../courses?" target="_blank">
+			            	<%= image_tag("glyphicons_318_more_items.png",{:a => "Courses",
+			            		size: "15x15"}) %> Courses</a></li>
+			            	<li><a href="#" target="_blank">
+			            	<%= image_tag("glyphicons_280_settings.png",{:a => "Settings",
+			            		size: "15x15"}) %> Settings</a></li>
 			            <% end %>
 		          		</ul>
         			</div>
@@ -81,6 +95,16 @@
 						<% end %>
 					</table>
 				<% end %>
+			</div>
+			<div>
+				<table class="table table-striped table-bordered table-responsive">
+					<caption><b>System Recommendations<b></caption>
+					<tr>
+						<td style = "text-align : center">
+						<%= render "problems/system_recommendation" if student_signed_in? %>
+						</td>
+					</tr>
+				</table>
 			</div>
 		<% end %>
 	</div>
