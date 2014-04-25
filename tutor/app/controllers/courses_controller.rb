@@ -49,8 +49,6 @@ class CoursesController < ApplicationController
 	# [View Courses - Stroy 1.11]
 	# This action renders a list of all courses belonging to 
 	#	the current user.
-	# Description: This action renders a list of all courses belonging to 
-	# 			   the current user.
 	# Parameters:
 	#	current_lecturer: The current signed in lecturer
 	# Returns: 
@@ -142,7 +140,7 @@ class CoursesController < ApplicationController
 		end
 		@discussion_board = @course.discussion_board
 	end
-	
+
 	# [View a course - story 1.21]
 	#Description: This action is resposible for the view of a specific course.
 	#Parameters: 
@@ -257,4 +255,5 @@ class CoursesController < ApplicationController
 				return false
 			end
 		end
+
 end
