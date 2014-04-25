@@ -38,7 +38,7 @@ textarea  {
 }
 
 .fixed-horizontal {
-	max-width: 250px;
+	max-width: 175px;
 	overflow-x:scroll;
 	overflow-y:hidden;
 }
