@@ -142,8 +142,8 @@ class TipsController < ApplicationController
 	#	none
 	# Author: Ahmed Osam
 	private
-	def tip_params_edit 
-		params.require(:tip_edit).permit(:message, :time)
-	end
+		def tip_params_edit 
+			params.require(:tip_edit).permit(:message, :time)
+		end
 
 end
