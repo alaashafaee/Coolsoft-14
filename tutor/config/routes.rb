@@ -6,8 +6,6 @@ Tutor::Application.routes.draw do
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
-	get 'hints/new' => 'hints#new'
-	post 'hints/new' => 'hints#create'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
@@ -24,6 +22,8 @@ Tutor::Application.routes.draw do
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
+	get 'hints/new' => 'hints#new'
+	post 'hints/new' => 'hints#create'
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
