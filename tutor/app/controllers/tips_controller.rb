@@ -4,7 +4,7 @@ class TipsController < ApplicationController
 	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem
 	# Parameters: none
 	# Returns:
-	#     @tip: a new created tip to specific answer
+	#	@tip: a new created tip to specific answer
 	# Author: Ahmed Osam
 	def new
 		if(@tip == nil)
@@ -16,11 +16,11 @@ class TipsController < ApplicationController
 	# [Add tip - Story 4.10]
 	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem
 	# Parameters: 
-	#     message: is the content of the tip
-	#     time: is a countdown timer that tip will appear after it ends
-	#     model_answer_id: is the id of the answer the tip related to
+	#	message: is the content of the tip
+	#	time: is a countdown timer that tip will appear after it ends
+	#	model_answer_id: is the id of the answer the tip related to
 	# Returns:
-	#     @tip: a new created tip to specific answer
+	#	@tip: a new created tip to specific answer
 	# Author: Ahmed Osam
 	def create
 		@tip = Hint.new
