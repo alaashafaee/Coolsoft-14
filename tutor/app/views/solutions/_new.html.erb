@@ -10,7 +10,7 @@
 <%=
 	@code = f.hidden_field "code", :id =>'solution_code',
 	value: flash[:previous_code] == nil ?
-		"\tpublic static void main(String [] args) {\n\t\t\n\t}"
+		"\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
 		 : flash[:previous_code].to_s
 %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
@@ -117,10 +117,10 @@
 
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
-	edit_session.setValue(code_header + hidden_code_field.value + code_footer);
+
+	edit_session.setValue(code_header + hidden_code_field.value);
 
 	var code_filter_function = function(event_handler) {
-
 		var unfiltered_code = edit_session.getValue();
 		var code_len = unfiltered_code.length;
 		var line_count = edit_session.doc.getAllLines().length;
