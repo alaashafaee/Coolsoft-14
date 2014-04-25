@@ -4,7 +4,7 @@
 
 <%= link_to "back", {:action => 'show', :controller => 'discussion_boards',
 	:id => DiscussionBoard.find_by_id(@post.discussion_board_id).course_id}, {
-		class: 'btn btn-primary'} %>
+		class: 'btn btn-info pull-right'} %>
 <% if current_lecturer %>
 	<% @userID = current_lecturer.id %>
 <% end %>
@@ -16,17 +16,21 @@
 <% end %>
 <% if @post.owner_id == @userID %>
 	<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
-		class: 'btn btn-primary',:id => @post.id} %>
+		class: 'btn btn-info pull-right', :id => @post.id, style: "margin-right:1%;"} %>
 <% end %>
 <div>
 	<div>
-		<h2><%= @post.title %></h2>
+		<h1><%= @post.title %></h1>
 	</div>
 	<div class = "greyLine">
-		<p><font size="5"><%= @post.owner.name %></font> </p>
-		<p><%= @post.content %></p>
-		<p><font size="1"><%= distance_of_time_in_words_to_now @post.
-			created_at %> ago</p></font>
+		<p><font size="3"><%= @post.owner.name %></font> </p>
+		<div class="panel panel-primary">
+			<div style="margin-left:1%;">
+				<h2><%= @post.content %></h2>
+				<p><font size="3"><%= distance_of_time_in_words_to_now @post.
+					created_at %> ago</p></font>
+			</div>
+		</div>
 	</div>
 </div>
 <div>	
