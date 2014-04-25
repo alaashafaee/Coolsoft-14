@@ -22,10 +22,51 @@ Tutor::Application.routes.draw do
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'solutions/execute' => 'problems#show'
 	post 'debuggers/:id' => 'debuggers#start'
+
 	get 'problems/edit'
+
+	get "tips/new"
+	get "tips/create"
+	get "tips/show"
+	get "tips/index"
+	get "tips/edit"
+	get "tips/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
+	resources :tracks do
+		post 'getProblems', on: :member
+	end
+	resources :problems_by_tas
+	resources :solutions
+	resources :problems
+	resources :courses
+	post "courses/choose"
+	post "courses/existing"
+  	post "courses/duplicate"
+	get "model_answers/new"
+	post "model_answers/new"
+	resources :model_answers
+	#resources :test_cases
+	#devise_for :teaching_assistants
+	#devise_for :students
+	#devise_for :lecturers
+
+	# Example of regular route:
+	#   get 'products/:id' => 'catalog#view'
+	resources :discussion_boards do
+		post 'toggle', on: :member
+	end
+	post 'courses/new' => 'courses#new'
+	resources :courses do
+		post 'topics/new' => 'topics#new'
+		resources :topics
+	end
+	resources :model_answers do
+		post "model_answers/new"
+	end
+	resources :test_cases
+	
 
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
@@ -44,6 +85,7 @@ Tutor::Application.routes.draw do
 	resources :students
 	resources :posts
 	resources :facebook
+	resources :tips
 
 	# Example resource route with options:
 	#   resources :products do
