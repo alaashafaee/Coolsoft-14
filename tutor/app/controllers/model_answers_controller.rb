@@ -58,12 +58,12 @@ class ModelAnswersController < ApplicationController
 	def destroy
 		@model_answer = ModelAnswer.find_by_id(params[:id])
 		@current = Problem.find_by_id(@model_answer.problem_id)
-		if(@current.model_answers.count == 1)
+		if @current.model_answers.count == 1
 			flash[:notice] = "Cannot delete problem's last model answer"
 			redirect_to :back and return
 		elsif @model_answer.destroy
 			flash[:notice] = "Answer successfully Deleted"
-			redirect_to(:controller => 'problems' , :action => 'edit' ,:id => @current.id)
+			redirect_to(:controller => 'problems', :action => 'edit', :id => @current.id)
 		end
 	end
 
