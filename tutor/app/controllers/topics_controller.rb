@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
 	# This Action should be put in the future in the 
 	# Topic controller
 	# Parameters: 
-	# 	id: The id of the topic
+	#	id: The id of the topic
 	# Returns: The view of the requested topic
 	# Author: Mussab ElDash
 	def show
@@ -35,7 +35,7 @@ class TopicsController < ApplicationController
 
 	# [Specify Topics - Story 1.2]
 	# Description: This action takes the passed course id and assings
-	# 	the respective course to an instance variable.
+	#	the respective course to an instance variable.
 	# Parameters:
 	#	params[:course_id]: The current course id
 	# Returns: none
@@ -50,12 +50,12 @@ class TopicsController < ApplicationController
 
 	# [Specify Topics - Story 1.2]
 	# Description: This action takes the passed course id and assings
-	# 	the respective topics of that course to an instance
-	# 	variable.
+	#	the respective topics of that course to an instance
+	#	variable.
 	# Parameters:
 	#	params[:id]: The current course id
 	# Returns: 
-	# 	@topics: A list of all topics belonging to the course
+	#	@topics: A list of all topics belonging to the course
 	# Author: Ahmed Akram
 	def index
 		@course = Course.find(params[:course_id])
@@ -64,15 +64,15 @@ class TopicsController < ApplicationController
 
 	# [Specify Topics - Story 1.2]
 	# Description: This action takes the passed parameters from 
-	# 	the creation form, creates a new Topic record
-	# 	and assigns it to the respective course. If the 
-	# 	creation fails the user is redirected to the form
-	# 	with a "Failed" message.
+	#	the creation form, creates a new Topic record
+	#	and assigns it to the respective course. If the 
+	#	creation fails the user is redirected to the form
+	#	with a "Failed" message.
 	# Parameters:
 	#	topic_params[]: A list that has all fields entered by the user to in the
-	# 					create_topic_form
+	#					create_topic_form
 	# Returns: 
-	# 	flash[:notice]: A message indicating the success or failure of the creation
+	#	flash[:notice]: A message indicating the success or failure of the creation
 	# Author: Ahmed Akram
 	def create
 		@new_topic = Topic.new
@@ -94,10 +94,10 @@ class TopicsController < ApplicationController
 
 	# [Edit Track Rating - Story 4.3]
 	# Changes the difficulty of tracks that belong to a certain topic  
-	# 	to match the order specified by TA/Lecturer through 
-	# 	drag and drop sortable list. 
+	#	to match the order specified by TA/Lecturer through 
+	#	drag and drop sortable list. 
 	# Parameters: 
-	# 	params[:methodParam]: The array of the sorted trackes.
+	#	params[:methodParam]: The array of the sorted trackes.
 	# Returns: none
 	# Author: Lin Kassem
 	def sort
