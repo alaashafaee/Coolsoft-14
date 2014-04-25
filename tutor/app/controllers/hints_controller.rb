@@ -11,7 +11,6 @@ class HintsController < ApplicationController
 		@hints = Hint.all
 		@hints_check = Hint.all
 	end
-end
 	
 	# [Edit helping hints - Story 4.13 ]
 	# This action creates the form and retrives the data of the selected problem 
