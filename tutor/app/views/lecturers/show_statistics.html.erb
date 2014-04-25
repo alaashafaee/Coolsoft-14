@@ -1,0 +1,18 @@
+<!-- a view to show the statistics -->
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<table>
+	<h1>statistics</h1>
+	<!--view to show the number of correct answers and average time to answer a specific problem and average number of trials -->
+	<% column_chart [
+		[ "Number of correct answers",  @solutions ],
+		[ "average time to answer", @averageTime ],
+		[ "average number of trials", @average]] %>
+
+	<!-- view to show the attempts to answer a specific problem -->
+	<% @attempts.each do |a| %>
+	<tr>
+		<td><%= a.problem_id %></td>
+		<td><%= a.code %></td>
+	</tr>
+	<% end %>
+ </table>
