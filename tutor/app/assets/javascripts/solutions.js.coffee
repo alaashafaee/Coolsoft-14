@@ -99,7 +99,16 @@ debug_console = ->
 	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
 	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
 	$('#testButton').prop 'hidden', !$('#testButton').prop 'hidden'
-	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
+	editor = ace.edit("editor")
+	editor.setReadOnly !editor.getReadOnly()
+
+	normal_theme = "ace/theme/twilight"
+	debug_theme = normal_theme + "-debug"
+
+	if editor.getTheme() == normal_theme
+		editor.setTheme debug_theme
+	else
+		editor.setTheme normal_theme
 
 	$('#nextButton').prop 'hidden', !$('#nextButton').prop 'hidden'
 	$('#previousButton').prop 'hidden', !$('#previousButton').prop 'hidden'
@@ -155,50 +164,28 @@ debug_console = ->
 # Returns: none
 # Author: Rami Khalil
 @highlight_line = (line) ->
-	text_area = document.getElementById "solution_code"
-	code_lines = text_area.value.split '\n'
-	start_offset = 0
-	for i in[0..code_lines.length] by 1
-		if i == line
-			break
-		start_offset += code_lines[i].length+1
-	end_offset = start_offset + code_lines[line].length
-
-	# Chrome / Firefox
-	if typeof(text_area.selectionStart) != "undefined"
-		text_area.focus()
-		text_area.selectionStart = start_offset
-		text_area.selectionEnd = end_offset
-
-	# IE
-	if document.selection && document.selection.createRange
-		text_area.focus()
-		text_area.select()
-		document.selection.createRange()
-		text_area.collapse(true)
-		text_area.moveEnd("character", end_offset)
-		text_area.moveStart("character", start_offset)
-		text_area.select()
+	editor = ace.edit("editor")
+	editor.gotoLine line, 0, true
 
 # [Execute Line By Line - Story 3.8]
 # Jumps to the target state by highlighting the line and showing variables
 # Parameters:
-#	stateNumber: The target state number.
+#	state_number: The target state number.
 # Returns: none
 # Author: Rami Khalil + Khaled Helmy
-@jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line'] - 2
-	update_memory_contents stateNumber
+@jump_state = (state_number) ->
+	highlight_line variables[state_number]['line']
+	update_memory_contents state_number
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
 # Parameters:
-#	stateNumber: The target state number.
+#	state_number: The target state number.
 # Returns: none
 # Author: Khaled Helmy
-@update_memory_contents = (stateNumber) ->
+@update_memory_contents = (state_number) ->
 	div = document.getElementById("memory")
-	list_of_variables = variables[stateNumber]["locals"]
+	list_of_variables = variables[state_number]["locals"]
 	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
 	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
 	i = 0

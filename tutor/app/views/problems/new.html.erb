@@ -11,7 +11,7 @@
 		</p>
 		<%= problem.hidden_field :track_id, value: params[:id] %>
 		<p>
-			<%= problem.submit %>
+			<%= problem.submit "Save Problem", class: "btn btn-default" %>
 		</p>
 	<% end %>
 <% if flash[:notice] %>
