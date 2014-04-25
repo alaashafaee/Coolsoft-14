@@ -27,12 +27,15 @@
 				<% @tips.each do |tip1| %>
 					<tr>
 						<% if tip1.category == true %>
-						<td style = "max-width: 300px; word-wrap:break-word;">
-							<%= tip1.message %></td>
-						<td style ="width:20%"><%= tip1.time %></td>
-						<td><%= button_to "Edit", {:action => 'new',
-								:controller => 'tips', :method => :post},
-								{class: 'btn btn-primary btn-xs'} %></td>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+								<%= tip1.message %></td>
+							<td style ="width:20%"><%= tip1.time %></td>
+							<td>
+								<%= link_to "Edit", {:action => 'edit', :controller => 'tips', :id => tip1.id }, {class: 'btn btn-primary btn-xs' } %>
+							</td>
+							<td>
+								<%= link_to "Delete Tip", { :controller => 'tips',:action => "destroy", :id => tip1.id, :answer_id => tip1.model_answer_id }, data: { confirm: "Are you sure you want to delete this Tip?"}, class: "btn btn-danger btn-xs", style: "float:left", method: :delete %>
+							</td>
 						<% end %>
 					</tr>
 				<% end %>
