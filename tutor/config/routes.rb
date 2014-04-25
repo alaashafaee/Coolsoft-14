@@ -58,7 +58,6 @@ Tutor::Application.routes.draw do
 			get 'getProblems'
 		end
 	end
-
 	resources :topics do
 		collection do           
 			post 'sort'

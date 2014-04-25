@@ -131,7 +131,6 @@ class TracksController < ApplicationController
 	#   difficulty: The difficulty of the track to be created
 	# Returns: The permited params
 	# Author: Mussab ElDash
-
 	private
 		def permit_create
 			permit = params.require(:Track).permit(:topic_id, :title, :difficulty)
@@ -148,4 +147,3 @@ class TracksController < ApplicationController
 			end
 		end
 end
-
