@@ -22,7 +22,6 @@ class HintsController < ApplicationController
 			new_hint.category = false
 			new_hint.model_answer_id = @@answer_id
 		end
-
 		if new_hint.save
 			redirect_to :controller => 'model_answers', :action => 'edit', :id => @@answer_id
 		else 
