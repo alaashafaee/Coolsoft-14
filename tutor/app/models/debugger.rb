@@ -101,7 +101,11 @@ class Debugger < ActiveRecord::Base
 			begin
 				input "step"
 				nums = get_line
-				locals = get_variables
+				locals = []
+				begin
+					locals = get_variables
+				rescue => e
+				end
 				nums[:locals] = locals
 				$all << nums
 				counter += 1
@@ -120,17 +124,24 @@ class Debugger < ActiveRecord::Base
 	def get_line
 		out_stream = buffer_until_complete
 		exceptions = has_exception out_stream
+		stream = get_stream out_stream
 		/,\sline=\d+/ =~ out_stream
 		line_first = $&
-		"line #{line_first}"
-		input "list"
-		out_stream = buffer_until_complete
-		"line_start\n#{out_stream}\nline_end"
-		/\n\d+\s=>/ =~ out_stream
-		line_second = $&
+		begin
+			input "list"
+			out_stream = buffer_until_complete
+			/\n\d+\s=>/ =~ out_stream
+			line_second = $&
+		rescue => e
+		end
 		if line_first
 			line_first = line_first[7..-1]
 			exceptions[:line] = line_first.to_i
+			if $all[-1]
+				exceptions[:stream] = "#{$all[-1][:stream]}#{stream}"
+			else
+				exceptions[:stream] = ""
+			end
 			return exceptions
 		elsif line_second
 			line_second = line_second[0..-4]
@@ -147,16 +158,47 @@ class Debugger < ActiveRecord::Base
 	# 	line: The line to be checked if it has a runtime error
 	# Returns: A hash of the exception and its explanation if exists
 	# Author: Mussab ElDash
+	def get_stream(line)
+		/^>\s.+\n/ =~ line
+		stream = $&
+		if stream
+			stream = stream[2..-1]
+			p stream
+			return stream
+		end
+		return ""
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Checks if there is a runtime error thrown
+	# Parameters: 
+	# 	line: The line to be checked if it has a runtime error
+	# Returns: A hash of the exception and its explanation if exists
+	# Author: Mussab ElDash
 	def has_exception(line)
 		/Exception occurred: / =~ line
 		if $&
-			/Exception occurred:.*\(uncaught\)/ =~ line
-			exception = $&
-			return {:status => false, :exception => {:error => exception[20..-11],
+			exception = get_exception
+			return {:status => false, :exception => {:error => exception,
 					:explanation => Executer.get_runtime_explaination(exception)}}
-		else
-			return {:status => true}
 		end
+		return {:status => true}
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Checks if there is a runtime error thrown
+	# Parameters: 
+	# 	line: The line to be checked if it has a runtime error
+	# Returns: A hash of the exception and its explanation if exists
+	# Author: Mussab ElDash
+	def get_exception
+		input "step"
+		out_stream = buffer_until_complete
+		ragex_first = /[[:space:]]+at\s[[:alnum:]]+\.main\([[:alnum:]]+\.java:\d+\)/m
+		regex_second = /[[:space:]]+The application exited\n*/
+		regex = /#{ragex_first}#{regex_second}/
+		out_stream = out_stream.sub(regex, "")
+		return out_stream[1..-1]
 	end
 
 	# [Debugger: Debug - Story 3.6]
