@@ -7,6 +7,7 @@ Tutor::Application.routes.draw do
 	devise_for :students
 	devise_for :lecturers
 	get 'hints/new' => 'hints#new'
+	post 'hints/new' => 'hints#create'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
