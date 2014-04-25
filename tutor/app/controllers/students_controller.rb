@@ -48,8 +48,6 @@ class StudentsController < ApplicationController
         @incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id")
     end
 
-end
-
 	# [Profile - Story 5.8]
 	# Displays the profile of the student chosen
 	# Parameters:
