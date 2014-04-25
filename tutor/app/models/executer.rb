@@ -90,10 +90,10 @@ class Executer
 		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
 			message = "Division by Zero results in infinity, " +
 				"which computers can not understand. Be careful !"
-			return message
+			return {error: exception, explanation: message}
 		else
 			message = "To be set Runtime Error!"
-			return message
+			return {error: exception, explanation: message}
 		end
 	end
 

@@ -178,8 +178,7 @@ class Debugger < ActiveRecord::Base
 		/Exception occurred: / =~ line
 		if $&
 			exception = get_exception
-			return {:status => false, :exception => {:error => exception,
-					:explanation => Executer.get_runtime_explaination(exception)}}
+			return {:status => false, :exception => Executer.get_runtime_explaination(exception)}
 		end
 		return {:status => true}
 	end
