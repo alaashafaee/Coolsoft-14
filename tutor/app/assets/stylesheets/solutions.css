@@ -37,6 +37,12 @@ textarea  {
 	overflow-x:hidden;
 }
 
+.fixed-horizontal {
+	max-width: 175px;
+	overflow-x:scroll;
+	overflow-y:hidden;
+}
+
 .editor {
 	background-color: black;
 	color: white;
