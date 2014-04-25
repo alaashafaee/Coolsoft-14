@@ -62,8 +62,10 @@
 						<% next_problems_to_solve.each do |key , value| %>
 							<tr>
 								<td>
-									<%= link_to value.title, controller: "/problems", 
-										action: "show", id: value.id %>
+									<%= link_to value.title, 
+											controller: "/problems", 
+											action: "show", 
+											id: value.id %>
 								</td>
 								<td>
 									<%= key %>
@@ -90,7 +92,9 @@
 								</td>
 								<td>
 									<%= link_to value["problem_title"], 
-									controller: "/problems", action: "show", id: key %>
+											controller: "/problems", 
+											action: "show", 
+											id: key %>
 								</td>
 							</tr>
 						<% end %>
