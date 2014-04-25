@@ -62,6 +62,13 @@ class TipsController < ApplicationController
 		@tips_check =Hint.all
 	end
 
+	# [Remove tip - Story 4.20]
+	# Finds the tip that wanted to be removed
+	# Parameters: 
+	#     :id => id of the tip required to be removed
+	# Returns: 
+	#     @tip: tip which will be removed
+	# Author: Ahmed Osam
 	def destroy
 		@tip = Hint.find_by_id(params[:id])
 		@tip.destroy
@@ -74,7 +81,7 @@ class TipsController < ApplicationController
 	#     :id => id of the tip required to be edited
 	# Returns: 
 	#     @tip: tip which will be edited
-	# Author: Ahmed Osam	
+	# Author: Ahmed Osam
 	def edit
 		@tip = Hint.find_by_id(params[:id])
 	end
