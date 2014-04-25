@@ -1,10 +1,35 @@
-<h1> > Add test case(s) </h1>
-<table style="width:500px">
-	<%- @test_cases.each do |test_case| %>
-		<tr>
-		<td><p><b>-</b><b>input:</b> <%= test_case.input %></p> </td>
-		<td><p><b>output:</b>  <%= test_case.output %></p></td>
-		</tr>
+<br><ul class="navbar-brand pull-right"><%= link_to "Create test case",
+			{:controller => 'test_cases', :action => 'new',
+			:method => :get, :problem_id => @problem.id },
+			{class: 'btn btn-primary btn'} %> </ul></br>
+<a href="#" return:false; class= "Lst" onclick= "toggle_visibility('foo1');
+		return false;" style="font:120px">Test cases</a>
+
+<div id="foo1" style="display:none;">
+	<% if !@test_cases.any? %>
+		<p>You have no previous test cases</p>
 	<% end %>
-</table>
-<%= render partial: "test_cases/form" %>
+	<% if !@test_cases.empty? %>
+		<table class="table table-striped" style = "width:60%">
+		 <thead>
+			<tr>
+				<th style ="width:20%">Input</th>
+				<th style ="width:20%">Output</th>
+				<th style ="width:20%">Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @test_cases.each do |test_case| %>
+				<tr>
+					<td><%= test_case.input %></td>
+					<td><%= test_case.output %></td>
+					<td><%= link_to " Edit", {:controller => 'test_cases',
+							:action => 'edit', :method => :get,
+							:id => test_case.id},
+							{class: 'btn btn-primary btn-xs'}%></td>
+				</tr>
+			<% end %>
+		</tbody>				
+		</table>
+	<% end %>
+</div>
