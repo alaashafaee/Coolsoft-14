@@ -12,9 +12,8 @@ class Solution < ActiveRecord::Base
 	# Checks the validity of a submitted solution
 	# and show the runtime and logic errors if exist
 	# Parameters:
-	# 	problem_id: id of the problem being answered
-	#   file: the name of the file which is compiled successfully
-	#		  without errors
+	# 	solution: the solution to be validated
+	#   testcases: the testcases that will test the submitted code
 	# Returns: a hash response containing status for the solution,
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
@@ -29,9 +28,12 @@ class Solution < ActiveRecord::Base
 				if(runtime_check[:executer_feedback])
 					output = runtime_check[:executer_output][:message]
 					if (output != expected_output)
+						if(output.to_s.empty?)
+							output = "Empty"
+						end
 						response << {success: false, test_case: input, 
 							response: "Logic error: Expected output: " +
-							expected_output.to_s + ". but your output was: " + output.to_s}
+							expected_output.to_s.strip + ", but your output was: " + output}
 						unless solution.status == 4
 							solution.status = 5
 						end
@@ -57,7 +59,12 @@ class Solution < ActiveRecord::Base
 		return response
 	end
 
-
+	# [Compiler: Validate - Story 3.5]
+	# outputs the runtime error with a better explanation
+	# Parameters:
+	# 	error: the original runtime error
+	# Returns: a String with the explained runtime error
+	# Author: MOHAMEDSAEED
 	def self.get_response(error)
 		if error.include?("/ by zero")
 			return "Division / 0"
@@ -69,13 +76,14 @@ class Solution < ActiveRecord::Base
 			return "To be set response"
 		end
 	end
+
 	# [Compiler: Validate - Story 3.5]
 	# Parameters:
 	# 	s_id : the id of the current Student
 	# 	p_id : the id of the current Problem
 	# Returns: the number of trials the student made for this problem
 	# Author: MOHAMEDSAEED
-	def self.get_num_of_trials(s_id , p_id)
+	def self.get_num_of_trials(s_id, p_id)
 		num_of_trials = Solution.distinct.count(:all,
 						:conditions => ["student_id = ? AND problem_id = ? AND status != ?",
 						s_id, p_id, 3])

@@ -45,8 +45,7 @@
 					onClick: 'next()', hidden: true %>
 				<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
 					style: "display: none", id: 'stopButton', 
-					onClick: 'stop()', hidden: true%>
-					
+					onClick: 'stop()', hidden: true %>
 				<span id="spinner" class="" align="center"></span>
 			</td>
 			<td style='text-align:right;'>
@@ -70,31 +69,19 @@
 
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
-	<div class="console">
-		
+	<div class="console">	
 		<!-- Compiler -->
 		<p class="compilation_succeeded"></p>
 		<p class="compilation_failed"></p>
 		<p class="compilation_feedback"></p>
-
 		<!-- Test Cases -->
-		<div>
-			<table class = "table table-striped">
-				<tr>
-					<th>Test Case</th>
-					<th>Response</th>
-				</tr>
-				<tr>
-					<td id = "validate_success" style = "color: green"></td>
-					<td id = "validate_error" style = "color: red"></td>
-				</tr>
-			</table>
+		<div id="validate_case" >
 		</div>
 		<!-- Runtime Messages -->
 		<div id="runtime_error", style="display: none">
 			<div class="panel-danger", style="white-space: pre">
 				<div class="panel-heading", style="min-height: 30px;
-				max-height: 30px; line-height:0.25px; margin-top: -45px">
+					max-height: 30px; line-height:0.25px; margin-top: -45px">
 					<h3 class="panel-title"> Error </h3>
 				</div>
 				<br/>
@@ -102,7 +89,7 @@
 				</div>
 				
 				<div class="panel-heading", style="min-height: 30px;
-				max-height: 30px; line-height:0.25px; margin-top: -90px">
+					max-height: 30px; line-height:0.25px; margin-top: -90px">
 					<h3 class="panel-title"> Explanation </h3>
 				</div>
 				<br/>
@@ -110,8 +97,6 @@
 					style = "margin-top:-100px; min-height: 50px;max-height: 50px;"></div>
 			</div>
 		</div>
-
-		<div id="output_section" style = "color: white; font-weight: bold; font-size: 20px"></div>
+		<div id="output_section" style = "color: black; font-weight: bold; font-size: 20px"></div>
 	</div>
-
 <% end %>

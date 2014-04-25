@@ -166,6 +166,8 @@ compilation_error = (data) ->
 # Author: Mussab ElDash
 clear_console = () ->
 	$('#runtime_error').toggle(false)
+	$('#validate_case').html("")
+	$('#output_section').html("")
 	$('.compilation_succeeded').html("")
 	$('.compilation_failed').html("")
 	$('.compilation_feedback').html("")
@@ -353,15 +355,17 @@ debug_console = ->
 			if data['compiler_error']
 				compilation_error(data['compiler_output'])
 				return
-			success = $('#validate_success')
-			errors = $('#validate_error')
-			success.html("")
-			errors.html("")
+			out = $('#validate_case')
+			out.html("")
+			x = ""
 			for i in data
 				if data["success"]
-					success.append("<td>#{i['test_case']}</td> <td>#{i['response']}</td><br>")
+					x += "<p style='color:green'>#{i['test_case']}, \
+							#{i['response']}</p>"
 				else
-					errors.append("<td>#{i['test_case']}</td> <td>#{i['response']}</td><br>")
+					x += "<p style='color:red'>#{i['test_case']}, \
+							#{i['response']}</p>"
+			out.html(x)
 			return
 		error: (data) ->
 			clear_console()

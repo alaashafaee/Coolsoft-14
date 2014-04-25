@@ -73,27 +73,27 @@ class SolutionsController < ApplicationController
 	end
 
 	private
-		# [Code Editor: Write Code - Story 3.3]
-		# Permits the id of the problem, code from the form_for
-		# Parameters:
-		# 	code: The written code for the problem
-		# 	problem_id: Hidden field for problem id
-		# Returns:
-		# 	none
-		# Author: MOHAMEDSAEED
-		def solution_params
-			params.permit(:code, :problem_id, :time)
-		end
+	# [Code Editor: Write Code - Story 3.3]
+	# Permits the id of the problem, code from the form_for
+	# Parameters:
+	# 	code: The written code for the problem
+	# 	problem_id: Hidden field for problem id
+	# Returns:
+	# 	none
+	# Author: MOHAMEDSAEED
+	def solution_params
+		params.permit(:code, :problem_id, :time)
+	end
 
-		# [Compiler: Test - Story 3.15]
-		# Permits the input
-		# Parameters:
-		#	none
-		# Returns:
-		# 	params[:input]: The test case entered by the solver
-		# Author: Ahmed Akram
-		def input
-			params.require(:solution).permit(:input)
-		end
+	# [Compiler: Test - Story 3.15]
+	# Permits the input
+	# Parameters:
+	#	none
+	# Returns:
+	# 	params[:input]: The test case entered by the solver
+	# Author: Ahmed Akram
+	def input
+		params.require(:solution).permit(:input)
+	end
 
 end
