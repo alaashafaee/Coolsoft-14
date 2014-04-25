@@ -33,10 +33,10 @@ class Compiler < ActiveRecord::Base
 		new_code = append_class(solution)
 		feedback = compile(solution, new_code)
 		if feedback == ""
-			return { success: true, errors: nil, previous_code: (solution.code) }
+			return {success: true, errors: nil}
 		else
 			new_feedback = change_error_headers(solution, feedback)
-			return { success: false, errors: new_feedback, previous_code: (solution.code) }
+			return {success: false, errors: new_feedback}
 		end
 	end
 
@@ -63,7 +63,7 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
 		header = solution.file_name
-		return feedback.gsub('students_solutions/Java/' + header, 'CoolSoft')
+		return feedback.gsub('students_solutions/Java/' + header, 'CoolSoft').gsub(header, 'CoolSoft')
 	end
 
 end

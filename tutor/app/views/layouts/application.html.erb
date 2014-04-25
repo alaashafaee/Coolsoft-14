@@ -4,12 +4,15 @@
 # Author: Ahmed Elassuty
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="zoom: 0.8;">
 	<head>
 		<title>CoolSoft - Java Tutor</title>
 		<%= stylesheet_link_tag "application", "bootstrap","token-input", :media => "all" %>
 		<%= javascript_include_tag "application","bootstrap", "jquery" %>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<%-# stylesheet_link_tag "application", "bootstrap", "token-input", :media => "all" -%>
+		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
+		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
