@@ -52,6 +52,24 @@ gem 'foreman'
 # Use composite primary keys in models
 gem 'composite_primary_keys', '~> 6.0.1'
 
+<<<<<<< Updated upstream
 #for graphes 
 gem "chartkick"
 gem "googlecharts", :require => "gchart"
+=======
+#
+gem 'acts_as_list'
+
+#search
+gem 'tire'
+gem 'json_builder', '3.1.0'
+
+# whenever gem for scheduling tasks
+gem 'whenever', :require => false
+
+<<<<<<< HEAD
+#for graphes 
+gem "chartkick"
+gem "googlecharts", :require => "gchart"
+=======
+>>>>>>> Stashed changes

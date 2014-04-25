@@ -12,7 +12,11 @@ class LecturersController < ApplicationController
 
 	# [number_of_problems_answered_correctly - Story 2.1]
 	# Select all problems which have success_attempts greater than zero and count the records
+<<<<<<< Updated upstream
 	# Parameters:
+=======
+	# Parameters :
+>>>>>>> Stashed changes
 	# 	success_attempts:an intger value that shows how many times does the problem have to be answered correctly
 	# Returns: an integer value 	in case of failure : a message "No problem is answered correctly"
 	# Author: Rana ElNagar
@@ -28,16 +32,27 @@ class LecturersController < ApplicationController
 
  	# [average number of trials - Story 2.3]
 	# Select a problem_id and count the number of students who tried to answer this problem
+<<<<<<< Updated upstream
 	# Parameters:
+=======
+	# Parameters :
+>>>>>>> Stashed changes
 	# 	success_attempts:an intger value that shows the number of correct answers by students
 	# 	failure_attempts:an intger value that shows the number of wrong answers by students
 	# 	student_id:a unique value for every student who try to answer a problem
 	# 	problem_id:a unique value for every problem
+<<<<<<< Updated upstream
 	# Returns: an integer value		in case of failure : a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def average
  		@problem=Problem.find_by_id(params[:id])
  		#if there is no solution it will not enter if condition !!! 
+=======
+	# Returns: an integer value 	in case of failure : a message "No one answered this problem "
+	# Author: Rana ElNagar
+ 	def average
+ 		@problem=Problem.find_by_id(params[:id])
+>>>>>>> Stashed changes
  		if Solution.find_by problem_id == @problem?
  			@students=Solution.distinct.count.(:student_id)
  		else 
@@ -107,3 +122,7 @@ class LecturersController < ApplicationController
 end
 
 
+<<<<<<< Updated upstream
+=======
+end
+>>>>>>> Stashed changes

@@ -15,7 +15,20 @@ Tutor::Application.routes.draw do
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
 	post 'courses/new' => 'courses#new'
+<<<<<<< Updated upstream
 	get 'courses/sign_up'
+=======
+	post 'courses/share' => 'courses#share'
+	post 'solutions/execute' => 'solutions#execute'
+ 	post '/posts/:id' => 'posts#update'
+	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
+	post 'debuggers/:id' => 'debuggers#start'
+	post 'lecturers/show_statistics' => 'lecturers#show_statistics'
+	post 'lecturers/has_no_answer' => 'lecturers#has_no_answer'
+	post 'lecturers/no_correct_answer' => 'lecturers#no_correct_answer'
+
+	get 'problems/edit'
+>>>>>>> Stashed changes
 
 
 	# You can have the root of your site routed with "root"
