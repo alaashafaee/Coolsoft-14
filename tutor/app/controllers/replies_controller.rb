@@ -46,11 +46,11 @@ class RepliesController < ApplicationController
 	# Author: Ahmed Mohamed Magdi
 	def destroy
 		reply = Reply.find(params[:id])
-        if reply.destroy
-            render json: true
-        else
-        	render json: false
-        end
+		if reply.destroy
+			render json: true
+		else
+			render json: false
+		end
 	end
 
 	# [Edit a Reply - Story 1.19]
@@ -62,14 +62,14 @@ class RepliesController < ApplicationController
 	# 	false: if it fails is saving the reply
 	# Author: Ahmed Mohamed Magdi
 	def update
-	    reply = Reply.find(params[:id])
-	    data = params[:content]
-	    reply.content = data
-        if reply.save
-            render json: true
-        else
-            render json: false
-        end
+		reply = Reply.find(params[:id])
+		data = params[:content]
+		reply.content = data
+		f reply.save
+			render json: true
+		else
+			render json: false
+		end
 	end
 
 end
