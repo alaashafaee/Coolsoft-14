@@ -3,7 +3,7 @@
 //Parameters:
 //	id: Element that will be toggled.
 //Returns: none.
-//	Author: Nadine Adel
+//Author: Nadine Adel
 function toggle_visibility(id) {
 	var element = document.getElementById(id);
 	if(element.style.display == 'block')
