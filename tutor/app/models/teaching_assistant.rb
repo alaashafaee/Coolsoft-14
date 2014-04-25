@@ -12,7 +12,7 @@ class TeachingAssistant < ActiveRecord::Base
 	include Searchable
 
 	#Uploader
-	mount_uploader :profile_image, ProfileImageUploader
+	# mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email

@@ -3,8 +3,6 @@
 	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
 		:html => { :multipart => true, :class => 'form-devise' }) do |f| %>
 		<%= devise_error_messages! %>
-		
-		<%= image_tag(@teaching_assistant.profile_image_url.to_s) if @teaching_assistant.profile_image? %>
 
 		<div>
 			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
@@ -53,12 +51,6 @@
 
 		<div>
 			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
-		</div>
-
-		<div>
-			<%= f.label :profile_image %><br />
-			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
-			<%= f.hidden_field :profile_image_cache %>
 		</div>
 		
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
