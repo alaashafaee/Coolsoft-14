@@ -170,22 +170,22 @@ debug_console = ->
 # [Execute Line By Line - Story 3.8]
 # Jumps to the target state by highlighting the line and showing variables
 # Parameters:
-#	stateNumber: The target state number.
+#	state_number: The target state number.
 # Returns: none
 # Author: Rami Khalil + Khaled Helmy
-@jump_state = (stateNumber) ->
-	highlight_line variables[stateNumber]['line']
-	update_memory_contents stateNumber
+@jump_state = (state_number) ->
+	highlight_line variables[state_number]['line']
+	update_memory_contents state_number
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
 # Parameters:
-#	stateNumber: The target state number.
+#	state_number: The target state number.
 # Returns: none
 # Author: Khaled Helmy
-@update_memory_contents = (stateNumber) ->
+@update_memory_contents = (state_number) ->
 	div = document.getElementById("memory")
-	list_of_variables = variables[stateNumber]["locals"]
+	list_of_variables = variables[state_number]["locals"]
 	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
 	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
 	i = 0
