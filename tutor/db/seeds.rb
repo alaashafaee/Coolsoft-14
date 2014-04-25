@@ -93,6 +93,14 @@ puts("# --------------------------Replies---------------------------")
 	Reply.create(content: "Reply3")
 	Reply.create(content: "Reply4")
 	Reply.create(content: "Reply5")
+	Reply.create(content: "Reply6")
+	Reply.create(content: "Reply7")
+	Reply.create(content: "Reply8")
+	Reply.create(content: "Reply9")
+	Reply.create(content: "Reply10")
+	Reply.create(content: "Reply11")
+	Reply.create(content: "Reply12")
+	Reply.create(content: "Reply13")
 
 puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic1", description: "This is Topic1 description")
@@ -100,10 +108,9 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-
-	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
-	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
-	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
+ 	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
+ 	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
 	
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
@@ -193,11 +200,21 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.find_by_id(2)
 	Lecturer.first.replies << Reply.find_by_id(3)
 	Lecturer.first.replies << Reply.find_by_id(4)
+	Lecturer.first.replies << Reply.find_by_id(5)
+	Lecturer.first.replies << Reply.find_by_id(6)
+	Lecturer.first.replies << Reply.find_by_id(7)
+	Lecturer.first.replies << Reply.find_by_id(8)
+	Lecturer.first.replies << Reply.find_by_id(9)
+	Lecturer.first.replies << Reply.find_by_id(10)
+	Lecturer.first.replies << Reply.find_by_id(11)
+	Lecturer.first.replies << Reply.find_by_id(12)
+	Lecturer.first.replies << Reply.find_by_id(13)
+
 	Lecturer.find_by_id(1).courses << Course.find_by_code("cs2")
 	Lecturer.find_by_id(1).courses << Course.find_by_code("cs3")
 	Lecturer.find_by_id(2).courses << Course.find_by_code("cs4")
 	Lecturer.find_by_id(2).courses << Course.find_by_code("cs5")
-
+	
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
 	Student.first.solutions << Solution.first
@@ -236,6 +253,21 @@ puts("# -----------------------Students---------------------------")
 puts("# -----------------------TeachingAssistants---------------------------")
 	TeachingAssistant.first.courses << Course.first
 	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
+
+puts("# -----------------------Posts---------------------------")
+	Post.first.replies << Reply.first
+	Post.first.replies << Reply.find_by_id(2)
+	Post.first.replies << Reply.find_by_id(3)
+	Post.first.replies << Reply.find_by_id(4)
+	Post.first.replies << Reply.find_by_id(5)
+	Post.first.replies << Reply.find_by_id(6)
+	Post.first.replies << Reply.find_by_id(7)
+	Post.first.replies << Reply.find_by_id(8)
+	Post.first.replies << Reply.find_by_id(9)
+	Post.first.replies << Reply.find_by_id(10)
+	Post.first.replies << Reply.find_by_id(11)
+	Post.first.replies << Reply.find_by_id(12)
+	Post.first.replies << Reply.find_by_id(13)
 
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first

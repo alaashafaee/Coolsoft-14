@@ -80,6 +80,7 @@ Tutor::Application.routes.draw do
 	resources :model_answers
 	resources :solutions
 	resources :topics
+	resources :replies
 	resources :hints
 	resources :lecturers
 	resources :teaching_assistants

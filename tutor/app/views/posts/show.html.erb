@@ -25,29 +25,7 @@
 	<div class = "greyLine">
 		<p><font size="5"><%= @post.owner.name %></font> </p>
 		<p><%= @post.content %></p>
-		<p><font size="1"><%= distance_of_time_in_words_to_now @post.
-			created_at %> ago</p></font>
+		<p><font size="1"><%= distance_of_time_in_words_to_now @post.created_at %> ago</p></font>
 	</div>
 </div>
-<div>	
-	<% unless @replies.blank? %>
-		<% @replies.each do |reply| %>
-			<div class = "reply">
-				<div>
-					<font size="5"><%= reply.owner.name %></font>
-				</div>
-				<div>
-					<p><%= reply.content %><br></p>
-					<p><font size="1"><%= distance_of_time_in_words_to_now reply.
-						created_at %> ago </p>
-				</div>
-				<br>
-			</div>
-		<% end %>
-	<% else %>
-		<div align="center">
-			No replies in this post yet. 
-		</div>
-	<% end %>
-</div>
-</div>
+<%= render "/replies/index", :@replies => @replies, :@post => @post %>
