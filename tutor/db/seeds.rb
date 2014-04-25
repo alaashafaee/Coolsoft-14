@@ -100,7 +100,7 @@ puts("# -----------------------Hints---------------------------")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: true)
 	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
 	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
-	Hint.create(message: "Do not Try to Solve CS problem-4", category: false, time: 5)
+	Hint.create(message: "Do not Try to Solve CS problem-4", category: false)
 
 
 puts("# -----------------------ModelAnswer---------------------------")

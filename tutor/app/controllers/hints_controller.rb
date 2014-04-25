@@ -5,7 +5,7 @@ class HintsController < ApplicationController
 	# Parameters: 
 	#	@hints: All the previous hints that had been entered before.
 	#	@hints_check: All the previous hints that had been entered before to check if it is a hint or a tip.
-	# Returns : none
+	# Returns: none
 	# Author: Nadine Adel
 	def index
 		@hints = Hint.all
