@@ -17,7 +17,7 @@
 					</span>
 					<br>
 				<% end %>
-				<%= f.text_field :name, :value => @new_course.name, class:"form-control", style: "width:300px" %>
+				<%= f.text_field :name, :value => @new_course.name, class:"form-control", style: "width:300px", placeholder:"Name" %>
 			</p>
 			<p>
 				<%= f.label :Code %><br>
@@ -27,7 +27,7 @@
 					</span>
 					<br>
 				<% end %>
-				<%= f.text_field :code, :value => @new_course.code, class:"form-control", style: "width:300px" %>
+				<%= f.text_field :code, :value => @new_course.code, class:"form-control", style: "width:300px", placeholder:"Code"%>
 			</p>
 			<p>
 				<%= f.label :Description %><br>
@@ -48,7 +48,7 @@
 					</span>
 					<br>
 				<% end %>
-				<%= f.text_field :semester, :value => @new_course.semester, class:"form-control", style: "width:50px" %>
+				<%= f.text_field :semester, :value => @new_course.semester, class:"form-control", style: "width:70px", placeholder:"No." %>
 			</p>
 			<p>
 				<%= f.label :Year %><br>
@@ -58,10 +58,10 @@
 					</span>
 					<br>
 				<% end %>
-				<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:100px" %>
+				<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:70px", placeholder:"Year" %>
 			</p>
 			<p>
-				<%= f.submit "Save", class: "btn btn-success" %>
+				<%= f.submit "Save", class: "btn btn-info" %>
 			</p>
 		<% end %>
 		</div>
