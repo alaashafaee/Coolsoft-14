@@ -5,7 +5,10 @@
 -->
 <div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;position:static;overflow:scroll">
 	<div style="margin-bottom:12px" class="well">
-		Navigation.
+		<%= link_to "Courses", 
+			{:controller => 'courses', :action => 'index'}, 
+			class: "btn btn-success", style: "margin-left:auto; 
+			margin-right:auto; margin-top: 80px; width: 100%", method: :get %>
 	</div>
 
 	<!--
