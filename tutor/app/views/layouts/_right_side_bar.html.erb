@@ -10,69 +10,67 @@
 <div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;
 	position:static;overflow:scroll">
 	<div style="margin-bottom:12px" class="well">
-		<div class="row">
-  			<div class="sidebar-nav">
-      			<div class="navbar navbar-default" role="navigation">
-        			<div class="navbar-header">
-					    <button type="button" class="navbar-toggle" data-toggle="collapse" 
-					        data-target=".sidebar-navbar-collapse">
-						    <span class="sr-only">Toggle navigation</span>
-						    <span class="icon-bar"></span>
-						    <span class="icon-bar"></span>
-						    <span class="icon-bar"></span>
-					    </button>
-          				<span class="visible-xs navbar-brand">Sidebar menu</span>
-        			</div>
-          				<ul class="nav">
-          					<% if student_signed_in? %>
-					            	<li><%= link_to image_tag("glyphicons_003_user.png") + "Profile", 
-											{:controller => 'site', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:auto; margin-bottom: 5px;
-											width: 100%", method: :get %>
-									</li>
-					            	<li><%= link_to image_tag("glyphicons_136_cogwheel.png") + "Dashboard", 
-											{:controller => 'site', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:auto; margin-bottom: 5px;
-											width: 100%", method: :get %>
-									</li>
-					            	<li><%= link_to image_tag("glyphicons_318_more_items.png") + "Courses", 
-											{:controller => 'courses', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:autox; margin-bottom: 5px;
-											width: 100%", method: :get %>
-									</li>
-					            	<li><%= link_to image_tag("glyphicons_280_settings.png") + "Settings", 
-											{:controller => 'site', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:auto;
-											width: 100%", method: :get %>
-									</li>
-			        	  	<% else %>
-					             	<li><%= link_to image_tag("glyphicons_003_user.png") + "Profile", 
-											{:controller => 'site', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:auto; margin-bottom: 5px;
-											width: 100%", method: :get %>
-									</li>
-					            	<li><%= link_to image_tag("glyphicons_318_more_items.png") + "Courses", 
-											{:controller => 'courses', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:auto; margin-bottom: 5px;
-											width: 100%", method: :get %>
-									</li>
-					            	<li><%= link_to image_tag("glyphicons_280_settings.png") + "Settings", 
-											{:controller => 'site', :action => 'index'}, 
-											class: "btn btn-success", style: "margin-left:auto; 
-											margin-right:auto;
-											width: 100%", method: :get %>
-									</li>
-			            		<% end %>
-		          		</ul>
-        			</div>
-      			</div>
-      		</div>
+
+
+		<div>
+
+			<ul class="mylist">
+				<% if student_signed_in? %>
+	            	<li><%= link_to image_tag("glyphicons_003_user.png") +
+	            			 " Profile", 
+							{:controller => 'site', :action => 'index'},
+							style: "margin-left:auto; 
+							margin-right:auto; margin-bottom: 5px;
+							width: 100%", method: :get %>
+					</li>
+	            	<li><%= link_to image_tag("glyphicons_136_cogwheel.png") +
+	            			" Dashboard",
+							{:controller => 'site', :action => 'index'},
+							style: "margin-left:auto; 
+							margin-right:auto; margin-bottom: 5px;
+							width: 100%", method: :get %>
+					</li>
+	            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
+	            			" Courses", 
+							{:controller => 'courses', :action => 'index'},
+							style: "margin-left:auto; 
+							margin-right:autox; margin-bottom: 5px;
+							width: 100%", method: :get %>
+					</li>
+	            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
+	            			 " Settings",
+							{:controller => 'site', :action => 'index'},
+							style: "margin-left:auto; 
+							margin-right:auto;
+							width: 100%", method: :get %>
+					</li>
+		  		<% else %>
+	             	<li><%= link_to image_tag("glyphicons_003_user.png") +
+	             			"Profile", 
+							{:controller => 'site', :action => 'index'},
+							style: "margin-left:auto; 
+							margin-right:auto; margin-bottom: 5px;
+							width: 100%", method: :get %>
+					</li>
+	            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
+	            			"Courses", 
+							{:controller => 'courses', :action => 'index'},
+							style: "margin-left:auto;
+							margin-right:auto; margin-bottom: 5px;
+							width: 100%", method: :get %>
+					</li>
+	            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
+	            			 "Settings",
+							{:controller => 'site', :action => 'index'},
+							style: "margin-left:auto;
+							margin-right:auto;
+							width: 100%", method: :get %>
+					</li>
+	    		<% end %>
+			</ul>
+		</div>
+
+
 		</div>
 <!--end of Rania's story -->
 	<div class="well">
