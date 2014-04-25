@@ -60,15 +60,5 @@
 			<p> <b>Name:</b> <%= @student.name %> </p>
 			<p> <b>Email:</b> <%= @student.email %> </p>
 		</div>
-		<div id="tab3" class="tab">
-			<%= link_to "Statistics",
-			{
-				:controller => 'students',
-				:action => 'get_performance',
-				:id => @student.id
-			},
-			:method => :get,
-			class: "btn btn-success" %>
-		</div>
 	</div>
 </div>
