@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
 	def most_recent_reply
 		reply = Reply.first(:order => 'created_at DESC', :conditions => ['post_id = ?', self.id])
 		return reply
-    end
+	end
 
 	# [Advanced Search - Story 1.23]
 	# search for posts
