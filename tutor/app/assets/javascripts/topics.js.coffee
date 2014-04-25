@@ -8,8 +8,10 @@
 
 # [Edit Track Rating - Story 4.13]
 # Makes the list of track sortable.
-# Sends array of new order of tracks to the sort action 
+# 	Sends array of new order of tracks to the sort action 
 #	in topic's controller.  
+# Parameters: none
+# Returns: none
 # Author: Lin Kassem
 $(document).ready ->
 	$("#list-of-tracks").sortable
