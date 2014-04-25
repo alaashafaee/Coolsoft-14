@@ -102,10 +102,10 @@ class Executer
 		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
 			message = "Division by Zero results in infinity, " +
 				"which computers can not understand. Be careful !"
-			return {errors: Solution.get_response(exception), explanation: message}
+			return {errors: exception, explanation: message}
 		else
 			message = "To be set Runtime Error!"
-			return {errors: Solution.get_response(exception), explanation: message}
+			return {errors: exception, explanation: message}
 		end
 	end
 
@@ -122,14 +122,7 @@ class Executer
 		file_name = @solution.file_name
 		sub_name = 'CoolSoft'
 		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
-		if @execute_res.include?("/ by zero")
-			message = "Division by Zero results in infinity, "\
-						"which computers can not understand. Be careful !"
-			return msg = {errors: @execute_res, explanation: message}
-		else
-			message = "To be set Runtime Error!"
-			return msg = {errors: @execute_res, explanation: message}
-		end
+		return get_runtime_explaination @execute_res
 	end
 
 	# [Compiler: Test - Story 3.15]
