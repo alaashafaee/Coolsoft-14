@@ -1,5 +1,5 @@
 <% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
-	<body onLoad = "setTimeout('delayedRedirect()', 6000)">
+	<div>
 		<h1>
 			Tip content:
 		</h1>
@@ -17,7 +17,7 @@
 		<p>
 			You will be redirected to the model answer page shortly...
 		</p>
-	</body>
+	</div>
 	<script type="text/javascript">
 		// [Recommendation to students]
 		// Redirect the user to model answer page
