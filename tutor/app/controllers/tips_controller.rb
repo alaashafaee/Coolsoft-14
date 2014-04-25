@@ -28,6 +28,7 @@ class TipsController < ApplicationController
 		@tip.time = tip_params[:time]
 		@tip.category = true
 		@tip.model_answer_id = session[:model_answer_id]
+		@tip.submission_counter = 0
 		if lecturer_signed_in?
 			@tip.owner_type = "lecturer"
 			@tip.owner_id = current_lecturer.id
