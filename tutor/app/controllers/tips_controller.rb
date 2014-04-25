@@ -85,7 +85,6 @@ class TipsController < ApplicationController
 	# Returns:
 	#	@tip: new updated tip
 	# Author: Ahmed Osam
-
 	def update
 		@tip = Hint.find(params[:id])
 		@tip.time = tip_params_edit[:time]
