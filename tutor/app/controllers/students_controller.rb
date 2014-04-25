@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
 	#@failed: [int] The number of failed problems
 	#@incomplete: [int] The number of incomplete problems
 	#Author : Mahdi
-		def get_performance
+	def get_performance
 		@solved = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id").count
 		@failed = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id").count
 		@incomplete = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id").count
