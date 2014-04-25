@@ -1,19 +1,7 @@
 <%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
 <h1> Edit Constraints</h1>
-<%= form_for :parameter, url: {action: "update"}, html:{method: "PUT"} do |edit| %>
-	<table>
-		<tr>
-			<th>Method Constraints</th>
-			<td><%= edit.text_field :methods, :value => @methods.method_name %></td>
-		</tr><br><br>
-		<tr>
-			<th>Method Parameters</th>
-			<td><%= edit.text_field :parameters, :value => @parameters.parameter %></td>
-		</tr>
-		<tr>
-			<th>Variable Constraints</th>
-			<td><%= edit.text_field :variables, :value => @variables.variable_name %></td>
-		</tr>
-	</table><br><br>
-	<%= submit_tag("Save") %>
+<% if params[:type] == "meth" %>
+	<%= render "edit_method" %>
+<%else%>
+	<%= render "edit_variable" %>
 <% end %> 

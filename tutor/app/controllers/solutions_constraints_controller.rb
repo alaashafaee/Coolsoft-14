@@ -86,10 +86,13 @@ class SolutionsConstraintsController < ApplicationController
 	# 	@methods: one record of the methods constraints
 	# Author: Rania Abdel Fattah
 	def destroy
-		if params[:type] == "meth"
-			methods = MethodConstraint.find_by_id(params[:id]).destroy
+		methods = MethodConstraint.find_by_id(params[:id])
+		parameters = MethodParameter.find_by_id(params[:id])
+		variables = VariableConstraint.find_by_id(params[:id])
+		if !params[:type] == "meth"
+			methods.destroy && parameters.destroy
 		else
-			variables = VariableConstraint.find_by_id(params[:id]).destroy 
+			variables.destroy
 		end	
 			flash[:notice] = "Constraints deleted."
 			redirect_to :action => 'index'
