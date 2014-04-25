@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CoursesControllerTest < ActionController::TestCase
-	
 	test "should get index" do
 		get :index
 		assert_response :success
@@ -37,4 +36,8 @@ class CoursesControllerTest < ActionController::TestCase
 		assert_response :success
 	end
 
+	test "should get new" do
+	    get :new
+	    assert_response :success
+  	end
 end
