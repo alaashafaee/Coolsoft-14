@@ -20,7 +20,8 @@
 				<tr>
 					<td>
 						<h4><%= link_to post.title, :controller => 'posts', :action=> 'show',
-								:id => post.id,:method => :get, class: "btn btn-success" %></h4>
+								:id => post.id,:method => :get, class:
+									"btn btn-success" %></h4>
 					</td>
 					<td> 
 						<small><%= post.replies.count %></small><br/>
@@ -33,14 +34,16 @@
 							<%= distance_of_time_in_words_to_now post.most_recent
 								_reply.created_at %> ago by 
 							<% if post.most_recent_reply.owner_type == "Lecturer" %>
-								<%= link_to post.most_recent_reply.owner.name, "/lecturers/{post.most_recent_reply.owner_id}" %>
+								<%= link_to post.most_recent_reply.owner.name,
+									"/lecturers/{post.most_recent_reply.owner_id}" %>
 							<% end %>
 							<% if post.most_recent_reply.owner_type == "Student" %>
-								<%= link_to post.most_recent_reply.owner.name,"/students/{post.most_recent_reply.owner_id}"  %>
+								<%= link_to post.most_recent_reply.owner.name,
+									"/students/{post.most_recent_reply.owner_id}"  %>
 							<% end %>
 							<% if post.most_recent_reply.owner_type == "TeachingAssistant" %>
 								<%= link_to post.most_recent_reply.owner.name,
-									"/teachingassistants/{post.most_recent_reply.owner_id}"  %>	
+									"/teachingassistants/{post.most_recent_reply.owner_id}" %>	
 							<% end %>
 						<% else %>
 							No replies
@@ -51,7 +54,7 @@
 						<br/>
 					</td>
 					<td> 
-						<small><%=post.views_count%></small><br/>
+						<small><%= post.views_count %></small><br/>
 					</td>
 				</tr>
 			<% end %>
