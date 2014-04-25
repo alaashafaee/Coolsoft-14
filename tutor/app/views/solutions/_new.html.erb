@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<%= @code = f.text_area :code,
-			value: flash[:previous_code]==nil ?
+			value: flash[:previous_code] == nil ?
 				"\tpublic static void main(String [] args) {\n\t\t\n\t}" :
 				flash[:previous_code].to_s,
 			placeholder: "Write your code here!",
@@ -54,48 +54,64 @@
 				<b class='wrong_answer'>Wrong Answer</b>
 				<b class='runtime_error'>Runtime Error</b>
 				<b class='compilation_error'>Compilation Error</b>
-				<%= f.submit "Submit", 
-					confirm: 'Are you sure you want to submit your solution?', 
-					class: "btn btn-info" %>
+				<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
+					onClick: "validate_code(#{params[:id]})", class: "btn btn-info" %>
 			</td>
 		</tr>
 	</table>
 	<br /><br />
+	
 	<div>
 		<b>Input:</b></br>
 		<%= f.text_area :solution_input, placeholder: "Write your test case here", 
 			id: "solution_input", class: "form-control", style: "width:400px" %>
 	</div>
 	</br>
+
 	<!--Author: Ahmed Moataz-->
 	<b>Console:</b><br/>
 	<div class="console">
+		
+		<!-- Compiler -->
 		<p class="compilation_succeeded"></p>
 		<p class="compilation_failed"></p>
 		<p class="compilation_feedback"></p>
+
+		<!-- Test Cases -->
+		<div>
+			<table class = "table table-striped">
+				<tr>
+					<th>Test Case</th>
+					<th>Response</th>
+				</tr>
+				<tr>
+					<td id = "validate_success" style = "color: green"></td>
+					<td id = "validate_error" style = "color: red"></td>
+				</tr>
+			</table>
+		</div>
+		<!-- Runtime Messages -->
 		<div id="runtime_error", style="display: none">
 			<div class="panel-danger", style="white-space: pre">
 				<div class="panel-heading", style="min-height: 30px;
 				max-height: 30px; line-height:0.25px; margin-top: -45px">
 					<h3 class="panel-title"> Error </h3>
 				</div>
-				<div class="panel-body", style= "margin-top:-100px">
-					<p id="error_section"></p>
+				<br/>
+				<div id="error_section" class="panel-body" style= "margin-top:-100px">
 				</div>
+				
 				<div class="panel-heading", style="min-height: 30px;
 				max-height: 30px; line-height:0.25px; margin-top: -90px">
 					<h3 class="panel-title"> Explanation </h3>
 				</div>
-				<div class="panel-body", style= "margin-top:-100px; min-height: 50px;
-				max-height: 50px;">
-					<p id="explanation_section"></p>
-				</div>
+				<br/>
+				<div id="explanation_section" class = "panel-body" 
+					style = "margin-top:-100px; min-height: 50px;max-height: 50px;"></div>
 			</div>
 		</div>
-		<div style= "color: white; font-weight: bold; font-size: 20px">
-			<p id="output_section"></p>
-		</div>
+
+		<div id="output_section" style = "color: white; font-weight: bold; font-size: 20px"></div>
 	</div>
 
-	
 <% end %>

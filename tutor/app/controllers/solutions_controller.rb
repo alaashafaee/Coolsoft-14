@@ -8,13 +8,14 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		if params[:commit] == 'Submit'
-			compile_solution
-			if flash[:compiler_fail] || flash[:alert]
-				redirect_to :back and return
-			end
-			submit_no_ajax
-		end
+		solution = Solution.new(solution_params)
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		solution.status = 0
+		solution.save
+		test_cases = solution.problem.test_cases
+		result = Solution.validate(solution, test_cases)
+		render json: result
 	end
 
 	# [Compiler: Test - Story 3.15]
@@ -81,7 +82,7 @@ class SolutionsController < ApplicationController
 		# 	none
 		# Author: MOHAMEDSAEED
 		def solution_params
-			params.permit(:code, :problem_id)
+			params.permit(:code, :problem_id, :time)
 		end
 
 		# [Compiler: Test - Story 3.15]

@@ -10,12 +10,8 @@ class Executer
 	# Author: Ahmed Akram
 	def self.execute(sol, input)
 		@solution = sol
-		compile_status = Compiler.compiler_feedback(@solution)
 		class_path = Solution::CLASS_PATH
 		file_name = @solution.file_name
-		unless compile_status[:success]
-			return {compiler_error: true, compiler_output: compile_status}
-		end
 		validity = check_input_validity(input, @solution.problem.id)
 		if validity[:status]
 			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
@@ -42,6 +38,10 @@ class Executer
 	def self.create_solution(student_id, problem_id, code, input)
 		solution = Solution.create({code: code, student_id: student_id,
 			problem_id: problem_id})
+		compile_status = Compiler.compiler_feedback(solution)
+		unless compile_status[:success]
+			return {compiler_error: true, compiler_output: compile_status}
+		end
 		return execute(solution, input)
 	end
 
@@ -94,10 +94,10 @@ class Executer
 		if @execute_res.include?("/ by zero")
 			message = "Division by Zero results in infinity, "\
 						"which computers can not understand. Be careful !"
-			return msg = {success: false, errors: @execute_res, explanation: message}
+			return msg = {errors: @execute_res, explanation: message}
 		else
 			message = "To be set Runtime Error!"
-			return msg = {success: false, errors: @execute_res, explanation: message}
+			return msg = {errors: @execute_res, explanation: message}
 		end
 	end
 

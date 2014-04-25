@@ -322,7 +322,7 @@ debug_console = ->
 	toggle_code_area()
 	variables = null;
 
-# To be Used when changing to ajax in order not to refresh page
+
 # [Compiler: Validate - Story 3.5]
 # submits a solution in the form without refreshing
 # 	using ajax showing an alert box for success and failure scenarios
@@ -335,29 +335,37 @@ debug_console = ->
 	code = $('#solution_code').val()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
-	time = mins*60 + secs
-	start_spin()
+	time = (mins * 60) + secs
+	if code.length is 0
+		alert 'Blank submissions are not allowed'
+		return
+	toggle_code_area()
+	start_spin()	
 	$.ajax
 		type: "POST"
 		url: '/solutions'
 		data: {problem_id: problem_id, code: code, time: time}
 		datatype: 'json'
 		success: (data) ->
+			clear_console()
 			stop_spin()
+			toggle_code_area()
+			if data['compiler_error']
+				compilation_error(data['compiler_output'])
+				return
 			success = $('#validate_success')
 			errors = $('#validate_error')
 			success.html("")
-			for i in data["success"]
-				success.append("#{i}<br>")
 			errors.html("")
-			for i in data["failure"]
-				errors.append("#{i}<br>")
-			if code.length isnt 0
-				alert 'Solution has been submitted successfully'
-			else
-				alert 'Blank submissions are not allowed'
+			for i in data
+				if data["success"]
+					success.append("<td>#{i['test_case']}</td> <td>#{i['response']}</td><br>")
+				else
+					errors.append("<td>#{i['test_case']}</td> <td>#{i['response']}</td><br>")
 			return
 		error: (data) ->
+			clear_console()
 			stop_spin()
+			toggle_code_area()
 			return
 	return
