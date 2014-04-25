@@ -4,11 +4,12 @@
 # Author: Ahmed Elassuty
 -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="zoom: 0.8;">
 	<head>
 		<title>CoolSoft - Java Tutor</title>
-		<%= stylesheet_link_tag "application", "bootstrap","token-input", :media => "all" %>
-		<%= javascript_include_tag "application","bootstrap", "jquery" %>
+		<%-# stylesheet_link_tag "application", "bootstrap", "token-input", :media => "all" -%>
+		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
+		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
@@ -45,23 +46,23 @@
 			</div>
 		</div>
 		</br>
-		<div id="main" class="container" style="width:100%;overflow-y:scroll">
+		<div id="main home" class="container" style="width:100%;min-width:1000px;">
 			<% if signed_in? %>
 				<div class="row">
-					<%= render "layouts/right_side_bar"%>
-					<div class="well main-content" style="min-height:500px">
-						<%= render "problems/system_recommendation" if student_signed_in? %>
+					<%= render "layouts/right_side_bar" %>
+					<div class="well main-content" style="min-height:600px;">
 						<%= yield %>
 					</div>
 				</div>
 			<% else %>
-				<div class="well container main-content" style="min-height:500px;">
+				<div align="center" class="well container main-content" style="min-height:700px;">
 					<%= yield %>
 				</div>
 			<% end %>
 		</div>
 		</br>
-		<div align="center" class="navbar navbar-default navbar-static-bottom footer">
+		<div align="center" class="navbar navbar-default
+			navbar-static-bottom footer" style="width:100%;min-width:1000px;">
 			<%= render "layouts/footer" %>
 		</div>
 	</body>

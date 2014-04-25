@@ -9,7 +9,8 @@
 		}
 	</script>
 </body>
-<br><ul class= "navbar-brand pull-right"><%= link_to "Create New Model Answer",
+
+<br><ul class= "navbar-brand pull-right"><%= link_to "Create Model Answer",
 			{:controller => 'model_answers', :action => 'new',
 			:problem_id => @problem.id }, {class: 'btn btn-primary btn'} %></ul></br>
 <br>
@@ -25,7 +26,7 @@
 		<table class="table table-striped" style = "width:60%">
 			<thead>
 				<tr>
-					<th >Title</th>
+					<th>Title</th>
 					<th style = "width:20%">Created At</th>
 					<th style = "width:20%">Updated At</th>
 					<th>View/Edit</th>
@@ -42,7 +43,10 @@
 								:action => 'edit', :method => :get, :id => answer1.id},
 								{class: 'btn btn-primary btn-xs',
 								style: "text-decoration:none"} %></td>
-						<td><a href="#" class="btn btn-danger btn-xs">Delete</a></td>
+						<td><%= button_to "Delete", {:controller => 'model_answers',:action => 'destroy',
+								:id => answer1.id}, method: :delete, class: 'btn btn-primary', 
+								:confirm => "Are you sure you want to delete 
+									this Answer ?" %></td>
 					</tr>
 				<% end %>
 			</tbody>					

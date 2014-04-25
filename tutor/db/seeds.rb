@@ -96,10 +96,11 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-	Hint.create(message: "Do not Try to Solve CS problem-1")
-	Hint.create(message: "Do not Try to Solve CS problem-2")
-	Hint.create(message: "Do not Try to Solve CS problem-3")
 
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
+	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
+	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
+	
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -117,9 +118,9 @@ puts("# -----------------------Test Cases---------------------------")
 	TestCase.create(output: "x", input:"10 0")
 
 puts("# -----------------------Method Parameters---------------------------")
-	MethodParameter.create(parameter:"MethodParameters 1")
-	MethodParameter.create(parameter:"MethodParameters 2")
-	MethodParameter.create(parameter:"MethodParameters 3")
+	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
+	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")
@@ -127,7 +128,6 @@ puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 3")
 
 puts("# -----------------------Problems---------------------------")
-
 	Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b", incomplete: false)
 	Problem.create(title: "Problem 2", description: "This is very hard Problem", incomplete: false)
 	Problem.create(title: "Problem 3", description: "This wont be a hard Problem", incomplete: false)
@@ -171,7 +171,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-	
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -187,6 +187,8 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.posts << Post.find_by_id(2)
 	Lecturer.first.replies << Reply.first
 	Lecturer.first.replies << Reply.find_by_id(2)
+	Lecturer.first.replies << Reply.find_by_id(3)
+	Lecturer.first.replies << Reply.find_by_id(4)
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
@@ -223,6 +225,10 @@ puts("# -----------------------Students---------------------------")
 	Student.find_by_id(1).courses << Course.find_by_id(2)
 	CourseStudent.where(student_id:1, course_id:2)[0].update(share: true)
 
+puts("# -----------------------TeachingAssistants---------------------------")
+	TeachingAssistant.first.courses << Course.first
+	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
+
 puts("# -----------------------Problems---------------------------")
 	Problem.find_by_id(3).test_cases << TestCase.first
 	Problem.first.model_answers << ModelAnswer.first
@@ -255,6 +261,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
 
+puts("# -----------------------Hints---------------------------")
+	Problem.first.model_answers.first.hints << Hint.first
+
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first
 	Track.first.problems << Problem.find_by_id(2)
@@ -279,19 +288,5 @@ puts("# --------------------- Courses -------------------------")
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
-
-puts("# ----------------- Track Progressions ----------------------")
-	TrackProgression.create(:level => 1, :student_id => 2, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 3, :topic_id => 1)
-	TrackProgression.create(:level => 1, :student_id => 4, :topic_id => 1)
-puts("# ---------------------------------------------------------")
-puts("# -----------------------Solution---------------------------")
-	Student.first.solutions << Solution.first
-	Student.first.solutions << Solution.find_by_id(2)
-	Student.first.solutions << Solution.find_by_id(3)
-
-puts("# -----------------------TeachingAssistants---------------------------")
-	TeachingAssistant.first.courses << Course.first
-	TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
 puts("# ---------------------------------------------------------")

@@ -3,7 +3,7 @@
 	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
 		:html => { :multipart => true, :class => 'form-devise' }) do |f| %>
 		<%= devise_error_messages! %>
-		
+
 		<div>
 			<%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
 		</div>
@@ -29,7 +29,7 @@
 
 		<div>
 			<%= f.label :date_of_birth %><br />
-			<%= f.date_select :dob, {:start_year => Date.today.year-90, :end_year => Date.today.year} %>
+			<%= f.date_select :dob, {:start_year => Date.today.year-10, :end_year => Date.today.year-90} %>
 		</div>
 
 		<div>
@@ -37,11 +37,12 @@
 		</div>
 
 		<div>
-			<%= f.number_field :graduated_year, class: "form-control", placeholder: "Graduation Year" %>
+			<%= f.text_field :degree, class: "form-control", placeholder: "Degree" %>
 		</div>
 
 		<div>
-			<%= f.text_field :degree, class: "form-control", placeholder: "Degree" %>
+			<%= f.label :graduated_year %>
+			<%= f.select :graduated_year, ((Date.today.year-90)..(Date.today.year)).to_a.reverse %>
 		</div>
 
 		<div>
@@ -51,16 +52,7 @@
 		<div>
 			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
 		</div>
-
-		<div>
-			<br />
-			<%= f.label :profile_image %><br />
-			<%= image_tag(@teaching_assistant.profile_image_url.to_s) if @teaching_assistant.profile_image? %>
-			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
-			<%= f.hidden_field :profile_image_cache %>
-			<br />
-		</div>
-
+		
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
 	<% end %>
 

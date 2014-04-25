@@ -1,12 +1,29 @@
 <%= form_for :test_case , url: test_cases_path do |f| %>
+<% if @test_case.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@test_case.errors.count, "error") %>
+			prohibited this course from being saved:
+		</h2>
+		<ul>
+			<% @test_case.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% else %> 
+<%= f.hidden_field :problem_id, :value => @problem.id %>
+<% end %>
+
+<h2>Please Insert your Test case</h2>
 <p>
-	<%= flash[:notice] %><br>
+	<%= flash[:notice] %>
 	<%= f.label :Input %>
-	<%= f.text_field :input %>
+	<br><%= f.text_field :input %></br>
 	<%= f.label :Output %>
-	<%= f.text_field :output  %>
+	<br><%= f.text_field :output %></br>
+		<%= f.hidden_field :problem_id, value: params[:id] %>
 </p>
-<p >
-	<%= f.submit 'Add' %>
+<p>
+	<%= f.submit 'Add test case', class: "btn btn-large btn-primary" %>
 </p>
 <% end %>
