@@ -87,18 +87,41 @@ class Executer
 	# 	A hash [error, explanation], where error is the runtime error and explanation
 	# 		is a custom message to explain the error
 	# Author: Ahmed Akram
+	def self.get_runtime_error(file_name, sub_name)
+		execute_res = remove_class_name(file_name, execute_res, sub_name)
+		return get_runtime_explaination(execute_res)
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Returns a message explaining what this error is
+	# Parameters:
+	#	exception: The exception to be explained
+	# Returns: The Explanation of the exception given
+	# Author: Mussab ElDash
+	def self.get_runtime_explaination(exception)
+		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
+			message = "Division by Zero results in infinity, " +
+				"which computers can not understand. Be careful !"
+			return {errors: exception, explanation: message}
+		else
+			message = "To be set Runtime Error!"
+			return {errors: exception, explanation: message}
+		end
+	end
+
+	# [Compiler: Test - Story 3.15]
+	# Returns the runtime error and a message
+	# Parameters:
+	#	file_name: The submitted file name
+	# 	sub_name: The name to replace the class name
+	# Returns: A hash [error, explanation], where error is the runtime error and explanation
+	# 		is a custom message to explain the error
+	# Author: Ahmed Akram
 	def self.get_runtime_error
 		file_name = @solution.file_name
 		sub_name = 'CoolSoft'
 		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
-		if @execute_res.include?("/ by zero")
-			message = "Division by Zero results in infinity, "\
-						"which computers can not understand. Be careful !"
-			return msg = {errors: @execute_res, explanation: message}
-		else
-			message = "To be set Runtime Error!"
-			return msg = {errors: @execute_res, explanation: message}
-		end
+		return get_runtime_explaination @execute_res
 	end
 
 	# [Compiler: Test - Story 3.15]
