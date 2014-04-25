@@ -96,9 +96,12 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
+
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: true)
 	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
 	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
+	Hint.create(message: "Do not Try to Solve CS problem-4", category: false, time: 5)
+
 
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
@@ -259,6 +262,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(11)
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
+
+puts("# -----------------------Hints---------------------------")
+	Problem.first.model_answers.first.hints << Hint.first
 
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first
