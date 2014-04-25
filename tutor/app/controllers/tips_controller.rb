@@ -43,7 +43,18 @@ class TipsController < ApplicationController
 		end
 	end
 
+	# [Show tip - Story 4.23]
+	# Show the content of the tip that was created or edited with edit and delete buttons
+	# Parameters: 
+	#     :model_answer_id => The model answer id
+	#     :id => tip id that should be viewed
+	# Returns: 
+	#     @tip: tip that will be viewed
+	# Author: Ahmed Osam
 	def show
+		@tip = Hint.find_by_id(params[:id])
+		redirect_to :controller => 'model_answers', :action => 'edit',
+			:model_answer_id => session[:model_answer_id]
 	end
 
 	def index

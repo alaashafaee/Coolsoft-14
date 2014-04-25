@@ -1,2 +1,25 @@
-<h1>Tips#show</h1>
-<p>Find me in app/views/tips/show.html.erb</p>
+<body onLoad = "setTimeout('delayedRedirect()', 6000)">
+	<h1>
+		Tip content:
+	</h1>
+	<h3>
+		"<%= @tip.message %>"
+	</h3>
+	<p>
+	<h1>
+		Time:
+	</h1>
+	<h3>
+		<%= @tip.time %> seconds
+	</h3>
+	</p><br>
+	<p>
+		You will be redirected to the model answer page shortly...
+	</p>
+</body>
+<script type="text/javascript">
+	function delayedRedirect(){
+		var _id = <%= @tip.model_answer_id %>
+		window.location = "/model_answers/"+_id+"/edit"
+	}
+</script>
