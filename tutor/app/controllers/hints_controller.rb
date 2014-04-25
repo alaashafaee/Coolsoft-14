@@ -2,6 +2,16 @@ class HintsController < ApplicationController
 
 	@@answer_id = nil
 
+	#Not my part but needed for code to run
+	def index
+		@hints = Hint.all
+		@hints_check=Hint.all
+	end
+	def new
+		@answer = ModelAnswer.find(params[:model_answer_id])
+		@@answer_id = params[:model_answer_id]
+	end
+
 	# [Adding Helping Hints - 4.12]
 	# Creates a new record to Hint Table
 	# Parameters:
