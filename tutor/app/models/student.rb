@@ -1,7 +1,8 @@
 class Student < ActiveRecord::Base
 
 	devise :database_authenticatable, :registerable,
-		:recoverable, :rememberable, :trackable, :validatable
+		:recoverable, :rememberable, :trackable,
+		:validatable, :confirmable
 	
 	#Elasticsearch
 	include Tire::Model::Search
@@ -10,10 +11,7 @@ class Student < ActiveRecord::Base
 	#concerns
 	include Searchable
 
-	devise :database_authenticatable, :registerable,
-			:recoverable, :rememberable, :trackable,
-			:validatable, :confirmable
-
+	#Uploader
 	# mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
@@ -42,6 +40,7 @@ class Student < ActiveRecord::Base
 	
 	has_many :course_students
 	has_many :courses, through: :course_students, dependent: :destroy
+	has_many :problems_start_time, class_name: 'ProblemOpeningTime'
 
 	#Methods
 

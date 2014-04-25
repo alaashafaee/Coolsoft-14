@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2014-04-25 02:31:02
+  student_id: 1
+  problem_id: 1
+
+two:
+  start_time: 2014-04-25 02:31:02
+  student_id: 1
+  problem_id: 1
