@@ -26,7 +26,7 @@ class TestCasesController < ApplicationController
 	# [Add test case-story 4.8]
 	# Saves the new test case into the database.(What the form the 'new' method will submit to)
 	# Parameters: None
-	# Returns: 
+	# Returns:
 	#	In case of success a flash notice will appear:"Post created successfully"
 	#	In case of failure a flash notice will appear:"Can't add test case!"
 	# Author: Lin
@@ -53,8 +53,8 @@ class TestCasesController < ApplicationController
 	end
 
 	# [Edit test case-story 4.9]
-	# Edit test case 
-	# Parameters: 
+	# Edit test case
+	# Parameters:
 	#	@test_case:Test case to be edited.
 	# Returns: none
 	# Author: Nadine Adel
@@ -65,9 +65,9 @@ class TestCasesController < ApplicationController
 
 	# [Edit test case-story 4.9]
 	# Update test case in the database
-	# Parameters: 
+	# Parameters:
 	#	 @test_case:Test case to be updated.
-	# Returns: 
+	# Returns:
 	#	Flash message if the test case is updated or not
 	# Author: Nadine Adel
 	def update
