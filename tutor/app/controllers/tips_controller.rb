@@ -58,8 +58,8 @@ class TipsController < ApplicationController
 	end
 
 	def index
-		@tips= Hint.all
-		@tips_check =Hint.all
+		@tips = Hint.all
+		@tips_check = Hint.all
 	end
 
 	def destroy
@@ -107,7 +107,7 @@ class TipsController < ApplicationController
 	#	none
 	# Author: Ahmed Osam
 	private
-	def tip_params 
+	def tip_params
 		params.require(:tip).permit(:message, :time)
 	end
 
