@@ -25,6 +25,25 @@
 		@post = Post.find(params[:id])
 	end
 
+	# [Delete Post- Story 1.15]
+	# This action takes the post id, remove it from the database
+	#	and then redirects the user to the show page of the discussion board
+	#	with a "Post successfully Deleted" message.
+	# Parameters:
+	#	params[:id]: The current post's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+		@disscusion_board = DiscussionBoard.find_by_id
+			(Post.find_by_id(params[:id]).discussion_board_id)
+		if Post.find_by_id(params[:id]).destroy
+			flash[:notice] = "Post successfully Deleted"
+			redirect_to(:controller => 'discussion_boards', 
+				:action => 'show', :id => @disscusion_board.course_id)
+		end
+	end	
+
 	# [Add Post - Story 1.13]
 	# Description: Displays the post that the user chose
 	# Parameters:
@@ -34,7 +53,9 @@
 	# Author: Ahmed Atef
 	def show
 	  	@post = Post.find(params[:id])
-	  	@replies = @post.replies.order("created_at desc")
+	  	@post.views_count = @post.views_count + 1
+	  	@post.save
+	  	@replies = @post.replies.order("created_at asc")
 	end
 
 	# [Add Post - Story 1.13]
@@ -43,7 +64,7 @@
 	#              and assigns it to the respective discussion board.If the 
 	#              creation fails the user is redirected to the form
 	# Parameters:
-	#	topic_params[]: A list that has all fields entered by the user to in the
+	# 	topic_params[]: A list that has all fields entered by the user to in the
 	# 					add_post_form
 	# Returns: 
 	# 	flash[:notice]: A message indicating the success or failure of the creation

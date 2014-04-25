@@ -65,9 +65,14 @@ puts("# ---------------------------TeachingAssistants---------------------------
 	t.save!
 
 puts("# --------------------------Courses------------------------------")
+
 	Course.create(name:"Data Structures and Alogrithms", description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
 	Course.create(name:"Computer Programming Lab", description:"This course's evaluation system is the bad", code:2, year:2014, semester:1)
 	Course.create(name:"Course3", description:"This is course three", code:3, year:2014, semester:1)
+	Course.create(:name => "CS 2", description:"This is course four", :code => "cs2", :year => 2014, :semester => 2, :university => "GUC")
+	Course.create(:name => "CS 3", description:"This is course five", :code => "cs3", :year => 2014, :semester => 3, :university => "GUC")
+	Course.create(:name => "CS 4", description:"This is course six", :code => "cs4", :year => 2014, :semester => 4, :university => "AUC")
+	Course.create(:name => "CS 5", description:"This is course seven", :code => "cs5", :year => 2014, :semester => 5, :university => "AUC")
 
 puts("# --------------------------Course_Student------------------------------")
 	CourseStudent.create(share: true)
@@ -96,10 +101,11 @@ puts("# --------------------------Topics------------------------------")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
 puts("# -----------------------Hints---------------------------")
-	Hint.create(message: "Do not Try to Solve CS problem-1")
-	Hint.create(message: "Do not Try to Solve CS problem-2")
-	Hint.create(message: "Do not Try to Solve CS problem-3")
 
+	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5)
+	Hint.create(message: "Do not Try to Solve CS problem-2", category: true)
+	Hint.create(message: "Do not Try to Solve CS problem-3", category: false)
+	
 puts("# -----------------------ModelAnswer---------------------------")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -127,7 +133,6 @@ puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 3")
 
 puts("# -----------------------Problems---------------------------")
-
 	Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b", incomplete: false)
 	Problem.create(title: "Problem 2", description: "This is very hard Problem", incomplete: false)
 	Problem.create(title: "Problem 3", description: "This wont be a hard Problem", incomplete: false)
@@ -171,7 +176,7 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
-	
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -189,6 +194,10 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.first.replies << Reply.find_by_id(2)
 	Lecturer.first.replies << Reply.find_by_id(3)
 	Lecturer.first.replies << Reply.find_by_id(4)
+	Lecturer.find_by_id(1).courses << Course.find_by_code("cs2")
+	Lecturer.find_by_id(1).courses << Course.find_by_code("cs3")
+	Lecturer.find_by_id(2).courses << Course.find_by_code("cs4")
+	Lecturer.find_by_id(2).courses << Course.find_by_code("cs5")
 
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
@@ -260,6 +269,9 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(11)
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
+
+puts("# -----------------------Hints---------------------------")
+	Problem.first.model_answers.first.hints << Hint.first
 
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first

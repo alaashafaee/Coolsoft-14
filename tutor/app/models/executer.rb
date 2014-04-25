@@ -3,26 +3,46 @@ class Executer
 	# [Compiler: Test - Story 3.15]
 	# Runs the solution submitted on the submitted test case
 	# Parameters:
-	#	file_name: The submitted file name
+	#	sol: The created solution
 	# 	input: Test case entered by the user
 	# Returns:
 	# 	@execute_res: The execution result
 	# Author: Ahmed Akram
-	def self.execute(file_name, input, problem_id)
+	def self.execute(sol, input)
+		@solution = sol
 		class_path = Solution::CLASS_PATH
-		validity = check_input_validity(input, problem_id)
+		file_name = @solution.file_name
+		validity = check_input_validity(input, @solution.problem.id)
 		if validity[:status]
 			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
-			puts @execute_res
 			if @execute_res.include?("Exception")
-				return false
+				return {executer_feedback: false, executer_output: get_runtime_error()}
 			else
-				return true
+				return {executer_feedback: true, executer_output: get_output()}
 			end
 		else
-			@execute_res = validity[:msg]
-			return false
+			return {executer_feedback: false, executer_output: validity[:msg]}
 		end
+	end
+
+	# [Compiler: Test - Story 3.15]
+	# Creates a new solution with the passed parameters
+	# Parameters:
+	#	student_id: The solver id
+	#	problem_id: The problem id
+	#	code: The submitted code
+	# 	input: Test case entered by the user
+	# Returns:
+	# 	none
+	# Author: Ahmed Akram
+	def self.create_solution(student_id, problem_id, code, input)
+		solution = Solution.create({code: code, student_id: student_id,
+			problem_id: problem_id})
+		compile_status = Compiler.compiler_feedback(solution)
+		unless compile_status[:success]
+			return {compiler_error: true, compiler_output: compile_status}
+		end
+		return execute(solution, input)
 	end
 
 	# [Compiler: Test - Story 3.15]
@@ -68,16 +88,40 @@ class Executer
 	# 		is a custom message to explain the error
 	# Author: Ahmed Akram
 	def self.get_runtime_error(file_name, sub_name)
-		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
+		execute_res = remove_class_name(file_name, execute_res, sub_name)
+		return get_runtime_explaination(execute_res)
+	end
 
-		if @execute_res.include?("/ by zero")
-			message = "Division by Zero results in infinity, "\
-						"which computers can not understand. Be careful !"
-			return msg = {error: @execute_res, explanation: message}
+	# [Debugger: Debug - Story 3.6]
+	# Returns a message explaining what this error is
+	# Parameters:
+	#	exception: The exception to be explained
+	# Returns: The Explanation of the exception given
+	# Author: Mussab ElDash
+	def self.get_runtime_explaination(exception)
+		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
+			message = "Division by Zero results in infinity, " +
+				"which computers can not understand. Be careful !"
+			return {errors: exception, explanation: message}
 		else
 			message = "To be set Runtime Error!"
-			return msg = {error: @execute_res, explanation: message}
+			return {errors: exception, explanation: message}
 		end
+	end
+
+	# [Compiler: Test - Story 3.15]
+	# Returns the runtime error and a message
+	# Parameters:
+	#	file_name: The submitted file name
+	# 	sub_name: The name to replace the class name
+	# Returns: A hash [error, explanation], where error is the runtime error and explanation
+	# 		is a custom message to explain the error
+	# Author: Ahmed Akram
+	def self.get_runtime_error
+		file_name = @solution.file_name
+		sub_name = 'CoolSoft'
+		@execute_res = remove_class_name(file_name, @execute_res, sub_name)
+		return get_runtime_explaination @execute_res
 	end
 
 	# [Compiler: Test - Story 3.15]
@@ -88,7 +132,7 @@ class Executer
 	# 	@execute_res: The answer to the test case
 	# Author: Ahmed Akram
 	def self.get_output
-		return @execute_res
+		return {success: true, message: @execute_res}
 	end
 
 end

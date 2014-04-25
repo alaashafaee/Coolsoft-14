@@ -1,6 +1,6 @@
 <h1>
-	<%= image_tag(@teaching_assistant.profile_image_url.to_s)
-		if @teaching_assistant.profile_image? %> <%= @teaching_assistant.name %>'s Profile
+	<%= image_tag(@teaching_assistant.profile_image_url.to_s)\
+		if @teaching_assistant.profile_image %> <%= @teaching_assistant.name %>'s Profile
 </h1>
 <div class="tabs">
 	<ul class="tab-links">

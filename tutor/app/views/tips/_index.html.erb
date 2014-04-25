@@ -1,1 +1,44 @@
-<h1>Previous tips</h1>
+<% @tips1=Array.new %>
+<% @tips_check.each do |tip2| %>
+	<% if tip2.category == true %>
+		<% @tips1.push(tip2) %>
+	<% end %>
+<% end %>
+<br><ul class="navbar-brand pull-right"><%= link_to "Create New Tip",
+			{:controller => 'tips',:action => 'new',
+			:method => :get, :model_answer_id => @answer.id },
+			{class: 'btn btn-primary btn' } %></ul></br>
+<br>
+			
+<a href="#" return:false; class="Lst" onclick="toggle_visibility('foo3'); return false;"
+	style="font:120px"> Previous Tips</a>
+<div id="foo3" style="display:none;">
+	<% if !@tips1.any? %>
+		<p>No previous Tips</p>
+	<% end %>
+	<% if !@tips1.empty? %>
+		<table class="table table-striped" style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:30%">Tips</th>
+					<th style = "width:10%">Time of showing in seconds</th>
+					<th style = "width:20%">Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @tips.each do |tip1| %>
+					<tr>
+						<% if tip1.category == true %>
+						<td style = "max-width: 300px; word-wrap:break-word;">
+							<%= tip1.message %></td>
+						<td style ="width:20%"><%= tip1.time %></td>
+						<td><%= button_to "Edit", {:action => 'new',
+								:controller => 'tips', :method => :post},
+								{class: 'btn btn-primary btn-xs'} %></td>
+						<% end %>
+					</tr>
+				<% end %>
+			</tbody>	
+		</table>
+	<% end %>
+</div>

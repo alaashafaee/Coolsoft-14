@@ -5,33 +5,49 @@
 <%= link_to "back", {:action => 'show', :controller => 'discussion_boards',
 	:id => DiscussionBoard.find_by_id(@post.discussion_board_id).course_id}, {
 		class: 'btn btn-primary'} %>
-<div align="center">
-	<% if current_lecturer %>
-		<% @userID = current_lecturer.id %>
-	<% end %>
-	<% if current_student %>
-		<% @userID = current_student.id %>
-	<% end %>	
-	<%if current_teaching_assistant %>
-		<% @userID = current_teaching_assistant.id %>
-	<% end %>
-<div style="width: 50%; margin-left:25%">
-	<h3><%=@post.title%></h3>
-	<%= @post.content %>
-	<br>
+<% if current_lecturer %>
+	<% @userID = current_lecturer.id %>
+<% end %>
+<% if current_student %>
+	<% @userID = current_student.id %>
+<% end %>	
+<%if current_teaching_assistant %>
+	<% @userID = current_teaching_assistant.id %>
+<% end %>
+<% if @post.owner_id == @userID %>
+	<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
+		class: 'btn btn-primary',:id => @post.id} %>
+<% end %>
+<div>
+	<div>
+		<h2><%= @post.title %></h2>
+	</div>
+	<div class = "greyLine">
+		<p><font size="5"><%= @post.owner.name %></font> </p>
+		<p><%= @post.content %></p>
+		<p><font size="1"><%= distance_of_time_in_words_to_now @post.
+			created_at %> ago</p></font>
+	</div>
+</div>
+<div>	
 	<% unless @replies.blank? %>
 		<% @replies.each do |reply| %>
-			<div style="background-color: #A8A8A8">
-				<%= reply.content %><br>
+			<div class = "reply">
+				<div>
+					<font size="5"><%= reply.owner.name %></font>
+				</div>
+				<div>
+					<p><%= reply.content %><br></p>
+					<p><font size="1"><%= distance_of_time_in_words_to_now reply.
+						created_at %> ago </p>
+				</div>
+				<br>
 			</div>
-			<br>
 		<% end %>
 	<% else %>
-		No Replies in this post yet .
+		<div align="center">
+			No replies in this post yet. 
+		</div>
 	<% end %>
 </div>
-	<% if @post.owner_id == @userID %>
-		<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
-			class: 'btn btn-primary',:id => @post.id} %>
-	<% end %>
 </div>
