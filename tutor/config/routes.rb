@@ -1,5 +1,6 @@
 Tutor::Application.routes.draw do
 
+
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
@@ -15,13 +16,6 @@ Tutor::Application.routes.draw do
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
 	get 'courses/sign_up'
-	get 'students/get_performance' => 'students#get_performance'
-	get 'students/solved_problems' => 'students#solved_problems'
-	get 'students/failed_problems' => 'students#failed_problems'
-	post 'students/get_performance' => 'students#get_performance'
-	post 'students/solved_problems' => 'students#solved_problems'
-	post 'students/failed_problems' => 'students#failed_problems'
-	get 'students/incomplete_problems' => 'students#incomplete_problems'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
@@ -183,4 +177,5 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
+
 end

@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
 
+<<<<<<< HEAD
 	# [Performance of a student - Story 5.3]
 	# This method retrieve variables from tables in the database
 	# Parameters:
@@ -49,6 +50,8 @@ class StudentsController < ApplicationController
 		@incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id")
 	end
 
+=======
+>>>>>>> 655f164d4accf90368af52c6e11241eef7183984
 	# [Profile - Story 5.8]
 	# Displays the profile of the student chosen
 	# Parameters:
@@ -59,4 +62,5 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 		@courses = @student.courses.order("created_at desc")
 	end
+	
 end
