@@ -1,4 +1,3 @@
-<p class="compilation_failed" ><%= flash[:alert] %></p>
 <!-- Timer that starts when problem is shown -->
 <b>Time spent:</b>
 <span id="mins">0</span>:<span id="secs">00</span>
@@ -68,6 +67,7 @@
 	<!-- Test Cases -->
 	<div id="validate_case" >
 	</div>
+	<div id="output_section" style = "color: black; font-weight: bold; font-size: 20px"></div>
 	<!-- Runtime Messages -->
 	<div id="runtime_error", style="display: none">
 		<div class="panel-danger", style="white-space: pre">
@@ -88,7 +88,6 @@
 				style = "margin-top:-100px; min-height: 50px;max-height: 50px;"></div>
 		</div>
 	</div>
-	<div id="output_section" style = "color: black; font-weight: bold; font-size: 20px"></div>
 </div>
 <script>
 	var editor = ace.edit("editor");
