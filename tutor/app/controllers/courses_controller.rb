@@ -140,7 +140,7 @@ class CoursesController < ApplicationController
 		end
 		@discussion_board = @course.discussion_board
 	end
-	
+
 	# [View a course - story 1.21]
 	#Description: This action is resposible for the view of a specific course.
 	#Parameters: 

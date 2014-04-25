@@ -29,7 +29,7 @@
 
 		<div>
 			<%= f.label :date_of_birth %><br />
-			<%= f.date_select :dob, {:start_year => Date.today.year-90, :end_year => Date.today.year} %>
+			<%= f.date_select :dob, {:start_year => Date.today.year-10, :end_year => Date.today.year-90} %>
 		</div>
 
 		<div>
@@ -45,7 +45,15 @@
 		</div>
 
 		<div>
-			<%= f.number_field :semester, class: "form-control", placeholder: "Semester" %>
+			<%= f.label :semester %>
+			<%= f.select :semester, (1..10).to_a %>
+		</div>
+
+		<div>
+			<%= f.label :advising %>
+			<%= f.select(:advising, [['No', false], ['Yes', true]]) %>
+			<%= f.label :probation %>
+			<%= f.select(:probation, [['No', false], ['Yes', true]]) %>
 		</div>
 
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>

@@ -17,6 +17,12 @@ class Post < ActiveRecord::Base
 	
 	#Methods
 
+	def most_recent_reply
+		reply = Reply.first(:order => 'created_at DESC',
+			:conditions => ['post_id = ?', self.id])
+		return reply
+	end
+
 	# [Advanced Search - Story 1.23]
 	# search for posts
 	# Parameters: hash of search options
@@ -44,4 +50,5 @@ class Post < ActiveRecord::Base
 			end
 		end
 	end
+
 end

@@ -1,4 +1,5 @@
 class ProblemsController < ApplicationController
+	
 	# [Solve a problem - Story 3.1]
 	# Displays the problem statment that the user chose
 	# Parameters:

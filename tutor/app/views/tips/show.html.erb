@@ -1,6 +1,6 @@
 
 <% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
-	<body onLoad = "setTimeout('delayedRedirect()', 6000)">
+	<div>
 		<h1>
 			Tip content:
 		</h1>
@@ -21,7 +21,7 @@
 		<p>
 			<%= link_to "Edit Tip", edit_tip_path(@tip), class: "btn btn-primary btn-xs", style: "float:left" %>
 		</p>
-	</body>
+	</div>
 	<script type="text/javascript">
 		// [Recommendation to students]
 		// Redirect the user to model answer page
@@ -33,5 +33,6 @@
 			var _id = <%= @tip.model_answer_id %>
 			window.location = "/model_answers/"+_id+"/edit"
 		}
+		setTimeout('delayedRedirect()', 6000)()
 	</script>
 <% end %>

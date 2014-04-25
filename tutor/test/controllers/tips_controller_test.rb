@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class TipsControllerTest < ActionController::TestCase
+
   test "should get new" do
     get :new
     assert_response :success
@@ -30,5 +31,5 @@ class TipsControllerTest < ActionController::TestCase
     get :destroy
     assert_response :success
   end
-
+  
 end
