@@ -1,9 +1,10 @@
 <br><br>
 <% @tips1=Array.new %>
 <% @tips_check.each do |tip2| %>
-<% if tip2.category == true %>
-	<% @tips1.push(tip2) %>
+	<% if tip2.category == true %>
+		<% @tips1.push(tip2) %>
 	<% end %>
+<% end %>
 <br><ul class = "navbar-brand pull-right"><%= link_to "Create New Tip",
 	{ :controller => 'tips', :action => 'new', :model_answer_id => @answer.id },
 	{ class: 'btn btn-primary btn' } %></ul><br><br>
@@ -47,5 +48,3 @@
 		</table>
 	<% end %>
 </div>
-
-<%end%>
