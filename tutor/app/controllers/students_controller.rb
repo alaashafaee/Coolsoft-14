@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
 	# 	@solved: [int] The number of solved problems
 	# 	@failed: [int] The number of failed problems
 	# 	@incomplete: [int] The number of incomplete problems
-	# Author : Mahdi
+	# Author: Mahdi
 	def get_performance
 		@solved = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id").count
 		@failed = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id").count
@@ -22,7 +22,7 @@ class StudentsController < ApplicationController
 	# 	params: A hash of the request URL attributes
 	# Returns:
 	# 	An array of solved problems
-	# Author : Mahdi
+	# Author: Mahdi
 	def solved_problems
 		@solved_list = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id")
 	end
@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
 	# 	params: A hash of the request URL attributes
 	# Returns:
 	# 	An array of failed problems
-	# Author : Mahdi
+	# Author: Mahdi
 	def failed_problems
 		@failure_list = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id")
 	end
@@ -44,7 +44,7 @@ class StudentsController < ApplicationController
 	# 	params: A hash of the request URL attributes
 	# Returns:
 	# 	An array of incomplete problems  
-	# Author : Mahdi  
+	# Author: Mahdi  
 	def incomplete_problems
 		@incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id")
 	end
