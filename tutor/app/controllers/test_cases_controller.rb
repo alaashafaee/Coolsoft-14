@@ -80,6 +80,27 @@ class TestCasesController < ApplicationController
 		end
 	end
 
+	# [Remove Test Case - Story 4.16]
+	# This action takes the test case id, and check if it is not the last test case in the problem 
+	#	and removes it from the database and then redirects the user to the edit problem page of 
+	#	the problem that had the test case with a "Test case successfully Deleted" message.
+	# Parameters:
+	#	params[:id]: The current test case's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+		@test_case = TestCase.find_by_id(params[:id])
+		@current = Problem.find_by_id(@test_case.problem_id)
+		if @current.test_cases.count == 1
+			flash[:notice] = "Cannot delete problem's last test case"
+			redirect_to :back and return
+		elsif @test_case.destroy
+			flash[:notice] = "Test case successfully Deleted"
+			redirect_to(:controller => 'problems', :action => 'edit', :id => @current.id)
+		end
+	end
+
 	# [Add test case-story 4.8]
 	# Private method. Controls the test case parameters that can be accessed.
 	# Parameters: none
