@@ -114,8 +114,7 @@ class Executer
 	# Parameters:
 	#	file_name: The submitted file name
 	# 	sub_name: The name to replace the class name
-	# Returns:
-	# 	A hash [error, explanation], where error is the runtime error and explanation
+	# Returns: A hash [error, explanation], where error is the runtime error and explanation
 	# 		is a custom message to explain the error
 	# Author: Ahmed Akram
 	def self.get_runtime_error
