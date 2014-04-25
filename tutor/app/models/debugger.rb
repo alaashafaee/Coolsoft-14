@@ -118,7 +118,6 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until_complete
-		puts out_stream
 		list_of_lines = out_stream.split(/\n+/)
 		before_last_line = list_of_lines[-2]
 		/, line=\d+/ =~ before_last_line
@@ -156,7 +155,6 @@ class Debugger < ActiveRecord::Base
 		debugger = Debugger.new
 		class_name = solution.class_file_name
 		debugging = debugger.start(class_name, input.split(" "))
-		p debugging
 		java_file = solution.java_file_name true, true
 		class_file = solution.class_file_name true, true
 		File.delete(java_file)
@@ -192,9 +190,13 @@ class Debugger < ActiveRecord::Base
 			output_buffer1 = buffer_until_complete.split("main").first
 			input "print " + variable_name
 			output_buffer2 = buffer_until_complete.split("main").first
-			result << output_buffer1
+			unless output_buffer1.match("instance")
+				result << output_buffer1
+			end
 			if output_buffer1 != output_buffer2
-				result << output_buffer2
+				unless output_buffer2.match("instance")
+					result << output_buffer2
+				end
 			end
 		else
 			result << variable
