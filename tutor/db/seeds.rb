@@ -65,8 +65,8 @@ puts("# ---------------------------TeachingAssistants---------------------------
 	t.save!
 
 puts("# --------------------------Courses------------------------------")
-	Course.create(name:"Course1", description:"This is course one", code:1, year:2014, semester:1)
-	Course.create(name:"Course2", description:"This is course two", code:2, year:2014, semester:1)
+	Course.create(name:"Data Structures and Alogrithms", description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
+	Course.create(name:"Computer Programming Lab", description:"This course's evaluation system is the bad", code:2, year:2014, semester:1)
 	Course.create(name:"Course3", description:"This is course three", code:3, year:2014, semester:1)
 
 puts("# --------------------------Course_Student------------------------------")
