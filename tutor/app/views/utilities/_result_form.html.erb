@@ -17,7 +17,11 @@
 				<% objects.each do |object| %>
 					<li class="list-group-item" data-toggle="tooltip"
 						data-placement="top" title="<%= object.name%>">
-						<%= link_to object.name, class: 'color' %>
+						<% unless object.name.nil? %>
+							<%= link_to object.name, object ,class: 'color' %>
+						<% else %>	
+							<%= link_to object.title, object ,class: 'color' %>
+						<% end %>
 					</li>
 				<% end %>
 			</ul>
