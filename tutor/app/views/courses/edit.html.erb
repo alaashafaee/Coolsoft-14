@@ -43,7 +43,7 @@
 				<% end %>
 				<!-- This button toggles the activation of the discussion board -->
 				<%= link_to str, {:controller => :discussion_boards, :action => 'toggle',
-							:id => @discussion_board.id}, class: "btn btn-success",
+							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
 							 style: "float: left; margin-left: 15px" %>
 			</p> 
 		
