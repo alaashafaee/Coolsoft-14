@@ -1,0 +1,7 @@
+<%= link_to "<< Back to list", :controller => 'solutions_constraints', :action => 'index' %>
+<h1> Edit Constraints</h1>
+<% if params[:type] == "meth" %>
+	<%= render "edit_method" %>
+<%else%>
+	<%= render "edit_variable" %>
+<% end %> 

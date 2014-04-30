@@ -138,6 +138,11 @@ puts("# -----------------------Method Parameters---------------------------")
 	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
 	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
+puts("# -----------------------Method Constraints--------------------------")
+	MethodConstraint.create(method_name:"MethodName 1")
+	MethodConstraint.create(method_name:"MethodName 2")
+	MethodConstraint.create(method_name:"MethodName 3")
+
 puts("# -----------------------Variable Constraints---------------------------")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")
 	VariableConstraint.create(variable_name: "VariableConstraint 2")
@@ -307,7 +312,7 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(13)
 
 puts("# -----------------------Hints---------------------------")
-	Problem.first.model_answers.first.hints << Hint.first
+	#Problem.first.model_answers.first.hints << Hint.first
 
 puts("# ---------------------- Tracks --------------------------")
 	Track.first.problems << Problem.first

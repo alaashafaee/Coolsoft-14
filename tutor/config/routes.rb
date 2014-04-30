@@ -35,6 +35,7 @@ Tutor::Application.routes.draw do
 	get "tips/destroy"	
 	post "tips/:id/edit" => 'tips#update'
 
+
 	# You can have the root of your site routed with "root"
 	root 'site#index'
 	resources :tracks do
@@ -90,6 +91,7 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :solutions_constraints
 
 	# Example resource route with options:
 	#   resources :products do
