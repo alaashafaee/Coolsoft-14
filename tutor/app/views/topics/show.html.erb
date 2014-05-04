@@ -15,8 +15,15 @@
 		<% end %>
 	<% end %>
 
+<% openable = true %>
 <div class="panel-group list-group" id="accordion">
 	<% @tracks.each do |t| %>
+		<% if openable %>
+			<% open = "in" %>
+			<% openable = false %>
+		<% else %>
+			<% open = "" %>
+		<% end %>
 		<div class = "panel panel-default" style = "width:50%">
 			<div class="panel-title list-group-item list-group-item-info">
 				<a class = "icon glyphicon glyphicon-chevron-down" href="#<%= t.id.to_s %>"
@@ -25,7 +32,7 @@
 					<%= link_to t.title , t , style: 'color:#003366;'%>
 					<span class="badge"><%= t.problems.count %></span>
 			</div>
-			<div id="<%= t.id.to_s %>" class="panel-collapse collapse in">
+			<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 				<ul class="list-group">
 					<% t.problems.each do |p|%>
 						<% color = "" %>

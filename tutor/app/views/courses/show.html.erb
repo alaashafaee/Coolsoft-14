@@ -43,8 +43,15 @@
 					<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
 						:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
 				</div>
+				<% openable = true %>
 				<div class="panel-group list-group" id="accordion" style="width:100%;">
-					<% @topics.each do |t| %>
+					<% @topics.each do |t| %>	
+						<% if openable %>
+							<% open = "in" %>
+							<% openable = false %>
+						<% else %>
+							<% open = "" %>
+						<% end %>
 						<div class="panel panel-default">
 							<div class="panel-title list-group-item list-group-item-info">
 								<a class = "icon glyphicon glyphicon-chevron-down"
@@ -54,7 +61,7 @@
 								<%= link_to t.title, t, style: 'color:#003366;'%></b>
 								<span class="badge"><%= t.tracks.count %></span>
 							</div>
-							<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
+							<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 								<ul class="list-group">
 									<% t.tracks.each do |tt|%>
 										<% color = "label label-default" %>

@@ -12,7 +12,7 @@
 		</div><br>
 		<% end %>
 <% end %>
-
+<% openable = true %>
 <div class="panel-group list-group" id="accordion">
 	<% @problems.each do |problem| %>
 		<% if (problem.incomplete? && @can_edit) || !problem.incomplete?%>
@@ -21,6 +21,12 @@
 				<% if @problems_status[:success].include?(problem) %>
 					<% color = "label label-success" %>
 				<% end %>
+			<% end %>
+			<% if openable %>
+				<% open = "in" %>
+				<% openable = false %>
+			<% else %>
+				<% open = "" %>
 			<% end %>
 			<div class="panel panel-default">
 				<div class="panel-title list-group-item list-group-item-info">
@@ -42,7 +48,7 @@
 						</span>
 					<% end %>
 				</div>
-				<div id="<%= problem.id.to_s %>" class="panel-collapse collapse collapse in">
+				<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
 					<%= problem.description %>
 					<% if @can_edit %>
 						<%= link_to "Edit",
