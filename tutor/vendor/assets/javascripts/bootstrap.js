@@ -623,10 +623,10 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       if ($parent) $parent.find('[data-toggle=collapse][data-parent="' + parent + '"]').not($this).addClass('collapsed')
       $this[$target.hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
     }
-    if ($this.hasClass('glyphicon-chevron-right'))
-      $this.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
-    else
+    if ($target.hasClass('in'))
       $this.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+    else
+      $this.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
     $target.collapse(option)
   })
 
