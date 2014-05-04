@@ -1,7 +1,6 @@
-
 <div class="page-header">
-	<h1><%= link_to @course.name , @course %>
-		<small><%= link_to @topic.title , @topic %></small></h1>
+	<h1><%= link_to @course.name, @course, style: "color: black" %>
+		<small8><%= link_to @topic.title, @topic, style:"color: black" %></small8></h1>
 </div>
 	<% if @can_edit %>
 		<% if flash[:error] %>
@@ -19,21 +18,20 @@
 <div class="panel-group list-group" id="accordion">
 	<% @tracks.each do |t| %>
 		<div class = "panel panel-default" style = "width:50%">
-			<div class="panel-title list-group-item list-group-item-info"
-				data-toggle="collapse" data-parent="#accordion"
-				href="#<%= t.id.to_s %>">
-					<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
-						<%= link_to t.title , t , style: 'color:#003366;'%></b>
+			<div class="panel-title list-group-item list-group-item-info">
+				<a class = "icon glyphicon glyphicon-chevron-down" href="#<%= t.id.to_s %>"
+					data-toggle="collapse" data-parent="#accordion"
+					style = "margin-right:1%;text-decoration: none;"></a>
+					<%= link_to t.title , t , style: 'color:#003366;'%>
 					<span class="badge"><%= t.problems.count %></span>
 			</div>
-			<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
+			<div id="<%= t.id.to_s %>" class="panel-collapse collapse in">
 				<ul class="list-group">
 					<% t.problems.each do |p|%>
+						<% color = "" %>
 						<% if @problems_status %>
 							<% if @problems_status[:success].include?(p) %>
 								<% color = "label label-success" %>
-							<% elsif @problems_status[:failure].include?(p) %>
-								<% color = "label label-warning" %>
 							<% else %>
 								<% color = "label label-default" %>
 							<% end %>

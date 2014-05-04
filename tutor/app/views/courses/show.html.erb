@@ -46,10 +46,11 @@
 				<div class="panel-group list-group" id="accordion" style="width:100%;">
 					<% @topics.each do |t| %>
 						<div class="panel panel-default">
-							<div class="panel-title list-group-item list-group-item-info"
-								data-toggle="collapse" data-parent="#accordion"
-									href="#<%= t.id.to_s %>">
-								<b onclick="window.open('/topics/<%= t.id.to_s %>', '_self')">
+							<div class="panel-title list-group-item list-group-item-info">
+								<a class = "icon glyphicon glyphicon-chevron-down"
+									href="#<%= t.id.to_s %>"
+									data-toggle="collapse" data-parent="#accordion"
+									style = "margin-right:1%;text-decoration: none;"></a>
 								<%= link_to t.title, t, style: 'color:#003366;'%></b>
 								<span class="badge"><%= t.tracks.count %></span>
 							</div>
