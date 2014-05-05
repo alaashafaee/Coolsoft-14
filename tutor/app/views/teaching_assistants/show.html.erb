@@ -1,0 +1,67 @@
+<h1>
+	<%= image_tag(@teaching_assistant.profile_image_url.to_s)\
+		if @teaching_assistant.profile_image %> <%= @teaching_assistant.name %>
+</h1>
+<div class = "profile_picture" ></div>
+<div class = "tabs" style = "float:left; margin-left:10px;">
+	<ul class="tab-links">
+		<li class="active"><a href="#tab1">Courses</a></li>
+		<li><a href="#tab2">Info</a></li>
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+			<table class = "table table-striped", style = "width:80%">
+				<tr>
+					<th>Name</th>
+					<th>Code</th>
+					<th>Options</th>
+					<th></th>
+				</tr>
+				<% @courses.each do |course| %>
+					<tr>
+						<td>
+							<%= link_to course.name,
+							:controller => 'courses',
+							:action => 'show', :id => course.id,
+							:method => :get,
+							class: "btn btn-success" %>
+						</td>
+						<td><%= course.code %></td>
+						<% if current_lecturer %>
+							<td>
+								<%= link_to "Manage Course",
+									{
+										:controller => 'courses',
+										:action => 'edit',
+										:method => :get,
+										:id => course.id
+									},
+									class: "btn btn-success",
+									style: "text-decoration:none" %>
+							</td>
+						<% end %>
+						<td>
+							<%= link_to "Discussion Board",
+								{
+									:controller => 'discussion_boards',
+									:action => 'show',
+									:id => course.id
+								},
+								class: "btn btn-success",
+								method: :get,
+								style: "text-decoration:none" %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+		<div id="tab2" class="tab">
+			<p> <b>Name:</b> <%= @teaching_assistant.name %> </p>
+			<p> <b>Email:</b> <%= @teaching_assistant.email %> </p>
+			<p><b>Degree: </b><%= @teaching_assistant.degree %></p>
+			<p><b>Department: </b><%= @teaching_assistant.department %></p>
+			<p><b>University: </b><%= @teaching_assistant.university %></p>
+			<p><b>Joined on: </b><%= @teaching_assistant.created_at.to_date %></p>
+		</div>
+	</div>
+</div>

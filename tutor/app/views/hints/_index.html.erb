@@ -1,0 +1,39 @@
+<% @hints1=Array.new %>
+<% @hints_check.each do |hint2| %>
+	<% if hint2.category == false %>
+		<% @hints1.push(hint2) %>
+	<% end %>
+<% end %>
+<br></br>
+<br>
+
+<a href="#" return:false; class = "Lst" onclick = "toggle_visibility('foo2');
+	return false;" style= "font:120px"> Previous Hints</a>
+
+<div id= "foo2" style= "display:none;">
+	<% if !@hints1.any? %>
+		<p>You have no previous Hints</p>
+	<% end %>
+	<% if !@hints1.empty? %>
+		<table class="table table-striped" style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:30%">Hints</th>
+					<th style = "width:10%">Number of submissions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @hints.each do |hint1| %>
+					<tr>
+						<% if hint1.category == false %>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<%= hint1.message %>
+							</td>
+							<td style = "width:20%"><%= hint1.submission_counter %></td>
+						<% end %>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+</div>
