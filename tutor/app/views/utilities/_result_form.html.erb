@@ -1,18 +1,27 @@
+<% if openable %>
+	<% open = "in" %>
+	<% openarrow = "glyphicon-chevron-down" %>
+<% else %>
+	<% open = "" %>
+	<% openarrow = "glyphicon-chevron-right" %>
+<% end %>
 <% if objects.present? %>
 	<div class="panel panel-default">
-		<div class="panel-title list-group-item list-group-item-info"
-				data-toggle="collapse" data-parent="#accordion" 
-				href="#<%= objects.first.class.name.pluralize.to_s %>">
-			<div align="center">
-				<a class="panel-title">
-					<%= objects.first.class.name.pluralize.to_s %>
-					<span class="badge">
-						<%= objects.count %>
-					</span>
-				</a>
-			</div>
+		<div class="panel-title list-group-item list-group-item-info">
+			<a class = "icon glyphicon <%= openarrow %>"
+				href="#<%= objects.first.class.name.pluralize.to_s %>"
+				data-toggle="collapse" data-parent="#accordion"
+				style="margin-right:1%;text-decoration: none;">
+			</a>
+			<a class="panel-title" align="center">
+				<%= objects.first.class.name.pluralize.to_s %>
+			</a>
+			<span class="badge">
+				<%= objects.count %>
+			</span>
 		</div>
-		<div id="<%= objects.first.class.name.pluralize.to_s %>" class="panel-collapse collapse">
+		<div id="<%= objects.first.class.name.pluralize.to_s %>"
+			class="panel-collapse collapse <%= open %>">
 			<ul class="list-group">
 				<% objects.each do |object| %>
 					<li class="list-group-item" data-toggle="tooltip"
