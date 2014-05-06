@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20140506131804) do
     t.datetime "updated_at"
   end
 
+  add_index "contest_progresses", ["contest_id", "student_id", "problem_id"], name: "ConProgress", unique: true
+
   create_table "contests", force: true do |t|
     t.string   "title"
     t.text     "description"

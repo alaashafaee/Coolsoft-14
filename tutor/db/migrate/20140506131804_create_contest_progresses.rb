@@ -8,5 +8,6 @@ class CreateContestProgresses < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :contest_progresses, [:contest_id, :student_id, :problem_id], :unique => true, :name => "ConProgress"
   end
 end
