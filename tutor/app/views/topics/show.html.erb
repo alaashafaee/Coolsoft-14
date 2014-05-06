@@ -1,6 +1,7 @@
 <div class="page-header">
 	<h1><%= link_to @course.name, @course, style: "color: black" %>
-		<small8><%= link_to @topic.title, @topic, style:"color: black" %></small8></h1>
+		<small8><%= link_to @topic.title, @topic, style: "color: black" %></small8>
+	</h1>
 </div>
 	<% if @can_edit %>
 		<% if flash[:error] %>
@@ -30,20 +31,17 @@
 			<div class="panel-title list-group-item list-group-item-info">
 				<a class = "icon glyphicon <%= openarrow %>" href="#<%= t.id.to_s %>"
 					data-toggle="collapse" data-parent="#accordion"
-					style = "margin-right:1%;text-decoration: none;"></a>
-					<%= link_to t.title , t , style: 'color:#003366;'%>
-					<span class="badge"><%= t.problems.count %></span>
+					style="margin-right:1%;text-decoration: none;">
+				</a>
+				<%= link_to t.title , t , style: 'color:#003366;'%>
+				<span class="badge"><%= t.problems.count %></span>
 			</div>
 			<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 				<ul class="list-group">
 					<% t.problems.each do |p|%>
 						<% color = "" %>
-						<% if @problems_status %>
-							<% if @problems_status[:success].include?(p) %>
-								<% color = "label label-success" %>
-							<% else %>
-								<% color = "label label-default" %>
-							<% end %>
+						<% if student_signed_in? && p.is_solved_by_student(current_student.id) %>
+							<% color = "label label-success" %>
 						<% end %>
 						<li class="list-group-item" data-toggle="tooltip"
 							data-placement="top" title="<%= p.description%>">

@@ -1,6 +1,7 @@
 <div class="page-header">
 	<h1><%= link_to @course.name, @course, style: "color: black" %>
-		<small8><%= link_to @topic.title, @topic, style:"color: black" %></small8></h1>
+		<small8><%= link_to @topic.title, @topic, style: "color: black" %></small8>
+	</h1>
 </div>
 <% if @can_edit %>
 	<% if flash[:error] %>
@@ -15,12 +16,10 @@
 <% openable = true %>
 <div class="panel-group list-group" id="accordion">
 	<% @problems.each do |problem| %>
-		<% if (problem.incomplete? && @can_edit) || !problem.incomplete?%>
+		<% if (problem.incomplete? && @can_edit) || !problem.incomplete? %>
 			<% color = "" %>
-			<% if @problems_status %>
-				<% if @problems_status[:success].include?(problem) %>
-					<% color = "label label-success" %>
-				<% end %>
+			<% if student_signed_in? && problem.is_solved_by_student(current_student.id) %>
+				<% color = "label label-success" %>
 			<% end %>
 			<% if openable %>
 				<% open = "in" %>
@@ -35,9 +34,9 @@
 					<a class = "icon glyphicon <%= openarrow %>"
 						href="#<%= problem.id.to_s %>"
 						data-toggle="collapse" data-parent="#accordion"
-						style = "margin-right:1%;text-decoration: none;"></a>
-					<%= link_to problem.title, problem , style: 'color:#003366;' ,
-					class: color %>
+						style="margin-right:1%;text-decoration: none;">
+					</a>
+					<%= link_to problem.title, problem, style: 'color:#003366;', class: color %>
 					<% if student_signed_in? %>
 						<span class="badge">
 								<div onclick="showdialog(<%= problem.id.to_s %>,
@@ -45,8 +44,7 @@
 									Recommend to classmates</div>
 						</span>
 						<span class="badge" style="margin-right:1%;">
-							<% query = Attempt.where(problem_id: problem.id, success: true)%>
-							<%= query.select("DISTINCT student_id").count%>
+							<%= problem.number_of_success %>
 						</span>
 					<% end %>
 				</div>

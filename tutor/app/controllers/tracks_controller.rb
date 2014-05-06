@@ -19,10 +19,6 @@ class TracksController < ApplicationController
 			@problems = @track.problems
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
-			if student_signed_in?
-				@problems_status = current_student.getProblemsStatus
-				@problems_status[:success] = @problems_status[:success] & @problems
-			end
 		else
 			render ('public/404')
 		end

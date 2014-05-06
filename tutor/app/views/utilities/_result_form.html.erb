@@ -11,13 +11,14 @@
 			<a class = "icon glyphicon <%= openarrow %>"
 				href="#<%= objects.first.class.name.pluralize.to_s %>"
 				data-toggle="collapse" data-parent="#accordion"
-				style = "margin-right:1%;text-decoration: none;"></a>
-				<a class="panel-title" align="center">
-					<%= objects.first.class.name.pluralize.to_s %>
-				</a>
-				<span class="badge">
-					<%= objects.count %>
-				</span>
+				style="margin-right:1%;text-decoration: none;">
+			</a>
+			<a class="panel-title" align="center">
+				<%= objects.first.class.name.pluralize.to_s %>
+			</a>
+			<span class="badge">
+				<%= objects.count %>
+			</span>
 		</div>
 		<div id="<%= objects.first.class.name.pluralize.to_s %>"
 			class="panel-collapse collapse <%= open %>">

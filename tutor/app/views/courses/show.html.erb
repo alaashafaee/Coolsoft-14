@@ -59,8 +59,9 @@
 								<a class = "icon glyphicon <%= openarrow %>"
 									href="#<%= t.id.to_s %>"
 									data-toggle="collapse" data-parent="#accordion"
-									style = "margin-right:1%;text-decoration: none;"></a>
-								<%= link_to t.title, t, style: 'color:#003366;'%></b>
+									style="margin-right:1%;text-decoration: none;">
+								</a>
+								<%= link_to t.title, t, style: 'color:#003366;' %></b>
 								<span class="badge"><%= t.tracks.count %></span>
 							</div>
 							<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
