@@ -1,0 +1,14 @@
+<%= form_for :@variables do |f| %>
+	<table>
+		<tr>
+			<th>Variable Constraints</th>
+			<td width="10px"></td>
+			<td><%= f.text_field :variable_type, placeholder: "Variable Type" %></td>
+			<td width="10px"></td>
+			<td><%= f.text_field :variable_name, placeholder: "Variable Name" %></td>
+			<td width="20px"></td>
+		</tr>
+	</table>
+	<br>
+	<%= f.submit "Save Changes", class: "btn btn-default "%>	
+<% end %>

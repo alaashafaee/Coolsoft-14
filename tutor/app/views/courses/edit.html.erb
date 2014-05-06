@@ -1,72 +1,93 @@
+<div class ="tabs">
+	<ul class="tab-links">
+		<li><a href="/courses/">My Courses</a></li>
+		<li><a href="/courses/new">Create new Course</a></li>
+	</ul>
+	<div class="tab-content">
 <!--	Name: Course Edit Page
 		Author: Ahmed Akram
 -->
+		<ul class="tab-links">
+			<!-- This button activates the new topic action and passes the course id  -->
+			<li>
+				<a href = "#">Edit Info</a> 
+			</li> 
+			<li>
+				<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success", 
+						style: "float: left;margin-left: 15px",method: :post %> 
+			</li> 
 
-<div>
-	<!-- This button shows all topics of the course -->
-	<div>
-		<%= button_to "Topics", {:controller => 'topics', :action => 'index',
-			:course_id => @course.id}, class: "btn btn-success" , style: "float: left;",method: :get %> 
+			<!-- This button activates the add TA action -->
+			<li>
+				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success",
+						 style: "float: left; margin-left: 15px", :method => :get %>
+			</li>
+
+			<!-- This button activates the acknowledge a student action -->
+			<li>
+				<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success",
+						 style: "float: left; margin-left: 15px", method: :get
+							%> 
+			</li>
+		</ul>
+
+			<!-- This if statement checks for the condition of the discussion board -->
+			<p>
+				<% if @discussion_board.activated == true %>
+					<% str = "Deactivate DiscussionBoard" %>
+				<% else %>
+					<% str = "Activate DiscussionBoard" %>
+				<% end %>
+				<!-- This button toggles the activation of the discussion board -->
+				<%= link_to str, {:controller => :discussion_boards, :action => 'toggle',
+							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
+							 style: "float: left; margin-left: 15px" %>
+			</p> 
+		
+		<br>
+		<div>
+			<%= form_for :course, url: course_path(@course), method: :patch do |c| %>
+				<p>
+					<br><br><%= c.label :name %><br>
+					<%= c.text_field :name %>
+				</p>
+	
+				<p>
+					<%= c.label :code %><br>
+					<%= c.text_area :code %>
+				</p>
+	
+				<p>
+					<%= c.label :year %><br>
+					<%= c.text_area :year %>
+				</p>
+	
+				<p>
+					<%= c.label :semester %><br>
+					<%= c.text_area :semester %>
+				</p>
+	
+				<p>
+					<%= c.label :description %><br>
+					<%= c.text_area :description %>
+				</p>
+	
+				<p>
+					<%= c.submit %>
+				</p>
+			<% end %>
+			<%= link_to 'Back', courses_path %>
+		</div>	
+		<!-- This button deletes the course -->
+		<div>
+			<%= button_to "Delete Course", {:action => "destroy"},
+			 class: "btn btn-danger", style: "margin-top: 100px; float: right", method: :delete %>
+		</div>
+
+		<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success",
+			style: "margin-left:600px; margin-top: 250px", :method => :get %>
 	</div>
-
-	<!-- This button activates the new topic action and passes the course id  -->
-	<div>
-		<%= button_to "Add Topics", {:controller => 'topics', :action => 'new',
-			:course_id => @course.id}, class: "btn btn-success" , style: "float: left;margin-left: 15px",method: :post %> 
-	</div> 
-
-	<!-- This button activates the add TA action -->
-	<div><%= button_to "Add a TA", {:action => 'show'}, class: "btn btn-success" , style: "float: left; margin-left: 15px", :method => :get%> 
-	</div>
-
-	<!-- This if statement checks for the condition of the discussion board -->
-	<div>
-		<% if @discussionBoard.activated == true %>
-			<%str = "Deactivate DiscussionBoard" %>
-		<% else %>
-			<%str = "Activate DiscussionBoard"%>
-		<% end %>
-		<!-- This button toggles the activation of the discussion board -->
-		<%= button_to str, {:controller => :discussion_boards, :action => 'toggle', :id => @discussionBoard.id}, class: "btn btn-success", style: "float: left; margin-left: 15px" %>
-	</div> 
 </div>
-<br>
-<div>
-	<%= form_for :course, url: course_path(@course), method: :patch do |c| %>
-	<p>
-		<br><br><%= c.label :name %><br>
-		<%= c.text_field :name %>
-	</p>
-
-	<p>
-		<%= c.label :code %><br>
-		<%= c.text_area :code %>
-	</p>
-
-	<p>
-		<%= c.label :year %><br>
-		<%= c.text_area :year %>
-	</p>
-
-	<p>
-		<%= c.label :semester %><br>
-		<%= c.text_area :semester %>
-	</p>
-
-	<p>
-		<%= c.label :description %><br>
-		<%= c.text_area :description %>
-	</p>
-
-	<p>
-		<%= c.submit %>
-	</p>
-	<% end %>
-	<%= link_to 'Back', courses_path %>
-</div>	
-<!-- This button deletes the course -->
-<div>
-	<%= button_to "Delete Course", {:action => "destroy"}, class: "btn btn-danger", style: "margin-top: 100px; float: right", method: :delete %> 
-</div>
-
-<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success" , style: "margin-left: 600px; margin-top: 250px", :method => :get%>

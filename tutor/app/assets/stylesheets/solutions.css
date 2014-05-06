@@ -31,10 +31,25 @@ textarea  {
 	color: blue;
 }
 
+#editor {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 20pc;
+}
+
 .fixed-content {
 	max-height: 200px;
 	overflow-y:scroll;
 	overflow-x:hidden;
+}
+
+.fixed-horizontal {
+	max-width: 175px;
+	overflow-x:scroll;
+	overflow-y:hidden;
 }
 
 .editor {
@@ -58,7 +73,7 @@ textarea  {
 	border-width: thin;
 	max-height: 150px;
 	min-height: 150px;
-	background: #3d1451;
+	background: white;
 	overflow: scroll;
 	overflow-y: scroll;
 	overflow-x: scroll;
@@ -91,7 +106,7 @@ textarea  {
 	background-color: black;
 	color: white;
 	width: 100%;
-	margin-top: -6px;
+	margin-top: -12px;
 }
 
 .editor_border {
@@ -99,4 +114,8 @@ textarea  {
 	border-style: solid;
 	border-width: 3px;
 	font-family: monospace;
+}
+
+.hidden {
+	visibility: false;
 }

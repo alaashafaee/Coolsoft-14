@@ -38,6 +38,12 @@ activate = ->
 		time = setInterval(timer, 1000)
 		timer
 
+# [Design - Story Design]
+# Start counter if the two labels with ids "mins" and "secs" exists
+# Parameters: none
+# Returns: none
+# Author: Mussab ElDash
 jQuery ->
-	activate()
+	if element_exists("mins") and element_exists("secs")
+		activate()
 	return

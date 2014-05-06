@@ -1,0 +1,70 @@
+<div class ="tabs">
+	<ul class="tab-links">
+		<li><a href="/courses/">My Courses</a></li>
+		<li><a href="/courses/new">Create new Course</a></li>
+	</ul>
+	<div class="tab-content">
+<!--	Name: Course Edit Page
+		Author: Ahmed Akram
+-->
+		<ul class="tab-links">
+			<!-- This button activates the new topic action and passes the course id  -->
+			<li>
+				<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
+					:id => @course.id}, class: "btn btn-success", 
+						style: "float: left;margin-left: 15px",method: :get	 %> 
+			</li> 
+
+			<li>
+				<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success", 
+						style: "float: left;margin-left: 15px",method: :post %> 
+			</li> 
+
+			<!-- This button activates the add TA action -->
+			<li>
+				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success",
+						 style: "float: left; margin-left: 15px", :method => :get %>
+			</li>
+
+			<!-- This button activates the acknowledge a student action -->
+			<li>
+				<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
+					:course_id => @course.id}, class: "btn btn-success",
+						 style: "float: left; margin-left: 15px", method: :get
+							%> 
+			</li>
+		</ul>
+		<!-- 	Name: The New Topic Form 
+		Author: Ahmed Akram
+		-->
+		<div>
+			<h1>Acknowledge A student</h1>
+			<br/>
+			<% if flash[:failure_notice] %>
+				<div class="alert alert-danger", style="display: inline-block;"><%= flash[:failure_notice] %></div>
+			<% end %>
+			<% if flash[:success_notice] %>
+				<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_notice] %></div>
+			<% end %>
+			<br/>
+
+			<%= form_for :acknowledgement, url: {action: "create"} do  |f| %>
+				<p>
+					<%=select_tag 'students[]', options_for_select(
+						@course.students.map {|p| [p.name, p.id]}), :multiple => true, style: "width:300px" %>
+				</p>
+
+				<p>
+					<%= f.label :Message %><br>
+					<%= f.text_area :description, class:"form-control", style:"width:300px", :value => 'Good Job!' %>
+				</p>
+
+				<p>
+					<%= f.submit "Send Acknowledgement", class: "btn btn-success" %>
+				</p>	
+			<% end %>
+		</div>
+	</div>
+</div>
