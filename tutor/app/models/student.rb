@@ -43,7 +43,7 @@ class Student < ActiveRecord::Base
 	has_many :problems_start_time, class_name: 'ProblemOpeningTime'
 
 	has_many :contest_progresses, class_name: 'ContestProgress'
-	has_and_belongs_to_many :registered_contests, class_name:"Contest", join_table: "contests_students"
+	has_and_belongs_to_many :contests, class_name:"Contest", join_table: "contests_students"
 
 	#Methods
 
