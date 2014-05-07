@@ -42,6 +42,9 @@ class Student < ActiveRecord::Base
 	has_many :courses, through: :course_students, dependent: :destroy
 	has_many :problems_start_time, class_name: 'ProblemOpeningTime'
 
+	has_many :contest_progresses, class_name: 'ContestProgress'
+	has_and_belongs_to_many :contests, class_name:"Contest", join_table: "contests_students"
+
 	#Methods
 
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
