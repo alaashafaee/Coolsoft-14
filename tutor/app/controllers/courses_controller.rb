@@ -231,14 +231,17 @@ class CoursesController < ApplicationController
 	# Author: Rania Abdel Fattah
 	def duplicate
 		@course = Course.find_by_id(course_params[:id])
-		@new_course = @course.dup
-		if @new_course.save
+		if @new_course = @course.dup
 			render "courses/duplicate"
 		else
 			redirect_to :back
 		end
 	end
 
+	def duplicate_problem_answer
+		@topic = Topic.find_by_id(id)
+		render "courses/dup_prob_ans"
+	end
 
 	private
 		def course_params 
