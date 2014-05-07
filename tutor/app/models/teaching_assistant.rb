@@ -45,9 +45,10 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
 	has_many :contests, as: :owner
+	has_many :assignments, as: :owner
+	has_many :grades, as: :editor
 
 	#Methods
-
 	# [Advanced Search - Story 1.23]
 	# search for students
 	# Parameters: hash of search options

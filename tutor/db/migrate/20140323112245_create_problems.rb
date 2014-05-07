@@ -7,8 +7,9 @@ class CreateProblems < ActiveRecord::Migration
       t.integer :views_count
       t.integer :time_limit
       t.integer :track_id
-      t.string :problem_type
+      t.string :category
 
+      t.integer :assignment_id
       t.references :owner, polymorphic: true
       t.timestamps
     end

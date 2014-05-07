@@ -4,6 +4,6 @@ class JoinTableContestProblem < ActiveRecord::Migration
       # t.index [:contest_id, :problem_id]
       # t.index [:problem_id, :contest_id]
   	end
-  	add_index(:contests_problems, [:contest_id, :problem_id], :unique => true)
+  	add_index :contests_problems, [:contest_id, :problem_id], :unique => true
   end
 end

@@ -7,6 +7,7 @@ class Problem < ActiveRecord::Base
 	#Relations
 	belongs_to :owner, polymorphic: true
 	belongs_to :track
+	belongs_to :assignment
 
 	has_many :model_answers, dependent: :destroy
 	has_many :test_cases, dependent: :destroy

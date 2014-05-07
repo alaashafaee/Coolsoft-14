@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506131804) do
+ActiveRecord::Schema.define(version: 20140507115521) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(version: 20140506131804) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "assignments", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "due_date"
+    t.boolean  "publish"
+    t.integer  "course_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "assignments_students", id: false, force: true do |t|
+    t.integer "assignment_id", null: false
+    t.integer "student_id",    null: false
+  end
+
+  add_index "assignments_students", ["assignment_id", "student_id"], name: "index_assignments_students_on_assignment_id_and_student_id", unique: true
 
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
@@ -66,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140506131804) do
     t.string   "title"
     t.text     "description"
     t.datetime "expiration_date"
+    t.boolean  "incomplete"
     t.integer  "course_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -134,6 +154,19 @@ ActiveRecord::Schema.define(version: 20140506131804) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "grades", force: true do |t|
+    t.integer  "assignment_id"
+    t.integer  "problem_id"
+    t.integer  "student_id"
+    t.integer  "grade"
+    t.integer  "editor_id"
+    t.string   "editor_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "grades", ["assignment_id", "student_id", "problem_id"], name: "index_grades_on_assignment_id_and_student_id_and_problem_id", unique: true
 
   create_table "hints", force: true do |t|
     t.text     "message"
@@ -252,7 +285,8 @@ ActiveRecord::Schema.define(version: 20140506131804) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
-    t.string   "problem_type"
+    t.string   "category"
+    t.integer  "assignment_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"

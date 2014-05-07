@@ -1,10 +1,10 @@
-class CreateContests < ActiveRecord::Migration
+class CreateAssignments < ActiveRecord::Migration
   def change
-    create_table :contests do |t|
+    create_table :assignments do |t|
       t.string :title
       t.text :description
-      t.datetime :expiration_date
-      t.boolean :incomplete
+      t.date :due_date
+      t.boolean :publish
 
       t.integer :course_id
       t.references :owner, polymorphic: true

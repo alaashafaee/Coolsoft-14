@@ -43,6 +43,8 @@ class Lecturer < ActiveRecord::Base
 	has_many :hints, as: :owner
 	has_many :acknowledgements, dependent: :destroy
 	has_many :contests, as: :owner
+	has_many :assignments, as: :owner
+	has_many :grades, as: :editor
 
 	#Methods
 	# [Advanced Search - Story 1.23]
