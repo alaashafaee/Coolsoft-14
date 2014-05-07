@@ -1,4 +1,5 @@
 class TeachingAssistant < ActiveRecord::Base
+	
 	devise :database_authenticatable, :registerable,
 		:recoverable, :rememberable, :trackable,
 		:validatable, :confirmable
@@ -10,7 +11,8 @@ class TeachingAssistant < ActiveRecord::Base
 	#concerns
 	include Searchable
 
-	# mount_uploader :profile_image, ProfileImageUploader
+	#Uploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email
@@ -42,6 +44,7 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :variable_constraints, as: :owner
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
+	has_many :contests, as: :owner
 
 	#Methods
 

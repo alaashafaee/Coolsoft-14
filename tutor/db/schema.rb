@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423104456) do
+ActiveRecord::Schema.define(version: 20140506131804) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -50,6 +50,42 @@ ActiveRecord::Schema.define(version: 20140423104456) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "contest_progresses", force: true do |t|
+    t.integer  "contest_id"
+    t.integer  "student_id"
+    t.integer  "problem_id"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contest_progresses", ["contest_id", "student_id", "problem_id"], name: "ConProgress", unique: true
+
+  create_table "contests", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "expiration_date"
+    t.integer  "course_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contests_problems", id: false, force: true do |t|
+    t.integer "contest_id", null: false
+    t.integer "problem_id", null: false
+  end
+
+  add_index "contests_problems", ["contest_id", "problem_id"], name: "index_contests_problems_on_contest_id_and_problem_id", unique: true
+
+  create_table "contests_students", id: false, force: true do |t|
+    t.integer "contest_id", null: false
+    t.integer "student_id", null: false
+  end
+
+  add_index "contests_students", ["contest_id", "student_id"], name: "index_contests_students_on_contest_id_and_student_id", unique: true
 
   create_table "course_students", force: true do |t|
     t.boolean  "share",      default: false
@@ -199,6 +235,16 @@ ActiveRecord::Schema.define(version: 20140423104456) do
     t.datetime "updated_at"
   end
 
+  create_table "problem_opening_times", force: true do |t|
+    t.integer  "time"
+    t.integer  "student_id"
+    t.integer  "problem_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "problem_opening_times", ["student_id", "problem_id"], name: "index_problem_opening_times_on_student_id_and_problem_id", unique: true
+
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -206,6 +252,7 @@ ActiveRecord::Schema.define(version: 20140423104456) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
+    t.string   "problem_type"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"

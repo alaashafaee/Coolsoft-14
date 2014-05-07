@@ -16,23 +16,137 @@ index_number = 0
 		return
 	test = $('#solution_input').val()
 	start_spin()
+	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
 		data: {code : input , case : test}
 		datatype: 'json'
 		success: (data) ->
+			clear_console()
+			variables = data
 			stop_spin()
 			if !data["success"]
 				compilation_error data["data"]["errors"]
 				return
 			variables = data["data"]
-			toggleDebug()
+			toggleDebug(1)
 			debug_console()
 			jump_state 0
 		error: ->
+			clear_console()
 			stop_spin()
+			toggle_code_area()
 			return
+	return
+
+# [Compiler: Test - Story 3.15]
+# Sends the code to the server to be compiled
+# Parameters:
+# 	problem_id: The id of the problem being solved
+# Returns:
+#	none
+# Author: Ahmed Akram
+@compile = (problem_id) ->
+	input = $('#solution_code').val()
+	if input.length is 0
+		alert "You didn't write any code"
+		return
+	start_spin()
+	toggle_code_area()
+	$.ajax
+		type: "POST"
+		url: '/solutions/compile_solution'
+		data: {code : input, problem_id : problem_id}
+		datatype: 'json'
+		success: (unique) ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			if !unique["success"]
+				compilation_error unique["errors"]
+				return
+			$('.compilation_succeeded').html("Compilation Succeeded!")
+		error: ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			return
+	return
+
+# [Compiler: Test - Story 3.15]
+# Sends the code and the test case to the server to be tested
+# Parameters:
+# 	problem_id: The id of the problem being solved
+# Returns:
+#	none
+# Author: Ahmed Akram
+@run_input = (problem_id) ->
+	code = $('#solution_code').val()
+	if code.length is 0
+		alert "You didn't write any code"
+		return
+	test = $('#solution_input').val()
+	start_spin()
+	toggle_code_area()
+	$.ajax
+		type: "POST"
+		url: '/solutions/execute'
+		data: {code : code, problem_id : problem_id, input : test}
+		datatype: 'json'
+		success: (data) ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			if data["compiler_error"]
+				compilation_error data["compiler_output"]
+				return
+			else if data["executer_feedback"]
+				input_test_output data["executer_output"]
+				return
+			else
+				runtime_error data["executer_output"]
+				return
+		error: ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			return
+	return
+
+# [Compiler: Test - Story 3.15]
+# Fills the console with the runtime errors
+# Parameters:
+# 	data: The hash containing the response
+# Returns:
+#	none
+# Author: Ahmed Akram
+input_test_output = (data) ->
+	$('#output_section').html(data["message"])
+	return
+
+# [Compiler: Test - Story 3.15]
+# Disables the code and input area while debugging, compiling or running test case
+# Parameters:
+# 	none
+# Returns:
+#	none
+# Author: Ahmed Akram
+toggle_code_area = ->
+	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
+	$('#solution_input').prop 'disabled', !$('#solution_input').prop 'disabled'
+
+# [Compiler: Test - Story 3.15]
+# Fills the console with the runtime errors
+# Parameters:
+# 	data: The hash containing the response
+# Returns:
+#	none
+# Author: Ahmed Akram
+runtime_error = (data) ->
+	$('#runtime_error').toggle(true)
+	$('#error_section').html(if data["errors"] then data["errors"] else data)
+	$('#explanation_section').html(data["explanation"])
 	return
 
 # [Debugger: Debug - Story 3.6]
@@ -50,7 +164,11 @@ compilation_error = (data) ->
 # Parameters: none
 # Returns: none
 # Author: Mussab ElDash
-clear_console = ->
+clear_console = () ->
+	$('#runtime_error').toggle(false)
+	$('#validate_case').html("")
+	$('#output_section').html("")
+	$('.compilation_succeeded').html("")
 	$('.compilation_failed').html("")
 	$('.compilation_feedback').html("")
 	return
@@ -90,45 +208,29 @@ debug_console = ->
 @toggle_spin = ->
 	$('#spinner').toggleClass "spinner"
 
-# [Execute Line By Line - Story 3.8]
+# [Compiler: Test - Story 3.15]
 # Toggles debugging mode by changing the available buttons.
-# Parameters: none
-# Returns: none
-# Author: Rami Khalil (Temporary)
-@toggleDebug = ->
-	$('#debugButton').prop 'hidden', !$('#debugButton').prop 'hidden'
-	$('#compileButton').prop 'hidden', !$('#compileButton').prop 'hidden'
-	$('#testButton').prop 'hidden', !$('#testButton').prop 'hidden'
+# Parameters:
+#	none
+# Returns:
+#	none
+# Author: Ahmed Akram + Rami Khalil
+@toggleDebug = (state) ->
+	$('#debugButton').toggle(!state)
+	$('#compileButton').toggle(!state)
+	$('#testButton').toggle(!state)
+	$('#nextButton').toggle(state)
+	$('#previousButton').toggle(state)
+	$('#stopButton').toggle(state)
 	editor = ace.edit("editor")
-	editor.setReadOnly !editor.getReadOnly()
-
+	editor.setReadOnly(state)
 	normal_theme = "ace/theme/twilight"
 	debug_theme = normal_theme + "-debug"
-
 	if editor.getTheme() == normal_theme
 		editor.setTheme debug_theme
 	else
 		editor.setTheme normal_theme
 
-	$('#nextButton').prop 'hidden', !$('#nextButton').prop 'hidden'
-	$('#previousButton').prop 'hidden', !$('#previousButton').prop 'hidden'
-	$('#stopButton').prop 'hidden', !$('#stopButton').prop 'hidden'
-
-# [Compile - Story 3.4]
-# Sends the code to the server to be compiled.
-# Parameters: none
-# Returns: none
-# Author: Rami Khalil (Temporary)
-@compile = () ->
-	alert "Compiling"
-
-# [Test - Story 3.15]
-# Sends the code and the input to be processed on the server.
-# Parameters: none
-# Returns: none
-# Author: Rami Khalil (Temporary)
-@test = () ->
-	alert "Testing"
 
 # [Execute Line By Line - Story 3.8]
 # Moves to the next state of execution.
@@ -175,6 +277,11 @@ debug_console = ->
 # Author: Rami Khalil + Khaled Helmy
 @jump_state = (state_number) ->
 	highlight_line variables[state_number]['line']
+	if state_number isnt 0
+		clear_console()
+	$("#output_section").html variables[state_number]["stream"]
+	if variables[state_number]["exception"]
+		runtime_error variables[state_number]["exception"]
 	update_memory_contents state_number
 
 # [View Variables - Story 3.7]
@@ -204,11 +311,12 @@ debug_console = ->
 # Returns: none
 # Author: Rami Khalil (Temporary)
 @stop = () ->
-	toggleDebug()
+	toggleDebug(0)
 	index_number = 0;
+	toggle_code_area()
 	variables = null;
 
-# To be Used when changing to ajax in order not to refresh page
+
 # [Compiler: Validate - Story 3.5]
 # submits a solution in the form without refreshing
 # 	using ajax showing an alert box for success and failure scenarios
@@ -221,29 +329,39 @@ debug_console = ->
 	code = $('#solution_code').val()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
-	time = mins*60 + secs
-	start_spin()
+	time = (mins * 60) + secs
+	if code.length is 0
+		alert 'Blank submissions are not allowed'
+		return
+	toggle_code_area()
+	start_spin()	
 	$.ajax
 		type: "POST"
 		url: '/solutions'
 		data: {problem_id: problem_id, code: code, time: time}
 		datatype: 'json'
 		success: (data) ->
+			clear_console()
 			stop_spin()
-			success = $('#validate_success')
-			errors = $('#validate_error')
-			success.html("")
-			for i in data["success"]
-				success.append("#{i}<br>")
-			errors.html("")
-			for i in data["failure"]
-				errors.append("#{i}<br>")
-			if code.length isnt 0
-				alert 'Solution has been submitted successfully'
-			else
-				alert 'Blank submissions are not allowed'
+			toggle_code_area()
+			if data['compiler_error']
+				compilation_error(data['compiler_output'])
+				return
+			out = $('#validate_case')
+			out.html("")
+			content = ""
+			for i in data
+				if data["success"]
+					content += "<p style='color:green'>#{i['test_case']}, \
+							#{i['response']}</p>"
+				else
+					content += "<p style='color:red'>#{i['test_case']}, \
+							#{i['response']}</p>"
+			out.html(content)
 			return
 		error: (data) ->
+			clear_console()
 			stop_spin()
+			toggle_code_area()
 			return
 	return

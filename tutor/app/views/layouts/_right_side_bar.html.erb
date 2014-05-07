@@ -1,55 +1,76 @@
-<!--
 # [View Layout - Story 1.2]
 # General layout for right side bar
-# Author: Ahmed Elassuty
-
-<!--right nagigation bar
-# Author:Rania Abdel Fattah-->
+<!-- 
+	Author: Ahmed Elassuty
+	right nagigation bar 
+-->
+<!-- 
+	Author:Rania Abdel Fattah
+ -->
 <div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;
-	position:static;overflow:scroll">
+	position:static;overflow:auto">
 	<div style="margin-bottom:12px" class="well">
-		<div class="row">
-  			<div class="sidebar-nav">
-      			<div class="navbar navbar-default" role="navigation">
-        			<div class="navbar-header">
-					    <button type="button" class="navbar-toggle" data-toggle="collapse" 
-					        data-target=".sidebar-navbar-collapse">
-						    <span class="sr-only">Toggle navigation</span>
-						    <span class="icon-bar"></span>
-						    <span class="icon-bar"></span>
-						    <span class="icon-bar"></span>
-					    </button>
-          				<span class="visible-xs navbar-brand">Sidebar menu</span>
-        			</div>
-          				<ul class="nav nav-list">
-          					<% if student_signed_in? %>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_003_user.png" , { :a => "Profile", 
-				            		size: "15x15"}) %> Profile </a></li>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_136_cogwheel.png",{:a => "Dashboard",
-				            		size: "15x15"}) %>Dashboard <!--<span class="badge"></span>--></a></li>
-				            	<li><a href="../courses?" target="_blank">
-				            	<%= image_tag("glyphicons_318_more_items.png",{:a => "Courses",
-				            		size: "15x15"}) %> Courses</a></li>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_280_settings.png",{:a => "Settings",
-				            		size: "15x15"}) %> Settings</a></li>
-			            	<% else %>
-				             	<li><a href="#" target="_blank">
-				             	<%= image_tag("glyphicons_003_user.png" , { :a => "Profile", 
-				             		size: "15x15"}) %> Profile </a></li>
-				            	<li><a href="../courses?" target="_blank">
-				            	<%= image_tag("glyphicons_318_more_items.png",{:a => "Courses",
-				            		size: "15x15"}) %> Courses</a></li>
-				            	<li><a href="#" target="_blank">
-				            	<%= image_tag("glyphicons_280_settings.png",{:a => "Settings",
-				            		size: "15x15"}) %> Settings</a></li>
-			            	<% end %>
-		          		</ul>
-        			</div>
-      			</div>
-      		</div>
+
+
+		<div>
+
+			<ul class="navigation-list">
+				<% if student_signed_in? %>
+			            	<li><%= link_to image_tag("glyphicons_003_user.png") +
+		            			 " Profile", 
+						{:controller => 'site', :action => 'index'},
+						style: "margin-left:auto; 
+						margin-right:auto; margin-bottom: 5px;
+						width: 100%", method: :get %>
+					</li>
+			            	<li><%= link_to image_tag("glyphicons_136_cogwheel.png") +
+		            			" Dashboard",
+						{:controller => 'site', :action => 'index'},
+						style: "margin-left:auto; 
+						margin-right:auto; margin-bottom: 5px;
+						width: 100%", method: :get %>
+					</li>
+			            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
+		           			" Courses", 
+						{:controller => 'courses', :action => 'index'},
+						style: "margin-left:auto; 
+						margin-right:autox; margin-bottom: 5px;
+						width: 100%", method: :get %>
+					</li>
+			            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
+		           			 " Settings",
+						{:controller => 'site', :action => 'index'},
+						style: "margin-left:auto; 
+						margin-right:auto;
+						width: 100%", method: :get %>
+					</li>
+			  	<% else %>
+			             	<li><%= link_to image_tag("glyphicons_003_user.png") +
+		             			"Profile", 
+						{:controller => 'site', :action => 'index'},
+						style: "margin-left:auto; 
+						margin-right:auto; margin-bottom: 5px;
+						width: 100%", method: :get %>
+					</li>
+			            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
+		            			"Courses", 
+						{:controller => 'courses', :action => 'index'},
+						style: "margin-left:auto;
+						margin-right:auto; margin-bottom: 5px;
+						width: 100%", method: :get %>
+					</li>
+			            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
+			       			 "Settings",
+						{:controller => 'site', :action => 'index'},
+						style: "margin-left:auto;
+						margin-right:auto;
+						width: 100%", method: :get %>
+					</li>
+	    			<% end %>
+			</ul>
+		</div>
+		
+
 		</div>
 <!--end of Rania's story -->
 	<div class="well">
@@ -62,7 +83,10 @@
 						<% next_problems_to_solve.each do |key , value| %>
 							<tr>
 								<td>
-									<%= link_to value.title, controller: "problems", action: "show", id: value.id %>
+									<%= link_to value.title, 
+											controller: "/problems", 
+											action: "show", 
+											id: value.id %>
 								</td>
 								<td>
 									<%= key %>
@@ -89,7 +113,9 @@
 								</td>
 								<td>
 									<%= link_to value["problem_title"], 
-									controller: "problems", action: "show", id: key %>
+											controller: "/problems", 
+											action: "show", 
+											id: key %>
 								</td>
 							</tr>
 						<% end %>

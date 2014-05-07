@@ -1,12 +1,12 @@
 <h1>
 	<%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %>
-	<%= @student.name %>'s Profile
+	<%= @student.name %>
 </h1>
-<div class="tabs">
+<div class = "profile_picture" ></div>
+<div class = "tabs" style = "float:left; margin-left:10px;">
 	<ul class="tab-links">
-		<li class="active"><a href="#tab1">Course</a></li>
+		<li class="active"><a href="#tab1">Courses</a></li>
 		<li><a href="#tab2">Info</a></li>
-		<li><a href="#tab3">Performance</a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
@@ -59,16 +59,10 @@
 		<div id="tab2" class="tab">
 			<p> <b>Name:</b> <%= @student.name %> </p>
 			<p> <b>Email:</b> <%= @student.email %> </p>
-		</div>
-		<div id="tab3" class="tab">
-			<%= link_to "Statistics",
-			{
-				:controller => 'students',
-				:action => 'get_performance',
-				:id => @student.id
-			},
-			:method => :get,
-			class: "btn btn-success" %>
+			<p><b>University: </b><%= @student.university %></p>
+			<p><b>Faculty: </b><%= @student.faculty %></p>
+			<p><b>Major: </b><%= @student.major %></p>
+			<p><b>Joined on: </b><%= @student.created_at.to_date %></p>
 		</div>
 	</div>
 </div>

@@ -12,46 +12,69 @@ class Solution < ActiveRecord::Base
 	# Checks the validity of a submitted solution
 	# and show the runtime and logic errors if exist
 	# Parameters:
-	# 	problem_id: id of the problem being answered
-	#   file: the name of the file which is compiled successfully
-	#		  without errors
+	# 	solution: the solution to be validated
+	#   testcases: the testcases that will test the submitted code
 	# Returns: a hash response containing status for the solution,
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
-	def self.validate(file, problem_id)
-		response = {status: 0, success: [], runtime_error: [], runtime_error_exp: [],
-					 logic_error: []}
-		testcases = Problem.find_by_id(problem_id).test_cases
-		testcases.each do |testcase|
-			input = testcase.input
-			expected_output = testcase.output
-			runtime_check = Executer.execute(file, input, problem_id)
-			if(runtime_check)
-				output = Executer.get_output()
-				if (output != expected_output)
-					response[:logic_error] << "Logic error: for input: " +
-					input + " ,expected output: " +
-					expected_output + " but your output was: " + output
-					unless response[:status] == 4
-						response[:status] = 5
+	def self.validate(solution, test_cases)
+		response = []
+		compiler_status = Compiler.compiler_feedback(solution)
+		if compiler_status[:success]
+			test_cases.each do |testcase|
+				input = testcase.input
+				expected_output = testcase.output
+				runtime_check = Executer.execute(solution, input)
+				if(runtime_check[:executer_feedback])
+					output = runtime_check[:executer_output][:message]
+					if (output != expected_output)
+						if(output.to_s.empty?)
+							output = "Empty"
+						end
+						response << {success: false, test_case: input, 
+							response: "Logic error: Expected output: " +
+							expected_output.to_s.strip + ", but your output was: " + output}
+						unless solution.status == 4
+							solution.status = 5
+						end
+					else
+						response << {success: true, test_case: input, 
+							response: "Passed!"}
+						unless solution.status == 4 | 5
+							solution.status = 1
+						end
 					end
 				else
-					unless(response[:status] == 4 | 5)
-						response[:status] = 1
-					end
+					runtime_error = runtime_check[:executer_output]
+					explanation = get_response(runtime_error)
+					solution.status = 4
+					response << {success: false, test_case: input, 
+							response: "Runtime error: " + explanation}
 				end
-			else
-				runtime_error = Executer.get_runtime_error(file, 'CoolSoft')
-				runtime_error[:error] = "for input: " + input + " " + runtime_error[:error]
-				response[:status] = 4
-				response[:runtime_error] << runtime_error[:error]
-				response[:runtime_error_exp] << runtime_error[:explanation]
 			end
+		else
+			return {compiler_error: true, compiler_output: compiler_status}
 		end
-		if response[:status] == 1
-			response[:success] << "Your Solution is correct, Passed"
-		end
+		solution.save
 		return response
+	end
+
+	# [Compiler: Validate - Story 3.5]
+	# outputs the runtime error with a better explanation
+	# Parameters:
+	# 	error: the original runtime error
+	# Returns: a String with the explained runtime error
+	# Author: MOHAMEDSAEED
+	def self.get_response(error)
+		if error.include?("/ by zero")
+			return "Division / 0"
+		elsif error.include?("ArrayIndexOutOfBounds")
+			return "Out of array range"
+		elsif error.include?("StringIndexOutOfBounds")
+			return "Out of string range"
+		else
+			return "To be set response"
+		end
 	end
 
 	# [Compiler: Validate - Story 3.5]
@@ -60,7 +83,7 @@ class Solution < ActiveRecord::Base
 	# 	p_id : the id of the current Problem
 	# Returns: the number of trials the student made for this problem
 	# Author: MOHAMEDSAEED
-	def self.get_num_of_trials(s_id , p_id)
+	def self.get_num_of_trials(s_id, p_id)
 		num_of_trials = Solution.distinct.count(:all,
 						:conditions => ["student_id = ? AND problem_id = ? AND status != ?",
 						s_id, p_id, 3])
