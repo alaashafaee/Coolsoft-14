@@ -34,7 +34,14 @@ class SolutionsLayer
 		solution = get_solution code, student_id, problem_id
 		solution.time = time
 		test_cases = solution.problem.test_cases
-		return Solution.validate solution, test_cases
+		compiler = get_compiler lang
+		if compiler
+			feed_back = compiler.compiler_feedback solution
+			if feed_back[:success]
+				return Solution.validate solution, test_cases
+			end
+		end
+		return {compiler_error: true, compiler_output: feed_back}
 	end
 
 	def self.debug lang, code, student_id, problem_id, cases
