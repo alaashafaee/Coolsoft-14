@@ -1,6 +1,6 @@
 require "open3"
 class JavaDebugger
-	
+
 	#Methods
 
 	# [Debugger: Debug - Story 3.6]
