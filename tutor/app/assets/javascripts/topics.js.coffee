@@ -13,56 +13,33 @@
 # Parameters: none
 # Returns: none
 # Author: Lin Kassem
-$(document).ready ->
-	$("#list-of-tracks").sortable
+@test = ->  
+	document.getElementById("linTest1").style= "display: none;"  
+	document.getElementById("linTest2").style= "display: true;" 
+	$("#accordion").sortable
 		placeholder: "ui-state-highlight"
 		axis: "y"
 		tolerance: "pointer"
 		forcePlaceholderSize: true
 		cursor: "move"
 		containment: "parent"
+	return
 
-	$("#edit_track_rating_dialog").dialog
-		autoOpen: false
-		modal: true
-		width: "auto"
-		height: "auto"
-		autoResize: false
-		buttons:
-			Done: ->
-				array = $("#list-of-tracks").sortable("toArray")
-				$.ajax
-					url: "/topics/sort"
-					type: "POST"
-					beforeSend: (xhr) ->
-						xhr.setRequestHeader "X-CSRF-Token",
-						$("meta[name=\"csrf-token\"]").attr("content")
-						return
-
-					data:
-						methodParam: array
-
-					success: (data) ->
-						alert "New track ratings saved!"
-						location.reload()
-						return
-
-					error: (args) ->
-						alert "Error on ajax post"
-						return
-
-				$(this).dialog "close"
-				return
-
-			Cancel: ->
-				$(this).dialog "close"
-				alert "Changes will not be saved !"
-				
-				return
-
-	$("#opener").click(->
-		$("#edit_track_rating_dialog").dialog "open"
-		$("#edit_track_rating_dialog").css "overflow", "hidden"
-		return
-	).disableSelection()
+@submitNewRating = ->
+	array = $("#accordion").sortable("toArray")
+	$.ajax
+		url: "/topics/sort"
+		type: "POST"
+		beforeSend: (xhr) ->
+			xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
+			return
+		success: (data) ->
+			alert "New track ratings saved!"
+			location.reload()
+			return
+		error: (data) ->
+			alert "Error on ajax post"
+			return
+		data:
+			methodParam: array
 	return
