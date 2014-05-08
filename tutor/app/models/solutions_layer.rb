@@ -1,5 +1,15 @@
 class SolutionsLayer
 
+	# [Layer - Story X.3]
+	# Test the given code against the given case
+	# Parameters:
+	# 	lang: The programming language used in execution
+	# 	code: The code to be executed
+	# 	Student_id: The id of the current signed in student
+	# 	problem_id: The id of the problem being solved
+	# 	cases: The input to test against
+	# Returns: A hash with the status of the execution
+	# Author: Mussab ElDash
 	def self.execute lang, code, student_id, problem_id, cases
 		executer = get_executer lang
 		compiler = get_compiler lang
@@ -14,6 +24,15 @@ class SolutionsLayer
 		return executer.execute(solution, cases)
 	end
 
+	# [Layer - Story X.3]
+	# Compile the given in the given language
+	# Parameters:
+	# 	lang: The programming language used in compilation
+	# 	code: The code to be compiled
+	# 	Student_id: The id of the current signed in student
+	# 	problem_id: The id of the problem being solved
+	# Returns: The compile status
+	# Author: Mussab ElDash
 	def self.compile lang, code, student_id, problem_id
 		compiler = get_compiler lang
 		solution = get_solution code, student_id, problem_id
@@ -30,6 +49,16 @@ class SolutionsLayer
 		end
 	end
 
+	# [Layer - Story X.3]
+	# Test the given code against the test cases in the dataBase
+	# Parameters:
+	# 	lang: The programming language used in validation
+	# 	code: The code to be validated
+	# 	Student_id: The id of the current signed in student
+	# 	problem_id: The id of the problem being solved
+	# 	time: The time the student spent to solve the problem
+	# Returns: A hash with the validation status
+	# Author: Mussab ElDash
 	def self.validate lang, code, student_id, problem_id, time
 		solution = get_solution code, student_id, problem_id
 		solution.time = time
@@ -44,6 +73,16 @@ class SolutionsLayer
 		return {compiler_error: true, compiler_output: feed_back}
 	end
 
+	# [Layer - Story X.3]
+	# Debug the given code and use the given case as an input
+	# Parameters:
+	# 	lang: The programming language used in debugging
+	# 	code: The code to be debugged
+	# 	Student_id: The id of the current signed in student
+	# 	problem_id: The id of the problem being solved
+	# 	cases: The input to debug against
+	# Returns: A hash with the debugging results
+	# Author: Mussab ElDash
 	def self.debug lang, code, student_id, problem_id, cases
 		solution = get_solution code, student_id, problem_id
 		debugger = get_debugger lang
@@ -64,9 +103,9 @@ class SolutionsLayer
 	# [Layer - Story X.3]
 	# Creates a new solution for future use
 	# Parameters:
+	# 	code: The code to be debugged
 	# 	Student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
-	# 	code: The code to be debugged
 	# Returns: A new Solution
 	# Author: Mussab ElDash
 	def self.get_solution code, student_id, problem_id
@@ -75,12 +114,24 @@ class SolutionsLayer
 		return solution
 	end
 
+	# [Layer - Story X.3]
+	# Get the Executer Class of the give language
+	# Parameters:
+	# 	lang: The programming language to get the executer of
+	# Returns: The Executer Class
+	# Author: Mussab ElDash
 	def self.get_executer lang
 		lang = lang.capitalize
 		executer = lang + "Executer"
 		return eval executer
 	end
 
+	# [Layer - Story X.3]
+	# Get the Compiler Class of the give language
+	# Parameters:
+	# 	lang: The programming language to get the compiler of
+	# Returns: The Compiler Class
+	# Author: Mussab ElDash
 	def self.get_compiler lang
 		lang = lang.capitalize
 		compiler_string = lang + "Compiler"
@@ -92,6 +143,12 @@ class SolutionsLayer
 		return compiler
 	end
 
+	# [Layer - Story X.3]
+	# Get the Debuuger Class of the give language
+	# Parameters:
+	# 	lang: The programming language to get the debuuger of
+	# Returns: The Debuuger Class
+	# Author: Mussab ElDash
 	def self.get_debugger lang
 		lang = lang.capitalize
 		debugger_string = lang + "Debugger"
