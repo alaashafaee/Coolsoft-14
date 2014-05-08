@@ -4,19 +4,11 @@
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
-<%=
-	@code = f.hidden_field "code", :id =>'solution_code',
-	value: flash[:previous_code] == nil ?
-		"\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
-		 : flash[:previous_code].to_s
-%>
-<%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
 
 <!-- Add editor -->
 <pre id="editor">
 </pre>
-<%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
 <table width='100%'>
 	<tr>
@@ -92,28 +84,29 @@
 <script>
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
-	var hidden_code_field = document.getElementById('solution_code')
+	// var hidden_code_field = document.getElementById('solution_code')
 	var code_header = "public class CoolSoft {\n";
-	var code_footer = "\n}";
+	var code_body = "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}";
+	// var code_footer = "\n}";
 
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
 
-	edit_session.setValue(code_header + hidden_code_field.value);
+	edit_session.setValue(code_header + code_body);
 
-	var code_filter_function = function(event_handler) {
-		var unfiltered_code = edit_session.getValue();
-		var code_len = unfiltered_code.length;
-		var line_count = edit_session.doc.getAllLines().length;
+	// var code_filter_function = function(event_handler) {
+	// 	var unfiltered_code = edit_session.getValue();
+	// 	var code_len = unfiltered_code.length;
+	// 	var line_count = edit_session.doc.getAllLines().length;
 		
-		if(unfiltered_code.indexOf(code_header) != 0) {
-			edit_session.doc.insertLines(0, [code_header]);
-			return;
-		} else {
-			hidden_code_field.value = unfiltered_code.slice(code_header.length)
-		}
-	};
+	// 	if(unfiltered_code.indexOf(code_header) != 0) {
+	// 		edit_session.doc.insertLines(0, [code_header]);
+	// 		return;
+	// 	} else {
+	// 		hidden_code_field.value = unfiltered_code.slice(code_header.length)
+	// 	}
+	// };
 
-	edit_session.on('change', code_filter_function);
+	// edit_session.on('change', code_filter_function);
 </script> 
 <% end %>

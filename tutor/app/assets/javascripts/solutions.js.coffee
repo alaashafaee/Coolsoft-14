@@ -10,7 +10,9 @@ index_number = 0
 # Returns: none
 # Author: Mussab ElDash
 @start_debug = (problem_id) ->
-	input = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	input = edit_session.getValue()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -48,7 +50,9 @@ index_number = 0
 #	none
 # Author: Ahmed Akram
 @compile = (problem_id) ->
-	input = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	input = edit_session.getValue()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -82,7 +86,9 @@ index_number = 0
 #	none
 # Author: Ahmed Akram
 @run_input = (problem_id) ->
-	code = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	code = edit_session.getValue()
 	if code.length is 0
 		alert "You didn't write any code"
 		return
@@ -326,7 +332,9 @@ debug_console = ->
 #	of the current code and the other containing success messages
 # Author: MOHAMEDSAEED
 @validate_code = (problem_id) ->
-	code = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	code = edit_session.getValue()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
 	time = (mins * 60) + secs
