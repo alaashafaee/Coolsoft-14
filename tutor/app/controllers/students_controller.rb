@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+
 	# [Profile - Story 5.8]
 	# Displays the profile of the student chosen
 	# Parameters:
@@ -9,4 +10,5 @@ class StudentsController < ApplicationController
 		@student = Student.find(params[:id])
 		@courses = @student.courses.order("created_at desc")
 	end
+	
 end

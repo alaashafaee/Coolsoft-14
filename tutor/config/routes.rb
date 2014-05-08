@@ -1,5 +1,6 @@
 Tutor::Application.routes.draw do
 
+
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
@@ -176,4 +177,5 @@ Tutor::Application.routes.draw do
 	#     # (app/controllers/admin/products_controller.rb)
 	#     resources :products
 	#   end
+
 end

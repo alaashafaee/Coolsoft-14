@@ -74,7 +74,17 @@ class TipsController < ApplicationController
 		@tips_check = Hint.all
 	end
 
+	# [Remove tip - Story 4.20]
+	# Finds the tip that wanted to be removed
+	# Parameters:
+	#	id: id of the tip required to be removed
+	# Returns:
+	#	@tip: tip which will be removed
+	# Author: Ahmed Osam
 	def destroy
+		@tip = Hint.find_by_id(params[:id])
+		@tip.destroy
+		redirect_to :controller => 'model_answers', :action => 'edit', :id => params[:answer_id]
 	end
 
 	# [Edit tip - Story 4.10]
@@ -131,9 +141,8 @@ class TipsController < ApplicationController
 	# Returns:
 	#	none
 	# Author: Ahmed Osam
-	private
-	def tip_params_edit 
-		params.require(:tip_edit).permit(:message, :time)
-	end
+		def tip_params_edit
+			params.require(:tip_edit).permit(:message, :time)
+		end
 
 end

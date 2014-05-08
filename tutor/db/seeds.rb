@@ -81,6 +81,10 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard1", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard2", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard4", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard5", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard6", activated: true)
+	DiscussionBoard.create(title:"DiscussionBoard7", activated: true)
 
 puts("# --------------------------Posts------------------------------")
 	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
@@ -184,6 +188,17 @@ puts("#-----------------------Recommendations-----------------------")
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
 
+puts("#-----------------------Contests-----------------------")
+	Contest.create(title:"Iteration",description:"If you can solve this you will get a level up")
+	Contest.create(title:"Recursion",description:"If you can solve this you will get 2 level up")
+	Contest.create(title:"DB",description:"If you can solve this you will get 4 level up")
+
+puts("#-----------------------Contests-----------------------")
+	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:false)
+
 puts("# -------------------------------------------------------")
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -215,7 +230,11 @@ puts("# -----------------------Lecturers---------------------------")
 	Lecturer.find_by_id(1).courses << Course.find_by_code("cs3")
 	Lecturer.find_by_id(2).courses << Course.find_by_code("cs4")
 	Lecturer.find_by_id(2).courses << Course.find_by_code("cs5")
-	
+
+	Lecturer.find_by_id(1).contests << Contest.find_by_id(1)
+	Lecturer.find_by_id(1).contests << Contest.find_by_id(2)
+	Lecturer.find_by_id(1).contests << Contest.find_by_id(3)
+
 puts("# -----------------------Students---------------------------")
 	Student.first.course_students << CourseStudent.first
 	Student.first.solutions << Solution.first
@@ -243,6 +262,16 @@ puts("# -----------------------Students---------------------------")
 	Student.find_by_id(4).progressions << TrackProgression.find_by_id(3)
 	Student.first.progressions << TrackProgression.find_by_id(4)
 	Student.first.progressions << TrackProgression.find_by_id(5)
+
+	Student.find_by_id(1).contests << Contest.find_by_id(1)
+	Student.find_by_id(2).contests << Contest.find_by_id(1)
+	Student.find_by_id(3).contests << Contest.find_by_id(2)
+	Student.find_by_id(4).contests << Contest.find_by_id(3)
+
+	Student.find_by_id(1).contest_progresses << ContestProgress.find_by_id(1)
+	Student.find_by_id(1).contest_progresses << ContestProgress.find_by_id(2)
+	Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(3)
+	Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(4)
 
 	# Other way to add Course into student, but it will require getting Course_student via searching
 	# since the table has key on (student_id and course_id)then the array will always be 1 elemet [0]
@@ -302,6 +331,12 @@ puts("# -----------------------Problems---------------------------")
 	Problem.first.attempts << Attempt.find_by_id(12)
 	Problem.first.attempts << Attempt.find_by_id(13)
 
+	Problem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(1)
+	Problem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(2)
+	Problem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(3)
+	Problem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(3)
+	Problem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(4)
+
 puts("# -----------------------Hints---------------------------")
 	Problem.first.model_answers.first.hints << Hint.first
 
@@ -323,11 +358,28 @@ puts("# --------------------- Courses -------------------------")
 	Course.first.discussion_board = DiscussionBoard.first
 	Course.first.topics << Topic.find_by_id(2)
 	Course.find_by_id(2).topics << Topic.find_by_id(3)
-	Course.find_by_id(2).discussion_board = DiscussionBoard.last
+	Course.find_by_id(2).discussion_board = DiscussionBoard.find_by_id(2)
 	Course.first.course_students << CourseStudent.first
+	Course.find_by_id(3).discussion_board = DiscussionBoard.find_by_id(3)
+	Course.find_by_id(4).discussion_board = DiscussionBoard.find_by_id(4)
+	Course.find_by_id(5).discussion_board = DiscussionBoard.find_by_id(5)
+	Course.find_by_id(6).discussion_board = DiscussionBoard.find_by_id(6)
+	Course.find_by_id(7).discussion_board = DiscussionBoard.find_by_id(7)
 
 puts("# ----------------- DiscussionBoard -----------------------")
 	DiscussionBoard.first.posts << Post.first
 	DiscussionBoard.first.posts << Post.find_by_id(2)
+
+puts("# ----------------- Contests -----------------------")
+	Contest.find_by_id(1).problems << Problem.find_by_id(1)
+	Contest.find_by_id(1).problems << Problem.find_by_id(2)
+	Contest.find_by_id(1).problems << Problem.find_by_id(3)
+	Contest.find_by_id(2).problems << Problem.find_by_id(4)
+	Contest.find_by_id(3).problems << Problem.find_by_id(5)
+
+	Contest.find_by_id(1).progress << ContestProgress.find_by_id(1)
+	Contest.find_by_id(2).progress << ContestProgress.find_by_id(2)
+	Contest.find_by_id(2).progress << ContestProgress.find_by_id(3)
+	Contest.find_by_id(3).progress << ContestProgress.find_by_id(4)
 
 puts("# ---------------------------------------------------------")
