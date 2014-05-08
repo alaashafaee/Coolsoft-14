@@ -11,8 +11,8 @@
 		 : flash[:previous_code].to_s
 %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
-<div style ='text-align:right;'>
-<%= button_tag 'Reload Template', type: 'Button',id: 'reloadButton',
+<div style = 'text-align:right;'>
+<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
 	onClick: "reload_template()", class: "btn btn-info" %>
 </div>
 <br>
