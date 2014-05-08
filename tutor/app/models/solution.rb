@@ -142,6 +142,11 @@ class Solution < ActiveRecord::Base
 		return jfile_name
 	end
 
+	# Author: Ahmed Moataz
+	def folder_name
+		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s
+	end
+
 	#Constants
 	STATUS_SUBMITTED	= 	0
 	STATUS_ACCEPTED		=	1
@@ -151,5 +156,6 @@ class Solution < ActiveRecord::Base
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
+	SOLUTION_PATH = 'students_solutions/'
 
 end

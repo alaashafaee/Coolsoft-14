@@ -12,11 +12,12 @@ class Compiler < ActiveRecord::Base
 	#	The compiler's feedback.
 	# Author: Ahmed Moataz
 	def self.compile(solution, code)
-		%x[ #{'mkdir -p ' + Solution::JAVA_PATH} ]
-		file_name = solution.java_file_name(true, true)
+		folder_name = solution.folder_name
+		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
+		file_name = Solution::SOLUTION_PATH + folder_name + '/CoolSoft.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
-		%x[ #{'mkdir -p ' + Solution::CLASS_PATH} ]
-		return %x[ #{'javac -g -d ' + Solution::CLASS_PATH + ' ' + file_name + ' 2>&1'} ]
+		#{}%x[ #{'mkdir -p ' + Solution::CLASS_PATH} ]
+		return %x[ #{'javac -g ' + file_name + ' 2>&1'} ]
 	end
 
 	# [Compiler: Compile - Story 3.4]
@@ -30,8 +31,8 @@ class Compiler < ActiveRecord::Base
 	#	The third element contains the compiled code.
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
-		new_code = append_class(solution)
-		feedback = compile(solution, new_code)
+		#new_code = append_class(solution)
+		feedback = compile(solution, solution.code)
 		if feedback == ""
 			return {success: true, errors: nil}
 		else
