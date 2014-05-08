@@ -16,6 +16,7 @@
 @test = ->  
 	document.getElementById("linTest1").style= "display: none;"  
 	document.getElementById("linTest2").style= "display: true;" 
+	document.getElementById("new_track").style= "display: none;"
 	$("#accordion").sortable
 		placeholder: "ui-state-highlight"
 		axis: "y"
@@ -27,6 +28,7 @@
 
 @submitNewRating = ->
 	array = $("#accordion").sortable("toArray")
+
 	$.ajax
 		url: "/topics/sort"
 		type: "POST"
@@ -34,7 +36,7 @@
 			xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
 			return
 		success: (data) ->
-			alert "New track ratings saved!"
+			alert "New track rating saved!"
 			location.reload()
 			return
 		error: (data) ->
