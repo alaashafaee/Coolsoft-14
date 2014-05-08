@@ -17,7 +17,7 @@ class DebuggersController < ApplicationController
 		pid = params[:id]
 		input = params[:code]
 		cases = if params[:case] then params[:case] else "" end
-		result = Debugger.debug(id, pid, input, cases)
+		result = JavaDebugger.debug(id, pid, input, cases)
 		render json: result
 	end
 

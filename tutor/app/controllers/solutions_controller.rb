@@ -15,6 +15,7 @@ class SolutionsController < ApplicationController
 		solution.save
 		test_cases = solution.problem.test_cases
 		result = Solution.validate(solution, test_cases)
+		p solution
 		render json: result
 	end
 
@@ -33,7 +34,7 @@ class SolutionsController < ApplicationController
 		pid = params[:problem_id]
 		input = params[:code]
 		cases = if params[:input] then params[:input] else "" end
-		result = Executer.create_solution(id, pid, input, cases)
+		result = JavaExecuter.create_solution(id, pid, input, cases)
 		render json: result
 	end
 
@@ -49,7 +50,7 @@ class SolutionsController < ApplicationController
 		solution.student_id = current_student.id
 		solution.length = solution.code.length
 		if solution.save
-			compiler_feedback = Compiler.compiler_feedback(solution)
+			compiler_feedback = JavaCompiler.compiler_feedback(solution)
 			if compiler_feedback[:success]
 				solution.status = 3
 			else

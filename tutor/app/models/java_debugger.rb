@@ -1,5 +1,5 @@
 require "open3"
-class Debugger < ActiveRecord::Base
+class JavaDebugger < ActiveRecord::Base
 	
 	#Methods
 
@@ -178,7 +178,7 @@ class Debugger < ActiveRecord::Base
 		/Exception occurred: / =~ line
 		if $&
 			exception = get_exception
-			return {:status => false, :exception => Executer.get_runtime_explaination(exception)}
+			return {:status => false, :exception => JavaExecuter.get_runtime_explaination(exception)}
 		end
 		return {:status => true}
 	end
@@ -211,11 +211,13 @@ class Debugger < ActiveRecord::Base
 	def self.debug(student_id, problem_id, code, input)
 		solution = Solution.create({code: code, student_id: student_id,
 			problem_id: problem_id})
-		compile_status = Compiler.compiler_feedback(solution)
+		compile_status = JavaCompiler.compiler_feedback(solution)
 		unless compile_status[:success]
 			return {:success => false, data: compile_status}
 		end
-		debugger = Debugger.new
+		debugger = JavaDebugger.new
+		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+		puts "Exited"
 		class_name = solution.file_name
 		debugging = debugger.start(class_name, input.split(" "))
 		java_file = solution.java_file_name true, true
