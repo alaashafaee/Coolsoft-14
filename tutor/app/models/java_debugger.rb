@@ -1,5 +1,5 @@
 require "open3"
-class JavaDebugger < ActiveRecord::Base
+class JavaDebugger
 	
 	#Methods
 
@@ -208,16 +208,8 @@ class JavaDebugger < ActiveRecord::Base
 	# 	input: The arguments to be debugged against
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
-	def self.debug(student_id, problem_id, code, input)
-		solution = Solution.create({code: code, student_id: student_id,
-			problem_id: problem_id})
-		compile_status = JavaCompiler.compiler_feedback(solution)
-		unless compile_status[:success]
-			return {:success => false, data: compile_status}
-		end
+	def self.debug(solution, input)
 		debugger = JavaDebugger.new
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-		puts "Exited"
 		class_name = solution.file_name
 		debugging = debugger.start(class_name, input.split(" "))
 		java_file = solution.java_file_name true, true
