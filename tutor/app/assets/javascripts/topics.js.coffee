@@ -14,8 +14,8 @@
 # Returns: none
 # Author: Lin Kassem
 @test = ->  
-	document.getElementById("linTest1").style= "display: none;"  
-	document.getElementById("linTest2").style= "display: true;" 
+	document.getElementById("editTrackRatingbtn").style= "display: none;"  
+	document.getElementById("submitNewRatingbtn").style= "display: true;" 
 	document.getElementById("new_track").style= "display: none;"
 	$("#accordion").sortable
 		placeholder: "ui-state-highlight"
@@ -35,12 +35,23 @@
 			xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
 			return
 		success: (data) ->
-			alert "New track rating saved!"
-			location.reload()
+			$("#alert").removeClass().addClass("alert alert-success").text "New track ratings saved!"
+			window.setTimeout (->
+				location.reload()
+				return
+			), 2000
 			return
 		error: (data) ->
-			alert "Error on ajax post"
+			$("#alert").removeClass().addClass("alert alert-warning").text "New track ratings saved!"
+			window.setTimeout (->
+				location.reload()
+				return
+			), 2000
 			return
 		data:
 			methodParam: array
+	return
+
+$ ->
+	$(".btn-info").tooltip()
 	return
