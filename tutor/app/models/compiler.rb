@@ -14,7 +14,7 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.compile(solution, code)
 		folder_name = solution.folder_name
-		file_path = solution.file65165161_path
+		file_path = solution.file_path
 		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
 		File.open(file_path, 'w') { |file| file.write(code) }
 		return %x[ #{'javac -g ' + file_path + ' 2>&1'} ]
