@@ -290,6 +290,7 @@ ActiveRecord::Schema.define(version: 20140506131804) do
     t.integer  "problem_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "class_name"
   end
 
   create_table "students", force: true do |t|
