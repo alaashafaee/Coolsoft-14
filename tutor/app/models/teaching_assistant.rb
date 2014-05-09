@@ -53,6 +53,8 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :assignments, as: :owner
 	has_many :assignment_problems, class_name:"AssignmentProblem", as: :owner
 	has_many :grades, as: :editor
+
+	has_many :resources, as: :owner
 	
 	#Methods
 	# [Advanced Search - Story 1.23]

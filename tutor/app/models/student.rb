@@ -47,7 +47,6 @@ class Student < ActiveRecord::Base
 	has_and_belongs_to_many :contests, class_name:"Contest", join_table: "contests_students"
 	
 	has_many :grades
-	has_and_belongs_to_many :assignments, join_table:"assignments_students"
 
 	#Methods
 
