@@ -9,6 +9,7 @@ class CreateCourses < ActiveRecord::Migration
       t.text :description
       t.boolean :visible, default: false
       t.boolean :incomplete, default: true
+      t.string :link
 
       t.timestamps
     end

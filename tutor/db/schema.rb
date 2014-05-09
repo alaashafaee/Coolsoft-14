@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509093755) do
+ActiveRecord::Schema.define(version: 20140509205739) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -92,8 +92,11 @@ ActiveRecord::Schema.define(version: 20140509093755) do
   create_table "contests", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "expiration_date"
     t.boolean  "incomplete"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.date     "start_date"
+    t.date     "end_date"
     t.integer  "course_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -134,6 +137,7 @@ ActiveRecord::Schema.define(version: 20140509093755) do
     t.text     "description"
     t.boolean  "visible",     default: false
     t.boolean  "incomplete",  default: true
+    t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -334,11 +338,23 @@ ActiveRecord::Schema.define(version: 20140509093755) do
     t.datetime "updated_at"
   end
 
+  create_table "resources", force: true do |t|
+    t.string   "link"
+    t.string   "link_type"
+    t.string   "img"
+    t.integer  "course_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "solutions", force: true do |t|
     t.text     "code"
     t.integer  "length"
     t.integer  "status"
     t.integer  "time"
+    t.text     "class_name"
     t.integer  "student_id"
     t.integer  "problem_id"
     t.string   "problem_type"
