@@ -23,7 +23,7 @@
 
 <div class="panel-group list-group" id="accordion">
 	<% @tracks.each do |t| %>
-		<div  class = "panel panel-default" style = "width:50%">
+		<div id="<%=t.id.to_s + "test"%> " class =" panel panel-default" style = "width:50%">
 			<div class="panel-title list-group-item list-group-item-info"
 				data-toggle="collapse" data-parent="#accordion"
 				href="#<%= t.id.to_s %>">
