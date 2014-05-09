@@ -53,6 +53,7 @@ index_number = 0
 	editor = ace.edit("editor")
 	edit_session = editor.getSession()
 	input = edit_session.getValue()
+	class_name = $("#class_name").val()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -61,7 +62,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
-		data: {code : input, problem_id : problem_id}
+		data: {code : input, problem_id : problem_id, class_name : class_name}
 		datatype: 'json'
 		success: (unique) ->
 			clear_console()

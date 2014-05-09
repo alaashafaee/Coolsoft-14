@@ -14,9 +14,8 @@ class Compiler < ActiveRecord::Base
 	def self.compile(solution, code)
 		folder_name = solution.folder_name
 		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
-		file_name = Solution::SOLUTION_PATH + folder_name + '/CoolSoft.java'
+		file_name = Solution::SOLUTION_PATH + folder_name + '/' + solution.class_name + '.java'
 		File.open(file_name, 'w') { |file| file.write(code) }
-		#{}%x[ #{'mkdir -p ' + Solution::CLASS_PATH} ]
 		return %x[ #{'javac -g ' + file_name + ' 2>&1'} ]
 	end
 
@@ -42,19 +41,6 @@ class Compiler < ActiveRecord::Base
 	end
 
 	# [Compiler: Compile - Story 3.4]
-	#	Appends the class enclosure to the to submitted code.
-	# Parameters:
-	#	solution: The submitted solution.
-	# Returns:
-	#	The code with the class enclosure.
-	# Author: Ahmed Moataz
-	def self.append_class(solution)
-		name = solution.file_name 
-		code = solution.code
-		return 'public class ' + name + " {\n" + code
-	end
-
-	# [Compiler: Compile - Story 3.4]
 	#	Changes the error headers to CoolSoft.
 	# Parameters:
 	#	solution: The submitted solution.
@@ -63,8 +49,8 @@ class Compiler < ActiveRecord::Base
 	#	The compiler's feedback with the error headers changed to CoolSoft.
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
-		header = solution.file_name
-		return feedback.gsub('students_solutions/Java/' + header, 'CoolSoft').gsub(header, 'CoolSoft')
+		header = Solution::SOLUTION_PATH + solution.folder_name + '/' + solution.class_name
+		return feedback.gsub(header, solution.class_name).gsub(header, solution.class_name)
 	end
 
 end
