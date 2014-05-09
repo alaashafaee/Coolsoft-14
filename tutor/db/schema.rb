@@ -339,6 +339,7 @@ ActiveRecord::Schema.define(version: 20140509205739) do
   end
 
   create_table "resources", force: true do |t|
+    t.text     "description"
     t.string   "link"
     t.string   "link_type"
     t.string   "img"
