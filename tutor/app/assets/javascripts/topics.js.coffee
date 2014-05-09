@@ -28,7 +28,6 @@
 
 @submitNewRating = ->
 	array = $("#accordion").sortable("toArray")
-
 	$.ajax
 		url: "/topics/sort"
 		type: "POST"
