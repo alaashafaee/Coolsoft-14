@@ -142,12 +142,24 @@ class Solution < ActiveRecord::Base
 		return jfile_name
 	end
 
+	# [Compiler: Compile - Story 3.4]
+	# Returns the folder's name, which the solution's files will be placed into.
+	# Parameters: none
+	# Returns:
+	#	The folder's name.
 	# Author: Ahmed Moataz
 	def folder_name
 		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s + '/'
 	end
 
-	#Author: Ahmed Moataz
+	# [Compiler: Compile - Story 3.4]
+	# Returns the file path of the soltion's files.
+	# Parameters:
+	#	append_extension: A boolean value indicating if the file extension
+	#		should be appended or not.
+	# Returns: 
+	#	path: The file path.
+	# Author: Ahmed Moataz
 	def file_path(append_extension = true)
 		path =  SOLUTION_PATH + folder_name + class_name
 		path += '.java' if append_extension
