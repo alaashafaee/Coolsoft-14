@@ -58,18 +58,15 @@
 <!-- thats a form for creating a track which is intially hidden
 		until the new button clicked -->
 <% if @can_edit %>
-
 	<span class="btn btn-info" onclick="newTrack()" id="new_track">New</span>
 	<span class="btn btn-info" data-toggle = "tooltip" data-placement = "right"
 		title= "Click to drag and drop the tracks to sort 
 		them according to their difficulty rating!" onclick="test()" 
 		id="editTrackRatingbtn" style="display: true;">
-		Edit track rating</span> 
-
+		Edit track rating</span> 		
 	<span class="btn btn-info" onclick="submitNewRating()" id="submitNewRatingbtn" 
 		style="display: none;">
 		Submit new rating!</span>
-
 	<% if !flash[:title] && !flash[:difficulty] %>
 		<% hide = 'hidden=true' %>
 	<% end %>

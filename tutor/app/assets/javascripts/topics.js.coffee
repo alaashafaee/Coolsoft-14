@@ -7,7 +7,7 @@
 	return
 
 # [Edit Track Rating - Story 4.13]
-# Makes the list of track sortable.
+# Makes the list of tracks sortable.
 #	Sends array of new order of tracks to the sort action 
 #	in topic's controller.  
 # Parameters: none
@@ -32,17 +32,20 @@
 		url: "/topics/sort"
 		type: "POST"
 		beforeSend: (xhr) ->
-			xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
+			xhr.setRequestHeader "X-CSRF-Token",
+			 $("meta[name=\"csrf-token\"]").attr("content")
 			return
 		success: (data) ->
-			$("#alert").removeClass().addClass("alert alert-success").text "New track ratings saved!"
+			$("#alert").removeClass().addClass("alert alert-success").
+			text "New track ratings saved!"
 			window.setTimeout (->
 				location.reload()
 				return
 			), 2000
 			return
 		error: (data) ->
-			$("#alert").removeClass().addClass("alert alert-warning").text "New track ratings saved!"
+			$("#alert").removeClass().addClass("alert alert-warning").
+			text "Error! New track rating cannot be saved."
 			window.setTimeout (->
 				location.reload()
 				return
