@@ -5,7 +5,7 @@ class SolutionsLayer
 	# Parameters:
 	# 	lang: The programming language used in execution
 	# 	code: The code to be executed
-	# 	Student_id: The id of the current signed in student
+	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	cases: The input to test against
 	# Returns: A hash with the status of the execution
@@ -29,7 +29,7 @@ class SolutionsLayer
 	# Parameters:
 	# 	lang: The programming language used in compilation
 	# 	code: The code to be compiled
-	# 	Student_id: The id of the current signed in student
+	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# Returns: The compile status
 	# Author: Mussab ElDash
@@ -54,7 +54,7 @@ class SolutionsLayer
 	# Parameters:
 	# 	lang: The programming language used in validation
 	# 	code: The code to be validated
-	# 	Student_id: The id of the current signed in student
+	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	time: The time the student spent to solve the problem
 	# Returns: A hash with the validation status
@@ -78,7 +78,7 @@ class SolutionsLayer
 	# Parameters:
 	# 	lang: The programming language used in debugging
 	# 	code: The code to be debugged
-	# 	Student_id: The id of the current signed in student
+	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	cases: The input to debug against
 	# Returns: A hash with the debugging results
@@ -104,7 +104,7 @@ class SolutionsLayer
 	# Creates a new solution for future use
 	# Parameters:
 	# 	code: The code to be debugged
-	# 	Student_id: The id of the current signed in student
+	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# Returns: A new Solution
 	# Author: Mussab ElDash
