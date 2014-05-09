@@ -151,7 +151,7 @@ class SolutionsLayer
 	end
 
 	# [Layer - Story X.3]
-	# Get the Debuuger Class of the give language
+	# Get the Debugger Class of the give language
 	# Parameters:
 	# 	lang: The programming language to get the debuuger of
 	# Returns: 
