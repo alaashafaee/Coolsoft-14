@@ -9,7 +9,7 @@ class Compiler < ActiveRecord::Base
 	#	solution: The submitted solution.
 	#	code: The code to be compiled.
 	# Returns:
-	#	The compiler's feedback.
+	#	The compiler's feedback
 	# Author: Ahmed Moataz
 	def self.compile(solution, code)
 		folder_name = solution.folder_name
