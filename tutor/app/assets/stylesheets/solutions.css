@@ -119,3 +119,10 @@ textarea  {
 .hidden {
 	visibility: false;
 }
+
+.output {
+	white-space: pre;
+	color: black;
+	font-weight: bold;
+	font-size: 20px
+}
