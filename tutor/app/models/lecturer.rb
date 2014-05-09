@@ -12,7 +12,7 @@ class Lecturer < ActiveRecord::Base
 	include Searchable
 
 	#Uploader
-	# mount_uploader :profile_image, ProfileImageUploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email
@@ -42,9 +42,9 @@ class Lecturer < ActiveRecord::Base
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
 	has_many :acknowledgements, dependent: :destroy
+	has_many :contests, as: :owner
 
 	#Methods
-
 	# [Advanced Search - Story 1.23]
 	# search for lecturers
 	# Parameters: hash of search options

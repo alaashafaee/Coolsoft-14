@@ -12,7 +12,7 @@ class Student < ActiveRecord::Base
 	include Searchable
 
 	#Uploader
-	# mount_uploader :profile_image, ProfileImageUploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email
@@ -41,6 +41,9 @@ class Student < ActiveRecord::Base
 	has_many :course_students
 	has_many :courses, through: :course_students, dependent: :destroy
 	has_many :problems_start_time, class_name: 'ProblemOpeningTime'
+
+	has_many :contest_progresses, class_name: 'ContestProgress'
+	has_and_belongs_to_many :contests, class_name:"Contest", join_table: "contests_students"
 
 	#Methods
 

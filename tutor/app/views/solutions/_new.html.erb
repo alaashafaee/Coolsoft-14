@@ -11,6 +11,10 @@
 		 : flash[:previous_code].to_s
 %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
+<div style = 'text-align:right;'>
+<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
+	onClick: "reload_template()", class: "btn btn-info" %>
+</div>
 <br>
 
 <!-- Add editor -->
@@ -105,15 +109,8 @@
 		var unfiltered_code = edit_session.getValue();
 		var code_len = unfiltered_code.length;
 		var line_count = edit_session.doc.getAllLines().length;
-		
-		if(unfiltered_code.indexOf(code_header) != 0) {
-			edit_session.doc.insertLines(0, [code_header]);
-			return;
-		} else {
-			hidden_code_field.value = unfiltered_code.slice(code_header.length)
-		}
+		hidden_code_field.value = unfiltered_code.slice(code_header.length)
 	};
-
 	edit_session.on('change', code_filter_function);
-</script> 
+</script>
 <% end %>
