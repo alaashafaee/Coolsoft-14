@@ -1,0 +1,29 @@
+<div id="tab1" class="tab active">
+		<h1>Create New Contest</h1>
+		<%= form_for :contest, url: contests_path do |f| %>
+			<p>
+				<%= f.label :Title %><br>
+				<% unless @new_course.errors[:title].blank? %>
+					<span id="error_explanation">
+						Title <%= @new_contest.errors[:title].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_field :title, :value => @new_contest.title, class:"form-control", style: "width:300px", placeholder:"Title" %>
+			</p>
+			<p>
+				<%= f.label :Description %><br>
+				<% unless @new_contest.errors[:description].blank? %>
+					<span id="error_explanation">
+						Description <%= @new_contest.errors[:description].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_area :description, class:"form-control", style:"width:300px", 
+					placeholder:"Description", :value => @new_contest.description %>
+			</p>
+			<p>
+				<%= f.submit "Save", class: "btn btn-info" %>
+			</p>
+		<% end %>
+		</div>
