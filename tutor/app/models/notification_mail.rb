@@ -6,6 +6,4 @@ class NotificationMail < ActiveRecord::Base
 	
 	#Methods
 
-
-
 end
