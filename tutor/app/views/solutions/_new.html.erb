@@ -4,6 +4,17 @@
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
+<%=
+	@code = f.hidden_field "code", :id =>'solution_code',
+	value: flash[:previous_code] == nil ?
+		"\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+		 : flash[:previous_code].to_s
+%>
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<div style = 'text-align:right;'>
+<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
+	onClick: "reload_template()", class: "btn btn-info" %>
+</div>
 <br>
 
 <!-- Class name field -->
@@ -99,19 +110,13 @@
 
 	edit_session.setValue(code_header + code_body);
 
-	// var code_filter_function = function(event_handler) {
-	// 	var unfiltered_code = edit_session.getValue();
-	// 	var code_len = unfiltered_code.length;
-	// 	var line_count = edit_session.doc.getAllLines().length;
-		
-	// 	if(unfiltered_code.indexOf(code_header) != 0) {
-	// 		edit_session.doc.insertLines(0, [code_header]);
-	// 		return;
-	// 	} else {
-	// 		hidden_code_field.value = unfiltered_code.slice(code_header.length)
-	// 	}
-	// };
+	var code_filter_function = function(event_handler) {
+		var unfiltered_code = edit_session.getValue();
+		var code_len = unfiltered_code.length;
+		var line_count = edit_session.doc.getAllLines().length;
+		hidden_code_field.value = unfiltered_code.slice(code_header.length)
+	};
+	edit_session.on('change', code_filter_function);
+</script>
 
-	// edit_session.on('change', code_filter_function);
-</script> 
 <% end %>

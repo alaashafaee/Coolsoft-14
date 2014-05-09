@@ -59,18 +59,6 @@ class SolutionsController < ApplicationController
 		end
 	end
 
-	def submit_no_ajax
-		file = @solution.file_name
-		response_message = Solution.validate(file, solution_params[:problem_id])
-		flash[:compiler_success_2] = response_message[:success]
-		flash[:msg_2] = response_message[:runtime_error]
-		flash[:exp_2] = response_message[:runtime_error_exp]
-		flash[:compiler_fail_2] = response_message[:logic_error]
-		@solution.status = response_message[:status]
-		@solution.save
-		redirect_to :back
-	end
-
 	private
 	# [Code Editor: Write Code - Story 3.3]
 	# Permits the id of the problem, code from the form_for

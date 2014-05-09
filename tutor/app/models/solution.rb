@@ -60,20 +60,30 @@ class Solution < ActiveRecord::Base
 	end
 
 	# [Compiler: Validate - Story 3.5]
-	# outputs the runtime error with a better explanation
+	# outputs the runtime error with a more descriptive error message
 	# Parameters:
 	# 	error: the original runtime error
 	# Returns: a String with the explained runtime error
 	# Author: MOHAMEDSAEED
 	def self.get_response(error)
-		if error.include?("/ by zero")
-			return "Division / 0"
-		elsif error.include?("ArrayIndexOutOfBounds")
-			return "Out of array range"
-		elsif error.include?("StringIndexOutOfBounds")
-			return "Out of string range"
+		if error[:errors].include?("/ by zero")
+			return "Division by zero, for example: a/b, b = 0"
+		elsif error[:errors].include?("ArrayIndexOutOfBounds")
+			return "Index is out of array range"
+		elsif error[:errors].include?("StringIndexOutOfBounds")
+			return "Index is out of string range"
+		elsif  error[:errors].include?("ClassCastException")
+			return "Wrong type casting"
+		elsif error[:errors].include?("NullPointerException")
+			return "Trying to access a null object"
+		elsif  error[:errors].include?("IOException")
+			return "Error when trying to read or write data"
+		elsif  error[:errors].include?("NumberFormatException")
+			return "Invalid string to be converted to number"
+		elsif  error[:errors].include?("StackOverflowError")
+			return "Calling a recursion function that never ends"
 		else
-			return "To be set response"
+			return error[:errors]
 		end
 	end
 
