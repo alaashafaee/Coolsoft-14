@@ -48,7 +48,7 @@ class Compiler < ActiveRecord::Base
 	#	The compiler's feedback with the error headers changed to the solution's class name.
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
-		header = Solution::SOLUTION_PATH + solution.folder_name + '/' + solution.class_name
+		header = Solution::SOLUTION_PATH + solution.folder_name + solution.class_name
 		return feedback.gsub(header, solution.class_name).gsub(header, solution.class_name)
 	end
 

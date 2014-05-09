@@ -99,18 +99,9 @@
 
 	edit_session.setValue(code_header + code_body);
 
-	// var code_filter_function = function(event_handler) {
-	// 	var unfiltered_code = edit_session.getValue();
-	// 	var code_len = unfiltered_code.length;
-	// 	var line_count = edit_session.doc.getAllLines().length;
-		
-	// 	if(unfiltered_code.indexOf(code_header) != 0) {
-	// 		edit_session.doc.insertLines(0, [code_header]);
-	// 		return;
-	// 	} else {
-	// 		hidden_code_field.value = unfiltered_code.slice(code_header.length)
-	// 	}
-	// };
+	
+	edit_session.on('change', code_filter_function);
+</script>
 
 	// edit_session.on('change', code_filter_function);
 </script> 
