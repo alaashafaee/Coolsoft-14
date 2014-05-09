@@ -67,7 +67,7 @@ class Solution < ActiveRecord::Base
 	# Author: MOHAMEDSAEED
 	def self.get_response(error)
 		if error[:errors].include?("/ by zero")
-			return "Division / 0"
+			return "Division by zero, for example: a/b, b = 0"
 		elsif error[:errors].include?("ArrayIndexOutOfBounds")
 			return "Index is out of array range"
 		elsif error[:errors].include?("StringIndexOutOfBounds")
