@@ -14,7 +14,9 @@ class Executer
 		file_name = @solution.file_name
 		validity = check_input_validity(input, @solution.problem.id)
 		if validity[:status]
-			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
+			echo_input = 'echo ' + '\'' + input + '\'' + ' | '
+			@execute_res = %x[#{echo_input + 'java -cp ' + class_path + ' ' + 
+							file_name}]
 			if @execute_res.include?("Exception")
 				return {executer_feedback: false, executer_output: get_runtime_error()}
 			else
@@ -55,10 +57,7 @@ class Executer
 	# Author: Ahmed Akram
 	def self.check_input_validity(input, problem_id)
 		variables_number = Problem.find_by_id(problem_id).test_cases.first.input.split(" ").count
-		if input.include?("\n")
-			return {status: false, msg: "Input can not have line breaks \"don't use enter\""}
-		end
-		if input.split(" ").count != variables_number
+		if input.split("\n").count != variables_number
 			msg = "Enter only " + variables_number.to_s + " numbers"
 			return {status: false, msg: msg}
 		end
