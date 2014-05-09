@@ -200,9 +200,9 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 3", difficulty: 2)
 	Track.create(title: "Track 4", difficulty: 3)
 
-puts("# ----------------------- Solutions ----------------------- ")
-	Solution.create(code:"println(My first solution)", length:5, status:0)
-	Solution.create(code:"println(My second solution)", length:5, status:1)
+puts("# -----------------------Solutions---------------------------")
+	Solution.create(code:"println(My first solution)", length:5, status:1)
+	Solution.create(code:"println(My second solution)", length:5, status:0)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
 
 puts("# ----------------------- TrackProgression ----------------------- ")
