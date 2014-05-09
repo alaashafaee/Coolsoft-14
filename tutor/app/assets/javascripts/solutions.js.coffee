@@ -324,6 +324,7 @@ debug_console = ->
 # 	problem_id: the id of the problem being solved
 # Returns: a json object containing two arrays one for the errors
 #	of the current code and the other containing success messages
+#	and the success and failure messages are displayed in a table
 # Author: MOHAMEDSAEED
 @validate_code = (problem_id) ->
 	code = $('#solution_code').val()
@@ -350,13 +351,20 @@ debug_console = ->
 			out = $('#validate_case')
 			out.html("")
 			content = ""
+			content = '<table class="table table-striped table-bordered
+				table-condensed table-hover" border="3">'
+			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
 			for i in data
-				if data["success"]
-					content += "<p style='color:green'>#{i['test_case']}, \
-							#{i['response']}</p>"
+				if i['success']
+					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
+						"</td>"
+					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
+						"</td></tr>"
 				else
-					content += "<p style='color:red'>#{i['test_case']}, \
-							#{i['response']}</p>"
+					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
+						"</td>"
+					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
+						"</td></tr>"
 			out.html(content)
 			return
 		error: (data) ->
