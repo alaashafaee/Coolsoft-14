@@ -1,5 +1,11 @@
 class ContestsController < ApplicationController
 
+	def new
+		if(@new_contest == nil)
+			@new_contest = Contest.new
+		end
+	end
+
 	def create
 		@new_contest  = Contest.new
 		@new_contest.title = contest_params[:title]
@@ -11,11 +17,13 @@ class ContestsController < ApplicationController
 			@new_contest.owner_id = current_lecturer.id
 		elsif teaching_assistant_signed_in?
 			@new_contest.owner_id = current_teaching_assistant.id
+		end
 		if @new_contest.save
 			flash[:success_creation]= "Contest added."
 			redirect_to :action => 'index'
 		else 
 			render :action=>'new'
 		end
+	end
 
 end
