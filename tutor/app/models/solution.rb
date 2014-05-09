@@ -144,7 +144,14 @@ class Solution < ActiveRecord::Base
 
 	# Author: Ahmed Moataz
 	def folder_name
-		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s
+		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s + '/'
+	end
+
+	#Author: Ahmed Moataz
+	def file_path(append_extension = true)
+		path =  SOLUTION_PATH + folder_name + class_name
+		path += '.java' if append_extension
+		return path
 	end
 
 	#Constants

@@ -9,14 +9,14 @@ class Compiler < ActiveRecord::Base
 	#	solution: The submitted solution.
 	#	code: The code to be compiled.
 	# Returns:
-	#	The compiler's feedback
+	#	The compiler's feedback.
 	# Author: Ahmed Moataz
 	def self.compile(solution, code)
 		folder_name = solution.folder_name
+		file_path = solution.file_path
 		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
-		file_name = Solution::SOLUTION_PATH + folder_name + '/' + solution.class_name + '.java'
-		File.open(file_name, 'w') { |file| file.write(code) }
-		return %x[ #{'javac -g ' + file_name + ' 2>&1'} ]
+		File.open(file_path, 'w') { |file| file.write(code) }
+		return %x[ #{'javac -g ' + file_path + ' 2>&1'} ]
 	end
 
 	# [Compiler: Compile - Story 3.4]
