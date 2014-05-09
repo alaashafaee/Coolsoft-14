@@ -153,9 +153,9 @@ class SolutionsLayer
 	# [Layer - Story X.3]
 	# Get the Debugger Class of the give language
 	# Parameters:
-	# 	lang: The programming language to get the debuuger of
+	# 	lang: The programming language to get the debugger of
 	# Returns: 
-	#	The Debuuger Class
+	#	The Debugger Class
 	# Author: Mussab ElDash
 	def self.get_debugger lang
 		lang = lang.capitalize
