@@ -5,7 +5,9 @@ class Solution < ActiveRecord::Base
 
 	#Relations
 	belongs_to :student
-	belongs_to :problem
+	belongs_to :problem, class_name:"Problem", polymorphic: true
+	belongs_to :assignment_problem, class_name:"AssignmentProblem", polymorphic: true
+	belongs_to :contest_problem, class_name:"Cproblem", polymorphic: true
 
 	#Methods
 	# [Compiler: Validate - Story 3.5]
