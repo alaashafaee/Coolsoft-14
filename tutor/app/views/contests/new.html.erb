@@ -1,9 +1,9 @@
-<div id="tab1" class="tab active">
+<div>
 		<h1>Create New Contest</h1>
 		<%= form_for :contest, url: contests_path do |f| %>
 			<p>
 				<%= f.label :Title %><br>
-				<% unless @new_course.errors[:title].blank? %>
+				<% unless @new_contest.errors[:title].blank? %>
 					<span id="error_explanation">
 						Title <%= @new_contest.errors[:title].join(", ") %> 
 					</span>
@@ -11,6 +11,7 @@
 				<% end %>
 				<%= f.text_field :title, :value => @new_contest.title, class:"form-control", style: "width:300px", placeholder:"Title" %>
 			</p>
+			<!--handle start date and expiration date with select_tag-->
 			<p>
 				<%= f.label :Description %><br>
 				<% unless @new_contest.errors[:description].blank? %>
