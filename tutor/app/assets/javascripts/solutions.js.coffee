@@ -357,14 +357,14 @@ debug_console = ->
 			for i in data
 				if i['success']
 					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
-					"</td>"
+						"</td>"
 					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
-					"</td></tr>"
+						"</td></tr>"
 				else
 					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
-					"</td>"
+						"</td>"
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
-					"</td></tr>"
+						"</td></tr>"
 			out.html(content)
 			return
 		error: (data) ->
