@@ -39,7 +39,6 @@ class SolutionsController < ApplicationController
 
 	# [Compiler: Compile - Story 3.4]
 	# Creates a soution for the current problem in the database and compiles it.
-	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
