@@ -82,7 +82,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time)
+		params.permit(:code, :problem_id, :time, :class_name)
 	end
 
 	# [Compiler: Test - Story 3.15]

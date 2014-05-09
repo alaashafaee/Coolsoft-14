@@ -5,6 +5,8 @@
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
 <br>
+<%= f.text_field :class_name, placeholder: "Write your class name here", 
+		class: "form-control", style: "width:220px" %>
 
 <!-- Add editor -->
 <pre id="editor">
