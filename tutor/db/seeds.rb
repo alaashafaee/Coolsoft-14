@@ -136,9 +136,9 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
-	TestCase.create(output: "5\n", input:"10 2")
+	TestCase.create(output: "5.0\n", input:"10 2")
 	TestCase.create(output: "2.5\n", input:"5 2")
-	TestCase.create(output: "x", input:"10 0")
+	TestCase.create(output: "Infinity\n", input:"10 0")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -152,12 +152,11 @@ puts("# ----------------------- Variable Constraints ----------------------- ")
 
 puts("# ----------------------- Problems ----------------------- ")
 	## Assignments
-		Problem.create(title: "Problem 1", description: "Your program is to use the brute-force approach in order 
+		AssignmentProblem.create(title: "AssignmentProblem 1", description: "Your program is to use the brute-force approach in order 
 			to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from 
 			input to output. Stop processing input after reading in the number 42. All numbers at input are integers 
-			of one or two digits.",
-					incomplete: false, category: "assignment")
-		Problem.create(title: "Problem 2", description: "he Antique Comedians of Malidinesia prefer 
+			of one or two digits.", grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 2", description: "he Antique Comedians of Malidinesia prefer 
 			comedies to tragedies. Unfortunately, most of the ancient plays are tragedies. Therefore 
 			the dramatic advisor of ACM has decided to transfigure some tragedies into comedies. 
 			Obviously, this work is very hard because the basic sense of the play must be kept intact, 
@@ -173,36 +172,27 @@ puts("# ----------------------- Problems ----------------------- ")
 			reversed sum. Of course, the result is not unique because any particular number is a 
 			reversed form of several numbers (e.g. 21 could be 12, 120 or 1200 before reversing). 
 			Thus we must assume that no zeros were lost by reversing 
-			(e.g. assume that the original number was 12).",
-					incomplete: false, category: "assignment")
-		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false, category: "assignment")
-		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true, category: "assignment")
+			(e.g. assume that the original number was 12).", grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", grade:10)
 	## Contests
-		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true, category: "contest")
-		Problem.create(title: "Problem 6", description: "Given two numbers a and b, output a/b",
-					incomplete: false, category: "contest")
-		Problem.create(title: "Problem 7", description: "This is very hard Problem",
-					incomplete: false, category: "contest")
-		Problem.create(title: "Problem 8", description: "This wont be a hard Problem",
-					incomplete: false, category: "contest")
-		Problem.create(title: "Problem 9", description: "This will be very easy Problem",
-					incomplete: true, category: "contest")
-		Problem.create(title: "Problem 10", description: "This is very easy Problem",
-					incomplete: true, category: "contest")
+		Cproblem.create(title: "ContestProblem 1", description: "This is very easy Problem")
+		Cproblem.create(title: "ContestProblem 2", description: "Given two numbers a and b, output a/b")
+		Cproblem.create(title: "ContestProblem 3", description: "This is very hard Problem")
+		Cproblem.create(title: "ContestProblem 4", description: "This wont be a hard Problem")
+		Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
+		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
-		Problem.create(title: "Problem 11", description: "Given two numbers a and b, output a/b",
-					incomplete: false, category: "exercise")
-		Problem.create(title: "Problem 12", description: "This is very hard Problem",
-					incomplete: false, category: "exercise")
-		Problem.create(title: "Problem 13", description: "This wont be a hard Problem",
-					incomplete: false, category: "exercise")
-		Problem.create(title: "Problem 14", description: "This will be very easy Problem",
-					incomplete: true, category: "exercise")
-		Problem.create(title: "Problem 15", description: "This is very easy Problem",
-					incomplete: true, category: "exercise")
+		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
+					incomplete: false)
+		Problem.create(title: "Problem 2", description: "This is very hard Problem",
+					incomplete: false)
+		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
+					incomplete: false)
+		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
+					incomplete: true)
+		Problem.create(title: "Problem 5", description: "This is very easy Problem",
+					incomplete: true)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
@@ -281,16 +271,17 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.problems << Problem.find_by_id(3)
 		Lecturer.first.problems << Problem.find_by_id(4)
 		Lecturer.first.problems << Problem.find_by_id(5)
-		Lecturer.first.problems << Problem.find_by_id(6)
-		Lecturer.first.problems << Problem.find_by_id(7)
-		Lecturer.first.problems << Problem.find_by_id(8)
-		Lecturer.first.problems << Problem.find_by_id(9)
-		Lecturer.first.problems << Problem.find_by_id(10)
-		Lecturer.first.problems << Problem.find_by_id(11)
-		Lecturer.first.problems << Problem.find_by_id(12)
-		Lecturer.first.problems << Problem.find_by_id(13)
-		Lecturer.first.problems << Problem.find_by_id(14)
-		Lecturer.first.problems << Problem.find_by_id(15)
+
+		Lecturer.first.assignment_problems << AssignmentProblem.first
+		Lecturer.first.assignment_problems << AssignmentProblem.find_by_id(2)
+		Lecturer.first.assignment_problems << AssignmentProblem.find_by_id(3)
+		Lecturer.first.assignment_problems << AssignmentProblem.find_by_id(4)
+
+		Lecturer.first.contest_problems << Cproblem.first
+		Lecturer.first.contest_problems << Cproblem.find_by_id(2)
+		Lecturer.first.contest_problems << Cproblem.find_by_id(3)
+		Lecturer.first.contest_problems << Cproblem.find_by_id(4)
+		Lecturer.first.contest_problems << Cproblem.find_by_id(5)
 	## Courses
 		Lecturer.first.courses << Course.first
 		Lecturer.first.courses << Course.find_by_id(2)
@@ -436,11 +427,11 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.attempts << Attempt.find_by_id(12)
 		Problem.first.attempts << Attempt.find_by_id(13)
 	## Contest Progress
-		Problem.find_by_id(6).contests_progresses << ContestProgress.first
-		Problem.find_by_id(6).contests_progresses << ContestProgress.find_by_id(2)
-		Problem.find_by_id(7).contests_progresses << ContestProgress.find_by_id(3)
-		Problem.find_by_id(8).contests_progresses << ContestProgress.find_by_id(3)
-		Problem.find_by_id(9).contests_progresses << ContestProgress.find_by_id(4)
+		Cproblem.find_by_id(1).contests_progresses << ContestProgress.first
+		Cproblem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(2)
+		Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(3)
+		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(3)
+		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 
@@ -487,11 +478,11 @@ puts("# ----------------------- DiscussionBoard ----------------------- ")
 
 puts("# ----------------------- Contests ----------------------- ")
 	## Problems
-		Contest.first.problems << Problem.find_by_id(6)
-		Contest.first.problems << Problem.find_by_id(7)
-		Contest.first.problems << Problem.find_by_id(8)
-		Contest.find_by_id(2).problems << Problem.find_by_id(9)
-		Contest.find_by_id(3).problems << Problem.find_by_id(10)
+		Contest.first.problems << Cproblem.find_by_id(1)
+		Contest.first.problems << Cproblem.find_by_id(2)
+		Contest.first.problems << Cproblem.find_by_id(3)
+		Contest.find_by_id(2).problems << Cproblem.find_by_id(4)
+		Contest.find_by_id(3).problems << Cproblem.find_by_id(5)
 	## Contests Progress
 		Contest.first.progress << ContestProgress.first
 		Contest.find_by_id(2).progress << ContestProgress.find_by_id(2)
@@ -500,11 +491,10 @@ puts("# ----------------------- Contests ----------------------- ")
 
 puts("# ----------------------- Assignment ----------------------- ")
 	## Problems
-		Assignment.first.problems << Problem.first
-		Assignment.first.problems << Problem.find_by_id(2)
-		Assignment.first.problems << Problem.find_by_id(3)
-		Assignment.find_by_id(2).problems << Problem.find_by_id(4)
-		Assignment.find_by_id(3).problems << Problem.find_by_id(5)
+		Assignment.first.problems << AssignmentProblem.first
+		Assignment.first.problems << AssignmentProblem.find_by_id(2)
+		Assignment.find_by_id(2).problems << AssignmentProblem.find_by_id(3)
+		Assignment.find_by_id(3).problems << AssignmentProblem.find_by_id(4)
 
 puts("# ----------------------- Grades ----------------------- ")
 	## Problems

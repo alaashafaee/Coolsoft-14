@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507115521) do
+ActiveRecord::Schema.define(version: 20140509090523) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20140507115521) do
     t.datetime "updated_at"
   end
 
+  create_table "assignment_problems", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "grade",         default: 0
+    t.integer  "assignment_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "assignments", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -42,6 +53,8 @@ ActiveRecord::Schema.define(version: 20140507115521) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assignments", ["title", "course_id"], name: "index_assignments_on_title_and_course_id", unique: true
 
   create_table "assignments_students", id: false, force: true do |t|
     t.integer "assignment_id", null: false
@@ -93,12 +106,12 @@ ActiveRecord::Schema.define(version: 20140507115521) do
     t.datetime "updated_at"
   end
 
-  create_table "contests_problems", id: false, force: true do |t|
-    t.integer "contest_id", null: false
-    t.integer "problem_id", null: false
+  create_table "contests_cproblems", id: false, force: true do |t|
+    t.integer "contest_id",  null: false
+    t.integer "cproblem_id", null: false
   end
 
-  add_index "contests_problems", ["contest_id", "problem_id"], name: "index_contests_problems_on_contest_id_and_problem_id", unique: true
+  add_index "contests_cproblems", ["contest_id", "cproblem_id"], name: "index_contests_cproblems_on_contest_id_and_cproblem_id", unique: true
 
   create_table "contests_students", id: false, force: true do |t|
     t.integer "contest_id", null: false
@@ -141,6 +154,16 @@ ActiveRecord::Schema.define(version: 20140507115521) do
   end
 
   add_index "courses_teaching_assistants", ["course_id", "teaching_assistant_id"], name: "TACourses", unique: true
+
+  create_table "cproblems", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "time_limit"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "debuggers", force: true do |t|
     t.datetime "created_at"
@@ -285,8 +308,6 @@ ActiveRecord::Schema.define(version: 20140507115521) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
-    t.string   "category"
-    t.integer  "assignment_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -322,6 +343,7 @@ ActiveRecord::Schema.define(version: 20140507115521) do
     t.integer  "time"
     t.integer  "student_id"
     t.integer  "problem_id"
+    t.string   "problem_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

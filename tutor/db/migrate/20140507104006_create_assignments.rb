@@ -10,5 +10,6 @@ class CreateAssignments < ActiveRecord::Migration
       t.references :owner, polymorphic: true
       t.timestamps
     end
+    add_index :assignments, [:title, :course_id], :unique => true
   end
 end
