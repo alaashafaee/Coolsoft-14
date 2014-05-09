@@ -8,7 +8,8 @@ class SolutionsLayer
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	cases: The input to test against
-	# Returns: A hash with the status of the execution
+	# Returns: 
+	#	A hash with the status of the execution
 	# Author: Mussab ElDash
 	def self.execute lang, code, student_id, problem_id, cases
 		executer = get_executer lang
@@ -31,7 +32,8 @@ class SolutionsLayer
 	# 	code: The code to be compiled
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
-	# Returns: The compile status
+	# Returns: 
+	#	The compile status
 	# Author: Mussab ElDash
 	def self.compile lang, code, student_id, problem_id
 		compiler = get_compiler lang
@@ -50,14 +52,15 @@ class SolutionsLayer
 	end
 
 	# [Layer - Story X.3]
-	# Test the given code against the test cases in the dataBase
+	# Test the given code against the test cases in the database
 	# Parameters:
 	# 	lang: The programming language used in validation
 	# 	code: The code to be validated
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	time: The time the student spent to solve the problem
-	# Returns: A hash with the validation status
+	# Returns: 
+	#	A hash with the validation status
 	# Author: Mussab ElDash
 	def self.validate lang, code, student_id, problem_id, time
 		solution = get_solution code, student_id, problem_id
@@ -81,7 +84,8 @@ class SolutionsLayer
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
 	# 	cases: The input to debug against
-	# Returns: A hash with the debugging results
+	# Returns: 
+	#	A hash with the debugging results
 	# Author: Mussab ElDash
 	def self.debug lang, code, student_id, problem_id, cases
 		solution = get_solution code, student_id, problem_id
@@ -106,7 +110,8 @@ class SolutionsLayer
 	# 	code: The code to be debugged
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
-	# Returns: A new Solution
+	# Returns: 
+	#	A new Solution
 	# Author: Mussab ElDash
 	def self.get_solution code, student_id, problem_id
 		solution = Solution.create({code: code, student_id: student_id,
@@ -118,7 +123,8 @@ class SolutionsLayer
 	# Get the Executer Class of the give language
 	# Parameters:
 	# 	lang: The programming language to get the executer of
-	# Returns: The Executer Class
+	# Returns: 
+	#	The Executer Class
 	# Author: Mussab ElDash
 	def self.get_executer lang
 		lang = lang.capitalize
@@ -130,7 +136,8 @@ class SolutionsLayer
 	# Get the Compiler Class of the give language
 	# Parameters:
 	# 	lang: The programming language to get the compiler of
-	# Returns: The Compiler Class
+	# Returns: 
+	#	The Compiler Class
 	# Author: Mussab ElDash
 	def self.get_compiler lang
 		lang = lang.capitalize
@@ -147,7 +154,8 @@ class SolutionsLayer
 	# Get the Debuuger Class of the give language
 	# Parameters:
 	# 	lang: The programming language to get the debuuger of
-	# Returns: The Debuuger Class
+	# Returns: 
+	#	The Debuuger Class
 	# Author: Mussab ElDash
 	def self.get_debugger lang
 		lang = lang.capitalize
