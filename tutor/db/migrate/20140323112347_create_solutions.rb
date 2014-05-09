@@ -5,8 +5,9 @@ class CreateSolutions < ActiveRecord::Migration
       t.integer :length
       t.integer :status
       t.integer :time
+      t.text :class_name
       t.integer :student_id
-
+      
       t.references :problem, polymorphic: true
       t.timestamps
     end

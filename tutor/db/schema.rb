@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20140509093755) do
   create_table "assignment_problems", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "grade",         default: 0
+    t.integer  "final_grade",   default: 0
     t.integer  "assignment_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assignment_problems", ["title", "assignment_id"], name: "index_assignment_problems_on_title_and_assignment_id", unique: true
 
   create_table "assignments", force: true do |t|
     t.string   "title"
@@ -55,13 +57,6 @@ ActiveRecord::Schema.define(version: 20140509093755) do
   end
 
   add_index "assignments", ["title", "course_id"], name: "index_assignments_on_title_and_course_id", unique: true
-
-  create_table "assignments_students", id: false, force: true do |t|
-    t.integer "assignment_id", null: false
-    t.integer "student_id",    null: false
-  end
-
-  add_index "assignments_students", ["assignment_id", "student_id"], name: "index_assignments_students_on_assignment_id_and_student_id", unique: true
 
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
@@ -137,8 +132,8 @@ ActiveRecord::Schema.define(version: 20140509093755) do
     t.integer  "semester"
     t.string   "university"
     t.text     "description"
-    t.boolean  "visible"
-    t.boolean  "incomplete"
+    t.boolean  "visible",     default: false
+    t.boolean  "incomplete",  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -181,7 +176,6 @@ ActiveRecord::Schema.define(version: 20140509093755) do
   end
 
   create_table "grades", force: true do |t|
-    t.integer  "assignment_id"
     t.integer  "problem_id"
     t.integer  "student_id"
     t.integer  "grade"
@@ -191,7 +185,7 @@ ActiveRecord::Schema.define(version: 20140509093755) do
     t.datetime "updated_at"
   end
 
-  add_index "grades", ["assignment_id", "student_id", "problem_id"], name: "index_grades_on_assignment_id_and_student_id_and_problem_id", unique: true
+  add_index "grades", ["student_id", "problem_id"], name: "index_grades_on_student_id_and_problem_id", unique: true
 
   create_table "hints", force: true do |t|
     t.text     "message"
@@ -256,7 +250,6 @@ ActiveRecord::Schema.define(version: 20140509093755) do
     t.string   "parameter"
     t.string   "params_type"
     t.integer  "method_constraint_id"
-    t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -312,6 +305,7 @@ ActiveRecord::Schema.define(version: 20140509093755) do
     t.integer  "track_id"
     t.string   "snippet"
     t.boolean  "fill_gaps"
+    t.boolean  "public"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"

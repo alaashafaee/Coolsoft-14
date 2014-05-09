@@ -7,8 +7,8 @@ class CreateCourses < ActiveRecord::Migration
       t.integer :semester
       t.string :university
       t.text :description
-      t.boolean :visible
-      t.boolean :incomplete
+      t.boolean :visible, default: false
+      t.boolean :incomplete, default: true
 
       t.timestamps
     end
