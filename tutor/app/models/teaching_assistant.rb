@@ -43,6 +43,7 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :variable_constraints, as: :owner
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
+	has_many :tags, as: :owner
 	
 	has_many :problems, class_name:"Problem", as: :owner
 	

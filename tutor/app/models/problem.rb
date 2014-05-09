@@ -14,6 +14,8 @@ class Problem < ActiveRecord::Base
 	has_many :attempts, dependent: :destroy
 	has_many :problems_start_time, class_name: 'ProblemOpeningTime', dependent: :destroy
 
+	has_many :tags, as: :tager
+
 	#Scoops
 
 	#Methods

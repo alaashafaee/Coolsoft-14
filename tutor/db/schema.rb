@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509090523) do
+ActiveRecord::Schema.define(version: 20140509093755) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -137,6 +137,8 @@ ActiveRecord::Schema.define(version: 20140509090523) do
     t.integer  "semester"
     t.string   "university"
     t.text     "description"
+    t.boolean  "visible"
+    t.boolean  "incomplete"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -308,6 +310,8 @@ ActiveRecord::Schema.define(version: 20140509090523) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
+    t.string   "snippet"
+    t.boolean  "fill_gaps"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -380,6 +384,16 @@ ActiveRecord::Schema.define(version: 20140509090523) do
   add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.integer  "tager_id"
+    t.string   "tager_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"
