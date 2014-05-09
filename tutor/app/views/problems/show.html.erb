@@ -10,7 +10,9 @@
 		<tr>
 			<td width='80%'>
 				<% if student_signed_in? %>
-					<%=button_tag 'Ask Facebook', type: 'Button', id:'facebook', onClick: "openBackWindow('/facebook', 'Facebook')" %>
+					<%= image_tag "facebooksharebutton.png", 
+							style: "width:10%;height:3%;margin_top:10px;cursor:pointer", 
+							onclick: "openBackWindow('/facebook', 'Facebook')" %>
 					<% track_progess = TrackProgression.get_progress(current_student,
 					@problem.track.topic) %> 
  					<% if track_progess >= @problem.track.difficulty %>
