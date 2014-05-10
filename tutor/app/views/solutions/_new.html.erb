@@ -35,7 +35,6 @@
 	<option value="14">14</option>
 	<option value="16">16</option>
 	<option value="18">18</option>
-	<option value="18">18</option>
 	<option value="20">20</option>
 	<option value="22">22</option>
 	<option value="24">24</option>
@@ -132,6 +131,11 @@
 	$('#theme').on('change', function(){
 	var newTheme = $('#theme').val();
 	editor.setTheme("ace/theme/"+newTheme);
+	});
+
+	$('#font').on('change', function(){
+	var newFont = $('#font').val();
+	editor.setFontSize(parseInt(newFont));
 	});
 
 	var code_filter_function = function(event_handler) {
