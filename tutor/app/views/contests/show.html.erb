@@ -1,0 +1,14 @@
+<%= @contest.description  %>
+<br>
+registrants :
+<br>
+<% @contest.students.each do |student| %>
+	<%= student.name %>
+	<br>
+<% end %>
+<br>
+standings :
+
+<br>
+<% ContestProgress.find(@contest.id).student_id %>
+	<br>
