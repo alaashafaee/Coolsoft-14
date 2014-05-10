@@ -1,6 +1,7 @@
 class Contest < ActiveRecord::Base
 
 	#Validations
+	validates :title, presence: true
 
 	#Relations
 	belongs_to :owner, polymorphic: true
