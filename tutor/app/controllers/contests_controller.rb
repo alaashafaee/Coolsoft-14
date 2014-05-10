@@ -19,7 +19,7 @@ class ContestsController < ApplicationController
 	def create
 		@new_contest  = Contest.new
 		@new_contest.title = contest_params[:title]
-		@new_contest.course_id = contest_params[:course]
+		@new_contest.course_id = Course.find_by_name(contest_params[:course]).id
 		@new_contest.description = contest_params[:description]
 		#@new_contest.expiration_date = contest_params[:expiration_date]
 		#@new_contest.start_date = contest_params[:start_date]
