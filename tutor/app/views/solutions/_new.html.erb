@@ -18,10 +18,16 @@
 <br>
 
 <select id='theme'>
-  <option value="eclipse">Eclipse</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
+	<option value="twilight">twilight</option>
+	<option value="eclipse">eclipse</option>
+	<option value="xcode">xcode</option>
+	<option value="chaos">chaos</option>
+	<option value="chrome">chrome</option>
+	<option value="clouds">clouds</option>
+	<option value="tomorrow_night_blue">night blue</option>
+	<option value="tomorrow_night_eighties">tomorrow night_eighties</option>
+	<option value="github">github</option>
+	<option value="dreamweaver">dreamweaver</option>
 </select> 
 
 <select id='font'>
@@ -121,8 +127,12 @@
 
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
-
 	edit_session.setValue(code_header + hidden_code_field.value);
+
+	$('#theme').on('change', function(){
+	var newTheme = $('#theme').val();
+	editor.setTheme("ace/theme/"+newTheme);
+	});
 
 	var code_filter_function = function(event_handler) {
 		var unfiltered_code = edit_session.getValue();
