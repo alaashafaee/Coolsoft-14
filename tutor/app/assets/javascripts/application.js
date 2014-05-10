@@ -15,3 +15,15 @@
 //= require_tree .
 //= require jquery.tokeninput
 //= require utilities
+
+$(function() {
+	var flashCallback = function() {
+		return $(".alert, .notice, .error").fadeOut();
+	};
+	$(".alert, .notice, .error").bind('click', (function(_this) {
+		return function(ev) {
+			return $(".alert, .notice, .error").fadeOut();
+		};
+	})(this));
+	return setTimeout(flashCallback, 2000);
+});
