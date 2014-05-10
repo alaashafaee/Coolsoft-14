@@ -10,7 +10,7 @@
 		<tr>
 			<td width='80%'>
 				<% if student_signed_in? %>
-					<%= image_tag "facebooksharebutton.png", 
+					<%= image_tag "facebooksharebutton.png",
 							style: "width:10%;height:3%;margin_top:10px;cursor:pointer", 
 							onclick: "openBackWindow('/facebook', 'Facebook')" %>
 					<% track_progess = TrackProgression.get_progress(current_student,
