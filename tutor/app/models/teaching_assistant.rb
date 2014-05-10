@@ -16,6 +16,7 @@ class TeachingAssistant < ActiveRecord::Base
 
 	#Validations
 	validate :duplicate_email
+	validate :password_complexity
 	validates :name, presence: true
 	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :graduated_from, presence: true
@@ -96,4 +97,11 @@ class TeachingAssistant < ActiveRecord::Base
 			errors.add(:email, "has already been taken")
 		end
 	end
+
+	def password_complexity
+		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
+			errors.add(:password, "must include at least one lowercase letter, one uppercase letter, and one digit")
+		end
+	end
+
 end
