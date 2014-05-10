@@ -122,6 +122,11 @@ ActiveRecord::Schema.define(version: 20140506131804) do
 
   add_index "courses_teaching_assistants", ["course_id", "teaching_assistant_id"], name: "TACourses", unique: true
 
+  create_table "debuggers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "discussion_boards", force: true do |t|
     t.string   "title"
     t.boolean  "activated",  default: false

@@ -13,6 +13,9 @@ class SolutionsLayer
 	# Author: Mussab ElDash
 	def self.execute lang, code, student_id, problem_id, cases
 		executer = get_executer lang
+		unless executer
+			return {}
+		end
 		compiler = get_compiler lang
 		solution = get_solution code, student_id, problem_id
 		compile_status = {}
@@ -128,8 +131,13 @@ class SolutionsLayer
 	# Author: Mussab ElDash
 	def self.get_executer lang
 		lang = lang.capitalize
-		executer = lang + "Executer"
-		return eval executer
+		executer_string = lang + "Executer"
+		begin
+			compiler = eval executer_string
+		rescue Exception => e
+			executer = false
+		end
+		return executer
 	end
 
 	# [Layer - Story X.3]
