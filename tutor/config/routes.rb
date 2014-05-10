@@ -90,6 +90,7 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :problem_bank
 
 	# Example resource route with options:
 	#   resources :products do
