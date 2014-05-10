@@ -81,13 +81,13 @@ ActiveRecord::Schema.define(version: 20140509205739) do
   create_table "contest_progresses", force: true do |t|
     t.integer  "contest_id"
     t.integer  "student_id"
-    t.integer  "problem_id"
+    t.integer  "cproblem_id"
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contest_progresses", ["contest_id", "student_id", "problem_id"], name: "ConProgress", unique: true
+  add_index "contest_progresses", ["contest_id", "student_id", "cproblem_id"], name: "ConProgress", unique: true
 
   create_table "contests", force: true do |t|
     t.string   "title"
