@@ -1,3 +1,60 @@
 // Place all the styles related to the Site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+hr {
+    border-top: 1px solid #000;   
+}
+
+.intro {
+	margin-top: 60px;
+	height: 650px; 
+	background-color: #2d9a86;
+}
+
+.intro > .row > .img-responsive {
+    min-width: 100%;
+    height: 750px;
+}
+
+.features{
+	background-color: #eaece4;
+}
+
+.padded{
+	background-color: #eaece4;
+    padding: 100px 15px;
+
+}
+
+.tpad{
+    padding-top: 20px;
+}
+
+.marketing{
+    background-color: #e9e6df;   
+}
+.info{
+    background: #ffa753;
+    padding: 80px 0;
+}
+
+.info small{
+    color: #eeefe9;   
+}
+
+.info a{
+    color: #fff;   
+}
+
+.info a:hover{
+    color: #333;   
+}
+
+.tab-content {
+
+}
+
+.tab-pane{
+    padding: 40px 10px 0 10px;
+}

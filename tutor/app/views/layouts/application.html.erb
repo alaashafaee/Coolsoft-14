@@ -47,81 +47,11 @@
 				</ul>
 			</div>
 		</div>
-<!-- Introduction Section -->		
-		<div class="intro">
-			<div class="row">
-				<img class="img-responsive" src="/assets/Top.png">
-			</div>
-		</div>
-<!-- Features Section -->
-		<div class="features">
-			<div class="container padded">
-			    <div class="row">
-			        <div class="col-lg-12"><h2>FOUR MODES</h2><hr></div>
-			    </div>
-			    <div class="row">
-			        <div class="col-sm-6 col-md-3">
-			            <img class="img-circle img-responsive" src="images/speed.jpg">
-			            <h3>Speed</h3>
-			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-			        </div>
-			        <div class="col-sm-6 col-md-3">
-			            <img class="img-circle img-responsive" src="images/eco.jpg">
-			            <h3>Eco Friendly</h3>
-			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-			        </div>
-			        <div class="clearfix hidden-md hidden-lg"></div>
-			        <div class="col-sm-6 col-md-3">
-			            <img class="img-circle img-responsive" src="images/scenic.jpg">
-			            <h3>Scenic</h3>
-			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-			        </div>
-			        <div class="col-sm-6 col-md-3">
-			            <img class="img-circle img-responsive" src="images/safety.jpg">
-			            <h3>Safety</h3>
-			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-			        </div>
-			    </div>
-			</div>
-		</div>    
-<!-- SignUp Section -->
-		<div class="info">
-		    <div class="container">
-		        <div class="row">
-		            <div class="col-sm-12 tabbable">
-		                <!-- Tabs go here -->
-		                <ul id="myTab" class="nav nav-tabs">
-		                    <li class="active"><a href="#student" data-toggle="tab">Student</a></li>
-		                    <li><a href="#lec" data-toggle="tab">Lecturer</a></li>
-		                    <li><a href="#ta" data-toggle="tab">Teaching Assistant</a></li>
-		                </ul>
-		                <div class="tab-content">
-		                    <div class="tab-pane fade in active" id="student">
-
-							</div>
-		                    <div class="tab-pane fade in" id="lec"><p>
-
-		                    </div>
-		                    <div class="tab-pane fade in" id="ta">
-
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>       
-		</div>
-		<!-- <div class="sign-up">
-			<div class="container">
-				<div class="row">
-					test
-				</div>
-			</div>
-		</div> -->
-
+		<% if signed_in? %>
+			
+		<% else %>
+			<%= yield %>
+		<% end %>
 <!-- Start Of Footer Section -->
 		<div class="ftr">
 			<div class="container">
