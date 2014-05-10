@@ -75,7 +75,9 @@ class Debugger < ActiveRecord::Base
 				locals = get_variables
 				nums[:locals] = locals
 				$all << nums
-				debug
+				TimeLimit.start(30){
+					debug
+				}
 			rescue => e
 				unless e.message === 'Exited'
 					return false
