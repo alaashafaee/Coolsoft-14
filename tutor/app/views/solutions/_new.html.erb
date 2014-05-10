@@ -30,6 +30,11 @@
 	<option value="dreamweaver">dreamweaver</option>
 </select> 
 
+<select id='mode'>
+	<option value="java">Java</option>
+	<option value="python">Python</option>
+</select>
+
 <select id='font'>
 	<option value="12">12</option>
 	<option value="14">14</option>
@@ -129,13 +134,18 @@
 	edit_session.setValue(code_header + hidden_code_field.value);
 
 	$('#theme').on('change', function(){
-	var newTheme = $('#theme').val();
-	editor.setTheme("ace/theme/"+newTheme);
+		var newTheme = $('#theme').val();
+		editor.setTheme("ace/theme/"+newTheme);
+	});
+
+	$('#mode').on('change', function(){
+		var newMode = $('#mode').val();
+		edit_session.setMode("ace/mode/"+newMode);
 	});
 
 	$('#font').on('change', function(){
-	var newFont = $('#font').val();
-	editor.setFontSize(parseInt(newFont));
+		var newFont = $('#font').val();
+		editor.setFontSize(parseInt(newFont));
 	});
 
 	var code_filter_function = function(event_handler) {
