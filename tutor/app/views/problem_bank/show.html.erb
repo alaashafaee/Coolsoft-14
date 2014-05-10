@@ -1,0 +1,52 @@
+<% if !@problems.any? %>
+		<p>There are no problems in the bank</p>
+	<% end %>
+	<% if !@problems.empty? %>
+		<table class="table table-striped" style = "width:60%">
+			<thead>
+				<tr>
+					<th style = "width:2%">#</th>	
+					<th style = "width:10%">Problem Title </th>
+					<th style = "width:30%">tag</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @problems.each do |problem| %>
+					<tr>
+						    <% if problem.incomplete  == false %> 
+						    <td style = "max-width: 300px; word-wrap:break-word;">
+						    <input type="checkbox" >
+						    </td>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<a href> <%= problem.title %> 
+							</td>
+							<td style = "width:20%"><%= problem.id %></td>
+							<% end %> 
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% end %>
+				<%= link_to "Add", {:controller => 'problem_bank', :action => 'show'}, class: "btn btn-info", style: "float: left; margin-left: 15px", :method => :get %>
+
+
+
+
+
+ 							<!--<% if problem.incomplete  == false %> 
+						    <td style = "max-width: 300px; word-wrap:break-word;">
+						    </td>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<a href> <%= problem.title %> 
+							</td>
+							<td style = "width:20%"><%= problem.id %></td>
+							<% end %> 
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<%= check_box_tag "problem[problem_id][]", problem.id%>
+							</td>
+							<td style = "max-width: 300px; word-wrap:break-word;">
+							<%= problem.title %>
+							</td> -->
+
+
+				

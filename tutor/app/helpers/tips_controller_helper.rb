@@ -1,0 +1,2 @@
+module TipsControllerHelper
+end
