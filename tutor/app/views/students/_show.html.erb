@@ -30,15 +30,7 @@
 			<!--Performance under construction-->
 			<div>
 				<h2 align="center">Continue from where you left off</h2><br>
-				<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
-				<% if next_problems_to_solve != nil then %>
-						<% next_problems_to_solve.each do |key , value| %>
-						<%= key %>
-				<%= link_to value.title, 
-											controller: "/problems", 
-											action: "show", 
-											id: value.id %>
-				<% end %>
+				
 			</div><br>
 			<h2 align="center">Your Progress</h2>
 			<table class = "table table-striped">
