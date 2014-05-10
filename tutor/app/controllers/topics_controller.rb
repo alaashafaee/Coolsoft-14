@@ -28,7 +28,6 @@ def show
 		@problems_status[:success] = @problems_status[:success] & problems
 		@problems_status[:failure] = @problems_status[:failure] & problems
 		@problems_status[:other] = @problems_status[:other] & problems
-	end
 	else
 	render ('public/404')
 	end
