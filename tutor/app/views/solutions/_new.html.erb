@@ -17,9 +17,28 @@
 </div>
 <br>
 
+<select id='theme'>
+  <option value="eclipse">Eclipse</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select> 
+
+<select id='font'>
+	<option value="12">12</option>
+	<option value="14">14</option>
+	<option value="16">16</option>
+	<option value="18">18</option>
+	<option value="18">18</option>
+	<option value="20">20</option>
+	<option value="22">22</option>
+	<option value="24">24</option>
+</select>
+
 <!-- Add editor -->
 <pre id="editor">
 </pre>
+
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <br>
 <table width='100%'>
