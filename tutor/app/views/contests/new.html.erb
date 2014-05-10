@@ -13,6 +13,16 @@
 			</p>
 			<!--handle start date and expiration date with select_tag-->
 			<p>
+				<%= f.label :Course %><br>
+				<% unless @new_contest.errors[:course].blank? %>
+					<span id="error_explanation">
+						Course <%= @new_contest.errors[:course].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.collection_select :course, @owner_courses, :to_s, :to_s, :include_blank => true %>
+			</p>
+			<p>
 				<%= f.label :Description %><br>
 				<% unless @new_contest.errors[:description].blank? %>
 					<span id="error_explanation">
