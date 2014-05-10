@@ -1,6 +1,20 @@
 <%= render 'layouts/profile' %> 
 		<li class = "active"><a href = "#tab1">Info</a></li>
-		<li><a href = "#tab2">Performance</a></li>
+		<li class="dropdown">
+    		<a class="dropdown-toggle"
+		       data-toggle="dropdown"
+		       href="#tab2">
+		        Performance
+		        <b class="caret"></b>
+		      </a>
+		    <ul class="dropdown-menu">
+		      <!-- links -->
+		    	<li><a href="#">contest</a></li>
+		    	<li><a href="#">course</a></li>
+		    	<li><a href="#">assig</a></li>
+		    </ul>
+		</li>
+		<!--<li><a href = "#tab2">Performance</a></li>-->
 		<li><a href = "#tab3">Statistics</a></li>
 	</ul>
 	<div class = "tab-content">
@@ -13,7 +27,31 @@
 			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 		</div>
 		<div id = "tab2" class = "tab">
-			Performance under construction
+			<!--Performance under construction-->
+			<div>
+				<h2 align="center">Continue from where you left off</h2><br>
+				<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
+				<% if next_problems_to_solve != nil then %>
+						<% next_problems_to_solve.each do |key , value| %>
+						<%= key %>
+				<%= link_to value.title, 
+											controller: "/problems", 
+											action: "show", 
+											id: value.id %>
+				<% end %>
+			</div><br>
+			<h2 align="center">Your Progress</h2>
+			<table class = "table table-striped">
+			<tr>
+				<th>Topic</th>
+				<th>Track</th>
+				<th>Problem</th>
+			</tr>
+			</table>
+			<ul class="pager">
+				<li><a href="#">Previous</a></li>
+			    <li><a href="#">Next</a></li>
+			</ul>
 		</div>
 		<div id = "tab3" class = "tab">
 			Statistics under construction
