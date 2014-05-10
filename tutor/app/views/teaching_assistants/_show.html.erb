@@ -1,3 +1,8 @@
+<% if current_teaching_assistant.profile_image? %>
+	<%= image_tag(current_teaching_assistant.profile_image_url.to_s, :class => "profile_picture_2") %>
+<% else %>
+	<img class = "profile_picture" src="/assets/profile.png">
+<% end %>
 <%= render 'layouts/profile' %> 
 		<li class = "active"><a href = "#tab1">Info</a></li>
 	</ul>
