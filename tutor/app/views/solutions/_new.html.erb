@@ -133,16 +133,40 @@
 	edit_session.setMode("ace/mode/java");
 	edit_session.setValue(code_header + hidden_code_field.value);
 
+// [Editor cusomization - Story 3.19]
+// Description: 
+//	change the theme of the editor.
+// Parameters: 
+//	The selected input from the 'theme' drop-downlist.
+// Returns:
+//	None.
+// Author: Mimi
 	$('#theme').on('change', function(){
 		var newTheme = $('#theme').val();
 		editor.setTheme("ace/theme/"+newTheme);
 	});
 
+// [Editor cusomization - Story 3.19]
+// Description: 
+//	change the mode of the editor.
+// Parameters: 
+//	The selected input from the 'mode' drop-downlist.
+// Returns:
+//	None.
+// Author: Mimi
 	$('#mode').on('change', function(){
 		var newMode = $('#mode').val();
 		edit_session.setMode("ace/mode/"+newMode);
 	});
 
+// [Editor cusomization - Story 3.19]
+// Description: 
+//	change the font-size of the editor.
+// Parameters: 
+//	The selected input from the 'font' drop-downlist.
+// Returns:
+//	None.
+// Author: Mimi
 	$('#font').on('change', function(){
 		var newFont = $('#font').val();
 		editor.setFontSize(parseInt(newFont));
