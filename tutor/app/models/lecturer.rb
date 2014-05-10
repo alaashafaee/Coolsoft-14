@@ -19,13 +19,11 @@ class Lecturer < ActiveRecord::Base
 	validate :password_complexity
 	validates :name, presence: true
 	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
-	validates :degree, presence: true
 	validates_format_of :degree, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :university, presence: true
 	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
 	validates_format_of :department, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
-	validates :dob, presence: true
 
 	#Relations
 	has_and_belongs_to_many :courses, join_table: "courses_lecturers"
@@ -97,7 +95,7 @@ class Lecturer < ActiveRecord::Base
 	end
 
 	def password_complexity
-		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
+		if password.present? and not password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+/)
 			errors.add(:password, "must include at least one lowercase letter, one uppercase letter, and one digit")
 		end
 	end

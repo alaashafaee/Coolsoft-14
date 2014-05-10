@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 	before_action :update_sanitized_params, if: :devise_controller?
 	before_action :check_resource, if: :devise_controller?
 
-	rescue_from Exception, :with => :render_not_found
+	#rescue_from Exception, :with => :render_not_found
 	
 	private
 
@@ -29,9 +29,8 @@ class ApplicationController < ActionController::Base
 			if "#{resource_name}" == "lecturer"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|lecturer| lecturer.permit(:name, :email, 
-						:password, :password_confirmation, :gender, 
-						:dob, :degree, :university, :department, 
-						:profile_image, :profile_image_cache)
+						:password, :password_confirmation, :university, 
+						:department, :profile_image, :profile_image_cache)
 				}
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {

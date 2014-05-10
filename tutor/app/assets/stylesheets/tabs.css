@@ -55,7 +55,12 @@ li.active a, li.active a:hover {
 	width:200px;
 	height:200px;
 	/*background-color:#999;*/
-	float:left;"	
+	float:left;	
+}
+
+.profile_picture_2 {
+	margin-top:50px;
+	float:left;	
 }
 
 .navigation-list li{

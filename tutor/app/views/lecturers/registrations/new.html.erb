@@ -30,6 +30,12 @@
 			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
 		</div>
 
+		<div>
+			<%= f.label :profile_image %><br />
+			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
+			<%= f.hidden_field :profile_image_cache %>
+		</div>
+
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
 	<% end %>
 
