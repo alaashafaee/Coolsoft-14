@@ -1,0 +1,87 @@
+<div>
+		<h1>Update Contest Info</h1>
+		<%= form_for :contest, url: contest_path(@contest) do |f| %>
+			<p>
+				<%= f.label :Title %><br>
+				<% unless @contest.errors[:title].blank? %>
+					<span id="error_explanation">
+						Title <%= @contest.errors[:title].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_field :title, :value => @contest.title, class:"form-control", style: "width:300px", placeholder:"Title" %>
+			</p>
+			<!--handle start date and expiration date with select_tag-->
+			<p>
+			<%= f.label :Start_Date %><br />
+			<% unless @contest.errors[:start_date].blank? %>
+				<span id="error_explanation">
+					Start Date <%= @contest.errors[:start_date].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<%= f.date_select :start_date, {:start_year => Date.today.year+1, :end_year => Date.today.year, :order => [:day, :month, :year], :value => @contest.start_date} %>
+			</p>
+			<p>
+			<%= f.label :Start_Time %><br />
+			<% unless @contest.errors[:start_time].blank? %>
+				<span id="error_explanation">
+					Start Time <%= @contest.errors[:start_time].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<%= f.time_select :start_time, {:value => @contest.start_time} %>
+			</p>
+			<p>
+			<%= f.label :End_Date %><br />
+			<% unless @contest.errors[:end_date].blank? %>
+				<span id="error_explanation">
+					End Date <%= @contest.errors[:end_date].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<%= f.date_select :end_date, {:start_year => Date.today.year+1, :end_year => Date.today.year, :order => [:day, :month, :year], :value => @contest.end_date} %>
+			</p>
+			<p>
+			<%= f.label :End_Time %><br />
+			<% unless @contest.errors[:end_time].blank? %>
+				<span id="error_explanation">
+					End Time <%= @contest.errors[:end_time].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<%= f.time_select :end_time, {:value => @contest.end_time} %>
+			</p>
+			<p>
+				<% if lecturer_signed_in? %>
+					<% @owner_courses = current_lecturer.courses %>
+					<% @owner_courses = @owner_courses.map {|x| x.name} %>
+				<% elsif teaching_assistant_signed_in? %>
+					@owner_courses = current_teaching_assistant.courses
+					@owner_courses = @owner_courses.map {|x| x.name}
+				<% end %>
+				<%= f.label :Course %><br>
+				<% unless @contest.errors[:course].blank? %>
+					<span id="error_explanation">
+						Course <%= @contest.errors[:course].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.collection_select :course, @owner_courses, :to_s, :to_s, :include_blank => false %>
+			</p>
+			<p>
+				<%= f.label :Description %><br>
+				<% unless @contest.errors[:description].blank? %>
+					<span id="error_explanation">
+						Description <%= @contest.errors[:description].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.text_area :description, class:"form-control", style:"width:300px", 
+					placeholder:"Description", :value => @contest.description %>
+			</p>
+			<p>
+				<%= f.submit "Update contest", class: "btn btn-info" %>
+			</p>
+		<% end %>
+		</div>
