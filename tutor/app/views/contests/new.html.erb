@@ -13,6 +13,14 @@
 			</p>
 			<!--handle start date and expiration date with select_tag-->
 			<p>
+			<%= f.label :Start_Date %><br />
+			<%= f.date_select :start_date, {:start_year => Date.today.year+1, :end_year => Date.today.year, :order => [:day, :month, :year], :value => Time.now} %>
+			</p>
+			<p>
+			<%= f.label :Start_Time %><br />
+			<%= f.time_select :start_time, {:value => Time.now} %>
+			</p>
+			<p>
 				<%= f.label :Course %><br>
 				<% unless @new_contest.errors[:course].blank? %>
 					<span id="error_explanation">
