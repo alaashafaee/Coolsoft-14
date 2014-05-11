@@ -156,6 +156,13 @@ class CoursesController < ApplicationController
 			@topics.each do |t|
 				tracks = tracks + t.tracks
 			end
+			
+			@assignments = @course.assignments
+			assignment_problems = []
+			@assignments.each do |a|
+				assignment_problems = assignment_problems + a.problems
+			end
+
 		else
 			render ('public/404')
 		end

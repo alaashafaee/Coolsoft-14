@@ -1,0 +1,2 @@
+class AssignmentProblemsController < ApplicationController
+end

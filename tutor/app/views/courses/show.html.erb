@@ -78,6 +78,38 @@
 						</div>	
 					<% end %>
 				</div>
+
+				<% openable = true %>
+				<div class="panel-group list-group" id="accordion2" style="width:100%;">
+						<% if openable %>
+							<% open = "in" %>
+							<% openarrow = "glyphicon-chevron-down" %>
+							<% openable = false %>
+						<% else %>
+							<% open = "" %>
+							<% openarrow = "glyphicon-chevron-right" %>
+						<% end %>
+						<div class="panel panel-default">
+							<div class="panel-title list-group-item list-group-item-info">
+								<a class="icon glyphicon <%= openarrow %>"
+									href="#listOfAssignments"
+									data-toggle="collapse" data-parent="#accordion2"
+									style="margin-right:1%;text-decoration: none;">Assignments
+								</a>
+								<span class="badge"> <%= @course.assignments.count %></span>
+							</div>
+      						<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
+								<ul class="list-group">
+									<% @course.assignments.each do |a|%>
+										<% color = "label label-default" %>
+										<li style="border-style:hidden;" class="list-group-item">
+											<%= a.title %>
+										</li>
+									<% end %>
+								</ul>
+        					</div>
+						</div>	
+				</div>
 			</div>
 		</div>
 	</div>
