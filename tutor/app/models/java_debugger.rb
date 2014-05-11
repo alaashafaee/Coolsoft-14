@@ -358,9 +358,7 @@ class JavaDebugger
 		input "where"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
-			if line.match("main[1]")
-				break
-			else
+			unless line == "main[1] \n"
 				stack_trace << line
 			end
 		end
