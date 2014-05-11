@@ -33,6 +33,12 @@ class ApplicationController < ActionController::Base
 						:dob, :degree, :university, :department, 
 						:profile_image, :profile_image_cache)
 				}
+				devise_parameter_sanitizer.for(:account_update) {
+					|lecturer| lecturer.permit(:name, :current_password,
+						:password, :password_confirmation, 
+						:university, :department, 
+						:profile_image, :profile_image_cache)
+				}
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|student| student.permit(:name, :email, 
