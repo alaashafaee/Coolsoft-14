@@ -1,0 +1,35 @@
+<h1>Assignments#index</h1>
+<h3>Breadcrumb</h3>
+<ul class="breadcrumb">
+    <li><a href="#">Home</a> <span class="divider">/</span></li>
+    <li><a href="#">Library</a> <span class="divider">/</span></li>
+    <li class="active">Data</li>
+</ul>
+
+<ul class="breadcrumb">
+    <li><a href="#"><span class="badge">1</span> Set Global Properties</a> <span class="divider">/</span></li>
+    <li><a href="#"><span class="badge">2</span> Specify Entry Scheme</a> <span class="divider">/</span></li>
+    <li class="active"><a href="#"><span class="badge badge-inverse">3</span> Create Test Entry</a> <span class="divider">/</span></li>
+    <li><a href="#"><span class="badge">4</span> Check Your Data and Generate Portal</a></li>
+</ul>
+
+<h3>Wizard</h3>
+<div class="wizard">
+    <a><span class="badge">1</span> Set Global Properties</a>
+    <a><span class="badge">2</span> Specify Entry Scheme</a>
+    <a class="current"><span class="badge badge-inverse">3</span> Create Test Entry</a>
+    <a><span class="badge">4</span> Check Your Data and Generate Portal</a>
+</div>
+
+
+<h3>Breadcrumb Wizard</h3>
+<ul class="breadcrumb mywizard">
+    <li><a href="#"><span class="badge">1</span> Home</a></li>
+    <li><a href="#"><span class="badge">2</span> Library</a></li>
+    <li class="active"><span class="badge">3</span> Data</li>
+</ul>
+
+<%= link_to "View/Edit", {:controller => 'assignments',
+                                :action => 'new'},
+                                {class: 'btn btn-primary btn-xs',
+                                style: "text-decoration:none"} %>

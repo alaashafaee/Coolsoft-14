@@ -1,0 +1,83 @@
+<%= form_for :assignment, url: assignments_path do |f| %>
+<div id="crumbs">
+	<ul>
+		<li class="active"><a href="#1">Create Assignment</a></li>
+		<li><a href="#2">Add new problems</a></li>
+		<li><a href="#3">Copy from existing problems</a></li>
+	</ul>
+</div>
+<ol class="breadcrumb">
+<li class="active">Data</li>
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Library</a></li>
+  
+</ol>
+<body>
+
+<p>
+
+	<br><%= f.label :Title %></br>
+		<%= f.text_field :title, placeholder:"Title" %>
+		<br><%= f.label :Description %> </br>
+	<%= f.text_area :description, placeholder:"Description" %>
+	<br><%= f.label :Due_date %> </br>
+	<%= f.date_select :due_date, {:start_year => Date.today.year, :end_year => Date.today.year+3} %>
+
+
+</p>
+<br>
+<div class = "centered"> 
+<%= f.submit "Save", class: "btn btn-info btn-large" %>
+</div>
+</br>
+
+
+
+</body>
+<% end %>
+
+<style>
+body
+{
+	text-align: center;
+}
+.centered
+{
+    text-align:center;
+}
+#crumbs ul li a {
+	display: block;
+	float: left;
+	height: 40px;
+	background: #3498db;
+	text-align: center;
+	font-size: 20px;
+	text-decoration: none;
+	color: #fff;
+		padding: 5px 40px 0 40px;
+	position: relative;
+	margin: 0 10px 0 0; 
+}
+
+#crumbs ul li:first-child a {
+	border-top-left-radius: 10px; border-bottom-left-radius: 10px;
+}
+#crumbs ul li:first-child a:before {
+	display: none; 
+}
+
+#crumbs ul li:last-child a {
+	padding-right: 80px;
+	border-top-right-radius: 10px; border-bottom-right-radius: 10px;
+}
+#crumbs ul li:last-child a:after {
+	display: none; 
+}
+#crumbs ul li a:hover {
+	background: #fa5ba5;
+}
+	#crumbs ul li a:hover:after {
+		border-left-color: #fa5ba5;
+	}
+
+</style>

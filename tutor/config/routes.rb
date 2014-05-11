@@ -1,5 +1,14 @@
 Tutor::Application.routes.draw do
 
+  get "assignment_problems/new"
+  post "assignment_problems/new"
+  get "assignment_problems/edit"
+  get "assignment_problems/show"
+  get "assignment_problems/index"
+  get "assignments/new"
+  get "assignments/edit"
+  get "assignments/show"
+  get "assignments/index"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -42,11 +51,14 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :assignment_problems
 	post "courses/choose"
 	post "courses/existing"
   	post "courses/duplicate"
 	get "model_answers/new"
 	post "model_answers/new"
+	post "assignments/new"
+		get "assignments/new"
 	resources :model_answers
 	#resources :test_cases
 	#devise_for :teaching_assistants
@@ -65,6 +77,12 @@ Tutor::Application.routes.draw do
 	end
 	resources :model_answers do
 		post "model_answers/new"
+	end
+	resources :assignments do
+		post "assignments/new"
+		get "assignments/new"
+		post "assignments/show"
+		get "assignments/show"
 	end
 	resources :test_cases
 	

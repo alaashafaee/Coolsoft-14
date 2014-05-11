@@ -1,0 +1,19 @@
+<%= form_for :assignment_problem, url: assignment_problems_path do |f| %>
+	<p>
+		<%= f.label :title %><br> 
+		<%= f.text_field :title, placeholder:"Title" %>
+	</p>
+	<p>
+		<%= f.label :description %><br>
+		<%= f.text_area :description, :cols => "50", :rows => "10", placeholder:"Description",
+			 class: "form-control", style: "width:60%" %>
+	</p>
+	<p>
+		<%= f.label :grade %><br> 
+		<%= f.text_field :final_grade, placeholder:"Grade", style: "width:55px; height:35px;" %>
+	</p>
+	<p>
+		<%= f.submit "Save", class: "btn btn-info" %>
+	</p>
+
+<% end %>
