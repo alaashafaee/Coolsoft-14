@@ -1,5 +1,11 @@
 class ContestsController < ApplicationController
 	
+	# [Edit Contest - Story 5.17]
+	# Passes instance variable of the contest to be edited to the edit
+	# 	view and renders the edit view
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	def edit
 		if student_signed_in?
 			render ('public/404')
@@ -16,6 +22,12 @@ class ContestsController < ApplicationController
 		end
 	end
 
+	# [Edit Contest - Story 5.17]
+	# Takes the updated values from the view form and updates record
+	# 	in database accordingly
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	def update
 		@contest  = Contest.find(params[:id])
 		if @contest.update(contest_params)
@@ -25,6 +37,12 @@ class ContestsController < ApplicationController
 		end
 	end
 
+	# [Edit Contest - Story 5.17]
+	# Defines the parameters for the contest to be permitted from the
+	# 	form view
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	private
 		def contest_params 
 			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time,
