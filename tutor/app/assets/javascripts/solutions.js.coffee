@@ -283,6 +283,7 @@ debug_console = ->
 	if variables[state_number]["exception"]
 		runtime_error variables[state_number]["exception"]
 	update_memory_contents state_number
+	update_stack_trace state_number
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
@@ -300,6 +301,20 @@ debug_console = ->
 		values = list_of_variables[i].split " = "
 		content += "<tr class='success'><td>" + values[0] + "</td>"
 		content += "<td>" + values[1] + "</td></tr>"
+		i++
+	content += "</table>"
+	div.innerHTML = content
+	return
+
+@update_stack_trace = (state_number) ->
+	div = document.getElementById("stack")
+	list_of_methods = variables[state_number]["stack"]
+	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+	content += "<tr class='info'><th>Stack Trace</th></tr>"
+	i = 0
+	while i < list_of_methods.length
+		current_method = list_of_methods[i]
+		content += "<tr class='success'><td>" + current_method + "</td></tr>"
 		i++
 	content += "</table>"
 	div.innerHTML = content

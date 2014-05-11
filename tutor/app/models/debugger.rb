@@ -308,6 +308,10 @@ class Debugger < ActiveRecord::Base
 		return result
 	end
 
+	def get_stack_trace
+		
+	end
+
 	# [Debugger: View Variables - Story 3.7]
 	# Fetches the variables found in the class and returns
 	# 	a list of all variables in the class with their
