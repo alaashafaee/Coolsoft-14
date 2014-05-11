@@ -8,9 +8,6 @@ class AssignmentProblemsController < ApplicationController
 
 def create
   		@assignment =Assignment.find_by_id(session[:assignment_id])
-  		puts "=====================================================================pppppppppppppppppppppppp"
-  	puts session[:assignment_id]
-  	puts "====================================================================="
   		@new_problem = AssignmentProblem.new(problem_params)
 		if lecturer_signed_in?
 			@new_problem.owner_id = current_lecturer.id
@@ -40,7 +37,8 @@ def create
   end
 
   def index
-  end
+  	@assignment =Assignment.find_by_id(session[:assignment_id])
+  	  end
 
   private
 		def problem_params

@@ -1,4 +1,13 @@
-<%= form_for :assignment_problem, url: assignment_problems_path do |f| %>
+<div class ="tabs">
+	<ul class="tab-links red">
+	<li class="active"><a href="#">Create Problems</a></li>
+		<li><%= link_to "Copy from Existing Problems", {:controller => 'assignment_problems',
+								:action => 'index',:id => @assignment.id} %></li>
+		
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+	<%= form_for :assignment_problem, url: assignment_problems_path do |f| %>
 	<p>
 		<%= f.label :title %><br> 
 		<%= f.text_field :title, placeholder:"Title" %>
@@ -17,3 +26,18 @@
 	</p>
 
 <% end %>
+		</div>
+	</div>
+</div>
+<style>
+  .red .active a,
+ .red .active a:hover {
+    background-color: #6699CC;
+    border-color: black;
+}
+.tab-links>li>a {
+  background-color: #fff; 
+  border-color: #777777;
+}
+</style>
+

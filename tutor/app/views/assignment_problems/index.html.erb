@@ -1,2 +1,26 @@
-<h1>AssignmentProblems#index</h1>
-<p>Find me in app/views/assignment_problems/index.html.erb</p>
+<div class ="tabs">
+	<ul class="tab-links white">
+	<% if lecturer_signed_in? ||teaching_assistant_signed_in?  %>
+		<li><%= link_to "Create problems", {:controller => 'assignment_problems',
+								:action => 'new', :method => :get, :id => @assignment.id} %></li>
+		<li class="active"><a href="#">Copy from Existing Problems</a></li>	
+	<% end %>
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+
+		<h1>Asiggn</h1>
+		</div>	
+	</div>
+</div>
+<style>
+ .white .active a,
+ .white.active a:hover {
+    background-color: #6699CC;
+    border-color: black;
+}
+.tab-links>li>a {
+  background-color: #fff; 
+  border-color: #777777;
+}
+</style>
