@@ -34,13 +34,22 @@
 							<%= render "layouts/log_out_form" %>
 						</li>
 					<% else %>
-						<li class="dropdown" style="padding-right:10px">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="../lecturers/sign_in">Lecturer</a></li>
-								<li><a href="../teaching_assistants/sign_in">Teaching Assistant</a></li>
-								<li><a href="../students/sign_in">Student</a></li>
-							</ul>
+						<li>
+							<a onclick="sign_in_dialog()">sign in</a>
+							<div class="sign_in_dialog">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#student" data-toggle="tab">student</a></li>
+									<li><a href="#ta" data-toggle="tab">Teaching Assistant</a></li>
+									<li><a href="#lecturer" data-toggle="tab">Lecturer</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="student">
+										<%= render "students/sessions/new" %> 
+									</div>
+									<div class="tab-pane" id="lecturer">lectureren</div>
+									<div class="tab-pane" id="ta">tahen</div>
+								</div>
+							</div>	
 						</li>
 					<% end %>
 				</ul>
