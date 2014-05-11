@@ -1,10 +1,5 @@
 Tutor::Application.routes.draw do
 
-
-	get "utilities/simple_search"
-	get "utilities/advanced_search"
-	get "utilities/auto_complete"
-
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -15,6 +10,9 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'

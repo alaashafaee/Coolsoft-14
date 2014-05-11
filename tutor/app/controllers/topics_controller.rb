@@ -15,19 +15,8 @@ class TopicsController < ApplicationController
 		if @topic
 			@course = @topic.course
 			@tracks = @topic.tracks
-			problems = []
-			@tracks.each do |t|
-				problems = problems + t.problems
-			end
-			puts problems
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
-			if student_signed_in?
-				@problems_status = current_student.getProblemsStatus
-				@problems_status[:success] = @problems_status[:success] & problems
-				@problems_status[:failure] = @problems_status[:failure] & problems
-				@problems_status[:other] = @problems_status[:other] & problems
-			end
 		else
 			render ('public/404')
 		end

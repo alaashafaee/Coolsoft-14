@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425003102) do
+ActiveRecord::Schema.define(version: 20140509205739) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -30,6 +30,33 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "assignment_problems", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "final_grade",   default: 0
+    t.integer  "assignment_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignment_problems", ["title", "assignment_id"], name: "index_assignment_problems_on_title_and_assignment_id", unique: true
+
+  create_table "assignments", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "due_date"
+    t.boolean  "publish"
+    t.integer  "course_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assignments", ["title", "course_id"], name: "index_assignments_on_title_and_course_id", unique: true
 
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
@@ -51,6 +78,46 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.datetime "updated_at"
   end
 
+  create_table "contest_progresses", force: true do |t|
+    t.integer  "contest_id"
+    t.integer  "student_id"
+    t.integer  "cproblem_id"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contest_progresses", ["contest_id", "student_id", "cproblem_id"], name: "ConProgress", unique: true
+
+  create_table "contests", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "incomplete"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "course_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contests_cproblems", id: false, force: true do |t|
+    t.integer "contest_id",  null: false
+    t.integer "cproblem_id", null: false
+  end
+
+  add_index "contests_cproblems", ["contest_id", "cproblem_id"], name: "index_contests_cproblems_on_contest_id_and_cproblem_id", unique: true
+
+  create_table "contests_students", id: false, force: true do |t|
+    t.integer "contest_id", null: false
+    t.integer "student_id", null: false
+  end
+
+  add_index "contests_students", ["contest_id", "student_id"], name: "index_contests_students_on_contest_id_and_student_id", unique: true
+
   create_table "course_students", force: true do |t|
     t.boolean  "share",      default: false
     t.integer  "course_id"
@@ -68,6 +135,9 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.integer  "semester"
     t.string   "university"
     t.text     "description"
+    t.boolean  "visible",     default: false
+    t.boolean  "incomplete",  default: true
+    t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -86,6 +156,16 @@ ActiveRecord::Schema.define(version: 20140425003102) do
 
   add_index "courses_teaching_assistants", ["course_id", "teaching_assistant_id"], name: "TACourses", unique: true
 
+  create_table "cproblems", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "time_limit"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "debuggers", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -98,6 +178,18 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "grades", force: true do |t|
+    t.integer  "problem_id"
+    t.integer  "student_id"
+    t.integer  "grade"
+    t.integer  "editor_id"
+    t.string   "editor_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "grades", ["student_id", "problem_id"], name: "index_grades_on_student_id_and_problem_id", unique: true
 
   create_table "hints", force: true do |t|
     t.text     "message"
@@ -162,7 +254,6 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.string   "parameter"
     t.string   "params_type"
     t.integer  "method_constraint_id"
-    t.integer  "model_answer_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -216,6 +307,9 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.integer  "views_count"
     t.integer  "time_limit"
     t.integer  "track_id"
+    t.string   "snippet"
+    t.boolean  "fill_gaps"
+    t.boolean  "public"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -244,13 +338,27 @@ ActiveRecord::Schema.define(version: 20140425003102) do
     t.datetime "updated_at"
   end
 
+  create_table "resources", force: true do |t|
+    t.text     "description"
+    t.string   "link"
+    t.string   "link_type"
+    t.string   "img"
+    t.integer  "course_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "solutions", force: true do |t|
     t.text     "code"
     t.integer  "length"
     t.integer  "status"
     t.integer  "time"
+    t.text     "class_name"
     t.integer  "student_id"
     t.integer  "problem_id"
+    t.string   "problem_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -287,6 +395,16 @@ ActiveRecord::Schema.define(version: 20140425003102) do
   add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
   add_index "students", ["email"], name: "index_students_on_email", unique: true
   add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.integer  "tager_id"
+    t.string   "tager_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"

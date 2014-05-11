@@ -34,6 +34,7 @@ class Student < ActiveRecord::Base
 	has_many :posts, as: :owner, dependent: :destroy
 	has_many :replies, as: :owner, dependent: :destroy
 	has_many :acknowledgements, dependent: :destroy
+	has_many :tags, as: :owner
 
 	has_many :recommendations
 	has_many :recommended_problems, class_name: 'Problem', through: :recommendations, source: :problem
@@ -41,6 +42,11 @@ class Student < ActiveRecord::Base
 	has_many :course_students
 	has_many :courses, through: :course_students, dependent: :destroy
 	has_many :problems_start_time, class_name: 'ProblemOpeningTime'
+
+	has_many :contest_progresses, class_name: 'ContestProgress'
+	has_and_belongs_to_many :contests, class_name:"Contest", join_table: "contests_students"
+	
+	has_many :grades
 
 	#Methods
 
