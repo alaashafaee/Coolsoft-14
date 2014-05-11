@@ -4,48 +4,46 @@
 # Author: Ahmed Elassuty
 -->
 <!DOCTYPE html>
-<html lang="en" style="zoom: 0.8;">
+<html lang="en" class="zoom125 zooming no-scroll-x">
 	<head>
 		<title>Tutor</title>
-		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-		<%-# stylesheet_link_tag "application", "bootstrap", "token-input", :media => "all" -%>
-		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
-		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
+		<%= stylesheet_link_tag "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target=".navbar-responsive-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
-			</div>
-			<div class="navbar-collapse navbar-responsive-collapse collapse" style="height: 1px;">
-				<% if signed_in? %>
-					<%= render "layouts/search_form"%>
-				<% end %>
-				<ul class="nav navbar-nav navbar-right">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse" data-target=".navbar-responsive-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+				</div>
+				<div class="navbar-collapse navbar-responsive-collapse collapse">
 					<% if signed_in? %>
-						<li style="padding-right:10px">
-							<%= render "layouts/log_out_form" %>
-						</li>
-					<% else %>
-						<li class="dropdown" style="padding-right:10px">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="../lecturers/sign_in">Lecturer</a></li>
-								<li><a href="../teaching_assistants/sign_in">Teaching Assistant</a></li>
-								<li><a href="../students/sign_in">Student</a></li>
-							</ul>
-						</li>
+						<%= render "layouts/search_form"%>
 					<% end %>
-				</ul>
-			</div>
+					<ul class="nav navbar-nav navbar-right">
+						<% if signed_in? %>
+							<li style="padding-right:10px">
+								<%= render "layouts/log_out_form" %>
+							</li>
+						<% else %>
+							<li class="dropdown" style="padding-right:10px">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret">
+								</b></a>
+								<ul class="dropdown-menu">
+									<li><a href="../lecturers/sign_in">Lecturer</a></li>
+									<li><a href="../teaching_assistants/sign_in">Teaching Assistant</a></li>
+									<li><a href="../students/sign_in">Student</a></li>
+								</ul>
+							</li>
+						<% end %>
+					</ul>
+				</div>
 		</div>
 		</br>
 		<div id="main home" class="container" style="width:100%;min-width:1000px;">
@@ -64,7 +62,7 @@
 		</div>
 		</br>
 		<div align="center" class="navbar navbar-default
-			navbar-static-bottom footer" style="width:100%;min-width:1000px;">
+			navbar-static-bottom footer" style="min-width:1000px">
 			<%= render "layouts/footer" %>
 		</div>
 	</body>

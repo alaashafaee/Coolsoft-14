@@ -18,10 +18,10 @@
 <br>
 
 <!-- Add editor -->
-<pre id="editor">
+<pre id="editor" style="width: 80%;">
 </pre>
 <%= f.hidden_field :problem_id, value: params[:id] %>
-<br>
+<br><br><br><br>
 <table width='100%'>
 	<tr>
 		<td>
@@ -52,14 +52,14 @@
 		</td>
 	</tr>
 </table>
-<br /><br />
+<br>
 
 <div>
-	<b>Input:</b></br>
+	<b>Input:</b><br>
 	<%= f.text_area :solution_input, placeholder: "Write your test case here", 
 		id: "solution_input", class: "form-control", style: "width:400px" %>
 </div>
-</br>
+<br>
 
 <!--Author: Ahmed Moataz-->
 <b>Console:</b><br/>
