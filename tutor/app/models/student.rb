@@ -26,7 +26,6 @@ class Student < ActiveRecord::Base
 	validates :major, presence: true
 	validates_format_of :major, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :semester, presence: false, numericality: {only_integer: true, greater_than: 0, less_than: 11}
-	validates :dob, presence: true
 
 	#Relations
 	has_many :solutions, dependent: :destroy

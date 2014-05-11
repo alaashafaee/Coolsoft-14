@@ -29,7 +29,6 @@ class TeachingAssistant < ActiveRecord::Base
 	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
 	validates_format_of :department, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
-	validates :dob, presence: true
 
 	#Relations
 	has_many :posts, as: :owner, dependent: :destroy

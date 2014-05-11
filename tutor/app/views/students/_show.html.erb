@@ -15,6 +15,9 @@
 			<p><b>University: </b><%= current_student.university %></p>
 			<p><b>Faculty: </b><%= current_student.faculty %></p>
 			<p><b>Major: </b><%= current_student.major %></p>
+			<p><b>Semester: </b><%= current_student.semester %></p>
+			<p><b>Advising: </b><%= (current_student.advising == true) ? "Yes" : "No" %></p>
+			<p><b>Probation: </b><%= (current_student.probation == true) ? "Yes" : "No" %></p>
 			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 		</div>
 		<div id = "tab2" class = "tab">
