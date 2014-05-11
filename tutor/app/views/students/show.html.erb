@@ -1,15 +1,23 @@
-<h1>
-	<%= image_tag(@student.profile_image_url.to_s) if @student.profile_image? %>
-	<%= @student.name %>
-</h1>
-<div class = "profile_picture" ></div>
-<div class = "tabs" style = "float:left; margin-left:10px;">
-	<ul class="tab-links">
+<div class= "row profile_info_row">
+	<img class = "profile_picture" src="/assets/profile.png">
+	<div class = "profile_info">
+		<p class="name"><%= @student.name %></p>
+		<div class="info">
+		<p><%= @student.email %></p>
+		<p><b>University: </b><%= @student.university %></p>
+		<p><b>Faculty: </b><%= @student.faculty %></p>
+		<p><b>Major: </b><%= @student.major %></p>
+		<p><b>Joined on: </b><%= @student.created_at.to_date %></p>
+		</div>
+	</div>
+</div>
+<div class = "row tabs">
+	<ul class = "tab-links"> 
 		<li class="active"><a href="#tab1">Courses</a></li>
-		<li><a href="#tab2">Info</a></li>
+		<li><a href = "#tab2">Performance</a></li>
 	</ul>
-	<div class="tab-content">
-		<div id="tab1" class="tab active">
+	<div class = "tab-content">
+				<div id="tab1" class="tab active">
 			<table class = "table table-striped", style = "width:80%">
 				<tr>
 					<th>Name</th>
@@ -56,13 +64,8 @@
 				<% end %>
 			</table>
 		</div>
-		<div id="tab2" class="tab">
-			<p> <b>Name:</b> <%= @student.name %> </p>
-			<p> <b>Email:</b> <%= @student.email %> </p>
-			<p><b>University: </b><%= @student.university %></p>
-			<p><b>Faculty: </b><%= @student.faculty %></p>
-			<p><b>Major: </b><%= @student.major %></p>
-			<p><b>Joined on: </b><%= @student.created_at.to_date %></p>
+		<div id = "tab2" class = "tab">
+			Performance under construction
 		</div>
-	</div>
+	</div>	
 </div>

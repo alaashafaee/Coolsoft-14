@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 	before_action :update_sanitized_params, if: :devise_controller?
 	before_action :check_resource, if: :devise_controller?
-
-	rescue_from Exception, :with => :render_not_found
 	
 	private
 

@@ -13,15 +13,49 @@
 		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
 		<%= csrf_meta_tags %>
 	</head>
-	<body>
+	<body style="background: #EEEFE9;">
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+			</div>
+			<div class="navbar-collapse navbar-responsive-collapse collapse" style="height: 1px;">
+				<% if signed_in? %>
+					<%= render "layouts/search_form"%>
+				<% end %>
+				<ul class="nav navbar-nav navbar-right">
+					<% if signed_in? %>
+						<li style="padding-right:10px">
+							<%= render "layouts/log_out_form" %>
+						</li>
+					<% else %>
+						<li class="dropdown" style="padding-right:10px">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="../lecturers/sign_in">Lecturer</a></li>
+								<li><a href="../teaching_assistants/sign_in">Teaching Assistant</a></li>
+								<li><a href="../students/sign_in">Student</a></li>
+							</ul>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
 		<div class="cont">
 			<% if signed_in? %>
-				<div class="row" style="background: #eeefe9; padding-top:30px;">
-					<div class="col-xs-10" style="background: #eeefe9;">
-						<%= yield %>					
+				<div class="row">
+					<div class="col-xs-10 left_side">
+						<div class="content_containter">
+							<%= yield %>
+						</div>					
 					</div>
 <!-- 					<div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
-					<div class="col-xs-2" style="background: #E9E6DF;">
+					<div class="col-xs-2 right_side">
 						<%= render "layouts/right_side_bar" %>
 					</div>
 				</div>

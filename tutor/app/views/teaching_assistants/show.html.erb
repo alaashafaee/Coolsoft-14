@@ -1,12 +1,19 @@
-<h1>
-	<%= image_tag(@teaching_assistant.profile_image_url.to_s)\
-		if @teaching_assistant.profile_image %> <%= @teaching_assistant.name %>
-</h1>
-<div class = "profile_picture" ></div>
+<div class= "row profile_info_row">
+	<img class = "profile_picture" src="/assets/profile.png">
+	<div class = "profile_info">
+		<p class="name"><%= @teaching_assistant.name %></p>
+		<div class="info">
+			<p><%= @teaching_assistant.email %></p>
+			<p><b>Degree: </b><%= @teaching_assistant.degree %></p>
+			<p><b>Department: </b><%= @teaching_assistant.department %></p>
+			<p><b>University: </b><%= @teaching_assistant.university %></p>
+			<p><b>Joined on: </b><%= @teaching_assistant.created_at.to_date %></p>
+		</div>
+	</div>
+</div>
 <div class = "tabs" style = "float:left; margin-left:10px;">
 	<ul class="tab-links">
 		<li class="active"><a href="#tab1">Courses</a></li>
-		<li><a href="#tab2">Info</a></li>
 	</ul>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
@@ -54,14 +61,6 @@
 					</tr>
 				<% end %>
 			</table>
-		</div>
-		<div id="tab2" class="tab">
-			<p> <b>Name:</b> <%= @teaching_assistant.name %> </p>
-			<p> <b>Email:</b> <%= @teaching_assistant.email %> </p>
-			<p><b>Degree: </b><%= @teaching_assistant.degree %></p>
-			<p><b>Department: </b><%= @teaching_assistant.department %></p>
-			<p><b>University: </b><%= @teaching_assistant.university %></p>
-			<p><b>Joined on: </b><%= @teaching_assistant.created_at.to_date %></p>
 		</div>
 	</div>
 </div>
