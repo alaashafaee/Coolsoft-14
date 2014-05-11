@@ -2,18 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-hr {
-    border-top: 1px solid #000;   
-}
-
 .intro {
-	margin-top: 60px;
-	height: 650px; 
-	background-color: #2d9a86;
+    min-width: 100%;
+    max-width: 100%;
+	height: auto; 
 }
 
-.intro > .row > .img-responsive {
+.intro img {
     min-width: 100%;
+    max-width: 100%;
     height: 750px;
 }
 
@@ -24,22 +21,23 @@ hr {
 .padded{
 	background-color: #eaece4;
     padding: 100px 15px;
-
 }
 
 .tpad{
     padding-top: 20px;
 }
 
-.marketing{
-    background-color: #e9e6df;   
+.registration{
+    background-color: #e9e6df;  
+    padding: 40px 0; 
 }
 .info{
-    background: #ffa753;
+    background: #406182;
     padding: 80px 0;
 }
 
 .info small{
+    padding: 20px 0;
     color: #eeefe9;   
 }
 

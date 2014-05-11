@@ -47,16 +47,26 @@
 				</ul>
 			</div>
 		</div>
-		<% if signed_in? %>
-			
-		<% else %>
-			<%= yield %>
-		<% end %>
+		<br><br>
+		<div class="row">
+			<% if signed_in? %>
+				<%= render "layouts/right_side_bar" %>
+					<div class="well main-content" style="min-height:600px;">
+						<%= yield %>
+					</div>
+			<% else %>
+				<div class="row">
+					<%= yield %>
+				</div>
+			<% end %>
+		</div>
 <!-- Start Of Footer Section -->
 		<div class="ftr">
-			<div class="container">
-				<div class="row">
-					<%= render "layouts/footer" %>
+			<div class="row">
+				<div class="container">
+					<footer>
+						<%= render "layouts/footer" %>
+					</footer>
 				</div>
 			</div>
 		</div>
