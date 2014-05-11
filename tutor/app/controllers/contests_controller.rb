@@ -1,5 +1,10 @@
 class ContestsController < ApplicationController
 
+	# [Create Contest - Story 5.16]
+	# Defines a new Contest instance for the form in the new view
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	def new
 		if student_signed_in?
 			render ('public/404')
@@ -16,6 +21,12 @@ class ContestsController < ApplicationController
 		#end
 	end
 
+	# [Create Contest - Story 5.16]
+	# Takes the params submitted from new form and inserts record
+	# 	in database accordingly
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	def create
 		@new_contest  = Contest.new
 		@new_contest.title = contest_params[:title]
@@ -47,6 +58,11 @@ class ContestsController < ApplicationController
 		end
 	end
 
+	# [Create Contest - Story 5.16]
+	# Defines contest parameters to be permitted from the form view
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	private
 		def contest_params 
 			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time,
