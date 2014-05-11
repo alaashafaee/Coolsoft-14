@@ -17,6 +17,13 @@ class Contest < ActiveRecord::Base
 	#Scoops
 
 	#Methods
+
+	# [Create Contest - Story 5.16]
+	# Validates that the contest end date/time is after its
+	# 	start date/time
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	def validate_end_date_before_start_date
 		if end_date < start_date
 			errors.add(:end_date, "can't be before start date")
@@ -25,6 +32,11 @@ class Contest < ActiveRecord::Base
 		end
 	end
 
+	# [Create Contest - Story 5.16]
+	# Validates that no contest with the same title exists
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
 	def duplicate_title
 		if Contest.find_by title: title
 			errors.add(:title, "has already been taken")
