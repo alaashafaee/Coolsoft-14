@@ -1,23 +1,24 @@
 class TopicsController < ApplicationController
 
-# [Create Track - Story 4.1]
-# Shows the tracks of the topic with id :id or
-# Shows 404 page if there is no topic with such id
-# This Action should be put in the future in the 
-# Topic controller
-# Parameters: 
-#	id: The id of the topic
-# Returns: The view of the requested topic
-# Author: Mussab ElDash
-def show
-	id = params[:id]
-	@topic = Topic.find_by_id(id)
-	if @topic
-		@course = @topic.course
-		@tracks = @topic.tracks
-		problems = []
-		@tracks.each do |t|
-			problems = problems + t.problems
+	# [Create Track - Story 4.1]
+	# Shows the tracks of the topic with id :id or
+	# Shows 404 page if there is no topic with such id
+	# This Action should be put in the future in the 
+	# Topic controller
+	# Parameters: 
+	#	id: The id of the topic
+	# Returns: The view of the requested topic
+	# Author: Mussab ElDash
+	def show
+		id = params[:id]
+		@topic = Topic.find_by_id(id)
+		if @topic
+			@course = @topic.course
+			@tracks = @topic.tracks
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
+		else
+			render ('public/404')
 		end
 		puts problems
 		@can_edit = @course.can_edit(current_lecturer)
