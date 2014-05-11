@@ -1,4 +1,5 @@
 class ContestsController < ApplicationController
+	
 	def edit
 		if student_signed_in?
 			render ('public/404')
@@ -13,6 +14,21 @@ class ContestsController < ApplicationController
 				render ('public/404')
 			end
 		end
-		
 	end
+
+	def update
+		@contest  = Contest.find(params[:id])
+		if @contest.update(contest_params)
+			redirect_to(:action => 'show', :id => @contest.id)
+		else
+			render :action=>'edit'
+		end
+	end
+
+	private
+		def contest_params 
+			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time,
+				:end_date, :end_time)
+		end
+
 end
