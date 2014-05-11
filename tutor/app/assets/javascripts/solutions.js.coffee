@@ -9,7 +9,7 @@ index_number = 0
 # 	problem_id: The id of the problem being solved
 # Returns: none
 # Author: Mussab ElDash
-@start_debug = (problem_id) ->
+@start_debug = (problem_id, problem_type) ->
 	input = $('#solution_code').val()
 	if input.length is 0
 		alert "You didn't write any code"
@@ -20,7 +20,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
-		data: {code : input , case : test}
+		data: {code: input, case: test , problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -47,7 +47,7 @@ index_number = 0
 # Returns:
 #	none
 # Author: Ahmed Akram
-@compile = (problem_id) ->
+@compile = (problem_id, problem_type) ->
 	input = $('#solution_code').val()
 	if input.length is 0
 		alert "You didn't write any code"
@@ -57,7 +57,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
-		data: {code : input, problem_id : problem_id}
+		data: {code: input, problem_id: problem_id, problem_type: problem_type}
 		datatype: 'json'
 		success: (unique) ->
 			clear_console()
@@ -81,7 +81,7 @@ index_number = 0
 # Returns:
 #	none
 # Author: Ahmed Akram
-@run_input = (problem_id) ->
+@run_input = (problem_id, problem_type) ->
 	code = $('#solution_code').val()
 	if code.length is 0
 		alert "You didn't write any code"
@@ -92,7 +92,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
-		data: {code : code, problem_id : problem_id, input : test}
+		data: {code: code, problem_id: problem_id, input: test, problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -326,7 +326,7 @@ debug_console = ->
 #	of the current code and the other containing success messages
 #	and the success and failure messages are displayed in a table
 # Author: MOHAMEDSAEED
-@validate_code = (problem_id) ->
+@validate_code = (problem_id, problem_type) ->
 	code = $('#solution_code').val()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
@@ -339,7 +339,7 @@ debug_console = ->
 	$.ajax
 		type: "POST"
 		url: '/solutions'
-		data: {problem_id: problem_id, code: code, time: time}
+		data: {problem_id: problem_id, code: code, time: time, problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()

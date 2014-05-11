@@ -16,7 +16,6 @@ class TimeLimit
 		unless args.empty?
 			stdin, stdout, stderr, wait_thr = Open3.popen3 args
 			pid = wait_thr.pid
-			puts pid
 			begin
 				status = Timeout::timeout(time) {
 					Process.wait(pid)

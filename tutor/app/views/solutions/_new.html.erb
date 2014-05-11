@@ -26,11 +26,11 @@
 	<tr>
 		<td>
 			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
-				onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
+				onClick: "compile(#{params[:id]},'Problem')", class: "btn btn-info" %>
 			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
-				type: 'Button', onClick: "run_input(#{params[:id]})" %>
+				type: 'Button', onClick: "run_input(#{params[:id]},'Problem')" %>
 			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-				onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+				onclick: "start_debug(#{params[:id]},'Problem')", class: "btn btn-info" %>	
 			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
 				style: "display: none", id: 'previousButton', 
 				onClick: 'previous()', hidden: true %>
@@ -48,7 +48,7 @@
 			<b class='runtime_error'>Runtime Error</b>
 			<b class='compilation_error'>Compilation Error</b>
 			<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
-				onClick: "validate_code(#{params[:id]})", class: "btn btn-info" %>
+				onClick: "validate_code(#{params[:id]},'Problem')", class: "btn btn-info" %>
 		</td>
 	</tr>
 </table>
