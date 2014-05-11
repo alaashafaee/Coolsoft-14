@@ -46,10 +46,13 @@ textarea  {
 	overflow-x:hidden;
 }
 
-.fixed-horizontal {
-	max-width: 175px;
-	overflow-x:scroll;
-	overflow-y:hidden;
+.fixed-dimensions {
+	max-height: 230px;
+	min-width: 180px;
+	max-width: 180px;
+	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: scroll;
 }
 
 .editor {
