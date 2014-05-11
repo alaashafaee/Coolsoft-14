@@ -22,14 +22,15 @@ class ContestsController < ApplicationController
 		@new_contest.course_id = Course.find_by_name(contest_params[:course]).id
 		@new_contest.description = contest_params[:description]
 		@new_contest.start_date = Date.new(contest_params["start_date(1i)"].to_i,
-			contest_params["start_date(2i)"].to_i,contest_params["start_date(3i)"].to_i)
-		@new_contest.start_time = Time.new(contest_params["start_time(5i)"].to_i,
-			contest_params["start_time(4i)"].to_i)
-		#start = contest_params[:start_date]
-		#@new_contest.start_date = Date.new(start["date(1i)"].to_i, start["date(2i)"].to_i, start["date(3i)"].to_i)
-		#@new_contest.start_date = Date.new(contest_params[:start_date].sort.map(&:last).map(&:to_i))
-		#@new_contest.start_time = contest_params[:start_time]
-		#@new_contest.expiration_date = contest_params[:expiration_date]
+			contest_params["start_date(2i)"].to_i, contest_params["start_date(3i)"].to_i)
+		@new_contest.start_time = Time.new(contest_params["start_date(1i)"].to_i,
+			contest_params["start_date(2i)"].to_i, contest_params["start_date(3i)"].to_i,
+			contest_params["start_time(4i)"].to_i, contest_params["start_time(5i)"].to_i)
+		@new_contest.end_date = Date.new(contest_params["end_date(1i)"].to_i,
+			contest_params["end_date(2i)"].to_i, contest_params["end_date(3i)"].to_i)
+		@new_contest.end_time = Time.new(contest_params["end_date(1i)"].to_i,
+			contest_params["end_date(2i)"].to_i, contest_params["end_date(3i)"].to_i,
+			contest_params["end_time(4i)"].to_i, contest_params["end_time(5i)"].to_i)
 		if lecturer_signed_in?
 			@new_contest.owner_id = current_lecturer.id
 		elsif teaching_assistant_signed_in?
@@ -45,7 +46,8 @@ class ContestsController < ApplicationController
 
 	private
 		def contest_params 
-			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time)
+			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time,
+				:end_date, :end_time)
 		end
 
 end

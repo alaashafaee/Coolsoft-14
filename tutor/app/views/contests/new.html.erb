@@ -21,6 +21,14 @@
 			<%= f.time_select :start_time, {:value => Time.now} %>
 			</p>
 			<p>
+			<%= f.label :End_Date %><br />
+			<%= f.date_select :end_date, {:start_year => Date.today.year+1, :end_year => Date.today.year, :order => [:day, :month, :year], :value => Time.now} %>
+			</p>
+			<p>
+			<%= f.label :End_Time %><br />
+			<%= f.time_select :end_time, {:value => Time.now} %>
+			</p>
+			<p>
 				<%= f.label :Course %><br>
 				<% unless @new_contest.errors[:course].blank? %>
 					<span id="error_explanation">
