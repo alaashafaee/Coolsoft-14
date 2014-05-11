@@ -1,7 +1,21 @@
 <div align="center">
-	<h2>Students sign in</h2>
+	<h2>Student sign in</h2>
 
-	<%= form_for("student", url: student_session_path, 
+	<%
+	def resource_name
+		:student
+	end
+
+	def resource
+		@resource ||= Student.new
+	end
+
+	def devise_mapping
+		@devise_mapping ||= Devise.mappings[:student]
+	end 
+	%>
+
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name), 
 		:html => { :class => 'form-devise' }) do |f| %>
 		<% if flash[:alert] or flash[:notice] %>
 			<br />
@@ -21,7 +35,12 @@
 				placeholder:"Password" %>
 		</div>
 
+		<% if devise_mapping.rememberable? -%>
+			<div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		<% end -%>
+
 		<div><%= f.submit "Sign in", class: "btn btn-success button-devise" %></div>
 	<% end %>
 
+	<%= render "students/shared/links" %>
 </div>
