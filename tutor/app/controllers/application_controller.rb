@@ -47,11 +47,25 @@ class ApplicationController < ActionController::Base
 						:advising, :probation, :profile_image, 
 						:profile_image_cache)
 				}
+				devise_parameter_sanitizer.for(:account_update) {
+					|student| student.permit(:name, :current_password,
+						:password, :password_confirmation, 
+						:university, :faculty, :major, :semester, 
+						:advising, :probation, :profile_image, 
+						:profile_image_cache)
+				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|teaching_assistant| teaching_assistant.permit(:name, 
 						:email, :password, :password_confirmation, :gender, 
 						:dob, :graduated_from, :graduated_year, :degree, 
+						:university, :department, :profile_image, 
+						:profile_image_cache)
+				}
+				devise_parameter_sanitizer.for(:account_update) {
+					|teaching_assistant| teaching_assistant.permit(:name, 
+						:current_password, :password, :password_confirmation, 
+						:graduated_from, :graduated_year, :degree, 
 						:university, :department, :profile_image, 
 						:profile_image_cache)
 				}
