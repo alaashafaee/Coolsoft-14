@@ -21,12 +21,12 @@ class Solution < ActiveRecord::Base
 	# Author: MOHAMEDSAEED
 	def self.validate(solution, test_cases)
 		response = []
-		compiler_status = Compiler.compiler_feedback(solution)
+		compiler_status = JavaCompiler.compiler_feedback(solution)
 		if compiler_status[:success]
 			test_cases.each do |testcase|
 				input = testcase.input
 				expected_output = testcase.output
-				runtime_check = Executer.execute(solution, input)
+				runtime_check = JavaExecuter.execute(solution, input)
 				if(runtime_check[:executer_feedback])
 					output = runtime_check[:executer_output][:message]
 					if (output != expected_output)
