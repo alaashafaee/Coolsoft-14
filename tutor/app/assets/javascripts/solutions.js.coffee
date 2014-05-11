@@ -306,6 +306,12 @@ debug_console = ->
 	div.innerHTML = content
 	return
 
+# [View Variables - Story 3.7]
+# Updates the stack trace according to a certain state
+# Parameters:
+#	state_number: The target state number.
+# Returns: none
+# Author: Khaled Helmy
 @update_stack_trace = (state_number) ->
 	div = document.getElementById("stack")
 	list_of_methods = variables[state_number]["stack"]

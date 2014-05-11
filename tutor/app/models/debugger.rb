@@ -349,6 +349,16 @@ class Debugger < ActiveRecord::Base
 		return method_arguments + local_variables + class_variables
 	end
 
+	# [Debugger: View Variables - Story 3.7]
+	# Fetches the the stack trace of the code at the current state
+	# 	where the call stack is examined which contains the list of
+	# 	methods which did not finish its execution and thus did not
+	# 	return yet
+	# Parameters: none
+	# Returns:
+	# 	An array. It contains the list of methods in the call stack
+	# 		which have not returned yet
+	# Author: Khaled Helmy
 	def get_stack_trace
 		stack_trace = []
 		input "where"
