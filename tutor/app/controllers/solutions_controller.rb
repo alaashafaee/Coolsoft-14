@@ -8,13 +8,12 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		solution.status = 0
-		solution.save
-		test_cases = solution.problem.test_cases
-		result = Solution.validate(solution, test_cases)
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		time = param[:time]
+		result = SolutionsLayer.validate "java", code, student, problem, time
 		render json: result
 	end
 
@@ -31,9 +30,9 @@ class SolutionsController < ApplicationController
 		end
 		id = current_student.id
 		pid = params[:problem_id]
-		input = params[:code]
+		code = params[:code]
 		cases = if params[:input] then params[:input] else "" end
-		result = Executer.create_solution(id, pid, input, cases)
+		result = SolutionsLayer.execute "java", code, id, pid, cases
 		render json: result
 	end
 
@@ -45,19 +44,12 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		if solution.save
-			compiler_feedback = Compiler.compiler_feedback(solution)
-			if compiler_feedback[:success]
-				solution.status = 3
-			else
-				solution.status = 2
-			end
-			solution.save
-			render json: compiler_feedback
-		end
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		compiler_feedback = SolutionsLayer.compile "java", code, student, problem
+		render json: compiler_feedback
 	end
 
 	private
