@@ -1,20 +1,21 @@
 <%= render 'layouts/profile' %> 
 		<li class = "active"><a href = "#tab1">Info</a></li>
-		<li class="dropdown">
+		<!--<li class="dropdown">
     		<a class="dropdown-toggle"
 		       data-toggle="dropdown"
 		       href="#tab2">
 		        Performance
 		        <b class="caret"></b>
 		      </a>
-		    <ul class="dropdown-menu">
-		      <!-- links -->
+		    <ul class="dropdown-menu">-->
+		      <!-- links 
 		    	<li><a href="#">contest</a></li>
 		    	<li><a href="#">course</a></li>
 		    	<li><a href="#">assig</a></li>
 		    </ul>
-		</li>
-		<!--<li><a href = "#tab2">Performance</a></li>-->
+		</li>-->
+		<li><a href = "#tab2">Performance</a></li>
+
 		<li><a href = "#tab3">Statistics</a></li>
 	</ul>
 	<div class = "tab-content">
@@ -27,8 +28,73 @@
 			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 		</div>
 		<div id = "tab2" class = "tab">
+			<div class="tabbable tabs-left">
+		  		<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab11" data-toggle="tab">Course</a></li>
+		    		<li><a href="#tab22" data-toggle="tab">Contest</a></li>
+		    		<li><a href="#tab33" data-toggle="tab">Assig</a></li>
+				</ul>
+		    <div class="tab-content">
+				<div class="tab-pane active" id="tab11">
+					<div>
+						<h2 align="center">Continue from where you left off</h2><br>
+						<div class = "greyLine">
+		<p><font size="3"><%= @post.owner.name %></font> </p>
+		<div class="panel panel-primary">
+			<div style="margin-left:1%;">
+				<h2><%= @post.content %></h2>
+				<p><font size="3"><%= distance_of_time_in_words_to_now @post.
+					created_at %> ago</p></font>
+			</div>
+		</div>
+	</div>			
+					</div><br>
+					<h2 align="center">Your Progress</h2>
+					<table class = "table table-striped">
+					<tr>
+						<th>Topic</th>
+						<th>Track</th>
+						<th>Problem</th>
+					</tr>
+					</table>
+					<ul class="pager">
+						<li><a href="#">Previous</a></li>
+					    <li><a href="#">Next</a></li>
+					</ul>
+				</div>
+				<div class="tab-pane" id="tab22">
+					<h2 align="center">Your Progress</h2>
+						<table class = "table table-striped">
+						<tr>
+							<th>Topic</th>
+							<th>Track</th>
+							<th>Problem</th>
+						</tr>
+						</table>
+						<ul class="pager">
+							<li><a href="#">Previous</a></li>
+						    <li><a href="#">Next</a></li>
+						</ul>
+				</div>
+				<div class="tab-pane" id="tab33">
+					<h2 align="center">Your Progress</h2>
+						<table class = "table table-striped">
+						<tr>
+							<th>Topic</th>
+							<th>Track</th>
+							<th>Problem</th>
+						</tr>
+						</table>
+						<ul class="pager">
+							<li><a href="#">Previous</a></li>
+						    <li><a href="#">Next</a></li>
+						</ul>
+				</div>
+		    </div>
+		    </div>
+		</div>
 			<!--Performance under construction-->
-			<div>
+			<!--<div>
 				<h2 align="center">Continue from where you left off</h2><br>
 				
 			</div><br>
@@ -44,7 +110,7 @@
 				<li><a href="#">Previous</a></li>
 			    <li><a href="#">Next</a></li>
 			</ul>
-		</div>
+		</div>-->
 		<div id = "tab3" class = "tab">
 			Statistics under construction
 		</div>
