@@ -24,6 +24,10 @@ Tutor::Application.routes.draw do
  	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
+	get 'students/get_performance' => 'students#get_performance'
+	get 'students/list_courses' => 'students#list_courses'
+	get 'students/solved_problems' => 'students#solved_problems'
+	get 'students/failed_problems' => 'students#failed_problems'
 
 	get 'problems/edit'
 

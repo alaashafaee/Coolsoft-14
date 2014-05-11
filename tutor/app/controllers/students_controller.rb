@@ -11,11 +11,14 @@ class StudentsController < ApplicationController
 	# 	@incomplete: [int] The number of incomplete problems
 	# Author: Mahdi
 	def get_performance
-		@solved = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id").count
-		@failed = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id").count
-		@incomplete = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id").count
+		@solved = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		@failed = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		@incomplete = Attempt.where(student_id:params[:student_id], incomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 	end
 
+	def list_courses
+		@courses_list = CourseStudent.where(student_id: current_student.id)
+	end
 	# [Performance of a student - Story 5.3]
 	# This method retrieve variables from tables in the database
 	# Parameters:
@@ -24,7 +27,7 @@ class StudentsController < ApplicationController
 	# 	An array of solved problems
 	# Author: Mahdi
 	def solved_problems
-		@solved_list = Attempt.where(student_id:params[:id], success:true).select("DISTINCT problem_id")
+		@solved_list = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
 	# [Performance of a student - Story 5.3]
@@ -35,7 +38,7 @@ class StudentsController < ApplicationController
 	# 	An array of failed problems
 	# Author: Mahdi
 	def failed_problems
-		@failure_list = Attempt.where(student_id:params[:id], failure:true).select("DISTINCT problem_id")
+		@failure_list = Attempt.where(student_id:params[:id], failure:true).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
 	# [Performance of a student - Story 5.3]
@@ -46,7 +49,7 @@ class StudentsController < ApplicationController
 	# 	An array of incomplete problems  
 	# Author: Mahdi  
 	def incomplete_problems
-		@incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).select("DISTINCT problem_id")
+		@incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
 
