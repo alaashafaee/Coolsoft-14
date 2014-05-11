@@ -73,7 +73,9 @@ class Debugger < ActiveRecord::Base
 				input "run"
 				nums = get_line
 				locals = get_variables
+				stack = get_stack_trace
 				nums[:locals] = locals
+				nums[:stack] = stack
 				$all << nums
 				debug
 			rescue => e
@@ -103,9 +105,11 @@ class Debugger < ActiveRecord::Base
 				locals = []
 				begin
 					locals = get_variables
+					stack = get_stack_trace
 				rescue => e
 				end
 				nums[:locals] = locals
+				nums[:stack] = stack
 				$all << nums
 				counter += 1
 			rescue => e
@@ -308,10 +312,6 @@ class Debugger < ActiveRecord::Base
 		return result
 	end
 
-	def get_stack_trace
-		
-	end
-
 	# [Debugger: View Variables - Story 3.7]
 	# Fetches the variables found in the class and returns
 	# 	a list of all variables in the class with their
@@ -347,6 +347,20 @@ class Debugger < ActiveRecord::Base
 			end
 		end
 		return method_arguments + local_variables + class_variables
+	end
+
+	def get_stack_trace
+		stack_trace = []
+		input "where"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			if line.match("main[1]")
+				break
+			else
+				stack_trace << line
+			end
+		end
+		return stack_trace
 	end
 
 end
