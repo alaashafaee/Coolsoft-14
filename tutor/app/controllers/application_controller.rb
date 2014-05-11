@@ -30,23 +30,21 @@ class ApplicationController < ActionController::Base
 				devise_parameter_sanitizer.for(:sign_up) {
 					|lecturer| lecturer.permit(:name, :email, 
 						:password, :password_confirmation, :university, 
-						:department, :profile_image, :profile_image_cache)
+						:department)
 				}
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|student| student.permit(:name, :email, 
 						:password, :password_confirmation, 
 						:university, :faculty, :major, :semester, 
-						:advising, :probation, :profile_image, 
-						:profile_image_cache)
+						:advising, :probation)
 				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|teaching_assistant| teaching_assistant.permit(:name, 
 						:email, :password, :password_confirmation, 
 						:graduated_from, :graduated_year, :degree, 
-						:university, :department, :profile_image, 
-						:profile_image_cache)
+						:university, :department)
 				}
 			end
 		end
