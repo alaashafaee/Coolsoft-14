@@ -7,19 +7,21 @@ class ContestsController < ApplicationController
 		if(@new_contest == nil)
 			@new_contest = Contest.new
 		end
-		if lecturer_signed_in?
-			@owner_courses = current_lecturer.courses
-			@owner_courses = @owner_courses.map {|x| x.name}
-		elsif teaching_assistant_signed_in?
-			@owner_courses = current_teaching_assistant.courses
-			@owner_courses = @owner_courses.map {|x| x.name}
-		end
+		#if lecturer_signed_in?
+		#	@owner_courses = current_lecturer.courses
+		#	@owner_courses = @owner_courses.map {|x| x.name}
+		#elsif teaching_assistant_signed_in?
+		#	@owner_courses = current_teaching_assistant.courses
+		#	@owner_courses = @owner_courses.map {|x| x.name}
+		#end
 	end
 
 	def create
 		@new_contest  = Contest.new
 		@new_contest.title = contest_params[:title]
-		@new_contest.course_id = Course.find_by_name(contest_params[:course]).id
+		unless contest_params[:course] == ""
+			@new_contest.course_id = Course.find_by_name(contest_params[:course]).id
+		end
 		@new_contest.description = contest_params[:description]
 		@new_contest.start_date = Date.new(contest_params["start_date(1i)"].to_i,
 			contest_params["start_date(2i)"].to_i, contest_params["start_date(3i)"].to_i)
@@ -32,10 +34,11 @@ class ContestsController < ApplicationController
 			contest_params["end_date(2i)"].to_i, contest_params["end_date(3i)"].to_i,
 			contest_params["end_time(4i)"].to_i, contest_params["end_time(5i)"].to_i)
 		if lecturer_signed_in?
-			@new_contest.owner_id = current_lecturer.id
+			@new_contest.owner = current_lecturer
 		elsif teaching_assistant_signed_in?
-			@new_contest.owner_id = current_teaching_assistant.id
+			@new_contest.owner = current_teaching_assistant
 		end
+			
 		if @new_contest.save
 			flash[:success_creation]= "Contest added."
 			redirect_to :action => 'index'
