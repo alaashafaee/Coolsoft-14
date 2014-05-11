@@ -103,7 +103,7 @@
 									<% @course.assignments.each do |a|%>
 										<% color = "label label-default" %>
 										<li style="border-style:hidden;" class="list-group-item">
-											<%= a.title %>
+											<%= link_to a.title, a, class: color %>
 										</li>
 									<% end %>
 								</ul>
