@@ -1,7 +1,7 @@
 <div align="center">
-	<h2>Students sign in</h2>
+	<h2>Lecturers sign in</h2>
 
-	<%= form_for("student", url: student_session_path, 
+	<%= form_for("lecturer", url: lecturer_session_path, 
 		:html => { :class => 'form-devise' }) do |f| %>
 		<% if flash[:alert] or flash[:notice] %>
 			<br />
@@ -17,11 +17,10 @@
 		</div>
 
 		<div>
-			<%= f.password_field :password, autocomplete: "off", class:"form-control", 
-				placeholder:"Password" %>
+			<%= f.password_field :password, autocomplete: "off", 
+				class:"form-control", placeholder:"Password" %>
 		</div>
 
 		<div><%= f.submit "Sign in", class: "btn btn-success button-devise" %></div>
 	<% end %>
-
 </div>

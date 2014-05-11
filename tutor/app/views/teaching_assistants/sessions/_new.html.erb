@@ -1,7 +1,7 @@
 <div align="center">
-	<h2>Students sign in</h2>
+	<h2>TAs Sign in</h2>
 
-	<%= form_for("student", url: student_session_path, 
+	<%= form_for("teaching_assistant", url: teaching_assistant_session_path, 
 		:html => { :class => 'form-devise' }) do |f| %>
 		<% if flash[:alert] or flash[:notice] %>
 			<br />

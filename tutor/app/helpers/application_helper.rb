@@ -8,15 +8,4 @@ module ApplicationHelper
 	def controller?(controller,action)
 		params[:controller].include?controller and params[:action].include?action
 	end
-	def resource_name
-		:student
-	end
-
-	def resource
-		@resource ||= Student.new
-	end
-
-	def devise_mapping
-	@devise_mapping ||= Devise.mappings[:student]
-	end
 end
