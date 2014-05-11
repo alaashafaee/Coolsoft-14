@@ -14,7 +14,7 @@ class SolutionsLayer
 	def self.execute lang, code, student_id, problem_id, cases
 		executer = get_executer lang
 		unless executer
-			return {}
+			return false
 		end
 		compiler = get_compiler lang
 		solution = get_solution code, student_id, problem_id
@@ -133,7 +133,7 @@ class SolutionsLayer
 		lang = lang.capitalize
 		executer_string = lang + "Executer"
 		begin
-			compiler = eval executer_string
+			executer = eval executer_string
 		rescue Exception => e
 			executer = false
 		end
