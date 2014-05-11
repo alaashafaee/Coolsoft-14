@@ -5,7 +5,7 @@ class ContestProgress < ActiveRecord::Base
 	#Relations
 	belongs_to :contest
 	belongs_to :student
-	belongs_to :problem
+	belongs_to :problem, class_name:"Cproblem"
 
 	#Scoops
 	
