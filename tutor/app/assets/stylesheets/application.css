@@ -85,6 +85,10 @@
 	width: 125%;
 }
 
+#editor{
+	width: 80%;
+}
+
 .no-scroll-x{
 	overflow-x: hidden;
 }
