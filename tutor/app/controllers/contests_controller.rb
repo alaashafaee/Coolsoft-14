@@ -31,7 +31,7 @@ class ContestsController < ApplicationController
 		@new_contest  = Contest.new
 		@new_contest.title = contest_params[:title]
 		unless contest_params[:course] == ""
-			@new_contest.course_id = Course.find_by_name(contest_params[:course]).id
+			@new_contest.course = Course.find_by_name(contest_params[:course])
 		end
 		@new_contest.description = contest_params[:description]
 		@new_contest.start_date = Date.new(contest_params["start_date(1i)"].to_i,
