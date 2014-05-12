@@ -247,7 +247,8 @@ puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:false)
 
 puts("# ----------------------- Assignments ----------------------- ")
-	Assignment.create(title:"DSD Assignment_1", publish: true)
+	Assignment.create(title:"DSD Assignment_1", publish: true , due_date: DateTime.now.to_date ,
+		description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
 	Assignment.create(title:"DMENT Assignment_2", publish: true)
 	Assignment.create(title:"DSD Assignment_3", publish: true)
 
