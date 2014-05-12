@@ -210,6 +210,19 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	# [Hide course - Story 1.26]
+	# Determines whether a course is visible or not
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: none
+	# Author: Mohamed Metawaa
+	def hide
+		@course = Course.find_by_id(params[:id])
+		@course.visible = !@course.visible 
+		@course.save
+		redirect_to :back
+	end
+
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
