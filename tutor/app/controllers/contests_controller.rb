@@ -39,26 +39,17 @@ class ContestsController < ApplicationController
 	end
 
 	
-	# [Edit Contest - Story 5.17]
-	# Passes instance variable of the contest to be deleted to the
-	# 	delete view and renders the delete view
+	# [Delete Contest - Story 5.17]
+	# Gets the course id, removes it from the database and then
+	# 	redirects the user to the show contests page
 	# Parameters: none
 	# Returns: none
 	# Author: Amir George
-	def delete
-		if student_signed_in?
-			render ('public/404')
-		end
-		@contest = Contest.find(params[:id])
-		if lecturer_signed_in?
-			if !current_lecturer.contests.include?(@contest)
-				render ('public/404')
-			end
-		elsif teaching_assistant_signed_in?
-			if !current_teaching_assistant.contests.include?(@contest)
-				render ('public/404')
-			end
-		end
+	def destroy
+		contest = Contest.find_by_id(params[:id])
+		contest.destroy
+		flash[:success_deletion] = "Contest deleted."
+		redirect_to :action => 'index'
 	end
 
 	# [Edit Contest - Story 5.17]
