@@ -13,13 +13,11 @@
 				<%if @can_edit%>
 					<%= link_to "Edit problem", { :controller => 'assignment_problems',
 						:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
-					<span class="btn btn-info" onclick="showDiv()">Solve</span>
-
-					<div id= "test" style="display:none;">
+					<div id= "test" style="display:true;">
 				 	<%= render partial: "solutions/new"%>
 				 	</div >
 				<%end%>
-				<% if !@can_edit%> <!-- this is a student so the option to solve will be offered-->
+				<% if !@can_edit%> 
 				 	<%= render partial: "solutions/new"%>
 				<%end%>
 			</td>
