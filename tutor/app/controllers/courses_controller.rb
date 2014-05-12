@@ -257,4 +257,5 @@ class CoursesController < ApplicationController
 				return false
 			end
 		end
+
 end
