@@ -100,12 +100,28 @@
 							</div>
       						<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
 								<ul class="list-group">
-									<% @course.assignments.each do |a|%>
-										<% color = "label label-default" %>
-										<li style="border-style:hidden;" class="list-group-item">
-											<%= link_to a.title, a, class: color %>
-										</li>
-									<% end %>
+									<%if @can_edit%>
+										<% @course.assignments.each do |a|%>
+											<% color = "label label-default" %>
+											<li style="border-style:hidden;" class="list-group-item">
+												<%= link_to a.title, a, class: color %>
+											<% if @can_edit%>
+												<% if !a.publish%>
+													<span class="badge">unpublished</span>
+													</li>
+												<%end%>
+											<% end%>
+										<% end %>
+									<%else%>
+										<% @course.assignments.each do |a|%>
+											<%if a.publish%>
+												<% color = "label label-default" %>
+												<li style="border-style:hidden;" 
+													class="list-group-item">
+												<%= link_to a.title, a, class: color %>
+											<%end%>
+										<% end %>
+									<%end%>
 								</ul>
         					</div>
 						</div>	

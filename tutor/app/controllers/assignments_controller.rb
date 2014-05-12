@@ -6,8 +6,9 @@ class AssignmentsController < ApplicationController
 		if @assignment
 			@course = @assignment.course
 			@problems = @assignment.problems
-			#@can_edit = @course.can_edit(current_lecturer)
-			#@can_edit||= @course.can_edit(current_teaching_assistant)
+			puts(@problems.length)
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
 		else
 			render ('public/404')
 		end

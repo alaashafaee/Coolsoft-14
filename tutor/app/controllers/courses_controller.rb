@@ -162,7 +162,8 @@ class CoursesController < ApplicationController
 			@assignments.each do |a|
 				assignment_problems = assignment_problems + a.problems
 			end
-
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
 		else
 			render ('public/404')
 		end

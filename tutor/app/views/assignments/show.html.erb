@@ -17,6 +17,10 @@
 <br>
 <div id="problems_in_assignment" style="font-size: 14pt;">
 		<p><b>List of problems:</b>
+			<%if @problems.length == 0%>
+			<br><br>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;No problems added yet!</p>
+			<%else%>
 			<ul class="list-group">
 				<% @problems.each do |ap| %> 
 					<li class="list-group-item">
@@ -24,5 +28,6 @@
 					</li>
 				<% end %>
 			</ul>
+			<%end%>
 		</p>
 </div>
