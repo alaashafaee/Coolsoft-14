@@ -212,7 +212,7 @@ class CoursesController < ApplicationController
 
 	private
 		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description)
+			params.require(:course).permit(:name,:code,:year,:semester,:description,:link)
 		end
 
 		# [Share Performance - Story 5.2, 5.13]

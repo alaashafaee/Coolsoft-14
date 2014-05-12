@@ -40,6 +40,17 @@
 					placeholder:"Description", :value => @new_course.description %>
 			</p>
 			<p>
+				<%= f.label :link %><br>
+				<% unless @new_course.errors[:link].blank? %>
+					<span id="error_explanation">
+						Link <%= @new_course.errors[:link].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+				<%= f.url_field :link, class:"form-control", style:"width:300px", 
+					placeholder:"Course Link", value: params[:course][:link] %>
+			</p>
+			<p>
 				<%= f.label :Semester %><br>
 				<% unless @new_course.errors[:semester].blank? %>
 					<span id="error_explanation">
