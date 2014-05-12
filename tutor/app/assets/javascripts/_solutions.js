@@ -7,7 +7,7 @@
 //	None.
 // Author: Mimi
 $(document).ready(function(e){
-		$('.selectpicker').selectpicker();
+	$('.selectpicker').selectpicker();
 });
 
 // [Editor cusomization - Story 3.19]
@@ -19,8 +19,8 @@ $(document).ready(function(e){
 //	None.
 // Author: Mimi
 function changeTheme(){
-		var newTheme = $('#theme').val();
-		editor.setTheme("ace/theme/"+newTheme);
+	var new_theme = $('#theme').val();
+	editor.setTheme("ace/theme/"+new_theme);
 }
 
 // [Editor cusomization - Story 3.19]
@@ -32,8 +32,8 @@ function changeTheme(){
 //	None.
 // Author: Mimi
 function changeMode(){
-		var newMode = $('#mode').val();
-		edit_session.setMode("ace/mode/"+newMode);
+	var new_mode = $('#mode').val();
+	edit_session.setMode("ace/mode/"+new_mode);
 }
 
 // [Editor cusomization - Story 3.19]
@@ -45,6 +45,6 @@ function changeMode(){
 //	None.
 // Author: Mimi
 function changeFont(){
-		var newFont = $('#font').val();
-		editor.setFontSize(parseInt(newFont));
+	var new_font = $('#font').val();
+	editor.setFontSize(parseInt(new_font));
 }
