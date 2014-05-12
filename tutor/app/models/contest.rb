@@ -2,7 +2,7 @@ class Contest < ActiveRecord::Base
 
 	#Validations
 	validates :title, presence: true
-	validate :duplicate_title
+	validate :duplicate_title, :on => :create
 	validates :course_id, presence: true
 	validate :validate_end_date_before_start_date
 
