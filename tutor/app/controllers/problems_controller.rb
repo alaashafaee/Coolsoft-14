@@ -202,6 +202,9 @@ class ProblemsController < ApplicationController
 		end
 	end
 
+	def duplcate 
+	end		
+
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:

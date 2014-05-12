@@ -175,6 +175,21 @@ puts("# ----------------------- Problems ----------------------- ")
 			(e.g. assume that the original number was 12).", final_grade:10)
 		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", final_grade:10)
 		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 5", description: "Write a Java program CountChange 
+			to count change. Given the number of quarter, dimes, nickles, and pennies the program should 
+			output the total as a single value in dollars and pennies. - One dollar corresponds to 100 pennies.
+			- One quarter corresponds to 25 pennies. - One dime corresponds to 10 pennies. - One nickle corresponds 
+			to 5 pennies. For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies, then the total is
+			1.06 dollars", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 6", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 7", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 8", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 9", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 10", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 11", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 12", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 13", description: "", final_grade:10)
+		AssignmentProblem.create(title: "AssignmentProblem 14", description: "", final_grade:10)
 	## Contests
 		Cproblem.create(title: "ContestProblem 1", description: "This is very easy Problem")
 		Cproblem.create(title: "ContestProblem 2", description: "Given two numbers a and b, output a/b")
