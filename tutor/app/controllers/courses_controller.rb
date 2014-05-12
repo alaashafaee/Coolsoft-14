@@ -171,14 +171,14 @@ class CoursesController < ApplicationController
 	# Returns: none
 	# Author: Mohamed Metawaa
 	def sort
-		@topic = Topic.find_by_id(params[:methodParam][0])  
+		@topic = Topic.find(params[:methodParam][0])  
 		@course = @topic.course 
 		@topics = @course.topics
 		@topics.each do |t|
 			t.order_factor = (params[:methodParam]).index(t.id.to_s)
 			t.save
 		end
-		render :nothing => true
+		render 'show'
 	end
 
 	# [Edit a course - story 1.17]

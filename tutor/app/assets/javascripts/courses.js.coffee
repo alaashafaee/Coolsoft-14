@@ -1,6 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+src="//code.jquery.com/jquery-1.10.2.js">
+src="//code.jquery.com/ui/1.10.4/jquery-ui.js">
 
 $(document).ready ->
 	$("#list-of-topics").sortable
@@ -24,7 +26,8 @@ $(document).ready ->
 					url: "/courses/sort"
 					type: "POST"
 					beforeSend: (xhr) ->
-						xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
+						xhr.setRequestHeader "X-CSRF-Token", 
+						$("meta[name=\"csrf-token\"]").attr("content")
 						return
 					data:
 						methodParam: array
