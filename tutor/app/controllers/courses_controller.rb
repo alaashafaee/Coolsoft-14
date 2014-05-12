@@ -110,6 +110,7 @@ class CoursesController < ApplicationController
 		@new_course.year = course_params[:year]
 		@new_course.semester = course_params[:semester]
 		@new_course.description = course_params[:description]
+		@new_course.link = course_params[:link]
 		@new_course.university = current_lecturer.university
 		if @new_course.save
 			current_lecturer.courses << @new_course
@@ -256,5 +257,4 @@ class CoursesController < ApplicationController
 				return false
 			end
 		end
-
 end
