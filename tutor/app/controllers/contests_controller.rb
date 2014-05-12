@@ -30,6 +30,7 @@ class ContestsController < ApplicationController
 	# Author: Amir George
 	def update
 		@contest  = Contest.find(params[:id])
+		contest_params[:course] = Course.find_by_name(contest_params[:course])
 		if @contest.update(contest_params)
 			redirect_to(:action => 'show', :id => @contest.id)
 		else
