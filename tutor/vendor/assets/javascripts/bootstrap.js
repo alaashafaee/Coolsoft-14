@@ -498,14 +498,14 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
 
-    var actives = this.$parent && this.$parent.find('> .panel > .in')
+    // var actives = this.$parent && this.$parent.find('> .panel > .in')
 
-    if (actives && actives.length) {
-      var hasData = actives.data('bs.collapse')
-      if (hasData && hasData.transitioning) return
-      actives.collapse('hide')
-      hasData || actives.data('bs.collapse', null)
-    }
+    // if (actives && actives.length) {
+    //   var hasData = actives.data('bs.collapse')
+    //   if (hasData && hasData.transitioning) return
+    //   actives.collapse('hide')
+    //   hasData || actives.data('bs.collapse', null)
+    // }
 
     var dimension = this.dimension()
 
@@ -623,7 +623,10 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       if ($parent) $parent.find('[data-toggle=collapse][data-parent="' + parent + '"]').not($this).addClass('collapsed')
       $this[$target.hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
     }
-
+    if ($target.hasClass('in'))
+      $this.removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right')
+    else
+      $this.removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down')
     $target.collapse(option)
   })
 
