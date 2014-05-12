@@ -13,8 +13,9 @@
 				<%if @can_edit%>
 					<%= link_to "Edit problem", { :controller => 'assignment_problems',
 						:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
-					<span class="btn btn-info" onclick="showDiv()">Wooohooo</span>
-					<div id= "test" style="display:true;">
+					<span class="btn btn-info" onclick="showDiv()">Solve</span>
+
+					<div id= "test" style="display:none;">
 				 	<%= render partial: "solutions/new"%>
 				 	</div >
 				<%end%>

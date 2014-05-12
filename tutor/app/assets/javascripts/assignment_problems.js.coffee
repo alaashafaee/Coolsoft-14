@@ -1,3 +1,3 @@
 @showDiv = ->
-  document.getElementById("test").style = "display: none;"
+  document.getElementById("test").style.display = ""
   return
