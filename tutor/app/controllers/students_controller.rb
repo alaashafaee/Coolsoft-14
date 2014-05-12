@@ -14,6 +14,8 @@ class StudentsController < ApplicationController
 		@solved = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@failed = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@incomplete = Attempt.where(student_id:params[:student_id], incomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		#@solved_contest = Attempt.where(student_id:params[:student_id], success:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		#@failed_contest = Attempt.where(student_id:params[:student_id], failure:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 	end
 
 	def list_courses
