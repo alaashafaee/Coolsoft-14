@@ -48,7 +48,7 @@
 					<br>
 				<% end %>
 				<%= f.url_field :link, class:"form-control", style:"width:300px", 
-					placeholder:"Course Link", value: params[:course][:link] %>
+					placeholder:"Course Link", :value => @new_course.link %>
 			</p>
 			<p>
 				<%= f.label :Semester %><br>
