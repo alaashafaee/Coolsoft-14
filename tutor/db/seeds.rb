@@ -67,19 +67,19 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 puts("# ----------------------- Courses ----------------------- ")
 
 	Course.create(name:"Data Structures and Alogrithms", 
-				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
+				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name:"Computer Programming Lab", 
-				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1)
+				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name:"Course3", 
-				description:"This is course three", code:3, year:2014, semester:1)
+				description:"This is course three", code:3, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 2", 
-				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC")
+				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 3", 
-				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC")
+				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 4", 
-				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC")
+				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 5", 
-				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC")
+				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 
 puts("# ----------------------- Course_Student ----------------------- ")
 	CourseStudent.create(share: true)
