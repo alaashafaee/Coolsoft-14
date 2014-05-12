@@ -6,7 +6,7 @@ class Course < ActiveRecord::Base
 	
 	#Validations
 	validates :name, presence: true
-	validates :link, :format => /https?:\/\/(w{3})?.[a-zA-Z0-9]*(.com|.org|.guc|.edu|.eg)+[\S]*/
+	validates :link, :format => /^https?:\/\/((w{3})[.])?[a-zA-Z0-9]+((\.com)|(\.org)|(\.guc)|(\.edu)|(\.eg))+((\?|#)([\S])*)?$/
 	validates :description, presence: true
 	validates :code, presence: true
 	validates :year, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: Date.today.year,
