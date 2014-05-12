@@ -38,7 +38,8 @@ class Track < ActiveRecord::Base
 
 	# [Create Track - Story 4.1]
 	# Get a text difficulty of the number given
-	# Parameters: none
+	# Parameters:
+	#	difficulty: The difficulty that be converted to string and by default its -1
 	# Returns:
 	# 	A string according to the number given
 	# Author: Mussab ElDash
