@@ -5,7 +5,9 @@ class Solution < ActiveRecord::Base
 
 	#Relations
 	belongs_to :student
-	belongs_to :problem
+	belongs_to :problem, class_name:"Problem", polymorphic: true
+	belongs_to :assignment_problem, class_name:"AssignmentProblem", polymorphic: true
+	belongs_to :contest_problem, class_name:"Cproblem", polymorphic: true
 
 	#Methods
 	# [Compiler: Validate - Story 3.5]
@@ -19,12 +21,12 @@ class Solution < ActiveRecord::Base
 	# Author: MOHAMEDSAEED
 	def self.validate(solution, test_cases)
 		response = []
-		compiler_status = Compiler.compiler_feedback(solution)
+		compiler_status = JavaCompiler.compiler_feedback(solution)
 		if compiler_status[:success]
 			test_cases.each do |testcase|
 				input = testcase.input
 				expected_output = testcase.output
-				runtime_check = Executer.execute(solution, input)
+				runtime_check = JavaExecuter.execute(solution, input)
 				if(runtime_check[:executer_feedback])
 					output = runtime_check[:executer_output][:message]
 					if (output != expected_output)
@@ -60,20 +62,30 @@ class Solution < ActiveRecord::Base
 	end
 
 	# [Compiler: Validate - Story 3.5]
-	# outputs the runtime error with a better explanation
+	# outputs the runtime error with a more descriptive error message
 	# Parameters:
 	# 	error: the original runtime error
 	# Returns: a String with the explained runtime error
 	# Author: MOHAMEDSAEED
 	def self.get_response(error)
-		if error.include?("/ by zero")
-			return "Division / 0"
-		elsif error.include?("ArrayIndexOutOfBounds")
-			return "Out of array range"
-		elsif error.include?("StringIndexOutOfBounds")
-			return "Out of string range"
+		if error[:errors].include?("/ by zero")
+			return "Division by zero, for example: a/b, b = 0"
+		elsif error[:errors].include?("ArrayIndexOutOfBounds")
+			return "Index is out of array range"
+		elsif error[:errors].include?("StringIndexOutOfBounds")
+			return "Index is out of string range"
+		elsif  error[:errors].include?("ClassCastException")
+			return "Wrong type casting"
+		elsif error[:errors].include?("NullPointerException")
+			return "Trying to access a null object"
+		elsif  error[:errors].include?("IOException")
+			return "Error when trying to read or write data"
+		elsif  error[:errors].include?("NumberFormatException")
+			return "Invalid string to be converted to number"
+		elsif  error[:errors].include?("StackOverflowError")
+			return "Calling a recursion function that never ends"
 		else
-			return "To be set response"
+			return error[:errors]
 		end
 	end
 
