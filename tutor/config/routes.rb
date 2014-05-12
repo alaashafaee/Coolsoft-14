@@ -38,6 +38,10 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
+
+	get 'cproblem/:id' => 'contests#solve'
+	resources :contests
+
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
