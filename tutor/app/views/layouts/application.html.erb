@@ -50,10 +50,17 @@
 		<br><br>
 		<div class="row">
 			<% if signed_in? %>
-				<%= render "layouts/right_side_bar" %>
-					<div class="well main-content">
-						<%= yield %>
+				<div class="row">
+					<div class="col-xs-10 left_side">
+						<div class="well">
+							<%= yield %>
+						</div>					
 					</div>
+<!-- 					<div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
+					<div class="col-xs-2 right_side">
+						<%= render "layouts/right_side_bar" %>
+					</div>
+				</div>
 			<% else %>
 				<%= yield %>
 			<% end %>
