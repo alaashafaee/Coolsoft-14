@@ -13,5 +13,13 @@ class Contest < ActiveRecord::Base
 	#Scoops
 
 	#Methods
+	def get_contest_standings
+		contest_standing_records = ContestProgress.where(contest_id: self.id)
+		contest_standings_unique = Hash.new
+		contest_standing_records.each do |record|
+			contest_standings_unique[record.student_id] = record
+ 		end
+ 		return contest_standings_unique
+	end
 
 end

@@ -242,7 +242,12 @@ puts("# ----------------------- Contests ----------------------- ")
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:false)
 	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:false)
+	ContestProgress.create!(status:true)
+	ContestProgress.create!(status:false)
 	ContestProgress.create!(status:true)
 	ContestProgress.create!(status:false)
 
@@ -358,13 +363,19 @@ puts("# ----------------------- Students ----------------------- ")
 	## Contests
 		Student.first.contests << Contest.first
 		Student.find_by_id(2).contests << Contest.first
-		Student.find_by_id(3).contests << Contest.find_by_id(2)
-		Student.find_by_id(4).contests << Contest.find_by_id(3)
+		Student.find_by_id(3).contests << Contest.first
+		Student.find_by_id(4).contests << Contest.first
 	## Contests progress
 		Student.first.contest_progresses << ContestProgress.first
 		Student.first.contest_progresses << ContestProgress.find_by_id(2)
-		Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(3)
+		Student.first.contest_progresses << ContestProgress.find_by_id(3)
 		Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(4)
+		Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(5)
+		Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(6)
+		Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(7)
+		Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(8)
+		Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(9)
+		
 	## Grades
 		Student.first.grades << Grade.first
 		Student.first.grades << Grade.find_by_id(2)
@@ -408,6 +419,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.solutions << Solution.first
 		Problem.find_by_id(2).solutions << Solution.find_by_id(2)
 		Problem.find_by_id(3).solutions << Solution.find_by_id(3)
+
 	## Attempts
 		Problem.first.attempts << Attempt.first
 		Problem.first.attempts << Attempt.find_by_id(2)
@@ -424,10 +436,15 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.attempts << Attempt.find_by_id(13)
 	## Contest Progress
 		Cproblem.find_by_id(1).contests_progresses << ContestProgress.first
-		Cproblem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(2)
-		Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(3)
+		Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(2)
 		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(3)
-		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
+		Cproblem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(4)
+		Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(5)
+		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(6)
+		Cproblem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(7)
+		Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(8)
+		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(9)
+
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 
@@ -477,13 +494,17 @@ puts("# ----------------------- Contests ----------------------- ")
 		Contest.first.problems << Cproblem.find_by_id(1)
 		Contest.first.problems << Cproblem.find_by_id(2)
 		Contest.first.problems << Cproblem.find_by_id(3)
-		Contest.find_by_id(2).problems << Cproblem.find_by_id(4)
-		Contest.find_by_id(3).problems << Cproblem.find_by_id(5)
+
 	## Contests Progress
 		Contest.first.progress << ContestProgress.first
-		Contest.find_by_id(2).progress << ContestProgress.find_by_id(2)
-		Contest.find_by_id(2).progress << ContestProgress.find_by_id(3)
-		Contest.find_by_id(3).progress << ContestProgress.find_by_id(4)
+		Contest.first.progress << ContestProgress.find_by_id(2)
+		Contest.first.progress << ContestProgress.find_by_id(3)
+		Contest.first.progress << ContestProgress.find_by_id(4)
+		Contest.first.progress << ContestProgress.find_by_id(5)
+		Contest.first.progress << ContestProgress.find_by_id(6)
+		Contest.first.progress << ContestProgress.find_by_id(7)
+		Contest.first.progress << ContestProgress.find_by_id(8)
+		Contest.first.progress << ContestProgress.find_by_id(9)
 
 puts("# ----------------------- Assignment ----------------------- ")
 	## Problems
