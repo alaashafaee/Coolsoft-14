@@ -119,6 +119,10 @@
 												<li style="border-style:hidden;" 
 													class="list-group-item">
 												<%= link_to a.title, a, class: color %>
+												<% if a.due_date > DateTime.now.to_date%>
+													<span class="badge">Due</span>
+												</li>
+												<%end%>
 											<%end%>
 										<% end %>
 									<%end%>
