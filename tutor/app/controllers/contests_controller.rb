@@ -30,8 +30,8 @@ class ContestsController < ApplicationController
 	# Author: Amir George
 	def update
 		@contest  = Contest.find(params[:id])
-		contest_params[:course] = Course.find_by_name(contest_params[:course])
-		if @contest.update(contest_params)
+		@contest.course = Course.find_by_name(course_param[:course])
+		if @contest.update_attributes(contest_params)
 			redirect_to(:action => 'show', :id => @contest.id)
 		else
 			render :action=>'edit'
@@ -46,8 +46,19 @@ class ContestsController < ApplicationController
 	# Author: Amir George
 	private
 		def contest_params 
-			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time,
+			params.require(:contest).permit(:title, :description, :start_date, :start_time,
 				:end_date, :end_time)
+		end
+
+	# [Edit Contest - Story 5.17]
+	# Permits the course parameter from the view to be handled separately
+	# 	in the update action
+	# Parameters: none
+	# Returns: none
+	# Author: Amir George
+	private
+		def course_param
+			params.require(:contest).permit(:course)
 		end
 
 end
