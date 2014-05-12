@@ -1,20 +1,18 @@
 <div align="center">
 	<h2>Lecturer Sign in</h2>
-	
-	<%
-	def resource_name
+	<% 
+	def resource_name 
 		:lecturer
 	end
 
 	def resource
-		@resource ||= lecturer.new
+		@resource ||= Lecturer.new
 	end
 
 	def devise_mapping
 		@devise_mapping ||= Devise.mappings[:lecturer]
-	end 
+	end
 	%>
-
 	<%= form_for(resource, as: resource_name, url: session_path(resource_name), 
 		:html => { :class => 'form-devise' }) do |f| %>
 		<% if flash[:alert] or flash[:notice] %>

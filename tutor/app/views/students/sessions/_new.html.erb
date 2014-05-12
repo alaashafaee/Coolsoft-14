@@ -1,8 +1,8 @@
 <div align="center">
 	<h2>Student sign in</h2>
 
-	<%
-	def resource_name
+	<% 
+	def resource_name 
 		:student
 	end
 
@@ -12,7 +12,7 @@
 
 	def devise_mapping
 		@devise_mapping ||= Devise.mappings[:student]
-	end 
+	end
 	%>
 
 	<%= form_for(resource, as: resource_name, url: session_path(resource_name), 

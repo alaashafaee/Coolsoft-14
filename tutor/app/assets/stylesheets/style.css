@@ -1,13 +1,11 @@
 .handle:hover{cursor: move;}
 
 .cont {
-	width: 90%;
-	margin: auto;
 	background: #eeefe9;
-	padding-top:120px;
+	padding-top:100px;
 }
 .right_side{
-		background: #E9E6DF;
+
 }
 .test {
 	background: #F9FAFA;
@@ -44,4 +42,86 @@
 	padding:10px;
 	width:400px;
 	margin-top: 100px;
+}
+.navtab .row{
+	font-size : 1.3em;
+	height: 80px;
+	color: white;
+	width: 195px;
+	float: right;
+	display: inline;
+
+}
+
+.navtab .active{
+	font-weight: bolder;
+}
+.navtab a {
+	position: relative;
+	top: 35%;
+	left: 10%;
+	color: white;
+}
+.navtab a:hover{
+	text-decoration: none;
+	color: white;
+}
+.profile{
+	background-color: #3B8FA3 !important;
+
+}
+.dashboard{
+	background-color: #793541 !important;
+}
+.courses {
+	background-color: #CF5044 !important;
+
+}
+.settings{
+	background-color: #96AB4F !important;
+
+}
+/*#######*/
+.list-group{
+	width: 100%;
+	margin-left: -15px;
+	position: relative;
+
+}
+.list-group-item{
+	width: 195px;
+	font-size: 1em;
+	font-weight: lighter;
+	height: 80px;
+	color: #88A6B5 !important;
+	transition: all 0.5s;
+
+}
+.list-group .selected{
+	font-weight: bold;
+}
+.rectangle {
+	float: right;
+
+}
+.list-group span {
+	width: 15px;
+	height: 79px;
+	right: 0px;
+	top: 0px;
+	position: absolute;
+}
+.list-group-item:hover{	
+	width: 195px;
+	font-size: 1em;	
+	height: 80px;
+	background-color: #FAFAFA !important;;
+}
+.list-group .selected span{
+	font-weight: bolder;
+
+}
+.table .list-group-item {
+	font-size: 0.8em;
+	text-align: center;
 }
