@@ -155,8 +155,7 @@ class CoursesController < ApplicationController
 			tracks = []
 			@topics.each do |t|
 				tracks = tracks + t.tracks
-			end
-			
+			end			
 			@assignments = @course.assignments
 			assignment_problems = []
 			@assignments.each do |a|
