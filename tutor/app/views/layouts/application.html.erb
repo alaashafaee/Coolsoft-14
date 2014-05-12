@@ -51,13 +51,11 @@
 		<div class="row">
 			<% if signed_in? %>
 				<%= render "layouts/right_side_bar" %>
-					<div class="well main-content" style="min-height:600px;">
+					<div class="well main-content">
 						<%= yield %>
 					</div>
 			<% else %>
-				<div class="row">
-					<%= yield %>
-				</div>
+				<%= yield %>
 			<% end %>
 		</div>
 <!-- Start Of Footer Section -->

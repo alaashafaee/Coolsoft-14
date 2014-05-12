@@ -1,58 +1,47 @@
 <!--Author: Mohab Ghanim -->
-<div class ="tabs">
-	<ul class="tab-links">
-		<li class="active"><a href="#">My Courses</a></li>
-		<% if lecturer_signed_in? %>
-			<li><a href="/courses/new">Create new Course</a></li>
-		<% elsif student_signed_in? %>
-			<li><a href="/courses/sign_up">Sign up for a course</a></li>
-		<% end %>
-	</ul>
-	<div class="tab-content">
-		<div id="tab1" class="tab active">
-			<% if !@courses.any? %>
-				<h1>You have no courses</h1>
-			<% end %>
-			<br>
-			<%= flash[:success_deletion] %>
-			<%= flash[:success_creation] %>
-			<% if @courses.any? %>
-				<table class = "table table-striped", style = "width:80%">
-					<tr>
-						<th>Course Name</th>
-						<th>Code</th>
-					</tr>
+<!--Author: Ahmed Mohamed Magdi -->
 
-					<% @courses.each do |c| %>
-						<tr>	
-							<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, :method => :get, class: "", style:"font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none "%>
-							</td>
-							<td><%= c.code %></td>
-							<td>
-								<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id },
-									class: "btn btn-info", method: :get, style: "text-decoration:none" %>
-							</td>
-							<td>
-								<% if current_lecturer %>
-									<%= link_to "Manage", { :controller => 'courses', :action => 'edit',
-										:method => :get, :id => c.id }, class: "", style: "color:black" %>
-								<% end %>
-							</td>
-							<td>
-								<% if current_student %>
-									<% if @share[c.id] == "Show" %>
-										<%= button_to "Show Performance", {:controller => 'courses', :action => 'share',
-											:id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
-									<% else %>
-										<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share',
-											:id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
-									<% end %>
-								<% end %>
-							</td>
-						</tr>
-					<% end %>
-				</table>
-			<% end %>
+<div class="well">
+	<br><br><br>
+	<div class="row">
+		<div class="container">
+			<div class="col-md-8"><h2>>><b>Courses</b></h2></div>
+			<div class="col-md-4">
+				<%= button_to "Add Course", courses_new_path, class:"btn btn-success"%>
+				<a class="btn" href="#"><i class="icon-map-marker"></i></a>
+			</div>
+			
 		</div>
+	</div>
+	<div class="cont">
+		<% if @courses.any? %>
+			<% @courses.each_slice(2) do |course| %>
+				<% if course.count == 1 %>
+					<div class="row">
+						<div class="container col-sm-4 box-bag">
+							<div class="well" style="background-color: #d7dde2 !important;">
+								<h3><b><%= link_to course[0].name, course[0]%></b><hr></h3>
+								<label><%= course[0].description %></label><br><br>
+								<%= link_to "Manage", course[0]%><b>|</b>
+								<%= link_to "Disscussion Board", course[0].discussion_board%>
+							</div>
+						</div>
+					</div>
+				<% else %>
+					<div class="row">
+						<% course.each do |c| %>
+							<div class="container col-sm-4">
+								<div class="well" style="background-color: #d7dde2 !important;">
+									<h3><b><%= link_to c.name, c %></b><hr></h3>
+									<label><%= c.description %></label><br><br>
+									<%= link_to "Manage ", edit_course_path(c)%><b>|</b>
+									<%= link_to " Disscussion Board", c.discussion_board%>
+								</div>
+							</div>
+						<%end%>
+					</div>
+				<% end %>
+			<% end %>
+		<% end %>
 	</div>
 </div>

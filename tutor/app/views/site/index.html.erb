@@ -1,39 +1,43 @@
 <%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in? %>
 <!-- Introduction Section -->		
 	<div class="intro">
-		<div class="row">
-			<img class="img-md-responsive" src="/assets/Top3.jpg">
+		<!-- <img class="img-sm-responsive" src="/assets/Top3.jpg"> -->
+		<div class="well container" >
+			<div class="well row">
+				<h1 class="head-test-b" style="color:red;"><h>Learn Coding or Don't, we don't care</h></h1>
+
+			</div>
 		</div>
 	</div>
 <!-- Features Section -->
 	<div class="features">
 		<div class="container padded">
-		    <div class="row">
-		        <div class="col-lg-12"><h2>FOUR MODES</h2><hr></div>
+		    <div class="well row">
+		        <div class="col-lg-12"><h2>Main Options	</h2><hr></div>
 		    </div>
-		    <div class="row">
+		    <div class="well row">
 		        <div class="col-sm-6 col-md-3">
 		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3>Speed</h3>
-		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		            <h3><b>Debugging</b></h3>
+		            <p>Now you solve problems online</p>
 		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		        </div>
 		        <div class="col-sm-6 col-md-3">
 		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3>Eco Friendly</h3>
+		            <h3><b>Contests</b></h3>
 		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		        </div>
 		        <div class="clearfix hidden-md hidden-lg"></div>
 		        <div class="col-sm-6 col-md-3">
 		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3>Scenic</h3>
+		            <h3><b>Questions/Answers</b></h3>
 		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		        </div>
 		        <div class="col-sm-6 col-md-3">
 		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3>Safety</h3>
+		            <h3><b>Debugging</b></h3>
 		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
 		        </div>
@@ -44,10 +48,10 @@
 	<div class="info">
 	    <div class="container">
 	        <div class="row">
-	        	<div class="row-sm">
+	        	<div class="well row-sm">
 	                <h3 class="tpad">HOW IT WORKS</h3><hr>
 	            </div>
-	            <div class="row-sm tabbable">
+	            <div class="well row-sm tabbable">
 	                <!-- Tabs go here -->
 	                <ul id="myTab" class="nav nav-tabs">
 	                    <li class="active"><a href="#student" data-toggle="tab">Student</a></li>
@@ -57,7 +61,9 @@
 	                <div class="tab-content">
 	                    <div class="tab-pane fade in active" id="student"><p>You can solve many problems to get your level up in coding. competting with your friends, You also can have contests as well as asking profionals for questions for just ask on facebook,twitter </p></div>
 	                    <div class="tab-pane fade in" id="lec"><p>You can create courses, adding topics,tracks, problems and create assignments as well as creating contests and assign Teaching Assistants for a course you teach.</p></div>
-	                    <div class="tab-pane fade in" id="ta"></div>
+	                    <div class="tab-pane fade in" id="ta">
+
+	                    </div>
 
 		            </div>
 		        </div>
@@ -81,44 +87,37 @@
 	</div> 
 	 -->
 	<div class="registration">
-	    <div class="container">
-	        <div class="row">
-				<div class="bs-docs-section">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="bs-component">
-								<div style="text-align:center">
-									<h1>SIGN-UP NOW</h1>
-								</div>
-								<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
-								</div>
-							</div>
-						</div>
+	    <!-- <div class="row"> -->
+	        <div class="container">
+				<div class="row" style="margin: 0px auto 0px auto">
+					<div >
+						<h1><b>&raquo;&raquo; Register now &laquo;&laquo;</b></h1>
 					</div>
+					<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+					<hr>
 				</div>
-				<hr/>
-					<div class="container">
-						<div class="col-sm-4">
-							<div>
-								<%= button_to 'Student', new_student_registration_path, style: "height:100px; width:200px", class: "btn btn-success  btn-lg", method: :get %>
-								<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div>
-								<%= button_to 'Lecturer', new_lecturer_registration_path, style: "height:100px; width:200px",class: "btn btn-success  btn-lg", method: :get %>
-								<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div >
-								<%= button_to 'Teaching Assistant', new_teaching_assistant_registration_path, style: "height:100px; width:200px", class: "btn btn-success  btn-lg", method: :get %>
-								</div>
-							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;"></div>
+				<!-- <br><br> -->
+				<div class="row" style="margin: 0px auto 0px auto">
+					<div class="col-sm-4">
+						<div class="well">
+							<%= button_to 'Student', new_student_registration_path, style: "height:100px; width:200px", class: "btn btn-success  btn-lg", method: :get %>
+							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
 						</div>
 					</div>
-	        </div>
+					<div class="col-sm-4">
+						<div class="well">
+							<%= button_to 'Lecturer', new_lecturer_registration_path, style: "height:100px; width:200px",class: "btn btn-success  btn-lg", method: :get %>
+							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="well">
+							<%= button_to 'Teaching Assistant', new_teaching_assistant_registration_path, style: "height:100px; width:200px", class: "btn btn-success  btn-lg", method: :get %>
+							</div>
+							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+						</div>
+				</div>
+	        <!-- </div> -->
 	    </div>    
 	</div> 
 <% end %>

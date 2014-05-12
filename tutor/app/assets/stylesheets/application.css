@@ -23,15 +23,17 @@ footer {
 }
 
 hr {
-	border: 1px solid #1a5f63 !important;
+	border-top: 1px solid #1a5f63 !important;
 }
 
 .ftr {
 	background-image: url("/assets/ftr_bg_2.png");
 	background-repeat: repeat;
-	padding: 100px 0 60px 0;
+	padding: 30px ;
+	/*position: fixed;*/
 	min-width: 100%;
 	max-width: 100%;
+	bottom:0px;
 }
 
 .ftr address, .ftr a, .ftr p{
