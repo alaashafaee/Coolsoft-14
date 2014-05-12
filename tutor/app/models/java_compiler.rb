@@ -1,7 +1,7 @@
-class Compiler < ActiveRecord::Base
+class JavaCompiler
 
 	# Methods
-	
+
 	# [Compiler: Compile - Story 3.4]
 	# Writes the given code to a .java file with the name st[student_id]pr[problem_id]so[solution_id]
 	#	using java_file_name/2. Then it compiles that file and returns the compiler's feedback.
