@@ -165,7 +165,7 @@ class Solution < ActiveRecord::Base
 	end
 
 	# [Compiler: Compile - Story 3.4]
-	# Returns the file path of the soltion's files.
+	# Returns the file path of the solution's files.
 	# Parameters:
 	#	append_extension: A boolean value indicating if the file extension
 	#		should be appended or not.
