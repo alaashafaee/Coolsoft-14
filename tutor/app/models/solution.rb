@@ -178,6 +178,26 @@ class Solution < ActiveRecord::Base
 		return path
 	end
 
+	# [Compiler: Compile - Story 3.4]
+	# Checks if the class_name contains special characters, line breaks, or white spaces.
+	# Parameters: none
+	# Returns:
+	#	A String containing feedback on what it found.
+	# Author: Ahmed Moataz
+	def check_class_name
+		special = "?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
+		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+		if class_name =~ regex
+			return "The file name cannot contain special characters"
+		elsif class_name.include?("\n")
+			return "The file name cannot contain line breaks"
+		elsif class_name.include?(" ") || class_name.include?("\t")
+			return "The file name cannot contain white spaces"
+		else
+			return ""
+		end
+	end
+
 	#Constants
 	STATUS_SUBMITTED	= 	0
 	STATUS_ACCEPTED		=	1
@@ -187,6 +207,6 @@ class Solution < ActiveRecord::Base
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
-	SOLUTION_PATH = 'students_solutions/'
+	SOLUTION_PATH	=	'students_solutions/'
 
 end

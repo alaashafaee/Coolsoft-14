@@ -43,12 +43,19 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		param = solution_params
-		code = param[:code]
-		student = current_student.id
-		problem = param[:problem_id]
-		compiler_feedback = SolutionsLayer.compile "java", code, student, problem
-		render json: compiler_feedback
+		solution = Solution.new(solution_params)
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		if solution.save
+			compiler_feedback = Compiler.compiler_feedback(solution)
+			if compiler_feedback[:success]
+				solution.status = 3
+			else
+				solution.status = 2
+			end
+			solution.save
+			render json: compiler_feedback
+		end
 	end
 
 	private
