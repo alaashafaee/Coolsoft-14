@@ -89,7 +89,7 @@ Tutor::Application.routes.draw do
 	resources :facebook
 	resources :tips
 	resources :assignments
-	resources :problem_assignments
+	resources :assignment_problems
 
 	# Example resource route with options:
 	#   resources :products do

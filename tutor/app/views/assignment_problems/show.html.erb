@@ -1,0 +1,19 @@
+<label><%= @course.name %></label>\
+<label><%= @assignment.title %></label>\
+<label><%= @problem.title %></label> 
+
+<br /><br />
+<div id="fb-root"></div>
+<div class='problem'>
+	<label><%= @problem.title %></label><br/>
+	<%= @problem.description %>
+	<table width='100%'>
+		<tr>
+			<td width='80%'>
+
+				 	<%= render partial: "solutions/new"%>
+
+			</td>
+		</tr>
+	</table>
+</div>

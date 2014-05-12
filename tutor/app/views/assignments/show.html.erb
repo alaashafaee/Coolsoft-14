@@ -16,7 +16,13 @@
 </div>	
 <br>
 <div id="problems_in_assignment" style="font-size: 14pt;">
-		<p><b>List of problems:</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;
-			
-
+		<p><b>List of problems:</b>
+			<ul class="list-group">
+				<% @problems.each do |ap| %> 
+					<li class="list-group-item">
+					<%= link_to ap.title, { :controller => 'assignment_problems', :action => 'show', :id => ap.id }, :method => :get, class: ""%>
+					</li>
+				<% end %>
+			</ul>
+		</p>
 </div>
