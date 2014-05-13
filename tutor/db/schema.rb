@@ -305,8 +305,8 @@ ActiveRecord::Schema.define(version: 20140513171629) do
   end
 
   create_table "notifications", force: true do |t|
-    t.string   "message"
-    t.boolean  "seen"
+    t.string   "message",                       null: false
+    t.boolean  "seen",          default: false
     t.integer  "receiver_id"
     t.string   "receiver_type"
     t.datetime "created_at"
