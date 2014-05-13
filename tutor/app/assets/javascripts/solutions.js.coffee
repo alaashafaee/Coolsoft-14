@@ -10,7 +10,9 @@ index_number = 0
 # Returns: none
 # Author: Mussab ElDash
 @start_debug = (problem_id) ->
-	input = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	input = edit_session.getValue()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -48,7 +50,10 @@ index_number = 0
 #	none
 # Author: Ahmed Akram
 @compile = (problem_id) ->
-	input = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	input = edit_session.getValue()
+	class_name = $("#class_name").val()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -57,7 +62,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
-		data: {code : input, problem_id : problem_id}
+		data: {code : input, problem_id : problem_id, class_name : class_name}
 		datatype: 'json'
 		success: (unique) ->
 			clear_console()
@@ -82,7 +87,9 @@ index_number = 0
 #	none
 # Author: Ahmed Akram
 @run_input = (problem_id) ->
-	code = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	code = edit_session.getValue()
 	if code.length is 0
 		alert "You didn't write any code"
 		return
@@ -324,9 +331,12 @@ debug_console = ->
 # 	problem_id: the id of the problem being solved
 # Returns: a json object containing two arrays one for the errors
 #	of the current code and the other containing success messages
+#	and the success and failure messages are displayed in a table
 # Author: MOHAMEDSAEED
 @validate_code = (problem_id) ->
-	code = $('#solution_code').val()
+	editor = ace.edit("editor")
+	edit_session = editor.getSession()
+	code = edit_session.getValue()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
 	time = (mins * 60) + secs
@@ -350,13 +360,20 @@ debug_console = ->
 			out = $('#validate_case')
 			out.html("")
 			content = ""
+			content = '<table class="table table-striped table-bordered
+				table-condensed table-hover" border="3">'
+			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
 			for i in data
-				if data["success"]
-					content += "<p style='color:green'>#{i['test_case']}, \
-							#{i['response']}</p>"
+				if i['success']
+					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
+						"</td>"
+					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
+						"</td></tr>"
 				else
-					content += "<p style='color:red'>#{i['test_case']}, \
-							#{i['response']}</p>"
+					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
+						"</td>"
+					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
+						"</td></tr>"
 			out.html(content)
 			return
 		error: (data) ->
@@ -364,4 +381,18 @@ debug_console = ->
 			stop_spin()
 			toggle_code_area()
 			return
+	return
+
+# [Code Editor: Write Code - Story 3.3]
+# reloads the template that is displayed inside the editor
+# Parameters: none
+# Returns: none
+# Author: MOHAMEDSAEED
+@reload_template = () -> 	
+	editor = ace.edit("editor");
+	edit_session = editor.getSession();
+	template = "public class CoolSoft {\n"
+	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+	edit_session.setValue(template);
+	$('#class_name').val("CoolSoft");
 	return

@@ -9,6 +9,8 @@ class Solution < ActiveRecord::Base
 	belongs_to :assignment_problem, class_name:"AssignmentProblem", polymorphic: true
 	belongs_to :contest_problem, class_name:"Cproblem", polymorphic: true
 
+	has_many :notes, dependent: :destroy
+
 	#Methods
 	# [Compiler: Validate - Story 3.5]
 	# Checks the validity of a submitted solution
@@ -21,12 +23,12 @@ class Solution < ActiveRecord::Base
 	# Author: MOHAMEDSAEED
 	def self.validate(solution, test_cases)
 		response = []
-		compiler_status = Compiler.compiler_feedback(solution)
+		compiler_status = JavaCompiler.compiler_feedback(solution)
 		if compiler_status[:success]
 			test_cases.each do |testcase|
 				input = testcase.input
 				expected_output = testcase.output
-				runtime_check = Executer.execute(solution, input)
+				runtime_check = JavaExecuter.execute(solution, input)
 				if(runtime_check[:executer_feedback])
 					output = runtime_check[:executer_output][:message]
 					if (output != expected_output)
@@ -62,20 +64,30 @@ class Solution < ActiveRecord::Base
 	end
 
 	# [Compiler: Validate - Story 3.5]
-	# outputs the runtime error with a better explanation
+	# outputs the runtime error with a more descriptive error message
 	# Parameters:
 	# 	error: the original runtime error
 	# Returns: a String with the explained runtime error
 	# Author: MOHAMEDSAEED
 	def self.get_response(error)
-		if error.include?("/ by zero")
-			return "Division / 0"
-		elsif error.include?("ArrayIndexOutOfBounds")
-			return "Out of array range"
-		elsif error.include?("StringIndexOutOfBounds")
-			return "Out of string range"
+		if error[:errors].include?("/ by zero")
+			return "Division by zero, for example: a/b, b = 0"
+		elsif error[:errors].include?("ArrayIndexOutOfBounds")
+			return "Index is out of array range"
+		elsif error[:errors].include?("StringIndexOutOfBounds")
+			return "Index is out of string range"
+		elsif  error[:errors].include?("ClassCastException")
+			return "Wrong type casting"
+		elsif error[:errors].include?("NullPointerException")
+			return "Trying to access a null object"
+		elsif  error[:errors].include?("IOException")
+			return "Error when trying to read or write data"
+		elsif  error[:errors].include?("NumberFormatException")
+			return "Invalid string to be converted to number"
+		elsif  error[:errors].include?("StackOverflowError")
+			return "Calling a recursion function that never ends"
 		else
-			return "To be set response"
+			return error[:errors]
 		end
 	end
 
@@ -144,6 +156,50 @@ class Solution < ActiveRecord::Base
 		return jfile_name
 	end
 
+	# [Compiler: Compile - Story 3.4]
+	# Returns the folder's name, which the solution's files will be placed into.
+	# Parameters: none
+	# Returns:
+	#	The folder's name.
+	# Author: Ahmed Moataz
+	def folder_name
+		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s + '/'
+	end
+
+	# [Compiler: Compile - Story 3.4]
+	# Returns the file path of the solution's files.
+	# Parameters:
+	#	append_extension: A boolean value indicating if the file extension
+	#		should be appended or not.
+	# Returns: 
+	#	path: The file path.
+	# Author: Ahmed Moataz
+	def file_path(append_extension = true)
+		path =  SOLUTION_PATH + folder_name + class_name
+		path += '.java' if append_extension
+		return path
+	end
+
+	# [Compiler: Compile - Story 3.4]
+	# Checks if the class_name contains special characters, line breaks, or white spaces.
+	# Parameters: none
+	# Returns:
+	#	A String containing feedback on what it found.
+	# Author: Ahmed Moataz
+	def check_class_name
+		special = "?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
+		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+		if class_name =~ regex
+			return "The file name cannot contain special characters"
+		elsif class_name.include?("\n")
+			return "The file name cannot contain line breaks"
+		elsif class_name.include?(" ") || class_name.include?("\t")
+			return "The file name cannot contain white spaces"
+		else
+			return ""
+		end
+	end
+
 	#Constants
 	STATUS_SUBMITTED	= 	0
 	STATUS_ACCEPTED		=	1
@@ -153,5 +209,6 @@ class Solution < ActiveRecord::Base
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
+	SOLUTION_PATH	=	'students_solutions/'
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513135357) do
+ActiveRecord::Schema.define(version: 20140513165120) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -280,6 +280,16 @@ ActiveRecord::Schema.define(version: 20140513135357) do
     t.string   "title"
     t.text     "answer"
     t.integer  "problem_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notes", force: true do |t|
+    t.string   "content"
+    t.integer  "line"
+    t.integer  "solution_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
