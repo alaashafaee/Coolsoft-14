@@ -13,7 +13,7 @@ class SolutionsController < ApplicationController
 		student = current_student.id
 		problem = param[:problem_id]
 		time = param[:time]
-		problem_type = params[:problem_type]
+		problem_type = param[:problem_type]
 		class_name = param[:class_name]
 		result = SolutionsLayer.validate("java", code, student, problem,
 			problem_type, class_name, time)
@@ -35,7 +35,7 @@ class SolutionsController < ApplicationController
 		pid = params[:problem_id]
 		code = params[:code]
 		problem_type = params[:problem_type]
-		class_name = param[:class_name]
+		class_name = params[:class_name]
 		cases = if params[:input] then params[:input] else "" end
 		result = SolutionsLayer.execute("java", code, id, pid,
 			problem_type, class_name, cases)

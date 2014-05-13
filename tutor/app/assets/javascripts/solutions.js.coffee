@@ -15,12 +15,13 @@ index_number = 0
 		alert "You didn't write any code"
 		return
 	test = $('#solution_input').val()
+	class_name = $("#class_name").val()
 	start_spin()
 	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
-		data: {code: input, case: test , class_name: class_name,
+		data: {code: input, case: test, class_name: class_name,\
 				problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
@@ -59,7 +60,7 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
-		data: {code: input, problem_id: problem_id,
+		data: {code: input, problem_id: problem_id,\
 			class_name: class_name, problem_type: problem_type}
 		datatype: 'json'
 		success: (unique) ->
@@ -90,12 +91,13 @@ index_number = 0
 		alert "You didn't write any code"
 		return
 	test = $('#solution_input').val()
+	class_name = $("#class_name").val()
 	start_spin()
 	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
-		data: {code: code, problem_id: problem_id, input: test,
+		data: {code: code, problem_id: problem_id, input: test,\
 			class_name: class_name, problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
@@ -338,12 +340,14 @@ debug_console = ->
 	if code.length is 0
 		alert 'Blank submissions are not allowed'
 		return
+	class_name = $("#class_name").val()
 	toggle_code_area()
 	start_spin()	
 	$.ajax
 		type: "POST"
 		url: '/solutions'
-		data: {problem_id: problem_id, code: code, time: time, problem_type: problem_type}
+		data: {problem_id: problem_id, code: code, time: time,\
+			class_name: class_name, problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()

@@ -1,4 +1,4 @@
-class Compiler < ActiveRecord::Base
+class JavaCompiler < ActiveRecord::Base
 
 	# Methods
 	

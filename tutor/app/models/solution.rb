@@ -21,41 +21,36 @@ class Solution < ActiveRecord::Base
 	# Author: MOHAMEDSAEED
 	def self.validate(solution, test_cases)
 		response = []
-		compiler_status = JavaCompiler.compiler_feedback(solution)
-		if compiler_status[:success]
-			test_cases.each do |testcase|
-				input = testcase.input
-				expected_output = testcase.output
-				runtime_check = JavaExecuter.execute(solution, input)
-				if(runtime_check[:executer_feedback])
-					output = runtime_check[:executer_output][:message]
-					if (output != expected_output)
-						if(output.to_s.empty?)
-							output = "Empty"
-						end
-						response << {success: false, test_case: input, 
-							response: "Logic error: Expected output: " +
-							expected_output.to_s.strip + ", but your output was: " + output}
-						unless solution.status == 4
-							solution.status = 5
-						end
-					else
-						response << {success: true, test_case: input, 
-							response: "Passed!"}
-						unless solution.status == 4 | 5
-							solution.status = 1
-						end
+		test_cases.each do |testcase|
+			input = testcase.input
+			expected_output = testcase.output
+			runtime_check = JavaExecuter.execute(solution, input)
+			if(runtime_check[:executer_feedback])
+				output = runtime_check[:executer_output][:message]
+				if (output != expected_output)
+					if(output.to_s.empty?)
+						output = "Empty"
+					end
+					response << {success: false, test_case: input, 
+						response: "Logic error: Expected output: " +
+						expected_output.to_s.strip + ", but your output was: " + output}
+					unless solution.status == 4
+						solution.status = 5
 					end
 				else
-					runtime_error = runtime_check[:executer_output]
-					explanation = get_response(runtime_error)
-					solution.status = 4
-					response << {success: false, test_case: input, 
-							response: "Runtime error: " + explanation}
+					response << {success: true, test_case: input, 
+						response: "Passed!"}
+					unless solution.status == 4 | 5
+						solution.status = 1
+					end
 				end
+			else
+				runtime_error = runtime_check[:executer_output]
+				explanation = get_response(runtime_error)
+				solution.status = 4
+				response << {success: false, test_case: input, 
+						response: "Runtime error: " + explanation}
 			end
-		else
-			return {compiler_error: true, compiler_output: compiler_status}
 		end
 		solution.save
 		return response
