@@ -44,7 +44,8 @@
 				<ul class="list-group">
 					<% track.problems.each do |problem|%>
 						<% color = "" %>
-						<% if student_signed_in? && problem.is_solved_by_student(current_student.id) %>
+						<% if student_signed_in? && 
+							problem.is_solved_by_student(current_student.id) %>
 							<% color = "label label-success" %>
 						<% end %>
 						<li class="list-group-item" data-toggle="tooltip"
@@ -73,8 +74,10 @@
 			<%= form_for :Track , url: {controller: "tracks" , action: "create"}, 
 			html: {class: "form-inline form-horizontal nifty_form" , role: "form"} do |f| %>
 				<%= f.text_field :title , :value => flash[:title] , 
-					:class => "form-control", :style => "width:150px", :placeholder => "Title"%></br></br>
-				<%= f.select :difficulty, options_for_select(hash.collect{|key,value| [value, key]}) %>
+					:class => "form-control", :style => "width:150px",
+						:placeholder => "Title"%></br></br>
+				<%= f.select :difficulty,
+						options_for_select(hash.collect{|key,value| [value, key]}) %>
 				</br></br>
 				<%= f.hidden_field :topic_id , :value => params[:id] %>
 				<%= f.submit "Create" , :class => "btn btn-info"%>
