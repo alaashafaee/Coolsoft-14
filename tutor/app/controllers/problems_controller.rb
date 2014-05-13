@@ -14,7 +14,7 @@ class ProblemsController < ApplicationController
 			@track = @problem.track
 			@topic = @track.topic
 			@course = @topic.course
-			@template = @problem.template
+			@problem_code_template = @problem.template
 		end
 	end
 

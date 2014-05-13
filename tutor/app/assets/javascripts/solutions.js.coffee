@@ -378,11 +378,12 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED
+# Author: MOHAMEDSAEED + Rami Khalil
 @reload_template = () -> 	
 	editor = ace.edit("editor");
 	edit_session = editor.getSession();
-	template = "public class CoolSoft {\n"
-	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+#	template = "public class CoolSoft {\n"
+#	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+	template = $('#default_code').val()
 	edit_session.setValue(template);
 	return
