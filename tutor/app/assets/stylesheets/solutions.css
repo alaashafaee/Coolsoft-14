@@ -71,14 +71,12 @@ textarea  {
 	border: #999999;
 	border-style: solid;
 	border-width: thin;
-	max-height: 150px;
-	min-height: 150px;
+	max-height: 100px;
+	min-height: 100px;
 	background: white;
 	overflow: scroll;
 	overflow-y: scroll;
 	overflow-x: scroll;
-	max-width: 750px;
-	min-width: 750px;
 }
 
 .compilation_succeeded {

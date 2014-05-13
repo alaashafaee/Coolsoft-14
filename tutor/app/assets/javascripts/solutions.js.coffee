@@ -49,6 +49,7 @@ index_number = 0
 # Author: Ahmed Akram
 @compile = (problem_id) ->
 	input = $('#solution_code').val()
+	alert(input)
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -59,6 +60,7 @@ index_number = 0
 		url: '/solutions/compile_solution'
 		data: {code : input, problem_id : problem_id}
 		datatype: 'json'
+
 		success: (unique) ->
 			clear_console()
 			stop_spin()
@@ -353,6 +355,7 @@ debug_console = ->
 			content = ""
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
+			@var = "xxxx"
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
 			for i in data
 				if i['success']
@@ -365,7 +368,57 @@ debug_console = ->
 						"</td>"
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
 						"</td></tr>"
-			out.html(content)
+				out.html(content)
+			return
+		error: (data) ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			return
+	return
+
+
+@validate_contest_code = (problem_id) ->
+	code = $('#solution_code').val()
+	mins = parseInt($('#mins').text())
+	secs = parseInt($('#secs').text())
+	time = (mins * 60) + secs
+	if code.length is 0
+		alert 'Blank submissions are not allowed'
+		return
+	toggle_code_area()
+	start_spin()	
+	$.ajax
+		type: "POST"
+		url: '/cproblem/' + problem_id
+		data: {problem_id: problem_id, code: code, time: time}
+		datatype: 'json'
+		success: (data) ->
+			clear_console()
+			stop_spin()
+			toggle_code_area()
+			if data['compiler_error']
+				compilation_error(data['compiler_output'])
+				return
+			out = $('#validate_case')
+			out.html("")
+			content = ""
+			content = '<table class="table table-striped table-bordered
+				table-condensed table-hover" border="3">'
+			@var = "xxxx"
+			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
+			for i in data
+				if i['success']
+					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
+						"</td>"
+					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
+						"</td></tr>"
+				else
+					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
+						"</td>"
+					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
+						"</td></tr>"
+				out.html(content)
 			return
 		error: (data) ->
 			clear_console()
@@ -382,7 +435,7 @@ debug_console = ->
 @reload_template = () -> 	
 	editor = ace.edit("editor");
 	edit_session = editor.getSession();
-	template = "public class CoolSoft {\n"
+	template = "\npublic class CoolSoft {\n"
 	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
 	edit_session.setValue(template);
 	return
