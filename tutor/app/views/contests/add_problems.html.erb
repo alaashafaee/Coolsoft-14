@@ -1,0 +1,37 @@
+<% openable = true %>
+<div class="panel-group list-group" id="accordion">
+	<% @problems.each do |problem| %>
+		<% if openable %>
+			<% open = "in" %>
+			<% openarrow = "glyphicon-chevron-down" %>
+			<% openable = false %>
+		<% else %>
+			<% open = "" %>
+			<% openarrow = "glyphicon-chevron-right" %>
+		<% end %>
+		<div class = "panel panel-default" style = "width:50%">
+			<div class="panel-title list-group-item list-group-item-info">
+				<a class="icon glyphicon <%= openarrow %>" href="#<%= problem.id.to_s %>"
+					data-toggle="collapse" data-parent="#accordion"
+					style="margin-right:1%;text-decoration: none;">
+				</a>
+				<%= link_to problem.title , problem , style: 'color:#003366;'%>
+				<!--<span class="badge"><%= t.problems.count %></span>-->
+			</div>
+			<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
+				<ul class="list-group">
+					<!--<% t.problems.each do |p|%>
+						<% color = "" %>
+						<% if student_signed_in? && p.is_solved_by_student(current_student.id) %>
+							<% color = "label label-success" %>
+						<% end %>-->
+						<li class="list-group-item" data-toggle="tooltip"
+							data-placement="top" title="<%= problem.description%>"> <!--this is where I should put the description-->
+								<!--<%= link_to p.title , p , class: color %>-->
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	<% end %>
+</div>
