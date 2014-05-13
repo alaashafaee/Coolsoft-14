@@ -1,0 +1,24 @@
+<h2 align="center"><%= #@problem.title %>
+<% if @lines.empty? %>
+	<pre>Unable to fetch code</pre>
+<% else %>
+	<% @counter = 0 %>
+	<table class="table table-striped" style = "width:60%">
+		<tbody>
+			<% @lines.each do |line| %>
+				<tr>
+					<td><%= line %></td>
+					<td id='<%= @counter %>'><%= button_to "Add Note", {:controller => 'model_answers',:action => 'destroy',
+							:id => answer1.id}, method: :delete, class: 'btn btn-primary', 
+							style="visibility:hidden;" %></td>
+				</tr>
+				<% @counter++ %>
+				<script>
+					$(function () {
+						$('#<%= @counter %>').mouseenter(function () { $("#button").show(); }).mouseleave(function () { $('#<%= @counter %>').hide();});
+					})
+				</script>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
