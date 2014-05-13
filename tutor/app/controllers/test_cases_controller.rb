@@ -5,22 +5,24 @@ class TestCasesController < ApplicationController
 	# Parameters: none
 	# Returns:
 	#	List of all the test cases related to a certain problem.
-	# Author: Lin
+	# Author: Lin & Ahmed Osam
 	def index
-		@test_cases = TestCase.all
+		session[:track_id] = params[:track_id]
+		session[:problem_id] = params[:problem_id]
+		@problem = Problem.find_by_id(session[:problem_id])
+		@test_cases = @problem.test_cases
 	end
 
 	# [Add test case-story 4.8]
 	# Display the form that is used to add a test case.
 	# Parameters: none
 	# Returns: none
-	# Author: Lin
+	# Author: Lin & Ahmed Osam
 	def new
-		@problem = Problem.find(params[:problem_id])
+		session[:track_id] = params[:track_id]
 		session[:problem_id] = params[:problem_id]
-		if(@test_case == nil)
-			@test_case = TestCase.new()
-		end
+		@problem = Problem.find(session[:problem_id])
+		@test_case = TestCase.new
 	end
 
 	# [Add test case-story 4.8]
@@ -32,6 +34,7 @@ class TestCasesController < ApplicationController
 	# Author: Lin
 	def create
 		@problem = Problem.find_by_id(session[:problem_id])
+		@test_case = TestCase.new
 		if lecturer_signed_in?
 			@test_case = TestCase.new(post_params)
 			@test_case.owner_id = current_lecturer.id
@@ -46,7 +49,8 @@ class TestCasesController < ApplicationController
 		if @test_case.save
 			@problem.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
-			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
+			redirect_to :controller => 'model_answers', :action => 'new', 
+			:problem_id => session[:problem_id], :track_id => session[:track_id]
 		else
 			render :action=>'new', :problem_id => @test_case.problem_id
 		end
@@ -57,10 +61,12 @@ class TestCasesController < ApplicationController
 	# Parameters:
 	#	@test_case:Test case to be edited.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel & Ahmed Osam
 	def edit
-		@test_case =TestCase.find(params[:id])		
 		session[:problem_id] = params[:problem_id]
+		session[:track_id] = params[:track_id]
+		session[:test_case_id] = params[:test_case_id]
+		@test_case =TestCase.find_by_id(session[:test_case_id])		
 	end
 
 	# [Edit test case-story 4.9]
