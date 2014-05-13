@@ -1,0 +1,71 @@
+<!-- Add editor -->
+
+-<%= form_for :solution,
+       :url => { :controller => "solutions", :action => "create" },
+       :html => {:method => :post} do |f| %>
+-<%=
+       @code = f.hidden_field "code", :id =>'solution_code',
+       value: flash[:previous_code] == nil ?
+               "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+                : flash[:previous_code].to_s
+-%>
+<%end%>
+
+<br/><br/>
+
+<table width='100%'>
+	<tr>
+		<td>
+			<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
+				onClick: "reload_template()", class: "btn btn-info" %>
+			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
+				onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
+			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
+				type: 'Button', onClick: "run_input(#{params[:id]})" %>
+			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
+				onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
+				style: "display: none", id: 'previousButton', 
+				onClick: 'previous()', hidden: true %>
+			<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
+				style: "display: none", id: 'nextButton',
+				onClick: 'next()', hidden: true %>
+			<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
+				style: "display: none", id: 'stopButton', 
+				onClick: 'stop()', hidden: true %>
+			<span id="spinner" class="" align="center"></span>
+		</td>
+	</tr>
+</table>
+
+
+<div id="editor" style="white-space: pre">
+public class CoolSoft {
+	public static void main(String [] args) {
+&#09;&#09;
+	}
+}
+</div>
+
+<br>
+
+<script>
+	var editor = ace.edit("editor");
+	var edit_session = editor.getSession();
+	var hidden_code_field = document.getElementById('solution_code')
+	var code_header = "public class CoolSoft {\n";
+	var code_footer = "\n}";
+
+	editor.setTheme("ace/theme/twilight");
+	edit_session.setMode("ace/mode/java");
+
+	edit_session.setValue(code_header + hidden_code_field.value);
+
+	var code_filter_function = function(event_handler) {
+		var unfiltered_code = edit_session.getValue();
+		var code_len = unfiltered_code.length;
+		var line_count = edit_session.doc.getAllLines().length;
+		hidden_code_field.value = unfiltered_code.slice(code_header.length)
+	};
+	edit_session.on('change', code_filter_function);
+</script>
