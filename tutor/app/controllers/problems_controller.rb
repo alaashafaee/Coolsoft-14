@@ -27,6 +27,9 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def create
 		problem = Problem.new(problem_params)
+		@problem.title = problem_params_add[:title]
+		@problem.description = problem_params_add[:description]
+		@problem.track_id = session[:track_id]
 		if lecturer_signed_in?
 			problem.owner_id = current_lecturer.id
 			problem.owner_type = "lecturer"
@@ -37,14 +40,15 @@ class ProblemsController < ApplicationController
 		problem.incomplete = true
 		begin
 			if problem.save
-				redirect_to :action => "edit", :id => problem.id
+				redirect_to :controller => "test_cases", :action => "new",
+				:problem_id => @problem.id, :track_id => session[:track_id]
 			else
 				flash.keep[:notice] = "Problem is missing paramaters"
-				redirect_to :back
+				render :action => 'new'
 			end
 		rescue
 			flash.keep[:notice] = "The track has a problem with the same title"
-			redirect_to :back
+			render :action => 'new'
 		end
 	end
 
