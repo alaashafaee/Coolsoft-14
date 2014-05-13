@@ -81,7 +81,9 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def new
 		if lecturer_signed_in? || teaching_assistant_signed_in?
-			if params[:id].blank?
+			session[:track_id] = params[:track_id]
+			@problem = Problem.new
+			if session[:track_id].blank?
 				render ('public/404')
 			else
 				render ('new')
