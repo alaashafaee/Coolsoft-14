@@ -11,4 +11,15 @@ class Hint < ActiveRecord::Base
 	#Relations
 	belongs_to :model_answer
 	belongs_to :owner, polymorphic: true
+
+	#Methods
+	def self.get_hints model_answer_id
+		Hint.find(:all, :conditions => ["category = ? AND model_answer_id = ?",
+			false, model_answer_id])
+	end
+
+	def self.get_tips model_answer_id
+		Hint.find(:all, :conditions => ["category = ? AND model_answer_id = ?",
+			true, model_answer_id])
+	end
 end
