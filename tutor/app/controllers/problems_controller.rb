@@ -14,7 +14,7 @@ class ProblemsController < ApplicationController
 			@track = @problem.track
 			@topic = @track.topic
 			@course = @topic.course
-			@problem_code_template = @problem.template
+			@problem_code_template = @problem.snippet
 		end
 	end
 
@@ -64,7 +64,7 @@ class ProblemsController < ApplicationController
 			@track = Track.find_by_id(@problem.track_id)
 			@topic = Topic.find_by_id(@track.topic_id)
 			@tracks = Track.where(topic_id: @track.topic_id)
-			@template = @problem.template
+			@snippet = @problem.snippet
 		else
 			render ('public/404')
 		end
@@ -125,7 +125,7 @@ class ProblemsController < ApplicationController
 			@message = "Description updated"
 		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem is moved to Track #{problem_params[:track_id]}"
-		elsif problem_params[:template] != @problem.template
+		elsif problem_params[:snippet] != @problem.snippet
 			@message = "Problem code template updated."
 		else
 			flash.keep[:notice] = "You have entered the same parameters. No change has been made!"
@@ -134,7 +134,7 @@ class ProblemsController < ApplicationController
 		if problem_params[:track_id].to_i == @problem.track_id
 			if problem_params[:title] != @problem.title ||
 				problem_params[:description] != @problem.description ||
-				problem_params[:template] != @problem.template
+				problem_params[:snippet] != @problem.snippet
 				begin
 					if @problem.update_attributes(problem_params)
 						flash.keep[:notice] = @message
@@ -215,7 +215,7 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny + Rami Khalil
 	private
 		def problem_params
-			params.require(:Problem).permit(:title, :description, :track_id, :template)
+			params.require(:Problem).permit(:title, :description, :track_id, :snippet)
 		end
 
 end

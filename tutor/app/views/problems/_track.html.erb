@@ -3,7 +3,7 @@
 	<% if @tracks.size > 1 %>
 		<%= problem.collection_select(:track_id, @tracks, :id, :title) %>
 		<%= problem.submit('Change Track') %>
-		<%= problem.hidden_field :template, value: @problem.template %>
+		<%= problem.hidden_field :snippet, value: @problem.snippet %>
 		<%= problem.hidden_field :title, value: @problem.title %>
 		<%= problem.hidden_field :description, value: @problem.description %>
 	<% end %>

@@ -4,7 +4,7 @@
 	<p>
 		<%= problem.submit('update description') %>
 	</p>
-	<%= problem.hidden_field :template, value: @problem.template %>
+	<%= problem.hidden_field :snippet, value: @problem.snippet %>
 	<%= problem.hidden_field :title, value: @problem.title %>
 	<%= problem.hidden_field :track_id, value: @problem.track_id %>
 <% end %>
