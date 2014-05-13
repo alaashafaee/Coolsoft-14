@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 	before_action :update_sanitized_params, if: :devise_controller?
 	before_action :check_resource, if: :devise_controller?
 
-	
 	private
 
 		def render_not_found(exception)
