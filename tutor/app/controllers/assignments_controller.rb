@@ -19,4 +19,21 @@ class AssignmentsController < ApplicationController
 			render ('public/404')
 		end
 	end
+
+	# [View List Of Assignments - Story 4.24]
+	# Allows the editing of a particular assignment
+	# Parameters: 
+	#	id: Id of the assignment.
+	# Returns: none
+	# Author: Lin Kassem
+	def edit
+		@assignment = Assignment.find_by_id(params[:id])
+		if @assignment.nil?
+			render "problem_not_found"
+		elses
+			@course = @assignment.course
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
+		end
+	end
 end

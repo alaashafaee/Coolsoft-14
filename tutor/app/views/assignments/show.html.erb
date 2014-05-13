@@ -9,11 +9,12 @@
 	<p> Submission: <%=@assignment.due_date.day%>.<%=@assignment.due_date.month%>.
 		<%=@assignment.due_date.year%><p>
 </div>
-
+<%if @assignment.description != nil%>
 <div id="assignment_description" style="font-size: 14pt;">
 	<p><b>Assignment description:</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;
 		<%=@assignment.description%></p>
 </div>	
+<%end%>
 <br>
 <div id="problems_in_assignment" style="font-size: 14pt;">
 		<p><b>List of problems:</b>
@@ -31,3 +32,8 @@
 			<%end%>
 		</p>
 </div>
+<br><br>
+<%if @can_edit%>
+	<%= link_to "Edit assignment", { :controller => 'assignments',
+		:action => 'edit', :id => @assignment.id	}, class: "btn btn-info" %>
+<%end%>
