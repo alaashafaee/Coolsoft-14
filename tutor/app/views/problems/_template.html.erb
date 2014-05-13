@@ -2,7 +2,7 @@
 <%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 	<%= problem.text_area :template, cols: 50, rows: 10 %>
 	<p>
-		<%= problem.submit('Update template') %>
+		<%= problem.submit('Update code template') %>
 	</p>
 	<%= problem.hidden_field :description, value: @problem.description %>
 	<%= problem.hidden_field :title, value: @problem.title %>

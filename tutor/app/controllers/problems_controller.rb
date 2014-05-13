@@ -133,7 +133,8 @@ class ProblemsController < ApplicationController
 
 		if problem_params[:track_id].to_i == @problem.track_id
 			if problem_params[:title] != @problem.title ||
-				problem_params[:description] != @problem.description
+				problem_params[:description] != @problem.description ||
+				problem_params[:template] != @problem.template
 				begin
 					if @problem.update_attributes(problem_params)
 						flash.keep[:notice] = @message
