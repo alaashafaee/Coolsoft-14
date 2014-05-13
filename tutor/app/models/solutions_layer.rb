@@ -29,32 +29,6 @@ class SolutionsLayer
 	end
 
 	# [Layer - Story X.3]
-	# Compile the given in the given language
-	# Parameters:
-	# 	lang: The programming language used in compilation
-	# 	code: The code to be compiled
-	# 	student_id: The id of the current signed in student
-	# 	problem_id: The id of the problem being solved
-	# Returns: 
-	#	The compile status
-	# Author: Mussab ElDash
-	def self.compile lang, code, student_id, problem_id
-		compiler = get_compiler lang
-		solution = get_solution code, student_id, problem_id
-		if compiler
-			feed_back = compiler.compiler_feedback solution
-			if feed_back[:success]
-				solution.status = 3
-			else
-				solution.status = 2
-			end
-			return feed_back
-		else
-			return
-		end
-	end
-
-	# [Layer - Story X.3]
 	# Test the given code against the test cases in the database
 	# Parameters:
 	# 	lang: The programming language used in validation
