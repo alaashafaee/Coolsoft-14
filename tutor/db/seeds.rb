@@ -185,19 +185,19 @@ puts("# ----------------------- Problems ----------------------- ")
 	## Exercise
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
 					incomplete: false,
-					template: "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
+					template: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
 					incomplete: false,
-					template: "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
+					template: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
 					incomplete: false,
-					template: "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
+					template: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
 					incomplete: true,
-					template: "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
+					template: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
 					incomplete: true,
-					template: "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
+					template: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n\t\t\n\t}\n}")
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
