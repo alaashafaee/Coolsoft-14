@@ -20,8 +20,10 @@ class TipsController < ApplicationController
 	#	@tip: a new created tip to specific answer
 	# Author: Ahmed Osam
 	def new
+		session[:track_id] = params[:track_id]
 		if(@tip == nil)
 			session[:model_answer_id] = params[:model_answer_id]
+			@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
 			@tip = Hint.new
 		end
 	end
