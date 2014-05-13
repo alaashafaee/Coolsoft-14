@@ -13,7 +13,7 @@
     </ul>
 </div>
 <br><br>
-	<h2>Create hint for model answer <h1 style="color:red;"><%=  ModelAnswer.find_by_id(session[:model_answer_id]).title %></h1></h2>
+	<h2>Create Hint for model answer <h1 style="color:red;"><%=  ModelAnswer.find_by_id(session[:model_answer_id]).title %></h1></h2>
 	<% if @hint.errors.any? %>
 		<div id="error_explanation">
 			<h2>

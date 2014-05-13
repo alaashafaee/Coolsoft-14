@@ -11,7 +11,7 @@
     </ul>
 </div>
 <br><br>
-	<h2>Create Tip</h2>
+<h2>Create Tip for model answer <h1 style="color:red;"><%=  ModelAnswer.find_by_id(session[:model_answer_id]).title %></h1></h2>
 	<% if @tip.errors.any? %>
 		<div id="error_explanation">
 			<h2>
