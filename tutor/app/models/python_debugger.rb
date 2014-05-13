@@ -3,6 +3,30 @@ class PythonDebugger
 
 	#Methods
 
+	def get_locals
+		result = []
+		input "locals()"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			new_line = line[1..-2]
+			list_of_variables = new_line.split(", ")
+			list_of_variables.each do |variable|
+				separate = variable.split(": ")
+				name = separate[0]
+				value = separate[1]
+				if name.match("__")
+					next
+				elsif value.match("module") or value.match("function")
+					next
+				elsif value.match("instance")
+					value = get_object_value
+				result << "#{name} = #{value}"
+				end
+			end
+		end
+		return result
+	end
+
 	# [View Variables Python Code - Story X.8]
 	# Fetches the variables found in the class and returns
 	# 	a list of all variables in the class with their
@@ -12,16 +36,9 @@ class PythonDebugger
 	# 	An array. It contains the list of variables and their values
 	# Author: Khaled Helmy
 	def get_variables
-		local_variables = []
-		class_variables = get_class_variables
-		input "dir()"
-		output_buffer = buffer_until_complete
-		output_buffer.each_line do |line|
-			new_line = line[1..-2]
-			list_of_variables = new_line.split(", ");
-			local_variables << list_of_variables
-		end
-		return local_variables
+		variables = []
+		variables = variables + get_locals
+		return variables
 	end
 
 	# [View Variables Python Code - Story X.8]
