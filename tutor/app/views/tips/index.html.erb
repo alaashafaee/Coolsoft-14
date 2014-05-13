@@ -15,10 +15,10 @@
 <a href="#" return:false; class="Lst" onclick="toggle_visibility('foo3'); return false;"
 	style="font:120px"> Previous Tips</a>
 <div id="foo3">
-	<% if !@tips1.any? %>
+	<% if !@tips.any? %>
 		<p>No previous Tips</p>
 	<% end %>
-	<% if !@tips1.empty? %>
+	<% if !@tips.empty? %>
 		<table class="table table-striped" style = "width:60%">
 			<thead>
 				<tr>

@@ -9,7 +9,7 @@ class TipsController < ApplicationController
 	# Author: Nadine Adel
 	def index
 		session[:model_answer_id] = params[:model_answer_id]
-		@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
+		@model_answer = ModelAnswer.find_by_id(params[:model_answer_id])
 		@tips= Hint.get_tips @model_answer.id
 	end
 
