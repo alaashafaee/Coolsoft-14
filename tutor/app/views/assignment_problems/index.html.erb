@@ -6,6 +6,7 @@
 		<li class="active"><a href="#">Copy from Existing Problems</a></li>	
 	<% end %>
 	</ul>
+	<%= form_for :problems_assignment, url: assignment_problems_path do |f| %>
 	<div class="tab-content">
 			<div id="tab1" class="tab active">
 				<% openable = true %>
@@ -27,14 +28,19 @@
 								data-toggle="collapse" data-parent="#accordion"
 								style="float:left;text-decoration: none;">
 								</a>
-								<input type="checkbox" style = "float:right" id="inlineCheckbox1" value=" <%= link_to problem.title, problem %>" >
-							
+								
+								
+							<input value= problem , id="link_to problem.title, problem"name="fruit[]" type="checkbox"><%= link_to problem.title, problem %>/>
+
+
 						</div>
 						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
 							<%= problem.description %>
 						</div>
 					</div>
 					<% end %>
+					
+					<% if @cproblems.any? %>
 					<h3> Contest problems </h3>
 					<% @cproblems.each do |problem| %>
 					<% if openable %>
@@ -45,6 +51,7 @@
 						<% open = "" %>
 						<% openarrow = "glyphicon-chevron-right" %>
 					<% end %>
+
 						<div class="panel panel-default">
 							<div class="panel-title list-group-item list-group-item-info">
 								<a class="icon glyphicon <%= openarrow %>"
@@ -52,18 +59,24 @@
 								data-toggle="collapse" data-parent="#accordion"
 								style="float:left;text-decoration: none;">
 								</a>
-							<input type="checkbox" style = "float:right";"width:90px">
-							<%= link_to problem.title, problem, style: 'color:#003366;'%>
+							<input type="checkbox" style = "float:right" id="inlineCheckbox1" value=" <%= link_to problem.title, problem %>" >
 						</div>
 						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
 							<%= problem.description %>
 						</div>
 					</div>
 					<% end %>
+				<% end %>
 				</div>
 			</div>
 	</div>
 </div>
+<br>
+<%= f.submit "Save", class: "btn btn-info" %>
+<ul class="navbar-brand pull-right"> <%= link_to "Save",
+		:controller => 'assignment_problems', :action => 'show', 
+		:method => :get, class: 'btn btn-info btn-large' %></ul>
+<% end %>
 <style>
  .white .active a,
  .white.active a:hover {
@@ -84,4 +97,25 @@
     length : 90px;
     line-height: 50px;
 }
+input[type="radio"], input[type="checkbox"] {
+
+height: 20px;
+width: 20px;
+
+
+}
 </style>
+<script type="text/javascript">
+	('input[type="checkbox"]').checkbox({
+   buttonStyle: 'btn-link',
+   buttonStyleChecked: 'btn-inverse',
+   checkedClass: 'icon-check',
+   uncheckedClass: 'icon-check-empty',
+   constructorCallback: null,
+   defaultState: false,
+   defaultEnabled: true,
+ 
+   checked: false,
+   enabled: true
+});
+</script>

@@ -42,13 +42,12 @@ def create
   	@course = Course.find_by_id(@course_id)
   	@topics = @course.topics
   	@tracks = Array.new
+   @problems1 = Array.new
   	if !@topics.empty?
       @topics.find_each do |topic|
         @tracksi = topic.tracks
     @tracksi.each do |track|
-         puts "====================================================0000000"
-    puts track.id
-    puts "================================================================================================"
+   
 			@tracks.push(track)	
     end
 	end
@@ -72,6 +71,18 @@ def create
             @cproblems.push(problem1)  
           end
   end
+  @sproblems = Array.new
+
+
+        @sproblems = params[:fruits]
+         puts "==========bn====================================================="
+        puts params[:fruits]
+
+        puts "=============bnm======================================================" 
+   
+
+
+
   
   	  end
 
@@ -79,4 +90,7 @@ def create
 		def problem_params
 			params.require(:assignment_problem).permit(:title, :description, :final_grade)
 		end
+   def index_params
+      params.require(:problems_assignment).permit(:sproblems)
+    end
 end
