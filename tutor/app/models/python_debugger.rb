@@ -19,6 +19,7 @@ class PythonDebugger
 			result << line
 		end
 		return result
+	end
 
 	def get_variable name
 		value = ""
@@ -32,6 +33,7 @@ class PythonDebugger
 		elsif value.match("instance")
 			value = get_object_value name
 		return value
+	end
 
 	def get_locals
 		all = ""
