@@ -3,10 +3,14 @@
 <span id="mins">0</span>:<span id="secs">00</span>
 
 
+<!-- Class name field -->
+<h4>File name:</h4>
+<%= f.text_area :class_name, value: "CoolSoft", class: "form-control",
+	style: "width: 250px; height: 44px;", id: "class_name" %>
+
 <br/> <br/>
 
 <%= render partial: "solutions/editor"%>
 
 
 <%= render partial: "solutions/input_output"%>
-
