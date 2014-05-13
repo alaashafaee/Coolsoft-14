@@ -8,7 +8,7 @@ class TimeLimit
 	# Parameters:
 	# 	time: The time for the program not to exceed
 	# 	args: The system call to be executed
-	# Returns: 
+	# Returns:
 	#	In case there is an args passes it will return the output and error streams lines
 	# 	else none
 	# Author: Mussab ElDash

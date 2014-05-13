@@ -164,7 +164,7 @@ class Solution < ActiveRecord::Base
 	# Parameters:
 	#	append_extension: A boolean value indicating if the file extension
 	#		should be appended or not.
-	# Returns: 
+	# Returns:
 	#	path: The file path.
 	# Author: Ahmed Moataz
 	def file_path(append_extension = true)
