@@ -11,26 +11,34 @@
 		 : flash[:previous_code].to_s
 %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
-<div style = 'text-align:right;'>
-<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
-	onClick: "reload_template()", class: "btn btn-info" %>
+
 </div>
 <br>
+<div class="a4">
 <table width='100%'>
-	<tr>
-		<td>
-			<div class="a3"><img src="/assets/compile.png" id='compileButton' onClick= "compile(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:left; margin-left:5px;" title="Compile" ></img><br/><br/><div>Compile<div></div>
-
-			<div class="a3"><img src="/assets/run1.png" id='testButton' onClick= "run_input(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:left; margin-left:10px;" title="Run Test Case" ></img></div>
-
-			<div class="a3"><img src="/assets/debug.png" id='debugButton' onClick= "start_debug(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:left; margin-left:10px;" title="Start Debugging" ></img></div>
 	
-			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
-				style: "display: none", id: 'previousButton', 
-				onClick: 'previous()', hidden: true %>
-			<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
-				style: "display: none", id: 'nextButton',
-				onClick: 'next()', hidden: true %>
+	<tr>
+	
+		<td>
+		
+
+
+
+			
+			<div class="" style="float:left; margin:5px; margin-left:10px;"><img src="/assets/compile_w.png" id='compileButton' onClick= "compile(<%=params[:id]%>)" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Compile" ></img></div>
+
+			<div class="" style="float:left; margin:5px;"><img src="/assets/run_w.png" id='testButton' onClick= "run_input(<%=params[:id]%>)" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Run Test Case" ></img></div>
+
+			<div class="" style="float:left; margin:5px;"><img src="/assets/debug_w.png" id='debugButton' onClick= "start_debug(<%=params[:id]%>)" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Start Debugging" ></img></div>
+
+
+
+			<div class="" style="float:left; margin:5px; margin-left:10px;"><img src="/assets/previous_w.png" id='previousButton' onClick= "previous()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Previous" hidden="true" ></img></div>
+
+			<div class="" style="float:left; margin:5px;"><img src="/assets/next_w.png" id='nextButton' onClick= "next()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Next" hidden="true" ></img></div>
+	
+			<div class="" style="float:left; margin:5px;"><img src="/assets/stop_w.png" id='stopButton' onClick= "stop()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Stop Debugging" hidden="true" ></img></div>
+			
 			<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
 				style: "display: none", id: 'stopButton', 
 				onClick: 'stop()', hidden: true %>
@@ -42,11 +50,20 @@
 			<b class='runtime_error'>Runtime Error</b>
 			<b class='compilation_error'>Compilation Error</b>
 
-			<div class="a3"><img src="/assets/submit.png" id='submitButton' onClick= "validate_code(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:right; margin-left:10px;" title="Submit" ></img></div>
+			
+
+
+
+			<div class="" style=" float: right; margin:5px;"><img src="/assets/submit_w.png" id='submitButton' onClick= "validate_code(<%=params[:id]%>)" style= "height: 32px; width: 32px; cursor:pointer; float:right;" title="Submit" ></img></div>
+			<div class="" style="float:right; margin:5px; margin-left:10px;"><img src="/assets/reload_w.png" id='reloadButton' onClick= "reload_template()" style= "height: 32px; width: 32px; cursor:pointer;" title="Reload Template" ></img></div>
+			
 
 		</td>
+	
 	</tr>
+
 </table>
+</div>
 
 <!-- Add editor -->
 <pre id="editor">
@@ -123,7 +140,16 @@
 	-o-transition: all 0.2s ease;
 }
 .a3 img:hover {
-	opacity: 0.5;
+	opacity: 0.7;
+}
+
+.a4 {
+	background-color: rgb(35,35,35);
+	border-radius:4px;
+	border: thin;
+	border-style: solid;
+	border-color: rgb(204,204,204);
+	margin-bottom: 1px;
 }
 
 </style>
