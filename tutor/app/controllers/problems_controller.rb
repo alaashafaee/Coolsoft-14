@@ -157,7 +157,7 @@ class ProblemsController < ApplicationController
 					@problem = Problem.find_by_id(params[:id])
 					respond_to do |format|
 						format.html {redirect_to :action => "edit",
-							:problem_id => @problem.id, :track_id => session[:track_id]}}
+							:problem_id => @problem.id, :track_id => session[:track_id]}
 						format.js
 					end
 				end
