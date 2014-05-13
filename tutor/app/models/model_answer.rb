@@ -3,6 +3,7 @@ class ModelAnswer < ActiveRecord::Base
 	#Validations
 	validates :title, presence: true
 	validates :answer, presence: true
+	validates_uniqueness_of :title, :scope => :problem_id 
 
 	#Relations
 	belongs_to :problem
