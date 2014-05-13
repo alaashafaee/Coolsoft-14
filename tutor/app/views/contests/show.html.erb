@@ -1,19 +1,18 @@
-<%= @contest.title  %>
-<br>
-<%= @contest.description  %>
-Standings
-<br>
-Submissions
-
-<br>
-registrants :
-<br>
-<br>
-standings :
-<br>
-<table class="table table-bordered mytable">
+<div class="contest_information">
+	<h2> Contest: <%= @contest.title  %></h2>
+	<h3><%= @contest.description %></h3>
+	<ul>
+		<li>Standings</li>
+		<li>Submissions</li>
+		<li>Registrants</li>
+		<li>Register</li>
+	</ul>
+</div>
+<table class="table table-bordered contest_table">
+	<% rank = 0 %>
 	<tr>
-		<td> </td>
+		<td> Rank </td>
+		<td> Contestant </td>
 		<% @contest.problems.each do |problem| %>
 		<td> <%= problem.title %> </td>
 		<% end %>
@@ -21,18 +20,22 @@ standings :
 	<% @contest.get_contest_standings.each do |key, value| %>
 	<tr>
 		<td>
-			<%= link_to value.student.name, 
+			<%= rank = rank +1 %>
+		</td>
+		<td>
+			<%= link_to value[:record].student.name, 
 				controller: "/students", 
 				action: "show", 
-				id: value.student.id %>
+				id: value[:record].student.id %>
 		</td>
 		</td>
 		<% @contest.problems.each do |problem| %>
 			<td
-				<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value.student.id).take.status %>
-						class="S"> <%= Time.now %>
+				<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.status %>
+						class="S"> <%= ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.trials %> / 
+						<%=  ((ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.updated_at - Contest.find(@contest.id).start_time)/60).to_i %>
 				<% else %>
-						class="WA">
+						class="WA"> --
 				<% end %>
 			</td>
 		<% end %>
