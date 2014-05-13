@@ -1,3 +1,12 @@
+<div id = "crumbs">
+	<ul>
+		<li class="sub"><a class = "preventclick">Problem</a></li>
+		<li class="sub1"><a class="visit" style="padding: 5px 15% 0 0px;">Test Cases</a> </li>
+		<li class="sub2"><a class="preventclick" style="padding: 5px 5% 0 0px;">Model Answer</a> </li>
+		<li class="sub3"><a class="preventclick" >Tips</a></li>
+		<li class="sub4"><a class="preventclick">Hints</a></li>
+	</ul>
+</div><br><br>
 <%= form_for :test_case , url: test_cases_path do |f| %>
 <% if @test_case.errors.any? %>
 	<div id="error_explanation">
@@ -14,16 +23,16 @@
 <%= f.hidden_field :problem_id, :value => @problem.id %>
 <% end %>
 
-<h2>Please Insert your Test case</h2>
+<h1>Pleas insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
 <p>
 	<%= flash[:notice] %>
 	<%= f.label :Input %>
-	<br><%= f.text_field :input %></br>
+	<br><%= f.text_field :input, class: "form-control", style: "width:320px; height:45px;" %>
 	<%= f.label :Output %>
-	<br><%= f.text_field :output %></br>
-		<%= f.hidden_field :problem_id, value: params[:id] %>
+	<br><%= f.text_field :output, class: "form-control", style: "width:320px; height:45px;" %>
+	<%= f.hidden_field :problem_id, :value => session[:problem_id] %>
 </p>
 <p>
-	<%= f.submit 'Add test case', class: "btn btn-large btn-primary" %>
+	<%= f.submit 'Add Test Case', class: "btn btn-large btn-primary btn-info" %>
 </p>
 <% end %>
