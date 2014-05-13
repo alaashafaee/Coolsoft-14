@@ -26,8 +26,8 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel & Ahmed Osam
 	def create
 		@new_answer = ModelAnswer.new
-		@new_answer.title = post_params[:title]
-		@new_answer.answer = post_params[:answer]
+		@new_answer.title = model_answer_params_add[:title]
+		@new_answer.answer = model_answer_params_add[:answer]
 		@new_answer.problem_id = session[:problem_id] 
 		@problems = Problem.find_by_id(session[:problem_id])
 		if lecturer_signed_in?
@@ -148,8 +148,10 @@ class ModelAnswersController < ApplicationController
 	# Returns: none
 	# Author: Nadine Adel
 	def index
-		@problem = Problem.find_by_id(params[:id])
-		@answers = ModelAnswer.all
+		session[:problem_id] = params[:problem_id]
+		session[:track_id] = params[:track_id]
+		@problem = Problem.find_by_id(params[:problem_id])
+		@answers = @problem.model_answers
 	end
 
 	# [Add answer story 4.6]
@@ -161,4 +163,7 @@ class ModelAnswersController < ApplicationController
 	def post_params
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end	
+	def model_answer_params_add
+		params.require(:model_answer).permit(:title, :answer, :problem_id)
+	end
 end
