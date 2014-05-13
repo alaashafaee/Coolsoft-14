@@ -37,10 +37,17 @@
 <%= f.text_area :class_name, value: "CoolSoft", class: "form-control",
 	style: "width: 250px; height: 44px;", id: "class_name" %>
 
-<% f.hidden_field "type", value: params[:controller
-	] %>
+<% f.hidden_field "type", value: params[:controller] %>
+<% @type = "" %>
+<% @controller = params[:controller] %>
+<% if @controller == "problems" %>
+	<% @type = "Problem" %>
+<% elsif @controller == "cproblem" %>
+	<% @type = "Cproblem" %>
+<% else %>
+	<% @type = "AssignmentProblem" %>
+<% end %>
 <%end%>
-
 
 <br/><br/>
 
@@ -50,11 +57,11 @@
 			<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
 				onClick: "reload_template()", class: "btn btn-info" %>
 			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
-				onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
+				onClick: "compile(#{params[:id]}, '#{@type}')", class: "btn btn-info" %>
 			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
-				type: 'Button', onClick: "run_input(#{params[:id]})" %>
+				type: 'Button', onClick: "run_input(#{params[:id]}, '#{@type}')" %>
 			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-				onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+				onclick: "start_debug(#{params[:id]}, '#{@type}')", class: "btn btn-info" %>	
 			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
 				style: "display: none", id: 'previousButton', 
 				onClick: 'previous()', hidden: true %>
@@ -79,7 +86,7 @@ public class CoolSoft {
 </div>
 
 <%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
-				onClick: "validate_code(#{params[:id]})", class: "btn btn-info pull-right" %>
+				onClick: "validate_code(#{params[:id]}, '#{@type}')", class: "btn btn-info pull-right" %>
 
 <br>
 
