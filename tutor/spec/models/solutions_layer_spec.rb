@@ -17,8 +17,8 @@ describe SolutionsLayer do
 			expect(SolutionsLayer.get_executer "java").to eq JavaExecuter
 		end
 	
-		it "raise error when trying to get a non valid blabla executer" do
-			expect{SolutionsLayer.get_executer "blabla"}.to raise_error(NameError)
+		it "no such executer named blabla" do
+			expect(SolutionsLayer.get_executer "blabla").to eq false
 		end
 	end
 
