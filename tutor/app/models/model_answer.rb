@@ -9,7 +9,6 @@ class ModelAnswer < ActiveRecord::Base
 	belongs_to :owner, polymorphic: true
 
 	has_many :method_constraints, dependent: :destroy
-	has_many :method_parameters, dependent: :destroy
 	has_many :variable_constraints, dependent: :destroy
 	has_many :hints, dependent: :destroy
 

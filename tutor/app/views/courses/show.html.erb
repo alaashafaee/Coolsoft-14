@@ -40,16 +40,26 @@
 
 			<div  style="margin-left:70%; margin-top: -300px";>
 				<div class="panel-group list-group" id="accordion" style="width:100%;">
-					<% @topics.each do |t| %>
+					<% @topics.each do |t| %>	
+						<% if openable %>
+							<% open = "in" %>
+							<% openarrow = "glyphicon-chevron-down" %>
+							<% openable = false %>
+						<% else %>
+							<% open = "" %>
+							<% openarrow = "glyphicon-chevron-right" %>
+						<% end %>
 						<div class="panel panel-default">
-							<div class="panel-title list-group-item list-group-item-info"
-								data-toggle="collapse" data-parent="#accordion"
-									href="#<%= t.id.to_s %>">
-								<b onclick="window.open('/topics/<%= t.id.to_s %>', '_self')">
-								<%= link_to t.title, t, style: 'color:#003366;'%></b>
+							<div class="panel-title list-group-item list-group-item-info">
+								<a class="icon glyphicon <%= openarrow %>"
+									href="#<%= t.id.to_s %>"
+									data-toggle="collapse" data-parent="#accordion"
+									style="margin-right:1%;text-decoration: none;">
+								</a>
+								<%= link_to t.title, t, style: 'color:#003366;' %></b>
 								<span class="badge"><%= t.tracks.count %></span>
 							</div>
-							<div id="<%= t.id.to_s %>" class="panel-collapse collapse">
+							<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 								<ul class="list-group">
 									<% t.tracks.each do |tt|%>
 										<% color = "label label-default" %>

@@ -12,6 +12,7 @@ class Post < ActiveRecord::Base
 	
 	belongs_to :discussion_board, class_name: "DiscussionBoard"
 	has_many :replies, dependent: :destroy
+	has_many :tags, as: :tager
 	
 	#Scoops
 	

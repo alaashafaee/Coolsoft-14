@@ -72,6 +72,33 @@ mark {
 small {
   font-size: 80%;
 }
+small9 {
+  font-size: 90%;
+}
+small8 {
+  font-size: 80%;
+}
+small7 {
+  font-size: 70%;
+}
+small6 {
+  font-size: 60%;
+}
+small5 {
+  font-size: 50%;
+}
+small4 {
+  font-size: 40%;
+}
+small3 {
+  font-size: 30%;
+}
+small2 {
+  font-size: 20%;
+}
+small1 {
+  font-size: 10%;
+}
 sub,
 sup {
   font-size: 75%;
