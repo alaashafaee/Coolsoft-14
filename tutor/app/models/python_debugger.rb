@@ -3,6 +3,15 @@ class PythonDebugger
 
 	#Methods
 
+	def get_object_value name
+		result = ""
+		input "#{name}.__dict__"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			result << line
+		end
+		return result
+
 	def get_locals
 		result = []
 		input "locals()"
@@ -19,7 +28,7 @@ class PythonDebugger
 				elsif value.match("module") or value.match("function")
 					next
 				elsif value.match("instance")
-					value = get_object_value
+					value = get_object_value name
 				result << "#{name} = #{value}"
 				end
 			end
