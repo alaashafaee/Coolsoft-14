@@ -75,7 +75,7 @@ class TestCasesController < ApplicationController
 	#	 @test_case:Test case to be updated.
 	# Returns:
 	#	Flash message if the test case is updated or not
-	# Author: Nadine Adel
+	# Author: Nadine Adel & Ahmed Osam
 	def update
 		@test_case = TestCase.find(params[:test_case_id])
 		if test_case_params[:input] != @test_case.input ||
@@ -84,14 +84,14 @@ class TestCasesController < ApplicationController
 				if @test_case.update_attributes(test_case_params)
 					respond_to do |format|
 						format.js
-						format.html {redirect_to :action => "edit", :format => :js, 
+						format.html {redirect_to :action => "edit", :format => :js,
 							:test_case_id => @test_case.id, :track_id => session[:track_id]}
 					end
 				else
 					@test_case = TestCase.find_by_id(params[:test_case_id])
 					respond_to do |format|
 						format.js
-						format.html {redirect_to :action => "edit", :format => :js, 
+						format.html {redirect_to :action => "edit", :format => :js,
 							:test_case_id => @test_case.id, :track_id => session[:track_id]}
 					end
 				end
@@ -99,11 +99,11 @@ class TestCasesController < ApplicationController
 				@test_case = TestCase.find_by_id(session[:test_case_id])
 				respond_to do |format|
 					format.js
-					format.html {redirect_to :action => "edit", :format => :js, 
+					format.html {redirect_to :action => "edit", :format => :js,
 					:test_case_id => @test_case.id, :track_id => session[:track_id]}
 				end
 			end
-		end	
+		end
 	end
 
 	# [Remove Test Case - Story 4.16]
@@ -114,16 +114,17 @@ class TestCasesController < ApplicationController
 	#	params[:id]: The current test case's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef
+	# Author: Ahmed Atef & Ahmed Osam
 	def destroy
-		@test_case = TestCase.find_by_id(params[:id])
+		@test_case = TestCase.find_by_id(params[:test_case_id])
 		@current = Problem.find_by_id(@test_case.problem_id)
 		if @current.test_cases.count == 1
 			flash[:notice] = "Cannot delete problem's last test case"
 			redirect_to :back and return
 		elsif @test_case.destroy
 			flash[:notice] = "Test case successfully Deleted"
-			redirect_to(:controller => 'problems', :action => 'edit', :id => @current.id)
+			redirect_to(:controller => 'test_cases', :action => 'index', :problem_id => @current.id,
+				:track_id => session[:track_id])
 		end
 	end
 
@@ -136,4 +137,9 @@ class TestCasesController < ApplicationController
 	def post_params
 		params.require(:test_case).permit(:input, :output, :problem_id)
 	end
+
+	def test_case_params
+		params.require(:test_case).permit(:input, :output, :problem_id)
+	end
+
 end
