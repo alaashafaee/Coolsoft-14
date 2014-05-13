@@ -160,7 +160,7 @@ Tutor::Application.routes.draw do
 		resources :teaching_assistants
 		post 'teaching_assistants/new' => 'teaching_assistants#new'
 		resources :acknowledgements
-		resources :resources, only: [:create, :index]
+		resources :resources, only: [:create, :index, :new]
 	end
 
 	# Example resource route with concerns:
