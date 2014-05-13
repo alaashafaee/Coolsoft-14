@@ -87,8 +87,8 @@ puts("# --------------------------DiscussionBoards------------------------------
 	DiscussionBoard.create(title:"DiscussionBoard7", activated: true)
 
 puts("# --------------------------Posts------------------------------")
-	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
-	Post.create(title:"My 2nd Post", content: "It is very hard to keep in this life, be happy", views_count: 100)
+	Post.create(title:"Nginx return empty data, while header is 200 OK", content: "The Main Objective is to be a winner", views_count: 20)
+	Post.create(title:"how sqlserver accept NUMERIC values from JDBC driver", content: "It is very hard to keep in this life, be happy", views_count: 100)
 	Post.create(title:"My 3th Post", content: "Post3")
 	Post.create(title:"My 4th Post", content: "Post4")
 
