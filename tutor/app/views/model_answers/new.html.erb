@@ -1,25 +1,34 @@
+<div id = "crumbs">
+    <ul>
+    	<li class="sub"><a class = "preventclick">Problem</a></li>
+    	<li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'new',
+			:problem_id => @problem.id,:track_id => @problem.track_id},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
+    	<li class="sub2"><a class = "visit" style="padding: 5px 3.75%% 0 0px;">Model Answers</a> </li>
+    	<li class="sub3"><a class="preventclick" >Tips</a></li>
+    	<li class="sub4"><a class="preventclick" >Hints</a></li>    
+    </ul>
+</div><br><br>
 <%= form_for :model_answer, url: model_answers_path do |f| %>
-<% if @new_answer.errors.any? %>
-	<div id="error_explanation">
-		<h2><%= pluralize(@new_answer.errors.count, "error") %> prohibited this course from being saved:
-		</h2>
-		<ul>
-			<% @new_answer.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
-			<% end %>
-		</ul>
-	</div>
-<% else %> 
-<%= f.hidden_field :problem_id, :value => @problem.id %>
+	<% if @new_answer.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@new_answer.errors.count, "error") %>
+			 prohibited this model answer from being saved: </h2>
+			<ul>
+				<% @new_answer.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% else %> 
+	<%= f.hidden_field :problem_id, :value => @problem.id %>
+	<h1>Please insert model answer for problem <h1 style="color:red;"><%= @problem.title %></h1></h1>
 <% end %>
 <p>
 	<h2>Please Insert your model answer</h2>
 	<br><%= f.label :Title %>
 		<%= f.text_field :title %></br>
 		<br><%= f.label :Answer %> </br>
-	<%= f.text_area :answer, :cols => "50", :rows => "15" %>
-</p>
-<br>
-<%= f.submit "Save Model Answer", class: "btn btn-large btn-primary" %>
-</br>
+	<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10", :rows => "10" %>
+</p><br>
+<%= f.submit "Save Model Answer", class: "btn btn-large btn-info" %>
 <% end %>
