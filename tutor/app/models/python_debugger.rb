@@ -3,6 +3,14 @@ class PythonDebugger
 
 	#Methods
 
+	def is_valid_variable name, value
+		if name.match("__")
+			return false
+		elsif value.match("module") or value.match("function")
+			return false
+		return true
+	end
+
 	def get_object_value name
 		result = ""
 		input "#{name}.__dict__"
@@ -23,9 +31,7 @@ class PythonDebugger
 				separate = variable.split(": ")
 				name = separate[0]
 				value = separate[1]
-				if name.match("__")
-					next
-				elsif value.match("module") or value.match("function")
+				if is_valid_variable name, value == false
 					next
 				elsif value.match("instance")
 					value = get_object_value name
@@ -46,7 +52,7 @@ class PythonDebugger
 	# Author: Khaled Helmy
 	def get_variables
 		variables = []
-		variables = variables + get_locals
+		variables = get_locals + get_globals
 		return variables
 	end
 
