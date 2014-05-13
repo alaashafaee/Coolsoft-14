@@ -119,7 +119,7 @@ class ProblemsController < ApplicationController
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
 	def update
-		@problem = Problem.find_by_id(params[:problem_id])
+		@problem = Problem.find_by_id(session[:problem_id])
 		@track = Track.find_by_id(@problem.track_id)
 		@tracks = Track.where(topic_id: @track.topic_id)
 		if problem_params[:title] != @problem.title
@@ -139,26 +139,25 @@ class ProblemsController < ApplicationController
 					if @problem.update_attributes(problem_params)
 						flash.keep[:notice] = @message
 						respond_to do |format|
-							format.html {redirect_to :action => "edit",
-								:problem_id => @problem.id, :track_id => session[:track_id]}
 							format.js
+							format.html {redirect_to :action => "edit", :format => :js, 
+								:problem_id => @problem.id, :track_id => session[:track_id]}
 						end
 					else
-						flash.keep[:notice] = "Update paramater is empty"
 						@problem = Problem.find_by_id(params[:problem_id])
 						respond_to do |format|
-							format.html {redirect_to :action => "edit",
-								:problem_id => @problem.id, :track_id => session[:track_id]}
 							format.js
+							format.html {redirect_to :action => "edit", :format => :js, 
+								:problem_id => @problem.id, :track_id => session[:track_id]}
 						end
 					end
 				rescue
-					flash.keep[:notice] = "The track has a problem with the same title"
-					@problem = Problem.find_by_id(params[:id])
+					@problem = Problem.find_by_id(params[:problem_id])
 					respond_to do |format|
-						format.html {redirect_to :action => "edit",
-							:problem_id => @problem.id, :track_id => session[:track_id]}
 						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:problem_id => @problem.id, :track_id => session[:track_id]}
+						
 					end
 				end
 			end
@@ -169,9 +168,9 @@ class ProblemsController < ApplicationController
 				if @problem.update_attributes(problem_params)
 					flash.keep[:notice] = @message
 					respond_to do |format|
-						format.html {redirect_to :action => "edit",
-							:id => @problem.id}
 						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:problem_id => @problem.id, :track_id => session[:track_id]}
 					end
 				end
 			else

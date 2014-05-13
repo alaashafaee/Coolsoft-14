@@ -1,3 +1,4 @@
+<div id = "crumbs">
 <ul>
 	<li class = "sub"><a class = "preventclick"> Problem</a> </li>
 	<li class = "sub1"><a class="preventclick", style="padding: 5px 12% 0 0px;">Test Cases</a></li>
@@ -18,17 +19,18 @@
 			</ul>
 		</div>
 	<% else %> 
-		<%= f.hidden_field :problem_id, :value => @problem.id %>
-	<% end %>
 <div id = "divform_answer">
 	<%= form_for :model_answer, url: model_answer_path(@answer), method: :patch, remote: true do |model_answer| %> 
 		<br>
 		<%= model_answer.label :Title %>
 		<p><%= model_answer.text_area :answer, :value => @answer.answer, class: "form-control", style: "width:60%",:cols => "10", :rows => "10"   %></p> 
 		<%= model_answer.submit "Save changes", class: "btn btn-large btn-info" %>
+				<%= model_answer.hidden_field :problem_id, :value => @problem.id %>
+
 	<% end %>
 </div>
 <div style="position: absolute; bottom: 20%; right: 450px;">
 		<%= link_to "Back", {:controller => 'model_answers', :action => 'index',
 					:track_id => session[:track_id], :problem_id => session[:problem_id]},:method => :get,:class => "btn btn-info"%>
 </div>
+<% end %>
