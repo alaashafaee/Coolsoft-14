@@ -215,10 +215,14 @@ class ProblemsController < ApplicationController
 	#	track_id: problem's track id
 	# Returns:
 	#	Params to create action & update action
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny & Ahmed Osam
 	private
 		def problem_params
 			params.require(:Problem).permit(:title, :description, :track_id)
+		end
+
+		def problem_params_add
+			params.require(:problem).permit(:title, :description, :track_id)
 		end
 
 end
