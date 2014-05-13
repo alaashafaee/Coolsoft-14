@@ -101,7 +101,7 @@ class ProblemsController < ApplicationController
 	#	params[:id]: The current problem's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef
+	# Author: Ahmed Atef & Ahmed Osam
 	def destroy
 		@track = Problem.find_by_id(params[:problem_id]).track_id
 		if Problem.find_by_id(params[:problem_id]).destroy
@@ -119,7 +119,7 @@ class ProblemsController < ApplicationController
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
 	# Author: Abdullrahman Elhusseny
 	def update
-		@problem = Problem.find_by_id(params[:id])
+		@problem = Problem.find_by_id(params[:problem_id])
 		@track = Track.find_by_id(@problem.track_id)
 		@tracks = Track.where(topic_id: @track.topic_id)
 		if problem_params[:title] != @problem.title
@@ -140,15 +140,15 @@ class ProblemsController < ApplicationController
 						flash.keep[:notice] = @message
 						respond_to do |format|
 							format.html {redirect_to :action => "edit",
-								:id => @problem.id}
+								:problem_id => @problem.id, :track_id => session[:track_id]}
 							format.js
 						end
 					else
 						flash.keep[:notice] = "Update paramater is empty"
-						@problem = Problem.find_by_id(params[:id])
+						@problem = Problem.find_by_id(params[:problem_id])
 						respond_to do |format|
 							format.html {redirect_to :action => "edit",
-								:id => @problem.id}
+								:problem_id => @problem.id, :track_id => session[:track_id]}
 							format.js
 						end
 					end
@@ -157,7 +157,7 @@ class ProblemsController < ApplicationController
 					@problem = Problem.find_by_id(params[:id])
 					respond_to do |format|
 						format.html {redirect_to :action => "edit",
-							:id => @problem.id}
+							:problem_id => @problem.id, :track_id => session[:track_id]}}
 						format.js
 					end
 				end
@@ -179,7 +179,7 @@ class ProblemsController < ApplicationController
 				@track = Track.find_by_id(@problem.track_id)
 				respond_to do |format|
 					format.html {redirect_to :action => "edit",
-						:id => @problem.id}
+						:problem_id => @problem.id, :track_id => session[:track_id]}
 					format.js
 				end
 			end
@@ -192,14 +192,14 @@ class ProblemsController < ApplicationController
 	#	problem_id: ID of the problem being edited
 	# Returns:
 	#	On success redirects to the track page, on failure redirects to the edit page
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny & Ahmed Osam
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.model_answers.empty? || @problem.test_cases.empty?
 			@failure = true
 			flash.keep[:notice] = "Problem is incomplete, 
 			please add necessary paramaters or save as incomplete"
-			redirect_to :action => "edit", :id => @problem.id
+			redirect_to :action => "edit", :problem_id => @problem.id
 		else
 			@problem.incomplete = false
 			@problem.save
