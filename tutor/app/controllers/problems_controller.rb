@@ -24,7 +24,7 @@ class ProblemsController < ApplicationController
 	#	description: problem's description through permitCreate action
 	# Returns:
 	#	Redirects to edit page on success, refreshes on failure
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny & Ahmed Osam
 	def create
 		problem = Problem.new(problem_params)
 		@problem.title = problem_params_add[:title]
@@ -58,12 +58,11 @@ class ProblemsController < ApplicationController
 	#	id: The id of the problem to be edited or newly created
 	# Returns:
 	#	Redirects to edit page on success, refreshes on failure
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny & Ahmed Osam
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?
-			@problem = Problem.find_by_id(params[:id])
-			@test_cases = @problem.test_cases
-			@answers = @problem.model_answers
+			session[:problem_id] = params[:problem_id]
+			@problem = Problem.find_by_id(session[:problem_id])
 			@track = Track.find_by_id(@problem.track_id)
 			@topic = Topic.find_by_id(@track.topic_id)
 			@tracks = Track.where(topic_id: @track.topic_id)
