@@ -5,4 +5,5 @@ require File.expand_path('../application', __FILE__)
 Tutor::Application.initialize!
 
 #paginate
+require 'will_paginate'
 require 'will_paginate/array'
