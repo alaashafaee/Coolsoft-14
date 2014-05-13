@@ -1,9 +1,27 @@
 <div class="contest_information">
 	<h2> Contest: <%= @contest.title  %></h2>
 	<h3><%= @contest.description %></h3>
+	<h4><% if Time.now < @contest.end_time %>
+			<% if Time.now < @contest.start_time %>
+				Not started yet
+			<% else %>
+			on going 
+			<%end%>
+		<% else %>
+			expired
+			<p> Any new progress will not be saved </p>
+		<% end %>
+	</h4>
+	<h5><% if Time.now < @contest.start_time %>
+		Starts at 
+		<% else %>
+		Started at
+		<%end%>
+		<%= @contest.start_time %>
+	<h5>
+	<h5>Ends at <%= @contest.end_time %></h5>
 	<ul>
 		<li>Standings</li>
-		<li>Submissions</li>
 		<li>Registrants</li>
 		<li>Register</li>
 	</ul>
@@ -14,6 +32,7 @@
 		<td> Rank </td>
 		<td> Contestant </td>
 		<% @contest.problems.each do |problem| %>
+		<!-- url to be inserted here -->
 		<td> <%= problem.title %> </td>
 		<% end %>
 	</tr>

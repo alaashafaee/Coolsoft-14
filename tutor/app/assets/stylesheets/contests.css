@@ -20,13 +20,17 @@
 	margin-top: 20px;
 }
 
+.contest_information h2 {
+	width: 30%;
+	margin: auto;
+}
 .contest_information{
 	text-align : center !important;
 }
 
 .contest_information ul {
 	list-style: none;
-	border-bottom: 2px solid #A0A4A6;
+	border-bottom: 1px solid #A0A4A6;
 }
 .contest_information ul li {
 	display: inline;
