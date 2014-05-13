@@ -1,4 +1,4 @@
-ActiveAdmin.register Solution do
+ActiveAdmin.register TestCase do
 
   
   # See permitted parameters documentation:
