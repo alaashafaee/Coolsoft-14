@@ -10,7 +10,7 @@ index_number = 0
 # Returns: none
 # Author: Mussab ElDash
 @start_debug = (problem_id, problem_type) ->
-	input = $('#solution_code').val()
+	input = get_editor_session().getValue()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -20,7 +20,8 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
-		data: {code: input, case: test , problem_type: problem_type}
+		data: {code: input, case: test , class_name: class_name,
+				problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -48,7 +49,8 @@ index_number = 0
 #	none
 # Author: Ahmed Akram
 @compile = (problem_id, problem_type) ->
-	input = $('#solution_code').val()
+	input = get_editor_session().getValue()
+	class_name = $("#class_name").val()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -57,7 +59,8 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
-		data: {code: input, problem_id: problem_id, problem_type: problem_type}
+		data: {code: input, problem_id: problem_id,
+			class_name: class_name, problem_type: problem_type}
 		datatype: 'json'
 		success: (unique) ->
 			clear_console()
@@ -82,7 +85,7 @@ index_number = 0
 #	none
 # Author: Ahmed Akram
 @run_input = (problem_id, problem_type) ->
-	code = $('#solution_code').val()
+	code = get_editor_session().getValue()
 	if code.length is 0
 		alert "You didn't write any code"
 		return
@@ -92,7 +95,8 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
-		data: {code: code, problem_id: problem_id, input: test, problem_type: problem_type}
+		data: {code: code, problem_id: problem_id, input: test,
+			class_name: class_name, problem_type: problem_type}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -222,7 +226,7 @@ debug_console = ->
 	$('#nextButton').toggle(state)
 	$('#previousButton').toggle(state)
 	$('#stopButton').toggle(state)
-	editor = ace.edit("editor")
+	editor = get_editor()
 	editor.setReadOnly(state)
 	normal_theme = "ace/theme/twilight"
 	debug_theme = normal_theme + "-debug"
@@ -266,7 +270,7 @@ debug_console = ->
 # Returns: none
 # Author: Rami Khalil
 @highlight_line = (line) ->
-	editor = ace.edit("editor")
+	editor = get_editor()
 	editor.gotoLine line, 0, true
 
 # [Execute Line By Line - Story 3.8]
@@ -327,7 +331,7 @@ debug_console = ->
 #	and the success and failure messages are displayed in a table
 # Author: MOHAMEDSAEED
 @validate_code = (problem_id, problem_type) ->
-	code = $('#solution_code').val()
+	code = get_editor_session().getValue()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
 	time = (mins * 60) + secs
@@ -379,10 +383,15 @@ debug_console = ->
 # Parameters: none
 # Returns: none
 # Author: MOHAMEDSAEED
-@reload_template = () -> 	
-	editor = ace.edit("editor");
-	edit_session = editor.getSession();
+@reload_template = () ->
 	template = "public class CoolSoft {\n"
 	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
-	edit_session.setValue(template);
+	get_editor_session().setValue(template);
+	$('#class_name').val("CoolSoft");
 	return
+
+get_editor = ->
+	ace.edit("editor")
+
+get_editor_session = ->
+	get_editor().getSession()
