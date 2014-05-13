@@ -32,6 +32,12 @@ Tutor::Application.routes.draw do
 	get "tips/edit"
 	get "tips/destroy"	
 	post "tips/:id/edit" => 'tips#update'
+	get "problems/destroy"
+	get "test_cases/edit"
+	get "test_cases/destroy"
+	get "model_answers/edit"
+	get "hints/edit"
+	get "model_answers/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
