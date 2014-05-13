@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513165120) do
+ActiveRecord::Schema.define(version: 20140513171629) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -300,6 +300,15 @@ ActiveRecord::Schema.define(version: 20140513165120) do
     t.string   "subject"
     t.string   "email"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "message"
+    t.boolean  "seen"
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

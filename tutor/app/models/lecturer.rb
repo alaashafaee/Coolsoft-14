@@ -54,6 +54,7 @@ class Lecturer < ActiveRecord::Base
 
 	has_many :resources, as: :owner
 	has_many :notes, as: :owner
+	has_many :notifications, as: :receiver
 
 	#Methods
 	# [Advanced Search - Story 1.23]
