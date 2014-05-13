@@ -16,6 +16,7 @@ class TimeLimit
 		unless args.empty?
 			stdin, stdout, stderr, wait_thr = Open3.popen3 args
 			pid = wait_thr.pid
+			terminated = false
 			begin
 				status = Timeout::timeout(time) {
 					Process.wait(pid)
@@ -26,17 +27,22 @@ class TimeLimit
 			begin
 				Process.kill("TERM", pid)
 			rescue => e
+				terminated = true
 			end
 			result_out = stdout.read
 			result_err = stderr.read
-			return result_out, result_err
+			return terminated, result_out, result_err
 		else
 			begin
-				status = Timeout::timeout(time) {
+				Timeout::timeout(time) {
 					yield
 				}
 			rescue => e
+				unless e.message === 'Exited'
+					return "The debugging session timed out."
+				end
 			end
+			return "The debugging session was successful."
 		end
 	end
 end

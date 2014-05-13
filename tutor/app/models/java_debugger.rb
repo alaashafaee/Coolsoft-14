@@ -61,8 +61,9 @@ class JavaDebugger
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(class_name, input)
+	def start(class_name, input, time = 10)
 		$all = []
+		status = "The debugging session was successful."
 		begin
 			$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
 			buffer_until_ready
@@ -73,9 +74,10 @@ class JavaDebugger
 			locals = get_variables
 			nums[:locals] = locals
 			$all << nums
-			TimeLimit.start(30){
+			status = TimeLimit.start(time){
 				debug
 			}
+			puts status
 		rescue => e
 			unless e.message === 'Exited'
 				return false
@@ -85,7 +87,7 @@ class JavaDebugger
 			Process.kill("TERM", $wait_thread.pid)
 		rescue => e
 		end
-		return $all
+		return $all, status
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -213,11 +215,12 @@ class JavaDebugger
 		class_name = solution.class_name
 		folder_name = Solution::SOLUTION_PATH + solution.folder_name
 		debugging = ""
+		status = ""
 		Dir.chdir(folder_name){
-			debugging = debugger.start(class_name, input.split(" "))
+			debugging, status = debugger.start(class_name, input.split(" "))
 		}
 		FileUtils.rm_rf(folder_name)
-		return {:success => true, data: debugging}
+		return {:success => true, data: debugging, status: status}
 	end
 
 	# [Debugger: View Variables - Story 3.7]

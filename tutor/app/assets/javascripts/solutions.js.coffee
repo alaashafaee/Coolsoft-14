@@ -2,7 +2,8 @@
 variables = null
 # The number of the current index of the line to be executed
 index_number = 0
-
+#The status of the debugging session
+status = null
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
 # Parameters:
@@ -26,12 +27,12 @@ index_number = 0
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
-			variables = data
 			stop_spin()
 			if !data["success"]
 				compilation_error data["data"]["errors"]
 				return
 			variables = data["data"]
+			status = data["status"]
 			toggleDebug(1)
 			debug_console()
 			jump_state 0
@@ -250,7 +251,7 @@ debug_console = ->
 		alert "The online debugger can only step forward 100 times."
 		jump_state index_number
 	else
-		alert "The program has terminated."
+		alert status
 		jump_state index_number
 
 # [Execute Line By Line - Story 3.8]
