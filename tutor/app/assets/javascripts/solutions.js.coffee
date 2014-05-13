@@ -389,10 +389,12 @@ debug_console = ->
 # Returns: none
 # Author: MOHAMEDSAEED
 @reload_template = () ->
-	template = "public class CoolSoft {\n"
-	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
-	get_editor_session().setValue(template);
-	$('#class_name').val("CoolSoft");
+	disabled = $('#solution_code').prop 'disabled'
+	unless disabled
+		template = "public class CoolSoft {\n"
+		template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+		get_editor_session().setValue(template);
+		$('#class_name').val("CoolSoft");
 	return
 
 get_editor = ->
