@@ -20,23 +20,34 @@ class PythonDebugger
 		end
 		return result
 
-	def get_locals
-		result = []
-		input "locals()"
+	def get_variable name
+		value = ""
+		input "locals()[#{name}]"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
-			new_line = line[1..-2]
-			list_of_variables = new_line.split(", ")
-			list_of_variables.each do |variable|
-				separate = variable.split(": ")
-				name = separate[0]
-				value = separate[1]
-				if is_valid_variable name, value == false
-					next
-				elsif value.match("instance")
-					value = get_object_value name
+			value << line
+		end
+		if is_valid_variable name, value == false
+			return 0
+		elsif value.match("instance")
+			value = get_object_value name
+		return value
+
+	def get_locals
+		all = ""
+		result = []
+		input "locals().keys()"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			all << line
+		end
+		new_all = all[1..-2]
+		list_of_variables = new_all.split(", ")
+		list_of_variables.each do |variable|
+			name = variable
+			value = get_variable name
+			unless value == 0
 				result << "#{name} = #{value}"
-				end
 			end
 		end
 		return result
