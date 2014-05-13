@@ -114,7 +114,7 @@ class ProblemsController < ApplicationController
 	#	problem_params: a problem's title, description & track_id
 	# Returns:
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny + Rami Khalil
 	def update
 		@problem = Problem.find_by_id(params[:id])
 		@track = Track.find_by_id(@problem.track_id)
@@ -125,6 +125,8 @@ class ProblemsController < ApplicationController
 			@message = "Description updated"
 		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem is moved to Track #{problem_params[:track_id]}"
+		elsif problem_params[:template] != @problem.template
+			@message = "Problem code template updated."
 		else
 			flash.keep[:notice] = "You have entered the same parameters. No change has been made!"
 		end

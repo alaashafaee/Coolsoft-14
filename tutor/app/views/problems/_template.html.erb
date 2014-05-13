@@ -1,9 +1,10 @@
-<p><%= @problem.description %></p>
+<p><%= @problem.template %></p>
 <%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
-	<%= problem.text_area :description, :cols => "50", :rows => "10" %>
+	<%= problem.text_area :template, cols: 50, rows: 10 %>
 	<p>
-		<%= problem.submit('update description') %>
+		<%= problem.submit('Update template') %>
 	</p>
+	<%= problem.hidden_field :description, value: @problem.description %>
 	<%= problem.hidden_field :title, value: @problem.title %>
 	<%= problem.hidden_field :track_id, value: @problem.track_id %>
 <% end %>
