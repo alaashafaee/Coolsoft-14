@@ -12,6 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-1.10.4
 //= require_tree .
 //= require jquery.tokeninput
 //= require utilities
+
+$(function() {
+	alert("sasd");
+	$('#search_field').autocomplete({
+  		source: [ "hello", "hello1" ]
+  	});
+});
