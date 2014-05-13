@@ -10,7 +10,6 @@
 				<% if @lecturers.present? %>
 					<div class="panel-group list-group" id="accordion">
 						<%= render "result_form", objects: @lecturers %>
-						<%= will_paginate @lecturers %>
 					</div>
 				<% end %>
 				<% if @students.present? %>
@@ -29,6 +28,9 @@
 					</div>
 				<% end %>
 			<% end %>
+			<div class="pagination pagination-centered pull-right">
+				<%= will_paginate (@objects) %>
+			</div>
 		</div>
 	</div>
 </div>
