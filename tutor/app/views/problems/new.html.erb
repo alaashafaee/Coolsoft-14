@@ -1,21 +1,36 @@
+<div id = "crumbs">
+	<ul >
+		<li class = "sub"><a class = "visit">Problem</a></li>
+		<li class = "sub1"><a class = "preventclick" style="padding:5px 15% 0 0px;">Test Cases</a></li>
+		<li class = "sub2"><a class = "preventclick" style="padding: 5px 5% 0 0px;">Model Answer</a> </li>
+		<li class = "sub3"><a class = "preventclick">Tips</a></li>
+		<li class = "sub4"><a class = "preventclick">Hints</a></li>
+	</ul>
+</div><br><br>
 <h1 align ="center">Add a problem</h1>
-</br>
-
 <% if flash[:notice] %>
 	<div class = "alert alert-danger" style = "width: 50%;"><%= flash[:notice] %></div>
 <% end %>
-
-<%= form_for :Problem, url: {action: "create"} do |problem| %>
+<% if @problem.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@problem.errors.count, "error") %>prohibited this course from being saved:</h2>
+			<ul>
+				<% @problem.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %> 
+<%= form_for :problem, url: problems_path do |problem| %>
 	<p>
-		<%= problem.label :title %><br> 
-		<%= problem.text_field :title, class: "form-control", style: "width:60%" %>
+		<%= problem.label :Title %><br> 
+		<%= problem.text_field :title, class: "form-control", style: "width:60%", :value => @problem.title %>
 	</p>
 	<p>
 		<%= problem.label :description %><br>
-		<%= problem.text_area :description, :cols => "50", :rows => "10",
-			 class: "form-control", style: "width:60%" %>
+		<%= problem.text_area :description, :cols => "50", :rows => "10",class: "form-control", style: "width:60%", :value => @problem.description %>
 	</p>
-	<%= problem.hidden_field :track_id, value: params[:id] %>
+	<%= problem.hidden_field :track_id, value: session[:track_id] %>
 	<p>
 		<%= problem.submit "Save Problem", class: "btn btn-info" %>
 	</p>
