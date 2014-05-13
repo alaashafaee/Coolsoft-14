@@ -3,7 +3,7 @@
     	<li class="sub"><a class = "preventclick">Problem</a></li>
     	<li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'new',
 			:problem_id => @problem.id,:track_id => @problem.track_id},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
-    	<li class="sub2"><a class = "visit" style="padding: 5px 3.75%% 0 0px;">Model Answers</a> </li>
+    	<li class="sub2"><a class = "visit" style="padding: 5px 4.9% 0 0px;">Model Answer</a> </li>
     	<li class="sub3"><a class="preventclick" >Tips</a></li>
     	<li class="sub4"><a class="preventclick" >Hints</a></li>    
     </ul>
@@ -26,7 +26,7 @@
 <p>
 	<h2>Please Insert your model answer</h2>
 	<br><%= f.label :Title %>
-		<%= f.text_field :title %></br>
+		<%= f.text_field :title, class: "form-control", style: "width:30%",:cols => "2", :rows => "1" %></br>
 		<br><%= f.label :Answer %> </br>
 	<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10", :rows => "10" %>
 </p><br>
