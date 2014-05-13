@@ -1,0 +1,55 @@
+<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
+<div id = "crumbs">
+    <ul>
+  		<li class="sub"><a class = "preventclick"  >Problem</a> </li>
+   
+    	<li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'new',
+					:problem_id => session[:problem_id]},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
+		<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'new',
+					:problem_id => session[:problem_id]},{:method => :get , :style=>'padding: 5px 3.75%% 0 0px;', :class => "css_class"} %> </li>
+    	<li class="sub3"><%= link_to "Tips", {:controller => 'tips', :action => 'new',
+					:model_answer_id => session[:model_answer_id],:track_id => session[:track_id]},:method => :get %> </li> 
+        <li class="sub4"><a class="visit" >hints</a> </li>
+    </ul>
+</div>
+<br><br>
+	<h2>Create hint for model answer <h1 style="color:red;"><%=  ModelAnswer.find_by_id(session[:model_answer_id]).title %></h1></h2>
+	<% if @hint.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@hint.errors.count, "error") %>
+				prohibited the Hint from being saved:
+			</h2>
+		</div>
+		<ul>
+			<% @hint.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+	<div style = "vertical-align: auto; horizontal-align: auto; float:center;">
+		<%= form_for :hint, url: hints_path do |t| %>
+			<p>
+				<%= t.label :Content %><br>
+				<%= t.text_area :message, class:"form-control", style:"width:350px",
+				 :value => @hint.message %>
+			</p>
+			<p>
+				<%= t.label :Submission_counter %><br>
+				<%= t.text_field :submission_counter,class:"form-control", style: "width:55px; height:35px;", :value => @hint.submission_counter %>
+			</p>
+			<p>
+				<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
+			</p>
+			<p style="position: relative; bottom: 30%; left: 0%;">
+				<%= t.submit class: 'btn btn-info' %>
+			</p>
+		<% end %>	
+	</div>
+	<div style="position: absolute; bottom: 20%; right: 450px;">
+		<%= link_to "Done", {:controller => 'tracks', :action => 'show',
+					:id => params[:track_id]},:method => :get,:class => "btn btn-info"%>
+		<% end %>
+	</div>
