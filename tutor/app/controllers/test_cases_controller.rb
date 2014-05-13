@@ -77,13 +77,33 @@ class TestCasesController < ApplicationController
 	#	Flash message if the test case is updated or not
 	# Author: Nadine Adel
 	def update
-		@test_case = TestCase.find(params[:id])
-		if @test_case.update_attributes(post_params)
-			flash[:notice] = "Your Testcase is now updated"
-			redirect_to :controller => 'problems', :action => 'edit', :id => @test_case.problem_id
-		else
-			render :action=>'edit', :problem_id => @test_case.problem_id
-		end
+		@test_case = TestCase.find(params[:test_case_id])
+		if test_case_params[:input] != @test_case.input ||
+			test_case_params[:output] != @test_case.output
+			begin
+				if @test_case.update_attributes(test_case_params)
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:test_case_id => @test_case.id, :track_id => session[:track_id]}
+					end
+				else
+					@test_case = TestCase.find_by_id(params[:test_case_id])
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:test_case_id => @test_case.id, :track_id => session[:track_id]}
+					end
+				end
+			rescue
+				@test_case = TestCase.find_by_id(session[:test_case_id])
+				respond_to do |format|
+					format.js
+					format.html {redirect_to :action => "edit", :format => :js, 
+					:test_case_id => @test_case.id, :track_id => session[:track_id]}
+				end
+			end
+		end	
 	end
 
 	# [Remove Test Case - Story 4.16]
