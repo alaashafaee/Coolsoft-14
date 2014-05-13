@@ -1,0 +1,12 @@
+<%= form_for :Grade, url: {action: "create"} do |grade| %>
+	<p>
+		<%= grade.label :grade %><br> 
+		<%= problem.text_field :grade, class: "form-control", style: "width:10%" %>
+		/<%= @problem.grade %>
+	</p>
+	<%= problem.hidden_field :problem_id, value: @problem.id %>
+	<%= problem.hidden_field :student_id, value: @student.id %>
+	<p>
+		<%= problem.submit "Grade Solution", class: "btn btn-info" %>
+	</p>
+<% end %>
