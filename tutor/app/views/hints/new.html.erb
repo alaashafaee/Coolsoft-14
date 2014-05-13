@@ -5,8 +5,8 @@
    
     	<li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'new',
 					:problem_id => session[:problem_id]},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
-		<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'new',
-					:problem_id => session[:problem_id]},{:method => :get , :style=>'padding: 5px 3.75%% 0 0px;', :class => "css_class"} %> </li>
+		<li class="sub2"><%= link_to "Model Answer", {:controller => 'model_answers', :action => 'new',
+					:problem_id => session[:problem_id]},{:method => :get , :style=>'padding: 5px 5% 0 0px;', :class => "css_class"} %> </li>
     	<li class="sub3"><%= link_to "Tips", {:controller => 'tips', :action => 'new',
 					:model_answer_id => session[:model_answer_id],:track_id => session[:track_id]},:method => :get %> </li> 
         <li class="sub4"><a class="visit" >hints</a> </li>

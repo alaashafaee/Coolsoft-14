@@ -21,10 +21,9 @@
 		</div>
 	<% else %> 
 	<%= f.hidden_field :problem_id, :value => @problem.id %>
-	<h1>Please insert model answer for problem <h1 style="color:red;"><%= @problem.title %></h1></h1>
+	<h2>Please insert model answer for problem <h3 style="color:red;"><%= @problem.title %></h3></h2>
 <% end %>
 <p>
-	<h2>Please Insert your model answer</h2>
 	<br><%= f.label :Title %>
 		<%= f.text_field :title, class: "form-control", style: "width:30%",:cols => "2", :rows => "1" %></br>
 		<br><%= f.label :Answer %> </br>
