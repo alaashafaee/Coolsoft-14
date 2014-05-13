@@ -23,7 +23,7 @@ class ModelAnswersController < ApplicationController
 	#	@problems: The problem to which the answer is linked.
 	# Returns:
 	#	A message if the answer is added and another message if answer was not added.
-	# Author: Nadine Adel
+	# Author: Nadine Adel & Ahmed Osam
 	def create
 		@new_answer = ModelAnswer.new
 		@new_answer.title = post_params[:title]
@@ -59,15 +59,16 @@ class ModelAnswersController < ApplicationController
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef
 	def destroy
-		@model_answer = ModelAnswer.find_by_id(params[:id])
+		@model_answer = ModelAnswer.find_by_id(params[:model_answer_id])
 		@current = Problem.find_by_id(@model_answer.problem_id)
 		if @current.model_answers.count == 1
 			flash[:notice] = "Cannot delete problem's last model answer"
 			redirect_to :back and return
 		elsif @model_answer.destroy
 			flash[:notice] = "Answer successfully Deleted"
-			redirect_to(:controller => 'problems', :action => 'edit', :id => @current.id)
-		end
+			redirect_to(:controller => 'model_answers', :action => 'index',
+			 :problem_id => @current.id, :track_id => session[:track_id] )redirect_to(:controller => 'model_answers', :action => 'index', :problem_id => @current.id, :track_id => session[:track_id] )
+		end	
 	end
 
 	# [Edit answer story 4.7]
