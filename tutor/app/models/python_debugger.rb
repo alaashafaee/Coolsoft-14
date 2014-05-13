@@ -17,7 +17,7 @@ class PythonDebugger
 		input "dir()"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
-			new_line = line[1..-1]
+			new_line = line[1..-2]
 			list_of_variables = new_line.split(", ");
 			local_variables << list_of_variables
 		end
@@ -38,10 +38,9 @@ class PythonDebugger
 		stack_trace = []
 		input "w"
 		output_buffer = buffer_until_complete
+		output_buffer = output_buffer[3..-3]
 		output_buffer.each_line do |line|
-			if line.match("->")
-				stack_trace << line
-			end
+			stack_trace << line
 		end
 		return stack_trace
 	end
