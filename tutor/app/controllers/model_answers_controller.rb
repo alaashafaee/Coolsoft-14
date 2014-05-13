@@ -84,7 +84,7 @@ class ModelAnswersController < ApplicationController
 	#	A message if the answer is edited and another message if answer was not edited.
 	# Author: Nadine Adel
 	def edit
-		@answer = ModelAnswer.find(params[:id])
+		@answer = ModelAnswer.find(params[:model_answer_id])
 		@problem = Problem.find(@answer.problem_id)
 		@tips = @answer.hints
 		@tips_check = @answer.hints
@@ -100,14 +100,35 @@ class ModelAnswersController < ApplicationController
 	# Author: Nadine Adel
 	def update
 		@answer = ModelAnswer.find(params[:id])
-		if @answer.update_attributes(post_params)
-			flash[:notice] = "Your Answer is now updated"
-  			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
-		else
-			render :action=>'edit', :problem_id => @answer.problem_id
-
+		if model_answer_params[:title] != @answer.title ||
+				model_answer_params[:answer] != @answer.answer
+				begin
+					if @answer.update_attributes(model_answer_params)
+						respond_to do |format|
+							format.js
+							format.html {redirect_to :action => "edit", :format => :js, 
+								:model_answer_id => @answer.id, :track_id => session[:track_id]}
+						end
+					else
+						@answer = ModelAnswer.find_by_id(params[:model_answer_id])
+						respond_to do |format|
+							format.js
+							format.html {redirect_to :action => "edit", :format => :js, 
+								:model_answer_id => @answer.id, :track_id => session[:track_id]}
+							
+						end
+					end
+				rescue
+					@answer = ModelAnswer.find_by_id(session[:model_answer_id])
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:model_answer_id => @answer.id, :track_id => session[:track_id]}
+						
+						end
+				end
+			end
 		end
-	end
 
 	# [Add answer story 4.6]
 	# It shows answer that was entered before.
