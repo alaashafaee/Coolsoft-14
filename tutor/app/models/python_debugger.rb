@@ -13,7 +13,7 @@ class PythonDebugger
 
 	def get_object_value name
 		result = ""
-		input "#{name}.__dict__"
+		input name + ".__dict__"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
 			result << line
@@ -21,9 +21,9 @@ class PythonDebugger
 		return result
 	end
 
-	def get_variable name
+	def get_variable type, name
 		value = ""
-		input "locals()[#{name}]"
+		input type + "[" + name + "]"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
 			value << line
@@ -35,21 +35,21 @@ class PythonDebugger
 		return value
 	end
 
-	def get_locals
-		all = ""
+	def get_variables_helper type
+		all_lines = ""
 		result = []
-		input "locals().keys()"
+		input type + ".keys()"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
-			all << line
+			all_lines << line
 		end
-		new_all = all[1..-2]
-		list_of_variables = new_all.split(", ")
+		all_lines_trimmed = all_lines[1..-2]
+		list_of_variables = all_lines_trimmed.split(", ")
 		list_of_variables.each do |variable|
 			name = variable
-			value = get_variable name
+			value = get_variable type, name
 			unless value == 0
-				result << "#{name} = #{value}"
+				result << name + " = " + value
 			end
 		end
 		return result
@@ -65,7 +65,7 @@ class PythonDebugger
 	# Author: Khaled Helmy
 	def get_variables
 		variables = []
-		variables = get_locals + get_globals
+		variables = get_variables_helper "locals()" + get_variables_helper "globals()"
 		return variables
 	end
 
