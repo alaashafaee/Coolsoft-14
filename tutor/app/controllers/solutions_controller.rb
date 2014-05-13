@@ -38,18 +38,24 @@ class SolutionsController < ApplicationController
 
 	# [Compiler: Compile - Story 3.4]
 	# Creates a soution for the current problem in the database and compiles it.
-	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		param = solution_params
-		code = param[:code]
-		student = current_student.id
-		problem = param[:problem_id]
-		compiler_feedback = SolutionsLayer.compile "java", code, student, problem
-		render json: compiler_feedback
+		solution = Solution.new(solution_params)
+		solution.student_id = current_student.id
+		solution.length = solution.code.length
+		if solution.save
+			compiler_feedback = Compiler.compiler_feedback(solution)
+			if compiler_feedback[:success]
+				solution.status = 3
+			else
+				solution.status = 2
+			end
+			solution.save
+			render json: compiler_feedback
+		end
 	end
 
 	private
@@ -62,7 +68,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time)
+		params.permit(:code, :problem_id, :time, :class_name)
 	end
 
 	# [Compiler: Test - Story 3.15]
