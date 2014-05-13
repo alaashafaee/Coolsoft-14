@@ -16,21 +16,15 @@
 	onClick: "reload_template()", class: "btn btn-info" %>
 </div>
 <br>
-
-<!-- Add editor -->
-<pre id="editor">
-</pre>
-<%= f.hidden_field :problem_id, value: params[:id] %>
-<br>
 <table width='100%'>
 	<tr>
 		<td>
-			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
-				onClick: "compile(#{params[:id]})", class: "btn btn-info" %>
-			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
-				type: 'Button', onClick: "run_input(#{params[:id]})" %>
-			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-				onclick: "start_debug(#{params[:id]})", class: "btn btn-info" %>	
+			<div class="a3"><img src="/assets/compile.png" id='compileButton' onClick= "compile(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:left; margin-left:5px;" title="Compile" ></img><br/><br/><div>Compile<div></div>
+
+			<div class="a3"><img src="/assets/run1.png" id='testButton' onClick= "run_input(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:left; margin-left:10px;" title="Run Test Case" ></img></div>
+
+			<div class="a3"><img src="/assets/debug.png" id='debugButton' onClick= "start_debug(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:left; margin-left:10px;" title="Start Debugging" ></img></div>
+	
 			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
 				style: "display: none", id: 'previousButton', 
 				onClick: 'previous()', hidden: true %>
@@ -47,11 +41,19 @@
 			<b class='wrong_answer'>Wrong Answer</b>
 			<b class='runtime_error'>Runtime Error</b>
 			<b class='compilation_error'>Compilation Error</b>
-			<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
-				onClick: "validate_code(#{params[:id]})", class: "btn btn-info" %>
+
+			<div class="a3"><img src="/assets/submit.png" id='submitButton' onClick= "validate_code(<%=params[:id]%>)" style= "height: 40px; width: 40px; cursor:pointer; float:right; margin-left:10px;" title="Submit" ></img></div>
+
 		</td>
 	</tr>
 </table>
+
+<!-- Add editor -->
+<pre id="editor">
+</pre>
+<%= f.hidden_field :problem_id, value: params[:id] %>
+<br>
+
 <br /><br />
 
 <div>
@@ -113,4 +115,16 @@
 	};
 	edit_session.on('change', code_filter_function);
 </script>
+<style type="text/css">
+
+.a3 img {
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+}
+.a3 img:hover {
+	opacity: 0.5;
+}
+
+</style>
 <% end %>
