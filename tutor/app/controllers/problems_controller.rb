@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#	id: The problem statement id
 	# Returns: none
-	# Author: MIMI
+	# Author: MIMI + Rami Khalil
 	def show
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.nil?
@@ -14,6 +14,7 @@ class ProblemsController < ApplicationController
 			@track = @problem.track
 			@topic = @track.topic
 			@course = @topic.course
+			@template = @problem.template
 		end
 	end
 
@@ -63,6 +64,7 @@ class ProblemsController < ApplicationController
 			@track = Track.find_by_id(@problem.track_id)
 			@topic = Topic.find_by_id(@track.topic_id)
 			@tracks = Track.where(topic_id: @track.topic_id)
+			@template = @problem.template
 		else
 			render ('public/404')
 		end
@@ -124,7 +126,7 @@ class ProblemsController < ApplicationController
 		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem is moved to Track #{problem_params[:track_id]}"
 		else
-			flash.keep[:notice] = "You have entered the same paramater no change has been made!"
+			flash.keep[:notice] = "You have entered the same parameters. No change has been made!"
 		end
 
 		if problem_params[:track_id].to_i == @problem.track_id
@@ -204,16 +206,13 @@ class ProblemsController < ApplicationController
 
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
-	# Parameters:
-	#	title: problem's title
-	#	description: problem's description
-	#	track_id: problem's track id
+	# Parameters: none
 	# Returns:
-	#	Params to create action & update action
-	# Author: Abdullrahman Elhusseny
+	#	Filtered parameter list for problems
+	# Author: Abdullrahman Elhusseny + Rami Khalil
 	private
 		def problem_params
-			params.require(:Problem).permit(:title, :description, :track_id)
+			params.require(:Problem).permit(:title, :description, :track_id, :template)
 		end
 
 end

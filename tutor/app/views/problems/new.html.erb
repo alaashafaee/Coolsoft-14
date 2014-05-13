@@ -15,6 +15,11 @@
 		<%= problem.text_area :description, :cols => "50", :rows => "10",
 			 class: "form-control", style: "width:60%" %>
 	</p>
+	<p>
+		<%= problem.labem :template %><br>
+		<%= problem.text_area :description, cols: 50, rows: 10,
+			class: "form-control", style: "width: 60%" %>
+	</p>
 	<%= problem.hidden_field :track_id, value: params[:id] %>
 	<p>
 		<%= problem.submit "Save Problem", class: "btn btn-info" %>
