@@ -28,7 +28,9 @@
         </p>
         <p>
             <%= f.label :content %><br>
-            <%= f.cktext_area :content, rows: 10 %>
+            <div class="container well">
+                <%= f.cktext_area :content, cols: 10, :ckeditor => {:toolbar => 'basic'}  %>
+            </div>
         </p>
         <p>
             <%= f.submit "Update Post", class: "btn btn-success" %>
