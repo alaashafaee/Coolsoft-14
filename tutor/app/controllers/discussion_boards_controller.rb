@@ -24,6 +24,19 @@ class DiscussionBoardsController < ApplicationController
 	  	@course = Course.find(params[:id])
 	  	@discussionBoard = @course.discussion_board
 	  	@posts = @discussionBoard.posts.order("created_at desc")
+	  	current_user
+	end
+
+	private
+
+	def current_user
+		if student_signed_in?
+			@current_user = current_student
+		elsif lecturer_signed_in?
+			@current_user = current_lecturer
+		elsif teaching_assistant_signed_in?
+			@current_user = current_teaching_assistant
+		end
 	end
 
 end

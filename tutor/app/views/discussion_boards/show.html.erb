@@ -10,17 +10,19 @@
 				<div class="container box" style="background-color:white !important; width:100%;" >
 					<div class="col-md-12 container well">
 						<div class="row">
-							<div class="container col-sm-2">  </div>
-							<div class="container col-sm-8"> <h2><b><%= link_to post.title, post %></b></h2></div>
+							<div class="container col-sm-2" style="width:10%; height:100% !important;"> 
+								<%= image_tag @current_user.profile_image_url.to_s, class:"image" %> </div>
+							<div class="container col-sm-8" style="width:90%;"> <h2><b><%= link_to post.title, post %></b></h2></div>
 							
 						</div>
 						<br>
 						<div class="row">
-							<div class="container col-sm-4 details"> <h3>Views</h3> <%= post.views_count %> </div>
-							<div class="container col-sm-4 details"> <h3>Replies</h3> <%= post.replies.count %></div>
-							<div class="container col-sm-4 details"> <h3>Posted at</h3>
+							<div class="container col-sm-3 details"> <h3>posted by</h3> <%= link_to post.owner.name , post.owner %></div>
+							<div class="container col-sm-3 details"> <h3>posted at</h3>
 								<%= distance_of_time_in_words_to_now post.created_at %>
 							</div>
+							<div class="container col-sm-3 details"> <h3>views</h3> <%= post.views_count %> </div>
+							<div class="container col-sm-3 details"> <h3>replies</h3> <%= post.replies.count %></div>
 						</div>
 					</div>
 				</div>
@@ -31,6 +33,9 @@
 	</div>
 </div>
 <style type="text/css">
+	h3 {
+		font-size: 1.9em;
+	}
 	.header {
 		text-align: center;
 		/*box-shadow: 50px 0px 50px black;*/
@@ -38,12 +43,6 @@
 	.body {
 		background-color:blue;
 		text-align: center;
-	}
-	.test {
-		min-width: 50%;
-		min-height: 50%;
-		width: 100%;
-		height: 100%;
 	}
 	.box {
 		/*border-top: 1px solid #1a5f63 !important;*/
@@ -56,5 +55,8 @@
 		width: 50%;
 		height: 50%;
 		background-color: #e61349;
+	}
+	.image {
+		width: 100%;
 	}
 </style>
