@@ -20,6 +20,6 @@
 $(function() {
 	alert("sasd");
 	$('#search_field').autocomplete({
-  		source: [ "hello", "hello1" ]
-  	});
+		source: [ "hello", "hello1" ]
+	});
 });
