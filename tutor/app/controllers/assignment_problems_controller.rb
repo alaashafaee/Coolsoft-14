@@ -38,6 +38,41 @@ def create
 
   def index
   	@assignment =Assignment.find_by_id(session[:assignment_id])
+  	@course_id = @assignment.course_id
+  	@course = Course.find_by_id(@course_id)
+  	@topics = @course.topics
+  	@tracks = Array.new
+  	if !@topics.empty?
+      @topics.find_each do |topic|
+        @tracksi = topic.tracks
+    @tracksi.each do |track|
+         puts "====================================================0000000"
+    puts track.id
+    puts "================================================================================================"
+			@tracks.push(track)	
+    end
+	end
+  	end
+  
+      @problems =Array.new
+      if !@tracks.empty?
+
+      @tracks.each do |track| 
+        @probs = track.problems
+        @probs.each do |problem1|
+            @problems.push(problem1)  
+          end
+  end
+    end
+    @contest = @course.contests
+    @cproblems = Array.new
+     @contest.each do |contest| 
+        @cprob = contest.problems
+        @cprobs.each do |problem1|
+            @cproblems.push(problem1)  
+          end
+  end
+  
   	  end
 
   private

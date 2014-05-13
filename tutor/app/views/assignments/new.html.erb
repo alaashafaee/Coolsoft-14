@@ -1,33 +1,35 @@
+<div class="body2" style="vertical-align: auto;horizontal-align: auto; float:left;">
+
 <%= form_for :assignment, url: assignments_path do |f| %>
 
-<body>
-
+<h2> Create Assignment </h2>
 <p>
+	<br><p><h3><%= f.label :Title %></h3></p>
+		<p><%= f.text_field :title, placeholder:"Title" %>
+		</p>
+	<p><h3>	<%= f.label :Description %></h3></p>
+	<p><%= f.text_area :description, class:"form-control" ,placeholder:"Description", :cols => "50", :rows => "10"; %>
+	</p>
+	<p><h3>
+	<%= f.label :Due_date %></h3></p>
+	<p><%= f.date_select :due_date, {:start_year => Date.today.year, :end_year => Date.today.year+3} %>
+</p>
 
-	<br><%= f.label :Title %></br>
-		<%= f.text_field :title, placeholder:"Title" %>
-		<br><%= f.label :Description %> </br>
-	<%= f.text_area :description, placeholder:"Description" %>
-	<br><%= f.label :Due_date %> </br>
-	<%= f.date_select :due_date, {:start_year => Date.today.year, :end_year => Date.today.year+3} %>
-
-
+<br>
+<p>
+<%= f.submit "Save", class: "btn btn-info btn-large" %>
 </p>
 <br>
-<div class = "centered"> 
-<%= f.submit "Save", class: "btn btn-info btn-large" %>
-</div>
-</br>
 
 
-
-</body>
+</h3>
 <% end %>
+</div>
 
 <style>
-body
+.body2
 {
-	text-align: center;
+	text-align: left;
 }
 .centered
 {

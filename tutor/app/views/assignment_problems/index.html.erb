@@ -7,10 +7,61 @@
 	<% end %>
 	</ul>
 	<div class="tab-content">
-		<div id="tab1" class="tab active">
-
-		<h1>Asiggn</h1>
-		</div>	
+			<div id="tab1" class="tab active">
+				<% openable = true %>
+				<div class="panel-group list-group" id="accordion">
+				<h3> Exercise problems </h3>
+					<% @problems.each do |problem| %>
+					<% if openable %>
+						<% open = "in" %>
+						<% openarrow = "glyphicon-chevron-down" %>
+						<% openable = false %>
+					<% else %>
+						<% open = "" %>
+						<% openarrow = "glyphicon-chevron-right" %>
+					<% end %>
+						<div class="panel panel-default">
+							<div class="panel-title list-group-item list-group-item-info">
+								<a class="icon glyphicon <%= openarrow %>"
+								href="#<%= problem.id.to_s %>"
+								data-toggle="collapse" data-parent="#accordion"
+								style="float:left;text-decoration: none;">
+								</a>
+								<input type="checkbox" style = "float:right" id="inlineCheckbox1" value=" <%= link_to problem.title, problem %>" >
+							
+						</div>
+						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
+							<%= problem.description %>
+						</div>
+					</div>
+					<% end %>
+					<h3> Contest problems </h3>
+					<% @cproblems.each do |problem| %>
+					<% if openable %>
+						<% open = "in" %>
+						<% openarrow = "glyphicon-chevron-down" %>
+						<% openable = false %>
+					<% else %>
+						<% open = "" %>
+						<% openarrow = "glyphicon-chevron-right" %>
+					<% end %>
+						<div class="panel panel-default">
+							<div class="panel-title list-group-item list-group-item-info">
+								<a class="icon glyphicon <%= openarrow %>"
+								href="#<%= problem.id.to_s %>"
+								data-toggle="collapse" data-parent="#accordion"
+								style="float:left;text-decoration: none;">
+								</a>
+							<input type="checkbox" style = "float:right";"width:90px">
+							<%= link_to problem.title, problem, style: 'color:#003366;'%>
+						</div>
+						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
+							<%= problem.description %>
+						</div>
+					</div>
+					<% end %>
+				</div>
+			</div>
 	</div>
 </div>
 <style>
@@ -22,5 +73,15 @@
 .tab-links>li>a {
   background-color: #fff; 
   border-color: #777777;
+}
+.centered
+{
+    text-align:left;
+}
+.check
+{
+    width :85px;
+    length : 90px;
+    line-height: 50px;
 }
 </style>
