@@ -26,20 +26,20 @@ class ProblemsController < ApplicationController
 	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny & Ahmed Osam
 	def create
-		problem = Problem.new(problem_params)
+		@problem = Problem.new
 		@problem.title = problem_params_add[:title]
 		@problem.description = problem_params_add[:description]
 		@problem.track_id = session[:track_id]
 		if lecturer_signed_in?
-			problem.owner_id = current_lecturer.id
-			problem.owner_type = "lecturer"
+			@problem.owner_id = current_lecturer.id
+			@problem.owner_type = "lecturer"
 		elsif teaching_assistant_signed_in?
-			problem.owner_id = current_teaching_assistant.id
-			problem.owner_type = "teaching assistant"
+			@problem.owner_id = current_teaching_assistant.id
+			@problem.owner_type = "teaching assistant"
 		end
-		problem.incomplete = true
+		@problem.incomplete = true
 		begin
-			if problem.save
+			if @problem.save
 				redirect_to :controller => "test_cases", :action => "new",
 				:problem_id => @problem.id, :track_id => session[:track_id]
 			else
