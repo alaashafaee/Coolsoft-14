@@ -4,6 +4,7 @@ variables = null
 index_number = 0
 #The status of the debugging session
 status = null
+
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
 # Parameters:
