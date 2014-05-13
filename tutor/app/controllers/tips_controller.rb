@@ -52,7 +52,11 @@ class TipsController < ApplicationController
 			@tip.owner_id = current_teaching_assistant.id
 		end
 		if @tip.save
-			render :action => 'show'
+			@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
+			@model_answer.hints << @tip
+			redirect_to :controller => 'hints', :action => 'new', 
+			:problem_id => session[:problem_id], :track_id => session[:track_id], 
+			:model_answer_id => params[:model_answer_id]
 		else
 			render :action => 'new'
 		end
@@ -72,10 +76,6 @@ class TipsController < ApplicationController
 			:model_answer_id => session[:model_answer_id]
 	end
 
-	def index
-		@tips = Hint.all
-		@tips_check = Hint.all
-	end
 
 	# [Remove tip - Story 4.20]
 	# Finds the tip that wanted to be removed
