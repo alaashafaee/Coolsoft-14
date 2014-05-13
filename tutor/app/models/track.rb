@@ -1,5 +1,5 @@
 class Track < ActiveRecord::Base
-	
+
 	#Validations
 	validates :difficulty, presence: true
 	validates :title , presence: true
@@ -14,4 +14,13 @@ class Track < ActiveRecord::Base
 
 	#Methods
 
+	def duplicate
+		tra = dup 
+		problems.each do |problem|
+			pro = problem.dup
+			tra.problems << pro
+		end
+		tra.save
+		return tra 
+	end
 end

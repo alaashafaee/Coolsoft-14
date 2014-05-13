@@ -25,10 +25,17 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    acts_as_list (0.4.0)
+      activerecord (>= 3.0)
     ansi (1.4.3)
     arel (4.0.2)
     bcrypt (3.1.7)
     builder (3.1.4)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chronic (0.10.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -128,8 +135,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.2)
-      coffee-rails
     tzinfo (0.3.39)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
@@ -148,6 +153,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
+  carrierwave
   coffee-rails (~> 4.0.0)
   composite_primary_keys (~> 6.0.1)
   devise
@@ -156,11 +163,11 @@ DEPENDENCIES
   jquery-rails (~> 3.1.0)
   json_builder (= 3.1.0)
   rails (= 4.0.4)
+  rmagick
   sass-rails (~> 4.0.2)
   sdoc
   sqlite3
   tire
-  turbolinks
   uglifier (>= 1.3.0)
   unicorn
   whenever

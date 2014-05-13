@@ -49,8 +49,6 @@ class CoursesController < ApplicationController
 	# [View Courses - Stroy 1.11]
 	# This action renders a list of all courses belonging to 
 	#	the current user.
-	# Description: This action renders a list of all courses belonging to 
-	# 			   the current user.
 	# Parameters:
 	#	current_lecturer: The current signed in lecturer
 	# Returns: 
@@ -112,6 +110,7 @@ class CoursesController < ApplicationController
 		@new_course.year = course_params[:year]
 		@new_course.semester = course_params[:semester]
 		@new_course.description = course_params[:description]
+		@new_course.university = current_lecturer.university
 		if @new_course.save
 			current_lecturer.courses << @new_course
 			@discussion_board = DiscussionBoard.new
@@ -142,7 +141,7 @@ class CoursesController < ApplicationController
 		end
 		@discussion_board = @course.discussion_board
 	end
-	
+
 	# [View a course - story 1.21]
 	#Description: This action is resposible for the view of a specific course.
 	#Parameters: 
@@ -231,16 +230,11 @@ class CoursesController < ApplicationController
 	# Author: Rania Abdel Fattah
 	def duplicate
 		@course = Course.find_by_id(course_params[:id])
-		if @new_course = @course.dup
+		if @new_course = @course.duplicate
 			render "courses/duplicate"
 		else
 			redirect_to :back
 		end
-	end
-
-	def duplicate_problem_answer
-		@topic = Topic.find_by_id(id)
-		render "courses/dup_prob_ans"
 	end
 
 	private

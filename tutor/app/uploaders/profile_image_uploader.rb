@@ -13,7 +13,7 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
 	end
 
 	# Process files as they are uploaded:
-	process :resize_to_limit => [50, 50]
+	process :resize_to_limit => [160, 160]
 
 	# Create different versions of your uploaded files:
 	version :profile do

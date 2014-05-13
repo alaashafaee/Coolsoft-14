@@ -1,4 +1,3 @@
-
 <!--Author: Mohab Ghanim -->
 <div class ="tabs">
 	<ul class="tab-links">
@@ -18,29 +17,26 @@
 			<%= flash[:success_deletion] %>
 			<%= flash[:success_creation] %>
 			<% if @courses.any? %>
-				<h1>Your Courses</h1>
 				<table class = "table table-striped", style = "width:80%">
 					<tr>
-						<th>Name</th>
+						<th>Course Name</th>
 						<th>Code</th>
-						<th>Options</th>
-						<th></th>
-						<th></th>
 					</tr>
+
 					<% @courses.each do |c| %>
-						<tr>
-							<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, 
-										:method => :get, class: "btn btn-success" %></td>
+						<tr>	
+							<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, :method => :get, class: "", style:"font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none "%>
+							</td>
 							<td><%= c.code %></td>
 							<td>
-								<% if current_lecturer %>
-									<%= link_to "Manage Course", { :controller => 'courses', :action => 'edit',
-										:method => :get, :id => c.id }, class: "btn btn-success", style: "text-decoration:none" %>
-								<% end %>
+								<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id },
+									class: "btn btn-info", method: :get, style: "text-decoration:none" %>
 							</td>
 							<td>
-								<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id },
-									class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+								<% if current_lecturer %>
+									<%= link_to "Manage", { :controller => 'courses', :action => 'edit',
+										:method => :get, :id => c.id }, class: "", style: "color:black" %>
+								<% end %>
 							</td>
 							<td>
 								<% if current_student %>
@@ -59,5 +55,8 @@
 			<% end %>
 		</div>
 	</div>
+
+</div>
+
 </div>
 

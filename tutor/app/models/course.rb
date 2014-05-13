@@ -19,9 +19,9 @@ class Course < ActiveRecord::Base
 	has_one :discussion_board, dependent: :destroy	
 	has_many :topics, dependent: :destroy
 	has_many :acknowledgements, dependent: :destroy
-
 	has_many :course_students
 	has_many :students, through: :course_students
+	has_many :contests, dependent: :destroy
 
 	#Scoops
 	
@@ -74,6 +74,20 @@ class Course < ActiveRecord::Base
 					end
 			end
 		end
+	end
+
+	def duplicate
+		c = dup
+		topics.each do |topic|
+			c.topics << topic.duplicate
+		end
+		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+		c.save
+		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+		c.topics.each do |topic|
+			p topic
+		end
+		return c 
 	end
 
 end

@@ -2243,6 +2243,35 @@ fieldset[disabled] .btn-warning.active {
   color: #f39c12;
   background-color: #ffffff;
 }
+.btn-link {
+    color: #428bca;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 0
+}
+
+.btn-link, .btn-link:active, .btn-link[disabled], fieldset[disabled] .btn-link {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
+    border-color: transparent
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #2a6496;
+    text-decoration: underline;
+    background-color: transparent
+}
+
+.btn-link[disabled]:hover, fieldset[disabled] .btn-link:hover,
+.btn-link[disabled]:focus, fieldset[disabled] .btn-link:focus {
+    color: #999;
+    text-decoration: none
+}
+
 .btn-danger {
   color: #ffffff;
   background-color: #e74c3c;
