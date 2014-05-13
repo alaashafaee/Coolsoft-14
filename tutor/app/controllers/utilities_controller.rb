@@ -6,10 +6,10 @@ class UtilitiesController < ApplicationController
 	# Returns: A hashes with search results according to the keyword
 	# Author: Ahmed Elassuty
 	def simple_search
-		@lecturers = Lecturer.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 30)
-		@students = Student.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 30)
-		@teaching_assisstants = TeachingAssistant.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 30)
-		@courses = Course.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 30)
+		@lecturers = Lecturer.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+		@students = Student.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+		@teaching_assisstants = TeachingAssistant.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 3)
+		@courses = Course.simple_search(params[:search]).paginate(:page => params[:page], :per_page => 3)
 		respond_to do |format|
 			format.js
 			format.html
