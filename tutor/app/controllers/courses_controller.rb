@@ -218,7 +218,7 @@ class CoursesController < ApplicationController
 	# Author: Mohamed Metawaa
 	def hide
 		@course = Course.find_by_id(params[:id])
-		@course.visible = !@course.visible 
+		@course.visible = !@course.visible
 		@course.save
 		redirect_to :back
 	end

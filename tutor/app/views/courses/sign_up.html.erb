@@ -41,9 +41,12 @@
 							<% @courses.each do |course| %>
 								<tr>
 									<td>
-										<% if course.visible == true %>
-											<%= link_to(course.name, {:action => "sign_up", :university => params[:university],
-											:semester =>course.semester, :id => course.id, :status => "4"} )%>
+										<% if course.visible %>
+											<%= link_to(course.name,
+											 {:action => "sign_up", 
+											 	:university => params[:university], 
+											 	:semester =>course.semester, 
+											 	:id => course.id, :status => "4"} )%>
 										<% end %>
 									</td>
 								</tr>
