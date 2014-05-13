@@ -154,6 +154,50 @@ class Solution < ActiveRecord::Base
 		return jfile_name
 	end
 
+	# [Compiler: Compile - Story 3.4]
+	# Returns the folder's name, which the solution's files will be placed into.
+	# Parameters: none
+	# Returns:
+	#	The folder's name.
+	# Author: Ahmed Moataz
+	def folder_name
+		return 'st' + student_id.to_s + 'pr' + problem_id.to_s + 'so' + id.to_s + '/'
+	end
+
+	# [Compiler: Compile - Story 3.4]
+	# Returns the file path of the solution's files.
+	# Parameters:
+	#	append_extension: A boolean value indicating if the file extension
+	#		should be appended or not.
+	# Returns: 
+	#	path: The file path.
+	# Author: Ahmed Moataz
+	def file_path(append_extension = true)
+		path =  SOLUTION_PATH + folder_name + class_name
+		path += '.java' if append_extension
+		return path
+	end
+
+	# [Compiler: Compile - Story 3.4]
+	# Checks if the class_name contains special characters, line breaks, or white spaces.
+	# Parameters: none
+	# Returns:
+	#	A String containing feedback on what it found.
+	# Author: Ahmed Moataz
+	def check_class_name
+		special = "?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
+		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+		if class_name =~ regex
+			return "The file name cannot contain special characters"
+		elsif class_name.include?("\n")
+			return "The file name cannot contain line breaks"
+		elsif class_name.include?(" ") || class_name.include?("\t")
+			return "The file name cannot contain white spaces"
+		else
+			return ""
+		end
+	end
+
 	#Constants
 	STATUS_SUBMITTED	= 	0
 	STATUS_ACCEPTED		=	1
@@ -163,5 +207,6 @@ class Solution < ActiveRecord::Base
 	STATUS_EXECUTED_WITH_LOGIC_ERRORS	=	5
 	JAVA_PATH	=	'students_solutions/Java/'
 	CLASS_PATH	=	'students_solutions/Class/'
+	SOLUTION_PATH	=	'students_solutions/'
 
 end
