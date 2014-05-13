@@ -67,7 +67,7 @@ class ModelAnswersController < ApplicationController
 		elsif @model_answer.destroy
 			flash[:notice] = "Answer successfully Deleted"
 			redirect_to(:controller => 'model_answers', :action => 'index',
-			 :problem_id => @current.id, :track_id => session[:track_id] )redirect_to(:controller => 'model_answers', :action => 'index', :problem_id => @current.id, :track_id => session[:track_id] )
+			 :problem_id => @current.id, :track_id => session[:track_id])
 		end	
 	end
 
