@@ -78,11 +78,16 @@ class UtilitiesController < ApplicationController
 	# Returns: A hashes with search results according to the keyword
 	# Author: Ahmed Elassuty
 	def auto_complete
-		@objects = Lecturer.simple_search(params[:q]).take(1)
-		respond_to do |format|
-			format.json {render :template => 'utilities/auto_complete',
-				:formats => [], :handlers => [:json_builder], :layout=>false}
-		end
+		objects = Lecturer.simple_search(params[:term]).take(2)
+		auto_complete = []
+		auto_complete = auto_complete.concat(objects.map(&:name)) unless objects.nil?
+		objects = Student.simple_search(params[:term]).take(2)
+		auto_complete = auto_complete.concat(objects.map(&:name)) unless objects.nil?
+		objects = TeachingAssistant.simple_search(params[:term]).take(2)
+		auto_complete = auto_complete.concat(objects.map(&:name)) unless objects.nil?
+		objects = Course.simple_search(params[:term]).take(2)
+		auto_complete = auto_complete.concat(objects.map(&:name)) unless objects.nil?
+		render json: auto_complete
 	end
 
 end

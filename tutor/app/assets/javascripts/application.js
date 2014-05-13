@@ -17,8 +17,13 @@
 //= require jquery.tokeninput
 //= require utilities
 
-$(function() {
+// [Simple Search auto-complete - Story 1.23]
+// autocomplete for the search bar
+// Parameters: search term
+// Returns: Array with the matched results
+// Author: Ahmed Elassuty
+$(function(){
 	$('#search_field').autocomplete({
-		source: [ "hello", "hello1" ]
+		source: $('#search_field').data("autocomplete-source")
 	});
 });
