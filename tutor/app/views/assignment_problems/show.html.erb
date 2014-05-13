@@ -1,2 +1,49 @@
-<h1>AssignmentProblems#show</h1>
-<p>Find me in app/views/assignment_problems/show.html.erb</p>
+<%= form_tag("/assignment_problems/update/", :method => "post") do |f| %>
+ <h2> Please assign grades to the problems added </h2>
+				<% openable = true %>
+				<% @grades =Array.new %>
+				<div class="panel-group list-group" id="accordion">
+					<% @problems_complete.each do |problem| %>
+					<% if openable %>
+						<% open = "in" %>
+						<% openarrow = "glyphicon-chevron-down" %>
+						<% openable = false %>
+					<% else %>
+						<% open = "" %>
+						<% openarrow = "glyphicon-chevron-right" %>
+					<% end %>
+						<div class="panel panel-default">
+
+							<div class="panel-title list-group-item list-group-item-info">
+								<a class="icon glyphicon <%= openarrow %>"
+								href="#<%= problem.id.to_s %>"
+								data-toggle="collapse" data-parent="#accordion"
+								style="float:left;text-decoration: none;">
+								</a>
+							<div class = "inline">
+
+								<%= problem.title %>
+
+							<ul class="navbar-brand pull-right"><%= f.text_field :final_grade, placeholder:"Grade", style: "position:absolute;bottom:15%;right:2%;width:60px; height:35px;" %></ul> 
+
+							<% @grades.push(:final_grade) %>
+								</div>
+						</div>
+						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
+							<%= problem.description %>
+						</div>
+					</div>
+					<% end %>
+					
+				</div>
+			</div>
+
+<%= submit_tag("Save", :class=>"btn btn-info btn-large", :style=> "position:absolute;bottom:15%;right:25%;width:60px;") %> 
+<% end %>
+<style>
+.input {
+  display: inline;
+}
+
+</style>
+

@@ -6,7 +6,7 @@
 		<li class="active"><a href="#">Copy from Existing Problems</a></li>	
 	<% end %>
 	</ul>
-	<%= form_for :problems_assignment, url: assignment_problems_path do |f| %>
+	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>
 	<div class="tab-content">
 			<div id="tab1" class="tab active">
 				<% openable = true %>
@@ -29,8 +29,8 @@
 								style="float:left;text-decoration: none;">
 								</a>
 								
-								
-							<input value= problem , id="link_to problem.title, problem"name="fruit[]" type="checkbox"><%= link_to problem.title, problem %>/>
+								<%= check_box_tag  "checkbox[]",problem.id %> <%= problem.title %>
+							
 
 
 						</div>
@@ -59,7 +59,7 @@
 								data-toggle="collapse" data-parent="#accordion"
 								style="float:left;text-decoration: none;">
 								</a>
-							<input type="checkbox" style = "float:right" id="inlineCheckbox1" value=" <%= link_to problem.title, problem %>" >
+							<%= check_box_tag  "checkbox[]",problem.id %> <%= problem.title %>
 						</div>
 						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
 							<%= problem.description %>
@@ -72,10 +72,8 @@
 	</div>
 </div>
 <br>
-<%= f.submit "Save", class: "btn btn-info" %>
-<ul class="navbar-brand pull-right"> <%= link_to "Save",
-		:controller => 'assignment_problems', :action => 'show', 
-		:method => :get, class: 'btn btn-info btn-large' %></ul>
+<ul class="navbar-brand pull-right"><%= submit_tag("Save", :class=>"btn btn-success") %> </ul>
+
 <% end %>
 <style>
  .white .active a,
@@ -101,6 +99,7 @@ input[type="radio"], input[type="checkbox"] {
 
 height: 20px;
 width: 20px;
+float:right;
 
 
 }

@@ -9,6 +9,7 @@ Tutor::Application.routes.draw do
   get "assignments/edit"
   get "assignments/show"
   get "assignments/index"
+  post "assignment_problems/complete"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
