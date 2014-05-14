@@ -98,7 +98,8 @@ class TipsController < ApplicationController
 	#	@tip: tip which will be edited
 	# Author: Ahmed Osam
 	def edit
-		@tip = Hint.find_by_id(params[:id])
+		session[:tip_id] = params[:tip_id]
+		@tip = Hint.find_by_id(params[:tip_id])
 	end
 
 	# [Edit tip - Story 4.11]
@@ -111,13 +112,37 @@ class TipsController < ApplicationController
 	#	@tip: new updated tip
 	# Author: Ahmed Osam
 	def update
-		@tip = Hint.find(params[:id])
-		@tip.time = tip_params_edit[:time]
-		@tip.message = tip_params_edit[:message]
-		if @tip.save
-			redirect_to :action => 'index'
-		else
-			render :action => 'edit'
+		@tip = Hint.find(session[:tip_id])
+		if tip_params_edit[:message] != @tip.message ||
+			tip_params_edit[:time] != @tip.time
+			if @tip.message != tip_params_edit[:message]
+				flash.keep[:notice] = "Content has changed"
+			elsif @tip.time != tip_params_edit[:time]
+				flash.keep[:notice] = "Time has changed"
+			end
+			begin
+				if @tip.update_attributes(tip_params_edit)
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js,
+							:tip_id => @tip.id, :track_id => session[:track_id]}
+					end
+				else
+					@tip = Hint.find_by_id(params[:tip_id])
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js,
+							:tip_id => @test_case.id, :track_id => session[:track_id]}
+					end
+				end
+			rescue
+				@tip = Hint.find_by_id(session[:tip_id])
+				respond_to do |format|
+					format.js
+					format.html {redirect_to :action => "edit", :format => :js,
+					:tip_id => @test_case.id, :track_id => session[:track_id]}
+				end
+			end
 		end
 	end
 
@@ -147,5 +172,6 @@ class TipsController < ApplicationController
 		def tip_params_edit
 			params.require(:tip_edit).permit(:message, :time)
 		end
+
 
 end

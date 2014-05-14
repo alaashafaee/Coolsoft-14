@@ -36,7 +36,7 @@
 							<td style ="width:20%"><%= tip1.time %></td>
 							<td>
 								<%= link_to "Edit", {:action => 'edit',
-									:controller => 'tips',:id => tip1.id, :problem_id => params[:problem_id], :model_answer_id => params[:model_answer_id],:track_id => params[:track_id] },
+									:controller => 'tips',:tip_id => tip1.id, :problem_id => params[:problem_id], :model_answer_id => params[:model_answer_id],:track_id => params[:track_id] },
 									{class: 'btn btn-primary btn-xs' } %>
 							</td>
 							<td>

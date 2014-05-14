@@ -14,6 +14,7 @@
 			<% end %>
 		</ul>
 	<% end %>
+	<div id = "div_tip">
 	<%= form_for :tip_edit, url: tip_path(@tip), method: :patch, remote: true do |tip_edit| %>
 		<p>
 			<h3><%= tip_edit.label :Content %></h3>
@@ -30,4 +31,5 @@
 			:id => @tip.model_answer_id}, class: "btn btn-success",
 			style: "text-decoration:none; float:right" %>
 	<% end %>
+	</div>
 <% end %>
