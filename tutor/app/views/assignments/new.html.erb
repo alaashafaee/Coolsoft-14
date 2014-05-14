@@ -1,5 +1,15 @@
 <div class="body2" style="vertical-align: auto;horizontal-align: auto; float:left;">
-
+<% if @new_assignment.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@new_assignment.errors.count, "error") %> prohibited this assignment from being saved:
+		</h2>
+		<ul>
+			<% @new_assignment.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %> 
 
 <%= form_for :assignment, url: assignments_path do |f| %>
 
@@ -11,18 +21,27 @@
 	<p><h3>	<%= f.label :Description %></h3></p>
 	<p><%= f.text_area :description, class:"form-control" ,placeholder:"Description", :cols => "50", :rows => "10"; %>
 	</p>
-	<p><h3>
-	<%= f.label :Due_date %></h3></p>
-	<p><%= f.date_select :due_date, {:start_year => Date.today.year, :end_year => Date.today.year+3} %>
-	<%=date_select "user", "cc_date", :start_year => 2014,
-                               :order => [:year, :month,:day]%>
-                               <div class="well">
-  <div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-    <input size="16" type="text" value="12-02-2012" readonly>
-    <span class="add-on"><i class="icon-th"></i></span>
-</div>
-</div>
-</p>
+	
+
+	
+
+     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+    
+  });
+  </script>
+
+ <p><h3><%= f.label :Due_date %></h3></p>
+<p>Date: <input type="text" id="datepicker">
+
+Time:<%= f.time_select :time %></p>
+
+
+<!-- time -->
+
 
 <br>
 <p>
@@ -33,6 +52,7 @@
 
 </h3>
 <% end %>
+
 </div>
 
 <style>

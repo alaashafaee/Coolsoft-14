@@ -1,7 +1,10 @@
 class AssignmentsController < ApplicationController
   def show
   	session[:course_id] = params[:id]
-	@course = Course.find_by_id(session[:course_id])
+  		puts "================================sdfdfsd======================"
+  	puts params[:id]
+  	puts "===============================dssdffds=================="
+	@course = Course.find_by_id(session[:id])
 	
   end
 
@@ -11,13 +14,15 @@ class AssignmentsController < ApplicationController
   end
 
   def create 
-  
+  	@course = Course.find_by_id(session[:course_id])
+
+
   	@new_assignment = Assignment.new
   	@new_assignment.title = post_params[:title]
   	@new_assignment.description = post_params[:description]
   	@new_assignment.due_date = post_params[:due_date]
   	@new_assignment.course_id = session[:course_id]
-  	@course = Course.find_by_id(session[:course_id])
+  	
   	if lecturer_signed_in?
 			@new_assignment.owner_id = current_lecturer.id
 			@new_assignment.owner_type = "lecturer"
@@ -29,9 +34,9 @@ class AssignmentsController < ApplicationController
 			@course.assignments << @new_assignment
 			flash[:success_creation]= "Answer added."
 			redirect_to :controller => 'assignment_problems', :action => 'new',
-			 :id => @new_assignment.id
+			 :id => @new_assignment.id 
 		else
-			flash[:success_creation]= "Answer no."
+			render :action=>'new', :course_id => params[:course_id]
 		end
 	end
 

@@ -2,6 +2,7 @@ class AssignmentProblemsController < ApplicationController
  def new
   	session[:assignment_id] = params[:id]
   	@assignment =Assignment.find_by_id(session[:assignment_id])
+    @new_problem = AssignmentProblem.new
   
 	end
 
@@ -18,11 +19,12 @@ def create
 		end
 			if @new_problem.save
 				@assignment.problems << @new_problem
+        flash[:notice] = "Assignment is now created"
 				redirect_to :controller => 'assignment_problems', :action => 'new',
 			 		:id => @assignment.id
 			else
-				flash.keep[:notice] = "Problem is missing paramaters"
-				redirect_to :back
+				
+				render :action=>'new', :assignment_id=> session[:assignment_id]
 			end
 		
   end
@@ -39,6 +41,7 @@ def create
        	@new_problem.description = @problem_select.description
        	@new_problem.assignment_id = @assignment.id
        	@new_problem.final_grade = 0
+        @new_problem.test_cases = @problem_select.test_cases
        	if lecturer_signed_in?
 			@new_problem.owner_id = current_lecturer.id
 			@new_problem.owner_type = "lecturer"
@@ -124,7 +127,7 @@ end
 
   private
 		def problem_params
-			params.require(:assignment_problem).permit(:title, :description, :final_grade)
+			params.require(:assignment_problem).permit(:title, :description)
 		end
 
 		def p_params

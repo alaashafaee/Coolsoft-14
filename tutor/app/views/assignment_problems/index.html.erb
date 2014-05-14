@@ -1,4 +1,4 @@
-<div class ="tabs">
+<div class ="tabs1" style = "width = 100%">
 	<ul class="tab-links white">
 	<% if lecturer_signed_in? ||teaching_assistant_signed_in?  %>
 		<li><%= link_to "Create problems", {:controller => 'assignment_problems',
@@ -53,6 +53,10 @@
 				<div style="float:right; width:50%;">
 				<div class="tab-content">
 					<h3> Bank of problems </h3>
+					<% if @cproblems.empty? %>
+					<p> There are no problems in the bank </p>
+					<% end %>
+				<% if @cproblems.any? %>
 					<% @cproblems.each do |problem| %>
 					<% if openable %>
 						<% open = "in" %>
@@ -78,18 +82,20 @@
 					</div>
 					<% end %>
 					<% end %>
+					<% end %>
 				</div>
 				
 				</div>
 			</div>
 	</div>
 </div>
-<br>
 
-<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments', :action => 'show',
+
+<%= link_to "Finish", {:controller => 'assignments', :action => 'show',
 					:id=> @assignment.id}, class: "btn btn-info", 
-						style: "float: left;margin-left: 15px",method: :get %> </ul>
-						<ul class="navbar-brand pull-right"><%= submit_tag("Save", :class=>"btn btn-info") %> </ul>
+						style: "float:right;margin-right: 475px;margin-top:18px",method: :get %>
+						<ul class="navbar-brand pull-right"><%= submit_tag("Save", :class=>"btn btn-info" 
+						) %> </ul>
 
 <% end %>
 <style>

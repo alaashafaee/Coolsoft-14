@@ -1,4 +1,7 @@
+
 <div class ="tabs">
+
+
 	<ul class="tab-links red">
 	<li class="active"><a href="#">Create Problems</a></li>
 		<li><%= link_to "Copy from Existing Problems", {:controller => 'assignment_problems',
@@ -7,7 +10,20 @@
 	</ul>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
+		<% if @new_problem.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@new_problem.errors.count, "error") %> prohibited this problem from being saved:
+		</h2>
+		<ul>
+			<% @new_problem.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+		<% end %> 
+	</div>
+
 	<%= form_for :assignment_problem, url: assignment_problems_path do |f| %>
+	<h2> Create Problem </h2>
 	<p>
 		<%= f.label :title %><br> 
 		<%= f.text_field :title, placeholder:"Title" %>
@@ -17,18 +33,15 @@
 		<%= f.text_area :description, :cols => "50", :rows => "10", placeholder:"Description",
 			 class: "form-control", style: "width:60%" %>
 	</p>
-	<p>
-		<%= f.label :grade %><br> 
-		<%= f.text_field :final_grade, placeholder:"Grade", style: "width:55px; height:35px;" %>
-	</p>
-	<br>
-
+	<%= f.submit "Save", class: "btn btn-info" %>
+	<h2> Create Testcase </h2>
+	<%= render partial: "test_cases/form" %>
 		
 		<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments', 
 			:action => 'show',
 					:id=> @assignment.id}, class: "btn btn-info", 
-						style: "float: left;margin-left: 15px",method: :post %> </ul>
-						<ul class="navbar-brand pull-right"><%= f.submit "Save", class: "btn btn-info" %></ul>
+						style: "float: left;margin-left: 15px" %> </ul>
+						
 		
 
 <% end %>
