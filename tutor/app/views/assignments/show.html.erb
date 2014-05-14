@@ -11,28 +11,28 @@
 		<%= @assignment.due_date.year %><p>
 </div>
 <% if @assignment.description != nil %>
-<div id="assignment_description" style="font-size: 14pt;">
-	<p><b>Assignment description:</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;
-		<%= @assignment.description %></p>
-</div>	
+	<div id="assignment_description" style="font-size: 14pt;">
+		<p><b>Assignment description:</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= @assignment.description %></p>
+	</div>	
 <% end %>
 <br>
 <div id="problems_in_assignment" style="font-size: 14pt;">
-		<p><b>List of problems:</b>
+	<p><b>List of problems:</b>
 			<% if @problems.length == 0 %>
-			<br><br>
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;No problems added yet!</p>
+				<br><br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;No problems added yet!</p>
 			<% else %>
 			<ul class="list-group">
 				<% @problems.each do |ap| %> 
 					<li class="list-group-item">
-					<%= link_to ap.title, { :controller => 'assignment_problems', 
+						<%= link_to ap.title, { :controller => 'assignment_problems', 
 						:action => 'show', :id => ap.id }, :method => :get, class: ""%>
 					</li>
 				<% end %>
 			</ul>
 			<% send %>
-		</p>
+	</p>
 </div>
 <br><br>
 <% if @can_edit %>

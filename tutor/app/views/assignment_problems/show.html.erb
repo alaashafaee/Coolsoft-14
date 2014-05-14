@@ -13,8 +13,8 @@
 					<%= link_to "Edit problem", { :controller => 'assignment_problems',
 						:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
 					<div id= "test" style="display:true;">
-				 	<%= render partial: "solutions/new" %>
-				 	</div >
+						<%= render partial: "solutions/new" %>
+					</div >
 				<% end %>
 				<% if !@can_edit %> 
 				 	<%= render partial: "solutions/new" %>

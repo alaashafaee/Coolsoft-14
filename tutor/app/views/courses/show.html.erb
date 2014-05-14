@@ -98,36 +98,36 @@
 								</a>
 								<span class="badge"> <%= @course.assignments.count %></span>
 							</div>
-      						<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
-								<ul class="list-group">
-									<% if @can_edit %>
-										<% @course.assignments.each do |a| %>
-											<% color = "label label-default" %>
-											<li style="border-style:hidden;" class="list-group-item">
-												<%= link_to a.title, a, class: color %>
-											<% if @can_edit %>
-												<% if !a.publish %>
-													<span class="badge">unpublished</span>
-													</li>
-												<% end %>
-											<% end %>
-										<% end %>
-									<% else %>
-										<% @course.assignments.each do |a| %>
-											<% if a.publish %>
+								<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
+									<ul class="list-group">
+										<% if @can_edit %>
+											<% @course.assignments.each do |a| %>
 												<% color = "label label-default" %>
-												<li style="border-style:hidden;" 
-													class="list-group-item">
-												<%= link_to a.title, a, class: color %>
-												<% if a.due_date > DateTime.now.to_date %>
-													<span class="badge">Due</span>
-												</li>
+												<li style="border-style:hidden;" class="list-group-item">
+													<%= link_to a.title, a, class: color %>
+												<% if @can_edit %>
+													<% if !a.publish %>
+														<span class="badge">unpublished</span>
+														</li>
+													<% end %>
+												<% end %>
+											<% end %>
+										<% else %>
+											<% @course.assignments.each do |a| %>
+												<% if a.publish %>
+													<% color = "label label-default" %>
+													<li style="border-style:hidden;" 
+														class="list-group-item">
+													<%= link_to a.title, a, class: color %>
+													<% if a.due_date > DateTime.now.to_date %>
+														<span class="badge">Due</span>
+													</li>
+													<% end %>
 												<% end %>
 											<% end %>
 										<% end %>
-									<% end %>
-								</ul>
-        					</div>
+									</ul>
+								</div>
 						</div>	
 				</div>
 			</div>
