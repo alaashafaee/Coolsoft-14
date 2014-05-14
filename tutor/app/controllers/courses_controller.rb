@@ -37,8 +37,9 @@ class CoursesController < ApplicationController
 				student = Student.find(current_student.id)
 				if student.courses.find_by_id(@course.id) == nil
 					student.courses << @course
-					new_notification = notification.new
+					new_notification = Notification.new
 					new_notification.message = "#{student.name} subscribed to your course"
+					new_notification.save
 					@lecturer.notifications << new_notification
 				else
 					@status = "7"

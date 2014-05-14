@@ -37,8 +37,11 @@ class RepliesController < ApplicationController
 			current_student.replies << reply
 			new_notification.message = "#{current_student} has replied to your post #{post.title} "			
 		end
-		post.replies << reply
-		post.owner.notifications << new_notification
+		if  reply.owner_id != post.owner_id
+			new_notification.save
+			post.replies << reply
+			post.owner.notifications << new_notification
+		end	
 		render json: reply
 	end
 

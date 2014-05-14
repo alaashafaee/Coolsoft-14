@@ -43,9 +43,10 @@ class AcknowledgementsController < ApplicationController
 						@student.acknowledgements << @acknowledgement
 						current_lecturer.acknowledgements << @acknowledgement
 						@course.acknowledgements << @acknowledgement
-						new_notification = notification.new
-					new_notification.message = "#{current_lecturer.name} has sent you an acknowledgement"
-					@student.notifications << new_notification
+						new_notification = Notification.new
+						new_notification.message = "#{current_lecturer.name} has sent you an acknowledgement"
+						new_notification.save
+						@student.notifications << new_notification
 					end
 				else
 					flash[:failure_notice] = "Acknowledgement failed."
