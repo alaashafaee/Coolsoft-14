@@ -1,5 +1,7 @@
 // Source: Ace editor
 // Integrated by: Mimi
+// Source: Ace editor
+// Integrated by: Mimi
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
