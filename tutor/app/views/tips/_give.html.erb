@@ -1,0 +1,13 @@
+<%
+	tip_count = 0;
+	@problem.model_answers.each do |model_answer|
+		model_answer.hints.where(category: true).each do |tip|
+			%>
+				<div id='tip<%= tip_count %>' time='<%= tip.time %>' class='hidden'>
+					<%= tip.message %>
+				</div>
+			<%
+			tip_count = tip_count + 1
+		end
+	end
+%>
