@@ -4,10 +4,8 @@ class CreateContests < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.boolean :incomplete
-      t.time :start_time
-      t.time :end_time
-      t.date :start_date
-      t.date :end_date
+      t.datetime :start_time
+      t.datetime :end_time
 
       t.integer :course_id
       t.references :owner, polymorphic: true
