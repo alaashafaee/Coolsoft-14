@@ -14,7 +14,7 @@ class PythonDebugger
 	# 		false otherwise.
 	# Author: Khaled Helmy
 	def is_valid_variable name, value
-		if name.match("__")
+		if name.startswith("__")
 			return false
 		elsif value.match("module") or value.match("function")
 			return false
