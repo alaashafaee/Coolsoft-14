@@ -30,7 +30,8 @@
 
 <div id="div5">
 	<p><%= @problem.snippet %></p>
-	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
+	<%= form_for :Problem, url: problem_path(@problem),
+		method: :patch, remote: true do |problem| %>
 		<%= problem.text_area :snippet, cols: 50, rows: 10 %>
 		<p>
 			<%= problem.submit('Update code snippet') %>
