@@ -359,7 +359,7 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
-			if problem_type == "CProblem"
+			if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
 				data[-1..]
 				return 
 			for i in data
