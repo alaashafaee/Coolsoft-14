@@ -26,7 +26,10 @@
 				</div>
 				<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
 					<%= problem.description %>
+					<%= link_to "Add", {:action => 'add', :problem_id => problem.id,
+						:id => @contest.id }, class: 'btn btn-info', method: 'post' %>
 				</div>
 			</div>
 	<% end %>
 </div>
+<%= link_to "Back to edit page", {:action => 'edit', :id => @contest.id}, class: "btn btn-success" %>
