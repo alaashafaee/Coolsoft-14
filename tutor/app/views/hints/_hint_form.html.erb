@@ -7,12 +7,12 @@
 	<p>
 		<h3><%= hint_edit.label :Content %></h3>
 		<h4 align ="left"><%= @hint.message %></h4>
-		<%= hint_edit.text_area :message, class:"form-control", :cols => "40", :rows => "5", :value => @hint.message %>
+		<%= hint_edit.text_area :message, class:"form-control",  style:"width:650px; height:250px;", :value => @hint.message %>
 	</p>
 	<p>
 		<h3><%= hint_edit.label :Submission_Counter %></h3>
 		<h4 align ="left"><%= @hint.submission_counter %></h4>
-		<%= hint_edit.text_field :submission_counter, class:"form-control", style:"width:55px; height:35px;", :value => @hint.submission_counter %>
+		<%= hint_edit.text_field :submission_counter, class:"form-control", style:"width:65px; height:40px;", :value => @hint.submission_counter %>
 	</p>
 		<%= hint_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
 		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',
