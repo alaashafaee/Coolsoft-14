@@ -1,32 +1,3 @@
-<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="btn-info" data-width="auto">
-	<option value="twilight">twilight</option>
-	<option value="eclipse">eclipse</option>
-	<option value="xcode">xcode</option>
-	<option value="chaos">chaos</option>
-	<option value="chrome">chrome</option>
-	<option value="clouds">clouds</option>
-	<option value="tomorrow_night_blue">night blue</option>
-	<option value="tomorrow_night_eighties">tomorrow night eighties</option>
-	<option value="github">github</option>
-	<option value="dreamweaver">dreamweaver</option>
-</select> 
-
-<select id='mode' onchange="changeMode()" class="selectpicker" data-style="btn-info" data-width="auto">
-	<option value="java">Java</option>
-	<option value="python">Python</option>
-</select>
-
-<select id='font' onchange="changeFont()" class="selectpicker" data-style="btn-info" data-width="auto">
-	<option value="12">12</option>
-	<option value="14">14</option>
-	<option value="16">16</option>
-	<option value="18">18</option>
-	<option value="20">20</option>
-	<option value="22">22</option>
-	<option value="24">24</option>
-</select>
-
-
 <!-- Add editor -->
 -<%= form_for :solution,
        :url => { :controller => "solutions", :action => "create" },
@@ -34,8 +5,8 @@
 
 <!-- Class name field -->
 <h4>File name:</h4>
-<%= f.text_area :class_name, value: "CoolSoft", class: "form-control",
-	style: "width: 250px; height: 44px;", id: "class_name" %>
+<textarea value: "CoolSoft", class: "form-control",
+	style: "width: 250px; height: 44px;", id: "class_name"></textarea>
 
 <% f.hidden_field "type", value: params[:controller] %>
 <% @type = "" %>
@@ -49,7 +20,6 @@
 <% end %>
 <%end%>
 
-<br/><br/>
 
 <table width='100%'>
 	<tr>
@@ -71,6 +41,31 @@
 			<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
 				style: "display: none", id: 'stopButton', 
 				onClick: 'stop()', hidden: true %>
+			<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="btn-info" data-width="auto">
+				<option value="twilight">twilight</option>
+				<option value="eclipse">eclipse</option>
+				<option value="xcode">xcode</option>
+				<option value="chaos">chaos</option>
+				<option value="chrome">chrome</option>
+				<option value="clouds">clouds</option>
+				<option value="tomorrow_night_blue">night blue</option>
+				<option value="tomorrow_night_eighties">tomorrow night eighties</option>
+				<option value="github">github</option>
+				<option value="dreamweaver">dreamweaver</option>
+			</select> 
+			<select id='mode' onchange="changeMode()" class="selectpicker" data-style="btn-info" data-width="auto">
+				<option value="java">Java</option>
+				<option value="python">Python</option>
+			</select>
+			<select id='font' onchange="changeFont()" class="selectpicker" data-style="btn-info" data-width="auto">
+				<option value="12">12</option>
+				<option value="14">14</option>
+				<option value="16">16</option>
+				<option value="18">18</option>
+				<option value="20">20</option>
+				<option value="22">22</option>
+				<option value="24">24</option>
+			</select>
 			<span id="spinner" class="" align="center"></span>
 		</td>
 	</tr>

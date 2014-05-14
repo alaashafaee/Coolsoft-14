@@ -1,0 +1,19 @@
+
+<div id="header">
+	<h2 style="text-align: center;"><%= @contest.title %></h2>
+	<h3 style="text-align: center;"><%= @problem.title %></h3>
+</div>
+
+<div id="description">
+	<p style="font-size: 20px; color: gray"> <%= @problem.description %> </p>	
+</div>
+
+<br/>
+
+<%= render partial: "solutions/editor" %>
+
+
+<%= render partial: "solutions/input_output" %>
+
+
+

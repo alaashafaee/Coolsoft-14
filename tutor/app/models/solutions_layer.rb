@@ -117,8 +117,6 @@ class SolutionsLayer
 	#	A new Solution
 	# Author: Mussab ElDash
 	def self.get_solution code, student_id, problem_id, type = 'Problem', class_name
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>"
-		puts type
 		type = type.capitalize
 		solution = Solution.create({code: code, student_id: student_id,
 				problem_id: problem_id, problem_type: type, class_name: class_name})

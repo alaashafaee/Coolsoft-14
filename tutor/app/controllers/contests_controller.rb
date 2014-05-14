@@ -11,12 +11,7 @@ class ContestsController < ApplicationController
 		@problem = Cproblem.first
 		@contest = Contest.find_by_id(1)
 
-		code = params[:code]
-		student = current_student.id
-		problem = 1
-		time = 20
-		result = SolutionsLayer.validate "java", code, student, problem, time, "Contest"
-		render json: result
+		
 		if @contest.students.find_by_id(@student_id)
 			@var = "hahahah"
 		else

@@ -7,6 +7,7 @@ class ProblemsController < ApplicationController
 	# Returns: none
 	# Author: MIMI
 	def show
+		@contest = Contest.find_by_id(params[:contest_id])
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.nil?
 			render "problem_not_found"

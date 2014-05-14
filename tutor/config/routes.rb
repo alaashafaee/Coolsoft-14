@@ -39,13 +39,14 @@ Tutor::Application.routes.draw do
 		post 'getProblems', on: :member
 	end
 
-	get 'cproblem/:id' => 'contests#solve'
 	resources :contests
 
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :cproblems
+	
 	post "courses/choose"
 	post "courses/existing"
   	post "courses/duplicate"
