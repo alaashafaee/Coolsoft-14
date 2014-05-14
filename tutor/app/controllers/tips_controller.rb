@@ -85,9 +85,9 @@ class TipsController < ApplicationController
 	#	@tip: tip which will be removed
 	# Author: Ahmed Osam
 	def destroy
-		@tip = Hint.find_by_id(params[:tip_id])
+		@tip = Hint.find_by_id(params[:id])
 		@tip.destroy
-		redirect_to :controller => 'model_answers', :action => 'index', :model_answer_id => params[:model_answer_id]
+		redirect_to :controller => 'tips', :action => 'index', :problem_id => params[:problem_id], :track_id => params[:track_id], :model_answer_id => params[:model_answer_id]
 	end
 
 	# [Edit tip - Story 4.10]
