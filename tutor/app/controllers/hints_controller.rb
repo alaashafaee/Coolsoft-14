@@ -121,6 +121,18 @@ class HintsController < ApplicationController
 		end
 	end
 
+	# [Remove hint - Story 4.12]
+	# Finds the hint that wanted to be removed
+	# Parameters:
+	#	id: id of the tip required to be removed
+	# Returns:
+	#	@hint: hint which will be removed
+	# Author: Ahmed Osam
+	def destroy
+		@hint = Hint.find_by_id(params[:id])
+		@hint.destroy
+		redirect_to :controller => 'hints', :action => 'index', :problem_id => params[:problem_id], :track_id => params[:track_id], :model_answer_id => params[:model_answer_id]
+	end
 
  	# [Edit helping hints - Story 4.13 ]
 	# Description: 
