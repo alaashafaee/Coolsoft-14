@@ -38,12 +38,12 @@
 		<div>
 			<div>
 				<div id="resources">
-					<%= f.fields_for "resources" do |resource_fields| %>
-						
+					<%= f.fields_for :resources do |resource_fields| %>
 							<%= render "resource" , object: resource_fields %>
 					<% end %>
 				</div>
-				<%= link_to "Add More Resources", add_more_course_resources_path(@course), remote: true %>
+				<%= link_to "Add More Resources",
+					add_more_course_resources_path(@course, count: @course.resources.count), remote: true %>
 			</div>
 		</div>
 		<br/>

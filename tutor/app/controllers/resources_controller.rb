@@ -38,7 +38,6 @@ class ResourcesController < ApplicationController
 	# Author: Ahmed Elassuty
 	def add_more
 		@course = Course.find(params[:course_id])
-		1.times { @course.resources.build }
 		respond_to do |format|
 			format.js
 		end
