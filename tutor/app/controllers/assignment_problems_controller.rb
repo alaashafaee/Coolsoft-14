@@ -114,7 +114,7 @@ def show
           		end
   			end
     	end
-    @bank = Problem.where("public = ?", true)
+    @bank = Problem.where("seen = ?", true)
     @cproblems = Array.new
     @bank.each do |contest| 
         @cprob = contest.problems

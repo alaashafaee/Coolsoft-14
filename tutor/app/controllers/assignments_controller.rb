@@ -22,6 +22,12 @@ class AssignmentsController < ApplicationController
   	@new_assignment.description = post_params[:description]
   	@new_assignment.due_date = post_params[:due_date]
   	@new_assignment.course_id = session[:course_id]
+  	#d = (post_params[:date]).to_date_time
+  	t = DateTime.new(post_params["date(1i)"].to_i,post_params["date(2i)"].to_i,
+  			post_params["date(3i)"].to_i )
+  	@new_assignment.due_date = t
+  	
+			
   	
   	if lecturer_signed_in?
 			@new_assignment.owner_id = current_lecturer.id
@@ -49,6 +55,6 @@ class AssignmentsController < ApplicationController
 
   private
 	def post_params
-		params.require(:assignment).permit(:title, :description, :due_date, :year, :day, :month)
+		params.require(:assignment).permit(:title, :description,:date, :day, :month, :year, :time)
 	end	
 end

@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140509205739) do
   create_table "assignments", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.date     "due_date"
+    t.datetime     "due_date"
     t.boolean  "publish"
     t.integer  "course_id"
     t.integer  "owner_id"

@@ -25,22 +25,8 @@
 
 	
 
-     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-    
-  });
-  </script>
-
  <p><h3><%= f.label :Due_date %></h3></p>
-<p>Date: <input type="text" id="datepicker">
-
-Time:<%= f.time_select :time %></p>
-
-
-<!-- time -->
+<p> <%= f.date_select :date, {:start_year => Date.today.year+1, :end_year => Date.today.year, :order => [:day, :month, :year], :value => Time.now} %>
 
 
 <br>
