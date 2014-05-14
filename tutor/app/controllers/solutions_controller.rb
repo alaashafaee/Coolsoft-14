@@ -69,8 +69,9 @@ class SolutionsController < ApplicationController
 	# Parameters:
 	# 	code: The written code for the problem
 	# 	problem_id: Hidden field for problem id
-	#	time: the time taken by the student to solve the problem
-	#	class_name: the name of the class to be built
+	#	time: The time taken by the student to solve the problem
+	#	class_name: the name of the class to be used
+
 	#	problem_type: the type of the problem to be solved
 	# Returns:
 	# 	none

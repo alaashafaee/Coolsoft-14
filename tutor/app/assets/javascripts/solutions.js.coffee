@@ -330,7 +330,7 @@ debug_console = ->
 
 # [
 #	Compiler: Validate - Story 3.5
-#	Compiler: Validare - Story X.7
+#	Compiler: Validate - Story X.7
 # ]
 # submits a solution in the form without refreshing
 # 	using ajax showing an alert box for success and failure scenarios
@@ -416,8 +416,8 @@ debug_console = ->
 	unless disabled
 		template = "public class CoolSoft {\n"
 		template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
-		get_editor_session().setValue(template);
-		$('#class_name').val("CoolSoft");
+		get_editor_session().setValue(template)
+		$('#class_name').val("CoolSoft")
 	return
 
 get_editor = ->
