@@ -8,13 +8,12 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		solution.status = 0
-		solution.save
-		test_cases = solution.problem.test_cases
-		result = Solution.validate(solution, test_cases)
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		time = param[:time]
+		result = SolutionsLayer.validate "java", code, student, problem, time
 		render json: result
 	end
 
@@ -31,15 +30,14 @@ class SolutionsController < ApplicationController
 		end
 		id = current_student.id
 		pid = params[:problem_id]
-		input = params[:code]
+		code = params[:code]
 		cases = if params[:input] then params[:input] else "" end
-		result = Executer.create_solution(id, pid, input, cases)
+		result = SolutionsLayer.execute "java", code, id, pid, cases
 		render json: result
 	end
 
 	# [Compiler: Compile - Story 3.4]
 	# Creates a soution for the current problem in the database and compiles it.
-	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
@@ -70,7 +68,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time)
+		params.permit(:code, :problem_id, :time, :class_name)
 	end
 
 	# [Compiler: Test - Story 3.15]
