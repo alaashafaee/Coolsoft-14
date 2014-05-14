@@ -53,4 +53,20 @@ class Problem < ActiveRecord::Base
 		return number_of_attempts_with_status(success: true)
 	end
 
+	# [Problem Bank - Story 3.21]
+	# Dublicate the specified problem
+	# Parameters: none
+	# Returns: 
+	#	the duplicated problem
+	# Author: Ahmed Sharaf
+	def duplicate 
+		@p1 = dup
+		test_cases.each do |t|
+			@p1.test_cases << t.duplicate
+		end
+		model_answers.each do |m|
+			@p1.model_answers << m.duplicate
+		end
+		return @p1
+	end
 end

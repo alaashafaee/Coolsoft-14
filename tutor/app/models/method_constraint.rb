@@ -12,4 +12,17 @@ class MethodConstraint < ActiveRecord::Base
 	
 	#Methods
 
+	# [Problem Bank - Story 3.21]
+	# Dublicate the Method constraints of a specified problem
+	# Parameters: none
+	# Returns: 
+	#	the duplicated Method constraints
+	# Author: Ahmed Sharaf
+	def duplicate 
+		@mc = dup 
+		method_parameters.each do |m|
+			@mc.method_parameters << m.duplicate
+		end
+		return @mc
+	end
 end

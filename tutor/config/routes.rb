@@ -23,6 +23,9 @@ Tutor::Application.routes.draw do
  	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
+	
+	get 'problem_bank/add'
+	post 'problem_bank/add' => 'problem_bank#add'
 
 	get 'problems/edit'
 
@@ -89,6 +92,7 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :problem_bank
 
 	# Example resource route with options:
 	#   resources :products do
