@@ -10,32 +10,47 @@ describe Solution do
 				advising: false, probation: false)
 			problem = Problem.create(title: "Problem 1",
 				description: "Given two numbers a and b, output a/b", incomplete: false)
-			@testcases = TestCase.create(output: "5\n", input:"10 2")
-			problem.test_cases << @testcases
-			@code = "public static void main(String [] args){}}"
+			testcase = TestCase.create(output: "5\n", input:"10 2")
+			problem.test_cases << testcase
+			@testcases = problem.test_cases
+			@code = "public class Coolsoft{public static void main(String [] args){}}"
 			@student_id = 1
 			@problem_id = problem.id
 			@solution = Solution.create(code: @code, student_id: @student_id,
-				problem_id: @problem_id)
+				problem_id: @problem_id, problem_type: "Problem", class_name: "Coolsoft")
 		end
 
 		context "Execution" do
 			it "TestCases Passed" do
-				@code = "public static void main(String [] args){ System.out.println(5); }}"
+				@code = "public class Coolsoft{public static void main(String [] args){ System.out.println(5); }}"
 				@solution.code = @code
 				@solution.save
-				expect(Solution.validate_code @solution, @testcases, "java").to eq "???????"
+				response  = {:success=>true, :test_case=>"10 2", :response=>"Passed!"},
+					{:status=>1, :last=>true}
+				JavaCompiler.compiler_feedback @solution
+				expect(Solution.validate @solution, @testcases, "java").to eq response
 			end
 	
 			it "Logical Error in TestCases" do
-				expect(Solution.validate_code @solution, @testcases, "java").to eq "??????????"
+				@code = "public class Coolsoft{public static void main(String [] args){ System.out.println(1); }}"
+				@solution.code = @code
+				@solution.save
+				response = {:success=>false, :test_case=>"10 2",
+				:response=>"Logic error: Expected output: 5, but your output was: 1\n"},
+					{:status=>5, :last=>true}
+				JavaCompiler.compiler_feedback @solution
+				expect(Solution.validate @solution, @testcases, "java").to eq response
 			end
 
 			it "Runtime Error in TestCases" do
-				@code = "public static void main(String [] args){ System.out.println(1/0); }}"
+				@code = "public class Coolsoft{public static void main(String [] args){ System.out.println(1/0); }}"
 				@solution.code = @code
 				@solution.save
-				expect(Solution.validate_code @solution, @testcases, "java").to eq "??????????"
+				response = {:success=>false, :test_case=>"10 2",
+					:response=>"Runtime error: Division by zero, for example: a/b, b = 0"},
+					{:status=>4, :last=>true}
+				JavaCompiler.compiler_feedback @solution
+				expect(Solution.validate @solution, @testcases, "java").to eq response
 			end
 		end
 	end

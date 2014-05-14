@@ -335,12 +335,13 @@ debug_console = ->
 # submits a solution in the form without refreshing
 # 	using ajax showing an alert box for success and failure scenarios
 # Parameters:
-# 	problem_id: the id of the problem being solved
+#	problem_id: the id of the problem being solved
 #	problem_type: The type of the problem to be submitted
 # Returns: a json object containing two arrays one for the errors
 #	of the current code and the other containing success messages
 #	in addition to the status of the submitted solution
 #	and the success and failure messages are displayed in a table
+#	in case of Exercises else a brief message is displayed
 # Author: MOHAMEDSAEED
 @validate_code = (problem_id, problem_type) ->
 	code = get_editor_session().getValue()
