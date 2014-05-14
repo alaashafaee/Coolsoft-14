@@ -74,7 +74,7 @@ class JavaDebugger
 			locals = get_variables
 			nums[:locals] = locals
 			$all << nums
-			status = TimeLimit.start(time){
+			status = TimeLimit.start(time) {
 				debug
 			}
 		rescue => e
@@ -214,7 +214,7 @@ class JavaDebugger
 		folder_name = Solution::SOLUTION_PATH + solution.folder_name
 		debugging = ""
 		status = ""
-		Dir.chdir(folder_name){
+		Dir.chdir(folder_name) {
 			debugging, status = debugger.start(class_name, input.split(" "))
 		}
 		FileUtils.rm_rf(folder_name)
