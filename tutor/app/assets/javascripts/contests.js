@@ -1,5 +1,7 @@
 jQuery(document).on("ready page:load", function() {
-  $(function () {
-    $('#countdown').countdown({until: '+2d'});
-  });
+	$(function () {
+		var newYear = new Date();
+		newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1);
+		$('#countdown').countdown({until: newYear});
+	});
 });
