@@ -13,3 +13,22 @@
 <br><br><br>
 <h2>Edit Tip</h2>
 <%= render 'form' %>
+
+<script type ="text/javascript">
+
+// window.addEventListener("beforeunload", function(e){
+// alert('message to show')	;
+// }, false);
+
+window.onbeforeunload = function (event) {
+  var message = 'Sure you want to leave?';
+  if (typeof event == 'undefined') {
+    event = window.event;
+  }
+  if (event) {
+    event.returnValue = message;
+  }
+  return message;
+}
+
+</script>
