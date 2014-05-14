@@ -1,27 +1,6 @@
-require "open3"
-require "fileutils"
-class JavaDebugger
+class JavaDebugger < Debugger
 
 	#Methods
-
-	# [Debugger: Debug - Story 3.6]
-	# Gets the output from the output stream of the debugger
-	# 	until the passed regex is encountered
-	# Parameters:
-	# 	regex : The input regex to be encountered to return
-	# Returns: A String of the buffer
-	# Author: Rami Khalil
-	def buffer_until(regex)
-		buffer = ""
-		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
-			begin
-				temp = $output.read_nonblock 2048
-				buffer += temp
-			rescue
-			end
-		end
-		return buffer
-	end
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
@@ -44,16 +23,6 @@ class JavaDebugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Inputs an input to the input stream of the debugger JDB
-	# Parameters:
-	# 	input : The input to be written in the sub stream
-	# Returns: none
-	# Author: Rami Khalil
-	def input(input)
-		$input.puts input
-	end
-
-	# [Debugger: Debug - Story 3.6]
 	# Starts the debugging session and return all variables and their values
 	# 	100 steps ahead
 	# Parameters:
@@ -62,6 +31,7 @@ class JavaDebugger
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
 	def start(class_name, input, time = 10)
+		$step = "step"
 		$all = []
 		status = "The debugging session was successful."
 		begin
@@ -87,32 +57,6 @@ class JavaDebugger
 		rescue => e
 		end
 		return $all, status
-	end
-
-	# [Debugger: Debug - Story 3.6]
-	# Iterates 100 times to get the value of all local variables in each step
-	# Parameters: none
-	# Returns: none
-	# Author: Mussab ElDash
-	def debug
-		counter = 0
-		while counter < 100 && !$input.closed? do
-			begin
-				input "step"
-				nums = get_line
-				locals = []
-				begin
-					locals = get_variables
-				rescue => e
-				end
-				nums[:locals] = locals
-				$all << nums
-				counter += 1
-			rescue => e
-				$input.close
-				raise 'Exited'
-			end
-		end
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -184,10 +128,9 @@ class JavaDebugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Checks if there is a runtime error thrown
-	# Parameters: 
-	# 	line: The line to be checked if it has a runtime error
-	# Returns: A hash of the exception and its explanation if exists
+	# Gets the thrown exception
+	# Parameters: none
+	# Returns: The exception
 	# Author: Mussab ElDash
 	def get_exception
 		input "step"
@@ -209,16 +152,8 @@ class JavaDebugger
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
-		debugger = JavaDebugger.new
-		class_name = solution.class_name
-		folder_name = Solution::SOLUTION_PATH + solution.folder_name
-		debugging = ""
-		status = ""
-		Dir.chdir(folder_name){
-			debugging, status = debugger.start(class_name, input.split(" "))
-		}
-		FileUtils.rm_rf(folder_name)
-		return {:success => true, data: debugging, status: status}
+		$debugger = JavaDebugger.new
+		return super
 	end
 
 	# [Debugger: View Variables - Story 3.7]
@@ -274,7 +209,7 @@ class JavaDebugger
 	def get_class_variables
 		result = []
 		flag = 0
-		input "print this.getClass().getName()"
+		input "print this.getClass().getName()"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
 			if flag == 1
