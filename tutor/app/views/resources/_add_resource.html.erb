@@ -1,0 +1,7 @@
+<%= fields_for "resources_attributes" do |object| %>
+<div id="resource">
+	<%= object.label :link %>
+	<%= object.url_field :link , autofocus: true, class:"form-control",
+		style: "width:300px", placeholder: "Link" %>
+</div>
+<% end %>
