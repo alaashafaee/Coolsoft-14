@@ -9,6 +9,7 @@ status = null
 # Sends the code to the server and changes the Variables to the data recieved
 # Parameters:
 # 	problem_id: The id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns: none
 # Author: Mussab ElDash
 @start_debug = (problem_id, problem_type) ->
@@ -48,6 +49,7 @@ status = null
 # Sends the code to the server to be compiled
 # Parameters:
 # 	problem_id: The id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns:
 #	none
 # Author: Ahmed Akram
@@ -84,6 +86,7 @@ status = null
 # Sends the code and the test case to the server to be tested
 # Parameters:
 # 	problem_id: The id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns:
 #	none
 # Author: Ahmed Akram
@@ -330,6 +333,7 @@ debug_console = ->
 # 	using ajax showing an alert box for success and failure scenarios
 # Parameters:
 # 	problem_id: the id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns: a json object containing two arrays one for the errors
 #	of the current code and the other containing success messages
 #	and the success and failure messages are displayed in a table
