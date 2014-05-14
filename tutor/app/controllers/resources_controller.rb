@@ -6,7 +6,6 @@ class ResourcesController < ApplicationController
 	# Returns: New Resource object
 	# Author: Ahmed Elassuty
 	def new
-		@resource = Resource.new
 		@course = Course.find_by_id(params[:course_id])
 		respond_to do |format|
 			format.html
@@ -19,6 +18,9 @@ class ResourcesController < ApplicationController
 	# Returns: redirect to course resources page
 	# Author: Ahmed Elassuty
 	def create
+		@course = Course.find_by_id(params[:course_id])
+		@course.resources.find_or_create_by(params[:course])
+		render nothing:true
 	end
 
 	# [Course Resources - Story 1.25]
