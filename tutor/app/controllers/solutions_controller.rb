@@ -8,6 +8,9 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			render json: {}
+		end
 		param = solution_params
 		code = param[:code]
 		student = current_student.id
@@ -44,6 +47,9 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			render json: {}
+		end
 		param = solution_params
 		code = param[:code]
 		student = current_student.id
