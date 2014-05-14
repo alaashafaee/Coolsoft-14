@@ -1,5 +1,5 @@
 class ContestsController < ApplicationController
-	
+
 	# [Edit Contest - Story 5.17]
 	# Passes instance variable of the contest to be edited to the edit
 	# 	view and renders the edit view
@@ -36,7 +36,6 @@ class ContestsController < ApplicationController
 		end
 	end
 
-	
 	# [Edit Contest - Story 5.17]
 	# Gets the course id, removes it from the database and then
 	# 	redirects the user to the show contests page
