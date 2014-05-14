@@ -24,7 +24,7 @@
 		<p>
 			<h3><%= hint_edit.label :Submission_Counter %></h3>
 			<h4 align ="left"><%= @hint.submission_counter %></h4>
-			<%= hint_edit.text_field :submission_counter, class:"form-control", style:"width:55px; height:35px;", :value => @hint.time %>
+			<%= hint_edit.text_field :submission_counter, class:"form-control", style:"width:55px; height:35px;", :value => @hint.submission_counter %>
 		</p>
 		<%= hint_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
 		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',

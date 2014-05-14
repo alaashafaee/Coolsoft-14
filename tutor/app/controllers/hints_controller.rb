@@ -44,7 +44,7 @@ class HintsController < ApplicationController
 			if @hint.message != hint_params_edit[:message]
 				flash.keep[:notice] = "Content has changed"
 			elsif @hint.submission_counter != hint_params_edit[:submission_counter]
-				flash.keep[:notice] = "Time has changed"
+				flash.keep[:notice] = "Submission Counter has changed"
 			end
 			begin
 				if @hint.update_attributes(hint_params_edit)
@@ -132,6 +132,10 @@ class HintsController < ApplicationController
 	private
 		def hint_params
 			params.require(:hint).permit(:message, :submission_counter, :id)
+		end
+
+		def hint_params_edit
+			params.require(:hint_edit).permit(:message, :submission_counter)
 		end
 end
 
