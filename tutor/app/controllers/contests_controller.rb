@@ -10,7 +10,6 @@ class ContestsController < ApplicationController
 		if student_signed_in?
 			render ('public/404')
 		end
-		#add support to add problems from create view not only edit view
 		@contest = Contest.find(params[:id])
 		if lecturer_signed_in?  &&
 			!current_lecturer.contests.include?(@contest)
