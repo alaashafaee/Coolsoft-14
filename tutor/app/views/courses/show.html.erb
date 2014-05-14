@@ -79,16 +79,16 @@
 					<% end %>
 				</div>
 
-				<% openable = true %>
-				<div class="panel-group list-group" id="accordion2" style="width:100%;">
-					<% if openable %>
-							<% open = "in" %>
-							<% openarrow = "glyphicon-chevron-down" %>
-							<% openable = false %>
-					<% else %>
-							<% open = "" %>
-							<% openarrow = "glyphicon-chevron-right" %>
-					<% end %>
+			<% openable = true %>
+			<div class="panel-group list-group" id="accordion2" style="width:100%;">
+				<% if openable %>
+						<% open = "in" %>
+						<% openarrow = "glyphicon-chevron-down" %>
+						<% openable = false %>
+				<% else %>
+						<% open = "" %>
+						<% openarrow = "glyphicon-chevron-right" %>
+				<% end %>
 						<div class="panel panel-default">
 							<div class="panel-title list-group-item list-group-item-info">
 								<a class="icon glyphicon <%= openarrow %>"
@@ -118,8 +118,8 @@
 												<% color = "label label-default" %>
 												<li style="border-style:hidden;" 
 													class="list-group-item">
-												<%= link_to a.title, a, class: color %>
-												<% if a.due_date > DateTime.now.to_date %>
+													<%= link_to a.title, a, class: color %>
+													<% if a.due_date > DateTime.now.to_date %>
 													<span class="badge">Due</span>
 												</li>
 												<% end %>
