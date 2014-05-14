@@ -9,16 +9,16 @@
 		<tr>
 			<td width='80%'>
 				<br>
-				<%if @can_edit%>
+				<% if @can_edit %>
 					<%= link_to "Edit problem", { :controller => 'assignment_problems',
 						:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
 					<div id= "test" style="display:true;">
-				 	<%= render partial: "solutions/new"%>
+				 	<%= render partial: "solutions/new" %>
 				 	</div >
-				<%end%>
-				<% if !@can_edit%> 
-				 	<%= render partial: "solutions/new"%>
-				<%end%>
+				<% end %>
+				<% if !@can_edit %> 
+				 	<%= render partial: "solutions/new" %>
+				<% end %>
 			</td>
 		</tr>
 	</table>

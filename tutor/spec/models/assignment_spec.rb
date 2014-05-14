@@ -20,11 +20,11 @@ describe Assignment do
 	it 'is valid if it includes problems' do
 
 		aproblem1 = AssignmentProblem.new(
-			title:'P1',
-			description:'P2')
+			title: 'P1',
+			description: 'P2')
 		aproblem2 = AssignmentProblem.new(
-			title:'P1',
-			description:'p2')
+			title: 'P1',
+			description: 'p2')
 
 		assignment = Assignment.new(
 			title: 'rspec assignemt',
