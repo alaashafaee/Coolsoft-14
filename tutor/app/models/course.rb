@@ -26,6 +26,8 @@ class Course < ActiveRecord::Base
 
 	has_many :tags, as: :tager
 	has_many :resources, dependent: :destroy
+
+	accepts_nested_attributes_for :resources
 	
 	#Scoops
 	
