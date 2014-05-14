@@ -2,10 +2,10 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	#	and outputs 2 flash messages for success and failure scenarios
 	# Parameters:
-	#	solution_params: submitted from the form_for
-	# Returns: none
+	#	solution_params: the parameters needed for the submitted solution
+	# Returns: JSON object containing the results of running the testcases of 
+	#	the submitted solution
 	# Author: MOHAMEDSAEED
 	def create
 		if lecturer_signed_in? || teaching_assistant_signed_in?
@@ -58,7 +58,7 @@ class SolutionsController < ApplicationController
 		problem = param[:problem_id]
 		problem_type = param[:problem_type]
 		class_name = param[:class_name]
-		compiler_feedback = SolutionsLayer.compile("java", code, student, 
+		compiler_feedback = SolutionsLayer.compile("java", code, student,
 			problem, problem_type, class_name)
 		render json: compiler_feedback
 	end
@@ -69,6 +69,9 @@ class SolutionsController < ApplicationController
 	# Parameters:
 	# 	code: The written code for the problem
 	# 	problem_id: Hidden field for problem id
+	#	time: the time taken by the student to solve the problem
+	#	class_name: the name of the class to be built
+	#	problem_type: the type of the problem to be solved
 	# Returns:
 	# 	none
 	# Author: MOHAMEDSAEED
