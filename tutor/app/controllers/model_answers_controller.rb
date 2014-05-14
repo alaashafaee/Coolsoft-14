@@ -38,14 +38,14 @@ class ModelAnswersController < ApplicationController
 			@new_answer.owner_type = "teaching assistant"
 		end
 		if @new_answer.save
-			flash[:success_creation]= "Answer added."
 			@problems.model_answers << @new_answer
 			session[:problem_id] = @new_answer.problem_id
 			session[:model_answer_id] = @new_answer.id
 			redirect_to :controller => 'tips', :action => 'new', :model_answer_id => @new_answer.id,
 			:track_id => session[:track_id]
 		else
-			render :action=>'new', :problem_id => model_answer_params_add[:problem_id]
+			render :action=>'new', :locals => { :model_answer_id => @new_answer.id,
+			:track_id => session[:track_id], :problem_id => model_answer_params_add[:problem_id]}
 		end
 	end
 

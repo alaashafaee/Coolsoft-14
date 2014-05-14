@@ -12,7 +12,7 @@
  </div>
 <br><br>
 <br><ul class = "navbar-brand pull-right"><%= link_to "Create Hint",
-	{ :controller => 'hints', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id] },
+	{ :controller => 'hints', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id], :flag => 1 },
 	{ class: 'btn btn-info' } %></ul><br><br>
 <a href="#" return:false; class="Lst" onclick="toggle_visibility('foo3'); return false;"
 	style="font:120px"> Previous Hints</a>

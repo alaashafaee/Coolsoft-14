@@ -15,7 +15,4 @@
 		<%= hint_edit.text_field :submission_counter, class:"form-control", style:"width:65px; height:40px;", :value => @hint.submission_counter %>
 	</p>
 		<%= hint_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
-		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',
-			:id => @hint.model_answer_id}, class: "btn btn-success",
-			style: "text-decoration:none; float:right" %>
 <% end %>

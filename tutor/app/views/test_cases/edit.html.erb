@@ -2,7 +2,7 @@
 	<ul>
 		<li class="sub"><a class = "preventclick">Problem</a></li>
 		<li class="sub1"><a class = "visit" style ="padding: 5px 15% 0 0px;">Test Cases</a> </li>
-		<li class="sub2"><a class = "preventclick" style ="padding: 5px 3.75%% 0 0px;">Model Answers</a></li>
+		<li class="sub2"><a class = "preventclick" style ="padding: 5px 3.75% 0 0px;">Model Answers</a></li>
 		<li class="sub3"><a class = "preventclick" >Tips</a> </li>
 		<li class="sub4"><a class = "preventclick">Hints</a> </li>
 	</ul>
@@ -33,7 +33,7 @@
 		<br> <%= test_case.submit "Save changes", class: "btn btn-large btn-info" %><br>         
 	<% end %>
 </div>
-<div style="position: absolute; bottom: 20%; right: 450px;">
+<div style="position: absolute; bottom: 0%; right: 450px;">
 		<%= link_to "Back", {:controller => 'test_cases', :action => 'index',
 					:track_id => session[:track_id], :problem_id => session[:problem_id]},:method => :get,:class => "btn btn-info"%>
 </div>
