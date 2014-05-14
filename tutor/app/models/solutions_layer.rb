@@ -68,7 +68,7 @@ class SolutionsLayer
 	def self.validate lang, code, student_id, problem_id, problem_type, class_name, time
 		solution = get_solution code, student_id, problem_id, problem_type, class_name
 		solution.time = time
-		test_cases = solution.problem.test_cases
+		test_cases = get_test_cases(problem_type, problem_id)
 		compiler = get_compiler lang
 		if compiler
 			feed_back = compiler.compiler_feedback solution
@@ -79,6 +79,15 @@ class SolutionsLayer
 		return {compiler_error: true, compiler_output: feed_back}
 	end
 
+	def self.get_test_cases(problem_type, problem_id)
+		if problem_type == "Cproblem"
+			return Cproblem.find_by_id(problem_id).test_cases
+		elsif problem_type == "Problem"
+			return Problem.find_by_id(problem_id).test_cases
+		else
+			return AssignmentProblem.find_by_id(problem_id).test_cases
+		end
+	end
 	# [Layer - Story X.3]
 	# Debug the given code and use the given case as an input
 	# Parameters:

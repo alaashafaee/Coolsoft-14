@@ -2,7 +2,7 @@ class CproblemsController < ApplicationController
   
   def show
   	puts "<<<<<<<<<<<<<<<<<<<<<<<"
-  	puts params
+	puts params
   	@contest = Contest.find_by_id(1)
   	@problem = Cproblem.find_by_id(params[:id])
 	if @problem.nil?

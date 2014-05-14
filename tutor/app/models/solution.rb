@@ -21,6 +21,8 @@ class Solution < ActiveRecord::Base
 	# Author: MOHAMEDSAEED
 	def self.validate(solution, test_cases)
 		response = []
+		puts "<<<<<<<<<"
+		puts test_cases.size()
 		test_cases.each do |testcase|
 			input = testcase.input
 			expected_output = testcase.output
