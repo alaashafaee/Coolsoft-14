@@ -18,7 +18,7 @@
 			<tbody>
 				 <% @problems.each do |problem| %>
 					<tr>
-						    <% if (problem.publicc && !problem.duplicated) %> 
+						    <% if (problem.seen && !problem.duplicated) %> 
 						   		<td style = "max-width: 300px; word-wrap:break-word;">
 								<%= link_to problem.title ,:controller => 'problem_bank',
 									:action => 'index', :id => problem.id, :track_id => @track_id%>

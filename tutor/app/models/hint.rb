@@ -11,7 +11,8 @@ class Hint < ActiveRecord::Base
 	# [Problem Bank - Story 3.21]
 	# Dublicate the hints of a specified problem
 	# Parameters: none
-	# Returns: the duplicated hints
+	# Returns: 
+	#	the duplicated hints
 	# Author: Ahmed Sharaf
 	def duplicate 
 		return dup 

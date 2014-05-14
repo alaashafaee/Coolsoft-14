@@ -13,7 +13,8 @@ class VariableConstraint < ActiveRecord::Base
 	# [Problem Bank - Story 3.21]
 	# Dublicate  the Variable Constraint of a specified problem
 	# Parameters: none
-	# Returns: the duplicated Variable Constraint
+	# Returns: 
+	#	the duplicated Variable Constraint
 	# Author: Ahmed Sharaf
 	def duplicate 
 		return dup 

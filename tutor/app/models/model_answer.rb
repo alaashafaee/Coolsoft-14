@@ -19,7 +19,8 @@ class ModelAnswer < ActiveRecord::Base
 	# [Problem Bank - Story 3.21]
 	# Dublicate all the Method Constraints and Variable Constraints of a specified problem
 	# Parameters: none
-	# Returns: the duplicated model answers
+	# Returns: 
+	#	the duplicated model answers
 	# Author: Ahmed Sharaf
 	def duplicate 
 		@ma = dup 

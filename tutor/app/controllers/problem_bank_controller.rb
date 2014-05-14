@@ -1,14 +1,29 @@
 class ProblemBankController < ApplicationController
+	# [Problem Bank - Story 3.21]
+	# Show the Problem bank main page
+	# Parameters: none
+	# Returns: none
+	# Author: Ahmed Sharaf
 	def show
 	  	@track_id = params[:id]
 		@problems = Problem.all
 	end
 
+	# [Problem Bank - Story 3.21]
+	# Show the problem describtion in a new page
+	# Parameters: none
+	# Returns: none
+	# Author: Ahmed Sharaf
 	def index
 		@track_id = params[:track_id]
 		@problem_id = params[:id]
 	end
 
+	# [Problem Bank - Story 3.21]
+	# Add the specific problem to the Lecturer/TA
+	# Parameters: none
+	# Returns: none
+	# Author: Ahmed Sharaf
 	def add
 		@problem = Problem.find_by_id(params[:id])
 		@track = Track.find_by_id(params[:track_id])

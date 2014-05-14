@@ -15,7 +15,8 @@ class MethodParameter < ActiveRecord::Base
 	# [Problem Bank - Story 3.21]
 	# Dublicate the Method parameters of a specified problem
 	# Parameters: none
-	# Returns: the duplicated Method parameters
+	# Returns: 
+	#	the duplicated Method parameters
 	# Author: Ahmed Sharaf
 	def duplicate 
 		return dup

@@ -199,15 +199,15 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false, publicc: true, duplicated: false)
+					incomplete: false, seen: true, duplicated: false)
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false, publicc: true, duplicated: false)
+					incomplete: false, seen: true, duplicated: false)
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false, publicc: false, duplicated: true)
+					incomplete: false, seen: false, duplicated: true)
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true, publicc: true)
+					incomplete: true, seen: true, duplicated: false)
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true, publicc: false)
+					incomplete: true, seen: false, duplicated: false)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
@@ -445,7 +445,6 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
-		Problem.first.model_answers.first.hints << Hint.all.second
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems

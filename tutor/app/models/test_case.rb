@@ -14,7 +14,8 @@ class TestCase < ActiveRecord::Base
 	# [Problem Bank - Story 3.21]
 	# Dublicate all the test cases of the specified problem
 	# Parameters: none
-	# Returns: the duplicated test cases
+	# Returns: 
+	#	the duplicated test cases
 	# Author: Ahmed Sharaf
 	def duplicate
 		return dup

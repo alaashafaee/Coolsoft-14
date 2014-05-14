@@ -56,7 +56,8 @@ class Problem < ActiveRecord::Base
 	# [Problem Bank - Story 3.21]
 	# Dublicate the specified problem
 	# Parameters: none
-	# Returns: the duplicated problem
+	# Returns: 
+	#	the duplicated problem
 	# Author: Ahmed Sharaf
 	def duplicate 
 		@p1 = dup
