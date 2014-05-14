@@ -11,14 +11,12 @@ class ContestsController < ApplicationController
 			render ('public/404')
 		end
 		@contest = Contest.find(params[:id])
-		if lecturer_signed_in?
-			if !current_lecturer.contests.include?(@contest)
-				render ('public/404')
-			end
-		elsif teaching_assistant_signed_in?
-			if !current_teaching_assistant.contests.include?(@contest)
-				render ('public/404')
-			end
+		if lecturer_signed_in? &&
+			!current_lecturer.contests.include?(@contest)
+			render ('public/404')
+		elsif teaching_assistant_signed_in? &&
+			!current_teaching_assistant.contests.include?(@contest)
+			render ('public/404')
 		end
 	end
 
@@ -46,10 +44,21 @@ class ContestsController < ApplicationController
 	# Returns: none
 	# Author: Amir George
 	def destroy
-		contest = Contest.find_by_id(params[:id])
+		if student_signed_in?
+			render ('public/404')
+		end
+		contest = Contest.find(params[:id])
+		if lecturer_signed_in? &&
+			!current_lecturer.contests.include?(contest)
+			render ('public/404')
+		elsif teaching_assistant_signed_in? &&
+			!current_teaching_assistant.contests.include?(contest)
+			render ('public/404')
+		else
 		contest.destroy
 		flash[:success_deletion] = "Contest deleted."
 		redirect_to :action => 'index'
+		end
 	end
 
 	# [Edit Contest - Story 5.17]
