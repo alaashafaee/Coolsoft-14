@@ -6,12 +6,18 @@
 		<li class="active"><a href="#">Copy from Existing Problems</a></li>	
 	<% end %>
 	</ul>
-	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>
+	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>	
+			<div style="float:left; width:47%;">
 	<div class="tab-content">
 			<div id="tab1" class="tab active">
+
 				<% openable = true %>
-				<div class="panel-group list-group" id="accordion">
+	
 				<h3> Exercise problems </h3>
+				<% if @problems.empty? %>
+					<p> There are no problems </p>
+				<% end %>
+				<% if @problems.any? %>
 					<% @problems.each do |problem| %>
 					<% if openable %>
 						<% open = "in" %>
@@ -39,9 +45,14 @@
 						</div>
 					</div>
 					<% end %>
+					</div>
+					</div>
 					
-					<% if @cproblems.any? %>
-					<h3> Contest problems </h3>
+
+				</div>	
+				<div style="float:right; width:50%;">
+				<div class="tab-content">
+					<h3> Bank of problems </h3>
 					<% @cproblems.each do |problem| %>
 					<% if openable %>
 						<% open = "in" %>
@@ -66,13 +77,19 @@
 						</div>
 					</div>
 					<% end %>
-				<% end %>
+					<% end %>
+				</div>
+				
 				</div>
 			</div>
 	</div>
 </div>
 <br>
-<ul class="navbar-brand pull-right"><%= submit_tag("Save", :class=>"btn btn-success") %> </ul>
+
+<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments', :action => 'show',
+					:id=> @assignment.id}, class: "btn btn-info", 
+						style: "float: left;margin-left: 15px",method: :get %> </ul>
+						<ul class="navbar-brand pull-right"><%= submit_tag("Save", :class=>"btn btn-info") %> </ul>
 
 <% end %>
 <style>
@@ -103,6 +120,54 @@ float:right;
 
 
 }
+   #collectionsTop {
+    width: 100%;
+    height: 50%;
+    overflow:hidden;
+    margin: 0 auto;
+    }
+    .topRight {
+    background-color:red;
+    width:50%;
+    height:100%;
+    float:left;
+    clear:both;
+    display:inline-block;
+    overflow:hidden;
+    }
+    .topLeft {
+    background-color:blue;
+    width:50%;
+    height:100%;
+    float:left;
+    clear:both;
+    display:inline-block;
+    overflow:hidden;
+    }
+    #collectionsBottom {
+    width: 100%;
+    height: 50%;
+    overflow:hidden;
+    margin: 0 auto;
+    }
+    .bottomRight {
+    background-color:yellow;
+    width:50%;
+    height:100%;
+    float:left;
+    clear:both;
+    display:inline-block;
+    overflow:hidden;
+    }
+    .bottomLeft {
+    background-color:green;
+    width:50%;
+    height:100%;
+    float:left;
+    clear:both;
+    display:inline-block;
+    overflow:hidden;
+    }
 </style>
 <script type="text/javascript">
 	('input[type="checkbox"]').checkbox({

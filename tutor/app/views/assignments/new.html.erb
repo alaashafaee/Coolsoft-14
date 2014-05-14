@@ -1,5 +1,6 @@
 <div class="body2" style="vertical-align: auto;horizontal-align: auto; float:left;">
 
+
 <%= form_for :assignment, url: assignments_path do |f| %>
 
 <h2> Create Assignment </h2>
@@ -13,6 +14,14 @@
 	<p><h3>
 	<%= f.label :Due_date %></h3></p>
 	<p><%= f.date_select :due_date, {:start_year => Date.today.year, :end_year => Date.today.year+3} %>
+	<%=date_select "user", "cc_date", :start_year => 2014,
+                               :order => [:year, :month,:day]%>
+                               <div class="well">
+  <div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+    <input size="16" type="text" value="12-02-2012" readonly>
+    <span class="add-on"><i class="icon-th"></i></span>
+</div>
+</div>
 </p>
 
 <br>
@@ -35,4 +44,5 @@
 {
     text-align:center;
 }
+
 </style>

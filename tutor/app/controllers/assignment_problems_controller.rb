@@ -52,34 +52,36 @@ def create
 			
 			end
 
-       puts "=====00000000000========================="
-       puts check
-       puts "===========0000000000000000000000000000000000"
+ 
 
  	end
-  redirect_to :controller => 'assignment_problems', :action => 'show',
+  redirect_to :controller => 'assignment_problems', :action => 'new',
 			 		:id => @assignment.id
 end
+def show
+
+@assignment_p = Assignment.find_by_id(session[:assignment_id])
+    @problems_complete = AssignmentProblem.where("assignment_id = ?", session[:assignment_id])
+
+  end
 
   	
 
-  def edit
-  end
 
-  def show
-  	@assignment_p = Assignment.find_by_id(session[:assignment_id])
-  	@problems_complete = AssignmentProblem.where("assignment_id = ?", session[:assignment_id])
-
-  		@grades.each do |grade|
+  
+ 
+ def update 
+ 	@problems_complete = AssignmentProblem.where("assignment_id = ?", session[:assignment_id])
+ 	@problems_complete.each do |problem|
+ 		@grade_selected = session[:grades].problem.id
 
        puts "=====00000000000========================="
-       puts grade
+       puts @grade_selected
        puts "===========0000000000000000000000000000000000"
-            		 
-          		end
+   end
 
+ end
 
-  end
 
   def index
   	@assignment =Assignment.find_by_id(session[:assignment_id])
@@ -93,6 +95,10 @@ end
         @tracksi = topic.tracks
         @tracksi.each do |track|
           @tracks.push(track)	
+
+       puts "=====00000000000========================="
+       puts track.id
+       puts "===========0000000000000000000000000000000000"
         end
 	   end
   end
@@ -105,9 +111,9 @@ end
           		end
   			end
     	end
-    @contest = @course.contests
+    @bank = Problem.where("public = ?", true)
     @cproblems = Array.new
-    @contest.each do |contest| 
+    @bank.each do |contest| 
         @cprob = contest.problems
         @cprobs.each do |problem1|
             @cproblems.push(problem1)  
@@ -120,5 +126,10 @@ end
 		def problem_params
 			params.require(:assignment_problem).permit(:title, :description, :final_grade)
 		end
+
+		def p_params
+			params.require(:assignment_p).permit(:final_grade)
+		end
+
 
 end

@@ -44,6 +44,6 @@ class AssignmentsController < ApplicationController
 
   private
 	def post_params
-		params.require(:assignment).permit(:title, :description, :due_date)
+		params.require(:assignment).permit(:title, :description, :due_date, :year, :day, :month)
 	end	
 end

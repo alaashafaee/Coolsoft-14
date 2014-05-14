@@ -21,9 +21,15 @@
 		<%= f.label :grade %><br> 
 		<%= f.text_field :final_grade, placeholder:"Grade", style: "width:55px; height:35px;" %>
 	</p>
-	<p>
-		<%= f.submit "Save", class: "btn btn-info" %>
-	</p>
+	<br>
+
+		
+		<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments', 
+			:action => 'show',
+					:id=> @assignment.id}, class: "btn btn-info", 
+						style: "float: left;margin-left: 15px",method: :post %> </ul>
+						<ul class="navbar-brand pull-right"><%= f.submit "Save", class: "btn btn-info" %></ul>
+		
 
 <% end %>
 		</div>
