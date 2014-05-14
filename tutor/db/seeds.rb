@@ -123,7 +123,7 @@ puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
-	
+
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -234,11 +234,11 @@ puts("# ----------------------- Recommendations ----------------------- ")
 
 puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-		incomplete:false)
+		incomplete:false, start_time:Time.now, end_time:Time.now+7.days)
 	Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
-		incomplete:false)
+		incomplete:false, start_time:Time.now, end_time:Time.now+7.days)
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
-		incomplete:false)
+		incomplete:false, start_time:Time.now, end_time:Time.now+7.days)
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true)
@@ -254,7 +254,7 @@ puts("# ----------------------- Assignments ----------------------- ")
 puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 100)
 	Grade.create(grade: 80)
-	
+
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -430,6 +430,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
+		Problem.first.model_answers.first.hints << Hint.all.second
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
