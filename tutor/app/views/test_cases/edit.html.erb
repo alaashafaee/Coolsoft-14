@@ -21,9 +21,9 @@
 	</div>
 <% end %>
 <div id="diva">
+<br><br>
 	<%= form_for :test_case, url: test_case_path(@test_case), method: :patch, remote: true do |test_case| %>
 		<h2>Test Case </h2>
-		<%= flash[:notice] %>
 		<h3><%= test_case.label :Input%> </h3>
 		<h4 align ="left"><%= @test_case.input %></h4>
 		<%= test_case.text_field :input, class:"form-control", style:"width:350px" %><br>

@@ -80,6 +80,11 @@ class TestCasesController < ApplicationController
 		@test_case = TestCase.find(session[:test_case_id])
 		if test_case_params[:input] != @test_case.input ||
 			test_case_params[:output] != @test_case.output
+			if @test_case.input != test_case_params[:input]
+				flash.keep[:notice] = "Input has changed"
+			elsif @test_case.output != test_case_params[:output]
+				flash.keep[:notice] = "Output has changed"
+			end	
 			begin
 				if @test_case.update_attributes(test_case_params)
 					respond_to do |format|
