@@ -152,6 +152,7 @@ class JavaDebugger < Debugger
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
+		$class_name = solution.class_name
 		$debugger = JavaDebugger.new
 		return super
 	end
@@ -209,7 +210,7 @@ class JavaDebugger < Debugger
 	def get_class_variables
 		result = []
 		flag = 0
-		input "print this.getClass().getName()"
+		input "print this.getClass().getName()"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
 			if flag == 1

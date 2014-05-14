@@ -38,7 +38,7 @@ class SolutionsController < ApplicationController
 		problem_type = params[:problem_type]
 		class_name = params[:class_name]
 		lang = params[:lang]
-		cases = if params[:input] then params[:input] else "" end
+		cases = if params[:case] then params[:case] else "" end
 		result = SolutionsLayer.execute(lang, code, id, pid,
 			problem_type, class_name, cases)
 		render json: result

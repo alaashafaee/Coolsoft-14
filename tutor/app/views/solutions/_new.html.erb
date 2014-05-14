@@ -4,7 +4,7 @@
 <br><br>
 
 <div class="input-group">
-  
+
 	<span class="input-group-addon label-info">Class Name:</span>
 	<input id="class_name" type="text" class="form-control" value="CoolSoft" style="width:150px">
 
@@ -19,7 +19,7 @@
 		<option value="tomorrow_night_eighties">tomorrow night eighties</option>
 		<option value="github">github</option>
 		<option value="dreamweaver">dreamweaver</option>
-	</select> 
+	</select>
 
 	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="btn-info" data-width="auto">
 		<option value="java">Java</option>
@@ -80,10 +80,10 @@
 
 <div>
 	<b>Input:</b><br>
-	<%= text_area :solution_input, placeholder: "Write your test case here", 
-		id: "solution_input", class: "form-control", style: "width:400px" %>
+	<textarea placeholder="Write your test case here" id="solution_input"
+		class="form-control" style="width:400px"></textarea>
 </div>
-<br>
+ <br>
 
 <!--Author: Ahmed Moataz-->
 <b>Console:</b><br/>

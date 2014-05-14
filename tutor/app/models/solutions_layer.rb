@@ -24,7 +24,10 @@ class SolutionsLayer
 			unless compile_status[:success]
 				return {compiler_error: true, compiler_output: compile_status}
 			end
+		else
+			create_file lang, solution
 		end
+		p cases
 		return executer.execute(solution, cases)
 	end
 
@@ -75,6 +78,8 @@ class SolutionsLayer
 			if feed_back[:success]
 				return Solution.validate solution, test_cases
 			end
+		else
+			create_file lang, solution
 		end
 		return {compiler_error: true, compiler_output: feed_back}
 	end
@@ -100,6 +105,8 @@ class SolutionsLayer
 				unless compile_status[:success]
 					return {:success => false, data: compile_status}
 				end
+			else
+				create_file lang, solution
 			end
 			debugger.debug solution, cases
 		else
@@ -113,7 +120,7 @@ class SolutionsLayer
 	# 	code: The code to be debugged
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
-	# Returns: 
+	# Returns:
 	#	A new Solution
 	# Author: Mussab ElDash
 	def self.get_solution code, student_id, problem_id, type = "Problem", class_name
@@ -177,4 +184,33 @@ class SolutionsLayer
 		return debugger
 	end
 
+	# [Debugger: Debug Pyhton - Story X.8]
+	# Creates a file for the choosen language
+	# Parameters:
+	# 	lang: The language to create the file for
+	# 	solution: The solution to create the file for
+	# Returns: none
+	# Author: Mussab ElDash
+	def self.create_file lang, solution
+		folder_name = solution.folder_name
+		file_path = get_extension(lang)
+		file_path = solution.file_path(false) + file_path
+		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
+		File.open(file_path, 'w') { |file| file.write(solution.code) }
+	end
+
+	# [Debugger: Debug Pyhton - Story X.8]
+	# Gets the extension of the choosen language
+	# Parameters:
+	# 	lang: The language to get the file extension for
+	# Returns: The extension of the passed language
+	# Author: Mussab ElDash
+	def self.get_extension lang
+		lang = lang.capitalize
+		if lang === "Java"
+			return ".java"
+		elsif lang === "Python"
+			return ".py"
+		end
+	end
 end

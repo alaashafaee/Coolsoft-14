@@ -3,7 +3,7 @@ variables = null
 # The number of the current index of the line to be executed
 index_number = 0
 # The status of the debugging session
-status = null
+status = "The debugging session was successful."
 
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
@@ -31,7 +31,9 @@ status = null
 		success: (data) ->
 			clear_console()
 			stop_spin()
-			if !data["success"]
+			if data["data"] is false
+				return
+			unless data["success"]
 				compilation_error data["data"]["errors"]
 				return
 			variables = data["data"]
@@ -105,7 +107,7 @@ status = null
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
-		data: {code: code, problem_id: problem_id, input: test,\
+		data: {code: code, problem_id: problem_id, case: test,\
 			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
@@ -409,7 +411,7 @@ debug_console = ->
 # [Debug: Debug Python - Story X.8]
 # Gets the editor
 # Parameters: none
-# Returns: 
+# Returns:
 # 	The editor
 # Author: Mussab ElDash
 get_editor = ->
@@ -418,7 +420,7 @@ get_editor = ->
 # [Debug: Debug Python - Story X.8]
 # Gets the session of the editor
 # Parameters: none
-# Returns: 
+# Returns:
 # 	The session of the editor
 # Author: Mussab ElDash
 get_editor_session = ->
@@ -427,7 +429,7 @@ get_editor_session = ->
 # [Debug: Debug Python - Story X.8]
 # Gets the language selected
 # Parameters: none
-# Returns: 
+# Returns:
 # 	The selected Language
 # Author: Mussab ElDash
 get_lang = ->

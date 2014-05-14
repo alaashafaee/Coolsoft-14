@@ -11,6 +11,7 @@ class Debugger
 	# Author: Rami Khalil
 	def buffer_until(regex)
 		buffer = ""
+		p regex
 		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
 			begin
 				temp = $output.read_nonblock 2048
@@ -67,14 +68,16 @@ class Debugger
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
-		class_name = solution.class_name
 		folder_name = Solution::SOLUTION_PATH + solution.folder_name
 		debugging = ""
 		status = ""
 		Dir.chdir(folder_name){
-			debugging, status = $debugger.start(class_name, input.split(" "))
+			debugging, status = $debugger.start($class_name, input.split(" "))
 		}
 		FileUtils.rm_rf(folder_name)
+		unless status
+			status = "An Error occured."
+		end
 		return {:success => true, data: debugging, status: status}
 	end
 end

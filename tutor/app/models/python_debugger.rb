@@ -10,6 +10,7 @@ class PythonDebugger < Debugger
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
+		$class_name = solution.class_name + ".py"
 		$debugger = PythonDebugger.new
 		return super
 	end
@@ -25,7 +26,7 @@ class PythonDebugger < Debugger
 	# Authors: Mussab ElDash + Rami Khalil
 	def start(class_name, input, time = 10)
 		$step = "step"
-		$regex =""
+		$regex = [/\(Pdb\) $/]
 		$all = []
 		status = "The debugging session was successful."
 		begin
@@ -48,7 +49,7 @@ class PythonDebugger < Debugger
 		rescue => e
 		end
 		return $all, status
-	end	
+	end
 
 	# [Debugger: Debug Pyhton - Story X.8]
 	# Gets the number of the line to be executed
@@ -57,6 +58,7 @@ class PythonDebugger < Debugger
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until $regex
+		puts out_stream
 		exceptions = has_exception out_stream
 		stream = get_stream out_stream
 		exceptions = has_exception out_stream
@@ -74,7 +76,7 @@ class PythonDebugger < Debugger
 
 	# [Debugger: Debug Pyhton - Story X.8]
 	# Checks if there is a runtime error thrown
-	# Parameters: 
+	# Parameters:
 	# 	line: The line to be checked if it has a runtime error
 	# Returns: A hash of the exception and its explanation if exists
 	# Author: Mussab ElDash
@@ -94,7 +96,7 @@ class PythonDebugger < Debugger
 
 	# [Debugger: Debug Pyhton - Story X.8]
 	# Checks if there is a runtime error thrown
-	# Parameters: 
+	# Parameters:
 	# 	line: The line to be checked if it has a runtime error
 	# Returns: A hash of the exception and its explanation if exists
 	# Author: Mussab ElDash
