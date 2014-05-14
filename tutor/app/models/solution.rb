@@ -16,17 +16,20 @@ class Solution < ActiveRecord::Base
 	# Parameters:
 	# 	solution: the solution to be validated
 	#   testcases: the testcases that will test the submitted code
+	#   langauge: the language of the submitted solution
 	# Returns: a hash response containing status for the solution,
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
-	def self.validate(solution, test_cases)
+	def self.validate(solution, test_cases, language)
+		executer = language.capitalize + "Executer"
+		executer = eval(executer)
 		response = []
 		puts "<<<<<<<<<"
 		puts test_cases.size()
 		test_cases.each do |testcase|
 			input = testcase.input
 			expected_output = testcase.output
-			runtime_check = JavaExecuter.execute(solution, input)
+			runtime_check = executer.execute(solution, input)
 			if(runtime_check[:executer_feedback])
 				output = runtime_check[:executer_output][:message]
 				if (output != expected_output)
@@ -35,13 +38,14 @@ class Solution < ActiveRecord::Base
 					end
 					response << {success: false, test_case: input, 
 						response: "Logic error: Expected output: " +
-						expected_output.to_s.strip + ", but your output was: " + output}
+						expected_output.to_s.strip + ", but your output was: " + output,
+						last: false}
 					unless solution.status == 4
 						solution.status = 5
 					end
 				else
 					response << {success: true, test_case: input, 
-						response: "Passed!"}
+						response: "Passed!", last: false}
 					unless solution.status == 4 | 5
 						solution.status = 1
 					end
@@ -51,9 +55,10 @@ class Solution < ActiveRecord::Base
 				explanation = get_response(runtime_error)
 				solution.status = 4
 				response << {success: false, test_case: input, 
-						response: "Runtime error: " + explanation}
+						response: "Runtime error: " + explanation, last: false}
 			end
 		end
+		response << {status: solution.status, last: true}
 		solution.save
 		return response
 	end

@@ -74,10 +74,9 @@ class JavaDebugger
 			locals = get_variables
 			nums[:locals] = locals
 			$all << nums
-			status = TimeLimit.start(time){
+			status = TimeLimit.start(time) {
 				debug
 			}
-			puts status
 		rescue => e
 			unless e.message === 'Exited'
 				return false
@@ -161,7 +160,6 @@ class JavaDebugger
 	def get_stream(line)
 		/^>\s.+\n/ =~ line
 		stream = $&
-		puts stream
 		if stream
 			stream = stream[2..-1]
 			p stream
@@ -216,7 +214,7 @@ class JavaDebugger
 		folder_name = Solution::SOLUTION_PATH + solution.folder_name
 		debugging = ""
 		status = ""
-		Dir.chdir(folder_name){
+		Dir.chdir(folder_name) {
 			debugging, status = debugger.start(class_name, input.split(" "))
 		}
 		FileUtils.rm_rf(folder_name)
