@@ -99,7 +99,9 @@ class PythonDebugger
 	# [View Variables Python Code - Story X.8]
 	# Fetches the variables found in the class and returns
 	# 	a list of all variables in the class with their
-	#	associated values
+	#	associated values. It uses the helper method
+	# 	"get_variables_helper" which gets the set of variables
+	# 	according to their scope.
 	# Parameters: none
 	# Returns:
 	# 	An array. It contains the list of variables and their values
