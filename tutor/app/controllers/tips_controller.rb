@@ -115,7 +115,7 @@ class TipsController < ApplicationController
 		@tip.time = tip_params_edit[:time]
 		@tip.message = tip_params_edit[:message]
 		if @tip.save
-			render :action => 'show'
+			redirect_to :action => 'index'
 		else
 			render :action => 'edit'
 		end
