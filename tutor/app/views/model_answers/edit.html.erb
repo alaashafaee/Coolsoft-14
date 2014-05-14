@@ -28,7 +28,7 @@
 	<%= model_answer.submit "Save changes", class: "btn btn-large btn-info" %>
 	<% end %>
 </div>
-<div style="position: absolute; bottom: 20%; right: 450px;">
+<div style="position: absolute; bottom: 0%; right: 450px;">
 		<%= link_to "Back", {:controller => 'model_answers', :action => 'index',
 					:track_id => session[:track_id], :problem_id => session[:problem_id]},:method => :get,:class => "btn btn-info"%>
 </div>

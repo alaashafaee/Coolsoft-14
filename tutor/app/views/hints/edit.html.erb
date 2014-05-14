@@ -13,3 +13,7 @@
 <br><br><br>
 <h2>Edit Hint</h2>
 <%= render 'form' %>
+<div style="position: absolute; bottom: -20%; right: 450px;">
+		<%= link_to "Back", {:controller => 'hints', :action => 'index',
+					:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%>
+</div>

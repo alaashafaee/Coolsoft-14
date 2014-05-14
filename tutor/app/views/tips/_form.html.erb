@@ -27,9 +27,6 @@
 			<%= tip_edit.text_field :time, class:"form-control", style:"width:65px; height:40px;", :value => @tip.time %>
 		</p>
 		<%= tip_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
-		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',
-			:id => @tip.model_answer_id}, class: "btn btn-success",
-			style: "text-decoration:none; float:right" %>
 	<% end %>
 	</div>
 <% end %>

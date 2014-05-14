@@ -43,11 +43,11 @@ class ProblemsController < ApplicationController
 				redirect_to :controller => "test_cases", :action => "new",
 				:problem_id => @problem.id, :track_id => session[:track_id]
 			else
-				flash.keep[:notice] = "Problem is missing paramaters"
+				flash[:notice] = "Problem is missing paramaters"
 				render :action => 'new'
 			end
 		rescue
-			flash.keep[:notice] = "The track has a problem with the same title"
+			flash[:notice] = "The track has a problem with the same title"
 			render :action => 'new'
 		end
 	end
@@ -129,7 +129,7 @@ class ProblemsController < ApplicationController
 		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem is moved to Track #{problem_params[:track_id]}"
 		else
-			flash.keep[:notice] = "You have entered the same paramater no change has been made!"
+			flash[:notice] = "You have entered the same paramater no change has been made!"
 		end
 
 		if problem_params[:track_id].to_i == @problem.track_id
@@ -137,7 +137,7 @@ class ProblemsController < ApplicationController
 				problem_params[:description] != @problem.description
 				begin
 					if @problem.update_attributes(problem_params)
-						flash.keep[:notice] = @message
+						flash[:notice] = @message
 						respond_to do |format|
 							format.js
 							format.html {redirect_to :action => "edit", :format => :js, 
@@ -166,7 +166,7 @@ class ProblemsController < ApplicationController
 			@problems_in_track = @track.problems.where(title: @problem.title)
 			if @problems_in_track.size == 0
 				if @problem.update_attributes(problem_params)
-					flash.keep[:notice] = @message
+					flash[:notice] = @message
 					respond_to do |format|
 						format.js
 						format.html {redirect_to :action => "edit", :format => :js, 
@@ -174,7 +174,7 @@ class ProblemsController < ApplicationController
 					end
 				end
 			else
-				flash.keep[:notice] = "#{@track.title} has a problem with the same title"
+				flash[:notice] = "#{@track.title} has a problem with the same title"
 				@track = Track.find_by_id(@problem.track_id)
 				respond_to do |format|
 					format.html {redirect_to :action => "edit",
@@ -196,7 +196,7 @@ class ProblemsController < ApplicationController
 		@problem = Problem.find_by_id(params[:problem_id])
 		if @problem.model_answers.empty? || @problem.test_cases.empty?
 			@failure = true
-			flash.keep[:notice] = "Problem is incomplete, 
+			flash[:notice] = "Problem is incomplete, 
 			please add necessary paramaters or save as incomplete"
 			redirect_to :action => "edit", :problem_id => @problem.id
 		else
