@@ -98,7 +98,7 @@ class TipsController < ApplicationController
 	#	@tip: tip which will be edited
 	# Author: Ahmed Osam
 	def edit
-		@tip = Hint.find_by_id(params[:tip_id])
+		@tip = Hint.find_by_id(params[:id])
 	end
 
 	# [Edit tip - Story 4.11]

@@ -7,11 +7,11 @@
 			</h2> 
 		</div>
 		<ul>
-		<% @tip.errors.full_messages.each do |msg| %>
-			<li>
-				<%= msg %>
-			</li>
-		<% end %>
+			<% @tip.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+			<% end %>
 		</ul>
 	<% end %>
 	<%= form_for :tip_edit, :html => {:method => :post}, url: edit_tip_path do |tip_edit| %>
@@ -23,7 +23,7 @@
 			<%= tip_edit.label :Time_in_seconds %><br>
 			<%= tip_edit.text_field :time, style:"width:55px; height:35px;", :value => @tip.time %>
 		</p>	
-		<%= tip_edit.submit "Save changes", class: "btn btn-large btn-primary", style: "float:left" %>
+		<%= tip_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
 		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',
 			:id => @tip.model_answer_id}, class: "btn btn-success",
 			style: "text-decoration:none; float:right" %>
