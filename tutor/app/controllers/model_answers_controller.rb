@@ -84,6 +84,9 @@ class ModelAnswersController < ApplicationController
 	#	A message if the answer is edited and another message if answer was not edited.
 	# Author: Nadine Adel
 	def edit
+		session[:model_answer_id] = params[:model_answer_id]
+		session[:problem_id] = params[:problem_id]
+		session[:track_id] = params[:track_id]
 		@answer = ModelAnswer.find(params[:model_answer_id])
 		@problem = Problem.find(@answer.problem_id)
 		@tips = @answer.hints
@@ -99,36 +102,39 @@ class ModelAnswersController < ApplicationController
 	# Returns: none
 	# Author: Nadine Adel
 	def update
-		@answer = ModelAnswer.find(params[:id])
+		@answer = ModelAnswer.find(session[:model_answer_id])
 		if model_answer_params[:title] != @answer.title ||
-				model_answer_params[:answer] != @answer.answer
-				begin
-					if @answer.update_attributes(model_answer_params)
-						respond_to do |format|
-							format.js
-							format.html {redirect_to :action => "edit", :format => :js, 
-								:model_answer_id => @answer.id, :track_id => session[:track_id]}
-						end
-					else
-						@answer = ModelAnswer.find_by_id(params[:model_answer_id])
-						respond_to do |format|
-							format.js
-							format.html {redirect_to :action => "edit", :format => :js, 
-								:model_answer_id => @answer.id, :track_id => session[:track_id]}
-							
-						end
-					end
-				rescue
-					@answer = ModelAnswer.find_by_id(session[:model_answer_id])
+			model_answer_params[:answer] != @answer.answer
+			if @answer.title != model_answer_params[:title]
+				flash[:notice] = "Title has changed"
+			elsif @answer.answer != model_answer_params[:answer]
+				flash[:notice] = "Answer has changed"
+			end
+			begin
+				if @answer.update_attributes(model_answer_params)
 					respond_to do |format|
 						format.js
 						format.html {redirect_to :action => "edit", :format => :js, 
 							:model_answer_id => @answer.id, :track_id => session[:track_id]}
-						
-						end
+					end
+				else
+					@answer = ModelAnswer.find_by_id(params[:model_answer_id])
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+						:model_answer_id => @answer.id, :track_id => session[:track_id]}		
+					end
+				end
+				rescue
+					@answer = ModelAnswer.find_by_id(session[:model_answer_id])
+					respond_to do |format|
+					format.js
+					format.html {redirect_to :action => "edit", :format => :js, 
+					:model_answer_id => @answer.id, :track_id => session[:track_id]}	
 				end
 			end
 		end
+	end
 
 	# [Add answer story 4.6]
 	# It shows answer that was entered before.
@@ -160,7 +166,7 @@ class ModelAnswersController < ApplicationController
 	# Returns: none
 	# Author: Nadine Adel
 	private
-	def post_params
+	def model_answer_params
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end	
 	def model_answer_params_add

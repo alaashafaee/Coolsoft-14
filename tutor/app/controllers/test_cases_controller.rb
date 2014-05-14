@@ -84,7 +84,7 @@ class TestCasesController < ApplicationController
 				flash.keep[:notice] = "Input has changed"
 			elsif @test_case.output != test_case_params[:output]
 				flash.keep[:notice] = "Output has changed"
-			end	
+			end
 			begin
 				if @test_case.update_attributes(test_case_params)
 					respond_to do |format|
