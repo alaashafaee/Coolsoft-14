@@ -17,12 +17,12 @@ describe AssignmentProblem do
 	
 	it ' is added successfully to an asssignmet ' do
 		aproblem1 = AssignmentProblem.new(
-			title:'P1',
-			description:'P2',
+			title: 'P1',
+			description: 'P2',
 			)
 		aproblem2 = AssignmentProblem.new(
-			title:'P1',
-			description:'P2',
+			title: 'P1',
+			description: 'P2',
 			)
 
 		assignment = Assignment.new(

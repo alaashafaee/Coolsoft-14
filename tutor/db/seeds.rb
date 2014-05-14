@@ -248,9 +248,8 @@ puts("# ----------------------- Contests ----------------------- ")
 
 puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),
-		description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
+		 description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
 	Assignment.create(title:"DMENT Assignment_2", publish: true, due_date: Date.new(2015,1,1))
-
 	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: DateTime.now.to_date)
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
