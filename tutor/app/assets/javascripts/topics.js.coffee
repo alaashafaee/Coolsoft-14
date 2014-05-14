@@ -17,6 +17,7 @@
 	document.getElementById("editTrackRatingbtn").style= "display: none;"  
 	document.getElementById("submitNewRatingbtn").style= "display: true;" 
 	document.getElementById("new_track").style= "display: none;"
+	$('.in').removeClass 'in'
 	$("#accordion").sortable
 		placeholder: "ui-state-highlight"
 		axis: "y"
