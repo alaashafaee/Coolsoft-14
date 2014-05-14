@@ -1,0 +1,5 @@
+<h4>Contest Name:-</h4> <%= Contest.find_by_id(2).title %>
+<h4> Registrants:-</h4>
+<% @contest_registrants.each do |registrant| %>
+<li><%= registrant.name %></li>
+<% end %>

@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
 		@solved = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@failed = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@incomplete = Attempt.where(student_id:params[:student_id], incomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		#Recheck here for the missing DB
 		#@solved_contest = Attempt.where(student_id:params[:student_id], success:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		#@failed_contest = Attempt.where(student_id:params[:student_id], failure:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 	end
@@ -40,7 +41,7 @@ class StudentsController < ApplicationController
 	# 	An array of failed problems
 	# Author: Mahdi
 	def failed_problems
-		@failure_list = Attempt.where(student_id:params[:id], failure:true).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
+		@failure_list = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
 	# [Performance of a student - Story 5.3]
@@ -51,9 +52,12 @@ class StudentsController < ApplicationController
 	# 	An array of incomplete problems  
 	# Author: Mahdi  
 	def incomplete_problems
-		@incomplete_list = Attempt.where(student_id:params[:id], incomplete:true).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
+		@failure_list = Attempt.where(student_id:params[:student_id], icnomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
+	def view_registrants
+		@contest_registrants = Contest.find_by_id(2).students
+	end
 
 	# [Profile - Story 5.8]
 	# Displays the profile of the student chosen
