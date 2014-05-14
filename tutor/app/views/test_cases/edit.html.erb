@@ -33,7 +33,7 @@
 		<br> <%= test_case.submit "Save changes", class: "btn btn-large btn-info" %><br>         
 	<% end %>
 </div>
-<div style="position: absolute; bottom: 0%; right: 450px;">
-		<%= link_to "Back", {:controller => 'test_cases', :action => 'index',
-					:track_id => session[:track_id], :problem_id => session[:problem_id]},:method => :get,:class => "btn btn-info"%>
+<div><ul class = "navbar-brand pull-right">
+		<%= link_to "Back", {:controller => 'tips', :action => 'index',
+					:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
 </div>

@@ -9,13 +9,6 @@
 		<li class="sub4"><a class = "preventclick">Hints</a></li>
 	</ul>
 </div><br><br>
-
-<div id="div1">
-	<% if flash[:notice] %>
-		<div class= "alert alert-success"><%= flash[:notice] %></div>
-	<% end %>
-</div>
-
 <div id="div2">
 	<h2 align ="center"><%= @problem.title %></h2>
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>

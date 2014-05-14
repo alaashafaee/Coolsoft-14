@@ -29,6 +29,6 @@
 	<% end %>
 </div>
 <div><ul class = "navbar-brand pull-right">
-		<%= link_to "Back", {:controller => 'tips', :action => 'index',
+		<%= link_to "Back", {:controller => 'model_answers', :action => 'index',
 					:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
 </div>
