@@ -57,8 +57,8 @@
 					<% @owner_courses = current_lecturer.courses %>
 					<% @owner_courses = @owner_courses.map {|x| x.name} %>
 				<% elsif teaching_assistant_signed_in? %>
-					@owner_courses = current_teaching_assistant.courses
-					@owner_courses = @owner_courses.map {|x| x.name}
+					<% @owner_courses = current_teaching_assistant.courses %>
+					<% @owner_courses = @owner_courses.map {|x| x.name} %>
 				<% end %>
 				<%= f.label :Course %><br>
 				<% unless @new_contest.errors[:course].blank? %>

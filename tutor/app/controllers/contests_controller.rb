@@ -12,13 +12,6 @@ class ContestsController < ApplicationController
 		if(@new_contest == nil)
 			@new_contest = Contest.new
 		end
-		#if lecturer_signed_in?
-		#	@owner_courses = current_lecturer.courses
-		#	@owner_courses = @owner_courses.map {|x| x.name}
-		#elsif teaching_assistant_signed_in?
-		#	@owner_courses = current_teaching_assistant.courses
-		#	@owner_courses = @owner_courses.map {|x| x.name}
-		#end
 	end
 
 	# [Create Contest - Story 5.16]
@@ -64,8 +57,7 @@ class ContestsController < ApplicationController
 	# Author: Amir George
 	private
 		def contest_params 
-			params.require(:contest).permit(:title, :description, :course, :start_date, :start_time,
-				:end_date, :end_time)
+			params.require(:contest).permit(:title, :description, :course, :start_time, :end_time)
 		end
 
 end
