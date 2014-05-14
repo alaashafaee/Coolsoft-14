@@ -15,6 +15,7 @@ Tutor::Application.routes.draw do
 	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	get 'contests/add_problems/:id' => 'contests#add_problems'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
@@ -22,6 +23,7 @@ Tutor::Application.routes.draw do
  	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
+	post 'contests/add/:id' => 'contests#add'
 
 	get 'problems/edit'
 
@@ -88,6 +90,7 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :contests
 
 	# Example resource route with options:
 	#   resources :products do
