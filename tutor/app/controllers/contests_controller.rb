@@ -28,21 +28,20 @@ class ContestsController < ApplicationController
 	# Returns: none
 	# Author: Amir George
 	def create
+		if student_signed_in?
+			render ('public/404')
+		end
 		@new_contest  = Contest.new
 		@new_contest.title = contest_params[:title]
 		unless contest_params[:course] == ""
 			@new_contest.course = Course.find_by_name(contest_params[:course])
 		end
 		@new_contest.description = contest_params[:description]
-		@new_contest.start_date = Date.new(contest_params["start_date(1i)"].to_i,
-			contest_params["start_date(2i)"].to_i, contest_params["start_date(3i)"].to_i)
-		@new_contest.start_time = Time.new(contest_params["start_date(1i)"].to_i,
-			contest_params["start_date(2i)"].to_i, contest_params["start_date(3i)"].to_i,
+		@new_contest.start_time = DateTime.new(contest_params["start_time(1i)"].to_i,
+			contest_params["start_time(2i)"].to_i, contest_params["start_time(3i)"].to_i,
 			contest_params["start_time(4i)"].to_i, contest_params["start_time(5i)"].to_i)
-		@new_contest.end_date = Date.new(contest_params["end_date(1i)"].to_i,
-			contest_params["end_date(2i)"].to_i, contest_params["end_date(3i)"].to_i)
-		@new_contest.end_time = Time.new(contest_params["end_date(1i)"].to_i,
-			contest_params["end_date(2i)"].to_i, contest_params["end_date(3i)"].to_i,
+		@new_contest.end_time = DateTime.new(contest_params["end_time(1i)"].to_i,
+			contest_params["end_time(2i)"].to_i, contest_params["end_time(3i)"].to_i,
 			contest_params["end_time(4i)"].to_i, contest_params["end_time(5i)"].to_i)
 		if lecturer_signed_in?
 			@new_contest.owner = current_lecturer
