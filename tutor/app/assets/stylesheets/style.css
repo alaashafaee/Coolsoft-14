@@ -82,13 +82,13 @@
 
 }
 /*#######*/
-.list-group{
+.right_side .list-group{
 	width: 100%;
 	margin-left: -15px;
 	position: relative;
 
 }
-.list-group-item{
+.right_side .list-group-item{
 	width: 195px;
 	font-size: 1em;
 	font-weight: lighter;
@@ -97,31 +97,56 @@
 	transition: all 0.5s;
 
 }
-.list-group .selected{
+.right_side .list-group .selected{
 	font-weight: bold;
 }
 .rectangle {
 	float: right;
 
 }
-.list-group span {
+.right_side .list-group span {
 	width: 15px;
 	height: 79px;
 	right: 0px;
 	top: 0px;
 	position: absolute;
 }
-.list-group-item:hover{	
+.right_side .list-group-item:hover{	
 	width: 195px;
 	font-size: 1em;	
 	height: 80px;
 	background-color: #FAFAFA !important;;
 }
-.list-group .selected span{
+.right_side .list-group .selected span{
 	font-weight: bolder;
 
 }
-.table .list-group-item {
+.right_side .table .list-group-item {
 	font-size: 0.8em;
 	text-align: center;
+}
+
+.list-group tr {
+	background-color: red;
+	margin: none;
+}
+.list-group .panel-body{
+	width: 195px;
+}
+.list-group .panel-heading{
+	text-align: center;
+	background: white !important;
+	color: black !important;
+}
+.list-group .panel-heading a{
+	text-decoration: none;
+	color: black;
+}
+.list-group .panel-body .list-group-item{
+	width: 195px;
+	margin: -15px;
+}
+.list-group .panel-group{
+	width: 195px;
+
 }
