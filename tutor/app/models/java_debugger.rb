@@ -77,7 +77,6 @@ class JavaDebugger
 			status = TimeLimit.start(time){
 				debug
 			}
-			puts status
 		rescue => e
 			unless e.message === 'Exited'
 				return false
@@ -161,7 +160,6 @@ class JavaDebugger
 	def get_stream(line)
 		/^>\s.+\n/ =~ line
 		stream = $&
-		puts stream
 		if stream
 			stream = stream[2..-1]
 			p stream

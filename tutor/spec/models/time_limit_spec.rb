@@ -16,7 +16,7 @@ describe TimeLimit do
 
 	context "TimeLimit wasnot Execeded" do
 		it "echo blabla" do
-			expect(TimeLimit.start 1, "echo blabla").to eq ["blabla\n",""]
+			expect(TimeLimit.start 1, "echo blabla").to eq [true, "blabla\n", ""]
 		end
 	end
 end

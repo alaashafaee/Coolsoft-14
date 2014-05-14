@@ -17,7 +17,6 @@ class JavaExecuter
 			Dir.chdir(Solution::SOLUTION_PATH + folder_name){
 				@execute_res = %x[#{'java ' + file_name + ' ' + input + ' 2>&1'}]
 			}
-			puts @execute_res
 			if @execute_res.include?("Exception")
 				return {executer_feedback: false, executer_output: get_runtime_error()}
 			else
