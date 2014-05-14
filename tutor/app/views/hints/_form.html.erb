@@ -1,31 +1,35 @@
 <% if lecturer_signed_in? || teaching_assistant_signed_in? %>
-	<% if @tip.errors.any? %>
+	<% if @hint.errors.any? %>
 		<div id="error_explanation">
 			<h2>
-				<%= pluralize(@tip.errors.count, "error") %>
-				prohibited the Tip from being saved:
+				<%= pluralize(@hint.errors.count, "error") %>
+				prohibited the hint from being saved:
 			</h2> 
 		</div>
 		<ul>
-		<% @tip.errors.full_messages.each do |msg| %>
-			<li>
-				<%= msg %>
-			</li>
-		<% end %>
+			<% @hint.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+			<% end %>
 		</ul>
 	<% end %>
-	<%= form_for :tip_edit, :html => {:method => :post}, url: edit_tip_path do |tip_edit| %>
+	<div id = "div_hint">
+	<%= form_for :hint_edit, url: hint_path(@hint), method: :patch, remote: true do |hint_edit| %>
 		<p>
-			<%= tip_edit.label :Content %><br>
-			<%= tip_edit.text_area :message, :cols => "40", :rows => "5", :value => @tip.message %>
+			<h3><%= hint_edit.label :Content %></h3>
+			<h4 align ="left"><%= @hint.message %></h4>
+			<%= hint_edit.text_area :message, class:"form-control", :cols => "35", :rows => "5", :value => @hint.message %>
 		</p>
 		<p>
-			<%= tip_edit.label :Time_in_seconds %><br>
-			<%= tip_edit.text_field :time, style:"width:55px; height:35px;", :value => @tip.time %>
-		</p>	
-		<%= tip_edit.submit "Save changes", class: "btn btn-large btn-primary", style: "float:left" %>
-		<%= link_to "Cancel", {:controller => 'tips', action: 'edit',
-			:problem_id => params[:problem_id], :model_answer_id => params[:model_answer_id],:track_id => session[:track_id]}, class: "btn btn-info",
+			<h3><%= hint_edit.label :Submission_Counter %></h3>
+			<h4 align ="left"><%= @hint.submission_counter %></h4>
+			<%= hint_edit.text_field :submission_counter, class:"form-control", style:"width:55px; height:35px;", :value => @hint.time %>
+		</p>
+		<%= hint_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
+		<%= link_to "Cancel", {:controller => 'model_answers', action: 'edit',
+			:id => @hint.model_answer_id}, class: "btn btn-success",
 			style: "text-decoration:none; float:right" %>
 	<% end %>
+	</div>
 <% end %>
