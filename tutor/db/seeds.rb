@@ -445,6 +445,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
+		Problem.first.model_answers.first.hints << Hint.all.second
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
