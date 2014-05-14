@@ -36,14 +36,13 @@ class Solution < ActiveRecord::Base
 					end
 					response << {success: false, test_case: input, 
 						response: "Logic error: Expected output: " +
-						expected_output.to_s.strip + ", but your output was: " + output,
-						last: false}
+						expected_output.to_s.strip + ", but your output was: " + output}
 					unless solution.status == 4
 						solution.status = 5
 					end
 				else
 					response << {success: true, test_case: input, 
-						response: "Passed!", last: false}
+						response: "Passed!"}
 					unless solution.status == 4 | 5
 						solution.status = 1
 					end
@@ -53,7 +52,7 @@ class Solution < ActiveRecord::Base
 				explanation = get_response(runtime_error)
 				solution.status = 4
 				response << {success: false, test_case: input, 
-						response: "Runtime error: " + explanation, last: false}
+						response: "Runtime error: " + explanation}
 			end
 		end
 		response << {status: solution.status, last: true}

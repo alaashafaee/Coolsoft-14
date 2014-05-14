@@ -372,8 +372,17 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
-			if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
-				data[-1..]
+			if problem_type == "cProblem" || problem_type == "AssignmentProblem" 
+				i = data[data.length-1]['status']
+				if i == 2 
+					content = "<font color ='red'>Compilation failed</font>"
+				else if i == 4
+					content = "<font color ='red'>Testcases have Runtime Errors</font>"
+				else if i == 5
+					content = "<font color ='red'>Testcases have Logic Errors</font>"
+				else 
+					content = "<font color ='green'>Passed all testcases</font>"
+				out.html(content)
 				return 
 			for i in data
 				if !i['last'] && i['success']
@@ -387,7 +396,6 @@ debug_console = ->
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
 						"</td></tr>"
 			out.html(content)
-			alert 'Your Solution has been submitted successfully'
 			return
 		error: (data) ->
 			clear_console()
