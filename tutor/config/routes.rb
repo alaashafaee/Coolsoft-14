@@ -1,5 +1,6 @@
 Tutor::Application.routes.draw do
 
+  get "contests/index"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers

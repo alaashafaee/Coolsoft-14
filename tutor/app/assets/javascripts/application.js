@@ -16,3 +16,5 @@
 //= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
+//= require jquery.plugin.js
+//= require jquery.countdown.js
