@@ -175,5 +175,4 @@ class SolutionsLayer
 		end
 		return debugger
 	end
-
 end

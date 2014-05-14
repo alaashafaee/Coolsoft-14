@@ -317,16 +317,21 @@ debug_console = ->
 	variables = null;
 
 
-# [Compiler: Validate - Story 3.5]
+# [
+#	Compiler: Validate - Story 3.5
+#	Compiler: Validare - Story X.7
+# ]
 # submits a solution in the form without refreshing
 # 	using ajax showing an alert box for success and failure scenarios
 # Parameters:
 # 	problem_id: the id of the problem being solved
+#	problem_type : the type of the problem being solved
 # Returns: a json object containing two arrays one for the errors
 #	of the current code and the other containing success messages
+#	in addition to the status of the submitted solution
 #	and the success and failure messages are displayed in a table
 # Author: MOHAMEDSAEED
-@validate_code = (problem_id) ->
+@validate_code = (problem_id, problem_type) ->
 	code = $('#solution_code').val()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
@@ -354,18 +359,22 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
+			if problem_type == "CProblem"
+				data[-1..]
+				return 
 			for i in data
-				if i['success']
+				if !i['last'] && i['success']
 					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
 						"</td></tr>"
-				else
+				else if !i['last'] && !i['success']
 					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
 						"</td></tr>"
 			out.html(content)
+			alert 'Your Solution has been submitted successfully'
 			return
 		error: (data) ->
 			clear_console()
