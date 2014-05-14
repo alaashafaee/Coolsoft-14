@@ -25,7 +25,7 @@
 		<%= problem.hidden_field :track_id, value: @problem.track_id %>
 	<% end %>
 </div>
-
+<br>
 <div id="div3">
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 		<%= problem.text_area :description, :value => @problem.description, class:"form-control", style: "width:650px; height:250px;" %>
@@ -54,3 +54,6 @@
 <% if @problem.model_answers.empty? || @problem.test_cases.empty? %>
 	<%= render partial: "problems/failure_options" %>
 <% end %>
+<div><ul class = "navbar-brand pull-right"><%= link_to "Return to Track",
+	{ :controller => 'tracks', :action => 'show', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :id => session[:track_id] },
+	{ class: 'btn btn-info' } %></ul></div>

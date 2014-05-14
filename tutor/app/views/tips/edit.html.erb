@@ -13,7 +13,7 @@
 <br><br><br>
 <h2>Edit Tip</h2>
 <%= render 'form' %>
-<div style="position: absolute; bottom: -20%; right: 450px;">
+<div><ul class = "navbar-brand pull-right">
 		<%= link_to "Back", {:controller => 'tips', :action => 'index',
-					:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%>
+					:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
 </div>
