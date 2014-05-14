@@ -21,11 +21,8 @@ class HintsController < ApplicationController
 	# Returns: none
 	# Author: Mimi
 	def edit
-		if current_lecturer or current_teaching_assistant
-		@new_tip = Hint.find_by_id(params[:id])
-		else
-		render "public/500.html"
-		end
+		session[:hint_id] = params[:hint_id]
+		@hint = Hint.find_by_id(params[:hint_id])
 	end	
 
 	# [Edit helping hints - Story 4.13 ]
@@ -41,19 +38,37 @@ class HintsController < ApplicationController
 	#	flash[:notice]: A message indicating the success or failure of the edit
 	# Author: Mimi
 	def update
-		@new_tip = Hint.find_by_id(hint_params[:id])
-		@new_tip.message = hint_params[:message]
-		@new_tip.submission_counter = hint_params[:submission_counter]
-		@model_answer = @new_tip.model_answer_id
-		bool = @new_tip.save
-		if bool == true 
-			flash[:notice] = "Hint successfully edited"
-			redirect_to :controller => 'model_answers', :action => 'edit', :id => @model_answer
-		else
-			if @new_tip.errors.any?
-				flash[:notice] = @new_tip.errors.full_messages.first
+		@hint = Hint.find(session[:hint_id])
+		if hint_params_edit[:message] != @hint.message ||
+			hint_params_edit[:submission_counter] != @hint.submission_counter
+			if @hint.message != hint_params_edit[:message]
+				flash.keep[:notice] = "Content has changed"
+			elsif @hint.submission_counter != hint_params_edit[:submission_counter]
+				flash.keep[:notice] = "Time has changed"
 			end
-			redirect_to :back
+			begin
+				if @hint.update_attributes(hint_params_edit)
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js,
+							:hint_id => @hint.id, :track_id => session[:track_id]}
+					end
+				else
+					@hint = Hint.find_by_id(params[:hint_id])
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js,
+							:hint_id => @test_case.id, :track_id => session[:track_id]}
+					end
+				end
+			rescue
+				@hint = Hint.find_by_id(session[:hint_id])
+				respond_to do |format|
+					format.js
+					format.html {redirect_to :action => "edit", :format => :js,
+					:hint_id => @test_case.id, :track_id => session[:track_id]}
+				end
+			end
 		end
 	end
 

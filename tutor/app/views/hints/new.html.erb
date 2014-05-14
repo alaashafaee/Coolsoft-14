@@ -29,7 +29,7 @@
 			<% end %>
 		</ul>
 	<% end %>
-	<div style = "vertical-align: auto; horizontal-align: auto; float:center;">
+	<div id="div_hint" style = "vertical-align: auto; horizontal-align: auto; float:center;">
 		<%= form_for :hint, url: hints_path do |t| %>
 			<p>
 				<%= t.label :Content %><br>
@@ -50,6 +50,6 @@
 	</div>
 	<div style="position: absolute; bottom: 20%; right: 450px;">
 		<%= link_to "Done", {:controller => 'tracks', :action => 'show',
-					:id => params[:track_id]},:method => :get,:class => "btn btn-info"%>
+					:id => session[:track_id]},:method => :get,:class => "btn btn-info"%>
 		<% end %>
 	</div>
