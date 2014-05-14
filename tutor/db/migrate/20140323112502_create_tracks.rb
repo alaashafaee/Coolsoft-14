@@ -3,7 +3,7 @@ class CreateTracks < ActiveRecord::Migration
     create_table :tracks do |t|
       t.string :title
       t.integer :difficulty
-      t.integer :views_count
+      t.integer :views_count, default: 0
       t.integer :topic_id
 
       t.references :owner, polymorphic: true

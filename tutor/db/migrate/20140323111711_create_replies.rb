@@ -4,10 +4,8 @@ class CreateReplies < ActiveRecord::Migration
       t.text :content
       t.string :img
       t.integer :post_id
-
       
       t.references :owner, polymorphic: true
-
       t.timestamps
     end
   end

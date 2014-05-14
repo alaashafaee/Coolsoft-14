@@ -3,13 +3,14 @@ class CreateProblems < ActiveRecord::Migration
     create_table :problems do |t|
       t.string :title
       t.text :description
-      t.boolean :incomplete
-      t.integer :views_count
-      t.integer :time_limit
+      t.text :snippet
+      t.integer :views_count, default: 0
+      t.integer :time_limit, default: 0
       t.integer :track_id
-      t.string :snippet
-      t.boolean :fill_gaps
-      t.boolean :public
+      t.boolean :fill_gaps, default: false
+      t.boolean :incomplete, default: true
+      t.boolean :seen, default: false
+      t.boolean :duplicated, default: false
 
       t.references :owner, polymorphic: true
       t.timestamps

@@ -9,8 +9,8 @@ class CreateStudents < ActiveRecord::Migration
       t.string :faculty
       t.string :major
       t.integer :semester
-      t.boolean :advising
-      t.boolean :probation
+      t.boolean :advising, default: false
+      t.boolean :probation, default: false
 
       t.timestamps
     end
