@@ -15,7 +15,8 @@ class SolutionsController < ApplicationController
 		time = param[:time]
 		problem_type = param[:problem_type]
 		class_name = param[:class_name]
-		result = SolutionsLayer.validate("java", code, student, problem,
+		lang = param[:lang]
+		result = SolutionsLayer.validate(lang, code, student, problem,
 			problem_type, class_name, time)
 		render json: result
 	end
@@ -36,8 +37,9 @@ class SolutionsController < ApplicationController
 		code = params[:code]
 		problem_type = params[:problem_type]
 		class_name = params[:class_name]
+		lang = params[:lang]
 		cases = if params[:input] then params[:input] else "" end
-		result = SolutionsLayer.execute("java", code, id, pid,
+		result = SolutionsLayer.execute(lang, code, id, pid,
 			problem_type, class_name, cases)
 		render json: result
 	end
@@ -55,7 +57,8 @@ class SolutionsController < ApplicationController
 		problem = param[:problem_id]
 		problem_type = param[:problem_type]
 		class_name = param[:class_name]
-		compiler_feedback = SolutionsLayer.compile("java", code, student, 
+		lang = param[:lang]
+		compiler_feedback = SolutionsLayer.compile(lang, code, student, 
 			problem, problem_type, class_name)
 		render json: compiler_feedback
 	end
@@ -70,7 +73,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time, :class_name, :problem_type)
+		params.permit(:code, :problem_id, :time, :class_name, :problem_type, :lang)
 	end
 
 	# [Compiler: Test - Story 3.15]

@@ -19,13 +19,14 @@ status = null
 		return
 	test = $('#solution_input').val()
 	class_name = $("#class_name").val()
+	lang = get_lang()
 	start_spin()
 	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
 		data: {code: input, case: test, class_name: class_name,\
-				problem_type: problem_type}
+				problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -56,6 +57,7 @@ status = null
 @compile = (problem_id, problem_type) ->
 	input = get_editor_session().getValue()
 	class_name = $("#class_name").val()
+	lang = get_lang()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -65,7 +67,7 @@ status = null
 		type: "POST"
 		url: '/solutions/compile_solution'
 		data: {code: input, problem_id: problem_id,\
-			class_name: class_name, problem_type: problem_type}
+			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (unique) ->
 			clear_console()
@@ -97,13 +99,14 @@ status = null
 		return
 	test = $('#solution_input').val()
 	class_name = $("#class_name").val()
+	lang = get_lang()
 	start_spin()
 	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
 		data: {code: code, problem_id: problem_id, input: test,\
-			class_name: class_name, problem_type: problem_type}
+			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -347,13 +350,14 @@ debug_console = ->
 		alert 'Blank submissions are not allowed'
 		return
 	class_name = $("#class_name").val()
+	lang = get_lang()
 	toggle_code_area()
 	start_spin()	
 	$.ajax
 		type: "POST"
 		url: '/solutions'
 		data: {problem_id: problem_id, code: code, time: time,\
-			class_name: class_name, problem_type: problem_type}
+			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -402,8 +406,30 @@ debug_console = ->
 		$('#class_name').val("CoolSoft");
 	return
 
+# [Debug: Debug Python - Story X.8]
+# Gets the editor
+# Parameters: none
+# Returns: 
+# 	The editor
+# Author: Mussab ElDash
 get_editor = ->
 	ace.edit("editor")
 
+# [Debug: Debug Python - Story X.8]
+# Gets the session of the editor
+# Parameters: none
+# Returns: 
+# 	The session of the editor
+# Author: Mussab ElDash
 get_editor_session = ->
 	get_editor().getSession()
+
+# [Debug: Debug Python - Story X.8]
+# Gets the language selected
+# Parameters: none
+# Returns: 
+# 	The selected Language
+# Author: Mussab ElDash
+get_lang = ->
+	mode = edit_session.getMode()["$id"]
+	mode.substring(mode.lastIndexOf("/") + 1)
