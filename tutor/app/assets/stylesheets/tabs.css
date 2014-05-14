@@ -25,11 +25,10 @@
 	padding:9px 15px;
 	display:inline-block;
 	border-radius:3px 3px 0px 0px;
-	background:#7FB5DA;
-	font-size:1em;
-	font-weight:bold;
-	color:#4c4c4c;
+	font-weight: lighter;
+	color: grey !important;
 	transition:all linear 0.15s;
+	background-color: white;
 }
 
 .tab-links a:hover {
@@ -38,8 +37,10 @@
 }
 
 li.active a, li.active a:hover {
-	background:#fff;
-	color:#4c4c4c;
+	background-color:#3B8FA3;
+	font-weight: bold;
+	color: white !important;
+
 }
 
 .tab-content {
