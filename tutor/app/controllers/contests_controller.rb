@@ -20,4 +20,14 @@ class ContestsController < ApplicationController
 		end
 		@problems = Cproblem.all
 	end
+
+	def add
+		@contest = Contest.find(params[:id])
+		@problem = Cproblem.find(params[:problem_id])
+		if @contest.problems.find_by_id(@problem.id).nil?
+			@contest.problems << @problem
+		end
+		redirect_to :back
+	end
+
 end
