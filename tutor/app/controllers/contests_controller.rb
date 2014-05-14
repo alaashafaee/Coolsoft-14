@@ -37,7 +37,7 @@ class ContestsController < ApplicationController
 	end
 
 	
-	# [Delete Contest - Story 5.17]
+	# [Edit Contest - Story 5.17]
 	# Gets the course id, removes it from the database and then
 	# 	redirects the user to the show contests page
 	# Parameters: none
@@ -69,8 +69,8 @@ class ContestsController < ApplicationController
 	# Author: Amir George
 	private
 		def contest_params 
-			params.require(:contest).permit(:title, :description, :start_date, :start_time,
-				:end_date, :end_time)
+			params.require(:contest).permit(:title, :description, :start_time,
+				:end_time)
 		end
 
 	# [Edit Contest - Story 5.17]
