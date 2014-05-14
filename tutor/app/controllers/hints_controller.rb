@@ -8,8 +8,9 @@ class HintsController < ApplicationController
 	# Returns: none
 	# Author: Nadine Adel
 	def index
-		@hints = Hint.all
-		@hints_check = Hint.all
+		session[:model_answer_id] = params[:model_answer_id]
+		@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
+		@hints = Hint.get_hints @model_answer.id
 	end
 	
 	# [Edit helping hints - Story 4.13 ]
