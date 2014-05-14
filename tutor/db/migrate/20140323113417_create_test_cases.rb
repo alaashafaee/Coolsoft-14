@@ -5,6 +5,8 @@ class CreateTestCases < ActiveRecord::Migration
       t.string :output
       t.integer :model_answer_id
       t.integer :problem_id
+      t.integer :cproblem_id
+      t.integer :assignment_problem_id
 
       t.references :owner, polymorphic: true
       t.timestamps

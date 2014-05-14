@@ -477,6 +477,8 @@ ActiveRecord::Schema.define(version: 20140513171629) do
     t.string   "output"
     t.integer  "model_answer_id"
     t.integer  "problem_id"
+    t.integer  "cproblem_id"
+    t.integer  "assignment_problem_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
