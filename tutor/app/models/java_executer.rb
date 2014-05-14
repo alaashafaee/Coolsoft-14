@@ -14,7 +14,7 @@ class JavaExecuter
 		folder_name = @solution.folder_name
 		validity = check_input_validity(input, @solution.problem.id)
 		if validity[:status]
-			Dir.chdir(Solution::SOLUTION_PATH + folder_name){
+			Dir.chdir(Solution::SOLUTION_PATH + folder_name) {
 				@execute_res = %x[#{'java ' + file_name + ' ' + input + ' 2>&1'}]
 			}
 			if @execute_res.include?("Exception")
