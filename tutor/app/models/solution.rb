@@ -20,8 +20,8 @@ class Solution < ActiveRecord::Base
 	# Returns: a hash response containing status for the solution,
 	#		   solution errors or success message.
 	# Author: MOHAMEDSAEED
-	def self.validate(solution, test_cases, langauge)
-		executer = (language +"_executer").camelize
+	def self.validate(solution, test_cases, language)
+		executer = language.capitalize + "Executer"
 		executer = eval(executer)
 		response = []
 		test_cases.each do |testcase|
@@ -169,7 +169,7 @@ class Solution < ActiveRecord::Base
 	# Parameters:
 	#	append_extension: A boolean value indicating if the file extension
 	#		should be appended or not.
-	# Returns: 
+	# Returns:
 	#	path: The file path.
 	# Author: Ahmed Moataz
 	def file_path(append_extension = true)
