@@ -60,17 +60,16 @@
 		</div>
 		<div class="container cont">
 			<% if signed_in? %>
-				<div class="row">
-					<div class="col-xs-10 left_side">
-						<div class="content_containter">
+					<div class="col-md-10 left_side">
+						<div class="container content_container" style="width: 100% !important;">
 							<%= yield %>
 						</div>					
 					</div>
 <!-- 					<div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
-					<div class="col-xs-2 right_side">
-						<%= render "layouts/right_side_bar" %>
+					<div class="col-xs-hidden col-md-2 right_side">
+							<%= render "layouts/right_side_bar" %>
+
 					</div>
-				</div>
 			<% else %>
 				<div class="row" style="background: #eeefe9;">
 						<%= yield %>

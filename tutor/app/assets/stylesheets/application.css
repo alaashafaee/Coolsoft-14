@@ -55,3 +55,6 @@
 .home {
 	overflow:auto;
 }
+.well {
+	background: transparent;
+}

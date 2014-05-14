@@ -4,7 +4,10 @@
 	background: #eeefe9;
 	padding-top:100px;
 }
-.right_side{
+.right_side {
+
+}
+.left_side {
 
 }
 .test {
@@ -12,9 +15,11 @@
 }
 .profile_info_row{
     margin-bottom: 10px;
+ 	padding-left: 20px;
+ 	padding-top: 20px;
 }
-.content_containter{
-	width: 98%;
+.content_container{
+	background-color: #FAFAFA;
 }
 .profile_picture {
 	width:200px;
@@ -115,7 +120,7 @@
 	width: 195px;
 	font-size: 1em;	
 	height: 80px;
-	background-color: #FAFAFA !important;;
+	background-color: #ecf0f1 !important;;
 }
 .right_side .list-group .selected span{
 	font-weight: bolder;
@@ -126,27 +131,27 @@
 	text-align: center;
 }
 
-.list-group tr {
+.right_side .list-group tr {
 	background-color: red;
 	margin: none;
 }
-.list-group .panel-body{
+.right_side .list-group .panel-body{
 	width: 195px;
 }
-.list-group .panel-heading{
+.right_side .list-group .panel-heading{
 	text-align: center;
 	background: white !important;
 	color: black !important;
 }
-.list-group .panel-heading a{
+.right_side .list-group .panel-heading a{
 	text-decoration: none;
 	color: black;
 }
-.list-group .panel-body .list-group-item{
+.right_side .list-group .panel-body .list-group-item{
 	width: 195px;
 	margin: -15px;
 }
-.list-group .panel-group{
+.right_side .list-group .panel-group{
 	width: 195px;
 
 }

@@ -8,7 +8,7 @@
 	Author:Rania Abdel Fattah
  -->
 <!-- 		<div style="padding-top: 30px; style="width:100%;""> -->
-	<div class="list-group">
+	<div class="right_side list-group">
 		<a href="/" class="list-group-item selected"><span class="rectangle profile"></span	>Profile</a>
 		<a href="#" class="list-group-item"><span class="rectangle dashboard"></span>Dashboard</a>
 		<a href="/courses" class="list-group-item"><span class="rectangle courses"></span>Courses</a>
@@ -17,17 +17,17 @@
 <!--end of Rania's story -->
 
 	<% if student_signed_in? %>
-		<div class="list-group table">
+		<div class="right_side list-group table">
 			<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
 			<div class="panel-group" id="accordion">
 	  			<div class="panel panel-default">
 					<% if next_problems_to_solve != nil then %>
 							<div class="panel-heading">
-								<a  data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								<a  data-toggle="collapse" data-parent="#accordion" href="#Nextproblems">
 									Next problems to solve
 								</a>
 							</div>
-							<div id="collapseOne" class="panel-collapse collapse in">
+							<div id="Nextproblems" class="panel-collapse collapse">
 								<div class="panel-body">
 									<% next_problems_to_solve.each do |key , value| %>
 										<div class="list-group-item">
@@ -55,17 +55,17 @@
 		# Displays the recommende problem hash in a table as [recommender_name | problem]
 		# Author: Mohab Ghanim
 		-->
-		<div class="list-group table">
+		<div class="right_side list-group table">
 			<div class="panel-group" id="accordion">
-	  			<div class="panel panel-default">
+				<div class="panel panel-default">
 					<% recommended_problems = current_student.getClassMatesRecommendations 
 					if recommended_problems != nil then %>
 						<div class="panel-heading">
-							<a  data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+							<a  data-toggle="collapse" data-parent="#accordion" href="#ClassmateRecommendations">
 								Classmates Recommendations
 							</a>
 						</div>
-						<div id="collapseTwo" class="panel-collapse collapse in">
+						<div id="ClassmateRecommendations" class="panel-collapse collapse">
 							<div class="panel-body">
 								<% recommended_problems.each do |key , value| %>
 									<div class="list-group-item">
@@ -87,15 +87,23 @@
 			</div>
 		</div>
 		
-		<div class="list-group table">
-			<table class="table table-striped table-bordered table-responsive">
-				<caption><b>System Recommendations<b></caption>
-				<tr class="list-group-item">
-					<td style = "text-align : center">
-					<%= render "problems/system_recommendation" if student_signed_in? %>
-					</td>
-				</tr>
-			</table>
+		<div class="right_side list-group table">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<a  data-toggle="collapse" data-parent="#accordion" href="#SystemRecommendation">
+							System Recommendations
+						</a>
+					</div>
+					<div id="SystemRecommendation" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="list-group-item">
+								<%= render "problems/system_recommendation" if student_signed_in? %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	<% end %>
 </div>
