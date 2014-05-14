@@ -56,7 +56,7 @@ class ContestsController < ApplicationController
 	# Returns: none
 	# Author: Amir George
 	private
-		def contest_params 
+		def contest_params
 			params.require(:contest).permit(:title, :description, :course, :start_time, :end_time)
 		end
 
