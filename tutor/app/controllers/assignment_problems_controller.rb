@@ -19,9 +19,10 @@ def create
 		end
 			if @new_problem.save
 				@assignment.problems << @new_problem
-        flash[:notice] = "Assignment is now created"
-				redirect_to :controller => 'assignment_problems', :action => 'new',
-			 		:id => @assignment.id
+        flash[:notice]= "problem added."
+				redirect_to :controller => 'assignment_problems', :action => 'show',
+			 		:problem_id => @new_problem.id
+          #render :action=>'new', :assignment_id=> session[:assignment_id]
 			else
 				
 				render :action=>'new', :assignment_id=> session[:assignment_id]
@@ -58,13 +59,18 @@ def create
  
 
  	end
-  redirect_to :controller => 'assignment_problems', :action => 'new',
+  redirect_to :controller => 'assignment_problems', :action => 'index',
 			 		:id => @assignment.id
 end
 def show
 
-@assignment_p = Assignment.find_by_id(session[:assignment_id])
-    @problems_complete = AssignmentProblem.where("assignment_id = ?", session[:assignment_id])
+@assignment = Assignment.find_by_id(session[:assignment_id])
+    @problem = AssignmentProblem.find_by_id(params[:problem_id])
+    @test_case = TestCase.new
+
+       puts "=====00000000000========================="
+       puts @problem.id
+       puts "===========0000000000000000000000000000000000"
 
   end
 
@@ -78,9 +84,6 @@ def show
  	@problems_complete.each do |problem|
  		@grade_selected = session[:grades].problem.id
 
-       puts "=====00000000000========================="
-       puts @grade_selected
-       puts "===========0000000000000000000000000000000000"
    end
 
  end

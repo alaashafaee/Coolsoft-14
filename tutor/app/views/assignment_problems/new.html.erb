@@ -10,6 +10,9 @@
 	</ul>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
+		<% if flash[:notice] %>
+		<div class = "alert alert-success"> Problem  is now added </div>
+		<% end %>
 		<% if @new_problem.errors.any? %>
 	<div id="error_explanation">
 		<h2><%= pluralize(@new_problem.errors.count, "error") %> prohibited this problem from being saved:
@@ -34,13 +37,10 @@
 			 class: "form-control", style: "width:60%" %>
 	</p>
 	<%= f.submit "Save", class: "btn btn-info" %>
-	<h2> Create Testcase </h2>
-	<%= render partial: "test_cases/form" %>
+	
+	
 		
-		<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments', 
-			:action => 'show',
-					:id=> @assignment.id}, class: "btn btn-info", 
-						style: "float: left;margin-left: 15px" %> </ul>
+		
 						
 		
 

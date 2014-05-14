@@ -11,8 +11,11 @@ Tutor::Application.routes.draw do
   get "assignments/index"
   post "assignment_problems/complete"
   post "assignment_problems/update"
-   post "assignment_problems/show"
-   post "assignment_problems/edit2"
+  post "assignment_problems/show"
+  post "assignment_problems/edit2"
+
+
+ 	mount Ckeditor::Engine => '/ckeditor'
 
 	devise_for :teaching_assistants
 	devise_for :students
