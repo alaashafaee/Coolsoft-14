@@ -44,7 +44,7 @@ class JavaDebugger < Debugger
 			locals = get_variables
 			nums[:locals] = locals
 			$all << nums
-			status = TimeLimit.start(time){
+			status = TimeLimit.start(time) {
 				debug
 			}
 		rescue => e

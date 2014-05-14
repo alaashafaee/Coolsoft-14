@@ -7,18 +7,18 @@ describe SolutionsLayer do
 			expect(SolutionsLayer.get_compiler "java").to eq JavaCompiler
 		end
 
-		it "no such compiler named blabla" do
-			expect(SolutionsLayer.get_compiler "blabla").to eq false
+		it "no such compiler named foo" do
+			expect(SolutionsLayer.get_compiler "foo").to eq false
 		end
 	end
 
 	context "get_executer tests" do
 		it "get java executer" do
-			expect(SolutionsLayer.get_executer "java").to eq JavaExecuter
+			expect(SolutionsLayer.get_executer foo"java").to eq JavaExecuter
 		end
 	
-		it "no such executer named blabla" do
-			expect(SolutionsLayer.get_executer "blabla").to eq false
+		it "no such executer named foo" do
+			expect(SolutionsLayer.get_executer "foo").to eq false
 		end
 	end
 
@@ -27,8 +27,8 @@ describe SolutionsLayer do
 				expect(SolutionsLayer.get_debugger "java").to eq JavaDebugger
 			end
 
-		it "no such debugger named blabla" do
-			expect(SolutionsLayer.get_debugger "blabla").to eq false
+		it "no such debugger named foo" do
+			expect(SolutionsLayer.get_debugger "foo").to eq false
 		end
 	end
 

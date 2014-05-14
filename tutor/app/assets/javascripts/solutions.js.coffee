@@ -2,7 +2,7 @@
 variables = null
 # The number of the current index of the line to be executed
 index_number = 0
-#The status of the debugging session
+# The status of the debugging session
 status = null
 
 # [Debugger: Debug - Story 3.6]
