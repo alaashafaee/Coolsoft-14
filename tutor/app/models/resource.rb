@@ -7,6 +7,7 @@ class Resource < ActiveRecord::Base
 	#Relations
 	belongs_to :course
 	belongs_to :owner, polymorphic: true
+
 	#Scoops
 	
 	#Methods
