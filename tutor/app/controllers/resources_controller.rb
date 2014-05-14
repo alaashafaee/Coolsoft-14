@@ -19,7 +19,7 @@ class ResourcesController < ApplicationController
 	# Author: Ahmed Elassuty
 	def create
 		@course = Course.find_by_id(params[:course_id])
-		@course.resources.find_or_create_by(params[:course])
+		@course.update_attributes(resources_attributes: params[:course][:resources_attributes])
 		render nothing:true
 	end
 
@@ -29,6 +29,19 @@ class ResourcesController < ApplicationController
 	# Returns: course resources
 	# Author: Ahmed Elassuty
 	def index
+	end
+
+	# [Course Resources - Story 1.25]
+	# index resources of a course
+	# Parameters: course_id
+	# Returns: course resources
+	# Author: Ahmed Elassuty
+	def add_more
+		@course = Course.find(params[:course_id])
+		1.times { @course.resources.build }
+		respond_to do |format|
+			format.js
+		end
 	end
 
 end
