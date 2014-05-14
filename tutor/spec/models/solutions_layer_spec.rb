@@ -7,18 +7,18 @@ describe SolutionsLayer do
 			expect(SolutionsLayer.get_compiler "java").to eq JavaCompiler
 		end
 
-		it "no such compiler named blabla" do
-			expect(SolutionsLayer.get_compiler "blabla").to eq false
+		it "no such compiler named foo" do
+			expect(SolutionsLayer.get_compiler "foo").to eq false
 		end
 	end
 
 	context "get_executer tests" do
 		it "get java executer" do
-			expect(SolutionsLayer.get_executer "java").to eq JavaExecuter
+			expect(SolutionsLayer.get_executer foo"java").to eq JavaExecuter
 		end
 	
-		it "raise error when trying to get a non valid blabla executer" do
-			expect{SolutionsLayer.get_executer "blabla"}.to raise_error(NameError)
+		it "no such executer named foo" do
+			expect(SolutionsLayer.get_executer "foo").to eq false
 		end
 	end
 
@@ -27,8 +27,8 @@ describe SolutionsLayer do
 				expect(SolutionsLayer.get_debugger "java").to eq JavaDebugger
 			end
 
-		it "no such debugger named blabla" do
-			expect(SolutionsLayer.get_debugger "blabla").to eq false
+		it "no such debugger named foo" do
+			expect(SolutionsLayer.get_debugger "foo").to eq false
 		end
 	end
 
@@ -43,41 +43,44 @@ describe SolutionsLayer do
 				description: "Given two numbers a and b, output a/b", incomplete: false)
 			test_cases = TestCase.create(output: "5\n", input:"10 2")
 			problem.test_cases << test_cases
-			@code = "public static void main(String [] args){}}"
+			@code = "public class Coolsoft{public static void main(String [] args){}}"
 			@student_id = 1
 			@problem_id = problem.id
 			@lang = "java"
 			@cases1 = "1 12 123"
 			@cases2 = "1 12"
+			@problem_type = "Problem"
+			@class_name = "Coolsoft"
 			@solution = Solution.create(code: @code, student_id: @student_id,
-				problem_id: @problem_id)
+				problem_id: @problem_id, problem_type: @problem_type, class_name: @class_name)
 		end
 
 		context "compiler" do
 			it "a solution is created" do
 				expect(Solution).to receive(:create).and_return(@solution)
-				SolutionsLayer.compile @lang, @code, @student_id, @problem_id
+				SolutionsLayer.compile @lang, @code, @student_id, @problem_id, @problem_type, @class_name
 			end
 
 			it "java JavaCompiler.compiler_feedback was called" do
 				expect(JavaCompiler).to receive(:compiler_feedback){
 					{success: false, errors: ""}
 				}
-				SolutionsLayer.compile @lang, @code, @student_id, @problem_id
+				SolutionsLayer.compile @lang, @code, @student_id, @problem_id, @problem_type, @class_name
 			end
 
 			it "get_compiler was called and JavaCompiler was returned" do
 				expect(SolutionsLayer).to receive(:get_compiler).with("java"){JavaCompiler}
-				SolutionsLayer.compile @lang, @code, @student_id, @problem_id
+				SolutionsLayer.compile @lang, @code, @student_id, @problem_id, @problem_type, @class_name
 			end
 
 			it "get_solution was called and new Solution was returned" do
 				expect(SolutionsLayer).to receive(:get_solution).and_return(@solution)
-				SolutionsLayer.compile @lang, @code, @student_id, @problem_id
+				SolutionsLayer.compile @lang, @code, @student_id, @problem_id, @problem_type, @class_name
 			end
 
 			it "Compiled successfuly" do
-				feed_back = SolutionsLayer.compile @lang, @code, @student_id, @problem_id
+				feed_back = SolutionsLayer.compile(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name)
 				expected_hash = {success: true, errors: nil}
 				expect(feed_back).to eq expected_hash
 			end
@@ -86,17 +89,20 @@ describe SolutionsLayer do
 		context "executer" do
 			it "get_compiler was called and JavaCompiler was returned" do
 				expect(SolutionsLayer).to receive(:get_compiler).with("java"){JavaCompiler}
-				SolutionsLayer.execute @lang, @code, @student_id, @problem_id, @cases1
+				SolutionsLayer.execute(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
 			end
 
 			it "Compiled successfuly but wrong input" do
-				feed_back = SolutionsLayer.execute @lang, @code, @student_id, @problem_id, @cases1
+				feed_back = SolutionsLayer.execute(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
 				expected_hash = {executer_feedback: false, executer_output: "Enter only 2 numbers"}
 				expect(feed_back).to eq expected_hash
 			end
 
 			it "Compiled successfuly and run successfuly with no output" do
-				feed_back = SolutionsLayer.execute @lang, @code, @student_id, @problem_id, @cases2
+				feed_back = SolutionsLayer.execute(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases2)
 				expected_hash = {executer_feedback: true,
 					executer_output: {success: true, message: ""}
 				}
@@ -104,21 +110,24 @@ describe SolutionsLayer do
 			end
 
 			it "Compilation error" do
-				code = "public static void main(String [] args){System.out.println(5)}}"
-				feed_back = SolutionsLayer.execute @lang, code, @student_id, @problem_id, @cases2
-				expected_hash = {compiler_error: true,
-       				compiler_output: {success: false,
-       					errors: "CoolSoft.java:2: error: ';' expected\npublic " +
-       					"static void main(String [] args){System.out.println(5)}}" +
-       					"\n                                              " + 
-       					"               ^\n1 error\n"}
+				code = "public class Coolsoft{public static void main" +
+					"(String [] args){System.out.println(5)}}"
+				feed_back = SolutionsLayer.execute(@lang, code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases2)
+				expected_hash = {compiler_error: true, compiler_output: {success: false,
+					errors: "Coolsoft.java:1: error: ';' expected\npublic " +
+					"class Coolsoft{public static void main(String [] args)" +
+					"{System.out.println(5)}}\n                              " +
+					"                                                     ^\n1 error\n"}
 				}
 				expect(feed_back).to eq expected_hash
 			end
 
 			it "Compiled successfuly and run successfuly with output" do
-				code = "public static void main(String [] args){System.out.println(5);}}"
-				feed_back = SolutionsLayer.execute @lang, code, @student_id, @problem_id, @cases2
+				code = "public class Coolsoft{public static void main" +
+					"(String [] args){System.out.println(5);}}"
+				feed_back = SolutionsLayer.execute(@lang, code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases2)
 				expected_hash = {executer_feedback: true,
 					executer_output: {success: true, message: "5\n"}
 				}
@@ -129,33 +138,41 @@ describe SolutionsLayer do
 		context "debugger" do
 			it "get_solution called" do
 				expect(SolutionsLayer).to receive(:get_solution).and_return(@solution)
-				SolutionsLayer.debug @lang, @code, @student_id, @problem_id, @cases1
+				SolutionsLayer.debug(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
 			end
 
 			it "get_compiler called" do
 				expect(SolutionsLayer).to receive(:get_compiler).and_return(JavaCompiler)
-				SolutionsLayer.debug @lang, @code, @student_id, @problem_id, @cases1
+				SolutionsLayer.debug(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
 			end
 
 			it "get_debugger called" do
 				expect(SolutionsLayer).to receive(:get_debugger).and_return(JavaDebugger)
-				SolutionsLayer.debug @lang, @code, @student_id, @problem_id, @cases1
+				SolutionsLayer.debug(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
 			end
 
 			it "Compilation error" do
-				code = "public static void main(String [] args){System.out.println(5)}}"
-				feed_back = SolutionsLayer.debug @lang, code, @student_id, @problem_id, @cases1
-				expected_hash = {data: {success: false, errors: "CoolSoft.java:2: error: ';'" +
-					" expected\npublic static void main(String [] args){" +
-					"System.out.println(5)}}\n                            " +
-					"                                 ^\n1 error\n"}, success: false}
+				code = "public class Coolsoft{public static void main" +
+					"(String [] args){System.out.println(5)}}"
+				feed_back = SolutionsLayer.debug(@lang, code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
+				expected_hash = {success: false, data: {success: false,
+					errors: "Coolsoft.java:1: error: ';'" +
+					" expected\npublic class Coolsoft{public static void main(String [] args){" +
+					"System.out.println(5)}}\n                                               " +
+					"                                    ^\n1 error\n"}}
 				expect(feed_back).to eq expected_hash
 			end
 
 			it "Debugged successfuly", focus: true do
-				feed_back = SolutionsLayer.debug @lang, @code, @student_id, @problem_id, @cases1
-				expected_hash = {data: [{status: true, line: 2, stream: "",
-					locals: [" args = {\n\"1\", \"12\", \"123\"\n}\n"]}], success: true}
+				feed_back = SolutionsLayer.debug(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
+				expected_hash = {data: [{status: true, line: 1, stream: "",
+					locals: [" args = {\n\"1\", \"12\", \"123\"\n}\n"]}], success: true,
+					status: "The debugging session was successful."}
 				expect(feed_back).to eq expected_hash
 			end
 		end
