@@ -8,9 +8,10 @@
 	<% @type = "AssignmentProblem" %>
 <% end %>
 
+<div hidden id = "contest_id"><%= @contest.id %></div>
+
 <!-- Upper buttons -->
 <div class="input-group">
-  
 	<span class="input-group-addon label-info">Class Name:</span>
 	<input id="class_name" type="text" class="form-control" value="CoolSoft" style="width:130px">
 	<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',

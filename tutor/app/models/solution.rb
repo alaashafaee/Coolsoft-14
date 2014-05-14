@@ -24,8 +24,6 @@ class Solution < ActiveRecord::Base
 		executer = language.capitalize + "Executer"
 		executer = eval(executer)
 		response = []
-		puts "<<<<<<<<<"
-		puts test_cases.size()
 		test_cases.each do |testcase|
 			input = testcase.input
 			expected_output = testcase.output

@@ -22,7 +22,7 @@ Tutor::Application.routes.draw do
  	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
-
+	post 'cproblems/submit' => 'cproblems#submit'
 	get 'problems/edit'
 
 	get "tips/new"
