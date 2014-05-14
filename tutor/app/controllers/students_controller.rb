@@ -15,11 +15,19 @@ class StudentsController < ApplicationController
 		@failed = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@incomplete = Attempt.where(student_id:params[:student_id], incomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		#Recheck here for the missing DB
-		#@solved_contest = Attempt.where(student_id:params[:student_id], success:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		@solved_contest = ContestProgress.find_by_student_id(2)
 		#@failed_contest = Attempt.where(student_id:params[:student_id], failure:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 	end
 
+	# [Performance of a student - Story 5.3]
+	# This method retrieve variables from tables in the database
+	# Parameters:
+	# 	params: A hash of the request URL attributes
+	# Returns:
+	# 	An array of the registered courses by the student
+	# Author: Mahdi
 	def list_courses
+		#change the student id to params
 		@courses_list = CourseStudent.where(student_id: current_student.id)
 	end
 	# [Performance of a student - Story 5.3]
@@ -49,14 +57,22 @@ class StudentsController < ApplicationController
 	# Parameters:
 	# 	params: A hash of the request URL attributes
 	# Returns:
-	# 	An array of incomplete problems  
-	# Author: Mahdi  
+	# 	An array of incomplete problems
+	# Author: Mahdi
 	def incomplete_problems
 		@failure_list = Attempt.where(student_id:params[:student_id], icnomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
+	# [View contest registrants - Story 5.27]
+	# This method retrieve variables from tables in the database
+	# Parameters:
+	# 	params: A hash of the request URL attributes
+	# Returns:
+	# 	An array of registrants of the contest
+	# Author: Mahdi
 	def view_registrants
-		@contest_registrants = Contest.find_by_id(2).students
+		#change the id into params
+		@contest_registrants = Contest.find_by_id(1).students
 	end
 
 	# [Profile - Story 5.8]

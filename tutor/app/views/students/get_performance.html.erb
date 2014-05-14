@@ -13,3 +13,5 @@
 <%= button_to "Solved Ones", {:controller => "students", :action => "solved_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
 <%= button_to "Wrong Ones", {:controller => "students", :action => "failed_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
 <%= button_to "Incomplete Ones", {:controller => "students", :action => "incomplete_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
+
+<%= debug(@solved_contest) %>
