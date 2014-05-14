@@ -59,14 +59,14 @@ class Problem < ActiveRecord::Base
 	# Returns: the duplicated problem
 	# Author: Ahmed Sharaf
 	def duplicate 
-		p1 = dub
+		@p1 = dup
 		test_cases.each do |t|
-			p1.test_cases << t.duplicate
+			@p1.test_cases << t.duplicate
 		end
 		model_answers.each do |m|
-			p1.model_answers << m.duplicate
+			@p1.model_answers << m.duplicate
 		end
-		return p1
+		return @p1
 	end
 
 end

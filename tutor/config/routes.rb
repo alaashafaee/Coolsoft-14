@@ -24,7 +24,6 @@ Tutor::Application.routes.draw do
 	post 'debuggers/:id' => 'debuggers#start'
 
 	get 'problems/edit'
-
 	get "tips/new"
 	get "tips/create"
 	get "tips/show"
@@ -32,6 +31,8 @@ Tutor::Application.routes.draw do
 	get "tips/edit"
 	get "tips/destroy"	
 	post "tips/:id/edit" => 'tips#update'
+	get "problem_bank/add"
+	post "problem_bank/add"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'

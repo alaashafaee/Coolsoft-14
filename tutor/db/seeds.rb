@@ -199,15 +199,15 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false)
+					incomplete: false, publicc: true, duplicated: false)
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false)
+					incomplete: false, publicc: true, duplicated: false)
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false)
+					incomplete: false, publicc: false, duplicated: true)
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true)
+					incomplete: true, publicc: true)
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true)
+					incomplete: true, publicc: false)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)

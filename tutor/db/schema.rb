@@ -310,6 +310,7 @@ ActiveRecord::Schema.define(version: 20140509205739) do
     t.string   "snippet"
     t.boolean  "fill_gaps"
     t.boolean  "public"
+    t.boolean  "duplicated"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"

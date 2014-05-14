@@ -18,10 +18,10 @@ class MethodConstraint < ActiveRecord::Base
 	# Returns: the duplicated Method constraints
 	# Author: Ahmed Sharaf
 	def duplicate 
-		mc = dup 
+		@mc = dup 
 		method_parameters.each do |m|
-			mc.method_parameters << m.duplicate
+			@mc.method_parameters << m.duplicate
 		end
-		return mc
+		return @mc
 	end
 end

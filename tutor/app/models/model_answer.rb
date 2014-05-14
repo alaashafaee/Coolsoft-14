@@ -22,14 +22,14 @@ class ModelAnswer < ActiveRecord::Base
 	# Returns: the duplicated model answers
 	# Author: Ahmed Sharaf
 	def duplicate 
-		ma = dup 
+		@ma = dup 
 		method_constraints.each do |m|
-			ma.method_constraints << m.duplicate
+			@ma.method_constraints << m.duplictae
 		end
 		variable_constraints.each do |c|
-			ma.variable_constraints << c.duplicate
+			@ma.variable_constraints << c.duplicate
 		end
-		return ma
+		return @ma
 	end
 
 end
