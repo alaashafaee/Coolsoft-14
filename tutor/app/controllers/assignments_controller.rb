@@ -30,7 +30,7 @@ class AssignmentsController < ApplicationController
 		@assignment = Assignment.find_by_id(params[:id])
 		if @assignment.nil?
 			render "problem_not_found"
-		elses
+		else
 			@course = @assignment.course
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
