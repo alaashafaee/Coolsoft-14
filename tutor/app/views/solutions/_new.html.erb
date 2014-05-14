@@ -7,10 +7,9 @@
 <%=
 	@code = f.hidden_field "code", :id =>'solution_code',
 	value: flash[:previous_code] == nil ?
-		@problem_code_template
+		"\tpublic static void main(String [] args) {\n\t\t\n\t}"
 		 : flash[:previous_code].to_s
 %>
-<%= f.hidden_field :default_code, value: @problem_code_template %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <div style = 'text-align:right;'>
 <%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
