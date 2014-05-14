@@ -1,0 +1,42 @@
+			<table class = "table table-striped", style = "width:80%">
+				<tr>
+					<th>Name</th>
+					<th>Options</th>
+				</tr>
+				<% @courses.each do |course| %>
+					<tr>
+						<td>
+							<%= link_to course.name,
+								:controller => 'courses',
+								:action => 'show',
+								:id => course.id,
+								:method => :get,
+								class: "btn btn-success" %>
+						</td>
+						<% if current_lecturer %>
+							<td>
+								<%= link_to "Manage Course",
+									{
+										:controller => 'courses',
+										:action => 'edit',
+										:method => :get,
+										:id => course.id
+									},
+									class: "btn btn-success",
+									style: "text-decoration:none" %>
+							</td>
+						<% end %>
+						<td>
+							<%= link_to "Discussion Board", 
+								{
+									:controller => 'discussion_boards',
+									:action => 'show',
+									:id => course.id
+								},
+								class: "btn btn-success",
+								method: :get,
+								style: "text-decoration:none" %>
+						</td>
+					</tr>
+				<% end %>
+			</table>

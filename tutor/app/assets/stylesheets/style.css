@@ -39,7 +39,7 @@
 	font-size: 1em;
 	line-height: 0.7em;
 }
-.sign_in_dialog {
+#sign_in_dialog {
 	background-color:#fff;
 	border-radius:10px;
 	color:#000;

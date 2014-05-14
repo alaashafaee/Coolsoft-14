@@ -1,6 +1,6 @@
 .tabs {
 	display:inline-block;
-	width: 100%;
+	width: 103.25%;
 }
 .tab-links{
 	margin:0px;
@@ -15,6 +15,10 @@
 	margin:0px 2px;
 	display: inline;
 	list-style:none;
+}
+
+.tab-content .table {
+	width: 130% !important;
 }
 
 .tab-links a {

@@ -11,56 +11,13 @@
 		</div>
 	</div>
 </div>
-<div class = "tabs" style = "float:left; margin-left:10px;">
-	<ul class="tab-links">
+<div class = "row tabs">
+	<ul class = "tab-links"> 
 		<li class="active"><a href="#tab1">Courses</a></li>
 	</ul>
-	<div class="tab-content">
+	<div class = "tab-content">
 		<div id="tab1" class="tab active">
-			<table class = "table table-striped", style = "width:80%">
-				<tr>
-					<th>Name</th>
-					<th>Code</th>
-					<th>Options</th>
-					<th></th>
-				</tr>
-				<% @courses.each do |course| %>
-					<tr>
-						<td>
-							<%= link_to course.name,
-							:controller => 'courses',
-							:action => 'show', :id => course.id,
-							:method => :get,
-							class: "btn btn-success" %>
-						</td>
-						<td><%= course.code %></td>
-						<% if current_lecturer %>
-							<td>
-								<%= link_to "Manage Course",
-									{
-										:controller => 'courses',
-										:action => 'edit',
-										:method => :get,
-										:id => course.id
-									},
-									class: "btn btn-success",
-									style: "text-decoration:none" %>
-							</td>
-						<% end %>
-						<td>
-							<%= link_to "Discussion Board",
-								{
-									:controller => 'discussion_boards',
-									:action => 'show',
-									:id => course.id
-								},
-								class: "btn btn-success",
-								method: :get,
-								style: "text-decoration:none" %>
-						</td>
-					</tr>
-				<% end %>
-			</table>
+			<%= render "courses/profile_courses"%>
 		</div>
-	</div>
+	</div>	
 </div>

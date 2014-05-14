@@ -3,6 +3,6 @@
 // Parameters: none
 // Returns: none
 // Author: Mohab Ghanim
-function sign_in_dialog(){
-	$('.sign_in_dialog').bPopup();
+function pop_up_dialog(id){
+	$('#' + id).bPopup();
 }
