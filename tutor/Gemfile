@@ -63,3 +63,12 @@ gem 'json_builder', '3.1.0'
 
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
+
+# Editor Gem
+gem 'ckeditor'
+gem 'paperclip'
+
+group :development, :test do
+	gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
