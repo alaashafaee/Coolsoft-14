@@ -9,6 +9,8 @@ class Solution < ActiveRecord::Base
 	belongs_to :assignment_problem, class_name:"AssignmentProblem", polymorphic: true
 	belongs_to :contest_problem, class_name:"Cproblem", polymorphic: true
 
+	has_many :notes, dependent: :destroy
+
 	#Methods
 	# [Compiler: Validate - Story 3.5]
 	# Checks the validity of a submitted solution
