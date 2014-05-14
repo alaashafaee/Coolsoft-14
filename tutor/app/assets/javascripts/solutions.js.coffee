@@ -55,9 +55,7 @@ status = null
 # Author: Ahmed Akram
 @compile = (problem_id, problem_type) ->
 	input = get_editor_session().getValue()
-	alert($("#class_name").val())
-	class_name = document.getElementById("class_name").val()
-	aert("ffhfh")
+	class_name = $("#class_name").val()
 	if input.length is 0
 		alert "You didn't write any code"
 		return

@@ -24,12 +24,12 @@ timer = ->
 	document.getElementById("secs").innerHTML = digit
 	i = 0
 	while true
-		hint = $('#hint' + i)
-		if typeof(hint.attr 'time') == 'undefined'
+		tip = $('#tip' + i)
+		if typeof(tip.attr 'time') == 'undefined'
 			break
-		time = hint.attr 'time'
+		time = tip.attr 'time'
 		if time <= min*60 + parseInt(digit, 10)
-			hint.attr 'class', ''
+			tip.attr 'class', ''
 		i++
 
 activate = ->
