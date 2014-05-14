@@ -3,7 +3,6 @@ class Contest < ActiveRecord::Base
 	#Validations
 	validates :title, presence: true
 	validate :duplicate_title, :on => :create
-	validates :course_id, presence: true
 	validate :validate_end_date_before_start_date
 
 	#Relations
@@ -25,9 +24,7 @@ class Contest < ActiveRecord::Base
 	# Returns: none
 	# Author: Amir George
 	def validate_end_date_before_start_date
-		if end_date < start_date
-			errors.add(:end_date, "can't be before start date")
-		elsif end_date == start_date && end_time <= start_time
+		if end_time <= start_time
 			errors.add(:end_time, "must be after start time")
 		end
 	end
