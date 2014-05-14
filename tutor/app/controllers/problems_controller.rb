@@ -5,7 +5,7 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#	id: The problem statement id
 	# Returns: none
-	# Author: MIMI + Rami Khalil
+	# Author: MIMI
 	def show
 		@problem = Problem.find_by_id(params[:id])
 		if @problem.nil?

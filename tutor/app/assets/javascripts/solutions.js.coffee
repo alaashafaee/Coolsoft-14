@@ -387,7 +387,7 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED + Rami Khalil
+# Author: MOHAMEDSAEED
 @reload_template = () -> 	
 	editor = ace.edit("editor");
 	edit_session = editor.getSession();
