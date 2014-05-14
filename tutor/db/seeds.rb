@@ -373,6 +373,10 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 	## Courses
 		TeachingAssistant.first.courses << Course.first
 		TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
+	## Contests
+		TeachingAssistant.first.contests << Contest.first
+		TeachingAssistant.first.contests << Contest.find_by_id(2)
+		TeachingAssistant.first.contests << Contest.find_by_id(3)
 
 puts("# ----------------------- Posts ----------------------- ")
 	## Replies
