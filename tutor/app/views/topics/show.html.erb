@@ -71,8 +71,8 @@
 		<% end %>
 		<br><br>
 		<div id="create_track" <%= hide %> >
-			<%= form_for :Track , url: {controller: "tracks" , action: "create"}, 
-			html: {class: "form-inline form-horizontal nifty_form" , role: "form"} do |f| %>
+			<%= form_for :Track , url: {controller: "tracks", action: "create"}, 
+			html: {class: "form-inline form-horizontal nifty_form", role: "form"} do |f| %>
 				<%= f.text_field :title , :value => flash[:title] , 
 					:class => "form-control", :style => "width:150px",
 						:placeholder => "Title"%></br></br>
