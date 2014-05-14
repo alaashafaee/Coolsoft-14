@@ -1,0 +1,41 @@
+<div class="page-header">
+	<h1>
+		<%= link_to @course.name, @course, style: "color: black" %>	
+	</h1>
+</div>
+<br>
+<div id="assignment_info" style="text-align: center; font-size: 16pt;">
+	<p> Assignment title: <b><%= @assignment.title %></b></p>
+	<p> Submission: <%= @assignment.due_date.day %>.
+		<%= @assignment.due_date.month %>.
+		<%= @assignment.due_date.year %><p>
+</div>
+<% if @assignment.description != nil %>
+	<div id="assignment_description" style="font-size: 14pt;">
+		<p><b>Assignment description:</b><br><br>&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= @assignment.description %></p>
+	</div>	
+<% end %>
+<br>
+<div id="problems_in_assignment" style="font-size: 14pt;">
+	<p><b>List of problems:</b>
+			<% if @problems.length == 0 %>
+				<br><br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;No problems added yet!</p>
+			<% else %>
+			<ul class="list-group">
+				<% @problems.each do |ap| %> 
+					<li class="list-group-item">
+						<%= link_to ap.title, { :controller => 'assignment_problems', 
+						:action => 'show', :id => ap.id }, :method => :get, class: ""%>
+					</li>
+				<% end %>
+			</ul>
+			<% send %>
+	</p>
+</div>
+<br><br>
+<% if @can_edit %>
+	<%= link_to "Edit assignment", { :controller => 'assignments',
+		:action => 'edit', :id => @assignment.id }, class: "btn btn-info" %>
+<% end %>
