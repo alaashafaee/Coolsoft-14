@@ -1,13 +1,16 @@
 <div id = "crumbs">
     <ul>
-		<li class="sub"><a class="preventclick">Problem</a></li>
-    	<li class = "sub1"><a class="preventclick" style="padding: 5px 15% 0 0px;">Test cases</a> </li>
-    	<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'edit', :problem_id => params[:problem_id],:track_id => params[:track_id], :model_answer_id => params[:model_answer_id]},{:method => :get, :style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"} %></li>
-
-    	<li class="sub3"><a class="visit" >Hints</a> </li>
-    	<li class="sub4">    <li class = "sub4"><%= link_to "Hints", {:controller => 'hints', :action => 'index',:problem_id => params[:problem_id],:track_id => params[:track_id], :model_answer_id => params[:model_answer_id]}, :method => :get %> </li>
-	</ul>
-</div>
+<li class="sub"><a class="preventclick">Problem</a></li>
+    <li class = "sub1"><a class="preventclick" style="padding: 5px 15% 0 0px;">Test cases</a> </li>
+    <li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'edit',
+					:problem_id => params[:problem_id],:track_id => params[:track_id], 
+					:model_answer_id => params[:model_answer_id]},{:method => :get, :style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"} %></li>
+					    <li class="sub3"><%= link_to "Tips", {:controller => 'tips', :action => 'index',:model_answer_id => session[:model_answer_id],
+    	:track_id => params[:track_id], :problem_id => session[:problem_id]}, :method => :get %> </li>
+    <li class = "sub4"><a class="visit" >Hints</a></li> 
+  
+    </ul>
+ </div>
 <br><br>
 <br><ul class = "navbar-brand pull-right"><%= link_to "Create Hint",
 	{ :controller => 'hints', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id] },
