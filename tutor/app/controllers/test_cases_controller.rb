@@ -77,7 +77,7 @@ class TestCasesController < ApplicationController
 	#	Flash message if the test case is updated or not
 	# Author: Nadine Adel & Ahmed Osam
 	def update
-		@test_case = TestCase.find(params[:test_case_id])
+		@test_case = TestCase.find(session[:test_case_id])
 		if test_case_params[:input] != @test_case.input ||
 			test_case_params[:output] != @test_case.output
 			begin

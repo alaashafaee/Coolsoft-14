@@ -26,9 +26,9 @@
 		<%= flash[:notice] %>
 		<h3><%= test_case.label :Input%> </h3>
 		<h4 align ="left"><%= @test_case.input %></h4>
-		<br><%= test_case.label :Input %>
 		<%= test_case.text_field :input, class:"form-control", style:"width:350px" %><br>
-		<br><%= test_case.label :Output %>
+		<h3><%= test_case.label :Output %></h3>
+		<h4 align ="left"><%= @test_case.output %></h4>
 		<%= test_case.text_field :output, class:"form-control", style:"width:350px" %>
 		<br> <%= test_case.submit "Save changes", class: "btn btn-large btn-info" %><br>         
 	<% end %>
