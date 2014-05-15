@@ -38,13 +38,16 @@
 				</p>
 			</div>
 			<div  style="margin-left:70%; margin-top: -300px";>
-				<div>
-					<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
-						:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
+				<div class="row">
+					<div>
+						<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
+							:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
+					</div>
+					<div>
+						<%= link_to "View Resources", course_resources_path(@course), class: "btn btn-primary" %>
+					</div>
 				</div>
-				<div>
-					<%= link_to "View Resources", course_resources_path(@course), class: "btn btn-primary" %>
-				</div>
+				<%= flash[:success_deletion] %>
 				<% openable = true %>
 				<div class="panel-group list-group" id="accordion" style="width:100%;">
 					<% @topics.each do |t| %>	
@@ -65,6 +68,12 @@
 								</a>
 								<%= link_to t.title, t, style: 'color:#003366;' %></b>
 								<span class="badge"><%= t.tracks.count %></span>
+								<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+									<%= link_to "Delete Topic", {controller: "topics",
+										action: "destroy", :id => t.id},
+										style: 'float: right',
+										class: "btn btn-danger btn-xs", method: :delete %>
+								<% end %>
 							</div>
 							<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 								<ul class="list-group">
