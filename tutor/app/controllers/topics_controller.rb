@@ -38,13 +38,12 @@ class TopicsController < ApplicationController
 	end
 
 	# [Delete Topic - Story 1.34]
-	# This action takes the tpicid, remove it from the database
+	# This action takes the topic id, remove it from the database
 	#	and then redirects the user to the show courses page accompanied
 	#	with a "Topic deleted" message.
 	# Parameters:
 	#	params[:id]: The current topic's id
-	# Returns: 
-	#	none
+	# Returns: none
 	# Author: Mohamed Saeed
 	def destroy
 		topic = Topic.find_by_id(params[:id])
