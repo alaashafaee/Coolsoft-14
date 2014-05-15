@@ -68,17 +68,25 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: Abdullrahman Elhusseny
 	def mark_solution
-		#if lecturer_signed_in? || teaching_assistant_signed_in?
-		#	@solution = Solution.find_by_id(params[:id])
-			@solution = "public \n static \n void \n int"
-			@lines = @solution.split("\n")
-		#	@problem = @solution.problem
-		#	@student = @solution.student
-		#	@can_edit = @course.can_edit(current_lecturer)
-		#	@can_edit||= @course.can_edit(current_teaching_assistant)
-		#else
-		#	render ('public/404')
-		#end
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			@solution = Solution.find_by_id(params[:submission_id])
+			if !@solution.blank?
+				@lines = @solution.code.split("\n")
+				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
+				@student = Student.find_by_id(@solution.student_id)
+				@course = @problem.assignment.course
+				@can_edit = @course.can_edit(current_lecturer)
+				@can_edit||= @course.can_edit(current_teaching_assistant)
+			else
+				render ('public/404')
+			end
+		else
+			render ('public/404')
+		end
+	end
+
+	def view_submissions
+		@submissions = Solution.where(problem_id: params[:problem_id]).order(:student_id)
 	end
 
 	private

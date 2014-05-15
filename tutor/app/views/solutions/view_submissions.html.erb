@@ -1,0 +1,10 @@
+<ul class="list-group">
+	<% @submissions.each do |submission| %>
+		<%= @student = Student.find_by_id(submission.student_id) %>
+		<li class="list-group-item">
+			<%= @student.name %>
+			<%= link_to "Mark and give grade", { :action => 'mark_solution',
+				:submission_id => submission.id }, class: "btn btn-info" %>
+		</li>
+	<% end %>
+</ul>
