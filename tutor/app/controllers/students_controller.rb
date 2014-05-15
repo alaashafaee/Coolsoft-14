@@ -9,14 +9,16 @@ class StudentsController < ApplicationController
 	# 	@solved: [int] The number of solved problems
 	# 	@failed: [int] The number of failed problems
 	# 	@incomplete: [int] The number of incomplete problems
+	# 	@solved_contest: [int]The number of contest problems solved
+	# 	@failed_contest: [int]The number of contest problems failed
 	# Author: Mahdi
 	def get_performance
 		@solved = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@failed = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@incomplete = Attempt.where(student_id:params[:student_id], incomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		#Recheck here for the missing DB
-		@solved_contest = ContestProgress.find_by_student_id(2)
-		#@failed_contest = Attempt.where(student_id:params[:student_id], failure:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		@solved_contest = ContestProgress.where(student_id: 1).count
+		@failed_contest = ContestProgress.where(student_id: 2).count
 	end
 
 	# [Performance of a student - Story 5.3]

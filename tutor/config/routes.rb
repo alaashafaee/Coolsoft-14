@@ -1,5 +1,6 @@
 Tutor::Application.routes.draw do
 
+ 	mount Ckeditor::Engine => '/ckeditor'
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -94,6 +95,8 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :assignments
+	resources :assignment_problems
 
 	# Example resource route with options:
 	#   resources :products do

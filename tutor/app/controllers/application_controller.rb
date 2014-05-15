@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
 	before_action :update_sanitized_params, if: :devise_controller?
 	before_action :check_resource, if: :devise_controller?
 
+<<<<<<< HEAD
 	#rescue_from Exception, :with => :render_not_found
+=======
+	# rescue_from Exception, :with => :render_not_found
+>>>>>>> eaf8b33e710bf7280e35c0741ad248fdd101acfd
 	
 	private
 

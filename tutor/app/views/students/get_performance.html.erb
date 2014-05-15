@@ -15,3 +15,4 @@
 <%= button_to "Incomplete Ones", {:controller => "students", :action => "incomplete_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
 
 <%= debug(@solved_contest) %>
+<%= debug(@failes_contest ) %>

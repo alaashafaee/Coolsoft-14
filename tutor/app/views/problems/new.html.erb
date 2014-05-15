@@ -15,6 +15,13 @@
 		<%= problem.text_area :description, :cols => "50", :rows => "10",
 			 class: "form-control", style: "width:60%" %>
 	</p>
+	<p>
+		<%= problem.label :snippet %><br>
+		<%= problem.text_area :snippet, cols: 50, rows: 10,
+			class: "form-control", style: "width: 60%",
+			value: "public class CoolSoft {\n\t
+			public static void main(String [] args) {\n\t\t\n\t}\n}" %>
+	</p>
 	<%= problem.hidden_field :track_id, value: params[:id] %>
 	<p>
 		<%= problem.submit "Save Problem", class: "btn btn-info" %>
