@@ -66,11 +66,8 @@ gem 'json_builder', '3.1.0'
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
 
-<<<<<<< HEAD
 gem 'table_print'
-=======
+
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
 end
->>>>>>> ba95a53e118073652debe0b082ef84de6da13627
-
