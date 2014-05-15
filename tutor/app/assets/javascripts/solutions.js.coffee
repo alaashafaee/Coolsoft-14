@@ -333,7 +333,7 @@ debug_console = ->
 	$.ajax
 		type: "POST"
 		url: '/cproblems/submit'
-		data: {problem_id: problem_id, contest_id: contest_id, status: status}
+		data: {cproblem_id: problem_id, contest_id: contest_id, status: status}
 		datatype: 'json'
 		success: (data) ->
 			return

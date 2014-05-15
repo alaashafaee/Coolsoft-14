@@ -227,7 +227,6 @@ class CoursesController < ApplicationController
 		def find_state courses
 			states = Hash.new
 			student_id = current_student.id
-			puts student_id
 			courses.each do |c|
 				course_id = c.id
 				result = CourseStudent.where("student_id = ? AND course_id = ?",

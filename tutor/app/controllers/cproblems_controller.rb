@@ -26,7 +26,7 @@ class CproblemsController < ApplicationController
 	def submit
 		contest_id = get_params[:contest_id]
 		student_id = current_student.id
-		cproblem_id = get_params[:problem_id]
+		cproblem_id = get_params[:cproblem_id]
 		status = get_params[:status]
 		Cproblem.submit(contest_id, cproblem_id, student_id, status)
 		render json: {}
@@ -50,7 +50,7 @@ class CproblemsController < ApplicationController
 	# Author: Ahmed Akram
 	private
 	def get_params
-		params.permit(:contest_id, :probelm_id, :status)
+		params.permit(:contest_id, :cproblem_id, :status)
 	end
 
 end

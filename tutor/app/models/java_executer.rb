@@ -16,7 +16,7 @@ class JavaExecuter
 		if validity[:status]
 			echo_input = 'echo ' + '\'' + input + '\'' + ' | '
 			Dir.chdir(Solution::SOLUTION_PATH + folder_name) {
-				@execute_res = %x[#{echo_input + 'java '+ file_name}]
+				@execute_res = %x[#{echo_input + 'java ' + file_name}]
 			}
 			if @execute_res.include?("Exception")
 				return {executer_feedback: false, executer_output: get_runtime_error()}
@@ -57,7 +57,6 @@ class JavaExecuter
 	# 	A hash [status, msg], where status is true or false and msg is costume explaining message
 	# Author: Ahmed Akram
 	def self.check_input_validity(input, problem_id)
-<<<<<<< HEAD:tutor/app/models/java_executer.rb
 		variables_number = Cproblem.find_by_id(problem_id).test_cases.first.input.split(" ").count
 		# if input.include?("\n")
 		# 	return {status: false, msg: "Input can not have line breaks \"don't use enter\""}
@@ -66,13 +65,6 @@ class JavaExecuter
 		# 	msg = "Enter only " + variables_number.to_s + " numbers"
 		# 	return {status: false, msg: msg}
 		# end
-=======
-		variables_number = Problem.find_by_id(problem_id).test_cases.first.input.split(" ").count
-		if input.split("\n").count != variables_number
-			msg = "Enter only " + variables_number.to_s + " numbers"
-			return {status: false, msg: msg}
-		end
->>>>>>> e2afb8647e68a551f95d82ec672a396f2312812e:tutor/app/models/executer.rb
 		return {status: true, msg: nil}
 	end
 
