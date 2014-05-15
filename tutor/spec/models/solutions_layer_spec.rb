@@ -14,7 +14,7 @@ describe SolutionsLayer do
 
 	context "get_executer tests" do
 		it "get java executer" do
-			expect(SolutionsLayer.get_executer foo"java").to eq JavaExecuter
+			expect(SolutionsLayer.get_executer "java").to eq JavaExecuter
 		end
 	
 		it "no such executer named foo" do

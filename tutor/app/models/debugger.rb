@@ -1,5 +1,6 @@
 require "open3"
 require "fileutils"
+require 'pty'
 class Debugger
 
 	# [Debugger: Debug - Story 3.6]
@@ -11,14 +12,22 @@ class Debugger
 	# Author: Rami Khalil
 	def buffer_until(regex)
 		buffer = ""
-		p regex
-		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
-			begin
-				temp = $output.read_nonblock 2048
-				buffer += temp
-			rescue
+		TimeLimit.start(0.5){
+			bool = false
+			if $wait_thread
+				bool = !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression }
+			else
+				bool = regex.any? { |expression| buffer =~ expression }
 			end
-		end
+			until bool do
+				begin
+					temp = $output.readchar
+					buffer += temp
+				rescue
+				end
+			end
+		}
+		check_termination buffer
 		return buffer
 	end
 
@@ -55,6 +64,20 @@ class Debugger
 				$input.close
 				raise 'Exited'
 			end
+		end
+	end
+
+	# [Debugger: Debug Pyhton - Story X.8]
+	# Checks if the line contains a line that 
+	# 	indicates the program has stopped debugging
+	# Parameters:
+	# 	line: The line to be checked
+	# Returns: True if there is a stop string otherwise false
+	# Author: Mussab ElDash
+	def check_termination(line)
+		if line =~ $TERM
+			puts "Gonna Terminate"
+			raise 'Exited'
 		end
 	end
 

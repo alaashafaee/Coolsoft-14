@@ -30,8 +30,9 @@ class JavaDebugger < Debugger
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(class_name, input, time = 10)
+	def start(class_name, input, time = 30)
 		$step = "step"
+		$TERM = /\nThe application exited.*\n/
 		$all = []
 		status = "The debugging session was successful."
 		begin

@@ -24,17 +24,23 @@ class PythonDebugger < Debugger
 	# 	time: The time limit of the debugging session 
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(class_name, input, time = 10)
+	def start(class_name, input, time = 30)
 		$step = "step"
-		$regex = [/\(Pdb\) $/]
+		$wait_thread = nil
+		$TERM = /\(Pdb\) The program finished and will be restarted\r\n/m
+		$regex = [/(Pdb) .+ ->.+\r\n$/m]
 		$all = []
 		status = "The debugging session was successful."
 		begin
-			$input, $output, $error, $wait_thread = Open3.popen3("pdb", class_name)
+			$output, slave = PTY.open
+			master, $input = IO.pipe
+			pid = spawn("pdb", class_name, :in=>master, :out=>slave)
+			master.close
+			slave.close
 			nums = get_line
 			# locals = get_variables
 			# nums[:locals] = locals
-			nums[:locals] = ""
+			nums[:locals] = []
 			$all << nums
 			status = TimeLimit.start(time){
 				debug
@@ -45,7 +51,7 @@ class PythonDebugger < Debugger
 			end
 		end
 		begin
-			Process.kill("TERM", $wait_thread.pid)
+			Process.kill("TERM", pid)
 		rescue => e
 		end
 		return $all, status
@@ -58,13 +64,14 @@ class PythonDebugger < Debugger
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until $regex
-		puts out_stream
 		exceptions = has_exception out_stream
 		stream = get_stream out_stream
 		exceptions = has_exception out_stream
-		/\.py\(\d+\)<module>\(\)\s+/ =~ out_stream
+		name_string = $class_name.sub(/\.py/,"")
+		/#{name_string}\.py\(\d+\).*\r\n/ =~ out_stream
+		line_first_string = $&
+		/\d+/ =~ line_first_string
 		line_first = $&
-		/\d+/ =~ line_first
 		if line_first
 			exceptions[:line] = line_first.to_i
 			exceptions[:stream] = stream

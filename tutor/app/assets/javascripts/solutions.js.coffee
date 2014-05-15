@@ -38,6 +38,7 @@ status = "The debugging session was successful."
 				return
 			variables = data["data"]
 			status = data["status"]
+			alert status
 			toggleDebug(1)
 			debug_console()
 			jump_state 0
