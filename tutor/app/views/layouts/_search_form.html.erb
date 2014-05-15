@@ -7,11 +7,11 @@
 		remote: controller?("utilities","simple_search"), class: "navbar-form navbar-left"  do %>
 		<div class="input-group" style="width:350px">	
 			<%= text_field_tag :search, params[:search], class: "form-control col-lg-8",
-					placeholder: "Search for Users and Courses", id: "search_field",
-					data: { autocomplete_source: utilities_auto_complete_path } %>
+				placeholder: "Search for Users and Courses", id: "search_field",
+				data: { autocomplete_source: utilities_auto_complete_path } %>
 			<span class="input-group-btn">
 				<%= link_to "Try Advanced", utilities_advanced_search_path,
-						class: "btn btn-default col-lg-12" %>
+					class: "btn btn-default col-lg-12" %>
 			</span>
 		</div>
 <% end %>
