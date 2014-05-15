@@ -72,6 +72,10 @@
 		<% end %>
 	</tbody>
 </table>
+<br><br><br>
+<%= link_to "I'm done marking", {:action => 'view_submissions',
+	:problem_id => @problem.id},
+	class: "btn btn-info" %>
 <script>
 	function show(id){
 		document.getElementById(id).style.opacity = 1;
