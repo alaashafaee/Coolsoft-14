@@ -1,5 +1,5 @@
 Tutor::Application.routes.draw do
-
+	
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -89,7 +89,9 @@ Tutor::Application.routes.draw do
 	resources :facebook
 	resources :tips
 	resources :contests
-
+	resources :assignments
+	resources :assignment_problems
+	
 	# Example resource route with options:
 	#   resources :products do
 	#     member do
