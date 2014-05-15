@@ -165,11 +165,6 @@ Tutor::Application.routes.draw do
 	get "utilities/simple_search"
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
-	resources :utilities, only: [] do
-		collection do
-			get :detect_url
-		end
-	end
 	# Example resource route with concerns:
 	#   concern :toggleable do
 	#     post 'toggle'
