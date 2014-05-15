@@ -26,7 +26,7 @@
 	<div id="order_topics_dialog" title="Order topics" hidden = "true">
 		<p>Hold Press and Drag to sort the topics 
 			<ul id="list-of-topics">
-				<%= @topics.each do |topic| %>
+				<% @topics.each do |topic| %>
 					<li id="<%= topic.id %>" class="ui-state-highlight"><%= topic.title %></li> 
 				<% end %>
 			</ul>
