@@ -44,11 +44,10 @@ class Topic < ActiveRecord::Base
 	end
 
 	def duplicate
-		top = dup 
+		@top = dup 
 		tracks.each do |track|
-			top.tracks << track.duplicate
+			@top.tracks << track.duplicate
 		end
-		top.save
-		return top  
+		return @top  
 	end
 end

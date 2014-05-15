@@ -77,17 +77,15 @@ class Course < ActiveRecord::Base
 	end
 
 	def duplicate
-		c = dup
+		@c = dup
+		puts "************"
+		puts self.topics.size()
 		topics.each do |topic|
-			c.topics << topic.duplicate
+			@c.topics << topic.duplicate
+			puts "************"
+			puts topic.title
 		end
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-		c.save
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-		c.topics.each do |topic|
-			p topic
-		end
-		return c 
+		return @c  
 	end
 
 end

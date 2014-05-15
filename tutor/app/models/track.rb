@@ -15,12 +15,14 @@ class Track < ActiveRecord::Base
 	#Methods
 
 	def duplicate
-		tra = dup 
-		problems.each do |problem|
-			pro = problem.dup
-			tra.problems << pro
-		end
-		tra.save
-		return tra 
+		return dup
 	end
+	# def duplicate
+	# 	@tra = dup 
+	# 	problems.each do |problem|
+	# 		pro = problem.dup
+	# 		@tra.problems << pro
+	# 	end
+	# 	return @tra 
+	# end
 end
