@@ -7,38 +7,16 @@
 	</div>
 </div>
 <div class="row main_row" >
-	<div class="post " style="width:100%;">
+	<div class="post ">
 		<font></font>
-		<div class="well container" style="background-color:#dddddd !important; width:100% !important;">
+		<div class="well container p_div">
 			<h2><%= @post.content.html_safe %></h2>
 			<hr>
-			<h3><%= distance_of_time_in_words_to_now @post.created_at %> ago by <%= link_to @post.owner.name , @post.owner %> </h3>
+			<h3><%= distance_of_time_in_words_to_now @post.created_at %> 
+				ago by <%= link_to @post.owner.name , @post.owner %> </h3>
 		</div>
 	</div>
 </div>
 <div class="row">
 	<%= render "/replies/index", :@replies => @replies, :@post => @post %>
 </div>
-
-<style type="text/css">
-	.header h1{
-		font-size: 2.0em;
-		color: black;
-		text-align: center;
-	}
-	.main_row {
-		background-color: #fff;
-	}
-	.main_row .post h2{
-		font-size: 1.3em;
-	}
-	.main_row .post h3{
-		font-size: 0.8em;
-		padding-left: 10px;
-		float: right;
-	}
-	.main_row .post font {
-		font-size: 1.0em;
-	}
-
-</style>
