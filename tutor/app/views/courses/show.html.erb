@@ -37,6 +37,12 @@
 					<%= @course.description %>
 				</p>
 			</div>
+			<br>
+			<br>
+			<%= link_to "Create Assignment", { :controller => 'assignments',
+				:action => 'new', :course_id => params[:id] },
+				class: "btn btn-info", method: :get,
+				style: "text-decoration:none; margin-top: -20px;" %>
 			<div  style="margin-left:70%; margin-top: -300px";>
 				<div>
 					<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
@@ -77,7 +83,6 @@
 						</div>	
 					<% end %>
 				</div>
-
 			<% openable = true %>
 			<div class="panel-group list-group" id="accordion2" style="width:100%;">
 				<% if openable %>
@@ -131,9 +136,5 @@
 			</div>
 			</div>
 		</div>
-		<%= link_to "Create Assignment", { :controller => 'assignments',
-			:action => 'new', :course_id => params[:id] },
-			class: "btn btn-info", method: :get,
-			style: "text-decoration:none; margin-top: -20px;" %>
 	</div>
 </div>
