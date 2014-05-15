@@ -21,8 +21,11 @@
     </ul>
  </div>
 <br><br><br>
+<ul class = "navbar-brand pull-right"><%= link_to "Create Model Answer",
+	{ :controller => 'model_answers', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id] },
+	{ class: 'btn btn-info' } %></ul><br><br>
 <a href="#" return:false; class="Lst" onclick="toggle_visibility('foo'); return false;"
-	style="font:120px"> Previous Answers</a>
+	style="font:120px"> Previous Model Answers</a>
 </br>
 
 <div id="foo">
