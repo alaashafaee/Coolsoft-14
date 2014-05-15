@@ -11,13 +11,13 @@ class SolutionsLayer
 	# Returns: 
 	#	A hash with the status of the execution
 	# Author: Mussab ElDash
-	def self.execute lang, code, student_id, problem_id, cases
+	def self.execute lang, code, student_id, problem_id, problem_type, class_name, cases
 		executer = get_executer lang
 		unless executer
 			return false
 		end
 		compiler = get_compiler lang
-		solution = get_solution code, student_id, problem_id
+		solution = get_solution code, student_id, problem_id, problem_type, class_name
 		compile_status = {}
 		if compiler
 			compile_status = compiler.compiler_feedback(solution)
@@ -38,9 +38,9 @@ class SolutionsLayer
 	# Returns: 
 	#	The compile status
 	# Author: Mussab ElDash
-	def self.compile lang, code, student_id, problem_id
+	def self.compile lang, code, student_id, problem_id, problem_type, class_name
 		compiler = get_compiler lang
-		solution = get_solution code, student_id, problem_id
+		solution = get_solution code, student_id, problem_id, problem_type, class_name
 		if compiler
 			feed_back = compiler.compiler_feedback solution
 			if feed_back[:success]
@@ -65,8 +65,8 @@ class SolutionsLayer
 	# Returns: 
 	#	A hash with the validation status
 	# Author: Mussab ElDash
-	def self.validate lang, code, student_id, problem_id, time
-		solution = get_solution code, student_id, problem_id
+	def self.validate lang, code, student_id, problem_id, problem_type, class_name, time
+		solution = get_solution code, student_id, problem_id, problem_type, class_name
 		solution.time = time
 		test_cases = solution.problem.test_cases
 		compiler = get_compiler lang
@@ -90,8 +90,8 @@ class SolutionsLayer
 	# Returns: 
 	#	A hash with the debugging results
 	# Author: Mussab ElDash
-	def self.debug lang, code, student_id, problem_id, cases
-		solution = get_solution code, student_id, problem_id
+	def self.debug lang, code, student_id, problem_id, problem_type, class_name, cases
+		solution = get_solution code, student_id, problem_id, problem_type, class_name
 		debugger = get_debugger lang
 		compiler = get_compiler lang
 		if debugger
@@ -116,9 +116,10 @@ class SolutionsLayer
 	# Returns: 
 	#	A new Solution
 	# Author: Mussab ElDash
-	def self.get_solution code, student_id, problem_id
+	def self.get_solution code, student_id, problem_id, type = "Problem", class_name
+		type = type.capitalize
 		solution = Solution.create({code: code, student_id: student_id,
-				problem_id: problem_id})
+				problem_id: problem_id, problem_type: type, class_name: class_name})
 		return solution
 	end
 
