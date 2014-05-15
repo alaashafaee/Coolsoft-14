@@ -4,6 +4,7 @@ class CreateContestProgresses < ActiveRecord::Migration
       t.integer :contest_id
       t.integer :student_id
       t.integer :cproblem_id
+      t.integer :trials
       t.boolean :status
 
       t.timestamps
