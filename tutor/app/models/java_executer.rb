@@ -1,4 +1,4 @@
-class Executer
+class JavaExecuter
 
 	# [Compiler: Test - Story 3.15]
 	# Runs the solution submitted on the submitted test case
@@ -10,11 +10,13 @@ class Executer
 	# Author: Ahmed Akram
 	def self.execute(sol, input)
 		@solution = sol
-		class_path = Solution::CLASS_PATH
-		file_name = @solution.file_name
+		file_name = @solution.class_name
+		folder_name = @solution.folder_name
 		validity = check_input_validity(input, @solution.problem.id)
 		if validity[:status]
-			@execute_res = %x[#{'java -cp ' + class_path + ' ' + file_name + ' ' + input + ' 2>&1'}]
+			Dir.chdir(Solution::SOLUTION_PATH + folder_name) {
+				@execute_res = %x[#{'java ' + file_name + ' ' + input + ' 2>&1'}]
+			}
 			if @execute_res.include?("Exception")
 				return {executer_feedback: false, executer_output: get_runtime_error()}
 			else
@@ -38,7 +40,7 @@ class Executer
 	def self.create_solution(student_id, problem_id, code, input)
 		solution = Solution.create({code: code, student_id: student_id,
 			problem_id: problem_id})
-		compile_status = Compiler.compiler_feedback(solution)
+		compile_status = JavaCompiler.compiler_feedback(solution)
 		unless compile_status[:success]
 			return {compiler_error: true, compiler_output: compile_status}
 		end
