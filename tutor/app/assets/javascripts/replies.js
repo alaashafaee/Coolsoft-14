@@ -9,7 +9,7 @@
 // # Returns: JSON Request
 // # Author: Ahmed Mohamed Magdi
 function post_reply(_id) {
-	input = $("#input_field").val();
+	input = $("#cke_1_contents").val();
 	$.ajax({
 		error: function() {
 			alert("Failed to add constraints, Check again");

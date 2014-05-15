@@ -1,11 +1,9 @@
 <!--Author: Mohab Ghanim -->
-<!--Author: Ahmed Mohamed Magdi -->
-
-<div class="well">
+<div>
 	<br><br><br>
 	<div class="row">
 		<div class="container">
-			<div class="col-md-8"><h2>>><b>Courses</b></h2></div>
+			<div class="col-md-8"><h2><b>&raquo; Courses</b></h2></div>
 			<div class="col-md-4">
 				<%= button_to "Add Course", courses_new_path, class:"btn btn-success"%>
 				<a class="btn" href="#"><i class="icon-map-marker"></i></a>
@@ -13,12 +11,12 @@
 			
 		</div>
 	</div>
-	<div class="cont">
+	<div class="well">
 		<% if @courses.any? %>
 			<% @courses.each_slice(2) do |course| %>
 				<% if course.count == 1 %>
 					<div class="row">
-						<div class="container col-sm-4 box-bag">
+						<div class="container col-sm-6">
 							<div class="well" style="background-color: #d7dde2 !important;">
 								<h3><b><%= link_to course[0].name, course[0]%></b><hr></h3>
 								<label><%= course[0].description %></label><br><br>
@@ -30,7 +28,7 @@
 				<% else %>
 					<div class="row">
 						<% course.each do |c| %>
-							<div class="container col-sm-4">
+							<div class="container col-sm-6">
 								<div class="well" style="background-color: #d7dde2 !important;">
 									<h3><b><%= link_to c.name, c %></b><hr></h3>
 									<label><%= c.description %></label><br><br>

@@ -1,6 +1,24 @@
 <div id="text_holder">
 	<%= render "/replies/load_replies" %>
 </div>
-<%= text_field_tag 'input_field', nil, style: "width:500px; height:100px" %>
-<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})" %>
+<div class="container submiting">
+	<div class="row">
+		<%= cktext_area "", :cols => 40, :ckeditor => {:toolbar => 'basic'} %>
+	</div>
+	<div class="row submit_btn">
+		<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})" %>
+	</div>
+	
+</div>
 
+<style type="text/css">
+	.submiting {
+		width:100% !important;
+		padding-top: 20px;
+	}
+	.submiting .submit_btn{
+		padding-top: 1%;
+		padding-right: 1%;
+		float: right;
+	}
+</style>

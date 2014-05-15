@@ -70,6 +70,12 @@ gem 'table_print'
 gem 'ckeditor'
 gem 'paperclip'
 
+# 
+gem 'faye'
+gem 'thin', require: false
+gem 'sync'
+
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
+
 end

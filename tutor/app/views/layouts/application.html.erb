@@ -12,6 +12,7 @@
 		<%-# stylesheet_link_tag "application", "bootstrap", "token-input", :media => "all" -%>
 		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
 		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
+		<%= javascript_include_tag Sync.adapter_javascript_url %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
@@ -49,23 +50,21 @@
 			</div>
 		</div>
 		<br><br>
-		<div class="row">
-			<% if signed_in? %>
+		<% if signed_in? %>
+			<div class="container">
 				<div class="row">
-					<div class="col-xs-10 left_side">
-						<div class="well">
+					<div class="col-xs-10 left_side" >
 							<%= yield %>
-						</div>					
 					</div>
 <!-- 					<div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
-					<div class="col-xs-2 right_side">
+					<div class="col-xs-2 right_side" style="background-color:#e6db00;">
 						<%= render "layouts/right_side_bar" %>
 					</div>
 				</div>
-			<% else %>
-				<%= yield %>
-			<% end %>
-		</div>
+			</div>
+		<% else %>
+			<%= yield %>
+		<% end %>
 <!-- Start Of Footer Section -->
 		<div class="ftr">
 			<div class="row">

@@ -1,51 +1,77 @@
-<% unless @replies.blank? %>
-	<% @replies.each do |reply| %>
-		<div class = "reply", id="reply_<%=reply.id%>" >
-			<div>
-				<h4><%= link_to reply.owner.name, reply.owner %></h4>
-			</div>
-			<div id="reply_content_<%=reply.id%>" >
-				<p>
-					<%= reply.content %>
+<div class="container raplies">
+	<% unless @replies.blank? %>
+		<div class="row well main_row" >
+			<% @replies.each do |reply| %>
+				<div class="row reply", id="reply_<%=reply.id%>" >
+					<div id="reply_content_<%=reply.id%>" >
+						<h2><%= reply.content %></h2>
+						<font><%= distance_of_time_in_words_to_now reply.created_at %> ago by <%= link_to reply.owner.name, reply.owner %> </font>
+					</div>
+					<div>
+						<% if lecturer_signed_in? %>
+							<% if current_lecturer.email == reply.owner.email %>
+								<div >
+									<td><%= image_tag "delete_button_2.png", 
+											style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+											onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
+									<td><%= image_tag "edit_button.png", 
+											style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+											onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+								</div>
+							<% end %>
+						<% elsif teaching_assistant_signed_in? %>
+							<% if current_teaching_assistant.email == reply.owner.email %>
+								<div>
+									<td><%= image_tag "delete_button_2.png", 
+											style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+											onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
+									<td><%= image_tag "edit_button.png", 
+											style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+											onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+								</div>
+							<% end %>
+						<% else %>
+							<% if current_student.email == reply.owner.email %>
+								<div>
+									<td><%= image_tag "delete_button_2.png", 
+											style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+											onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
+									<td><%= image_tag "edit_button.png", 
+											style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
+											onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+								</div>
+							<% end %>
+						<% end %>
+					</div>
 					<br>
-				</p>
-				<p><font size="1"><%= distance_of_time_in_words_to_now reply.created_at %> ago </p>
-			</div>
-			<div>
-				<% if lecturer_signed_in? %>
-					<% if current_lecturer.email == reply.owner.email %>
-						<td><%= image_tag "delete_button_2.png", 
-								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
-								onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
-						<td><%= image_tag "edit_button.png", 
-								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
-								onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
-					<% end %>
-				<% elsif teaching_assistant_signed_in? %>
-					<% if current_teaching_assistant.email == reply.owner.email %>
-						<td><%= image_tag "delete_button_2.png", 
-								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
-								onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
-						<td><%= image_tag "edit_button.png", 
-								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
-								onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
-					<% end %>
-				<% else %>
-					<% if current_student.email == reply.owner.email %>
-						<td><%= image_tag "delete_button_2.png", 
-								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
-								onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
-						<td><%= image_tag "edit_button.png", 
-								style: "width:1%;height:1%;margin_top:10px;cursor:pointer", 
-								onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
-					<% end %>
-				<% end %>
-			</div>
-			<br>
+				</div>
+			<% end %>
+		</div>
+	<% else %>
+		<div align="center">
+			No Replies in this post yet. 
 		</div>
 	<% end %>
-<% else %>
-	<div align="center">
-		No Replies in this post yet. 
-	</div>
-<% end %>
+</div>
+
+
+<style type="text/css">
+	.reply {
+		width: 100%;
+	}
+	.raplies {
+		width: 100%;
+	}
+	.main_row .reply h2{
+		font-size: 1.3em;
+	}
+	.main_row .reply h3{
+		font-size: 0.8em;
+		float: right;
+	}
+	.reply font {
+		font-size: 0.8em;
+		float: right;
+	}
+
+</style>

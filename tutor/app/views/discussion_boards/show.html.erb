@@ -1,62 +1,114 @@
-<div class="container" style="width:100%;">
-	<div class="container header" >
-		<h1><h><%= @discussionBoard.title %></h></h1>
-		<hr style="width:50% !important;">
-	</div>
-	<br>
-	<div class="container">
-		<% if !@discussionBoard.blank? %>
-			<% @discussionBoard.posts.each do |post| %>
-				<div class="container box" style="background-color:white !important; width:100%;" >
-					<div class="col-md-12 container well">
-						<div class="row">
-							<div class="container col-sm-2" style="width:10%; height:100% !important;"> 
-								<%= image_tag @current_user.profile_image_url.to_s, class:"image" %> </div>
-							<div class="container col-sm-8" style="width:90%;"> <h2><b><%= link_to post.title, post %></b></h2></div>
-							
-						</div>
-						<br>
-						<div class="row">
-							<div class="container col-sm-3 details"> <h3>posted by</h3> <%= link_to post.owner.name , post.owner %></div>
-							<div class="container col-sm-3 details"> <h3>posted at</h3>
-								<%= distance_of_time_in_words_to_now post.created_at %>
-							</div>
-							<div class="container col-sm-3 details"> <h3>views</h3> <%= post.views_count %> </div>
-							<div class="container col-sm-3 details"> <h3>replies</h3> <%= post.replies.count %></div>
-						</div>
-					</div>
-				</div>
-				<!-- <hr> -->
-			<% end %>
-		<% else %>
-		<% end %>
-	</div>
+<div class=" well header" >
+	<h1><b><%= @discussionBoard.title %></b></h1>
+	<hr>
 </div>
+<div class="well add_newss">
+	<%= link_to "Ask Question", new_post_path(discussion_board_id:@discussionBoard.id) %> 
+</div>
+<div class="container posts">
+	<% if !@discussionBoard.blank? %>
+		<% @discussionBoard.posts.each do |post| %>
+			<div class="row box">
+				<div class=" well col-sm-1 col_1">
+					<%= image_tag @current_user.profile_image_url.to_s, class:"profile_image" %> 
+				</div>
+				<div class=" col-sm-9 col_2">
+					<div><h2><b><%= link_to post.title, post %></b></h2></div>
+					<div><font><%= distance_of_time_in_words_to_now post.created_at %> ago by <%= link_to post.owner.name , post.owner %></font></div>
+				</div>
+				<div class=" col-sm-1 col_3 details">
+					<h3>Views</h3> <font><%= post.views_count %></font> 
+				</div>
+				<div class=" col-sm-1 col_3 details">
+					<h3>Answers</h3> <font><%= post.replies.count %></font> 
+				</div>
+			</div>
+		<% end %>
+	<% else %>
+	<% end %>
+</div>
+
+
 <style type="text/css">
-	h3 {
-		font-size: 1.9em;
-	}
-	.header {
-		text-align: center;
-		/*box-shadow: 50px 0px 50px black;*/
-	}
-	.body {
-		background-color:blue;
-		text-align: center;
-	}
-	.box {
-		/*border-top: 1px solid #1a5f63 !important;*/
-		border-bottom: 1px solid #1a5f63 !important;
-	}
-	.details {
-		text-align: center;
-	}
-	.style_image {
-		width: 50%;
-		height: 50%;
-		background-color: #e61349;
-	}
-	.image {
+	.add_newss {
 		width: 100%;
+		background-color: #b000e6;
+		text-align: right;
+	}
+	/* header */
+		.header {
+			text-align: center;
+			/*box-shadow: 50px 0px 50px black;*/
+		}
+		.header hr {
+			width:50% !important;
+		}
+	/* Posts */
+		.posts {
+			width:100%;
+			background-color:white;
+			padding-bottom: 5%;
+		}
+		.posts .container{
+			width:100%;
+		}
+		.posts .col_main{
+			width:10%; 
+			height:100% !important;
+		}
+		.posts .col_main_title{
+			width:90%; 
+		}
+		.posts h2{
+			font-size: 1.8em;
+		}
+		.posts .box {
+			/*border-top: 1px solid #1a5f63 !important;*/
+			border-bottom: 1px solid #1a5f63 !important;
+			padding-bottom: 1%;
+		}
+		.box .profile_image {
+			width: 100%;
+			border-radius: 50%;
+			border: 3px solid #1a5f63 !important;
+		}
+		.posts .h2 {
+			width: 100%;
+		}
+		/* details */
+			.posts .details {
+				text-align: center;
+			}
+			.posts .details h3 {
+				font-size: 1.0em;
+			}
+			.posts font {
+				font-size: 0.9em;
+			}
+	/* body */
+		.body {
+			background-color:blue;
+			text-align: center;
+		}
+
+	@media (max-width: 767px) {
+		h3 {
+			font-size: 1.0em;
+		}
+		.box .profile_image {
+			width: 50%;
+		}
+	}
+	@media (max-width: 991px) {
+		h3 {
+			font-size: 0.85em;
+		}
+		.box b {
+			font-size: 0.5em;
+		}
+		font {
+			font-weight: normal;
+			font-size: 0.8em;
+		}
 	}
 </style>
