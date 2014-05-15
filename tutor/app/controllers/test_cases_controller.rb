@@ -25,6 +25,7 @@ class TestCasesController < ApplicationController
 		@test_case = TestCase.new
 	end
 
+
 	# [Add test case-story 4.8]
 	# Saves the new test case into the database.(What the form the 'new' method will submit to)
 	# Parameters: None
@@ -146,5 +147,5 @@ class TestCasesController < ApplicationController
 	def test_case_params
 		params.require(:test_case).permit(:input, :output, :problem_id)
 	end
-
+	
 end

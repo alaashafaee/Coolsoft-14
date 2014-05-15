@@ -23,7 +23,7 @@
 <%= f.hidden_field :problem_id, :value => @problem.id %>
 <% end %>
 
-<h1>Pleas insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
+<h1>Please insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
 <p>
 	<%= flash[:notice] %>
 	<%= f.label :Input %>
@@ -33,6 +33,26 @@
 	<%= f.hidden_field :problem_id, :value => session[:problem_id] %>
 </p>
 <p>
-	<%= f.submit 'Add Test Case', class: "btn btn-large btn-primary btn-info" %>
+	<%= f.submit 'Add Test Case', type: "submit" ,value: "Add Test Case", onclick: "canleave()", class: "btn btn-large btn-info" %>
 </p>
 <% end %>
+<script>
+var workIsDone = false;
+
+window.onbeforeunload = confirmBrowseAway;
+
+function confirmBrowseAway()
+{
+  if (!workIsDone) {
+    return "Are you sure you want to do that? If you leave this page " +
+    "now, your work will NOT be saved!";
+  }
+}
+
+function canleave()
+{
+  // The user has finished their work, so we don't
+  // need a warning anymore!
+  workIsDone = true;
+}
+</script>

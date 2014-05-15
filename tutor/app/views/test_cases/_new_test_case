@@ -1,0 +1,29 @@
+<%= form_for :new_test_case , url: test_cases_path do |f| %>
+<% if @test_case.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@test_case.errors.count, "error") %>
+			prohibited this course from being saved:
+		</h2>
+		<ul>
+			<% @test_case.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% else %> 
+<%= f.hidden_field :assignment_problem_id, :value => @problem.id %>
+<% end %>
+
+<h1>Please insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
+<p>
+	<%= flash[:notice] %>
+	<%= f.label :Input %>
+	<br><%= f.text_field :input, class: "form-control", style: "width:320px; height:45px;" %>
+	<%= f.label :Output %>
+	<br><%= f.text_field :output, class: "form-control", style: "width:320px; height:45px;" %>
+	<%= f.hidden_field :assignment_problem_id, :value => session[:problem_id] %>
+</p>
+<p>
+	<%= f.submit 'Add Test Case', type: "submit" ,value: "Add Test Case", onclick: "fileMyTaxes()", class: "btn btn-large btn-primary btn-info" %>
+</p>
+<% end %>
