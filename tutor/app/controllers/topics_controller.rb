@@ -7,7 +7,8 @@ class TopicsController < ApplicationController
 	#	Topic controller
 	# Parameters: 
 	#	id: The id of the topic
-	# Returns: The view of the requested topic
+	# Returns: 
+	#	The view of the requested topic
 	# Author: Mussab ElDash
 	def show
 		id = params[:id]
