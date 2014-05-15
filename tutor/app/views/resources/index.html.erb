@@ -1,2 +1,13 @@
-<h1>Resources#create</h1>
-<p>Find me in app/views/resources/create.html.erb</p>
+<h2>
+<%= @course.name %>
+</h2>
+<p>
+Resources
+</p>
+<%- @course.resources.each do |resource| %>
+	<div>
+		<a href="<%= resource.link %>"> <%= resource.link %></a>
+		<%= resource.description %>
+	</div>
+	<br/>
+<% end%>
