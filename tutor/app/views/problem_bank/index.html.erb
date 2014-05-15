@@ -1,6 +1,7 @@
 <%@problem = Problem.find_by_id(@problem_id)%>
 <div>
-<h1 align ="center"> <%= @problem.title %> </h1>
-<h2><%= @problem.description %></h2>
+	<h1 align ="center"> <%= @problem.title %> </h1>
+	<h2><%= @problem.description %></h2>
 </div>
-<%= link_to "Return Back", {:controller => 'problem_bank', :action => 'show',:id => @track_id}, class: "btn btn-info"%>
+<%= link_to "Return Back", {:controller => 'problem_bank', :action => 'show',
+	:id => @track_id}, class: "btn btn-info"%>

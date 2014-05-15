@@ -38,9 +38,9 @@ class ProblemBankController < ApplicationController
 	        	end
 	        end
 	        if @flag == true
-	        @new_problem.track_id = @track.id
-        	current_lecturer.problems << @new_problem
-        	flash[:success]= @new_problem.title,"is added successfully"
+		        @new_problem.track_id = @track.id
+	        	current_lecturer.problems << @new_problem
+	        	flash[:success]= @new_problem.title,"is added successfully"
        		end
 		elsif teaching_assistant_signed_in?
 			@flag = true
@@ -51,9 +51,9 @@ class ProblemBankController < ApplicationController
 				end
 			end
 			if @flag == true
-			@new_problem.track_id = @track.id
-			current_teaching_assistant.problems << @new_problem
-			flash[:success]= @new_problem.title,"is added successfully"
+				@new_problem.track_id = @track.id
+				current_teaching_assistant.problems << @new_problem
+				flash[:success]= @new_problem.title,"is added successfully"
 			end
 		end
 		redirect_to :action => 'show', :id => @track.id

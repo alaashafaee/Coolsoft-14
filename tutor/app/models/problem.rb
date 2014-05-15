@@ -60,13 +60,13 @@ class Problem < ActiveRecord::Base
 	#	the duplicated problem
 	# Author: Ahmed Sharaf
 	def duplicate 
-		@p1 = dup
+		@duplicatedProblems = dup
 		test_cases.each do |t|
-			@p1.test_cases << t.duplicate
+			@duplicatedProblems.test_cases << t.duplicate
 		end
 		model_answers.each do |m|
-			@p1.model_answers << m.duplicate
+			@duplicatedProblems.model_answers << m.duplicate
 		end
-		return @p1
+		return @duplicatedProblems
 	end
 end

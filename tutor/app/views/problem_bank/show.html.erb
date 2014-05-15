@@ -1,13 +1,13 @@
 <% if flash[:notice] %>
-		<div class= "alert alert-danger"><%= flash[:notice] %></div>
+	<div class= "alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
 <% if flash[:success] %>
-		<div class= "alert alert-success"><%= flash[:success] %></div>
+	<div class= "alert alert-success"><%= flash[:success] %></div>
 <% end %>
 <% if !@problems.any? %>
-		<p>There are no problems in the bank</p>
+	<p>There are no problems in the bank</p>
 <% end %>
-	<% if !@problems.empty? %>
+<% if !@problems.empty? %>
 		<table class="table table-striped" style = "width:60%">
 			<thead>
 				<tr>
@@ -18,7 +18,7 @@
 			<tbody>
 				 <% @problems.each do |problem| %>
 					<tr>
-						    <% if (problem.seen && !problem.duplicated) %> 
+							<% if (problem.seen && !problem.duplicated) %> 
 						   		<td style = "max-width: 300px; word-wrap:break-word;">
 								<%= link_to problem.title ,:controller => 'problem_bank',
 									:action => 'index', :id => problem.id, :track_id => @track_id%>
