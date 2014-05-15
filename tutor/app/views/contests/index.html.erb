@@ -3,7 +3,37 @@
 		style="width:180px;display:inline"><%= flash[:notice] %></div>
 <% end %>
 
-<h1> Your Contests </h1>
+<% if @my_contests != nil %>
+	<h1> Your Contests </h1>
+	<table class="table table-striped table-bordered table-responsive">
+		<tr>
+			<td>Contests</td>
+			<td>Start date</td>
+			<td>Start time</td>
+			<td>Duration</td>
+		</tr>
+		<% @my_contests.each do |contest| %>
+			<tr>
+				<td>
+					<h4><%= link_to contest.title, :controller => 'contests', :action=> 'show',
+							:id => contest.id,:method => :get, class:
+								"btn btn-success" %></h4>
+				</td>
+				<td>
+					<h4><%= contest.start_date %></h4>
+				</td>
+				<td>
+					<h4><%= contest.start_time %></h4>
+				</td>
+				<td>
+					<h4><%= contest.end_time.to_i - contest.start_time.to_i / (60*60) %></h4>
+				</td>
+			</tr>
+		<% end %>
+	</table>	
+<% end %>		
+				
+<h1> Contests </h1>
 
 <table class="table table-striped table-bordered table-responsive">
 	<% if @contests %>

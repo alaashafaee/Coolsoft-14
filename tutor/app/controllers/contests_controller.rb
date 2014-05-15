@@ -16,7 +16,13 @@ class ContestsController < ApplicationController
 		elsif teaching_assistant_signed_in?
 			@contests = current_teaching_assistant.contests
 		elsif student_signed_in?
-			@contests = current_student.contests
+			@my_contests = current_student.contests
+			@courses = current_student.courses
+			@courses.each do |course|
+				course.contests.each do |contest|
+					@contests << contest
+				end
+			end
 		end
 	end
 
