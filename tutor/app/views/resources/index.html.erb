@@ -35,19 +35,25 @@
 </div>
 <div>
 	<div class="page-header">
-		<h2>
-			<%= @course.name %>
-		</h2>
-		<p>
-			Resources
-		</p>
+		<h1><%= @course.name %><small> resources :</small></h1>
 	</div>
-	<%- @course.resources.each do |resource| %>
-		<div>
-			<a href="<%= resource.link %>"> <%= resource.link %></a>
-			<%= resource.description %>
-			<%= image_tag(resource.img , { :title => "Resource Image"}) %>
+	<%- unless @course.resources.empty? %>
+		<%- @course.resources.each do |resource| %>
+			<div class="media">
+				<a class="pull-left" href="<%= resource.link %>">
+					<img class="media-object" src="<%= resource.img %>" height="64" width="64" alt="...">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading"><%= resource.link %></h4>
+					<%= resource.description %>
+				</div>
+			</div>
+		<% end%>
+	<% else %>
+		<div class="panel panel-default">
+			<div class="panel-body" align="center">
+				<h3>No Resources</h3>
+			</div>
 		</div>
-		<br/>
-	<% end%>
+	<% end %>
 </div>
