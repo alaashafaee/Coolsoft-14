@@ -9,24 +9,22 @@
 // # Returns: JSON Request
 // # Author: Ahmed Mohamed Magdi
 function post_reply(_id) {
-	input = $("#contents_id").getData();
-	alert(input);
-	// $.ajax({
-	// 	error: function() {
-	// 		alert("Failed to add constraints, Check again");
-	// 	},
-	// 	type: "POST",
-	// 	url: "/replies",
-	// 	data: {
-	// 		content: input,
-	// 		id: _id
-	// 	},
-	// 	datatype: "JSON",
-	// 	success: function(data) {
-
-	// 		// window.location = window.location
-	// 	}
-	// });
+	input = $("#ckeditor").val();
+	$.ajax({
+		error: function() {
+			alert("Failed to add constraints, Check again");
+		},
+		type: "POST",
+		url: "/replies",
+		data: {
+			content: input,
+			id: _id
+		},
+		datatype: "JSON",
+		success: function(data) {
+			window.location = window.location
+		}
+	});
 }
 
 // # [Edit a Reply - Story 1.19]

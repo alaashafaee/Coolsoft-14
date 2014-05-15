@@ -13,7 +13,7 @@
 		<%= csrf_meta_tags %>
 	</head>
 <!-- Navbar Section -->
-	<body style="background: #EEEFE9;">
+	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -61,11 +61,11 @@
 		<% if signed_in? %>
 			<div class="container cont">
 				<div class="col-md-10 left_side">
-					<div class="container content_container" style="width: 100% !important;">
+					<div class="container content_container">
 						<%= yield %>
 					</div>					
 				</div>
-<!-- 					<div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
+					<!-- <div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
 				<div class="col-xs-hidden col-md-2 right_side">
 						<%= render "layouts/right_side_bar" %>
 

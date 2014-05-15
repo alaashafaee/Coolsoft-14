@@ -20,6 +20,7 @@
 }
 .content_container{
 	background-color: #FAFAFA;
+	width: 100% !important;
 }
 .profile_picture {
 	width:200px;
