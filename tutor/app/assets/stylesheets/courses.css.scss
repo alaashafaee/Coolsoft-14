@@ -9,4 +9,76 @@
 #error_explanation {
 	color: red;
 }
+.course_title{
+	font-size: 2.5em;
+}
 
+.course_code {
+	float: left;
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+.course_name {
+	float: left;
+}
+
+.course_sem {
+	float: left;	
+	font-size: 1em;
+	padding-right: 0px;
+	padding-bottom: 20px;
+}
+
+.course_info{
+	padding-left: 30px;
+	margin-top: 30px;
+	border-bottom: 1px solid #D2D3D4;
+	color: #808088;
+}
+
+.course_description{
+	padding-left: 15px;
+	color: #808088;
+}
+
+.course_description p{
+	padding-top: 40px;
+	font-size: 1.5em;
+}
+
+.description-body{
+	font-size: 1.2em ;
+	padding-bottom: 40px;
+}
+
+.course_manage{
+	float: right;
+	padding-right: 20px;
+	padding-top: 0px;
+}
+
+.course_manage a{
+	font-size: 0.5em;
+	color: #2A6775 !important;
+}
+.course_manage a:hover{
+	color: #1E4A54 !important;
+}
+
+.view_discussion{
+	font-size: 1.5em;
+	padding-bottom: 50px;
+}
+
+.view_discussion a{
+	color: #2A6775 !important;	
+}
+
+.view_discussion a:hover{
+	color: #1E4A54 !important;
+}
+
+.topic-box h3 a {
+	color: #65656B;
+}

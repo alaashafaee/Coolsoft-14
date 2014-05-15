@@ -1,5 +1,9 @@
 <!--Author: Mohab Ghanim -->
-<li><a href="/courses/sign_up">Sign up for a course</a></li>
+<% if lecturer_signed_in? %>
+	<a href="/courses/new">Create new Course</a>
+<% elsif student_signed_in? %>
+	<a href="/courses/sign_up">Sign up for a course</a>
+<% end %>
 <% if !@courses.any? %>
 	<h1>You have no courses</h1>
 <% end %>
@@ -18,16 +22,6 @@
 				<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, :method => :get, class: "", style:"font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none "%>
 				</td>
 				<td><%= c.code %></td>
-				<td>
-					<%= link_to "Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => c.id },
-						class: "btn btn-info", method: :get, style: "text-decoration:none" %>
-				</td>
-				<td>
-					<% if current_lecturer %>
-						<%= link_to "Manage", { :controller => 'courses', :action => 'edit',
-							:method => :get, :id => c.id }, class: "", style: "color:black" %>
-					<% end %>
-				</td>
 				<td>
 					<% if current_student %>
 						<% if @share[c.id] == "Show" %>

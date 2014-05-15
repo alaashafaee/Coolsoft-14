@@ -1,29 +1,42 @@
-
-<div class="page-header">
-	<h1><%= link_to @course.name , @course %>
-		<small><%= link_to @topic.title , @topic %></small></h1>
+<div class = "course_info panel-body" >
+	<div class= "row course_title">
+		<div class="course_code"><%= @topic.course.code %></div>
+		<div class="course_name"><%= @topic.course.name %></div>
+		<div class="course_code"><%= @topic.title %></div>
+	</div>
+	<div class="row">
+		<div class="course_sem">
+			Semester <%= @topic.course.semester %>
+			Class <%= @topic.course.year %>
+		</div>
+	</div>
 </div>
-	<% if @can_edit %>
-		<% if flash[:error] %>
-			<div class = "alert alert-danger" style = "width:25%; 
-					color: back" ><%= flash[:error] %>
-			</div><br>
-		<% end %>
-		<% if flash[:success] %>
-			<div class = "alert alert-success" style = "
-					width:25%;" ><%= flash[:success] %>
-			</div><br>
-		<% end %>
+<div class="row topic_description">
+	<div class="description-body" ><%= @topic.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</div>
+</div>
+<% if @can_edit %>
+	<% if flash[:error] %>
+		<div class = "alert alert-danger" style = "width:25%; 
+				color: back" ><%= flash[:error] %>
+		</div><br>
 	<% end %>
+	<% if flash[:success] %>
+		<div class = "alert alert-success" style = "
+				width:25%;" ><%= flash[:success] %>
+		</div><br>
+	<% end %>
+<% end %>
 
-<div class="panel-group list-group" id="accordion">
+<div class="panel-group list-group track-accordion" id="accordion">
 	<% @tracks.each do |t| %>
 		<div class = "panel panel-default" style = "width:50%">
 			<div class="panel-title list-group-item list-group-item-info"
 				data-toggle="collapse" data-parent="#accordion"
 				href="#<%= t.id.to_s %>">
 					<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
-						<%= link_to t.title , t , style: 'color:#003366;'%></b>
+						<%= link_to t.title , t %></b>
 					<span class="badge"><%= t.problems.count %></span>
 			</div>
 			<div id="<%= t.id.to_s %>" class="panel-collapse collapse">

@@ -65,7 +65,7 @@
 					data-toggle="collapse" data-parent="#accordion"
 					href="#<%= problem.id.to_s %>">
 					<b onclick="window.open('/problems/<%= problem.id.to_s %>', '_self')">
-					<%= link_to problem.title, problem , style: 'color:#003366;' ,
+					<%= link_to problem.title, problem ,
 					class: color %></b>
 					<span class="badge">
 						<% if student_signed_in? %>
