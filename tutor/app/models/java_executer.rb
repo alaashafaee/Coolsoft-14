@@ -56,14 +56,14 @@ class JavaExecuter
 	# 	A hash [status, msg], where status is true or false and msg is costume explaining message
 	# Author: Ahmed Akram
 	def self.check_input_validity(input, problem_id)
-		variables_number = Problem.find_by_id(problem_id).test_cases.first.input.split(" ").count
-		if input.include?("\n")
-			return {status: false, msg: "Input can not have line breaks \"don't use enter\""}
-		end
-		if input.split(" ").count != variables_number
-			msg = "Enter only " + variables_number.to_s + " numbers"
-			return {status: false, msg: msg}
-		end
+		variables_number = Cproblem.find_by_id(problem_id).test_cases.first.input.split(" ").count
+		# if input.include?("\n")
+		# 	return {status: false, msg: "Input can not have line breaks \"don't use enter\""}
+		# end
+		# if input.split(" ").count != variables_number
+		# 	msg = "Enter only " + variables_number.to_s + " numbers"
+		# 	return {status: false, msg: msg}
+		# end
 		return {status: true, msg: nil}
 	end
 

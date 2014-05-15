@@ -9,7 +9,7 @@ class CproblemsController < ApplicationController
 	# 	@problem: the curretn opened problem
 	# Author: Ahmed Akram
 	def show
-		@contest = Contest.find_by_id(1)
+		@contest = Contest.find_by_id(4)
 		@problem = Cproblem.find_by_id(params[:id])
 		if @problem.nil?
 			render "problem_not_found"

@@ -139,6 +139,9 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "5.0\n", input:"10 2")
 	TestCase.create(output: "2.5\n", input:"5 2")
 	TestCase.create(output: "Infinity\n", input:"10 0")
+	TestCase.create(output: "10\n20\n50\n30\n50\n", input:"10\n20\n50\n30\n50\n42")
+	TestCase.create(output: "1\n", input:"1\n42")
+	TestCase.create(output: "1\n2\n", input:"1\n2\n42\n4")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -176,7 +179,10 @@ puts("# ----------------------- Problems ----------------------- ")
 		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", final_grade:10)
 		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", final_grade:10)
 	## Contests
-		Cproblem.create(title: "ContestProblem 1", description: "This is very easy Problem")
+		Cproblem.create(title: "Life, the Universe, and Everything", description: "Your program is to use the\ 
+			brute-force approach in order to find the Answer to Life, the Universe, and Everything. More\ 
+			precisely... rewrite small numbers from input to output. Stop processing input after reading\ 
+			in the number 42. All numbers at input are integers of one or two digits.")
 		Cproblem.create(title: "ContestProblem 2", description: "Given two numbers a and b, output a/b")
 		Cproblem.create(title: "ContestProblem 3", description: "This is very hard Problem")
 		Cproblem.create(title: "ContestProblem 4", description: "This wont be a hard Problem")
@@ -239,12 +245,10 @@ puts("# ----------------------- Contests ----------------------- ")
 		incomplete:false)
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
 		incomplete:false)
-
-puts("# ----------------------- Contests ----------------------- ")
-	ContestProgress.create!(status:true)
-	ContestProgress.create!(status:true)
-	ContestProgress.create!(status:true)
-	ContestProgress.create!(status:false)
+	Contest.create(title:"Ad-hoc Contest", 
+		description:"This contest has a group of easy ad-hoc problems for juniors ACMers",
+		incomplete:false, start_time: DateTime.now.to_time, end_time: DateTime.now.to_time + 5, 
+		course_id: 1)
 
 puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"DSD Assignment_1", publish: true)
@@ -309,7 +313,7 @@ puts("# ----------------------- Lecturers ----------------------- ")
 	## Contests
 		Lecturer.first.contests << Contest.first
 		Lecturer.first.contests << Contest.find_by_id(2)
-		Lecturer.first.contests << Contest.find_by_id(3)
+		Lecturer.first.contests << Contest.find_by_id(4)
 	## Assignments
 		Lecturer.first.assignments << Assignment.first
 		Lecturer.first.assignments << Assignment.find_by_id(2)
@@ -356,15 +360,11 @@ puts("# ----------------------- Students ----------------------- ")
 		Student.first.progressions << TrackProgression.find_by_id(4)
 		Student.first.progressions << TrackProgression.find_by_id(5)
 	## Contests
-		Student.first.contests << Contest.first
+		Student.first.contests << Contest.find_by_id(4)
 		Student.find_by_id(2).contests << Contest.first
 		Student.find_by_id(3).contests << Contest.find_by_id(2)
 		Student.find_by_id(4).contests << Contest.find_by_id(3)
-	## Contests progress
-		Student.first.contest_progresses << ContestProgress.first
-		Student.first.contest_progresses << ContestProgress.find_by_id(2)
-		Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(3)
-		Student.find_by_id(2).contest_progresses << ContestProgress.find_by_id(4)
+
 	## Grades
 		Student.first.grades << Grade.first
 		Student.first.grades << Grade.find_by_id(2)
@@ -389,6 +389,12 @@ puts("# ----------------------- Posts ----------------------- ")
 		Post.first.replies << Reply.find_by_id(11)
 		Post.first.replies << Reply.find_by_id(12)
 		Post.first.replies << Reply.find_by_id(13)
+
+puts("# ----------------------- Cproblems ----------------------- ")
+	## TestCases
+		Cproblem.first.test_cases << TestCase.find_by_id(7)
+		Cproblem.first.test_cases << TestCase.find_by_id(8)
+		Cproblem.first.test_cases << TestCase.find_by_id(9)
 
 puts("# ----------------------- Problems ----------------------- ")
 	## TestCases
@@ -422,12 +428,6 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.attempts << Attempt.find_by_id(11)
 		Problem.first.attempts << Attempt.find_by_id(12)
 		Problem.first.attempts << Attempt.find_by_id(13)
-	## Contest Progress
-		Cproblem.find_by_id(1).contests_progresses << ContestProgress.first
-		Cproblem.find_by_id(1).contests_progresses << ContestProgress.find_by_id(2)
-		Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(3)
-		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(3)
-		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 		Problem.first.model_answers.first.hints << Hint.all.second
@@ -479,12 +479,8 @@ puts("# ----------------------- Contests ----------------------- ")
 		Contest.first.problems << Cproblem.find_by_id(2)
 		Contest.first.problems << Cproblem.find_by_id(3)
 		Contest.find_by_id(2).problems << Cproblem.find_by_id(4)
-		Contest.find_by_id(3).problems << Cproblem.find_by_id(5)
-	## Contests Progress
-		Contest.first.progress << ContestProgress.first
-		Contest.find_by_id(2).progress << ContestProgress.find_by_id(2)
-		Contest.find_by_id(2).progress << ContestProgress.find_by_id(3)
-		Contest.find_by_id(3).progress << ContestProgress.find_by_id(4)
+		Contest.find_by_id(3).problems << Cproblem.find_by_id(1)
+		Contest.find_by_id(4).problems << Cproblem.find_by_id(1)
 
 puts("# ----------------------- Assignment ----------------------- ")
 	## Problems
