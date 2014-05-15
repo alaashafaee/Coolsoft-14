@@ -66,7 +66,11 @@
 					<td>
 						<h4><%= link_to "Edit", "/edit/"+contest.id.to_s %></h4>
 					</td>
-				<% else %>
+				<% elsif contest.end_date < Date.now && contest.end_time < Time.now %>
+					<td>
+						<h4> Contest is Finished </h4>
+					</td>
+				<% else %>	
 					<td>
 						<h4><%= link_to "Register", :controller => 'contests', :action=> 'register',
 								:id => contest.id,:method => :get, class:
