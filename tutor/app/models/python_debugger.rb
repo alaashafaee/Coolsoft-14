@@ -51,6 +51,9 @@ class PythonDebugger < Debugger
 			end
 		end
 		begin
+			Process.kill("INT", pid)
+			Process.kill("INT", pid)
+			Process.kill("INT", pid)
 			Process.kill("TERM", pid)
 		rescue => e
 		end
@@ -65,8 +68,6 @@ class PythonDebugger < Debugger
 	def get_line
 		out_stream = buffer_until $regex
 		exceptions = has_exception out_stream
-		stream = get_stream out_stream
-		exceptions = has_exception out_stream
 		name_string = $class_name.sub(/\.py/,"")
 		/#{name_string}\.py\(\d+\).*\r\n/ =~ out_stream
 		line_first_string = $&
@@ -74,9 +75,27 @@ class PythonDebugger < Debugger
 		line_first = $&
 		if line_first
 			exceptions[:line] = line_first.to_i
-			exceptions[:stream] = stream
+			stream = get_stream out_stream, line_first.to_i
+			if $all[-1]
+				exceptions[:stream] = "#{$all[-1][:stream]}#{stream}"
+			else
+				exceptions[:stream] = stream
+			end
 			return exceptions
 		else
+			if exceptions[:exception]
+				if $all[-1]
+					$all[-1][:stream].sub(/#{exceptions[:exception]}$/m, "")
+					$all[-1][:exception] = exceptions[:exception]
+					$all[-1][:status] = false
+				else
+					first_step = exceptions[:exception]
+					first_step =~ /, line \d+/
+					second_step = $&
+					third_step = second_step[7..-1]
+					exceptions[:line] = third_step.to_i
+				end
+			end
 			raise 'Exited'
 		end
 	end
@@ -88,6 +107,10 @@ class PythonDebugger < Debugger
 	# Returns: A hash of the exception and its explanation if exists
 	# Author: Mussab ElDash
 	def has_exception(line)
+		if line.include? "> <string>(1)<module>()"
+			exception = get_exception line
+			return {:status => false, :exception => exception}
+		end
 		return {:status => true}
 	end
 
@@ -96,9 +119,11 @@ class PythonDebugger < Debugger
 	# Parameters: none
 	# Returns: The exception
 	# Author: Mussab ElDash
-	def get_exception
-		out_stream = ""
-		return out_stream
+	def get_exception(line)
+		second_step = ""
+		first_step = line.sub(/> <string>\(1\)<module>\(\)->None\r\n/m, "")
+		second_step = first_step.sub(/.*\(Pdb\) /m, "")
+		return second_step
 	end
 
 	# [Debugger: Debug Pyhton - Story X.8]
@@ -107,7 +132,11 @@ class PythonDebugger < Debugger
 	# 	line: The line to be checked if it has a runtime error
 	# Returns: A hash of the exception and its explanation if exists
 	# Author: Mussab ElDash
-	def get_stream(line)
-		return ""
+	def get_stream(line, num)
+		name = $class_name.sub(/\.py/,"")
+		regex = /(\-\-[A-Z][a-z]*\-\-\r\n)?> (\/[a-zA-Z0-9\-_]+)*\/#{name}\.py\(#{num}\).*\r\n$/m
+		stream = line.sub(regex, "")
+		stream = stream.sub(/\(Pdb\) /, "")
+		return stream
 	end
 end
