@@ -1,6 +1,6 @@
 Tutor::Application.routes.draw do
 
-  get "contests/index"
+  get "contests/show"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -43,6 +43,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :contests
 	post "courses/choose"
 	post "courses/existing"
   	post "courses/duplicate"
