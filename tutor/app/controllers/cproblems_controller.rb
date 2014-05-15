@@ -1,5 +1,13 @@
 class CproblemsController < ApplicationController
-  
+  	
+  	# [Solve Contest Problem - Story 5.20]
+	# View the selected problem from the contest
+	# Parameters:
+	# 	none
+	# Returns:
+	# 	@contest: the current opened contest
+	# 	@problem: the curretn opened problem
+	# Author: Ahmed Akram
 	def show
 		@contest = Contest.find_by_id(1)
 		@problem = Cproblem.find_by_id(params[:id])
@@ -8,18 +16,19 @@ class CproblemsController < ApplicationController
 		end
 	end
 
+	# [Solve Contest Problem - Story 5.20]
+	# Passes the information to the model to be inserted into the ContestProgress table
+	# Parameters:
+	# 	none
+	# Returns:
+	# 	none
+	# Author: Ahmed Akram
 	def submit
-		contest_id = params[:contest_id]
+		contest_id = get_params[:contest_id]
 		student_id = current_student.id
-		cproblem_id = params[:problem_id]
-		if params[:status].to_i == 1
-			status = 1
-		else
-			status = 0
-		end
-		cp = ContestProgress.create(contest_id: contest_id, student_id: student_id,
-									cproblem_id: cproblem_id, status: status)
-		cp.save
+		cproblem_id = get_params[:problem_id]
+		status = get_params[:status]
+		Cproblem.submit(contest_id, cproblem_id, student_id, status)
 		render json: {}
 	end
 
@@ -32,9 +41,16 @@ class CproblemsController < ApplicationController
 	def index
 	end
 
+	# [Solve Contest Problem - Story 5.20]
+	# Permits the selected attributes
+	# Parameters:
+	# 	none
+	# Returns:
+	# 	a hash consisting of contest_id, problem_id and status
+	# Author: Ahmed Akram
 	private
-	def param
-		params.permit(:contest_id, :probelm_id)
+	def get_params
+		params.permit(:contest_id, :probelm_id, :status)
 	end
 
 end

@@ -4,11 +4,12 @@
 	<% @type = "Problem" %>
 <% elsif @controller == "cproblems" %>
 	<% @type = "Cproblem" %>
+	<div hidden id = "contest_id"><%= @contest.id %></div>
 <% else %>
 	<% @type = "AssignmentProblem" %>
 <% end %>
 
-<div hidden id = "contest_id"><%= @contest.id %></div>
+
 
 <!-- Upper buttons -->
 <div class="input-group">
