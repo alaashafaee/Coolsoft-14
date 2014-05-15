@@ -1,5 +1,3 @@
-require "open3"
-require "fileutils"
 class PythonDebugger < Debugger
 
 	# [Debugger: Debug Pyhton - Story X.8]

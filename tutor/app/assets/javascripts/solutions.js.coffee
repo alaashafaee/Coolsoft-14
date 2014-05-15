@@ -150,8 +150,8 @@ input_test_output = (data) ->
 #	none
 # Author: Ahmed Akram
 toggle_code_area = ->
-	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
 	$('#solution_input').prop 'disabled', !$('#solution_input').prop 'disabled'
+	$('#mode').prop 'disabled', !$('#mode').prop 'disabled'
 
 # [Compiler: Test - Story 3.15]
 # Fills the console with the runtime errors
@@ -401,10 +401,13 @@ debug_console = ->
 # Returns: none
 # Author: MOHAMEDSAEED
 @reload_template = () ->
-	disabled = $('#solution_code').prop 'disabled'
+	disabled = get_editor().getReadOnly()
 	unless disabled
-		template = "public class CoolSoft {\n"
-		template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+		if get_lang() == "java"
+			template = "public class CoolSoft {\n"
+			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+		else
+			template = ""
 		get_editor_session().setValue(template);
 		$('#class_name').val("CoolSoft");
 	return
@@ -434,5 +437,5 @@ get_editor_session = ->
 # 	The selected Language
 # Author: Mussab ElDash
 get_lang = ->
-	mode = edit_session.getMode()["$id"]
+	mode = get_editor_session().getMode()["$id"]
 	mode.substring(mode.lastIndexOf("/") + 1)
