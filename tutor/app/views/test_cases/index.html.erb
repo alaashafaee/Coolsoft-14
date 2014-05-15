@@ -1,11 +1,10 @@
 <div id = "crumbs">
 	<ul>
 		<li class="sub"><%= link_to "Problem", {:controller => 'problems', :action => 'edit',
-					:problem_id => session[:problem_id]},:method => :get %></li>
+					:problem_id => session[:problem_id], :track_id => session[:track_id]},:method => :get %></li>
 		<li class="sub1"><a class="visit" style ="padding: 5px 15% 0 0px;">Test Cases</a> </li>
 				
-		<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'index',
-					:problem_id => session[:problem_id],:track_id => session[:track_id]}, :style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"%> </li>
+		<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'index',:problem_id => session[:problem_id], :track_id => session[:track_id]}, :style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"%> </li>
 		<li class="sub3"><a class = "preventclick" >Tips</a> </li>
 		<li class="sub4"><a class = "preventclick">Hints</a> </li>
 	</ul>
