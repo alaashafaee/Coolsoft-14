@@ -3,14 +3,18 @@
 		<% @counter = 1 %>
 		<% @lines.each do |line| %>
 			<tr>
-				<td><%= link_to "Add Note", {:controller => 'model_answers', :action => 'new', :problem_id => 1 }, class: 'btn btn-primary', id: @counter, style: "visibility:visible;opacity:0",
-					onMouseOver: 'show(id)', onMouseOut: 'hide(id)' %>
-					<pre title ="<%= @counter %>"><%= line %></pre></td>
+				<td><button "Add Note", class ='btn btn-primary', id =  "<%= @counter %>", style = "visibility:visible;opacity:0",
+					onMouseOver = 'show(this.id)', onMouseOut =  'hide(this.id)', onClick = 'pop(this.id)' >Add Note</button>
+					<pre title ="<%= @counter %>"><%= line %></pre>
+					<div id = "<%= @counter %>form" style = "visibility:visible;width:60%;" align = "center">
+					</div>
+				</td>
 			</tr>
 			<% @counter+= 1 %>
 		<% end %>
 	</tbody>
 </table>
+<div class= "alert alert-danger"><%= flash[:notice] %></div>
 <script>
 	function show(id){
 		document.getElementById(id).style.opacity = 1;
@@ -18,4 +22,16 @@
 	function hide(id){
 		document.getElementById(id).style.opacity = 0;
 	}
+	function pop(id){	
+		id += "form"
+		document.getElementById(id).style.visibility = 'visible'
+		$(document.getElementById(id)).html("<%= escape_javascript(render 'notes/form') %>");
+		$(document.getElementById(id)).bPopup({
+			modalClose: false,
+            opacity: 0.6,
+            positionStyle: 'fixed' 
+		});
+	}
 </script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js"></script>
+<script src="jquery.bpopup-x.x.x.min.js"></script>
