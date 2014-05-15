@@ -70,6 +70,9 @@ gem 'will_paginate', '~> 3.0.5'
 #link inspect
 gem "metainspector",        '1.15.4'
 
+#forms
+gem "cocoon"
+
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
 end
