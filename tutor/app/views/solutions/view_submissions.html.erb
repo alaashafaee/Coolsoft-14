@@ -2,12 +2,16 @@
 	<tr>
 		<td style = "font-weight:bold;font-size:200%;">Student</td>
 		<td width="100px"></td>
+		<td style = "font-weight:bold;font-size:200%;">Submission Time</td>
+		<td width="100px"></td>
 		<td style = "font-weight:bold;font-size:200%;">Problem</td>
 	</tr>
 	<% @submissions.each do |submission| %>
 		<tr>
 			<% @student = Student.find_by_id(submission.student_id) %>
 			<td><%= @student.name %></td>
+			<td width="100px"></td>
+			<td><%= submission.created_at %></td>
 			<td width="100px"></td>
 			<td><%= @problem.title %></td>
 			<td width="100px"></td>
