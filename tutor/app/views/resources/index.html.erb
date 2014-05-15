@@ -46,6 +46,7 @@
 		<div>
 			<a href="<%= resource.link %>"> <%= resource.link %></a>
 			<%= resource.description %>
+			<%= image_tag(resource.img , { :title => "Resource Image"}) %>
 		</div>
 		<br/>
 	<% end%>
