@@ -93,7 +93,7 @@ class SolutionsController < ApplicationController
 	def view_submissions
 		@submissions = Solution.where(problem_id: params[:problem_id])
 		.order(:student_id)
-		@problem = Problem.find_by_id(params[:problem_id])
+		@problem = AssignmentProblem.find_by_id(params[:problem_id])
 	end
 
 	private
