@@ -51,7 +51,7 @@
 		<% @contest.problems.each do |problem| %>
 			<td
 				<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.status %>
-						class="S"> <%= ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.trials %> / 
+						class="solution-accepted"> <%= ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.trials %> / 
 						<%=  ((ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.updated_at - Contest.find(@contest.id).start_time)/60).to_i %>
 				<% else %>
 						class="wrong-answer"> --
