@@ -19,36 +19,37 @@ class ResourcesController < ApplicationController
 	# Author: Ahmed Elassuty
 	def create
 		@course = Course.find_by_id(params[:course_id])
-			params[:course][:resources_attributes].each do |f|
-				begin	
-					@resource = Resource.new
-					page = MetaInspector.new(f[1][:link],
-						:allow_redirections => :all, :timeout => 50)
-					type = page.content_type
-					puts type
-					puts "------------------"
-					title = page.meta_og_title || page.title
-					description = type.eql? "application/pdf" ? nil : page.description
-					images = page.images.slice!(0,8)
-					images.insert(0,page.image) unless page.image.blank?
-					puts images.first
-					puts "-------------"
-					@resource.remote_img_url = images.first
-					@resource.link = page.url
-					@resource.description = description
-					@course.resources << @resource
+		params[:course][:resources_attributes].each do |f|
+			unless f[1][:link].nil?
+				if f[1][:link].empty?
+					Resource.find(f[1][:id]).destroy
+				else
+					resource = inspect(f[1][:link])
+					@resource = Resource.find_by(link: resource[:link], course_id: @course.id)
 					puts @resource.inspect
-					puts "---------------------"
-				rescue
-					redirect_to :back
+					if @resource.nil?
+						@course.resources.build(resource)
+					else
+						@resource.update_attributes(resource)
+					end
 				end
 			end
-		# @course.update_attributes(resources_attributes: params[:course][:resources_attributes])
-		unless @resource.nil?
-			if @resource.save
-				render nothing:true
-			end
 		end
+		if @course.save
+			render action: :index
+		end
+					# @resource = Resource.new
+					# @resource.remote_img_url = images.first
+					# @resource.link = page.url
+					# @resource.description = description
+					# @course.resources << @resource
+					# puts @resource.inspect
+		# @course.update_attributes(resources_attributes: params[:course][:resources_attributes])
+		# unless @resource.nil?
+		# 	if @resource.save
+		# 		render nothing:true
+		# 	end
+		# end
 	end
 
 	# [Course Resources - Story 1.25]
@@ -64,15 +65,33 @@ class ResourcesController < ApplicationController
 	end
 
 	# [Course Resources - Story 1.25]
-	# index resources of a course
-	# Parameters: course_id
+	# remove resource
+	# Parameters: course_id and resource_id
 	# Returns: course resources
 	# Author: Ahmed Elassuty
-	def add_more
-		@course = Course.find(params[:course_id])
-		respond_to do |format|
-			format.js
+	def destroy
+		@resource = Resource.find_by(id: params[:id],course_id: params[:course_id])
+		if @resource.destroy
+			render nothing:true
 		end
 	end
+
+
+
+	private
+		def inspect(link)
+			page = MetaInspector.new(link,
+				:allow_redirections => :all, :timeout => 50)
+			puts page.url
+			type = page.content_type
+			url = page.url.chomp("\/")
+			puts url
+			puts "--------------------------------"
+			title = page.meta_og_title || page.title
+			description = (type.eql? "application/pdf") ? nil : page.description
+			images = page.images.slice!(0,8)
+			images.insert(0,page.image) unless page.image.blank?
+			{ link: url, description: description, img: images[0], link_type: type }
+		end
 
 end
