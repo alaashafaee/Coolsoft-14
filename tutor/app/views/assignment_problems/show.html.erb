@@ -10,7 +10,7 @@
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
 			<%= form_for(@problem) do |f| %>
-				<div class ="centered">
+				<div class ="center">
 					<h2><%= @problem.title %></h2>
 				</div>
 				<%= @problem.description %>
@@ -19,14 +19,8 @@
 				<%= render partial: "test_cases/form" %>
 			<% end %>
 			<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments',
-				action => 'show', :id=> @assignment.id}, class: "btn btn-info",
+				:action => 'show', :id=> @assignment.id}, class: "btn btn-info",
 				style: "float: left;margin-left: 15px" %> </ul>
 		</div>
 	</div>
 </div>
-<style>
-.centered
-{
-    text-align:center;
-}
-</style>
