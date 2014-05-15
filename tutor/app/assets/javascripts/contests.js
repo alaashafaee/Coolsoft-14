@@ -1,7 +1,12 @@
 jQuery(document).on("ready page:load", function() {
 	$(function () {
-		var newYear = new Date();
-		newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1);
-		$('#countdown').countdown({until: newYear});
+		var current = new Date();
+		current.setSeconds(current.getSeconds()+15);
+		$('#countdown').countdown({until: current, onTick: highlightLast10});
+		function highlightLast10(periods) { 
+			if ($.countdown.periodsToSeconds(periods) === 10) { 
+				$(this).addClass('highlight'); 
+			} 
+		}
 	});
 });

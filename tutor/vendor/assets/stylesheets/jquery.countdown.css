@@ -52,3 +52,7 @@
 	display: block;
 	width: 100%;
 }
+
+.highlight { 
+	color: #f00;
+}
