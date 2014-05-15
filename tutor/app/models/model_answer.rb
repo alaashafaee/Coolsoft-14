@@ -23,13 +23,13 @@ class ModelAnswer < ActiveRecord::Base
 	#	the duplicated model answers
 	# Author: Ahmed Sharaf
 	def duplicate 
-		@duplicatedModelAnswers = dup 
-		method_constraints.each do |m|
-			@duplicatedModelAnswers.method_constraints << m.duplictae
+		@duplicated_model_answers = dup 
+		method_constraints.each do |m_constraint|
+			@duplicated_model_answers.method_constraints << m_constraint.duplictae
 		end
-		variable_constraints.each do |c|
-			@duplicatedModelAnswers.variable_constraints << c.duplicate
+		variable_constraints.each do |v_constraint|
+			@duplicated_model_answers.variable_constraints << v_constraint.duplicate
 		end
-		return @duplicatedModelAnswers
+		return @duplicated_model_answers
 	end
 end

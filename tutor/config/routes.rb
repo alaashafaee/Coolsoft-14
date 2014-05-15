@@ -23,7 +23,6 @@ Tutor::Application.routes.draw do
  	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
-	
 	get 'problem_bank/add'
 	post 'problem_bank/add' => 'problem_bank#add'
 
