@@ -64,15 +64,15 @@ ActiveRecord::Schema.define(version: 20140511204435) do
     t.datetime "updated_at"
   end
 
-  create_table "assignment_problems", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "final_grade",   default: 0
-    t.integer  "assignment_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    create_table "assignment_problems", force: true do |t|
+      t.string   "title"
+      t.text     "description"
+      t.integer  "final_grade",   default: 0
+      t.integer  "assignment_id"
+      t.integer  "owner_id"
+      t.string   "owner_type"
+      t.datetime "created_at"
+      t.datetime "updated_at"
   end
 
   add_index "assignment_problems", ["title", "assignment_id"], name: "index_assignment_problems_on_title_and_assignment_id", unique: true

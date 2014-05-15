@@ -1,16 +1,26 @@
 ActiveAdmin.setup do |config|
 
-  # == Site Title
-  #
-  # Set the title that is displayed on the main layout
-  # for each of the active admin pages.
-  #
-  config.site_title = "Tutor"
+	# == Site Title
+	#
+	# Set the title that is displayed on the main layout
+	# for each of the active admin pages.
+	#
+	config.site_title = "Tutor"
+	config.namespace :admin do |admin|
+  		admin.build_menu do |menu|
+  			menu.add label: 'Users', priority: 2
+  			menu.add label: 'Problems', priority: 3
+  			menu.add label: 'Subject', priority: 4
+  			menu.add label: 'Disc', priority: 5
+  			menu.add label: 'Contest', priority: 6
+        menu.add label: 'Assignment', priority: 7
 
-  # Set the link url for the title. For example, to take
-  # users to your main site. Defaults to no link.
-  #
-  # config.site_title_link = "/"
+  		end
+	end
+	# Set the link url for the title. For example, to take
+	# users to your main site. Defaults to no link.
+	#
+	# config.site_title_link = "/"
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
