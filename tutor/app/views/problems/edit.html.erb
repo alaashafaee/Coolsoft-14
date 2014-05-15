@@ -50,5 +50,5 @@
 	<%= render partial: "problems/failure_options" %>
 <% end %>
 <div><ul class = "navbar-brand pull-right"><%= link_to "Return to Track",
-	{ :controller => 'tracks', :action => 'show', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :id => session[:track_id] },
+	{ :controller => 'tracks', :action => 'show', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :id => params[:track_id] },
 	{ class: 'btn btn-info' } %></ul></div>
