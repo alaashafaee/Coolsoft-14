@@ -1,2 +1,15 @@
-<h1>AssignmentTestcases#new</h1>
-<p>Find me in app/views/assignment_testcases/new.html.erb</p>
+<%= form_for :new_test_case , url: assignment_testcases_path do |f| %>
+
+<h1>Please insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
+<p>
+	<%= flash[:notice] %>
+	<%= f.label :Input %>
+	<br><%= f.text_field :input, class: "form-control", style: "width:320px; height:45px;" %>
+	<%= f.label :Output %>
+	<br><%= f.text_field :output, class: "form-control", style: "width:320px; height:45px;" %>
+	<%= f.hidden_field :assignment_problem_id, :value => @problem.id %>
+</p>
+<p>
+	<%= f.submit 'Add Test Case', class: "btn btn-large  btn-info" %>
+</p>
+<% end %>

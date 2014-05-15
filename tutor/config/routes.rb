@@ -20,7 +20,11 @@ Tutor::Application.routes.draw do
   post "assignment_problems/complete"
   post "assignment_problems/update"
   post "assignment_problems/show"
-  post "assignment_problems/edit2"
+	get "assignment_problems/abc"
+		get "/assignment_testcases/new"
+		
+
+
 
 
  	mount Ckeditor::Engine => '/ckeditor'
@@ -63,6 +67,7 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
+	resources :assignment_testcases
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems

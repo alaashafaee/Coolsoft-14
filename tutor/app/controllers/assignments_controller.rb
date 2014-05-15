@@ -1,12 +1,7 @@
 class AssignmentsController < ApplicationController
-<<<<<<< HEAD
-
-	def show
-		session[:course_id] = params[:id]
-		@course = Course.find_by_id(session[:id])
-	end
 
 	def new
+		session[:course_id] = params[:course_id]
 		@course = Course.find_by_id(session[:course_id])
 		@new_assignment = Assignment.new
 	end
@@ -38,12 +33,7 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
-	private
-	def assignment_params
-		params.require(:assignment).permit(:title, :description, :date)
-	end	
-end
-=======
+
 	# [View List Of Assignments - Story 4.24]
 	# Shows a particular assignment in a course
 	# Parameters: 
@@ -81,5 +71,9 @@ end
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 		end
 	end
+
+	private
+	def assignment_params
+		params.require(:assignment).permit(:title, :description, :date)
+	end	
 end
->>>>>>> 4e6d43258788ec71ef3ff8c8a3a06da6b9fa3b47

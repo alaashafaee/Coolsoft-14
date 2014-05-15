@@ -2,6 +2,9 @@ class AssignmentProblemsController < ApplicationController
 	def new
 		session[:assignment_id] = params[:id]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
+						puts "====00000000000000=============="
+		puts @assignment.id
+		puts "==========777777============"
 		@new_problem = AssignmentProblem.new
 	
 	end
@@ -10,6 +13,7 @@ class AssignmentProblemsController < ApplicationController
 			@assignment = Assignment.find_by_id(session[:assignment_id])
 			@new_problem = AssignmentProblem.new(problem_params)
 			@new_problem.final_grade = 0
+			session[:problem_id] = @new_problem.id
 			if lecturer_signed_in?
 				@new_problem.owner_id = current_lecturer.id
 				@new_problem.owner_type = "lecturer"
@@ -20,14 +24,14 @@ class AssignmentProblemsController < ApplicationController
 			if @new_problem.save
 				@assignment.problems << @new_problem
 				flash[:notice] = "problem added."
-				redirect_to :controller => 'assignment_problems', :action => 'show',
-					:problem_id => @new_problem.id
+				redirect_to :controller => 'assignment_testcases', :action => 'new',
+				:assignment_id => @new_problem.id
+			
+	
 			else
-				render :action=>'new', :assignment_id => session[:assignment_id]
+				#render :action=>'new', :assignment_id => session[:assignment_id]
 			end	
-			rescue
-			flash.keep[:notice] = "The track has a problem with the same title"
-			redirect_to :back
+		
 		
 	end
 
@@ -57,11 +61,11 @@ class AssignmentProblemsController < ApplicationController
 			:id => @assignment.id
 	end
 
-	def create_testcase
-		@assignment = Assignment.find_by_id(session[:assignment_id])
-		@problem = AssignmentProblem.find_by_id(params[:problem_id])
-		@test_case = TestCase.new
-	end
+	#def abc
+	#	@assignment = Assignment.find_by_id(session[:assignment_id])
+	#	@problem = AssignmentProblem.find_by_id(params[:assignment_problem_id])
+       
+	#end
 
 	def update 
 	end
@@ -99,7 +103,7 @@ class AssignmentProblemsController < ApplicationController
 				end
 		end
 	end
-
+	
 	# [View List Of Assignments - Story 4.24]
 	# Lists the list of problems in a
 	#	particular assignment
