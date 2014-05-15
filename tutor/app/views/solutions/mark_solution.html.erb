@@ -1,20 +1,32 @@
+<div class= "alert alert-danger"><%= flash[:notice] %></div>
 <table  style = "width:60%">
 	<tbody>
-		<% @counter = 1 %>
+		<% @counter = 0 %>
 		<% @lines.each do |line| %>
+			<% @counter+= 1 %>
+			<% @note = Note.where(solution_id: @solution.id, line: @counter).last %>
 			<tr>
 				<td><button "Add Note", class ='btn btn-primary', id =  "<%= @counter %>", style = "visibility:visible;opacity:0",
 					onMouseOver = 'show(this.id)', onMouseOut =  'hide(this.id)', onClick = 'pop(this.id)' >Add Note</button>
-					<pre title ="<%= @counter %>"><%= line %></pre>
-					<div id = "<%= @counter %>form" style = "visibility:visible;width:60%;" align = "center">
+					<pre title ="<%if !@note.blank?%><%= @note.content %> <%else %> <%= "No note added to this line" %> <% end %>"><%= @counter %> <%= line %></pre>
+					<div id = "<%= @counter %>form" style = "visibility:visible;display:none;width:60%;" >
+						<%= form_for :Note, url: {controller: "notes", action: "create"} do |note| %>
+							<p>
+								<%= note.label :content %><br> 
+								<%= note.text_field :content, class: "form-control", style: "width:60%" %>
+							</p>
+							<%= note.hidden_field :solution_id, value: @solution.id %>
+							<%= note.hidden_field :line, value: @counter %>
+							<p>
+								<%= note.submit "Save Note", class: "btn btn-info" %>
+							</p>
+						<% end %>
 					</div>
 				</td>
 			</tr>
-			<% @counter+= 1 %>
 		<% end %>
 	</tbody>
 </table>
-<div class= "alert alert-danger"><%= flash[:notice] %></div>
 <script>
 	function show(id){
 		document.getElementById(id).style.opacity = 1;
@@ -22,14 +34,15 @@
 	function hide(id){
 		document.getElementById(id).style.opacity = 0;
 	}
-	function pop(id){	
+	function pop(id){
 		id += "form"
-		document.getElementById(id).style.visibility = 'visible'
-		$(document.getElementById(id)).html("<%= escape_javascript(render 'notes/form') %>");
+		document.getElementById(id).style.display = 'initial'
 		$(document.getElementById(id)).bPopup({
 			modalClose: false,
             opacity: 0.6,
-            positionStyle: 'fixed' 
+            positionStyle: 'fixed',
+            speed: 650,
+            transition: 'slideIn'
 		});
 	}
 </script>

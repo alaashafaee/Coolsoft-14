@@ -72,8 +72,8 @@ class SolutionsController < ApplicationController
 			@solution = Solution.find_by_id(params[:submission_id])
 			if !@solution.blank?
 				@lines = @solution.code.split("\n")
-				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
 				@student = Student.find_by_id(@solution.student_id)
+				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
 				@course = @problem.assignment.course
 				@can_edit = @course.can_edit(current_lecturer)
 				@can_edit||= @course.can_edit(current_teaching_assistant)
