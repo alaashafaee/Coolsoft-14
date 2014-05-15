@@ -1,26 +1,25 @@
-<div class ="tabs">
-	<ul class="tab-links red">
-		<li><%= link_to "Create problems", {:controller => 'assignment_problems',
-				:action => 'new', :method => :get, :id => @assignment.id} %></li>
-		<li><%= link_to "Copy from Existing Problems",
-				{:controller => 'assignment_problems', :action => 'index',
-				:id => @assignment.id} %></li>
-		
-	</ul>
-	<div class="tab-content">
-		<div id="tab1" class="tab active">
-			<%= form_for(@problem) do |f| %>
-				<div class ="center">
-					<h2><%= @problem.title %></h2>
-				</div>
-				<%= @problem.description %>
+<label><%= @course.name %></label>\
+<label><%= @assignment.title %></label>\
+<label><%= @problem.title %></label> 
+<br /><br />
+<div class='assignment problem'>
+	<label><%= @problem.title %></label><br/>
+	<label><%= @problem.description %></label><br />
+	<table width='100%'>
+		<tr>
+			<td width='80%'>
 				<br>
-				<h2> Create Testcase </h2>
-				<%= render partial: "test_cases/form" %>
-			<% end %>
-			<ul class="navbar-brand pull-right"><%= link_to "Finish", {:controller => 'assignments',
-				:action => 'show', :id=> @assignment.id}, class: "btn btn-info",
-				style: "float: left;margin-left: 15px" %> </ul>
-		</div>
-	</div>
+				<% if @can_edit %>
+					<%= link_to "Edit problem", { :controller => 'assignment_problems',
+						:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
+					<div id= "test" style="display:true;">
+						<%= render partial: "solutions/new" %>
+					</div >
+				<% end %>
+				<% if !@can_edit %> 
+				 	<%= render partial: "solutions/new" %>
+				<% end %>
+			</td>
+		</tr>
+	</table>
 </div>

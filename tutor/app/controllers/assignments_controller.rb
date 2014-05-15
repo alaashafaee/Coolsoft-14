@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+<<<<<<< HEAD
 
 	def show
 		session[:course_id] = params[:id]
@@ -42,3 +43,43 @@ class AssignmentsController < ApplicationController
 		params.require(:assignment).permit(:title, :description, :date)
 	end	
 end
+=======
+	# [View List Of Assignments - Story 4.24]
+	# Shows a particular assignment in a course
+	# Parameters: 
+	#	id: Id of the assignment.
+	# Returns: 
+	#	The view of the assignmet if found, 
+	#	redirects to 'public/404' otherwise.
+	# Author: Lin Kassem
+	def show
+		id = params[:id]
+		@assignment = Assignment.find_by_id(id)
+		if @assignment
+			@course = @assignment.course
+			@problems = @assignment.problems
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
+		else
+			render ('public/404')
+		end
+	end
+
+	# [View List Of Assignments - Story 4.24]
+	# Allows the editing of a particular assignment
+	# Parameters: 
+	#	id: Id of the assignment.
+	# Returns: none
+	# Author: Lin Kassem
+	def edit
+		@assignment = Assignment.find_by_id(params[:id])
+		if @assignment.nil?
+			render "problem_not_found"
+		else
+			@course = @assignment.course
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
+		end
+	end
+end
+>>>>>>> 4e6d43258788ec71ef3ff8c8a3a06da6b9fa3b47
