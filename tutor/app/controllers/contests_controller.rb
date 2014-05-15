@@ -11,4 +11,5 @@ class ContestsController < ApplicationController
 		@contest = Contest.find(params[:id])
 		@problems =  @contest.problems.all
 	end
+	
 end
