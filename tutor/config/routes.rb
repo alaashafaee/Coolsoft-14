@@ -1,6 +1,5 @@
 Tutor::Application.routes.draw do
 
-  get "contests/show"
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
