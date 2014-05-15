@@ -193,6 +193,13 @@ puts("# ----------------------- Problems ----------------------- ")
 					incomplete: true)
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
 					incomplete: true)
+		Problem.create(title: "Count Change", description: "Write a Java program CountChange 
+			to count change. Given the number of quarter, dimes, nickles, and pennies the 
+			program should output the total as a single value in dollars and pennies. - 
+			One dollar corresponds to 100 pennies.- One quarter corresponds to 25 pennies.
+			- One dime corresponds to 10 pennies. - One nickle corresponds to 5 pennies.
+			For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies,
+			then the total is 1.06 dollars", incomplete: false, seen: true, duplicated: false)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
