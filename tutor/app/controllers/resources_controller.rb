@@ -18,40 +18,35 @@ class ResourcesController < ApplicationController
 	# Returns: redirect to course resources page
 	# Author: Ahmed Elassuty
 	def create
-		@course = Course.find_by_id(params[:course_id])
-		params[:course][:resources_attributes].each do |f|
-			link_body = f[1][:link]
-			unless link_body.nil?
-				if link_body.empty?
-					Resource.find(f[1][:id]).destroy
-				else
-					resource = inspect(link_body)
-					unless resource.nil?
-						@resource = Resource.find_by(link: resource[:link], course_id: @course.id)
-						if @resource.nil?
-							@course.resources.build(resource)
+		if lecturer_signed_in?
+			@course = Course.find_by_id(params[:course_id])
+			unless params[:course].nil?
+				params[:course][:resources_attributes].each do |f|
+					link_body = f[1][:link]
+					unless link_body.nil?
+						if link_body.empty?
+							Resource.find(f[1][:id]).destroy
 						else
-							@resource.update_attributes(resource)
+							resource = inspect(link_body)
+							unless resource.nil?
+								@resource = Resource.find_by(link: resource[:link], course_id: @course.id)
+								if @resource.nil?
+									@resource = Resource.new(resource)
+									@resource.remote_img_url = resource[:img]
+									@course.resources << @resource
+									current_lecturer.resources << @resource
+								else
+									@resource.update_attributes(resource)
+								end
+							end
 						end
 					end
 				end
 			end
-		end
-		if @course.save
 			render action: :index
+		else
+			redirect_to :back
 		end
-					# @resource = Resource.new
-					# @resource.remote_img_url = images.first
-					# @resource.link = page.url
-					# @resource.description = description
-					# @course.resources << @resource
-					# puts @resource.inspect
-		# @course.update_attributes(resources_attributes: params[:course][:resources_attributes])
-		# unless @resource.nil?
-		# 	if @resource.save
-		# 		render nothing:true
-		# 	end
-		# end
 	end
 
 	# [Course Resources - Story 1.25]
@@ -79,6 +74,12 @@ class ResourcesController < ApplicationController
 	end
 
 	private
+
+		# [Course Resources - Story 1.25]
+		# detect the link
+		# Parameters: link string
+		# Returns: hash of the resource
+		# Author: Ahmed Elassuty
 		def inspect(link)
 			begin
 				page = MetaInspector.new(link,
@@ -89,7 +90,7 @@ class ResourcesController < ApplicationController
 				description = (type.eql? "application/pdf") ? nil : page.description
 				images = page.images.slice!(0,8)
 				images.insert(0,page.image) unless page.image.blank?
-				{ link: url, description: description, img: images[0], link_type: type }
+				{ link: url, description: description, img: images.first, link_type: type }
 			rescue
 				nil
 			end
