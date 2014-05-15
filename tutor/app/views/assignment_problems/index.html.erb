@@ -1,6 +1,6 @@
 <div class= "tabs1" style = "width = 100%">
 	<ul class= "tab-links white">
-		<% if lecturer_signed_in? ||teaching_assistant_signed_in? %>
+		<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
 			<li><%= link_to "Create problems",
 				{:controller => 'assignment_problems',
 				:action => 'new', :method => :get, :id => @assignment.id} %></li>
@@ -10,7 +10,7 @@
 	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>
 		<div style= "float:left; width:47%;">
 			<div class= "tab-content">
-				<div id= "tab1" class ="tab active">
+				<div id= "tab1" class= "tab active">
 					<% openable = true %>
 					<h3> Exercise problems </h3>
 					<% if @problems.empty? %>
@@ -33,7 +33,7 @@
 									data-toggle="collapse" data-parent="#accordion"
 									style="float:left;text-decoration: none;">
 									</a>
-										<%= check_box_tag "checkbox[]",problem.id %>
+										<%= check_box_tag "checkbox[]", problem.id %>
 										<%= problem.title %>
 								</div>
 								<div id="<%= problem.id.to_s %>" 
@@ -69,7 +69,7 @@
 									data-toggle="collapse" data-parent="#accordion"
 									style="float:left;text-decoration: none;">
 									</a>
-									<%= check_box_tag "checkbox[]",problem.id %>
+									<%= check_box_tag "checkbox[]", problem.id %>
 									<%= problem.title %>
 								</div>
 								<div id="<%= problem.id.to_s %>" 
@@ -82,11 +82,9 @@
 			</div>
 		</div>
 		<ul class="navbar-brand pull-right"><%= link_to "Finish",
-	{:controller => 'assignments', :action => 'show',
-	:id=> @assignment.id}, class: "btn btn-info", method: :get %></ul>
-
-<ul class="navbar-brand pull-right"><%= submit_tag("Save",
-	:class=>"btn btn-info") %> </ul>
+		{:controller => 'assignments', :action => 'show',
+		:id=> @assignment.id}, class: "btn btn-info", method: :get %></ul>
+		<ul class="navbar-brand pull-right"><%= submit_tag("Save",
+		:class=>"btn btn-info") %> </ul>
 	<% end %>
 </div>
-<br>
