@@ -72,6 +72,33 @@ mark {
 small {
   font-size: 80%;
 }
+small9 {
+  font-size: 90%;
+}
+small8 {
+  font-size: 80%;
+}
+small7 {
+  font-size: 70%;
+}
+small6 {
+  font-size: 60%;
+}
+small5 {
+  font-size: 50%;
+}
+small4 {
+  font-size: 40%;
+}
+small3 {
+  font-size: 30%;
+}
+small2 {
+  font-size: 20%;
+}
+small1 {
+  font-size: 10%;
+}
 sub,
 sup {
   font-size: 75%;
@@ -2243,6 +2270,35 @@ fieldset[disabled] .btn-warning.active {
   color: #f39c12;
   background-color: #ffffff;
 }
+.btn-link {
+    color: #428bca;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 0
+}
+
+.btn-link, .btn-link:active, .btn-link[disabled], fieldset[disabled] .btn-link {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
+    border-color: transparent
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #2a6496;
+    text-decoration: underline;
+    background-color: transparent
+}
+
+.btn-link[disabled]:hover, fieldset[disabled] .btn-link:hover,
+.btn-link[disabled]:focus, fieldset[disabled] .btn-link:focus {
+    color: #999;
+    text-decoration: none
+}
+
 .btn-danger {
   color: #ffffff;
   background-color: #e74c3c;

@@ -3,8 +3,9 @@ class Compiler < ActiveRecord::Base
 	# Methods
 	
 	# [Compiler: Compile - Story 3.4]
-	# Writes the given code to a .java file with the name st[student_id]pr[problem_id]so[solution_id]
-	#	using java_file_name/2. Then it compiles that file and returns the compiler's feedback.
+	# Writes the given code to a .java file in a folder with the name
+	#	st[student_id]pr[problem_id]so[solution_id] using folder_name/0.
+	#	Then it compiles that file and returns the compiler's feedback.
 	# Parameters:
 	#	solution: The submitted solution.
 	#	code: The code to be compiled.
@@ -12,58 +13,44 @@ class Compiler < ActiveRecord::Base
 	#	The compiler's feedback.
 	# Author: Ahmed Moataz
 	def self.compile(solution, code)
-		%x[ #{'mkdir -p ' + Solution::JAVA_PATH} ]
-		file_name = solution.java_file_name(true, true)
-		File.open(file_name, 'w') { |file| file.write(code) }
-		%x[ #{'mkdir -p ' + Solution::CLASS_PATH} ]
-		return %x[ #{'javac -g -d ' + Solution::CLASS_PATH + ' ' + file_name + ' 2>&1'} ]
+		return solution.check_class_name if solution.check_class_name != ""
+		folder_name = solution.folder_name
+		file_path = solution.file_path
+		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
+		File.open(file_path, 'w') { |file| file.write(code) }
+		return %x[ #{'javac -g ' + file_path + ' 2>&1'} ]
 	end
 
 	# [Compiler: Compile - Story 3.4]
-	# Adds the class enclosure to the submitted code using append_class/4.
-	#	Then compiles it using compile/4 and passes its result and feedback in a list.
+	# Compiles the solution's code using compile/2
+	#	and returns its result and feedback in a list.
 	# Parameters:
 	#	solution: The submitted solution.
 	# Returns:
-	#	A list. The first element is a boolean indicating the result of the compilation process.
-	# 	The second element contains the compilation errors if any.
-	#	The third element contains the compiled code.
+	#	A list. The first element is a boolean indicating the result of the
+	#		compilation process. The second element contains the compilation errors if any.
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
-		new_code = append_class(solution)
-		feedback = compile(solution, new_code)
+		feedback = compile(solution, solution.code)
 		if feedback == ""
-			return { success: true, errors: nil, previous_code: (solution.code) }
+			return {success: true, errors: nil}
 		else
 			new_feedback = change_error_headers(solution, feedback)
-			return { success: false, errors: new_feedback, previous_code: (solution.code) }
+			return {success: false, errors: new_feedback}
 		end
 	end
 
 	# [Compiler: Compile - Story 3.4]
-	#	Appends the class enclosure to the to submitted code.
-	# Parameters:
-	#	solution: The submitted solution.
-	# Returns:
-	#	The code with the class enclosure.
-	# Author: Ahmed Moataz
-	def self.append_class(solution)
-		name = solution.file_name 
-		code = solution.code
-		return 'public class ' + name + " {\n" + code + "\n}"
-	end
-
-	# [Compiler: Compile - Story 3.4]
-	#	Changes the error headers to CoolSoft.
+	# Changes the error headers to the solution's class name.
 	# Parameters:
 	#	solution: The submitted solution.
 	#	feedback: The compiler's feedback.
 	# Returns:
-	#	The compiler's feedback with the error headers changed to CoolSoft.
+	#	The compiler's feedback with the error headers changed to the solution's class name.
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
-		header = solution.file_name
-		return feedback.gsub('students_solutions/Java/' + header, 'CoolSoft')
+		header = Solution::SOLUTION_PATH + solution.folder_name + solution.class_name
+		return feedback.gsub(header, solution.class_name).gsub(header, solution.class_name)
 	end
 
 end

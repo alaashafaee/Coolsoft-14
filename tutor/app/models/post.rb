@@ -12,10 +12,17 @@ class Post < ActiveRecord::Base
 	
 	belongs_to :discussion_board, class_name: "DiscussionBoard"
 	has_many :replies, dependent: :destroy
+	has_many :tags, as: :tager
 	
 	#Scoops
 	
 	#Methods
+
+	def most_recent_reply
+		reply = Reply.first(:order => 'created_at DESC',
+			:conditions => ['post_id = ?', self.id])
+		return reply
+	end
 
 	# [Advanced Search - Story 1.23]
 	# search for posts
@@ -44,4 +51,5 @@ class Post < ActiveRecord::Base
 			end
 		end
 	end
+
 end

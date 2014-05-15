@@ -1,6 +1,6 @@
 require "open3"
-class Debugger < ActiveRecord::Base
-	
+class JavaDebugger
+
 	#Methods
 
 	# [Debugger: Debug - Story 3.6]
@@ -62,21 +62,22 @@ class Debugger < ActiveRecord::Base
 	# Authors: Mussab ElDash + Rami Khalil
 	def start(class_name, input)
 		$all = []
+		source_path = "#{Rails.root.to_s}/#{Solution::JAVA_PATH}"
 		Dir.chdir(Solution::CLASS_PATH){
 			begin
-				$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
+				$input, $output, $error, $wait_thread = Open3.popen3("jdb",
+					"-sourcepath", source_path, class_name, *input)
 				buffer_until_ready
 				input "stop in #{class_name}.main"
 				buffer_until_ready
 				input "run"
-				num = get_line
+				nums = get_line
 				locals = get_variables
-				hash = {:line => num, :locals => locals}
-				$all << hash
+				nums[:locals] = locals
+				$all << nums
 				debug
 			rescue => e
 				unless e.message === 'Exited'
-					p e.message
 					return false
 				end
 			end
@@ -84,7 +85,6 @@ class Debugger < ActiveRecord::Base
 		begin
 			Process.kill("TERM", $wait_thread.pid)
 		rescue => e
-			p e.message
 		end
 		return $all
 	end
@@ -99,10 +99,14 @@ class Debugger < ActiveRecord::Base
 		while counter < 100 && !$input.closed? do
 			begin
 				input "step"
-				num = get_line
-				locals = get_variables
-				hash = {:line => num, :locals => locals}
-				$all << hash
+				nums = get_line
+				locals = []
+				begin
+					locals = get_variables
+				rescue => e
+				end
+				nums[:locals] = locals
+				$all << nums
 				counter += 1
 			rescue => e
 				$input.close
@@ -118,23 +122,81 @@ class Debugger < ActiveRecord::Base
 	# Author: Mussab ElDash
 	def get_line
 		out_stream = buffer_until_complete
-		puts out_stream
-		list_of_lines = out_stream.split(/\n+/)
-		before_last_line = list_of_lines[-2]
-		/, line=\d+/ =~ before_last_line
-		before_last_regex_capture = $&
-		/\d+/ =~ before_last_regex_capture
-		before_last_regex_capture = $&
-		last_line = list_of_lines[-2]
-		/^\d+/=~ last_line
-		last_regex_capture = $&
-		if last_regex_capture
-			return last_regex_capture.to_i
-		elsif before_last_regex_capture
-			return before_last_regex_capture.to_i
+		exceptions = has_exception out_stream
+		stream = get_stream out_stream
+		/,\sline=\d+/ =~ out_stream
+		line_first = $&
+		begin
+			input "list"
+			out_stream = buffer_until_complete
+			/\n\d+\s=>/ =~ out_stream
+			line_second = $&
+		rescue => e
+		end
+		if line_first
+			line_first = line_first[7..-1]
+			exceptions[:line] = line_first.to_i
+			if $all[-1]
+				exceptions[:stream] = "#{$all[-1][:stream]}#{stream}"
+			else
+				exceptions[:stream] = ""
+			end
+			return exceptions
+		elsif line_second
+			line_second = line_second[0..-4]
+			exceptions[:line] = line_second.to_i
+			return exceptions
 		else
 			raise 'Exited'
 		end
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Checks if there is a runtime error thrown
+	# Parameters: 
+	# 	line: The line to be checked if it has a runtime error
+	# Returns: A hash of the exception and its explanation if exists
+	# Author: Mussab ElDash
+	def get_stream(line)
+		/^>\s.+\n/ =~ line
+		stream = $&
+		if stream
+			stream = stream[2..-1]
+			p stream
+			return stream
+		end
+		return ""
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Checks if there is a runtime error thrown
+	# Parameters: 
+	# 	line: The line to be checked if it has a runtime error
+	# Returns: A hash of the exception and its explanation if exists
+	# Author: Mussab ElDash
+	def has_exception(line)
+		/Exception occurred: / =~ line
+		if $&
+			exception = get_exception
+			return {:status => false, :exception => JavaExecuter.get_runtime_explaination(exception)}
+		end
+		return {:status => true}
+	end
+
+	# [Debugger: Debug - Story 3.6]
+	# Checks if there is a runtime error thrown
+	# Parameters: 
+	# 	line: The line to be checked if it has a runtime error
+	# Returns: A hash of the exception and its explanation if exists
+	# Author: Mussab ElDash
+	def get_exception
+		input "step"
+		out_stream = buffer_until_complete
+		ragex_first = /[[:space:]]+at\s[[:alnum:]]+\.main\([[:alnum:]]+\.java:\d+\)/m
+		regex_second = /[[:space:]]+The application exited\n*/
+		regex = /#{ragex_first}#{regex_second}/
+		out_stream = out_stream.sub(regex, "")
+		return out_stream
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -146,17 +208,10 @@ class Debugger < ActiveRecord::Base
 	# 	input: The arguments to be debugged against
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
-	def self.debug(student_id, problem_id, code, input)
-		solution = Solution.create({code: code, student_id: student_id,
-			problem_id: problem_id})
-		compile_status = Compiler.compiler_feedback(solution)
-		unless compile_status[:success]
-			return {:success => false, data: compile_status}
-		end
-		debugger = Debugger.new
-		class_name = solution.class_file_name
+	def self.debug(solution, input)
+		debugger = JavaDebugger.new
+		class_name = solution.file_name
 		debugging = debugger.start(class_name, input.split(" "))
-		p debugging
 		java_file = solution.java_file_name true, true
 		class_file = solution.class_file_name true, true
 		File.delete(java_file)
@@ -192,9 +247,13 @@ class Debugger < ActiveRecord::Base
 			output_buffer1 = buffer_until_complete.split("main").first
 			input "print " + variable_name
 			output_buffer2 = buffer_until_complete.split("main").first
-			result << output_buffer1
+			unless output_buffer1.match("instance")
+				result << output_buffer1
+			end
 			if output_buffer1 != output_buffer2
-				result << output_buffer2
+				unless output_buffer2.match("instance")
+					result << output_buffer2
+				end
 			end
 		else
 			result << variable

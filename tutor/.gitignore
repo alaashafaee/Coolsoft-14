@@ -41,3 +41,4 @@ models.svg
 # Ignoring .java and .class files
 /students_solutions/Java/*.java
 /students_solutions/Class/*.class
+/students_solutions/*

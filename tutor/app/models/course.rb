@@ -19,10 +19,14 @@ class Course < ActiveRecord::Base
 	has_one :discussion_board, dependent: :destroy	
 	has_many :topics, :order => 'order_factor', dependent: :destroy
 	has_many :acknowledgements, dependent: :destroy
-
 	has_many :course_students
 	has_many :students, through: :course_students
+	has_many :contests, dependent: :destroy
+	has_many :assignments, dependent: :destroy
 
+	has_many :tags, as: :tager
+	has_many :resources, dependent: :destroy
+	
 	#Scoops
 	
 	#Methods

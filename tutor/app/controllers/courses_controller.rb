@@ -110,6 +110,7 @@ class CoursesController < ApplicationController
 		@new_course.year = course_params[:year]
 		@new_course.semester = course_params[:semester]
 		@new_course.description = course_params[:description]
+		@new_course.university = current_lecturer.university
 		if @new_course.save
 			current_lecturer.courses << @new_course
 			@discussion_board = DiscussionBoard.new
@@ -141,7 +142,7 @@ class CoursesController < ApplicationController
 		@discussion_board = @course.discussion_board
 		@topics = @course.topics
 	end
-	
+
 	# [View a course - story 1.21]
 	#Description: This action is resposible for the view of a specific course.
 	#Parameters: 

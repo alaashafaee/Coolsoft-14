@@ -1,7 +1,8 @@
 class Lecturer < ActiveRecord::Base
 	
 	devise :database_authenticatable, :registerable,
-		:recoverable, :rememberable, :trackable, :validatable, :confirmable
+		:recoverable, :rememberable, :trackable,
+		:validatable, :confirmable
 
 	#Elasticsearch
 	include Tire::Model::Search
@@ -11,7 +12,7 @@ class Lecturer < ActiveRecord::Base
 	include Searchable
 
 	#Uploader
-	# mount_uploader :profile_image, ProfileImageUploader
+	mount_uploader :profile_image, ProfileImageUploader
 
 	#Validations
 	validate :duplicate_email
@@ -33,7 +34,6 @@ class Lecturer < ActiveRecord::Base
 	has_many :replies, as: :owner, dependent: :destroy
 	has_many :topics
 	has_many :tracks, as: :owner
-	has_many :problems, as: :owner
 	has_many :model_answers, as: :owner
 	has_many :method_constraints, as: :owner
 	has_many :method_parameters, as: :owner
@@ -41,9 +41,20 @@ class Lecturer < ActiveRecord::Base
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
 	has_many :acknowledgements, dependent: :destroy
+	has_many :tags, as: :owner
+	
+	has_many :problems, class_name:"Problem", as: :owner
+
+	has_many :contests, as: :owner
+	has_many :contest_problems, class_name:"Cproblem", as: :owner
+
+	has_many :assignments, as: :owner
+	has_many :assignment_problems, class_name:"AssignmentProblem", as: :owner
+	has_many :grades, as: :editor
+
+	has_many :resources, as: :owner
 
 	#Methods
-
 	# [Advanced Search - Story 1.23]
 	# search for lecturers
 	# Parameters: hash of search options
@@ -71,6 +82,7 @@ class Lecturer < ActiveRecord::Base
 			end
 		end
 	end
+	
 	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 	# Checks if the email is already registered in tables: Student and TeachingAssistant
 	# 	before registering the email for table: Lecturer
