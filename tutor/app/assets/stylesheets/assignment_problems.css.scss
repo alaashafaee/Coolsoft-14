@@ -1,3 +1,24 @@
-// Place all the styles related to the assignment_problems controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.white .active a,
+	.white.active a:hover {
+		background-color: #6699CC;
+		border-color: black;
+}
+.tab-links>li>a {
+	background-color: #fff; 
+	border-color: #777777;
+}
+.centered
+{
+	text-align:left;
+}
+.center
+{
+	text-align:center;
+}
+
+input[type="radio"], input[type="checkbox"] {
+	height: 20px;
+	width: 20px;
+	float:right;
+}
+
