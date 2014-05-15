@@ -18,6 +18,8 @@
 	document.getElementById("submitNewRatingbtn").style= "display: true;" 
 	document.getElementById("new_track").style= "display: none;"
 	$('.in').removeClass 'in'
+	$('.glyphicon-chevron-down').removeClass 'glyphicon-chevron-down'
+	$('.glyphicon-chevron-right').removeClass 'glyphicon-chevron-right'
 	$("#accordion").sortable
 		placeholder: "ui-state-highlight"
 		axis: "y"
