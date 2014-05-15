@@ -6,34 +6,38 @@
 	<div align="center">
 		<h3><%= @contest.title %></h3>	
 	</div>
-	<%= link_to "Standings",
-		"/standings/#{@contest.id}" %>
-	<%= link_to "Registrants",
-		"/registrants/#{@contest.id}",
-			style: "padding: 100px;" %>
-	<% unless @problems.blank? %>
-		<tr>
-			<td>Problem Number</td>
-			<td>Title</td>
-			<td>Time limit</td>
-		</tr>
-		<% counter = 1 %>
-		<% @problems.each do |problem| %>
-			<tr>
-				<td>
-					<%= counter %> <br/>
-					<% counter = counter + 1 %>
-				</td>
-				<td> 
-					<%= link_to problem.title,
-							"/cproblem/#{problem.id}" %><br/>
-				</td>
-				<td>
-					<%= problem.time_limit %><br/>
-				</td>
-			</tr>
-		<% end %>
+	<% if @contest.start_time == nil || @contest.start_time < DateTime.now %>
+		<h1> The Contest hasnt started yet <h1>
 	<% else %>
-		No Problems yet in this contest
+		<%= link_to "Standings",
+			"/standings/#{@contest.id}" %>
+		<%= link_to "Registrants",
+			"/registrants/#{@contest.id}",
+				style: "padding: 100px;" %>
+		<% unless @problems.blank? %>
+			<tr>
+				<td>Problem Number</td>
+				<td>Title</td>
+				<td>Time limit</td>
+			</tr>
+			<% counter = 1 %>
+			<% @problems.each do |problem| %>
+				<tr>
+					<td>
+						<%= counter %> <br/>
+						<% counter = counter + 1 %>
+					</td>
+					<td> 
+						<%= link_to problem.title,
+								"/cproblem/#{problem.id}" %><br/>
+					</td>
+					<td>
+						<%= problem.time_limit %><br/>
+					</td>
+				</tr>
+			<% end %>
+		<% else %>
+			No Problems yet in this contest
+		<% end %>
 	<% end %>	
 </table>
