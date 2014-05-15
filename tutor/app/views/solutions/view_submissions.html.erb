@@ -1,10 +1,20 @@
-<ul class="list-group">
+<table>
+	<tr>
+		<td style = "font-weight:bold;font-size:200%;">Student</td>
+		<td width="100px"></td>
+		<td style = "font-weight:bold;font-size:200%;">Problem</td>
+	</tr>
 	<% @submissions.each do |submission| %>
-		<%= @student = Student.find_by_id(submission.student_id) %>
-		<li class="list-group-item">
-			<%= @student.name %>
-			<%= link_to "Mark and give grade", { :action => 'mark_solution',
-				:submission_id => submission.id }, class: "btn btn-info" %>
-		</li>
+		<tr>
+			<% @student = Student.find_by_id(submission.student_id) %>
+			<td><%= @student.name %></td>
+			<td width="100px"></td>
+			<td><%= @problem.title %></td>
+			<td width="100px"></td>
+			<td><%= link_to "Mark and grade",
+				{:action => 'mark_solution',
+				:submission_id => submission.id},
+				class: "btn btn-info" %></td>
+		</tr>
 	<% end %>
-</ul>
+</table>

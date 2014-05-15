@@ -33,7 +33,7 @@ Tutor::Application.routes.draw do
 	get "tips/show"
 	get "tips/index"
 	get "tips/edit"
-	get "tips/destroy"	
+	get "tips/destroy"
 	post "tips/:id/edit" => 'tips#update'
 	get "notes/destroy"
 

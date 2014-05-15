@@ -1,4 +1,13 @@
 class NotesController < ApplicationController
+	
+	# [Mark Assignment - 4.29]
+	# creates a new record to Note Table
+	# Parameters:
+	#	content: note's content through note_params
+	#	solution_id: the id of the solution that the note belongs to
+	#	line: integer represents the order of the line that the note belongs to
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
 	def create
 		note = Note.new(note_params)
 		if lecturer_signed_in?
@@ -16,6 +25,14 @@ class NotesController < ApplicationController
 		redirect_to :back
 	end
 	
+	# [Mark Assignment - 4.29]
+	# updates a record to Note Table
+	# Parameters:
+	#	content: note's content through note_params
+	#	solution_id: the id of the solution that the note belongs to
+	#	line: integer represents the order of the line that the note belongs to
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
 	def update
 		@note = Note.find_by_id(params[:id])
 		if @note.update_attributes(note_params)
@@ -27,29 +44,27 @@ class NotesController < ApplicationController
 	end
 
 
-	# [Remove Problem - Story 4.18]
-	# This action takes the problem id, remove it from the database
-	#	and then redirects the user to the show page of the track that had the problem
-	#	with a "Problem successfully Deleted" message.
+	# [Mark Assignment - 4.29]
+	# Removes a record to Note Table
 	# Parameters:
-	#	params[:id]: The current problem's id
-	# Returns: 
-	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef
+	#	id: the id of the note to be deleted through params
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
 	def destroy
 		if Note.find_by_id(params[:id]).destroy
 			flash[:notice] = "Note Deleted"
 			redirect_to :back
 		end
 	end
-	# [Add Problem - 4.4]
-	# Passes the input of the form as paramaters for create action to use it
+
+	# [Mark Assignment - Story 4.29]
+	# passes the input of the form as paramaters for create & update action
 	# Parameters:
-	#	title: problem's title
-	#	description: problem's description
-	#	track_id: problem's track id
+	#	content: note's content through note_params
+	#	solution_id: the id of the solution that the note belongs to
+	#	line: integer represents the order of the line that the note belongs to
 	# Returns:
-	#	Params to create action & update action
+	#	params to create action & update action
 	# Author: Abdullrahman Elhusseny
 	private
 		def note_params

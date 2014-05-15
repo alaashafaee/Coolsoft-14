@@ -59,13 +59,12 @@ class SolutionsController < ApplicationController
 			problem, problem_type, class_name)
 		render json: compiler_feedback
 	end
+
 	# [Mark Solution - Story 4.29]
 	# Allows a TA to mark a solution of a student
 	# Parameters:
-	# 	
-	# 	
-	# Returns:
-	# 	none
+	#	submission_id: the id of the solution to be marked
+	# Returns: none
 	# Author: Abdullrahman Elhusseny
 	def mark_solution
 		if lecturer_signed_in? || teaching_assistant_signed_in?
@@ -85,8 +84,16 @@ class SolutionsController < ApplicationController
 		end
 	end
 
+	# [Mark Solution - Story 4.29]
+	# Allows a TA to view all submitted solutions to a specific assignment
+	# Parameters:
+	#	problem_id: the id of the assignment problem to view its submissions
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
 	def view_submissions
-		@submissions = Solution.where(problem_id: params[:problem_id]).order(:student_id)
+		@submissions = Solution.where(problem_id: params[:problem_id])
+		.order(:student_id)
+		@problem = Problem.find_by_id(params[:problem_id])
 	end
 
 	private
