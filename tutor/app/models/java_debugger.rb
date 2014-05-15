@@ -1,4 +1,5 @@
 require "open3"
+require "fileutils"
 class JavaDebugger
 
 	#Methods
@@ -60,33 +61,32 @@ class JavaDebugger
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(class_name, input)
+	def start(class_name, input, time = 10)
 		$all = []
-		source_path = "#{Rails.root.to_s}/#{Solution::JAVA_PATH}"
-		Dir.chdir(Solution::CLASS_PATH){
-			begin
-				$input, $output, $error, $wait_thread = Open3.popen3("jdb",
-					"-sourcepath", source_path, class_name, *input)
-				buffer_until_ready
-				input "stop in #{class_name}.main"
-				buffer_until_ready
-				input "run"
-				nums = get_line
-				locals = get_variables
-				nums[:locals] = locals
-				$all << nums
+		status = "The debugging session was successful."
+		begin
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
+			buffer_until_ready
+			input "stop in #{class_name}.main"
+			buffer_until_ready
+			input "run"
+			nums = get_line
+			locals = get_variables
+			nums[:locals] = locals
+			$all << nums
+			status = TimeLimit.start(time) {
 				debug
-			rescue => e
-				unless e.message === 'Exited'
-					return false
-				end
+			}
+		rescue => e
+			unless e.message === 'Exited'
+				return false
 			end
-		}
+		end
 		begin
 			Process.kill("TERM", $wait_thread.pid)
 		rescue => e
 		end
-		return $all
+		return $all, status
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -210,13 +210,15 @@ class JavaDebugger
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
 		debugger = JavaDebugger.new
-		class_name = solution.file_name
-		debugging = debugger.start(class_name, input.split(" "))
-		java_file = solution.java_file_name true, true
-		class_file = solution.class_file_name true, true
-		File.delete(java_file)
-		File.delete(class_file)
-		return {:success => true, data: debugging}
+		class_name = solution.class_name
+		folder_name = Solution::SOLUTION_PATH + solution.folder_name
+		debugging = ""
+		status = ""
+		Dir.chdir(folder_name) {
+			debugging, status = debugger.start(class_name, input.split(" "))
+		}
+		FileUtils.rm_rf(folder_name)
+		return {:success => true, data: debugging, status: status}
 	end
 
 	# [Debugger: View Variables - Story 3.7]

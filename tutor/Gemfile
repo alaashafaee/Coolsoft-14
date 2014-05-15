@@ -73,6 +73,10 @@ gem "metainspector",        '1.15.4'
 #forms
 gem "cocoon"
 
+# Editor Gem
+gem 'ckeditor'
+gem 'paperclip'
+
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
 end

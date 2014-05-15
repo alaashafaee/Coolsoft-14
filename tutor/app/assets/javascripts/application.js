@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui-1.10.4
 //= require_tree .
+//= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
 //= require cocoon
