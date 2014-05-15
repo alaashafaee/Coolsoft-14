@@ -5,14 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-puts("**************************************************************")
-puts("                      Creating records                    ")
-puts("**************************************************************")
+#puts("**************************************************************")
+#puts("                      Creating records                    ")
+#puts("**************************************************************")
 
-puts("# ----------------------- Admins ----------------------- ")
+#puts("# ----------------------- Admins ----------------------- ")
 	Admin.create(name: "Admin")
 
-puts("# ----------------------- Lecturers ----------------------- ")
+#puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'LecturerI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
@@ -24,7 +24,7 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		degree: "PhD", university: "Uni", department: "Dep")
 	l.save!
 
-puts("# ----------------------- Students ----------------------- ")
+#puts("# ----------------------- Students ----------------------- ")
 	s = Student.new(email: '1@student.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'StudentI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
@@ -50,7 +50,7 @@ puts("# ----------------------- Students ----------------------- ")
 		advising: true, probation: false)
 	s.save!
 
-puts("# ----------------------- TeachingAssistants ----------------------- ")
+#puts("# ----------------------- TeachingAssistants ----------------------- ")
 	t = TeachingAssistant.new(email: '1@ta.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'TAI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
@@ -64,7 +64,7 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 		graduated_from: "Uni", graduated_year: 2009)
 	t.save!
 
-puts("# ----------------------- Courses ----------------------- ")
+#puts("# ----------------------- Courses ----------------------- ")
 
 	Course.create(name:"Data Structures and Alogrithms", 
 				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
@@ -81,10 +81,10 @@ puts("# ----------------------- Courses ----------------------- ")
 	Course.create(name: "CS 5", 
 				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC")
 
-puts("# ----------------------- Course_Student ----------------------- ")
+#puts("# ----------------------- Course_Student ----------------------- ")
 	CourseStudent.create(share: true)
 
-puts("# ----------------------- DiscussionBoards ----------------------- ")
+#puts("# ----------------------- DiscussionBoards ----------------------- ")
 	DiscussionBoard.create(title:"DiscussionBoard1", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard2", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard3", activated: true)
@@ -93,13 +93,13 @@ puts("# ----------------------- DiscussionBoards ----------------------- ")
 	DiscussionBoard.create(title:"DiscussionBoard6", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard7", activated: true)
 
-puts("# ----------------------- Posts ----------------------- ")
+#puts("# ----------------------- Posts ----------------------- ")
 	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
 	Post.create(title:"My 2nd Post", content: "It is very hard to keep in this life, be happy", views_count: 100)
 	Post.create(title:"My 3th Post", content: "Post3")
 	Post.create(title:"My 4th Post", content: "Post4")
 
-puts("# ----------------------- Replies ----------------------- ")
+#puts("# ----------------------- Replies ----------------------- ")
 	Reply.create(content: "Reply1")
 	Reply.create(content: "Reply2")
 	Reply.create(content: "Reply3")
@@ -114,17 +114,17 @@ puts("# ----------------------- Replies ----------------------- ")
 	Reply.create(content: "Reply12")
 	Reply.create(content: "Reply13")
 
-puts("# ----------------------- Topics ----------------------- ")
+#puts("# ----------------------- Topics ----------------------- ")
 	Topic.create(title: "Topic1", description: "This is Topic1 description")
 	Topic.create(title: "Topic2", description: "This is Topic2 description")
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
 
-puts("# ----------------------- Hints ----------------------- ")
+#puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
 	
-puts("# ----------------------- ModelAnswer ----------------------- ")
+#puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
 	ModelAnswer.create(title: "Answer3", answer: "System.out.println('SQL baaaad')-3")
@@ -132,7 +132,7 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
 	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
 
-puts("# ----------------------- Test Cases ----------------------- ")
+#puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
@@ -140,17 +140,17 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "2.5\n", input:"5 2")
 	TestCase.create(output: "Infinity\n", input:"10 0")
 
-puts("# ----------------------- Method Parameters ----------------------- ")
+#puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
 	MethodParameter.create(parameter:"MethodParameters 2", params_type: "int")
 	MethodParameter.create(parameter:"MethodParameters 3", params_type: "int")
 
-puts("# ----------------------- Variable Constraints ----------------------- ")
+#puts("# ----------------------- Variable Constraints ----------------------- ")
 	VariableConstraint.create(variable_name: "VariableConstraint 1")
 	VariableConstraint.create(variable_name: "VariableConstraint 2")
 	VariableConstraint.create(variable_name: "VariableConstraint 3")
 
-puts("# ----------------------- Problems ----------------------- ")
+#puts("# ----------------------- Problems ----------------------- ")
 	## Assignments
 		AssignmentProblem.create(title: "AssignmentProblem 1", description: "Your program is to use the brute-force approach in order 
 			to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from 
@@ -205,25 +205,25 @@ puts("# ----------------------- Problems ----------------------- ")
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					 {\n\t\t\n\t}\n}")
 
-puts("# ----------------------- Tracks ----------------------- ")
+#puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
 	Track.create(title: "Track 3", difficulty: 2)
 	Track.create(title: "Track 4", difficulty: 3)
 
-puts("# -----------------------Solutions---------------------------")
+#puts("# -----------------------Solutions---------------------------")
 	Solution.create(code:"println(My first solution)", length:5, status:1)
 	Solution.create(code:"println(My second solution)", length:5, status:0)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
 
-puts("# ----------------------- TrackProgression ----------------------- ")
+#puts("# ----------------------- TrackProgression ----------------------- ")
 	TrackProgression.create(level: 1, topic_id: 1)
 	TrackProgression.create(level: 1, topic_id: 1)
 	TrackProgression.create(level: 1, topic_id: 1)
 	TrackProgression.create(level: 0, topic_id: 1)
 	TrackProgression.create(level: 2, topic_id: 2)
 
-puts("# ----------------------- Attempts ----------------------- ")
+#puts("# ----------------------- Attempts ----------------------- ")
 	Attempt.create(success: true)
 	Attempt.create(failure: true)
 	Attempt.create(success: true)
@@ -238,12 +238,12 @@ puts("# ----------------------- Attempts ----------------------- ")
 	Attempt.create(failure: true)
 	Attempt.create(failure: true)
 
-puts("# ----------------------- Recommendations ----------------------- ")
+#puts("# ----------------------- Recommendations ----------------------- ")
 	Recommendation.create(problem_id:1, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:2, student_id:1, recommender_id:2)
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
 
-puts("# ----------------------- Contests ----------------------- ")
+#puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
 		incomplete:false, start_date: DateTime.now.to_date , start_time: DateTime.now, end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
 	Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
@@ -251,7 +251,7 @@ puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
 		incomplete:false, start_date: DateTime.now.to_date , start_time: DateTime.now)
 
-puts("# ----------------------- Contests ----------------------- ")
+#puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 1)
 	ContestProgress.create!(status:false, trials: 2)
 	ContestProgress.create!(status:true, trials: 5)
@@ -262,23 +262,23 @@ puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 18)
 	ContestProgress.create!(status:true, trials: 11)
 
-puts("# ----------------------- Assignments ----------------------- ")
+#puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),
 		 description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
 	Assignment.create(title:"DMENT Assignment_2", publish: true, due_date: Date.new(2015,1,1))
 	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: DateTime.now.to_date)
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
-puts("# ----------------------- Grades ----------------------- ")
+#puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 100)
 	Grade.create(grade: 80)
 	
 
-puts("**************************************************************")
-puts("                      Creating Relations                    ")
-puts("**************************************************************")
+#puts("**************************************************************")
+#puts("                      Creating Relations                    ")
+#puts("**************************************************************")
 
-puts("# ----------------------- Lecturers ----------------------- ")
+#puts("# ----------------------- Lecturers ----------------------- ")
 	## Topics
 		Lecturer.first.topics << Topic.first
 	## Tracks
@@ -337,7 +337,7 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.grades << Grade.first
 		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
 
-puts("# ----------------------- Students ----------------------- ")
+#puts("# ----------------------- Students ----------------------- ")
 	## CourseStudent
 		Student.first.course_students << CourseStudent.first
 	## Solutions
@@ -394,12 +394,12 @@ puts("# ----------------------- Students ----------------------- ")
 		Student.first.grades << Grade.first
 		Student.first.grades << Grade.find_by_id(2)
 
-puts("# ----------------------- TeachingAssistants ----------------------- ")
+#puts("# ----------------------- TeachingAssistants ----------------------- ")
 	## Courses
 		TeachingAssistant.first.courses << Course.first
 		TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
 
-puts("# ----------------------- Posts ----------------------- ")
+#puts("# ----------------------- Posts ----------------------- ")
 	## Replies
 		Post.first.replies << Reply.first
 		Post.first.replies << Reply.find_by_id(2)
@@ -415,7 +415,7 @@ puts("# ----------------------- Posts ----------------------- ")
 		Post.first.replies << Reply.find_by_id(12)
 		Post.first.replies << Reply.find_by_id(13)
 
-puts("# ----------------------- Problems ----------------------- ")
+#puts("# ----------------------- Problems ----------------------- ")
 	## TestCases
 		Problem.first.test_cases << TestCase.find_by_id(4)
 		Problem.first.test_cases << TestCase.find_by_id(5)
@@ -463,7 +463,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.model_answers.first.hints << Hint.first
 		Problem.first.model_answers.first.hints << Hint.all.second
 
-puts("# ----------------------- Tracks ----------------------- ")
+#puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
 		Track.first.problems << Problem.first
 		Track.first.problems << Problem.find_by_id(2)
@@ -471,14 +471,14 @@ puts("# ----------------------- Tracks ----------------------- ")
 		Track.find_by_id(2).problems << Problem.find_by_id(4)
 		Track.find_by_id(3).problems << Problem.find_by_id(5)
 
-puts("# ----------------------- Topics ----------------------- ")
+#puts("# ----------------------- Topics ----------------------- ")
 	## Tracks
 		Topic.first.tracks << Track.first
 		Topic.first.tracks << Track.find_by_id(2)
 		Topic.find_by_id(2).tracks << Track.find_by_id(3)
 		Topic.find_by_id(3).tracks << Track.find_by_id(4)
 
-puts("# ----------------------- Courses ----------------------- ")
+#puts("# ----------------------- Courses ----------------------- ")
 	## Topics
 		Course.first.topics << Topic.first
 		Course.first.topics << Topic.find_by_id(2)
@@ -500,12 +500,12 @@ puts("# ----------------------- Courses ----------------------- ")
 		Course.find_by_id(2).assignments << Assignment.find_by_id(3)
 
 
-puts("# ----------------------- DiscussionBoard ----------------------- ")
+#puts("# ----------------------- DiscussionBoard ----------------------- ")
 	## Posts
 		DiscussionBoard.first.posts << Post.first
 		DiscussionBoard.first.posts << Post.find_by_id(2)
 
-puts("# ----------------------- Contests ----------------------- ")
+#puts("# ----------------------- Contests ----------------------- ")
 	## Problems
 		Contest.first.problems << Cproblem.find_by_id(1)
 		Contest.first.problems << Cproblem.find_by_id(2)
@@ -522,16 +522,16 @@ puts("# ----------------------- Contests ----------------------- ")
 		Contest.first.progress << ContestProgress.find_by_id(8)
 		Contest.first.progress << ContestProgress.find_by_id(9)
 
-puts("# ----------------------- Assignment ----------------------- ")
+#puts("# ----------------------- Assignment ----------------------- ")
 	## Problems
 		Assignment.first.problems << AssignmentProblem.first
 		Assignment.first.problems << AssignmentProblem.find_by_id(2)
 		Assignment.find_by_id(2).problems << AssignmentProblem.find_by_id(3)
 		Assignment.find_by_id(3).problems << AssignmentProblem.find_by_id(4)
 
-puts("# ----------------------- Grades ----------------------- ")
+#puts("# ----------------------- Grades ----------------------- ")
 	## Problems
 		Grade.first.update(problem_id:Assignment.first.problems.first.id)
 		Grade.find_by_id(2).update(problem_id:Assignment.first.problems.find_by_id(2).id)
 
-puts("# --------------------------------------------------------- ")
+#puts("# --------------------------------------------------------- ")
