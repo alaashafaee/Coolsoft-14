@@ -1,8 +1,7 @@
 <div id = "crumbs">
 	<ul>
 		<li class="sub"><a class = "preventclick">Problem</a></li>
-		<li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'new',
-			:problem_id => session[:problem_id], :track_id => session[:track_id]},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
+		<li class = "sub1"><a class = "preventclick" style="padding:5px 15% 0 0px;">Test Cases</a></li>
 		<li class="sub2"><a class = "visit" style="padding: 5px 4.9% 0 0px;">Model Answer</a> </li>
 		<li class="sub3"><a class="preventclick" >Tips</a></li>
 		<li class="sub4"><a class="preventclick" >Hints</a></li>    
@@ -29,5 +28,25 @@
 		<br><%= f.label :Answer %> </br>
 	<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10", :rows => "8" %>
 </p><br>
-<%= f.submit "Save Model Answer", class: "btn btn-large btn-info" %>
+<%= f.submit "Save Model Answer", type: "submit" ,value: "Add Test Case", onclick: "canleave()", class: "btn btn-large btn-info" %>
 <% end %>
+<script>
+var workIsDone = false;
+
+window.onbeforeunload = confirmBrowseAway;
+
+function confirmBrowseAway()
+{
+  if (!workIsDone) {
+    return "Your problem will be saved as Incomplete! " + 
+    "\n You can create new model answer any time \n and it will be saved as complete then. ";
+  }
+}
+
+function canleave()
+{
+  // The user has finished their work, so we don't
+  // need a warning anymore!
+  workIsDone = true;
+}
+</script>
