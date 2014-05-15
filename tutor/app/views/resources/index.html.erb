@@ -34,12 +34,14 @@
 	</ul>
 </div>
 <div>
-	<h2>
-		<%= @course.name %>
-	</h2>
-	<p>
-		Resources
-	</p>
+	<div class="page-header">
+		<h2>
+			<%= @course.name %>
+		</h2>
+		<p>
+			Resources
+		</p>
+	</div>
 	<%- @course.resources.each do |resource| %>
 		<div>
 			<a href="<%= resource.link %>"> <%= resource.link %></a>
