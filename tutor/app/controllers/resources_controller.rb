@@ -20,17 +20,19 @@ class ResourcesController < ApplicationController
 	def create
 		@course = Course.find_by_id(params[:course_id])
 		params[:course][:resources_attributes].each do |f|
-			unless f[1][:link].nil?
-				if f[1][:link].empty?
+			link_body = f[1][:link]
+			unless link_body.nil?
+				if link_body.empty?
 					Resource.find(f[1][:id]).destroy
 				else
-					resource = inspect(f[1][:link])
-					@resource = Resource.find_by(link: resource[:link], course_id: @course.id)
-					puts @resource.inspect
-					if @resource.nil?
-						@course.resources.build(resource)
-					else
-						@resource.update_attributes(resource)
+					resource = inspect(link_body)
+					unless resource.nil?
+						@resource = Resource.find_by(link: resource[:link], course_id: @course.id)
+						if @resource.nil?
+							@course.resources.build(resource)
+						else
+							@resource.update_attributes(resource)
+						end
 					end
 				end
 			end
@@ -67,7 +69,7 @@ class ResourcesController < ApplicationController
 	# [Course Resources - Story 1.25]
 	# remove resource
 	# Parameters: course_id and resource_id
-	# Returns: course resources
+	# Returns: no return
 	# Author: Ahmed Elassuty
 	def destroy
 		@resource = Resource.find_by(id: params[:id],course_id: params[:course_id])
@@ -76,22 +78,21 @@ class ResourcesController < ApplicationController
 		end
 	end
 
-
-
 	private
 		def inspect(link)
-			page = MetaInspector.new(link,
-				:allow_redirections => :all, :timeout => 50)
-			puts page.url
-			type = page.content_type
-			url = page.url.chomp("\/")
-			puts url
-			puts "--------------------------------"
-			title = page.meta_og_title || page.title
-			description = (type.eql? "application/pdf") ? nil : page.description
-			images = page.images.slice!(0,8)
-			images.insert(0,page.image) unless page.image.blank?
-			{ link: url, description: description, img: images[0], link_type: type }
+			begin
+				page = MetaInspector.new(link,
+					:allow_redirections => :all, :timeout => 50)
+				type = page.content_type
+				url = page.url.chomp("\/")
+				title = page.meta_og_title || page.title
+				description = (type.eql? "application/pdf") ? nil : page.description
+				images = page.images.slice!(0,8)
+				images.insert(0,page.image) unless page.image.blank?
+				{ link: url, description: description, img: images[0], link_type: type }
+			rescue
+				nil
+			end
 		end
 
 end
