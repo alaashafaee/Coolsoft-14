@@ -66,3 +66,12 @@ gem 'whenever', :require => false
 
 # Active admin gem
 gem 'activeadmin', github: 'gregbell/active_admin'
+
+# Editor Gem
+gem 'ckeditor'
+gem 'paperclip'
+
+group :development, :test do
+	gem 'rspec-rails', '~> 3.0.0.beta'
+end
+
