@@ -61,7 +61,6 @@ hr {
 .home {
 	overflow:auto;
 }
-
 .zooming {
 	-ms-transform: scale(0.8); /* IE 9 */
 	-ms-transform-origin: left top;
@@ -95,4 +94,17 @@ hr {
 
 .no-scroll-x{
 	overflow-x: hidden;
+}
+.well {
+	background: transparent;
+}
+a{
+	text-decoration: none;
+	transition: all 0.5s;
+}
+a:hover{
+	text-decoration: none !important;
+}
+.well{
+	background-color: transparent !important;
 }

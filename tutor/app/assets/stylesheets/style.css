@@ -1,1 +1,157 @@
 .handle:hover{cursor: move;}
+
+.cont {
+	background: #eeefe9;
+	padding-top:100px;
+}
+.right_side {
+
+}
+.left_side {
+
+}
+.test {
+	background: #F9FAFA;
+}
+.profile_info_row{
+    margin-bottom: 10px;
+ 	padding-left: 20px;
+ 	padding-top: 20px;
+}
+.content_container{
+	background-color: #FAFAFA;
+}
+.profile_picture {
+	width:200px;
+	height:200px;
+	background-color:#999;
+	float:left;	
+}
+.profile_info{
+	float: left;
+	margin-left: 15px;
+}
+.name{
+    font-weight: bold;
+    font-size: 2.5em;
+}
+.info{
+	font-size: 1em;
+	line-height: 0.7em;
+}
+#sign_in_dialog {
+	background-color:#fff;
+	border-radius:10px;
+	color:#000;
+	display:none;
+	padding:10px;
+	width:400px;
+	margin-top: 100px;
+}
+.navtab .row{
+	font-size : 1.3em;
+	height: 80px;
+	color: white;
+	width: 195px;
+	float: right;
+	display: inline;
+
+}
+
+.navtab .active{
+	font-weight: bolder;
+}
+.navtab a {
+	position: relative;
+	top: 35%;
+	left: 10%;
+	color: white;
+}
+.navtab a:hover{
+	text-decoration: none;
+	color: white;
+}
+.profile{
+	background-color: #3B8FA3 !important;
+
+}
+.dashboard{
+	background-color: #793541 !important;
+}
+.courses {
+	background-color: #CF5044 !important;
+
+}
+.settings{
+	background-color: #96AB4F !important;
+
+}
+/*#######*/
+.right_side .list-group{
+	width: 100%;
+	margin-left: -15px;
+	position: relative;
+
+}
+.right_side .list-group-item{
+	width: 195px;
+	font-size: 1em;
+	font-weight: lighter;
+	height: 80px;
+	color: grey !important;
+	transition: all 0.5s;
+
+}
+.right_side .list-group .selected{
+	font-weight: bold;
+}
+.rectangle {
+	float: right;
+
+}
+.right_side .list-group span {
+	width: 15px;
+	height: 79px;
+	right: 0px;
+	top: 0px;
+	position: absolute;
+}
+.right_side .list-group-item:hover{	
+	width: 195px;
+	font-size: 1em;	
+	height: 80px;
+	background-color: #ecf0f1 !important;;
+}
+.right_side .list-group .selected span{
+	font-weight: bolder;
+
+}
+.right_side .table .list-group-item {
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.right_side .list-group tr {
+	background-color: red;
+	margin: none;
+}
+.right_side .list-group .panel-body{
+	width: 195px;
+}
+.right_side .list-group .panel-heading{
+	text-align: center;
+	background: white !important;
+	color: black !important;
+}
+.right_side .list-group .panel-heading a{
+	text-decoration: none;
+	color: black;
+}
+.right_side .list-group .panel-body .list-group-item{
+	width: 195px;
+	margin: -15px;
+}
+.right_side .list-group .panel-group{
+	width: 195px;
+
+}
