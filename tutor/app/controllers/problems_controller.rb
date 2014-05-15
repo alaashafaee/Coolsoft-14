@@ -127,9 +127,13 @@ class ProblemsController < ApplicationController
 		elsif problem_params[:description] != @problem.description
 			@message = "Description updated"
 		elsif problem_params[:track_id].to_i != @problem.track_id
-			@message = "Problem is moved to Track #{problem_params[:track_id]}"
-		else
+			@message = "Problem has moved to Track #{problem_params[:track_id]}"
+		elsif problem_params[:title] == @problem.title && 
+			problem_params[:description] == @problem.description && 
+			problem_params[:track_id].to_i == @problem.track_id
 			flash[:notice] = "You have entered the same paramater no change has been made!"
+		else
+			flash[:notice] = "You have entered an empty paramater no change has been made!"
 		end
 
 		if problem_params[:track_id].to_i == @problem.track_id

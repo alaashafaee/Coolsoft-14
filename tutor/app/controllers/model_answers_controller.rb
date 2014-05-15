@@ -169,6 +169,11 @@ class ModelAnswersController < ApplicationController
 	def model_answer_params
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end	
+
+	def get_flag
+		params.require(:model_answer).permit(:flag)
+	end
+
 	def model_answer_params_add
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end

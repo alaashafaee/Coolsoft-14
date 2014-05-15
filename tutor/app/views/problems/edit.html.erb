@@ -37,7 +37,7 @@
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 		<% if @tracks.size > 1 %>
 			<%= problem.collection_select(:track_id, @tracks, :id, :title) %>
-			<%= problem.submit('Change Track') %>
+			<%= problem.submit "Change Track", class: 'btn btn-info'%>
 			<%= problem.hidden_field :title, value: @problem.title %>
 			<%= problem.hidden_field :description, value: @problem.description %>
 		<% end %>

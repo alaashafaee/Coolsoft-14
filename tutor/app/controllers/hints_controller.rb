@@ -146,6 +146,10 @@ class HintsController < ApplicationController
 			params.require(:hint).permit(:message, :submission_counter, :id)
 		end
 
+		def get_flag
+			params.require(:hint).permit(:flag)
+		end
+
 		def hint_params_edit
 			params.require(:hint_edit).permit(:message, :submission_counter)
 		end

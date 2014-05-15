@@ -49,9 +49,13 @@ class TestCasesController < ApplicationController
 		end
 		if @test_case.save
 			@problem.test_cases << @test_case
-			flash[:notice] = "Your test case is now added"
-			redirect_to :controller => 'model_answers', :action => 'new', 
-			:problem_id => session[:problem_id], :track_id => session[:track_id]
+			if get_flag[:flag] == "1"
+				redirect_to :controller => 'test_cases', :action => 'index', 
+				:problem_id => session[:problem_id], :track_id => session[:track_id]
+			else
+				redirect_to :controller => 'model_answers', :action => 'new', 
+				:problem_id => session[:problem_id], :track_id => session[:track_id]
+			end
 		else
 			render :action=>'new', :problem_id => @test_case.problem_id
 		end
@@ -142,6 +146,10 @@ class TestCasesController < ApplicationController
 	private
 	def post_params
 		params.require(:test_case).permit(:input, :output, :problem_id)
+	end
+
+	def get_flag
+		params.require(:test_case).permit(:flag)
 	end
 
 	def test_case_params

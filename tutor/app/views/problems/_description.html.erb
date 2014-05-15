@@ -1,7 +1,6 @@
-<p><%= @problem.description %></p>
 <%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 	<%= problem.text_area :description, :value => @problem.description, class:"form-control", style: "width:650px; height:250px;" %>
-	<p>
+	<p><br>
 		<%= problem.submit "update description", class: 'btn btn-info'%>
 	</p>
 	<%= problem.hidden_field :title, value: @problem.title %>

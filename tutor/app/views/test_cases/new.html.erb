@@ -33,9 +33,11 @@
 	<%= f.hidden_field :problem_id, :value => session[:problem_id] %>
 </p>
 <p>
-	<%= f.submit 'Add Test Case', type: "submit" ,value: "Add Test Case", onclick: "canleave()", class: "btn btn-large btn-info" %>
+	<%= f.hidden_field :flag, :value => params[:flag] %>
+	<%= f.submit 'Add Test Case', type: "submit" ,value: "Add Test Case", onclick: "canleave()", class: "btn btn-large btn-info", :flag => params[:flag] %>
 </p>
 <% end %>
+
 <script>
 var workIsDone = false;
 
@@ -51,8 +53,6 @@ function confirmBrowseAway()
 
 function canleave()
 {
-  // The user has finished their work, so we don't
-  // need a warning anymore!
   workIsDone = true;
 }
 </script>
