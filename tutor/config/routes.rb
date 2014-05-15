@@ -10,9 +10,6 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
-	get "utilities/simple_search"
-	get "utilities/advanced_search"
-	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
@@ -165,6 +162,14 @@ Tutor::Application.routes.draw do
 		end
 	end
 
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
+	resources :utilities, only: [] do
+		collection do
+			get :detect_url
+		end
+	end
 	# Example resource route with concerns:
 	#   concern :toggleable do
 	#     post 'toggle'

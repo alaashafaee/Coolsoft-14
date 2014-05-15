@@ -1,8 +1,12 @@
 class Resource < ActiveRecord::Base
 
 	#Validations
+
 	# validates :description, presence: true
 	validates :link, presence: :true
+
+	#Uploader
+	mount_uploader :img, ProfileImageUploader
 
 	#Relations
 	belongs_to :course
