@@ -54,9 +54,15 @@ class TipsController < ApplicationController
 		if @tip.save
 			@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
 			@model_answer.hints << @tip
-			redirect_to :controller => 'hints', :action => 'new', 
-			:problem_id => session[:problem_id], :track_id => session[:track_id], 
-			:model_answer_id => params[:model_answer_id]
+			if get_flag[:flag] == 1
+				redirect_to :controller => 'tips', :action => 'index', 
+				:problem_id => session[:problem_id], :track_id => session[:track_id], 
+				:model_answer_id => params[:model_answer_id]
+			else
+				redirect_to :controller => 'hints', :action => 'new', 
+				:problem_id => session[:problem_id], :track_id => session[:track_id], 
+				:model_answer_id => params[:model_answer_id]
+			end
 		else
 			render :action => 'new'
 		end
@@ -159,6 +165,10 @@ class TipsController < ApplicationController
 		def tip_params
 			params.require(:tip).permit(:message, :time)
 		end
+
+	def get_flag
+		params.require(:tip).permit(:flag)
+	end
 
 	# [Edit tip - Story 4.11]
 	# Take new information from a form on edit tip page

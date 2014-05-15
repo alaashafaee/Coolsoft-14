@@ -11,6 +11,11 @@
     </ul>
 </div>
 <br><br>
+<div id="div1">
+	<% if flash[:notice] %>
+		<div class= "alert alert-success"><%= flash[:notice] %></div>
+	<% end %>
+</div>
 <h2>Create Tip for model answer <h1 style="color:red;"><%=  ModelAnswer.find_by_id(session[:model_answer_id]).title %></h1></h2>
 	<% if @tip.errors.any? %>
 		<div id="error_explanation">
@@ -39,10 +44,11 @@
 				<%= t.text_field :time, style: "width:55px; height:35px;", :value => @tip.time %>
 			</p>
 			<p>
+				<%= f.hidden_field :flag, :value => params[:flag] %>
 				<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
 			</p>
 			<p>
-				<%= t.submit class: 'btn btn-info' %>
+				<%= t.submit class: 'btn btn-info', :flag => params[:flag] %>
 			</p>
 		<% end %>
 	</div>
