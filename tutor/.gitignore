@@ -20,7 +20,6 @@
 /public/uploads/*
 *.rbc
 capybara-*.html
-.rspec
 /coverage/
 /spec/tmp
 **.orig
