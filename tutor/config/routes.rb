@@ -1,5 +1,13 @@
 Tutor::Application.routes.draw do
 
+  get "assignment_testcases/new"
+  get "assignment_testcases/show"
+  get "assignment_testcases/index"
+  get "assignment_testcases/edit"
+  get "assignment_testcase/new"
+  get "assignment_testcase/show"
+  get "assignment_testcase/index"
+  get "assignment_testcase/edit"
   get "assignment_problems/new"
   post "assignment_problems/new"
   get "assignment_problems/edit"
