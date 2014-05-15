@@ -10,7 +10,7 @@
 			<td>Contests</td>
 			<td>Start date</td>
 			<td>Start time</td>
-			<td>Duration</td>
+			<td>Duration in hours</td>
 		</tr>
 		<% @my_contests.each do |contest| %>
 			<tr>
@@ -26,7 +26,8 @@
 					<h4><%= contest.start_time %></h4>
 				</td>
 				<td>
-					<h4><%= contest.end_time.to_i - contest.start_time.to_i / (60*60) %></h4>
+					<h4><%= (((contest.end_date-contest.start_date)*24)+
+						(contest.end_time - contest.start_time)/(60*60)).to_i %></h4>
 				</td>
 			</tr>
 		<% end %>
@@ -41,7 +42,7 @@
 			<td>Contests</td>
 			<td>Start date</td>
 			<td>Start time</td>
-			<td>Duration</td>
+			<td>Duration in hours</td>
 			<td>Actions</td>
 		</tr>
 		<% @contests.each do |contest| %>
@@ -58,7 +59,8 @@
 					<h4><%= contest.start_time %></h4>
 				</td>
 				<td>
-					<h4><%= contest.end_time.to_i - contest.start_time.to_i / (60*60) %></h4>
+					<h4><%= (((contest.end_date-contest.start_date)*24)+
+						(contest.end_time - contest.start_time)/(60*60)).to_i %></h4>
 				</td>
 				<% if current_lecturer || current_teaching_assistant %>
 					<td>
@@ -66,7 +68,7 @@
 					</td>
 				<% else %>
 					<td>
-						<h4><%= link_to "Register", :controller => 'contests', :action=> 'edit',
+						<h4><%= link_to "Register", :controller => 'contests', :action=> 'register',
 								:id => contest.id,:method => :get, class:
 									"btn btn-success" %></h4>
 					</td>
