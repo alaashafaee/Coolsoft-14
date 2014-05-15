@@ -33,18 +33,18 @@
 			<% open = "" %>
 			<% openarrow = "glyphicon-chevron-right" %>
 		<% end %>
-		<div id="<%=t.id.to_s + "test"%>" class = "panel panel-default" style = "width:50%">
+		<div id="<%= t.id.to_s + "test" %>" class = "panel panel-default" style = "width: 50%">
 			<div class="panel-title list-group-item list-group-item-info">
 				<a class="icon glyphicon <%= openarrow %>" href="#<%= t.id.to_s %>"
 					data-toggle="collapse" data-parent="#accordion"
 					style="margin-right:1%;text-decoration: none;">
 				</a>
-				<%= link_to t.title , t , style: 'color:#003366;'%>
+				<%= link_to t.title , t , style: 'color:#003366;' %>
 				<span class="badge"><%= t.problems.count %></span>
 			</div>
 			<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 				<ul class="list-group">
-					<% t.problems.each do |p|%>
+					<% t.problems.each do |p| %>
 						<% color = "" %>
 						<% if student_signed_in? && p.is_solved_by_student(current_student.id) %>
 							<% color = "label label-success" %>
@@ -80,13 +80,13 @@
 		html: {class: "form-inline form-horizontal nifty_form" , role: "form"} do |f| %>
 			<div class="form-group">
 				<%= f.text_field :title , :value => flash[:title] , 
-					:class => "form-control", :style => "width:150px", :placeholder => "Title"%></br></br>
+					:class => "form-control", :style => "width:150px", :placeholder => "Title" %></br></br>
 				<%= f.number_field :difficulty , :value => flash[:difficulty] , 
 					:class => "form-control" , :placeholder => "Difficulty" , 
 					:min => 1, :max => 5, :style => "width:150px" %>
 				</br></br>
 				<%= f.hidden_field :topic_id , :value => params[:id] %>
-				<%= f.submit "Create" , :class => "btn btn-info"%>
+				<%= f.submit "Create" , :class => "btn btn-info" %>
 			</div><!-- /form-group -->
 		<% end %><!-- /form -->
 	</div><!-- /create_track -->
