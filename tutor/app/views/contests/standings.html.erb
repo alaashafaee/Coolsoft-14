@@ -1,3 +1,4 @@
+<!-- Author : Mohab Ghanim -->
 <div class="contest_information">
 	<h2> Contest: <%= @contest.title  %></h2>
 	<h3><%= @contest.description %></h3>
@@ -21,9 +22,9 @@
 	<h5>
 	<h5>Ends at <%= @contest.end_time %></h5>
 	<ul>
-		<li>Standings</li>
-		<li>Registrants</li>
-		<li>Register</li>
+		<li><a href ="/contests/<%= @contest.id %>/standings">Standings</a></li>
+		<li><a href ="/contests/<%= @contest.id %>/registrants">Registrants</a></li>
+		<li><a href ="/contests/<%= @contest.id %>/register">register</a></li>
 	</ul>
 </div>
 <table class="table table-bordered contest_table">
@@ -32,8 +33,7 @@
 		<td> Rank </td>
 		<td> Contestant </td>
 		<% @contest.problems.each do |problem| %>
-		<!-- url to be inserted here -->
-		<td> <%= problem.title %> </td>
+		<td> <a href ="/cproblems/<%= problem.id %>"><%= problem.title %></a></td>
 		<% end %>
 	</tr>
 	<% @contest.get_contest_standings.each do |key, value| %>
@@ -54,7 +54,7 @@
 						class="S"> <%= ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.trials %> / 
 						<%=  ((ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id, student_id: value[:record].student.id).take.updated_at - Contest.find(@contest.id).start_time)/60).to_i %>
 				<% else %>
-						class="WA"> --
+						class="wrong-answer"> --
 				<% end %>
 			</td>
 		<% end %>

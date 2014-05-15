@@ -13,6 +13,12 @@ class Contest < ActiveRecord::Base
 	#Scoops
 
 	#Methods
+
+	# [Contest Standings - Story 5.25]
+	# Sorts students in contest according to the number of correct problems
+	# they solved and the total time of submission
+	# Parameters: none
+	# Returns: sorted Hash containing ContestProgress of students
 	def get_contest_standings
 		contest_standing_records = ContestProgress.where(contest_id: self.id)
 		contest_standings_unique = Hash.new
@@ -30,14 +36,5 @@ class Contest < ActiveRecord::Base
  		return Hash[contest_standings_unique.sort_by {|key, value| [value[:solved], value[:time_spent]]}.to_a]
 	end
 
-	# def get_students_rank
-	# 	students_rank = Hash.new
-	# 	standings = self.get_contest_standings
-	# 	standings.each do |key , value|
-	# 		students_rank[value.student.id] = ContestProgress.where(student_id: value.student.id,
-	# 		 status: true).count
-	# 	end
-	# 	return Hash[students_rank.sort_by {|key, value| value}.to_a.reverse]
-	# end
 
 end
