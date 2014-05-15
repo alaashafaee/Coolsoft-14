@@ -20,7 +20,7 @@ class NotesController < ApplicationController
 		if note.save
 			flash.keep[:notice] = "Note Added"
 		else
-			flash.keep[:notice] = "Note cannot be added"
+			flash.keep[:notice] = "Note wasn't added"
 		end
 		redirect_to :back
 	end
@@ -38,7 +38,7 @@ class NotesController < ApplicationController
 		if @note.update_attributes(note_params)
 			flash.keep[:notice] = "Note Updated"
 		else
-			flash.keep[:notice] = "Note cannot be Updated"
+			flash.keep[:notice] = "Note wasn't updated"
 		end
 		redirect_to :back
 	end
