@@ -13,7 +13,10 @@ class SolutionsController < ApplicationController
 		student = current_student.id
 		problem = param[:problem_id]
 		time = param[:time]
-		result = SolutionsLayer.validate "java", code, student, problem, time
+		problem_type = param[:problem_type]
+		class_name = param[:class_name]
+		result = SolutionsLayer.validate("java", code, student, problem,
+			problem_type, class_name, time)
 		render json: result
 	end
 
@@ -31,8 +34,11 @@ class SolutionsController < ApplicationController
 		id = current_student.id
 		pid = params[:problem_id]
 		code = params[:code]
+		problem_type = params[:problem_type]
+		class_name = params[:class_name]
 		cases = if params[:input] then params[:input] else "" end
-		result = SolutionsLayer.execute "java", code, id, pid, cases
+		result = SolutionsLayer.execute("java", code, id, pid,
+			problem_type, class_name, cases)
 		render json: result
 	end
 
@@ -43,19 +49,15 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		if solution.save
-			compiler_feedback = Compiler.compiler_feedback(solution)
-			if compiler_feedback[:success]
-				solution.status = 3
-			else
-				solution.status = 2
-			end
-			solution.save
-			render json: compiler_feedback
-		end
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		problem_type = param[:problem_type]
+		class_name = param[:class_name]
+		compiler_feedback = SolutionsLayer.compile("java", code, student, 
+			problem, problem_type, class_name)
+		render json: compiler_feedback
 	end
 	# [Mark Solution - Story 4.29]
 	# Allows a TA to mark a solution of a student
@@ -89,7 +91,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time, :class_name)
+		params.permit(:code, :problem_id, :time, :class_name, :problem_type)
 	end
 
 	# [Compiler: Test - Story 3.15]
