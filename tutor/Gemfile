@@ -10,7 +10,7 @@ gem 'devise'
 
 # File uploading
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

@@ -16,6 +16,7 @@
 //= require_tree .
 //= require jquery.tokeninput
 //= require utilities
+//= require jquery.typewatch
 
 // [Simple Search auto-complete - Story 1.23]
 // autocomplete for the search bar
