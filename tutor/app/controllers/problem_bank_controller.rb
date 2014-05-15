@@ -48,13 +48,13 @@ class ProblemBankController < ApplicationController
 				if pr.title == @new_problem.title
 					flash[:notice]= @new_problem.title,"You already have this problem"
 					@flag = false
-	        	end
-	        end
-	        if @flag == true
-		        @new_problem.track_id = @track.id
-	        	current_lecturer.problems << @new_problem
-	        	flash[:success]= @new_problem.title,"is added successfully"
-       		end
+				end
+			end
+			if @flag == true
+				@new_problem.track_id = @track.id
+				current_lecturer.problems << @new_problem
+				flash[:success]= @new_problem.title,"is added successfully"
+			end
 		end
 		redirect_to :action => 'show', :id => @track.id
 	end	
