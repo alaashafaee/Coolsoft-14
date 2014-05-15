@@ -11,7 +11,7 @@ ActiveAdmin.setup do |config|
   			menu.add label: 'Users', priority: 2
   			menu.add label: 'Problems', priority: 3
   			menu.add label: 'Subject', priority: 4
-  			menu.add label: 'Disc', priority: 5
+  			menu.add label: 'DBs/Posts', priority: 5
   			menu.add label: 'Contest', priority: 6
         menu.add label: 'Assignment', priority: 7
 

@@ -1,6 +1,6 @@
 ActiveAdmin.register Reply do
 
-  menu parent: "Disc",priority:3  
+  menu parent: "DBs/Posts",priority:3  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
