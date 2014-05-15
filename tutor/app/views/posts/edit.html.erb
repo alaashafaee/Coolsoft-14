@@ -28,7 +28,7 @@
         </p>
         <p>
             <%= f.label :content %><br>
-            <div class="container well">
+            <div class="well editor">
                 <%= f.cktext_area :content, cols: 10, :ckeditor => {:toolbar => 'basic'}  %>
             </div>
         </p>
@@ -39,3 +39,9 @@
     <%= button_to "Delete Post", {:action => 'destroy', :id => params[:id]}, method: :delete,
         class: 'btn btn-primary', :confirm => "Are you sure??" %>
 </div>
+
+<style type="text/css">
+    .editor {
+        width: 100%;
+    }
+</style>

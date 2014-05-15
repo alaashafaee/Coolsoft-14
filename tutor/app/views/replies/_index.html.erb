@@ -2,8 +2,8 @@
 	<%= render "/replies/load_replies" %>
 </div>
 <div class="container submiting">
-	<div class="row">
-		<%= cktext_area "", :cols => 40, :ckeditor => {:toolbar => 'basic'} %>
+	<div class="row editor_area">
+		<%= cktext_area "editor_area", :cols => 30, :ckeditor => {:toolbar => 'basic'} %>
 	</div>
 	<div class="row submit_btn">
 		<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})" %>

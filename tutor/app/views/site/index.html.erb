@@ -1,46 +1,89 @@
 <%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in? %>
 <!-- Introduction Section -->		
 	<div class="intro">
-		<!-- <img class="img-sm-responsive" src="/assets/Top3.jpg"> -->
-		<div class="well container" >
-			<div class="well row">
-				<h1 class="head-test-b" style="color:red;"><h>Learn Coding or Don't, we don't care</h></h1>
-
+		<div class="row">
+<!-- 		<img class="img-md-responsive" src="/assets/Top3.jpg"> -->
+			<div class="container" >
+				<div class="col-sm-6 mac-description" >
+					<h1>
+						<font class="h1-tag">Description</font>
+						<span class="text-muted">  &raquo; onsectetur adipisicing elit </span>
+					</h1>
+					<p>
+						<font class="p-tag">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit ess
+						</font>
+					</p>
+				</div>
+				<div class="col-sm-6 mac" >
+					<img class="img-md-responsive" src="/assets/Macbook-Flat-Mockup.png">
+				</div>
+				
+				<!-- <div class="well row">
+					<h1 class="head-test-b" style="color:red;"><b></b></h1>
+				</div> -->
 			</div>
 		</div>
 	</div>
 <!-- Features Section -->
+<!-- 	<div class="intro-block">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-xs-3">
+	                <img class="img-responsive tpad" src="images/moveMe.png">
+	            </div>
+	            <div class="col-xs-9">
+	                <h1>MOVE ME <span class="text-muted">&raquo; Your Travel Companion</span></h1>
+	                <p class="lead">Move Me is a unique App designed to help people all over the world to get home quicker, by connecting with your local transport network</p>
+	            </div>
+	        </div>
+	    </div>    
+	</div> -->
+<!-- Features Section -->
 	<div class="features">
-		<div class="container padded">
+		<div class="container padded" style="width:50% !important;">
 		    <div class="well row">
-		        <div class="col-lg-12"><h2>Main Options	</h2><hr></div>
+		        <div class="col-lg-12"><h1><b>&raquo;Features</b></h1><hr></div>
 		    </div>
-		    <div class="well row">
-		        <div class="col-sm-6 col-md-3">
-		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3><b>Debugging</b></h3>
+		    <div class="row">
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_bug.png">
+		    	</div>
+		    	<div class="col-sm-9 content_de">
+		    		<h3><b>Debugging</b></h3>
 		            <p>Now you solve problems online</p>
-		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		        </div>
-		        <div class="col-sm-6 col-md-3">
-		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3><b>Contests</b></h3>
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-9 content_de">
+	    			<h3><b>Contests</b></h3>
 		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		        </div>
-		        <div class="clearfix hidden-md hidden-lg"></div>
-		        <div class="col-sm-6 col-md-3">
-		            <img class="img-circle img-responsive" src="/assets/logo.png">
+		    	</div>
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_cup.png">
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_db.png">
+		    	</div>
+		    	<div class="col-sm-9 content_de">
 		            <h3><b>Questions/Answers</b></h3>
-		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		        </div>
-		        <div class="col-sm-6 col-md-3">
-		            <img class="img-circle img-responsive" src="/assets/logo.png">
-		            <h3><b>Debugging</b></h3>
-		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-		            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-		        </div>
+			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-9 content_de">
+		    		<h3><b>Assignments</b></h3>
+			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		    	</div>
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_assignment.png">
+		    	</div>
+		    </div>
 		    </div>
 		</div>
 	</div>    
@@ -135,3 +178,16 @@
 	<% end %>
 <% end %>
 
+
+<style type="text/css">
+
+	.features .content_de {
+		/*height: 100% !important;*/
+		padding-top: 5%;
+	}
+	.features .fut_col {
+		width: 50%;
+	}
+
+
+</style>
