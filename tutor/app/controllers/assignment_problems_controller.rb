@@ -2,9 +2,6 @@ class AssignmentProblemsController < ApplicationController
 	def new
 		session[:assignment_id] = params[:id]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
-						puts "====00000000000000=============="
-		puts @assignment.id
-		puts "==========777777============"
 		@new_problem = AssignmentProblem.new
 	
 	end
@@ -26,10 +23,8 @@ class AssignmentProblemsController < ApplicationController
 				flash[:notice] = "problem added."
 				redirect_to :controller => 'assignment_testcases', :action => 'new',
 				:assignment_id => @new_problem.id
-			
-	
 			else
-				#render :action=>'new', :assignment_id => session[:assignment_id]
+				render :action=>'new', :id => session[:assignment_id]
 			end	
 		
 		
@@ -38,40 +33,36 @@ class AssignmentProblemsController < ApplicationController
 	def complete
 		@assignment = Assignment.find_by_id(session[:assignment_id])
 	 	@sproblems = Array.new
-		params[:checkbox].each do |check|
-			@problem_select = Problem.find_by_id(check)
-			@new_problem = AssignmentProblem.new
-			@new_problem.title = @problem_select.title
-			@new_problem.description = @problem_select.description
-			@new_problem.assignment_id = @assignment.id
-			@new_problem.final_grade = 0
-			@new_problem.test_cases = @problem_select.test_cases
-			if lecturer_signed_in?
-				@new_problem.owner_id = current_lecturer.id
-				@new_problem.owner_type = "lecturer"
-			elsif teaching_assistant_signed_in?
-				@new_problem.owner_id = current_teaching_assistant.id
-				@new_problem.owner_type = "teaching assistant"
-			end
-			if @new_problem.save
-				@assignment.problems << @new_problem
+	 	@check = Array.new
+	 	if params[:checkbox].empty?
+	 		flash[:notice] = "Please select problems to be saved"
+	 	else
+			params[:checkbox].each do |check|
+				@problem_select = Problem.find_by_id(check)
+				@new_problem = AssignmentProblem.new
+				@new_problem.title = @problem_select.title
+				@new_problem.description = @problem_select.description
+				@new_problem.assignment_id = @assignment.id
+				@new_problem.final_grade = 0
+				@new_problem.test_cases = @problem_select.test_cases
+				if lecturer_signed_in?
+					@new_problem.owner_id = current_lecturer.id
+					@new_problem.owner_type = "lecturer"
+				elsif teaching_assistant_signed_in?
+					@new_problem.owner_id = current_teaching_assistant.id
+					@new_problem.owner_type = "teaching assistant"
+				end
+				if @new_problem.save
+					@assignment.problems << @new_problem
+				end
 			end
 		end
 		redirect_to :controller => 'assignment_problems', :action => 'index',
-			:id => @assignment.id
-	end
-
-	#def abc
-	#	@assignment = Assignment.find_by_id(session[:assignment_id])
-	#	@problem = AssignmentProblem.find_by_id(params[:assignment_problem_id])
-       
-	#end
-
-	def update 
+		:id => @assignment.id
 	end
 
 	def index
-		@assignment =Assignment.find_by_id(session[:assignment_id])
+		@assignment = Assignment.find_by_id(session[:assignment_id])
 		@course_id = @assignment.course_id
 		@course = Course.find_by_id(@course_id)
 		@topics = @course.topics
@@ -144,9 +135,5 @@ class AssignmentProblemsController < ApplicationController
 	private
 		def problem_params
 			params.require(:assignment_problem).permit(:title, :description)
-		end
-
-		def p_params
-			params.require(:assignment_p).permit(:final_grade)
 		end
 end
