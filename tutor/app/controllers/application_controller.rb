@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+		# [Edit Profile - Story 5.12]
 		# Permits some fields to be passed through sign up and edit forms to update 
 		# 	the lecturer, student, and teaching_assistant models
 		# Parameters: None
