@@ -157,7 +157,7 @@ Tutor::Application.routes.draw do
 		resources :teaching_assistants
 		post 'teaching_assistants/new' => 'teaching_assistants#new'
 		resources :acknowledgements
-		resources :resources, only: [:create, :index, :new] do
+		resources :resources, only: [:create, :index, :new, :destroy] do
 			get :add_more, on: :collection
 		end
 	end
