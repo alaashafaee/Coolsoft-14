@@ -30,7 +30,7 @@
 		<br><%= f.label :Answer %> </br>
 	<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10", :rows => "8" %>
 </p><br>
-<%= f.submit "Save Model Answer", type: "submit" ,value: "Add Test Case", onclick: "canleave()", class: "btn btn-large btn-info" %>
+<%= f.submit "Save Model Answer", type: "submit" ,value: "Save Model Answer", onclick: "canleave()", class: "btn btn-large btn-info", :flag => params[:flag]  %>
 <% end %>
 <script>
 var workIsDone = false;

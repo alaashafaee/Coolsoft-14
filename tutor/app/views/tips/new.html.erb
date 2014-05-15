@@ -1,4 +1,4 @@
-<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
+<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && params[:model_answer_id] != nil %>
 <div id = "crumbs">
     <ul >
     	<li class = "sub"><a class = "preventclick"  > Problem</a> </li>

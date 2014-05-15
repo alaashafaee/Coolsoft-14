@@ -43,10 +43,12 @@ class ModelAnswersController < ApplicationController
 			session[:model_answer_id] = @new_answer.id
 			if get_flag[:flag] == "1"
 				redirect_to :controller => 'model_answers', :action => 'index', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id]
+				:problem_id => session[:problem_id], :track_id => session[:track_id],
+				:model_answer_id => @new_answer.id
 			else
 				redirect_to :controller => 'problems', :action => 'done', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id]
+				:problem_id => session[:problem_id], :track_id => session[:track_id],
+				:model_answer_id => @new_answer.id
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @new_answer.id,
