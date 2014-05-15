@@ -1,4 +1,4 @@
-<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && params[:model_answer_id] != nil %>
+<% if (lecturer_signed_in? || teaching_assistant_signed_in?) && session[:model_answer_id] != nil %>
 <div id = "crumbs">
     <ul >
     	<li class = "sub"><a class = "preventclick"  > Problem</a> </li>
@@ -7,7 +7,7 @@
 		<li class = "sub2"><%= link_to "Model Answer",{:controller => 'model_answers', :action => 'new',
 		:problem_id => session[:problem_id]},{:method => :get , :style=>'padding: 5px 5% 0 0px;', :class => "css_class"} %> </li>
         <li class = "sub3"><a class="visit" >Tips</a> </li>
-		<li class = "sub4"><%= link_to "Hints", {:controller => 'hints', :action => 'new',:model_answer_id => params[:model_answer_id],:track_id => session[:track_id]},:method => :get %> </li>
+		<li class = "sub4"><%= link_to "Hints", {:controller => 'hints', :action => 'new',:model_answer_id => session[:model_answer_id],:track_id => session[:track_id]},:method => :get %> </li>
     </ul>
 </div>
 <br><br>
@@ -17,23 +17,23 @@
 	<% end %>
 </div>
 <h2>Create Tip for model answer <h1 style="color:red;"><%=  ModelAnswer.find_by_id(session[:model_answer_id]).title %></h1></h2>
-	<% if @tip.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@tip.errors.count, "error") %>
-				prohibited the Tip from being saved:
-			</h2>
-		</div>
-		<ul>
-			<% @tip.errors.full_messages.each do |msg| %>
-				<li>
-					<%= msg %>
-				</li>
-			<% end %>
-		</ul>
-	<% end %>
 	<div style = "vertical-align: auto; horizontal-align: auto; float:center;">
 		<%= form_for :tip, url: tips_path do |t| %>
+		<% if @tip.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@tip.errors.count, "error") %>
+					prohibited the Tip from being saved:
+				</h2>
+				<ul>
+					<% @tip.errors.full_messages.each do |msg| %>
+						<li>
+							<%= msg %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 			<p>
 				<%= t.label :Content %><br>
 				<%= t.text_area :message, class:"form-control", style:"width:350px",
@@ -44,7 +44,7 @@
 				<%= t.text_field :time, style: "width:55px; height:35px;", :value => @tip.time %>
 			</p>
 			<p>
-				<%= f.hidden_field :flag, :value => params[:flag] %>
+				<%= t.hidden_field :flag, :value => params[:flag] %>
 				<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
 			</p>
 			<p>

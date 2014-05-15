@@ -42,6 +42,11 @@ class TipsController < ApplicationController
 		@tip.message = tip_params[:message]
 		@tip.time = tip_params[:time]
 		@tip.category = true
+		if params[:flag] == "1" 
+		session[:flag] = params[:flag]
+	elsif get_flag[:flag] == "1"
+		session[:flag] = get_flag[:flag]
+			end
 		@tip.model_answer_id = session[:model_answer_id]
 		@tip.submission_counter = 0
 		if lecturer_signed_in?
@@ -54,17 +59,22 @@ class TipsController < ApplicationController
 		if @tip.save
 			@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
 			@model_answer.hints << @tip
-			if get_flag[:flag] == 1
+			if session[:flag] == "1"
 				redirect_to :controller => 'tips', :action => 'index', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id], 
-				:model_answer_id => params[:model_answer_id]
+				:model_answer_id => session[:model_answer_id]
 			else
 				redirect_to :controller => 'hints', :action => 'new', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id], 
-				:model_answer_id => params[:model_answer_id]
+				:model_answer_id => params[:model_answer_id],:flag => session[:flag]
 			end
 		else
-			render :action => 'new'
+			puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,,,"
+			puts params
+			puts"!!!!111111111111111111111111111111111111111111"
+			render :action=>'new', :locals => { :model_answer_id => @tip.model_answer_id,
+			 :flag => session[:flag],
+			:track_id => session[:track_id], :problem_id => params[:problem_id]}
 		end
 	end
 

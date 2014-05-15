@@ -11,6 +11,11 @@
     </ul>
  </div>
 <br><br>
+<div id="div1">
+	<% if flash[:notice] %>
+		<div class= "alert alert-success"><%= flash[:notice] %></div>
+	<% end %>
+</div>
 <br><ul class = "navbar-brand pull-right"><%= link_to "Create Hint",
 	{ :controller => 'hints', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id], :flag => 1 },
 	{ class: 'btn btn-info' } %></ul><br><br>
