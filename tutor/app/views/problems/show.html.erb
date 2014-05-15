@@ -20,10 +20,22 @@
 								<b>Memory Contents:</b>
 								<div id="memory" class="fixed-horizontal"></div>
 								<br /><br /><br /><br />
-								<b>Hints:</b><br /><br />
+								<script type="text/javascript">
+								$('#tip').tooltip(options)</script>
+								<button id='tip'type="button" 
+								class="btn btn-info" 
+								data-toggle="tooltip" 
+								data-placement="left" 
+								title="Appears based on number of submissions">
+								Hints</button><br /><br />
 								<%= render partial: "hints/give" %>
 								<br /><br />
-								<b>Tips:</b><br /><br />
+								<button id='tip'type="button" 
+								class="btn btn-info" 
+								data-toggle="tooltip" 
+								data-placement="left" 
+								title="Appears based on the time counter">
+								Tips</button><br /><br />
 								<%= render partial: "tips/give" %>
 							</div>
 						</td>
