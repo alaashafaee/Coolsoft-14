@@ -1,13 +1,50 @@
-<h2>
-<%= @course.name %>
-</h2>
-<p>
-Resources
-</p>
-<%- @course.resources.each do |resource| %>
-	<div>
-		<a href="<%= resource.link %>"> <%= resource.link %></a>
-		<%= resource.description %>
-	</div>
-	<br/>
-<% end%>
+<div>
+	<ul class="tab-links">
+		<!-- This button activates the new topic action and passes the course id  -->
+		<li>
+			<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
+				:id => @course.id}, class: "btn btn-success",
+				style: "float: left;margin-left: 15px",method: :get %>
+		</li>
+
+		<li>
+			<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
+				:course_id => @course.id}, class: "btn btn-success",
+				style: "float: left;margin-left: 15px",method: :post %>
+		</li> 
+
+		<!-- This button activates the add TA action -->
+		<li>
+			<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
+				:course_id => @course.id}, class: "btn btn-success",
+				style: "float: left; margin-left: 15px", :method => :get %>
+		</li>
+
+		<!-- This button activates the acknowledge a student action -->
+		<li>
+			<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
+				:course_id => @course.id}, class: "btn btn-success",
+				style: "float: left; margin-left: 15px", method: :get %>
+		</li>
+
+		<li>
+			<%= link_to "Add Resources", new_course_resource_path(@course), class: "btn btn-success",
+				style: "float: left; margin-left: 15px", method: :get %>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>
+		<%= @course.name %>
+	</h2>
+	<p>
+		Resources
+	</p>
+	<%- @course.resources.each do |resource| %>
+		<div>
+			<a href="<%= resource.link %>"> <%= resource.link %></a>
+			<%= resource.description %>
+		</div>
+		<br/>
+	<% end%>
+</div>
