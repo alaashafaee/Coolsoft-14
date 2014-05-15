@@ -54,6 +54,8 @@ gem 'foreman'
 # Use composite primary keys in models
 gem 'composite_primary_keys', '~> 6.0.1'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 #
 gem 'acts_as_list'
 
