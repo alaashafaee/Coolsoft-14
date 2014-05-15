@@ -16,6 +16,32 @@ class NotesController < ApplicationController
 		redirect_to :back
 	end
 	
+	def update
+		@note = Note.find_by_id(params[:id])
+		if @note.update_attributes(note_params)
+			flash.keep[:notice] = "Note Updated"
+		else
+			flash.keep[:notice] = "Note cannot be Updated"
+		end
+		redirect_to :back
+	end
+
+
+	# [Remove Problem - Story 4.18]
+	# This action takes the problem id, remove it from the database
+	#	and then redirects the user to the show page of the track that had the problem
+	#	with a "Problem successfully Deleted" message.
+	# Parameters:
+	#	params[:id]: The current problem's id
+	# Returns: 
+	#	flash[:notice]: A message indicating the success of the deletion
+	# Author: Ahmed Atef
+	def destroy
+		if Note.find_by_id(params[:id]).destroy
+			flash[:notice] = "Note Deleted"
+			redirect_to :back
+		end
+	end
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
 	# Parameters:

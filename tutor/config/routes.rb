@@ -35,6 +35,7 @@ Tutor::Application.routes.draw do
 	get "tips/edit"
 	get "tips/destroy"	
 	post "tips/:id/edit" => 'tips#update'
+	get "notes/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'

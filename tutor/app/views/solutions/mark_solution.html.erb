@@ -6,20 +6,42 @@
 			<% @counter+= 1 %>
 			<% @note = Note.where(solution_id: @solution.id, line: @counter).last %>
 			<tr>
-				<td><button "Add Note", class ='btn btn-primary', id =  "<%= @counter %>", style = "visibility:visible;opacity:0",
-					onMouseOver = 'show(this.id)', onMouseOut =  'hide(this.id)', onClick = 'pop(this.id)' >Add Note</button>
+				<td >
+					<% if @note.blank? %>
+						<button "Add Note", class ='btn btn-primary', id =  "<%= @counter %>", style = "visibility:visible;opacity:0",
+						onMouseOver = 'show(this.id)', onMouseOut =  'hide(this.id)', onClick = 'pop(this.id)' >Add Note</button>
+					<% else %>
+						<button "Add Note", class ='btn btn-primary', id =  "<%= @counter %>">Update Note</button>
+						<%= button_to "Delete Note", {:controller => 'notes', :action => 'destroy', :id => @note.id}, method: :delete,
+							class: 'btn btn-primary'%>
+					<% end %>
+					
 					<pre title ="<%if !@note.blank?%><%= @note.content %> <%else %> <%= "No note added to this line" %> <% end %>"><%= @counter %> <%= line %></pre>
 					<div id = "<%= @counter %>form" style = "visibility:visible;display:none;width:60%;" >
-						<%= form_for :Note, url: {controller: "notes", action: "create"} do |note| %>
-							<p>
-								<%= note.label :content %><br> 
-								<%= note.text_field :content, class: "form-control", style: "width:60%" %>
-							</p>
-							<%= note.hidden_field :solution_id, value: @solution.id %>
-							<%= note.hidden_field :line, value: @counter %>
-							<p>
-								<%= note.submit "Save Note", class: "btn btn-info" %>
-							</p>
+						<% if @note.blank? %>
+							<%= form_for :Note, url: {controller: "notes", action: "create"} do |note| %>
+								<p>
+									<%= note.text_field :content, class: "form-control", style: "width:60%",
+									placeholder: "Write your note here!" %>
+								</p>
+								<%= note.hidden_field :solution_id, value: @solution.id %>
+								<%= note.hidden_field :line, value: @counter %>
+								<p>
+									<%= note.submit "Save Note", class: "btn btn-info" %>
+								</p>
+							<% end %>
+						<% else %>
+							<%= form_for :Note, url: note_path(@note), method: :patch do |note| %>
+								<p>
+									<%= note.label :content %><br> 
+									<%= note.text_field :content, class: "form-control", style: "width:60%", placeholder: @note.content %>
+								</p>
+								<%= note.hidden_field :solution_id, value: @solution.id %>
+								<%= note.hidden_field :line, value: @counter %>
+								<p>
+									<%= note.submit "Update Note", class: "btn btn-info" %>
+								</p>
+							<% end %>
 						<% end %>
 					</div>
 				</td>
