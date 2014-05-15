@@ -222,9 +222,15 @@ class CoursesController < ApplicationController
 		id = params[:id]
 		@course = Course.find_by_id(id)
 		student_id = current_student.id
+		puts(student_id)
+
+		@records = Grade.where("student_id = ?", student_id)
+
+		#Client.where("orders_count = ? AND locked = ?", params[:orders], false)
 		@assignments = @course.assignments
 		@total_grade = 0 
 		@problems = []
+		@student_grade = 0 #this is the studen's grade in this particular problem
 	end
 
 	private

@@ -6,15 +6,27 @@
 		<th>Assignment grade</th>
 	</tr>
 	<% @assignments.each do |assi| %>
-		<% @problems = assi.problems %>
-		<% @problems.each do |p| %>
-			<% @total_grade = @total_grade + p.final_grade %>
+		<% if assi.publish %>
+			<% @problems = assi.problems %>
+			<% @problems.each do |p| %>
+				<% @total_grade = @total_grade + p.final_grade %>
+			<% end %>
+			<% @problems.each do |p| %>
+				<% @records.each do |r| %>
+					<% if r.problem_id == p.id %>
+						<% @student_grade = @student_grade + r.grade %>
+					<% end %>
+				<% end %>
+			<% end %>
+			<tr>
+				<td><%= assi.title%>
+				</td>
+				<td><%= @student_grade %>/<%= @total_grade %></td>
+				<td>
+				</td>
+			</tr>
+			<% @total_grade = 0 %>
+			<% @student_grade = 0 %>
 		<% end %>
-		<tr>
-			<td><%= assi.title%>
-			</td>
-			<td>/<%= @total_grade %></td>
-		</tr>
-		<% @total_grade = 0 %>
 	<% end %>
 </table>
