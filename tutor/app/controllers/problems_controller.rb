@@ -194,16 +194,17 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny & Ahmed Osam
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
+		session[:track_id] = params[:track_id]
+		session[:model_answer_id] = params[:model_answer_id]
 		if @problem.model_answers.empty? || @problem.test_cases.empty?
-			@failure = true
 			flash[:notice] = "Problem is incomplete, 
-			please add necessary paramaters or save as incomplete"
-			redirect_to :action => "edit", :problem_id => @problem.id
-		else
+			please add necessary at least 1or save as incomplete"
+		else	
 			@problem.incomplete = false
 			@problem.save
-			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
 		end
+		redirect_to :controller => 'tips', :action => 'new', :model_answer_id => params[:model_answer_id],
+			:track_id => session[:track_id]
 	end
 
 	# [Add Problem - 4.4]

@@ -41,8 +41,8 @@ class ModelAnswersController < ApplicationController
 			@problems.model_answers << @new_answer
 			session[:problem_id] = @new_answer.problem_id
 			session[:model_answer_id] = @new_answer.id
-			redirect_to :controller => 'tips', :action => 'new', :model_answer_id => @new_answer.id,
-			:track_id => session[:track_id]
+			redirect_to :controller => 'problems', :action => 'done', :model_answer_id => @new_answer.id,
+			:track_id => session[:track_id],:problem_id => session[:problem_id]
 		else
 			render :action=>'new', :locals => { :model_answer_id => @new_answer.id,
 			:track_id => session[:track_id], :problem_id => model_answer_params_add[:problem_id]}
