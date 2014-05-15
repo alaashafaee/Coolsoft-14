@@ -1,6 +1,6 @@
 Tutor::Application.routes.draw do
 
- 	mount Ckeditor::Engine => '/ckeditor'
+  mount Rich::Engine => '/rich', :as => 'rich'
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers

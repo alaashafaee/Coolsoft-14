@@ -68,9 +68,7 @@ gem 'whenever', :require => false
 # table_print
 gem 'table_print'
 
-# Editor Gem
-gem 'ckeditor'
-gem 'paperclip'
+gem 'rich'
 
 # real-time sync
 gem 'faye'

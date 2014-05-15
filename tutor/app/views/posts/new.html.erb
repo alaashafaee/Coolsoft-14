@@ -29,7 +29,8 @@
         </p>
         <p>
             <%= f.label :content %><br>
-            <%= f.cktext_area :content,class:"form-control",cols: 10, :ckeditor => {:toolbar => 'basic'} %>
+            
+            <%= f.input :content, :as => :rich, :config => { :default_style => "myCrazyPaperclipStyle"%>
             <%= f.hidden_field :discussion_board_id,
                 value: params[:discussion_board_id],
                     :value => @discussion_board.id %>

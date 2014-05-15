@@ -38,9 +38,6 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     chronic (0.10.2)
-    ckeditor (4.0.11)
-      mime-types
-      orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -102,6 +99,9 @@ GEM
     json (1.8.1)
     json_builder (3.1.0)
       activesupport (>= 2.0.0)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -117,6 +117,8 @@ GEM
       mime-types
     polyglot (0.3.4)
     rack (1.5.2)
+    rack-raw-upload (1.1.1)
+      multi_json
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.4)
@@ -138,6 +140,14 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rich (1.4.6)
+      jquery-rails
+      kaminari
+      mime-types
+      paperclip
+      rack-raw-upload
+      rails (>= 3.2.0)
+      sass-rails
     rmagick (2.13.2)
     rspec-collection_matchers (0.0.4)
       rspec-expectations (>= 2.99.0.beta1)
@@ -220,7 +230,6 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   carrierwave
-  ckeditor
   coffee-rails (~> 4.0.0)
   composite_primary_keys (~> 6.0.1)
   devise
@@ -229,8 +238,8 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)
   json_builder (= 3.1.0)
-  paperclip
   rails (= 4.0.4)
+  rich
   rmagick
   rspec-rails (~> 3.0.0.beta)
   sass-rails (~> 4.0.2)
