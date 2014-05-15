@@ -17,6 +17,7 @@
 						<p> There are no problems </p>
 					<% end %>
 					<% if @problems.any? %>
+					<div class="panel-group list-group" id="accordion1" style="width:100%;">
 						<% @problems.each do |problem| %>
 							<% if openable %>
 								<% open = "in" %>
@@ -26,11 +27,11 @@
 								<% open = "" %>
 								<% openarrow = "glyphicon-chevron-right" %>
 							<% end %>
-							<div class="panel panel-default">
+
 								<div class="panel-title list-group-item list-group-item-info">
 									<a class="icon glyphicon <%= openarrow %>"
 									href="#<%= problem.id.to_s %>"
-									data-toggle="collapse" data-parent="#accordion"
+									data-toggle="collapse" data-parent="#accordion1"
 									style="float:left;text-decoration: none;">
 									</a>
 										<%= check_box_tag "checkbox[]", problem.id %>
@@ -40,8 +41,9 @@
 									class="panel-collapse collapse <%= open %>">
 									<%= problem.description %>
 								</div>
-							</div>
+							
 						<% end %>
+					</div>
 					<% end %>
 				</div>
 			</div>
@@ -51,40 +53,61 @@
 			<ul class="navbar-brand pull-right"><%= submit_tag("Save",
 				:class=>"btn btn-info") %> </ul>
 		</div>		
-		<div style="float:right; width:50%;">
-			<div class="tab-content">
-				<h3> Bank of problems </h3>
+		<div style= "float:right; width:47%;">
+			<div class= "tab-content">
+				<div id= "tab1" class= "tab active">
+				
+			<% openable = true %>
+			<h3> Bank of problems </h3>
 					<% if @cproblems.empty? %>
-						<p> There are no problems in the bank </p>
+						<p> There are no problems </p>
 					<% end %>
 					<% if @cproblems.any? %>
-						<% @cproblems.each do |problem| %>
-							<% if openable %>
-								<% open = "in" %>
-									<% openarrow = "glyphicon-chevron-down" %>
-									<% openable = false %>
-							<% else %>
-								<% open = "" %>
-								<% openarrow = "glyphicon-chevron-right" %>
-							<% end %>
-							<div class="panel panel-default">
-								<div class="panel-title list-group-item list-group-item-info">
-									<a class="icon glyphicon <%= openarrow %>"
-									href="#<%= problem.id.to_s %>"
-									data-toggle="collapse" data-parent="#accordion"
-									style="float:left;text-decoration: none;">
-									</a>
-									<%= check_box_tag "checkbox[]", problem.id %>
-									<%= problem.title %>
-								</div>
-								<div id="<%= problem.id.to_s %>" 
+			<div class="panel-group list-group" id="accordion2" style="width:100%;">
+				<% if openable %>
+					<% open = "in" %>
+					<% openarrow = "glyphicon-chevron-down" %>
+					<% openable = false %>
+				<% else %>
+					<% open = "" %>
+					<% openarrow = "glyphicon-chevron-right" %>
+				<% end %>
+	
+				<% @cproblems.each do |cproblem| %>
+					<div class="panel-title list-group-item list-group-item-info">
+
+						<a class="icon glyphicon <%= openarrow %>"
+							href="#listOfProblems"
+							data-toggle="collapse" data-parent="#accordion2"
+							style="float:left;text-decoration: none;">
+							</a>
+							<%= check_box_tag "checkbox[]", cproblem.id %>
+										<%= cproblem.title %>
+						
+					
+					</div>
+					<div id="listOfProblems" class="panel-collapse collapse <%= open %>">
+	
+		
+								
+								
+										<div id="<%= cproblem.id.to_s %>" 
 									class="panel-collapse collapse <%= open %>">
-									<%= problem.description %>
+									<%= cproblem.description %>
 								</div>
-							</div>
-						<% end %>
+									
 					<% end %>
+
+								
+	
+					
+				</div>	
 			</div>
+			<% end %>
+				</div>	
+				</div>
+				
 		</div>
-	<% end %>
-</div>
+		</div>
+		<% end %>
+		</div>

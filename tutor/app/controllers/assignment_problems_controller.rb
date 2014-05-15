@@ -20,7 +20,7 @@ class AssignmentProblemsController < ApplicationController
 			end
 			if @new_problem.save
 				@assignment.problems << @new_problem
-				flash[:notice] = "problem added."
+				flash[:notice] = ""
 				redirect_to :controller => 'assignment_testcases', :action => 'new',
 				:assignment_id => @new_problem.id
 			else
@@ -88,10 +88,7 @@ class AssignmentProblemsController < ApplicationController
 		@bank = Problem.where("seen = ?", true)
 		@cproblems = Array.new
 		@bank.each do |contest| 
-				@cprob = contest.problems
-				@cprobs.each do |problem1|
-						@cproblems.push(problem1)  
-				end
+						@cproblems.push(contest)  
 		end
 	end
 	

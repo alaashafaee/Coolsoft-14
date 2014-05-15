@@ -184,7 +184,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false)
+					incomplete: false, seen: true)
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
 					incomplete: false)
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
