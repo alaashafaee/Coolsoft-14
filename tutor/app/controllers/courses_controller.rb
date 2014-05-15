@@ -217,6 +217,12 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	def show_grades
+		@course = Course.find_by_id(params[:id])
+		student_id = current_student.id
+
+	end
+
 	private
 		def course_params 
 			params.require(:course).permit(:name,:code,:year,:semester,:description)
