@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require sync
+//= require ckeditor/init
 //= require_tree .
 //= require bootstrap
 //= require jquery.tokeninput
