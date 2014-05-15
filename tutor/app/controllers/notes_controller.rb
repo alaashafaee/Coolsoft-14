@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-	
+
 	# [Mark Assignment - 4.29]
 	# creates a new record to Note Table
 	# Parameters:
@@ -16,9 +16,9 @@ class NotesController < ApplicationController
 		elsif teaching_assistant_signed_in?
 			note.owner_id = current_teaching_assistant.id
 			note_type = "teaching assistant"
-		end	
+		end
 		if note.save
-			flash.keep[:notice] = "Note Added"
+			flash.keep[:notice] = "Note added! Hold your crusor over line of code to see the note"
 		else
 			flash.keep[:notice] = "Note wasn't added"
 		end
@@ -42,7 +42,6 @@ class NotesController < ApplicationController
 		end
 		redirect_to :back
 	end
-
 
 	# [Mark Assignment - 4.29]
 	# Removes a record to Note Table

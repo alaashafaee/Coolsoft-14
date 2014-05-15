@@ -76,6 +76,9 @@ class SolutionsController < ApplicationController
 				@course = @problem.assignment.course
 				@can_edit = @course.can_edit(current_lecturer)
 				@can_edit||= @course.can_edit(current_teaching_assistant)
+				if !@can_edit
+					render ('public/404')
+				end
 			else
 				render ('public/404')
 			end
@@ -94,6 +97,12 @@ class SolutionsController < ApplicationController
 		@submissions = Solution.where(problem_id: params[:problem_id])
 		.order(:student_id)
 		@problem = AssignmentProblem.find_by_id(params[:problem_id])
+		@course = @problem.assignment.course
+		@can_edit = @course.can_edit(current_lecturer)
+		@can_edit||= @course.can_edit(current_teaching_assistant)
+		if !@can_edit
+			render ('public/404')
+		end
 	end
 
 	private

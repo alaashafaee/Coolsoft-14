@@ -28,9 +28,11 @@
 					<li class="list-group-item">
 						<%= link_to ap.title, { :controller => 'assignment_problems', 
 						:action => 'show', :id => ap.id }, :method => :get, class: ""%>
-						<%= link_to "View Submissions", { :controller => 'solutions',
-						:action => 'view_submissions', :problem_id => ap.id },
-						class: "btn btn-info" %>
+						<% if @can_edit %>
+							<%= link_to "View Submissions", { :controller => 'solutions',
+							:action => 'view_submissions', :problem_id => ap.id },
+							class: "btn btn-info" %>
+						<% end %>
 					</li>
 				<% end %>
 			</ul>
