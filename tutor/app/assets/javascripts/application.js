@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require sync
 //= require_tree .
+//= require bootstrap
 //= require jquery.tokeninput
 //= require utilities

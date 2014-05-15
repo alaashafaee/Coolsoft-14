@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  *= require posts
+ *= require bootstrap
  */
  html, body {
 	width: 100%;
@@ -41,9 +42,9 @@ hr {
 }
 
 .ft_space{
-    padding: 0 10px;   
+    padding: 0 10px;
+    margin-top: 1.65%; 
 }
-
 .auto-height {
 	height: auto;
 }
@@ -55,4 +56,43 @@ hr {
 
 .button-devise {
 	margin-top: 10px;
+}
+
+.home {
+	overflow:auto;
+}
+
+.zooming {
+	-ms-transform: scale(0.8); /* IE 9 */
+	-ms-transform-origin: left top;
+	-webkit-transform: scale(0.8); /* Chrome, Safari, Opera */
+	-webkit-transform-origin: left top;
+	transform: scale(0.8);
+	transform-origin: left top;
+	-moz-transform:  scale(0.8);
+	-moz-transform-origin: left top;
+}
+
+.unzooming, #editor{
+	-ms-transform: scale(1.25); /* IE 9 */
+	-ms-transform-origin: left top;
+	-webkit-transform: scale(1.25); /* Chrome, Safari, Opera */
+	-webkit-transform-origin: left top;
+	transform: scale(1.25);
+	transform-origin: left top;
+	-moz-transform:  scale(1.25);
+	-moz-transform-origin: left top;
+}
+
+.zoom125{
+	height: 125%;
+	width: 125%;
+}
+
+#editor{
+	width: 80%;
+}
+
+.no-scroll-x{
+	overflow-x: hidden;
 }
