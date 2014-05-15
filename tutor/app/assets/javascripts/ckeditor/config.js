@@ -7,8 +7,15 @@ CKEDITOR.editorConfig = function( config )
 {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
+	config.uiColor = '#858585';
 	config.toolbar = 'basic';
+	config.bodyId = 'ckeditor';
+	config.autoGrow_onStartup = true;
+	config.blockedKeystrokes=
+	[
+		[ CKEDITOR.CTRL + 66 /*B*/, 'bold' ],
+		[ CKEDITOR.CMD + 66 /*B*/, 'bold' ]
+	];
 	config.toolbar_basic = 
 	[
 			//       { name: 'document', items : [ 'NewPage','Preview' ] },
@@ -17,11 +24,8 @@ CKEDITOR.editorConfig = function( config )
 			//       { name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'
 			//                ,'Iframe' ] },
 			//               '/',
-			//       { name: 'styles', items : [ 'Styles','Format' ] },
-			//       { name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },
-			//       { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+			      { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
 			//       { name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-			//       { name: 'tools', items : [ 'Maximize','-','About' ] }
 
 			{ name: 'insert', items : [ 'Image'] },
 			{ name: 'basicstyles', items : [ 'Bold','Italic','Strike','-','RemoveFormat' ] },

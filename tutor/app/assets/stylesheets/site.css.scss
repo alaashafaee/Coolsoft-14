@@ -2,20 +2,65 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.intro {
-    background-image: url("/assets/Top3.jpg");
-    background-size: 100% 100%;
-    min-width: 100%;
-    max-width: 100%;
-	height: 750px; 
+.intro-block{
+    background: url("/assets/ftr_bg.png") repeat;
+    padding: 100px 15px 60px;
+    color: #fff;
 }
-// .intro img {
-//     min-width: 100%;
-//     max-width: 100%;
-//     height: 750px;
-// }
+.intro {
+    background: url("/assets/pattern-1bl9.png");
+    background-repeat: true;
+    // background-image: url("/assets/Coffee_laptop.png");
+    // background-size: 100% 100%;
+    // min-width: 100%;
+    // max-width: 100%;
+	height: 700px; 
+    // box-shadow: inset 80px 1 1000px 80px black;
+}
+.intro img {
+    min-width: 150%;
+    max-width: 150%;
+    // width: 100%;
+    // height: 1000px;
+    // height: auto;
+
+}
+
+.intro .container{
+ 
+}
+.intro .row {
+    padding-top: 5%;
+}
+.intro .mac {
+
+}
+
+.intro .mac-description{
+
+    width: 50%;
+    float: left;
+    vertical-align: center;
+    padding-top: 7%;
+    color: #f9f9f9;
+}
+.intro .mac-description .h1-tag{
+    font-size: 1em !important;
+    font-weight: bold;
+}
+.intro .mac-description .text-muted {
+    color: #808080;
+    font-size: 0.7em;
+    font-weight: normal;
+}
+.intro .mac-description .p-tag{
+    font-size: 1.5em !important;
+    font-weight: normal;
+}
+
 .features {
-	background-color: #eaece4;
+	background-color: #eaece4 !important;
+    padding-bottom: 5%;
 }
 .padded {
 	background-color: #eaece4;
