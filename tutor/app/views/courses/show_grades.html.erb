@@ -1,1 +1,20 @@
-<h1>Bismellah</h2>
+<h1>List of Assignments</h2>
+
+<table class = "table table-striped", style = "width:80%">
+	<tr>
+		<th>Assignemnt</th>
+		<th>Assignment grade</th>
+	</tr>
+	<% @assignments.each do |assi| %>
+		<% @problems = assi.problems %>
+		<% @problems.each do |p| %>
+			<% @total_grade = @total_grade + p.final_grade %>
+		<% end %>
+		<tr>
+			<td><%= assi.title%>
+			</td>
+			<td>/<%= @total_grade %></td>
+		</tr>
+		<% @total_grade = 0 %>
+	<% end %>
+</table>

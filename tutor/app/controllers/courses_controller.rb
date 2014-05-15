@@ -217,10 +217,14 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	#Lin
 	def show_grades
-		@course = Course.find_by_id(params[:id])
+		id = params[:id]
+		@course = Course.find_by_id(id)
 		student_id = current_student.id
-
+		@assignments = @course.assignments
+		@total_grade = 0 
+		@problems = []
 	end
 
 	private
