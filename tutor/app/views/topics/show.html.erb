@@ -1,13 +1,13 @@
 <div class="page-header">
 	<h1><%= link_to @course.name , @course , style: "color: black" %>
 		<small><%= link_to @topic.title , @topic  , style: "color: black" %></small></h1>
-		<% if @can_edit %>
-			<img src="/assets/glyphicons_406_sort-by-order.png" 
-				alt="Glyphicons 280 settings">
-			<span style="display: true;" id="note">&nbsp;&nbsp;
-				Tracks are sorted from easiest to the hardest.</span> 
-		<% end %>
-		<div id="alert" class = "hide"</div>
+	<% if @can_edit %>
+		<img src="/assets/glyphicons_406_sort-by-order.png" 
+			alt="Glyphicons 280 settings">
+		<span style="display: true;" id="note">&nbsp;&nbsp;
+			Tracks are sorted from easiest to the hardest.</span> 
+	<% end %>
+	<div id="alert" class = "hide"></div>
 </div>
 	<% if @can_edit %>
 		<% if flash[:error] %>
