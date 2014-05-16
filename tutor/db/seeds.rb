@@ -201,7 +201,7 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 4", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
-	Solution.create(code:"println(My first solution)", length:5, status:1)
+	Solution.create(code:"println(My first solution) \n int x =10;\n x++;\nDouble y\n y = x/3;", length:5, status:1)
 	Solution.create(code:"println(My second solution)", length:5, status:0)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
 
@@ -256,7 +256,12 @@ puts("# ----------------------- Assignments ----------------------- ")
 puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 4)
 	Grade.create(grade: 5)
-	
+
+puts("# ----------------------- Notes ----------------------- ")
+	Note.create(content:"Note1", line: 1, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	Note.create(content:"Note2", line: 2, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	Note.create(content:"Note3", line: 3, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	Note.create(content:"Note4", line: 4, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")

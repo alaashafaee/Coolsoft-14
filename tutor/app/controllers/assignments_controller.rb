@@ -75,8 +75,19 @@ class AssignmentsController < ApplicationController
 	def show_correction
 		id = params[:id]
 		@assignment = Assignment.find_by_id(id)
-		student_id = current_student.id
+		if student_signed_in?
+			student_id = current_student.id
+		end
 		@course = @assignment.course
 		@problems = @assignment.problems
+
+		@solutions = []
+
+		@problems.each do |p|
+			@solutions = @solutions + Solution.where("student_id = ? AND problem_id = ?" ,
+				student_id, p.id )
+		end
+		puts("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{")
+		puts(@solutions.size)
 	end
 end
