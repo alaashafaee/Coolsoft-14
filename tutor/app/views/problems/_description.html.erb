@@ -3,6 +3,7 @@
 	<p><br>
 		<%= problem.submit "update description", class: 'btn btn-info'%>
 	</p>
+	<%= problem.hidden_field :snippet, value: @problem.snippet %>
 	<%= problem.hidden_field :title, value: @problem.title %>
 	<%= problem.hidden_field :track_id, value: @problem.track_id %>
 <% end %>

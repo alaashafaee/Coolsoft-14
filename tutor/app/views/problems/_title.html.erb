@@ -6,7 +6,7 @@
 <h2 align ="center"><%= @problem.title %></h2>
 <%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 	<%= problem.text_field :title, :value => @problem.title, class:"form-control", style:"width:350px" %><br>
-		<%= problem.submit "update title",class: 'btn btn-info' %>
+	<%= problem.submit "update title",class: 'btn btn-info' %>
 	<%= problem.hidden_field :description, value: @problem.description %>
 	<%= problem.hidden_field :track_id, value: @problem.track_id %>
 <% end %>

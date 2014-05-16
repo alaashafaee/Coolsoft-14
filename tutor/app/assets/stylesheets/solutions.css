@@ -42,14 +42,12 @@ textarea  {
 
 .fixed-content {
 	max-height: 200px;
-	overflow-y:scroll;
-	overflow-x:hidden;
+	overflow: auto;
 }
 
 .fixed-horizontal {
 	max-width: 175px;
-	overflow-x:scroll;
-	overflow-y:hidden;
+	overflow: auto;
 }
 
 .editor {
@@ -74,9 +72,7 @@ textarea  {
 	max-height: 150px;
 	min-height: 150px;
 	background: white;
-	overflow: scroll;
-	overflow-y: scroll;
-	overflow-x: scroll;
+	overflow: auto;
 	max-width: 750px;
 	min-width: 750px;
 }
