@@ -130,7 +130,14 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
 	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
 	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
-	ModelAnswer.create(title: "", answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(title: "Count Change", answer: "int quarters, dimes, nickles, pennies;
+		quarters = 3; dimes = 2; nickles = 1; pennies = 6; double total = quarters*25 
+		+ dimes*10 + nickles* 5 + pennies; System.out.print(total/100);")
+	ModelAnswer.create(title: "Equivalent Resistance", answer: "float r1 = 8, r2 = 8, r3 = 4;
+		float series = r1 + r2 + r3; float parallelInverse = 1/r1 + 1/r2 + 1/r3; 
+		float parallel = 1/parallelInverse; System.out.println(series); 
+		System.out.println(parallel);")
+	ModelAnswer.create(title: "Even or Odd", answer: "")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
