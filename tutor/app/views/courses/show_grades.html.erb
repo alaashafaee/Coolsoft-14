@@ -1,8 +1,9 @@
-<h1>List of Assignments</h2>
-
+<h1>Grades</h2>
+<br>
+<br>
 <table class = "table table-striped", style = "width:60%">
 	<tr>
-		<th>Assignemnt</th>
+		<th>Assignment</th>
 		<th>Assignment grade</th>
 	</tr>
 	<% @assignments.each do |assi| %>
@@ -12,7 +13,7 @@
 				<% @records.each do |r| %>
 					<% if r.problem_id == p.id %>
 						<% @student_grade = @student_grade + r.grade %>
-						<%= @flag =  true %>
+						<% @flag =  true %>
 					<% end %>
 				<% end %>
 				<% @total_grade = p.final_grade %>

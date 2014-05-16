@@ -254,8 +254,8 @@ puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
-	Grade.create(grade: 100)
-	Grade.create(grade: 80)
+	Grade.create(grade: 4)
+	Grade.create(grade: 5)
 	
 
 puts("**************************************************************")

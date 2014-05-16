@@ -111,7 +111,7 @@ Tutor::Application.routes.draw do
 
 	resources :courses do
 		member do
-			post 'show_grades'
+			get 'show_grades'
 		end
 	end
 
