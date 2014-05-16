@@ -1,12 +1,3 @@
-<div class ="tabs">
-	<ul class="tab-links">
-		<li><a href="/courses/">My Courses</a></li>
-		<li><a href="/courses/new">Create new Course</a></li>
-	</ul>
-	<div class="tab-content">
-<!--	Name: Course Edit Page
-		Author: Ahmed Akram
--->
 		<ul class="tab-links">
 			<!-- This button activates the new topic action and passes the course id  -->
 			<li>
@@ -35,18 +26,7 @@
 		</ul>
 
 			<!-- This if statement checks for the condition of the discussion board -->
-			<p>
-				<% if @discussion_board.activated == true %>
-					<% str = "Deactivate DiscussionBoard" %>
-				<% else %>
-					<% str = "Activate DiscussionBoard" %>
-				<% end %>
-				<!-- This button toggles the activation of the discussion board -->
-				<%= link_to str, {:controller => :discussion_boards, :action => 'toggle',
-							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
-							 style: "float: left; margin-left: 15px" %>
-			</p> 
-		
+
 		<br>
 		<div>
 			<%= form_for :course, url: course_path(@course), method: :patch do |c| %>
@@ -89,5 +69,3 @@
 
 		<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success",
 			style: "margin-left:600px; margin-top: 250px", :method => :get %>
-	</div>
-</div>

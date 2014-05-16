@@ -1,12 +1,3 @@
-<div class ="tabs">
-	<ul class="tab-links">
-		<li><a href="/courses/">My Courses</a></li>
-		<li><a href="/courses/new">Create new Course</a></li>
-	</ul>
-	<div class="tab-content">
-<!--	Name: Course Edit Page
-		Author: Ahmed Akram
--->
 		<ul class="tab-links">
 			<!-- This button activates the new topic action and passes the course id  -->
 			<li>
@@ -73,6 +64,4 @@
 			<!-- A back to courses list button -->
 			<%= button_to "Back", {:controller => 'courses', :action => 'index'},
 			 class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
-		</div>
-	</div>
-</div>
+			</div>
