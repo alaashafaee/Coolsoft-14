@@ -1,5 +1,5 @@
 class CproblemsController < ApplicationController
-  	
+
   	# [Solve Contest Problem - Story 5.20]
 	# View the selected problem from the contest
 	# Parameters:
