@@ -64,14 +64,15 @@ index_number = 0
 		url: '/solutions/compile_solution'
 		data: {code : input, problem_id : problem_id, class_name : class_name}
 		datatype: 'json'
-		success: (unique) ->
+		success: (compiler_feedback) ->
 			clear_console()
 			stop_spin()
 			toggle_code_area()
-			if !unique["success"]
-				compilation_error unique["errors"]
+			if !compiler_feedback["success"]
+				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
+			$('.compilation_feedback').html(compiler_feedback["errors"])
 		error: ->
 			clear_console()
 			stop_spin()

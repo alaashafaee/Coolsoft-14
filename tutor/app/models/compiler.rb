@@ -18,7 +18,7 @@ class Compiler < ActiveRecord::Base
 		file_path = solution.file_path
 		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
 		File.open(file_path, 'w') { |file| file.write(code) }
-		return %x[ #{'javac -g ' + file_path + ' 2>&1'} ]
+		return %x[ #{'javac -g -Xlint ' + file_path + ' 2>&1'} ]
 	end
 
 	# [Compiler: Compile - Story 3.4]
@@ -32,10 +32,12 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
 		feedback = compile(solution, solution.code)
-		if feedback == ""
+		new_feedback = change_error_headers(solution, feedback)
+		if new_feedback == ""
 			return {success: true, errors: nil}
-		else
-			new_feedback = change_error_headers(solution, feedback)
+		elsif new_feedback =~ /\A#{solution.class_name}.java:\d:\swarning:/
+			return {success: true, errors: new_feedback}
+		else	
 			return {success: false, errors: new_feedback}
 		end
 	end
