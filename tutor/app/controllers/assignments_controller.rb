@@ -45,6 +45,13 @@ class AssignmentsController < ApplicationController
 			render :action=>'edit', :id => @assignment.id
 		end
 	end
+		def destroy
+		@assignment = Assignment.find_by_id(params[:id])
+		 @assignment.destroy
+			flash[:notice] = "Assignment is successfully Deleted"
+			redirect_to :controller=>'courses' ,:action=> 'show',:id=>@assignment.course_id
+
+	end
 	private
 	def assignment_params
 		params.require(:assignment).permit(:title, :description, :due_date)
