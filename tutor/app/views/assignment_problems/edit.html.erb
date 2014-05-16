@@ -1,1 +1,35 @@
-<h1>Edit assignment problem Page<h2>
+<% provide(:title, "Edit Assignment") %>
+<%= form_for(@assignment) do |f| %>
+	<% if @assignment.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this course from being saved:</h2>
+			<ul>
+				<% @answer.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+
+	<% end %>
+	<h2> Edit Problem </h2>
+	
+
+				<h2> Create Problem </h2>
+				<p>
+					<%= f.label :title %><br>
+					<%= f.text_field :title, placeholder:"Title" %>
+				</p>
+				<p>
+					<%= f.label :description %><br>
+					<%= f.text_area :description, :cols => "50",
+						:rows => "10", placeholder:"Description",
+						class: "form-control", style: "width:60%" %>
+				</p>
+				<p>
+					<%= f.label :Grade %><br>
+					<%= f.text_field :final_grade, placeholder:"Grade" %>
+				</p>
+					<ul class="navbar-brand pull-right">
+				<%= f.submit "Save changes", class: "btn btn-info" %>
+			
+<% end %>
