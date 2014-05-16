@@ -8,20 +8,22 @@
 		<% end %>
 	</ul>
 	<% if flash[:notice] %>
-				<div class = "alert alert-success"> Problem  is now added </div>
+				<div class = "alert alert-success"> Problems  are now added </div>
 			<% end %>
 	<% if flash[:duplicated] %>
 	<div id="error_explanation">
 	<h2>Error prohibited this problem from being saved:
-					</h2>
-		<li>problem already exists in the assignment</li>
+	</h2>
+	<li>
+	<h5><%= @title %></h5>
+		: a problem with the same title already exists in the assignment.</li>
 	</div>
 	<% end %>
 	<% if flash[:unchecked] %>
 	<div id="error_explanation">
 	<h2>Error:
 					</h2>
-	<li>Please check the problems to be saved or click on finish
+	<li>Please check on the problems to be saved or click on finish
 					</li>
 	</div>
 	<% end %>
@@ -52,7 +54,9 @@
 									data-toggle="collapse" data-parent="#accordion1"
 									style="float:left;text-decoration: none;">
 									</a>
+									<div id = "check">
 										<%= check_box_tag "checkbox[]", problem.id %>
+										</div>
 										<%= problem.title %>
 								</div>
 								<div id="<%= problem.id.to_s %>" 
@@ -99,7 +103,9 @@
 							data-toggle="collapse" data-parent="#accordion2"
 							style="float:left;text-decoration: none;">
 							</a>
+							<div id = "check">
 							<%= check_box_tag "checkbox[]", cproblem.id %>
+							</div>
 										<%= cproblem.title %>
 						
 					

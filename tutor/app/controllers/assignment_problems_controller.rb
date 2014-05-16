@@ -11,6 +11,7 @@ class AssignmentProblemsController < ApplicationController
 			@new_problem = AssignmentProblem.new(problem_params)
 			@new_problem.final_grade = 0
 			session[:problem_id] = @new_problem.id
+			a = AssignmentProblem.find_by(title: @new_problem.title ,assignment_id: @new_problem.assignment_id)
 			if lecturer_signed_in?
 				@new_problem.owner_id = current_lecturer.id
 				@new_problem.owner_type = "lecturer"
@@ -18,6 +19,7 @@ class AssignmentProblemsController < ApplicationController
 				@new_problem.owner_id = current_teaching_assistant.id
 				@new_problem.owner_type = "teaching assistant"
 			end
+		if a.nil?
 			if @new_problem.save
 				@assignment.problems << @new_problem
 				flash[:notice] = ""
@@ -26,6 +28,11 @@ class AssignmentProblemsController < ApplicationController
 			else
 				render :action=>'new', :id => session[:assignment_id]
 			end	
+		else
+			flash[:duplicatedcreate] = "problem already exists"
+			redirect_to :back
+		end
+		
 		
 		
 	end
@@ -45,13 +52,10 @@ class AssignmentProblemsController < ApplicationController
 				@new_problem.assignment_id = @assignment.id
 				@new_problem.final_grade = 0
 				@new_problem.test_cases = @problem_select.test_cases
-				found = Array.new
-					a = AssignmentProblem.find_by(title: @new_problem.title)
-					puts "===================================="
-					puts a.title
-					puts "===================================="
-
-					found.push(a)
+					@a = AssignmentProblem.find_by(title: @new_problem.title ,assignment_id: @new_problem.assignment_id)
+					puts "======dddd===="
+					puts @title
+					puts "=====5555555===="
 				if lecturer_signed_in?
 					@new_problem.owner_id = current_lecturer.id
 					@new_problem.owner_type = "lecturer"
@@ -59,18 +63,22 @@ class AssignmentProblemsController < ApplicationController
 					@new_problem.owner_id = current_teaching_assistant.id
 					@new_problem.owner_type = "teaching assistant"
 				end
-			if found.empty?
+			if @a.nil?
 				if @new_problem.save
 
 					@assignment.problems << @new_problem
 					flash[:notice] = "problems are now added"
-					render :action => 'index' ,:id => @assignment.id
+					redirect_to :back
+					return
 					
 
 				end
 			else
+									@title = @a.title
+					session[:title] = @title
 						flash[:duplicated] = "problem already exists"
 					redirect_to :back
+					return
 			end
 
 				
@@ -78,12 +86,11 @@ class AssignmentProblemsController < ApplicationController
 		end
 		#redirect_to :controller => 'assignment_problems', :action => 'index',
 		#:id => @assignment.id
-		rescue
-			flash[:unchecked] = "no problems"
-			redirect_to :back
+		
 	end
 
 	def index
+		@title = session[:title]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
 		@course_id = @assignment.course_id
 		@course = Course.find_by_id(@course_id)
