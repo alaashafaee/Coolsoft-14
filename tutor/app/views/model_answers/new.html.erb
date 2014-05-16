@@ -1,19 +1,27 @@
 <div id = "crumbs">
 	<ul>
-		<li class="sub"><a class = "preventclick">Problem</a></li>
-		<li class = "sub1"><a class = "preventclick" style="padding:5px 15% 0 0px;">Test Cases</a></li>
-		<li class="sub2"><a class = "visit" style="padding: 5px 3.75% 0 0px;">Model Answers</a> </li>
-		<li class="sub3"><a class="preventclick" >Tips</a></li>
-		<li class="sub4"><a class="preventclick" >Hints</a></li>    
+		<li class = "sub"><a class = "preventclick">Problem</a></li>
+		<li class = "sub1">
+			<a class = "preventclick" style = "padding:5px 15% 0 0px;">
+				Test Cases
+			</a>
+		</li>
+		<li class = "sub2">
+			<a class = "visit" style = "padding: 5px 3.75% 0 0px;">
+				Model Answers
+			</a>
+		</li>
+		<li class = "sub3"><a class = "preventclick" >Tips</a></li>
+		<li class = "sub4"><a class = "preventclick" >Hints</a></li>
 	</ul>
 </div><br><br>
 <%= form_for :model_answer, url: model_answers_path do |f| %>
-<%= f.hidden_field :flag, :value => params[:flag] %>
-
+	<%= f.hidden_field :flag, :value => params[:flag] %>
 	<% if @new_answer.errors.any? %>
 		<div id = "error_explanation">
 			<h2><%= pluralize(@new_answer.errors.count, "error") %>
-			 prohibited this model answer from being saved: </h2>
+			 	prohibited this model answer from being saved:
+			 </h2>
 			<ul>
 				<% @new_answer.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
@@ -21,34 +29,37 @@
 			</ul>
 		</div>
 	<% else %> 
-	<%= f.hidden_field :problem_id, :value => @problem.id %>
+		<%= f.hidden_field :problem_id, :value => @problem.id %>
 	<% end %>
-	<h2>Please insert model answer for problem <h3 style="color:red;"><%= Problem.find_by_id(session[:problem_id]).title %></h3></h2>
-<p>
-	<br><%= f.label :Title %>
-		<%= f.text_field :title, class: "form-control", style: "width:30%",:cols => "2", :rows => "1" %></br>
-		<br><%= f.label :Answer %> </br>
-	<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10", :rows => "8" %>
-</p><br>
-<%= f.submit "Save Model Answer", type: "submit" ,value: "Save Model Answer", onclick: "canleave()", class: "btn btn-large btn-info", :flag => params[:flag]  %>
+	<h2>Please insert model answer for problem <h3 style = "color:red;">
+		<%= Problem.find_by_id(session[:problem_id]).title %></h3>
+	</h2>
+	<p><br>
+		<%= f.label :Title %>
+		<%= f.text_field :title, class: "form-control", style: "width:30%",
+		:cols => "2", :rows => "1" %><br>
+		<%= f.label :Answer %>
+		<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10"
+		, :rows => "8" %>
+	</p><br>
+	<%= f.submit "Save Model Answer", type: "submit", value: "Save Model Answer",
+	onclick: "canleave()", class: "btn btn-large btn-info", :flag => params[:flag]  %>
 <% end %>
 <script>
 var workIsDone = false;
-
 window.onbeforeunload = confirmBrowseAway;
-
 function confirmBrowseAway()
 {
-  if (!workIsDone) {
-    return "Your problem will be saved as Incomplete! " + 
-    "\n You can create new model answer any time \n and it will be saved as complete then. ";
-  }
+	if (!workIsDone) {
+		return "Your problem will be saved as Incomplete! " +
+		"\n You can create new model answer any time " +
+		" \n and it will be saved as complete then. ";
+	}
 }
-
 function canleave()
 {
-  // The user has finished their work, so we don't
-  // need a warning anymore!
-  workIsDone = true;
+	// The user has finished their work, so we don't
+	// need a warning anymore!
+	workIsDone = true;
 }
 </script>
