@@ -57,7 +57,7 @@ class Notification < ActiveRecord::Base
 		students.each do |student|
 			new_notification = Notification.new
 			new_notification.message = "Contest #{contest.title} has been created for the 
-				course #{course.name}"	
+				course #{course.name}"
 			new_notification.save
 			student.notifications << new_notification
 		end
@@ -92,13 +92,13 @@ class Notification < ActiveRecord::Base
 		students = course.students
 		students.each do |student|
 			new_notification = Notification.new
-			if discussion_board.activated 
+			if discussion_board.activated
 				new_notification.message = "The discussion board for the course 
 				#{course.name} has been activated"
 			else
 				new_notification.message = "The discussion board for the course 
 				#{course.name} has been deactivated"
-			end		
+			end
 			new_notification.save
 			student.notifications << new_notification
 		end
