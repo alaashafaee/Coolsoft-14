@@ -30,9 +30,11 @@
 		</div><br>
 	<% end %>
 <% end %>
+<% hash = (0..4).collect {|n| [n, (Track.get_difficulty_name n)]} %>
+<% hash = hash.to_h %>
 <% openable = true %>
-<div class="panel-group list-group track-accordion" id="accordion">
-	<% @tracks.each do |t| %>
+<div class="panel-group list-group" id="accordion">
+	<% @tracks.each do |track| %>
 		<% if openable %>
 			<% open = "in" %>
 			<% openarrow = "glyphicon-chevron-down" %>
@@ -42,23 +44,26 @@
 			<% openarrow = "glyphicon-chevron-right" %>
 		<% end %>
 		<div class = "panel panel-default" style = "width:50%">
-			<div class="panel-title list-group-item list-group-item-info"
-				data-toggle="collapse" data-parent="#accordion"
-				href="#<%= t.id.to_s %>">
-					<b onclick="window.open('/tracks/<%= t.id.to_s %>', '_self')">
-						<%= link_to t.title , t %></b>
-					<span class="badge"><%= t.problems.count %></span>
+			<div class="panel-title list-group-item list-group-item-info">
+				<a class="icon glyphicon <%= openarrow %>" href="#<%= track.id.to_s %>"
+					data-toggle="collapse" data-parent="#accordion"
+					style="margin-right:1%;text-decoration: none;">
+				</a>
+				<%= link_to track.title , track , style: 'color:#003366;'%>
+				<% hash.delete track.difficulty %>
+				<span class="badge"><%= track.problems.count %></span>
 			</div>
-			<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
+			<div id="<%= track.id.to_s %>" class="panel-collapse collapse <%= open %>">
 				<ul class="list-group">
-					<% t.problems.each do |p|%>
+					<% track.problems.each do |problem|%>
 						<% color = "" %>
-						<% if student_signed_in? && p.is_solved_by_student(current_student.id) %>
+						<% if student_signed_in? && 
+							problem.is_solved_by_student(current_student.id) %>
 							<% color = "label label-success" %>
 						<% end %>
 						<li class="list-group-item" data-toggle="tooltip"
-							data-placement="top" title="<%= p.description%>">
-								<%= link_to p.title , p , class: color %>
+							data-placement="top" title="<%= problem.description%>">
+								<%= link_to problem.title , problem , class: color %>
 						</li>
 					<% end %>
 				</ul>
@@ -70,29 +75,28 @@
 <!-- thats a form for creating a track which is intially hidden
 		until the new button clicked -->
 <% if @can_edit %>
-
-	<span class="btn btn-info" onclick="newTrack()" id="new_track">New</span>
 	<!-- On click dialog appears with the sortable list of tracks inside it -->
 	<span id="opener" , class="btn btn-info">Edit Track Rating</span>
-
-	<% if !flash[:title] && !flash[:difficulty] %>
-		<% hide = 'hidden=true' %>
-	<% end %>
-	<div id="create_track" <%= hide %> >
-		<%= form_for :Track , url: {controller: "tracks" , action: "create"}, 
-		html: {class: "form-inline form-horizontal nifty_form" , role: "form"} do |f| %>
-			<div class="form-group">
+	<% if hash.count > 0 %>
+		<span class="btn btn-info" onclick="newTrack()" id="new_track">New</span>
+		<% if !flash[:title] && !flash[:difficulty] %>
+			<% hide = 'hidden=true' %>
+		<% end %>
+		<br><br>
+		<div id="create_track" <%= hide %> >
+			<%= form_for :Track , url: {controller: "tracks", action: "create"}, 
+			html: {class: "form-inline form-horizontal nifty_form", role: "form"} do |f| %>
 				<%= f.text_field :title , :value => flash[:title] , 
-					:class => "form-control", :style => "width:150px", :placeholder => "Title"%></br></br>
-				<%= f.number_field :difficulty , :value => flash[:difficulty] , 
-					:class => "form-control" , :placeholder => "Difficulty" , 
-					:min => 1, :max => 5, :style => "width:150px" %>
+					:class => "form-control", :style => "width:150px",
+						:placeholder => "Title"%></br></br>
+				<%= f.select :difficulty,
+						options_for_select(hash.collect{|key,value| [value, key]}) %>
 				</br></br>
 				<%= f.hidden_field :topic_id , :value => params[:id] %>
 				<%= f.submit "Create" , :class => "btn btn-info"%>
-			</div><!-- /form-group -->
-		<% end %><!-- /form -->
-	</div><!-- /create_track -->
+			<% end %><!-- /form -->
+		</div><!-- /create_track -->
+	<% end %><!-- /if condition -->
 <% end %><!-- /can_edit -->
 
 <!-- Generates list of tracks in the topic -->
