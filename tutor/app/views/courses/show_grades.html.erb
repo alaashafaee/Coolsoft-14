@@ -1,6 +1,6 @@
 <h1>List of Assignments</h2>
 
-<table class = "table table-striped", style = "width:80%">
+<table class = "table table-striped", style = "width:60%">
 	<tr>
 		<th>Assignemnt</th>
 		<th>Assignment grade</th>
@@ -9,24 +9,28 @@
 		<% if assi.publish %>
 			<% @problems = assi.problems %>
 			<% @problems.each do |p| %>
-				<% @total_grade = @total_grade + p.final_grade %>
-			<% end %>
-			<% @problems.each do |p| %>
 				<% @records.each do |r| %>
 					<% if r.problem_id == p.id %>
 						<% @student_grade = @student_grade + r.grade %>
+						<%= @flag =  true %>
 					<% end %>
 				<% end %>
+				<% @total_grade = p.final_grade %>
 			<% end %>
-			<tr>
-				<td><%= assi.title%>
-				</td>
-				<td><%= @student_grade %>/<%= @total_grade %></td>
-				<td>
-				</td>
-			</tr>
+			<% if @flag %>
+				<tr>
+					<td><%= assi.title%></td>
+					<td><%= @student_grade %>/<%= @total_grade %></td>
+				</tr>
+			<% else%>
+				<tr>
+					<td><%= assi.title%></td>
+					<td><span class="badge">Not corrected yet</span></td>
+				</tr>
+			<% end %>
 			<% @total_grade = 0 %>
 			<% @student_grade = 0 %>
+			<% @flag = false%>
 		<% end %>
 	<% end %>
 </table>
