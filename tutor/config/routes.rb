@@ -1,8 +1,7 @@
 Tutor::Application.routes.draw do
 	
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
->>>>>>> 6b65486e3430dd1317163b7ae7b8c00ca3175758
+ 	ActiveAdmin.routes(self)
+    devise_for :admin_users, ActiveAdmin::Devise.config
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers

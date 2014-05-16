@@ -6,7 +6,17 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = "Tutor"
+  config.namespace :admin do |admin|
+      admin.build_menu do |menu|
+        menu.add label: 'Users', priority: 2
+        menu.add label: 'Problems', priority: 3
+        menu.add label: 'Subject', priority: 4
+        menu.add label: 'DBs/Posts', priority: 5
+        menu.add label: 'Contest', priority: 6
+        menu.add label: 'Assignment', priority: 7
 
+      end
+  end
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
