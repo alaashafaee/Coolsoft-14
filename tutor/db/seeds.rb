@@ -10,8 +10,6 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
-	AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-	#Admin.create(name: "Admin")
 
 
 puts("# ----------------------- Lecturers ----------------------- ")
