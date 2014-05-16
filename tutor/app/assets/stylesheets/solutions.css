@@ -135,3 +135,17 @@ textarea  {
 	display: none;
 	width: 60%;
 }
+
+.x_button {
+	width: 18%;
+	height: 15%;
+	margin_top: 10px;
+	cursor: default;
+}
+
+.tick_button {
+	width: 20%;
+	height: 20%;
+	margin_top: 10px;
+	cursor: default;
+}
