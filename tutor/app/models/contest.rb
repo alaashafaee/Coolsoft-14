@@ -23,7 +23,7 @@ class Contest < ActiveRecord::Base
 		contest_standing_records = ContestProgress.where(contest_id: self.id)
 		contest_standings_unique = Hash.new
 		contest_standing_records.each do |record|
-			solved_problems = ContestProgress.where(contest_id: self.id, student_id: record.student.id,
+			wrong_answers = ContestProgress.where(contest_id: self.id, student_id: record.student.id,
 			 status: false).count
 			time_spent = 0
 			ContestProgress.where(contest_id: self.id, student_id: record.student.id).each do |progress|
@@ -31,9 +31,9 @@ class Contest < ActiveRecord::Base
 				start_time = Contest.find(self.id).start_time
 				time_spent = time_spent + ((updated_at - start_time)/60).to_i
 			end
-			contest_standings_unique[record.student_id] = {solved: solved_problems, record: record, time_spent: time_spent} 
+			contest_standings_unique[record.student_id] = {wrong_answers: wrong_answers, record: record, time_spent: time_spent} 
  		end
- 		return Hash[contest_standings_unique.sort_by {|key, value| [value[:solved], value[:time_spent]]}.to_a]
+ 		return Hash[contest_standings_unique.sort_by {|key, value| [value[:wrong_answers], value[:time_spent]]}.to_a]
 	end
 
 
