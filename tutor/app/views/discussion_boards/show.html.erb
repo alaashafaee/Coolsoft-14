@@ -42,7 +42,7 @@
 							<% end %>
 							<% if post.most_recent_reply.owner_type == "TeachingAssistant" %>
 								<%= link_to post.most_recent_reply.owner.name,
-									"/teachingassistants/#{post.most_recent_reply.owner_id}" %>	
+									"/teachingassistants/#{post.most_recent_reply.owner_id}" %>
 							<% end %>
 						<% else %>
 							No replies

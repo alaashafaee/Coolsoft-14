@@ -37,7 +37,7 @@ class RepliesController < ApplicationController
 		else
 			current_student.replies << reply
 			new_notification.message = "#{current_student} has 
-			replied to your post '#{post.title}' "			
+			replied to your post '#{post.title}' "	
 		end
 		if  reply.owner_id != post.owner_id
 			new_notification.save
