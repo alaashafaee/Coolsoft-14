@@ -115,3 +115,23 @@ textarea  {
 .hidden {
 	visibility: false;
 }
+
+.edit_button {
+	width: 20%;
+	height: 1%;
+	margin_top: 10px;
+	cursor: pointer;
+}
+
+.add_note_button {
+	opacity: 0;
+	width: 25%;
+	height: 15%;
+	margin_top: 10px;
+	cursor: pointer;
+}
+
+.form_div {
+	display: none;
+	width: 60%;
+}

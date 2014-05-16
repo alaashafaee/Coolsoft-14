@@ -17,34 +17,37 @@
 				<td><%= @counter %></td>
 				<td>
 					<pre title ="<%if !@note.blank?%><%= @note.content %>
-						<%else %><%= "No note added to this line" %>
+						<% else %><%= "No note added to this line" %>
 						<% end %>" style = "font-weight:bold;"><%= line %></pre>
 				</td>
 				<td >
 					<p align= "center">
 						<% if @note %>
 							<%= image_tag "edit_button.png", id: @counter,
-								style: "width:20%;height:1%;margin_top:10px;cursor:pointer;",
+								class: "edit_button",
 								onclick: "pop(this.id);" %>
 						<% else %>
 							<%= image_tag "note.png", id: @counter,
-								style: "opacity:0;width:25%;height:15%;margin_top:10px;cursor:pointer;",
-								onMouseOver: "show(this.id);", onMouseOut: "hide(this.id);",
+								class: "add_note_button",
+								onMouseOver: "show(this.id);",
+								onMouseOut: "hide(this.id);",
 								onclick: "pop(this.id);" %>
 						<% end %>
 					</p>
 				</td>
 				<div id = "<%= @counter %>form"
-					style = "visibility:visible;display:none;width:60%;">
+					class = "form_div">
 					<% if @note %>
-						<%= form_for :Note, url: note_path(@note), method: :patch do |note| %>
+						<%= form_for :Note, url: note_path(@note),
+							method: :patch do |note| %>
 							<p>
-								<%= note.label :content %><br> 
 								<%= note.text_field :content, class: "form-control",
-								style: "width:60%", placeholder: @note.content %>
+									style: "width:60%", placeholder: @note.content %>
 							</p>
-								<%= note.hidden_field :solution_id, value: @solution.id %>
-								<%= note.hidden_field :line, value: @counter %>
+								<%= note.hidden_field :solution_id,
+									value: @solution.id %>
+								<%= note.hidden_field :line,
+									value: @counter %>
 							<p>
 								<%= note.submit "Update Note", class: "btn btn-info" %>
 							</p>
@@ -56,12 +59,15 @@
 						<%= form_for :Note, url: {controller: "notes",
 							action: "create"} do |note| %>
 							<p>
-								<%= note.text_field :content, class: "form-control",
-								style: "width:60%",
-								placeholder: "Write your note here!" %>
+								<%= note.text_field :content,
+									class: "form-control",
+									style: "width:60%",
+									placeholder: "Write your note here!" %>
 							</p>
-								<%= note.hidden_field :solution_id, value: @solution.id %>
-								<%= note.hidden_field :line, value: @counter %>
+								<%= note.hidden_field :solution_id,
+									value: @solution.id %>
+								<%= note.hidden_field :line,
+									value: @counter %>
 							<p>
 								<%= note.submit "Save Note", class: "btn btn-info" %>
 							</p>
@@ -95,5 +101,6 @@
 		});
 	}
 </script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js">
+</script>
 <script src="jquery.bpopup-x.x.x.min.js"></script>
