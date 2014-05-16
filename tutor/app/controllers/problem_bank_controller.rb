@@ -59,7 +59,7 @@ class ProblemBankController < ApplicationController
 			end
 		elsif lecturer_signed_in?
 			@flag = true
-			@track.problems.each do |pr| 
+			@track.problems.each do |pr|
 				if pr.title == @new_problem.title
 					flash[:notice]= @new_problem.title,"You already have this problem"
 					@flag = false
