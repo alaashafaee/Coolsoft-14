@@ -64,6 +64,7 @@ a{
 }
 a:hover{
 	text-decoration: none !important;
+	
 }
 .well{
 	background-color: transparent !important;

@@ -161,5 +161,8 @@
 }
 .right_side .list-group .panel-group{
 	width: 195px;
+}
 
+.sign_in_button {
+	margin-right: 20px;
 }
