@@ -29,6 +29,7 @@ class Compiler < ActiveRecord::Base
 	# Returns:
 	#	A list. The first element is a boolean indicating the result of the
 	#		compilation process. The second element contains the compilation errors if any.
+	#		The third element contains the compilation warnings if any.
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
 		feedback = compile(solution, solution.code)
