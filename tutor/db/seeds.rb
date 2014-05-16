@@ -239,6 +239,9 @@ puts("# ----------------------- Contests ----------------------- ")
 		incomplete:false, start_time:Time.now+3.days, end_time:Time.now+10.days)
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
 		incomplete:false, start_time:Time.now+5.days, end_time:Time.now+12.days)
+	Contest.create(title:"DFS", description:"If you can solve this you will get 28 level up",
+		incomplete:false, start_time:Time.now+6.days, end_time:Time.now+19.days)
+
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true)
@@ -376,6 +379,8 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 	## Courses
 		TeachingAssistant.first.courses << Course.first
 		TeachingAssistant.find_by_id(2).courses << Course.find_by_id(2)
+	## Contests
+		TeachingAssistant.first.contests << Contest.find(4)
 
 puts("# ----------------------- Posts ----------------------- ")
 	## Replies
@@ -474,6 +479,7 @@ puts("# ----------------------- Courses ----------------------- ")
 		Course.first.contests << Contest.first
 		Course.first.contests << Contest.find(2)
 		Course.find(2).contests << Contest.find(3)
+		Course.first.contests << Contest.find(4)
 
 
 puts("# ----------------------- DiscussionBoard ----------------------- ")
