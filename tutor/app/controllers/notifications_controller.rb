@@ -18,11 +18,18 @@ class NotificationsController < ApplicationController
 			@user = current_teaching_assistant
 		else @user = current_student
 		end
-		@new_notifications = @user.notifications.where("seen = 'f'")
-		@old_notifications = @user.notifications.where("seen = 't'")	
+		@new_notifications = []
+		@old_notifications = []
+		@user.notifications.where("seen = 't'").each do |notification|
+			@old_notifications << notification
+		end	
+		@user.notifications.where("seen = 'f'").each do |notification|
+			@new_notifications << notification
+		end		
 		@user.notifications.where("seen = 'f'").each do |notification|
 			notification.seen = 't'
 			notification.save
-		end
-	end	
+		end	
+	end
+	
 end

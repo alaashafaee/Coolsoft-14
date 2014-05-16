@@ -256,7 +256,7 @@ puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 80)
 
 puts("# ----------------------- Notifications ----------------------- ")
-	Notification.create(message: "Dr Wael Acknowledges your work", seen: false)
+	Notification.create(message: "<a href='courses/1'>Dr wael Acknowledged your work in this course</a>", seen: false)
 	Notification.create(message: "google is a website", seen: false)
 	Notification.create(message: "akra, Has solved one brute-force problem", seen: true)
 	Notification.create(message: " message", seen: true)	
