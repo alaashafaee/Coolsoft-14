@@ -45,7 +45,8 @@
 							:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
 					</div>
 					<div>
-						<%= link_to "View Resources", course_resources_path(@course), class: "btn btn-primary" %>
+						<%= link_to "View Resources", course_resources_path(@course),
+							class: "btn btn-primary" %>
 					</div>
 				</div>
 				<%= flash[:success_deletion] %>

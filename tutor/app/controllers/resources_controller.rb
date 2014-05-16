@@ -29,7 +29,8 @@ class ResourcesController < ApplicationController
 						else
 							resource = inspect(link_body)
 							unless resource.nil?
-								@resource = Resource.find_by(link: resource[:link], course_id: @course.id)
+								@resource = Resource.find_by(link: resource[:link],
+									course_id: @course.id)
 								if @resource.nil?
 									@resource = Resource.new(resource)
 									@resource.remote_img_url = resource[:img]
