@@ -15,19 +15,8 @@ class TopicsController < ApplicationController
 		if @topic
 			@course = @topic.course
 			@tracks = @topic.tracks
-			problems = []
-			@tracks.each do |t|
-				problems = problems + t.problems
-			end
-			puts problems
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
-			if student_signed_in?
-				@problems_status = current_student.getProblemsStatus
-				@problems_status[:success] = @problems_status[:success] & problems
-				@problems_status[:failure] = @problems_status[:failure] & problems
-				@problems_status[:other] = @problems_status[:other] & problems
-			end
 		else
 			render ('public/404')
 		end
@@ -46,6 +35,22 @@ class TopicsController < ApplicationController
 			redirect_to :root
 		end
 		@new_topic = Topic.new
+	end
+
+	# [Delete Topic - Story 1.34]
+	# This action takes the topic id, remove it from the database
+	#	and then redirects the user to the show courses page accompanied
+	#	with a "Topic deleted" message.
+	# Parameters:
+	#	params[:id]: The current topic's id
+	# Returns: none
+	# Author: Mohamed Saeed
+	def destroy
+		topic = Topic.find_by_id(params[:id])
+		topic.destroy
+		flash[:success_deletion] = "Topic deleted."
+		@course = topic.course
+		redirect_to :controller => 'courses', :action => 'show', :id => @course.id
 	end
 
 	# [Specify Topics - Story 1.2]

@@ -8,13 +8,15 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		solution.status = 0
-		solution.save
-		test_cases = solution.problem.test_cases
-		result = Solution.validate(solution, test_cases)
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		time = param[:time]
+		problem_type = param[:problem_type]
+		class_name = param[:class_name]
+		result = SolutionsLayer.validate("java", code, student, problem,
+			problem_type, class_name, time)
 		render json: result
 	end
 
@@ -31,45 +33,31 @@ class SolutionsController < ApplicationController
 		end
 		id = current_student.id
 		pid = params[:problem_id]
-		input = params[:code]
+		code = params[:code]
+		problem_type = params[:problem_type]
+		class_name = params[:class_name]
 		cases = if params[:input] then params[:input] else "" end
-		result = Executer.create_solution(id, pid, input, cases)
+		result = SolutionsLayer.execute("java", code, id, pid,
+			problem_type, class_name, cases)
 		render json: result
 	end
 
 	# [Compiler: Compile - Story 3.4]
 	# Creates a soution for the current problem in the database and compiles it.
-	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		if solution.save
-			compiler_feedback = Compiler.compiler_feedback(solution)
-			if compiler_feedback[:success]
-				solution.status = 3
-			else
-				solution.status = 2
-			end
-			solution.save
-			render json: compiler_feedback
-		end
-	end
-
-	def submit_no_ajax
-		file = @solution.file_name
-		response_message = Solution.validate(file, solution_params[:problem_id])
-		flash[:compiler_success_2] = response_message[:success]
-		flash[:msg_2] = response_message[:runtime_error]
-		flash[:exp_2] = response_message[:runtime_error_exp]
-		flash[:compiler_fail_2] = response_message[:logic_error]
-		@solution.status = response_message[:status]
-		@solution.save
-		redirect_to :back
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		problem_type = param[:problem_type]
+		class_name = param[:class_name]
+		compiler_feedback = SolutionsLayer.compile("java", code, student, 
+			problem, problem_type, class_name)
+		render json: compiler_feedback
 	end
 
 	private
@@ -82,7 +70,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time)
+		params.permit(:code, :problem_id, :time, :class_name, :problem_type)
 	end
 
 	# [Compiler: Test - Story 3.15]

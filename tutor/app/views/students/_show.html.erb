@@ -1,19 +1,6 @@
 <%= render 'layouts/profile' %> 
 		<li class = "active"><a href = "#tab1">Info</a></li>
-		<!--<li class="dropdown">
-    		<a class="dropdown-toggle"
-		       data-toggle="dropdown"
-		       href="#tab2">
-		        Performance
-		        <b class="caret"></b>
-		      </a>
-		    <ul class="dropdown-menu">-->
-		      <!-- links 
-		    	<li><a href="#">contest</a></li>
-		    	<li><a href="#">course</a></li>
-		    	<li><a href="#">assig</a></li>
-		    </ul>
-		</li>-->
+		
 		<li><a href = "#tab2">Performance</a></li>
 
 		<li><a href = "#tab3">Statistics</a></li>
@@ -29,88 +16,49 @@
 		</div>
 		<div id = "tab2" class = "tab">
 			<div class="tabbable tabs-left">
-		  		<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab11" data-toggle="tab">Course</a></li>
-		    		<li><a href="#tab22" data-toggle="tab">Contest</a></li>
-		    		<li><a href="#tab33" data-toggle="tab">Assig</a></li>
-				</ul>
-		    <div class="tab-content">
-				<div class="tab-pane active" id="tab11">
-					<div>
+        		<ul class="nav nav-tabs">
+          			<li class="active"><a href="#a" data-toggle="tab">Course</a></li>
+          			<li><a href="#b" data-toggle="tab">Contest</a></li>
+          			<li><a href="#c" data-toggle="tab">Assig</a></li>
+       		 	</ul>
+        		<div class="tab-content">
+        			<div class="tab-pane active" id="a">
+        				<div>
 						<h2 align="center">Continue from where you left off</h2><br>
-						<div class = "reply">
-							
-						<p>
-							<%= @reply.content %>
-						<br>
-						</p>
-						<p><font size="1"><%= distance_of_time_in_words_to_now reply.created_at %> ago </p>
+							<% next_problems_to_solve = current_student.get_next_problems_to_solve %>
+							<% next_problems_to_solve.each do |key , value| %> 
+								<%= link_to value.title, 
+											controller: "/problems", 
+											action: "show", 
+											id: value.id %>
+											<%= key %>
+							<% end %>
+						</div><br>
+						<h2 align="center">Your Progress</h2>
+						<div style="margin-left: 100px">
+						
+						<% res = current_student.getProblemsStatus %>
+						<% res[:success].each do |problem| %>
+							<%= link_to problem.title, 
+											controller: "/problems", 
+											action: "show", 
+											id: problem.id %>
+											<br>
+							<div class="line-separator"></div>
+							<% end %>
 						</div>
-					<div>
-		
-			</div><br>
-					<h2 align="center">Your Progress</h2>
-					<table class = "table table-striped">
-					<tr>
-						<th>Topic</th>
-						<th>Track</th>
-						<th>Problem</th>
-					</tr>
-					</table>
-					<ul class="pager">
-						<li><a href="#">Previous</a></li>
-					    <li><a href="#">Next</a></li>
-					</ul>
-				</div>
-				<div class="tab-pane" id="tab22">
-					<h2 align="center">Your Progress</h2>
-						<table class = "table table-striped">
-						<tr>
-							<th>Topic</th>
-							<th>Track</th>
-							<th>Problem</th>
-						</tr>
-						</table>
-						<ul class="pager">
-							<li><a href="#">Previous</a></li>
-						    <li><a href="#">Next</a></li>
-						</ul>
-				</div>
-				<div class="tab-pane" id="tab33">
-					<h2 align="center">Your Progress</h2>
-						<table class = "table table-striped">
-						<tr>
-							<th>Topic</th>
-							<th>Track</th>
-							<th>Problem</th>
-						</tr>
-						</table>
-						<ul class="pager">
-							<li><a href="#">Previous</a></li>
-						    <li><a href="#">Next</a></li>
-						</ul>
-				</div>
-		    </div>
-		    </div>
+         			</div>
+			        <div class="tab-pane" id="b">
+			        <h2 align="center">Your Progress</h2>
+			        	<p>under construction</p>
+			        </div>
+			        <div class="tab-pane" id="c">
+			        <h2 align="center">Your Progress</h2>
+			        	<p>under construction</p>
+			        </div>
+        		</div>
+      		</div>
 		</div>
-			<!--Performance under construction-->
-			<!--<div>
-				<h2 align="center">Continue from where you left off</h2><br>
-				
-			</div><br>
-			<h2 align="center">Your Progress</h2>
-			<table class = "table table-striped">
-			<tr>
-				<th>Topic</th>
-				<th>Track</th>
-				<th>Problem</th>
-			</tr>
-			</table>
-			<ul class="pager">
-				<li><a href="#">Previous</a></li>
-			    <li><a href="#">Next</a></li>
-			</ul>
-		</div>-->
 		<div id = "tab3" class = "tab">
 			Statistics under construction
 		</div>
