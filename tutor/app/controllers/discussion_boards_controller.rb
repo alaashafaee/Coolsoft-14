@@ -10,6 +10,7 @@ class DiscussionBoardsController < ApplicationController
 		@discussionBoard = DiscussionBoard.find_by_id(params[:id])
 		@discussionBoard.activated = !@discussionBoard.activated 
 		@discussionBoard.save
+		@discussionBoard.notify_students
 		redirect_to :back
 	end
 
