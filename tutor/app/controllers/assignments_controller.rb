@@ -82,12 +82,18 @@ class AssignmentsController < ApplicationController
 		@problems = @assignment.problems
 
 		@solutions = []
+		@lines = []
+		@notes = []
+		@counter = 0 
 
 		@problems.each do |p|
 			@solutions = @solutions + Solution.where("student_id = ? AND problem_id = ?" ,
 				student_id, p.id )
 		end
-		puts("{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{")
-		puts(@solutions.size)
+
+		@solutions.each do |sol|
+			@notes = @notes + Note.where("solution_id = ?" , sol.id) 
+		end
 	end
+
 end

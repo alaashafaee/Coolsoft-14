@@ -1,0 +1,20 @@
+<h1>Bismellah</h1>
+<% @solutions.each do |s| %>
+	<table>
+		<% @lines = s.code.split("\n") %>
+		<% @lines.each do |line| %>
+			<tr>
+				<% @counter = @counter +1 %>
+				<td> <%= @counter %></td>
+				<td> <%= line %></td>
+				<% @notes.each do |note| %>
+					<% if note.solution_id == s.id && note.line == @counter %>
+						<td> <%= note.content %></td>
+					<% end %>
+				<% end %>
+			<tr>
+		<% end %>
+		<% @counter = 0 %>	
+	</table>
+	<br></br>
+<% end %>
