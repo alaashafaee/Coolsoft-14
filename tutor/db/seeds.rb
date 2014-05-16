@@ -237,7 +237,6 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",incomplete: true,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					 {\n\t\t\n\t}\n}")
-					incomplete: true)
 		Problem.create(title: "Count Change", description: "Write a program CountChange 
 			to count change. Given the number of quarter, dimes, nickles, and pennies the 
 			program should output the total as a single value in dollars and pennies.
