@@ -5,6 +5,9 @@
 </div>
 <% openable = true %>
 <div class="panel-group list-group" id="accordion">
+	<% if @problems.size == 0 %>
+		There are no problems to add.
+	<% end %>
 	<% @problems.each do |problem| %>
 		<% color = "label label-success" %>
 		<% if openable %>
