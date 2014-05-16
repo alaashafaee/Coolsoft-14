@@ -1,11 +1,23 @@
 class AssignmentsController < ApplicationController
 
+	# [Create Assignment - Story 4.27]
+	# To create a new assignment and save course id.
+	# Parameters:
+	#	params[:course_id]: id of the course.
+	# Returns: none 
+	# Author: Nadine Adel
 	def new
 		session[:course_id] = params[:course_id]
 		@course = Course.find_by_id(session[:course_id])
 		@new_assignment = Assignment.new
 	end
 
+	# [Create Assignment - Story 4.27]
+	# create a new assignment.
+	# Parameters:
+	#	params[]: the values needed for the assignment to be saved.
+	# Returns: none 
+	# Author: Nadine Adel
 	def create 
 		@course = Course.find_by_id(session[:course_id])
 		@new_assignment = Assignment.new
@@ -13,8 +25,8 @@ class AssignmentsController < ApplicationController
 		@new_assignment.description = assignment_params[:description]
 		@new_assignment.due_date = assignment_params[:due_date]
 		@new_assignment.course_id = session[:course_id]
-		t = DateTime.new(assignment_params["date(1i)"].to_i, assignment_params["date(2i)"].to_i,
-			assignment_params["date(3i)"].to_i )
+		t = DateTime.new(assignment_params["date(1i)"].to_i,
+			assignment_params["date(2i)"].to_i,assignment_params["date(3i)"].to_i )
 		@new_assignment.due_date = t
 		if lecturer_signed_in?
 			@new_assignment.owner_id = current_lecturer.id
@@ -25,14 +37,12 @@ class AssignmentsController < ApplicationController
 		end
 		if @new_assignment.save
 			@course.assignments << @new_assignment
-			flash[:success_creation] = "Assignment added."
 			redirect_to :controller => 'assignment_problems', :action => 'new',
 				:id => @new_assignment.id
 		else
 			render :action=>'new', :course_id => params[:course_id]
 		end
 	end
-
 
 	# [View List Of Assignments - Story 4.24]
 	# Shows a particular assignment in a course

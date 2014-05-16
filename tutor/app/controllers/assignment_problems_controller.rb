@@ -1,4 +1,11 @@
 class AssignmentProblemsController < ApplicationController
+
+	# [Create Assignment - Story 4.27]
+	# To create a new problem in an assignment and save assignment id.
+	# Parameters:
+	#	params[:id]: id of the assignment.
+	# Returns: none 
+	# Author: Nadine Adel
 	def new
 		session[:assignment_id] = params[:id]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
@@ -6,37 +13,49 @@ class AssignmentProblemsController < ApplicationController
 	
 	end
 
+	# [Create Assignment - Story 4.27]
+	# To create a new problem in an assignment.
+	# Parameters:
+	#	problem_params[:id]: parameters that are needed to save a problem.
+	# Returns:
+	#	A message if the problem is saved or not.
+	# Author: Nadine Adel
 	def create
-			@assignment = Assignment.find_by_id(session[:assignment_id])
-			@new_problem = AssignmentProblem.new(problem_params)
-			@new_problem.final_grade = 0
-			session[:problem_id] = @new_problem.id
-			a = AssignmentProblem.find_by(title: @new_problem.title ,assignment_id: @new_problem.assignment_id)
-			if lecturer_signed_in?
-				@new_problem.owner_id = current_lecturer.id
-				@new_problem.owner_type = "lecturer"
-			elsif teaching_assistant_signed_in?
-				@new_problem.owner_id = current_teaching_assistant.id
-				@new_problem.owner_type = "teaching assistant"
-			end
+		@assignment = Assignment.find_by_id(session[:assignment_id])
+		@new_problem = AssignmentProblem.new(problem_params)
+		@new_problem.final_grade = 0
+		session[:problem_id] = @new_problem.id
+		a = AssignmentProblem.find_by(title: @new_problem.title,
+			assignment_id: @new_problem.assignment_id)
+		if lecturer_signed_in?
+			@new_problem.owner_id = current_lecturer.id
+			@new_problem.owner_type = "lecturer"
+		elsif teaching_assistant_signed_in?
+			@new_problem.owner_id = current_teaching_assistant.id
+			@new_problem.owner_type = "teaching assistant"
+		end
 		if a.nil?
 			if @new_problem.save
 				@assignment.problems << @new_problem
-				flash[:notice] = ""
-				redirect_to :controller => 'assignment_testcases', :action => 'new',
-				:assignment_id => @new_problem.id
+				flash[:notice] = "saved"
+				redirect_to :controller => 'assignment_testcases',
+					:action => 'new', :assignment_id => @new_problem.id
 			else
 				render :action=>'new', :id => session[:assignment_id]
-			end	
+			end
 		else
 			flash[:duplicatedcreate] = "problem already exists"
 			redirect_to :back
 		end
-		
-		
-		
 	end
 
+	# [Create Assignment - Story 4.27]
+	# Used to add the problems that were chosen by the user to be added to the assignment.
+	# Parameters:
+	#	params[:checkbox]: array of the problems that were selected.
+	# Returns:
+	#	A message if the problems are added or not.
+	# Author: Nadine Adel
 	def complete
 		@assignment = Assignment.find_by_id(session[:assignment_id])
 	 	@sproblems = Array.new
@@ -52,10 +71,8 @@ class AssignmentProblemsController < ApplicationController
 				@new_problem.assignment_id = @assignment.id
 				@new_problem.final_grade = 0
 				@new_problem.test_cases = @problem_select.test_cases
-					@a = AssignmentProblem.find_by(title: @new_problem.title ,assignment_id: @new_problem.assignment_id)
-					puts "======dddd===="
-					puts @title
-					puts "=====5555555===="
+				@a = AssignmentProblem.find_by(title: @new_problem.title,
+					assignment_id: @new_problem.assignment_id)
 				if lecturer_signed_in?
 					@new_problem.owner_id = current_lecturer.id
 					@new_problem.owner_type = "lecturer"
@@ -63,32 +80,31 @@ class AssignmentProblemsController < ApplicationController
 					@new_problem.owner_id = current_teaching_assistant.id
 					@new_problem.owner_type = "teaching assistant"
 				end
-			if @a.nil?
-				if @new_problem.save
-
-					@assignment.problems << @new_problem
-					flash[:notice] = "problems are now added"
-					redirect_to :back
-					return
-					
-
-				end
-			else
-									@title = @a.title
+				if @a.nil?
+					if @new_problem.save
+						@assignment.problems << @new_problem
+						flash[:notice] = "problems are now added"
+						redirect_to :back
+						return
+					end
+				else
+					@title = @a.title
 					session[:title] = @title
-						flash[:duplicated] = "problem already exists"
+					flash[:duplicated] = "problem already exists"
 					redirect_to :back
 					return
-			end
-
-				
+				end
 			end
 		end
-		#redirect_to :controller => 'assignment_problems', :action => 'index',
-		#:id => @assignment.id
-		
 	end
 
+	# [Create Assignment - Story 4.27]
+	# Used to list Exercise problems that are related to the course and bank of problems.
+	# Parameters:
+	#	session[:title]: title of the problem that were selected.
+	#	session[:assignment_id]: id of the assignment to which the problem will be added.
+	# Returns: none.
+	# Author: Nadine Adel
 	def index
 		@title = session[:title]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
@@ -107,17 +123,17 @@ class AssignmentProblemsController < ApplicationController
 		end
 		@problems = Array.new
 		if !@tracks.empty?
-			@tracks.each do |track| 
+			@tracks.each do |track|
 				@probs = track.problems
 				@probs.each do |problem1|
-					@problems.push(problem1)  
+					@problems.push(problem1)
 				end
 			end
 		end
 		@bank = Problem.where("seen = ?", true)
 		@cproblems = Array.new
 		@bank.each do |contest| 
-						@cproblems.push(contest)  
+			@cproblems.push(contest)
 		end
 	end
 	
