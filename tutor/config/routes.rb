@@ -1,33 +1,6 @@
 Tutor::Application.routes.draw do
 
-  get "assignment_testcases/new"
-  get "assignment_testcases/show"
-  get "assignment_testcases/index"
-  get "assignment_testcases/edit"
-  get "assignment_testcase/new"
-  get "assignment_testcase/show"
-  get "assignment_testcase/index"
-  get "assignment_testcase/edit"
-  get "assignment_problems/new"
-  post "assignment_problems/new"
-  get "assignment_problems/edit"
-  get "assignment_problems/show"
-  get "assignment_problems/index"
-  get "assignments/new"
-  get "assignments/edit"
-  get "assignments/show"
-  get "assignments/index"
-  post "assignment_problems/complete"
-  post "assignment_problems/update"
-  post "assignment_problems/show"
-	get "assignment_problems/abc"
-		get "/assignment_testcases/new"
-		
-
-
-
-
- 	mount Ckeditor::Engine => '/ckeditor'
+	mount Ckeditor::Engine => '/ckeditor'
 
 	devise_for :teaching_assistants
 	devise_for :students
@@ -104,6 +77,24 @@ Tutor::Application.routes.draw do
 		get "assignments/new"
 		post "assignments/show"
 		get "assignments/show"
+	end
+	resources :assignments_problems do
+		get "assignment_problems/new"
+		post "assignment_problems/new"
+		get "assignment_problems/edit"
+		get "assignment_problems/show"
+		get "assignment_problems/index"
+		post "assignment_problems/complete"
+		post "assignment_problems/update"
+		post "assignment_problems/show"
+	end
+	post "/assignment_problems/complete"
+	resources :assignments_testcases do
+		get "assignment_testcases/new"
+		get "assignment_testcases/show"
+		get "assignment_testcases/index"
+		get "assignment_testcases/edit"
+		get "/assignment_testcases/new"
 	end
 	resources :test_cases
 	

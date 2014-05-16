@@ -11,9 +11,9 @@
 			</ul>
 		</div>
 	<% end %>
+	
 	<%= form_for :assignment, url: assignments_path do |f| %>
 		<h2> Create Assignment </h2>
-		<p>
 		<br>
 		<p><h3><%= f.label :Title %></h3></p>
 		<p><%= f.text_field :title, placeholder:"Title" %></p>
@@ -29,6 +29,5 @@
 		<p>
 			<%= f.submit "Save", class: "btn btn-info btn-large" %>
 		</p>
-		<br>
 	<% end %>
 </div>

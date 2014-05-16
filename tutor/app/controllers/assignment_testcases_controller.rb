@@ -8,6 +8,7 @@ class AssignmentTestcasesController < ApplicationController
 	# Author: Nadine Adel
 	def new
 		@problem = AssignmentProblem.find_by_id(params[:assignment_id])
+		@test_case = TestCase.new
 		session[:assignment_problem_id] = params[:assignment_id]
 		session[:problem_assignment_id] = @problem.assignment_id
 	end
@@ -21,14 +22,12 @@ class AssignmentTestcasesController < ApplicationController
 	# Author: Nadine Adel
 	def create
 		@problem = AssignmentProblem.find_by_id(new_test_case_params[:assignment_problem_id])
-		@test_case = TestCase.new
+		@test_case = TestCase.new(new_test_case_params)
 		if lecturer_signed_in?
-			@test_case = TestCase.new(new_test_case_params)
 			@test_case.owner_id = current_lecturer.id
 			@test_case.owner_type = "lecturer"
 			@test_case.assignment_problem_id = session[:assignment_problem_id]
 		elsif teaching_assistant_signed_in?
-			@test_case = TestCase.new(new_test_case_params)
 			@test_case.owner_id = current_teaching_assistant.id
 			@test_case.owner_type = "teaching assistant"
 			@test_case.assignment_problem_id = session[:assignment_problem_id]

@@ -1,27 +1,27 @@
 <% if @test_case.errors.any? %>
-				<div id="error_explanation">
-					<h2><%= pluralize(@test_case.errors.count, "error") %>
-				 		prohibited this problem from being saved:
-					</h2>
-					<ul>
-						<% @test_case.errors.full_messages.each do |msg| %>
-							<li><%= msg %></li>
-						<% end %>
-					</ul>
-				</div>
+	<div id="error_explanation">
+		<h2><%= pluralize(@test_case.errors.count, "error") %>
+				prohibited this problem from being saved:
+		</h2>
+		<ul>
+			<% @test_case.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
 			<% end %>
-<%= form_for :new_test_case , url: assignment_testcases_path do |f| %>
+		</ul>
+	</div>
+<% end %>
 
-<h1>Please insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
-<p>
-	<%= flash[:notice] %>
-	<%= f.label :Input %>
-	<br><%= f.text_field :input, class: "form-control", style: "width:320px; height:45px;" %>
-	<%= f.label :Output %>
-	<br><%= f.text_field :output, class: "form-control", style: "width:320px; height:45px;" %>
-	<%= f.hidden_field :assignment_problem_id, :value => @problem.id %>
-</p>
-<p>
-	<%= f.submit 'Add Test Case', class: "btn btn-large  btn-info" %>
-</p>
+<%= form_for :new_test_case , url: assignment_testcases_path do |f| %>
+	<h1>Please insert Test Case for problem <h2 style="color:red;"><%= @problem.title %></h2></h1>
+	<p>
+		<%= flash[:notice] %>
+		<%= f.label :Input %>
+		<br><%= f.text_field :input, class: "form-control", style: "width:320px; height:45px;" %>
+		<%= f.label :Output %>
+		<br><%= f.text_field :output, class: "form-control", style: "width:320px; height:45px;" %>
+		<%= f.hidden_field :assignment_problem_id, :value => @problem.id %>
+	</p>
+	<p>
+		<%= f.submit 'Add Test Case', class: "btn btn-large btn-info" %>
+	</p>
 <% end %>

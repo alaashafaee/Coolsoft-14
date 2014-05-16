@@ -1,4 +1,5 @@
 <div class= "tabs1" style = "width = 100%">
+	
 	<ul class= "tab-links white">
 		<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
 			<li><%= link_to "Create problems",
@@ -7,38 +8,95 @@
 			<li class="active"><a href="#">Copy from Existing Problems</a></li>
 		<% end %>
 	</ul>
+
 	<% if flash[:notice] %>
-				<div class = "alert alert-success"> Problems  are now added </div>
-			<% end %>
+		<div class = "alert alert-success"> Problems are now added</div>
+	<% end %>
+
 	<% if flash[:duplicated] %>
-	<div id="error_explanation">
-	<h2>Error prohibited this problem from being saved:
-	</h2>
-	<li>
-	<h5><%= @title %></h5>
-		: a problem with the same title already exists in the assignment.</li>
-	</div>
+		<div id="error_explanation">
+			<h2>Error prohibited this problem from being saved:</h2>
+			<li>
+				<h5><%= @title %></h5>
+				: a problem with the same title already exists in the assignment.
+			</li>
+		</div>
 	<% end %>
+
 	<% if flash[:unchecked] %>
-	<div id="error_explanation">
-	<h2>Error:
-					</h2>
-	<li>Please check on the problems to be saved or click on finish
-					</li>
-	</div>
+		<div id="error_explanation">
+			<h2>Error:</h2>
+			<li>Please check on the problems to be saved or click on finish</li>
+		</div>
 	<% end %>
+
 	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>
+		
 		<div style= "float:left; width:47%;">
 			<div class= "tab-content">
 				<div id= "tab1" class= "tab active">
 					<% openable = true %>
 					<h3> Exercise problems </h3>
+					
 					<% if @problems.empty? %>
 						<p> There are no problems </p>
 					<% end %>
+					
 					<% if @problems.any? %>
-					<div class="panel-group list-group" id="accordion1" style="width:100%;">
-						<% @problems.each do |problem| %>
+						<div class="panel-group list-group" id="accordion1" style="width:100%;">
+							<% @problems.each do |problem| %>
+								<% if openable %>
+									<% open = "in" %>
+									<% openarrow = "glyphicon-chevron-down" %>
+									<% openable = false %>
+								<% else %>
+									<% open = "" %>
+									<% openarrow = "glyphicon-chevron-right" %>
+								<% end %>
+
+								<div class="panel-title list-group-item list-group-item-info">
+									<a class="icon glyphicon <%= openarrow %>"
+										href="#<%= problem.id.to_s %>"
+										data-toggle="collapse" data-parent="#accordion1"
+										style="float:left;text-decoration: none;">
+									</a>
+									<div id = "check">
+										<%= check_box_tag "checkbox[]", problem.id %>
+									</div>
+										<%= problem.title %>
+								</div>
+
+								<div id="<%= problem.id.to_s %>" 
+									class="panel-collapse collapse <%= open %>">
+									<%= problem.description %>
+								</div>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			<ul class="navbar-brand pull-right"><%= link_to "Finish",
+				{:controller => 'assignments', :action => 'show',
+				:id=> @assignment.id}, class: "btn btn-info", method: :get %>
+			</ul>
+			<ul class="navbar-brand pull-right"><%= submit_tag("Save",
+				:class=>"btn btn-info") %>
+			</ul>
+		</div>		
+		
+		<div style= "float:right; width:47%;">
+			<div class= "tab-content">
+				<div id= "tab1" class= "tab active">
+					<% openable = true %>
+					<h3> Bank of problems </h3>
+
+					<% if @cproblems.empty? %>
+						<p> There are no problems </p>
+					<% end %>
+
+					<% if @cproblems.any? %>
+						<div class="panel-group list-group" id="accordion2"
+							style="width:100%;">
 							<% if openable %>
 								<% open = "in" %>
 								<% openarrow = "glyphicon-chevron-down" %>
@@ -47,91 +105,29 @@
 								<% open = "" %>
 								<% openarrow = "glyphicon-chevron-right" %>
 							<% end %>
-
+							<% @cproblems.each do |cproblem| %>
 								<div class="panel-title list-group-item list-group-item-info">
 									<a class="icon glyphicon <%= openarrow %>"
-									href="#<%= problem.id.to_s %>"
-									data-toggle="collapse" data-parent="#accordion1"
-									style="float:left;text-decoration: none;">
+										href="#listOfProblems"
+										data-toggle="collapse" data-parent="#accordion2"
+										style="float:left;text-decoration: none;">
 									</a>
 									<div id = "check">
-										<%= check_box_tag "checkbox[]", problem.id %>
-										</div>
-										<%= problem.title %>
+										<%= check_box_tag "checkbox[]", cproblem.id %>
+									</div>
+									<%= cproblem.title %>
 								</div>
-								<div id="<%= problem.id.to_s %>" 
-									class="panel-collapse collapse <%= open %>">
-									<%= problem.description %>
+								<div id="listOfProblems" class="panel-collapse collapse <%= open %>">
+									<div id="<%= cproblem.id.to_s %>"
+										class="panel-collapse collapse <%= open %>">
+										<%= cproblem.description %>
+									</div>
 								</div>
-							
-						<% end %>
-					</div>
+							<% end %>
+						</div>
 					<% end %>
 				</div>
 			</div>
-			<ul class="navbar-brand pull-right"><%= link_to "Finish",
-				{:controller => 'assignments', :action => 'show',
-				:id=> @assignment.id}, class: "btn btn-info", method: :get %></ul>
-			<ul class="navbar-brand pull-right"><%= submit_tag("Save",
-				:class=>"btn btn-info") %> </ul>
-		</div>		
-		<div style= "float:right; width:47%;">
-			<div class= "tab-content">
-				<div id= "tab1" class= "tab active">
-				
-			<% openable = true %>
-			<h3> Bank of problems </h3>
-					<% if @cproblems.empty? %>
-						<p> There are no problems </p>
-					<% end %>
-					<% if @cproblems.any? %>
-			<div class="panel-group list-group" id="accordion2" style="width:100%;">
-				<% if openable %>
-					<% open = "in" %>
-					<% openarrow = "glyphicon-chevron-down" %>
-					<% openable = false %>
-				<% else %>
-					<% open = "" %>
-					<% openarrow = "glyphicon-chevron-right" %>
-				<% end %>
-	
-				<% @cproblems.each do |cproblem| %>
-					<div class="panel-title list-group-item list-group-item-info">
-
-						<a class="icon glyphicon <%= openarrow %>"
-							href="#listOfProblems"
-							data-toggle="collapse" data-parent="#accordion2"
-							style="float:left;text-decoration: none;">
-							</a>
-							<div id = "check">
-							<%= check_box_tag "checkbox[]", cproblem.id %>
-							</div>
-										<%= cproblem.title %>
-						
-					
-					</div>
-					<div id="listOfProblems" class="panel-collapse collapse <%= open %>">
-	
-		
-								
-								
-										<div id="<%= cproblem.id.to_s %>" 
-									class="panel-collapse collapse <%= open %>">
-									<%= cproblem.description %>
-								</div>
-									
-					<% end %>
-
-								
-	
-					
-				</div>	
-			</div>
-			<% end %>
-				</div>	
-				</div>
-				
 		</div>
-		</div>
-		<% end %>
-		</div>
+	<% end %>
+</div>

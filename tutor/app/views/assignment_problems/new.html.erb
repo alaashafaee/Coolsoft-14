@@ -23,12 +23,12 @@
 				</div>
 			<% end %>
 			<% if flash[:duplicatedcreate] %>
-			<div id="error_explanation">
-			<h2>Error prohibited this problem from being saved:
-					</h2>
-			<li>problem already exists with the same title</li>
-		</div>
-		<% end %>
+				<div id="error_explanation">
+					<h2>Error prohibited this problem from being saved:</h2>
+					<li>problem already exists with the same title</li>
+				</div>
+			<% end %>
+
 			<%= form_for :assignment_problem, url: assignment_problems_path do |f| %>
 				<h2> Create Problem </h2>
 				<p>
@@ -42,10 +42,11 @@
 						class: "form-control", style: "width:60%" %>
 				</p>
 					<ul class="navbar-brand pull-right">
-				<%= f.submit "Save", class: "btn btn-info" %>
-			<%= link_to "Finish",
-					{:controller => 'assignments', :action => 'show',
-					:id=> @assignment.id}, class: "btn btn-info" %></ul>
+						<%= f.submit "Save", class: "btn btn-info" %>
+						<%= link_to "Finish",
+							{:controller => 'assignments', :action => 'show',
+							:id=> @assignment.id}, class: "btn btn-info" %>
+					</ul>
 			<% end %>
 		</div>
 	</div>
