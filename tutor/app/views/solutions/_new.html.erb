@@ -4,12 +4,10 @@
 <%= form_for :solution,
 	:url => { :controller => "solutions", :action => "create" },
 	:html => {:method => :post} do |f| %>
-<%=
-	@code = f.hidden_field "code", :id =>'solution_code',
+<%= @code = f.hidden_field "code", :id =>'solution_code',
 	value: flash[:previous_code] == nil ?
 		@problem_code_template
-		 : flash[:previous_code].to_s
-%>
+		: flash[:previous_code].to_s %>
 <%= f.hidden_field :default_code, value: @problem_code_template %>
 <%= f.hidden_field :problem_id, value: params[:id] %>
 <div style = 'text-align:right;'>
@@ -134,7 +132,6 @@
 
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
-
 	edit_session.setValue(hidden_code_field.value);
 
 	var code_filter_function = function(event_handler) {

@@ -388,7 +388,7 @@ debug_console = ->
 # Parameters: none
 # Returns: none
 # Author: MOHAMEDSAEED
-@reload_template = () -> 	
+@reload_template = () ->
 	editor = ace.edit("editor");
 	edit_session = editor.getSession();
 	template = $('#solution_default_code').val()
