@@ -29,8 +29,6 @@
 	<%= link_to "View Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => params[:id] }, method: :get %>
 </div>
 
-
-
 <div class="well">
 	<% topics = @course.topics %>
 	<% if topics.any? %>
@@ -41,6 +39,11 @@
 						<div class="well" style="background-color: #d7dde2 !important;">
 							<h3><b><%= link_to topic[0].title, topic[0]%></b><hr></h3>
 							<label><%= topic[0].description %></label><br><br>
+								<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+									<%= link_to "Delete Topic", {controller: "topics",
+									action: "destroy", :id => topic[0].id},
+									class: "btn btn-danger btn-xs", method: :delete %>	
+								<% end %>
 						</div>
 					</div>
 				</div>
@@ -51,10 +54,92 @@
 							<div class="well" style="background-color: #d7dde2 !important;">
 								<h3><b><%= link_to topic.title, topic %></b><hr></h3>
 								<label><%= topic.description %></label><br><br>
+								<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+									<%= link_to "Delete Topic", {controller: "topics",
+									action: "destroy", :id => topic.id},
+									class: "btn btn-danger btn-xs", method: :delete %>	
+								<% end %>								
 							</div>
 						</div>
 					<%end%>
 				</div>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>
+
+
+<div class="well">
+	<% assignments = @course.assignments %>
+		<% if assignments.any? %>
+			<% if @can_edit %>
+				<% assignments.each_slice(2) do |assignment| %>
+					<% if assignment.count == 1 %>
+						<div class="row">
+							<div class="container col-sm-6 box-bag topic-box">
+								<div class="well" style="background-color: #d7dde2 !important;">
+									<h3><b><%= link_to assignment[0].title, assignment[0]%></b><hr></h3>
+									<label><%= assignment[0].description %></label><br><br>
+									<% if @can_edit %>
+										<% if !assignment[0]	.publish %>
+											<span class="badge">unpublished</span>
+										<% end %>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					<% else %>
+						<div class="row">
+							<% assignment.each do |assignment| %>
+								<div class="container col-sm-6 topic-box">
+									<div class="well" style="background-color: #d7dde2 !important;">
+										<h3><b><%= link_to assignment.title, assignment %></b><hr></h3>
+										<label><%= assignment.description %></label><br><br>
+										<% if @can_edit %>
+											<% if !assignment.publish %>
+												<span class="badge">unpublished</span>
+											<% end %>
+										<% end %>
+
+									</div>
+								</div>
+							<%end%>
+						</div>
+					<% end %>
+				<% end %>
+			<% else %>
+				<% assignments.each_slice(2) do |assignment| %>
+				<% if assignment.count == 1 %>
+					<div class="row">
+						<div class="container col-sm-6 box-bag topic-box">
+							<div class="well" style="background-color: #d7dde2 !important;">
+								<h3><b><%= link_to assignment[0].title, assignment[0]%></b><hr></h3>
+								<label><%= assignment[0].description %></label><br><br>
+								<% if @can_edit %>
+									<% if !assignment[0].publish %>
+										<span class="badge">unpublished</span>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				<% else %>
+					<div class="row">
+						<% assignment.each do |assignment| %>
+							<div class="container col-sm-6 topic-box">
+								<div class="well" style="background-color: #d7dde2 !important;">
+									<h3><b><%= link_to assignment.title, assignment %></b><hr></h3>
+									<% if assignment.publish %>
+										<%= link_to assignment.title, assignment %>
+										<% if assignment.due_date > DateTime.now.to_date %>
+											<span class="badge">Due</span>
+										<% end %>
+									<% end %>
+								</div>
+							</div>
+						<%end%>
+					</div>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% end %>

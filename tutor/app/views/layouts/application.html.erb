@@ -6,11 +6,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>CoolSoft - Java Tutor</title>
-		<%= stylesheet_link_tag "application", "bootstrap","token-input", :media => "all" %>
-		<%-# stylesheet_link_tag "application", "bootstrap", "token-input", :media => "all" -%>
-		<%= stylesheet_link_tag "application", "bootstrap", :media => "all" %>
-		<%= javascript_include_tag "application", "bootstrap", "jquery" %>
+		<title>Tutor</title>
+		<%= stylesheet_link_tag "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 	</head>
 	<body style="background: #EEEFE9;">
@@ -22,9 +20,9 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-			<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+				<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
 			</div>
-			<div class="navbar-collapse navbar-responsive-collapse collapse" style="height: 1px;">
+			<div class="navbar-collapse navbar-responsive-collapse collapse">
 				<% if signed_in? %>
 					<%= render "layouts/search_form"%>
 				<% end %>
@@ -65,7 +63,6 @@
 							<%= yield %>
 						</div>					
 					</div>
-<!-- 					<div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
 					<div class="col-xs-hidden col-md-2 right_side">
 							<%= render "layouts/right_side_bar" %>
 
@@ -75,6 +72,11 @@
 						<%= yield %>
 				</div> 
 			<% end %>
+		</div>
+		</br>
+		<div align="center" class="navbar navbar-default
+			navbar-static-bottom footer" style="min-width:1000px">
+			<%= render "layouts/footer" %>
 		</div>
 	</body>
 </html>
