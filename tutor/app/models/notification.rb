@@ -56,7 +56,7 @@ class Notification < ActiveRecord::Base
 		students = course.students
 		students.each do |student|
 			new_notification = Notification.new
-			new_notification.message = "Contest #{assignment.title} has been created for the 
+			new_notification.message = "Contest #{contest.title} has been created for the 
 				course #{course.name}"	
 			new_notification.save
 			student.notifications << new_notification
