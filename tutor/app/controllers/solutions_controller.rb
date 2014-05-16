@@ -94,9 +94,8 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: Abdullrahman Elhusseny
 	def view_submissions
-		@submissions = Solution.where(problem_id: params[:problem_id])
-		.order(:student_id)
 		@problem = AssignmentProblem.find_by_id(params[:problem_id])
+		@submissions = @problem.solutions
 		@course = @problem.assignment.course
 		@can_edit = @course.can_edit(current_lecturer)
 		@can_edit||= @course.can_edit(current_teaching_assistant)

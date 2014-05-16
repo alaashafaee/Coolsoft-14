@@ -1,31 +1,31 @@
-<table>
-	<tr>
-		<td style = "font-weight:bold;font-size:200%;">Student</td>
-		<td width="100px"></td>
-		<td style = "font-weight:bold;font-size:200%;">Submission Time</td>
-		<td width="100px"></td>
-		<td style = "font-weight:bold;font-size:200%;">Problem</td>
-	</tr>
-	<% if @submissions.empty? %>
-		<p>No solutions have been submitted to this problem</p>
-	<% else %>
-		<% @submissions.each do |submission| %>
-			<tr>
-				<% @student = Student.find_by_id(submission.student_id) %>
-				<td><%= @student.name %></td>
-				<td width="100px"></td>
-				<td><%= submission.created_at %></td>
-				<td width="100px"></td>
-				<td title = "<%= @problem.description %>"><%= @problem.title %></td>
-				<td width="100px"></td>
-				<td><%= link_to "Mark and grade",
-					{:action => 'mark_solution',
-					:submission_id => submission.id},
-					class: "btn btn-info" %></td>
-			</tr>
-		<% end %>
-	<% end %>
+<% if @submissions.empty? %>
+	<p>No solutions have been submitted to this problem</p>
+<% else %>
+	<table>
+		<tr>
+			<td style = "font-weight:bold;font-size:200%;">Student</td>
+			<td width="100px"></td>
+			<td style = "font-weight:bold;font-size:200%;">Submission Time</td>
+			<td width="100px"></td>
+			<td style = "font-weight:bold;font-size:200%;">Problem</td>
+		</tr>
+			<% @submissions.each do |submission| %>
+				<tr>
+					<% @student = Student.find_by_id(submission.student_id) %>
+					<td><%= @student.name %></td>
+					<td width="100px"></td>
+					<td><%= submission.created_at %></td>
+					<td width="100px"></td>
+					<td title = "<%= @problem.description %>"><%= @problem.title %></td>
+					<td width="100px"></td>
+					<td><%= link_to "Mark and grade",
+						{:action => 'mark_solution',
+						:submission_id => submission.id},
+						class: "btn btn-info" %></td>
+				</tr>
+			<% end %>
 </table>
+<% end %>
 <br><br><br>
 <%= link_to "Back to assignment page",{:controller => 'assignments',
 	:action => 'show', :id => @problem.assignment.id }, 

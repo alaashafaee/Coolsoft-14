@@ -13,7 +13,9 @@
 		<% @lines.each do |line| %>
 			<% @counter+= 1 %>
 			<% @note = Note.where(solution_id: @solution.id, line: @counter).last %>
-			<tr>
+			<tr id = "<%= @counter %>", onMouseOver = "show(this.id)",
+				onMouseOut = "hide(this.id)">
+
 				<td><%= @counter %></td>
 				<td>
 					<pre title ="<%if !@note.blank?%><%= @note.content %>
@@ -23,39 +25,42 @@
 				<td >
 					<p align= "center">
 						<% if @note %>
-							<%= image_tag "edit_button.png", id: @counter,
+							<%= image_tag "edit_button.png", id: "#{@counter}edit_button",
 								class: "edit_button",
 								onclick: "pop(this.id);" %>
 						<% else %>
-							<%= image_tag "note.png", id: @counter,
+							<%= image_tag "note.png", id: "#{@counter}add_button",
 								class: "add_note_button",
-								onMouseOver: "show(this.id);",
-								onMouseOut: "hide(this.id);",
 								onclick: "pop(this.id);" %>
 						<% end %>
 					</p>
 				</td>
-				<div id = "<%= @counter %>form"
-					class = "form_div">
-					<% if @note %>
-						<%= form_for :Note, url: note_path(@note),
-							method: :patch do |note| %>
-							<p>
-								<%= note.text_field :content, class: "form-control",
-									style: "width:60%", placeholder: @note.content %>
-							</p>
-								<%= note.hidden_field :solution_id,
-									value: @solution.id %>
-								<%= note.hidden_field :line,
-									value: @counter %>
-							<p>
-								<%= note.submit "Update Note", class: "btn btn-info" %>
-							</p>
-						<% end %>
+				<% if @note %>
+					<div id = "<%= @counter %>edit_buttonform"
+						class = "form_div">
+						<div>
+							<%= form_for :Note, url: note_path(@note),
+								method: :patch do |note| %>
+								<p>
+									<%= note.text_field :content, class: "form-control",
+										style: "width:60%", value: @note.content %>
+								</p>
+									<%= note.hidden_field :solution_id,
+										value: @solution.id %>
+									<%= note.hidden_field :line,
+										value: @counter %>
+								<p style = "float:left;">
+									<%= note.submit "Update Note", class: "btn btn-info" %>
+								</p>
+							<% end %>
+						</div>
 						<%= button_to "Delete Note",{:controller => 'notes',
 							:action => 'destroy', :id => @note.id}, method: :delete,
 							class: "btn btn-info" %>
-					<% else %>
+					</div>
+				<% else %>
+					<div id = "<%= @counter %>add_buttonform"
+						class = "form_div">
 						<%= form_for :Note, url: {controller: "notes",
 							action: "create"} do |note| %>
 							<p>
@@ -72,8 +77,8 @@
 								<%= note.submit "Save Note", class: "btn btn-info" %>
 							</p>
 						<% end %>
-					<% end %>
-				</div>
+					</div>
+				<% end %>
 			</tr>
 		<% end %>
 	</tbody>
@@ -84,9 +89,11 @@
 	class: "btn btn-info" %>
 <script>
 	function show(id){
+			id +="add_button"
 		document.getElementById(id).style.opacity = 1;
 	}
 	function hide(id){
+			id +="add_button"
 		document.getElementById(id).style.opacity = 0;
 	}
 	function pop(id){

@@ -408,7 +408,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
 	## Solutions
-		Problem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.first
 		Problem.find_by_id(2).solutions << Solution.find_by_id(2)
 		Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 	## Attempts
