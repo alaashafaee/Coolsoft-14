@@ -6,6 +6,7 @@
 <div class='problem'>
 	<label><%= @problem.title %></label><br/>
 	<%= @problem.description %>
+	<%= hidden_field_tag :snippet, @problem.snippet %>
 	<table width='100%'>
 		<tr>
 			<td width='80%'>
