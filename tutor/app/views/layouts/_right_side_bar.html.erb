@@ -19,13 +19,11 @@
 	<% if student_signed_in? %>
 		<div class="right_side list-group table">
 			<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
-			<div class="panel-group" id="accordion">
+			<div class="panel-group">
 	  			<div class="panel panel-default">
 					<% if next_problems_to_solve != nil then %>
-							<div class="panel-heading">
-								<a  data-toggle="collapse" data-parent="#accordion" href="#Nextproblems">
-									Next problems to solve
-								</a>
+							<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#Nextproblems">
+								Next problems to solve
 							</div>
 							<div id="Nextproblems" class="panel-collapse collapse">
 								<div class="panel-body">
@@ -56,14 +54,12 @@
 		# Author: Mohab Ghanim
 		-->
 		<div class="right_side list-group table">
-			<div class="panel-group" id="accordion">
+			<div class="panel-group">
 				<div class="panel panel-default">
 					<% recommended_problems = current_student.getClassMatesRecommendations 
 					if recommended_problems != nil then %>
-						<div class="panel-heading">
-							<a  data-toggle="collapse" data-parent="#accordion" href="#ClassmateRecommendations">
-								Classmates Recommendations
-							</a>
+						<div class="panel-heading" data-toggle="collapse" data-parent="#accordion"href="#ClassmateRecommendations">
+							Classmates Recommendations
 						</div>
 						<div id="ClassmateRecommendations" class="panel-collapse collapse">
 							<div class="panel-body">
@@ -88,12 +84,10 @@
 		</div>
 		
 		<div class="right_side list-group table">
-			<div class="panel-group" id="accordion">
+			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<a  data-toggle="collapse" data-parent="#accordion" href="#SystemRecommendation">
-							System Recommendations
-						</a>
+					<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#SystemRecommendation">
+						System Recommendations
 					</div>
 					<div id="SystemRecommendation" class="panel-collapse collapse">
 						<div class="panel-body">

@@ -143,9 +143,17 @@
 	background: white !important;
 	color: black !important;
 }
+
+.right_side .list-group .panel-heading:hover{ 
+	cursor: pointer; 
+}
+
 .right_side .list-group .panel-heading a{
 	text-decoration: none;
 	color: black;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
 }
 .right_side .list-group .panel-body .list-group-item{
 	width: 195px;
