@@ -247,9 +247,9 @@ puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
 		incomplete:false, start_time: DateTime.new(2014, 5, 1, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
 	Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
-		incomplete:false, start_time: DateTime.now)
+		incomplete:false, start_time: DateTime.new(2014, 5, 5, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 6, 44, 2))
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
-		incomplete:false, start_time: DateTime.now)
+		incomplete:false, start_time: DateTime.new(2014, 5, 10, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 9, 44, 2))
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 1)
