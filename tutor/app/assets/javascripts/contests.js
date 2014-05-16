@@ -13,6 +13,7 @@ jQuery(document).on("ready page:load", function() {
 	*/
 	$(function () {
 		var timer = $('#temp').data('timer')
+		timer = timer.substring(1, timer.length-1)
 		var destroy = $('#temp').data('del')
 		var count = new Date(timer);
 		$('#countdown').countdown(destroy ? 'destroy' : {until: count, onTick: highlightLast10,
