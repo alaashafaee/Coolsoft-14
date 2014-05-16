@@ -11,4 +11,3 @@ function toggle_visibility(id) {
 	else
 		element.style.display = 'block';
 }
-
