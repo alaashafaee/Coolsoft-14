@@ -11,5 +11,4 @@ describe Resource do
 	it 'is valid with a link' do
 		expect(@resource_1).to be_valid
 	end
-
 end
