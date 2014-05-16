@@ -40,13 +40,13 @@ class AssignmentProblemsController < ApplicationController
 		@problem = AssignmentProblem.find_by_id(params[:id])
 		if @problem.update_attributes(problem_params)
 			flash[:notice] = "Your problem is now updated"
-			redirect_to :controller =>'assignments',:action =>'show', :id => @problem.assignment_id
+			redirect_to :action =>'show', :id => @problem.id
 		else
 			render :action=>'edit', :id => @problem.id
 		end
 	end
 private
 	def problem_params
-			params.require(:assignment_problem).permit(:title, :description)
+			params.require(:assignment_problem).permit(:title, :description, :final_grade)
 	end
 end

@@ -1,10 +1,10 @@
-<% provide(:title, "Edit Assignment") %>
-<%= form_for(@assignment) do |f| %>
-	<% if @assignment.errors.any? %>
+<% provide(:title, "Edit Problem") %>
+<%= form_for(@problem) do |f| %>
+	<% if @problem.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this course from being saved:</h2>
+			<h2><%= pluralize(@problem.errors.count, "error") %> prohibited this course from being saved:</h2>
 			<ul>
-				<% @answer.errors.full_messages.each do |msg| %>
+				<% @problem.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 				<% end %>
 			</ul>
@@ -12,9 +12,6 @@
 
 	<% end %>
 	<h2> Edit Problem </h2>
-	
-
-				<h2> Create Problem </h2>
 				<p>
 					<%= f.label :title %><br>
 					<%= f.text_field :title, placeholder:"Title" %>
@@ -27,9 +24,12 @@
 				</p>
 				<p>
 					<%= f.label :Grade %><br>
-					<%= f.text_field :final_grade, placeholder:"Grade" %>
+					<%= f.text_field :final_grade, placeholder:"Grade", style: "width:55px; height:35px;" %>
 				</p>
-					<ul class="navbar-brand pull-right">
 				<%= f.submit "Save changes", class: "btn btn-info" %>
-			
+				<br>
+			<ul class="navbar-brand pull-right"><%= link_to "back",
+					{:controller => 'assignments', :action => 'show',
+					:id=> @problem.assignment_id} %></ul>
+
 <% end %>

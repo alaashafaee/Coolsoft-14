@@ -4,7 +4,7 @@
 		<div id="error_explanation">
 			<h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this course from being saved:</h2>
 			<ul>
-				<% @answer.errors.full_messages.each do |msg| %>
+				<% @assignment.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 				<% end %>
 			</ul>
