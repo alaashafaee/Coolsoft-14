@@ -262,6 +262,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)
   json_builder (= 3.1.0)
+  kaminari
   rails (= 4.0.4)
   rmagick
   rspec-rails (~> 3.0.0.beta)

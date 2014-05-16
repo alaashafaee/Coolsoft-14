@@ -65,10 +65,8 @@
 						<%= yield %>
 					</div>					
 				</div>
-					<!-- <div class="col-xs-2" style="background: #eeefe9; box-shadow: -2px 3px 5px -2px grey;"> -->
 				<div class="col-xs-hidden col-md-2 right_side">
 						<%= render "layouts/right_side_bar" %>
-
 				</div>
 			</div>
 		<% else %>
@@ -76,15 +74,15 @@
 				<%= yield %>
 			</div> 
 		<% end %>
-		<!-- Start Of Footer Section -->
+	</body>
+	<!-- Start Of Footer Section -->
+	<footer>
 		<div class="ftr">
 			<div class="row">
-				<div class="container">
-					<footer>
-						<%= render "layouts/footer" %>
-					</footer>
+				<div class="container">	
+					<%= render "layouts/footer" %>
 				</div>
 			</div>
 		</div>	
-	</body>
+	</footer>
 </html>

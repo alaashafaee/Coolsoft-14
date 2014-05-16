@@ -69,6 +69,8 @@ gem 'whenever', :require => false
 # table_print
 gem 'table_print'
 
+gem 'kaminari'
+
 # real-time sync
 gem 'faye'
 gem 'thin', require: false

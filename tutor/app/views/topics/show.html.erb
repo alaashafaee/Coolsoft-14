@@ -12,9 +12,11 @@
 	</div>
 </div>
 <div class="row topic_description">
-	<div class="description-body" ><%= @topic.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</div>
+	<div class="description-body" >
+		<%= @topic.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	</div>
 </div>
 <% if @can_edit %>
 	<% if flash[:error] %>
@@ -28,7 +30,6 @@ quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</div>
 		</div><br>
 	<% end %>
 <% end %>
-
 <% openable = true %>
 <div class="panel-group list-group track-accordion" id="accordion">
 	<% @tracks.each do |t| %>

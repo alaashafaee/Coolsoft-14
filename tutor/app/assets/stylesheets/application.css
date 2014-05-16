@@ -19,6 +19,10 @@
 	overflow-x: hidden;
 	background: #EEEFE9 !important;
 }
+body .container {
+	
+}
+
 ::-webkit-scrollbar {
     width: 1px;
 }
@@ -48,7 +52,6 @@ hr {
 	/*position: fixed;*/
 	min-width: 100%;
 	max-width: 100%;
-	bottom:0px;
 }
 
 .ftr address, .ftr a, .ftr p{
