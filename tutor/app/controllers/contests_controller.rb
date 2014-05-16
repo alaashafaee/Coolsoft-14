@@ -13,7 +13,8 @@ class ContestsController < ApplicationController
 		# 	to countdown till the end of the contest and the message will be 'Contest ends in'.
 		# 	If the contest has ended, the timer will disappear and the message will be
 		# 	'Contest has finished!'.
-		# Parameters: none
+		# Parameters:
+		# 	params[:id]: an Integer containing the id of a specific contest to have its timer.
 		# Returns:
 		# 	@timer: a String representation of a DateTime object representing the date
 		# 		and the time of the contest that will be used by the timer.
