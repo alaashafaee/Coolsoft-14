@@ -1,6 +1,6 @@
 class PythonDebugger < Debugger
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Start python debugging
 	# Parameters:
 	# 	solution: The solution that has the information about the session
@@ -13,7 +13,7 @@ class PythonDebugger < Debugger
 		return super
 	end
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Starts the debugging session and return all variables and their values
 	# 	100 steps ahead
 	# Parameters:
@@ -58,7 +58,7 @@ class PythonDebugger < Debugger
 		return $all, status
 	end
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Gets the number of the line to be executed
 	# Parameters: none
 	# Returns: The number of the line to be executed
@@ -98,7 +98,7 @@ class PythonDebugger < Debugger
 		end
 	end
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Checks if there is a runtime error thrown
 	# Parameters:
 	# 	line: The line to be checked if it has a runtime error
@@ -112,7 +112,7 @@ class PythonDebugger < Debugger
 		return {:status => true}
 	end
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Gets the thrown exception
 	# Parameters: none
 	# Returns: The exception
@@ -125,7 +125,7 @@ class PythonDebugger < Debugger
 		return third_step
 	end
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Checks if there is a runtime error thrown
 	# Parameters:
 	# 	line: The line to be checked if it has a runtime error
