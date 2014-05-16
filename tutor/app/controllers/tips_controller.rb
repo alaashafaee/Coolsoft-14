@@ -69,9 +69,6 @@ class TipsController < ApplicationController
 				:model_answer_id => params[:model_answer_id],:flag => session[:flag]
 			end
 		else
-			puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<,,,"
-			puts params
-			puts"!!!!111111111111111111111111111111111111111111"
 			render :action=>'new', :locals => { :model_answer_id => @tip.model_answer_id,
 			 :flag => session[:flag],
 			:track_id => session[:track_id], :problem_id => params[:problem_id]}

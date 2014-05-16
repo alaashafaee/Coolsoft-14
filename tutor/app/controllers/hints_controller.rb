@@ -79,6 +79,11 @@ class HintsController < ApplicationController
 	#	@hint: a new created hint to specific answer
 	# Author: Ahmed Osam
 	def new
+		if params[:flag] == "1" 
+			session[:flag] = params[:flag]
+		elsif params[:flag] == "0"
+			session[:flag] = params[:flag]
+		end
 		@hint = Hint.new
 		session[:track_id] = params[:track_id]
 		if(@hint == nil)
@@ -112,13 +117,20 @@ class HintsController < ApplicationController
 			@hint.owner_id = current_teaching_assistant.id
 		end
 		if @hint.save
-			redirect_to :controller => 'hints', :action => 'new',
-			:model_answer_id => session[:model_answer_id], 
-			:problem_id => session[:problem_id],
-			:track_id => session[:track_id]
+			if session[:flag] == "1"
+				redirect_to :controller => 'hints', :action => 'index', 
+				:problem_id => session[:problem_id], :track_id => session[:track_id], 
+				:model_answer_id => session[:model_answer_id]
+			elsif session[:flag] == "0"
+				redirect_to :controller => 'hints', :action => 'new', 
+				:problem_id => session[:problem_id], :track_id => session[:track_id], 
+				:model_answer_id => params[:model_answer_id],:flag => session[:flag]
+			end
 		else
-			render :action => 'new'
-		end
+			render :action=>'new', :locals => { :model_answer_id => @hint.model_answer_id,
+			 :flag => session[:flag],
+			:track_id => session[:track_id], :problem_id => params[:problem_id]}
+		end	
 	end
 
 	# [Remove hint - Story 4.12]
@@ -144,10 +156,6 @@ class HintsController < ApplicationController
 	private
 		def hint_params
 			params.require(:hint).permit(:message, :submission_counter, :id)
-		end
-
-		def get_flag
-			params.require(:hint).permit(:flag)
 		end
 
 		def hint_params_edit

@@ -9,6 +9,11 @@ class TestCasesController < ApplicationController
 	def index
 		session[:track_id] = params[:track_id]
 		session[:problem_id] = params[:problem_id]
+		if params[:flag] == "1" 
+			session[:flag] = params[:flag]
+		elsif params[:flag] == "0"
+			session[:flag] = params[:flag]
+		end
 		@problem = Problem.find_by_id(session[:problem_id])
 		@test_cases = @problem.test_cases
 	end
@@ -49,12 +54,12 @@ class TestCasesController < ApplicationController
 		end
 		if @test_case.save
 			@problem.test_cases << @test_case
-			if get_flag[:flag] == "1"
+			if session[:flag] == "1"
 				redirect_to :controller => 'test_cases', :action => 'index', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id]
-			else
+			elsif session[:flag] == "0"
 				redirect_to :controller => 'model_answers', :action => 'new', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id]
+				:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "0"
 			end
 		else
 			render :action=>'new', :problem_id => @test_case.problem_id

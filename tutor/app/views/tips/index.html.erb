@@ -1,7 +1,7 @@
 <div id = "crumbs">
     <ul>
 		<li class="sub"><a class="preventclick">Problem</a></li>
-    	<li class = "sub1"><a class="preventclick" style="padding: 5px 15% 0 0px;">Test cases</a> </li>
+    	<li class = "sub1"><a class="preventclick" style="padding: 5px 15% 0 0px;">Test Cases</a> </li>
     	<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'edit', :problem_id => params[:problem_id],:track_id => params[:track_id], :model_answer_id => params[:model_answer_id]},{:method => :get, :style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"} %></li>
 
     	<li class="sub3"><a class="visit" >Tips</a> </li>

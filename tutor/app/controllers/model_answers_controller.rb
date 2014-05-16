@@ -11,6 +11,11 @@ class ModelAnswersController < ApplicationController
 	def new
 		@problem = Problem.find(params[:problem_id])
 		session[:problem_id] = params[:problem_id]
+		if params[:flag] == "1" 
+			session[:flag] = params[:flag]
+		elsif params[:flag] == "0"
+			session[:flag] = params[:flag]
+		end
 		if(@new_answer == nil)
 			@new_answer = ModelAnswer.new
 		end
@@ -41,11 +46,11 @@ class ModelAnswersController < ApplicationController
 			@problems.model_answers << @new_answer
 			session[:problem_id] = @new_answer.problem_id
 			session[:model_answer_id] = @new_answer.id
-			if get_flag[:flag] == "1"
+			if session[:flag] == "1"
 				redirect_to :controller => 'model_answers', :action => 'index', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id],
 				:model_answer_id => @new_answer.id
-			else
+			elsif session[:flag] == "0"
 				redirect_to :controller => 'problems', :action => 'done', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id],
 				:model_answer_id => @new_answer.id, :flag => "0"

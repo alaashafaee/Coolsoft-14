@@ -41,14 +41,12 @@ class ProblemsController < ApplicationController
 		begin
 			if @problem.save
 				redirect_to :controller => "test_cases", :action => "new",
-				:problem_id => @problem.id, :track_id => session[:track_id]
+				:problem_id => @problem.id, :track_id => session[:track_id], :flag => "0"
 			else
-				flash[:notice] = "Problem is missing paramaters"
-				render :action => 'new'
+				render :action => 'new', :locals => {:track_id => session[:track_id]}
 			end
 		rescue
-			flash[:notice] = "The track has a problem with the same title"
-			render :action => 'new'
+			render :action => 'new', :locals => {:track_id => session[:track_id]}
 		end
 	end
 
@@ -103,8 +101,12 @@ class ProblemsController < ApplicationController
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef & Ahmed Osam
 	def destroy
-		@track = Problem.find_by_id(params[:problem_id]).track_id
-		if Problem.find_by_id(params[:problem_id]).destroy
+		puts"DdddddddddddddddddddddddddddDDD>FV<VDV"
+		puts params
+		puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+		@problem = Problem.find_by_id(params[:problem_id])
+		@track = @problem.track_id
+		if @problem.destroy
 			flash[:notice] = "Problem successfully Deleted"
 			redirect_to(:controller => 'tracks',
 				 :action => 'show' ,:id => @track)

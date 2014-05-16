@@ -44,8 +44,10 @@
 	<% end %>
 </div>
 <br>
-<%= button_to "Delete Problem", {:action => 'destroy'}, method: :delete,class: 'btn btn-danger', :problem_id => session[:problem_id],
-	:confirm => "Are you sure you want to delete this problem ??" %>
+<%= button_to "Delete Problem", {:controller => 'problems',:action => 'destroy',
+								:problem_id => @problem.id, :track_id => session[:track_id]},method: :delete,
+								class:'btn btn-danger btn-xs', :confirm => 
+								"Are you sure you want to delete this Problem?" %>
 <% if @problem.model_answers.empty? || @problem.test_cases.empty? %>
 	<%= render partial: "problems/failure_options" %>
 <% end %>
