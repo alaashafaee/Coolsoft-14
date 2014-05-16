@@ -6,17 +6,17 @@ describe TestCase do
 			input: 'x',
 			output: 'y')
 		expect(testcase).to be_valid
-	end 
+	end
 
 	it 'is invalid without input' do
 		testcase = TestCase.new(output: 'y')
 		expect(testcase).to be_invalid
-	end 
+	end
 
 	it 'is invalid without output' do
 		testcase = TestCase.new(input: 'y')
 		expect(testcase).to be_invalid
-	end 
+	end
 	
 	it ' is added successfully to a problem ' do
 		testcase1 = TestCase.new(
