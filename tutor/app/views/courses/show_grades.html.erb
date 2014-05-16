@@ -22,6 +22,8 @@
 				<tr>
 					<td><%= assi.title%></td>
 					<td><%= @student_grade %>/<%= @total_grade %></td>
+					<td><%= button_to "Check Grades", {:controller => 'courses', :action => 'show_grades', :id => @course.id, :value => true}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+					</td>
 				</tr>
 			<% else%>
 				<tr>

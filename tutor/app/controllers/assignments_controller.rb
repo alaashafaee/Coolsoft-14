@@ -8,6 +8,11 @@ class AssignmentsController < ApplicationController
 	#	redirects to 'public/404' otherwise.
 	# Author: Lin Kassem
 	def show
+		if student_signed_in?
+			student_id = current_student.id
+		end
+		@grade_records = Grade.where("student_id = ?", student_id)
+		puts(@grade_records)
 		id = params[:id]
 		@assignment = Assignment.find_by_id(id)
 		if @assignment
@@ -18,6 +23,8 @@ class AssignmentsController < ApplicationController
 		else
 			render ('public/404')
 		end
+		@assignment_corrected_flag = true
+		@linarray = [1,2,3]
 	end
 
 	# [View List Of Assignments - Story 4.24]

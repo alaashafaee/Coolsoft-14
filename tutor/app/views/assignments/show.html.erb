@@ -1,7 +1,21 @@
-<div class="page-header">
+<div class="page-header">	
 	<h1>
+		<% if current_student %>
+			<% @problems.each do |p| %>
+			alert( <%= @grade_records.include? (p.id) %> )
+				<% if @grade_records.include? (p.id) %>
+				alert( <%= @grade_records.include? (p.id) %> )
+					<% @assignment_corrected_flag = false %>
+				<% end %>
+			<% end %>
+			<% if !@assignment_corrected_flag %>
+				<span class= "badge"  style="float: right;">ya rab</span>
+				<% @assignment_corrected_flag = true %>
+			<% end %>
+		<% end %>
 		<%= link_to @course.name, @course, style: "color: black" %>	
 	</h1>
+	alert(<%= @grade_records.include? @problems[1].id%>)
 </div>
 <br>
 <div id="assignment_info" style="text-align: center; font-size: 16pt;">
