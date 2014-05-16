@@ -185,22 +185,41 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
+
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true)
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true)
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
 	Track.create(title: "Track 3", difficulty: 2)
 	Track.create(title: "Track 4", difficulty: 3)
+	Track.create(title: "Track 5", difficulty: 3)
+	Track.create(title: "Track 6", difficulty: 3)
+	Track.create(title: "Track 7", difficulty: 3)
+	Track.create(title: "Track 8", difficulty: 3)
+	Track.create(title: "Track 9", difficulty: 3)
+	Track.create(title: "Track 10", difficulty: 3)
+	Track.create(title: "Track 11", difficulty: 3)
+	Track.create(title: "Track 12", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
 	Solution.create(code:"println(My first solution)", length:5, status:1)
@@ -269,6 +288,17 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.topics << Topic.first
 	## Tracks
 		Lecturer.first.tracks << Track.first
+		Lecturer.first.tracks << Track.find_by_id(2)
+		Lecturer.first.tracks << Track.find_by_id(3)
+		Lecturer.first.tracks << Track.find_by_id(4)
+		Lecturer.first.tracks << Track.find_by_id(5)
+		Lecturer.first.tracks << Track.find_by_id(6)
+		Lecturer.first.tracks << Track.find_by_id(7)
+		Lecturer.first.tracks << Track.find_by_id(8)
+		Lecturer.first.tracks << Track.find_by_id(9)
+		Lecturer.first.tracks << Track.find_by_id(10)
+		Lecturer.first.tracks << Track.find_by_id(11)
+		Lecturer.first.tracks << Track.find_by_id(12)
 	## Problems
 		Lecturer.first.problems << Problem.first
 		Lecturer.first.problems << Problem.find_by_id(2)
@@ -449,8 +479,16 @@ puts("# ----------------------- Topics ----------------------- ")
 	## Tracks
 		Topic.first.tracks << Track.first
 		Topic.first.tracks << Track.find_by_id(2)
-		Topic.find_by_id(2).tracks << Track.find_by_id(3)
-		Topic.find_by_id(3).tracks << Track.find_by_id(4)
+		Topic.first.tracks << Track.find_by_id(3)
+		Topic.first.tracks << Track.find_by_id(4)
+		Topic.first.tracks << Track.find_by_id(5)
+		Topic.first.tracks << Track.find_by_id(6)
+		Topic.first.tracks << Track.find_by_id(7)
+		Topic.first.tracks << Track.find_by_id(8)
+		Topic.first.tracks << Track.find_by_id(9)
+		Topic.first.tracks << Track.find_by_id(10)
+		Topic.first.tracks << Track.find_by_id(11)
+		Topic.first.tracks << Track.find_by_id(12)
 
 puts("# ----------------------- Courses ----------------------- ")
 	## Topics

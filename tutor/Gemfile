@@ -54,6 +54,8 @@ gem 'foreman'
 # Use composite primary keys in models
 gem 'composite_primary_keys', '~> 6.0.1'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 #
 gem 'acts_as_list'
 
@@ -64,11 +66,8 @@ gem 'json_builder', '3.1.0'
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
 
-
 # table_print
 gem 'table_print'
-
-gem 'rich'
 
 # real-time sync
 gem 'faye'
