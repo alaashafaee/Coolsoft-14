@@ -68,10 +68,6 @@ gem 'whenever', :require => false
 
 gem 'table_print'
 
-group :development, :test do
-	gem 'rspec-rails', '~> 3.0.0.beta'
-end
-
 #pagination
 gem 'will_paginate', '~> 3.0.5'
 
