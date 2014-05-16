@@ -2,32 +2,34 @@
 <%= form_for(@assignment) do |f| %>
 	<% if @assignment.errors.any? %>
 		<div id="error_explanation">
-			<h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this course from being saved:</h2>
+			<h2><%= pluralize(@assignment.errors.count, "error") %>
+				prohibited this course from being saved:
+			</h2>
 			<ul>
 				<% @assignment.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
 				<% end %>
 			</ul>
 		</div>
-
 	<% end %>
 	<% if flash[:notice1] %>
-				<div class = "alert alert-success"> Problem  is now added </div>
-			<% end %>
-	<h2> Edit Assignment </h2>
+		<div class = "alert alert-success"> Problem  is now added </div>
+	<% end %>
 	
+	<h2> Edit Assignment </h2>
 	<p><h3><%= f.label :Title %></h3></p>
-		<p><%= f.text_field :title, placeholder:"Title" %></p>
-		<h3><%= f.label :Description %></h3>
-		<p><%= f.text_area :description,
-			placeholder:"Description", :cols => "60", :rows => "10"; %>
-		</p>
-		<p><h3><%= f.label :Due_date %></h3></p>
-		<p><%= f.date_select :due_date, {:start_year => Date.today.year+1,
-			:end_year => Date.today.year, :order => [:day, :month, :year],
-			:value => Time.now} %></p>
-		<br>
-		<p>
+	<p><%= f.text_field :title, placeholder:"Title" %></p>
+	<h3><%= f.label :Description %></h3>
+	<p><%= f.text_area :description,
+		placeholder:"Description", :cols => "60", :rows => "10"; %>
+	</p>
+	<p><h3><%= f.label :Due_date %></h3></p>
+	<p><%= f.date_select :due_date, {:start_year => Date.today.year+1,
+		:end_year => Date.today.year, :order => [:day, :month, :year],
+		:value => Time.now} %>
+	</p>
+	<br>
+	<p>
 		<%= f.submit "Save changes", class: "btn btn-large btn-info" %>
-		</p>
+	</p>
 <% end %>

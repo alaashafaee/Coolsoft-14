@@ -36,6 +36,13 @@ class AssignmentsController < ApplicationController
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 		end
 	end
+
+	# [Edit Assignment - Story 4.28]
+	# Updates the assignment needs to be edited in the database.
+	# Parameters: 
+	#	params[:id]: Id of the assignment.
+	# Returns: none
+	# Author: Nadine Adel
 	def update
 		@assignment = Assignment.find_by_id(params[:id])
 		if @assignment.update_attributes(assignment_params)
@@ -45,12 +52,19 @@ class AssignmentsController < ApplicationController
 			render :action=>'edit', :id => @assignment.id
 		end
 	end
-		def destroy
-		@assignment = Assignment.find_by_id(params[:id])
-		 @assignment.destroy
-			flash[:notice] = "Assignment is successfully Deleted"
-			redirect_to :controller=>'courses' ,:action=> 'show',:id=>@assignment.course_id
 
+	# [Edit Assignment - Story 4.28]
+	# deletes and remove the assignment selected from the database.
+	# Parameters: 
+	#	params[:id]: Id of the assignment.
+	# Returns: none
+	# Author: Nadine Adel
+	def destroy
+		@assignment = Assignment.find_by_id(params[:id])
+		@assignment.destroy
+		flash[:notice] = "Assignment is successfully Deleted"
+		redirect_to :controller=>'courses',
+			:action=> 'show',:id=> @assignment.course_id
 	end
 	private
 	def assignment_params

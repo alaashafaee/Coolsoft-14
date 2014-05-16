@@ -22,7 +22,9 @@
 			</td>
 		</tr>
 	</table>
-	<ul class="navbar-brand pull-right"><%= button_to "Delete Problem", {:controller => 'assignment_problems',:action => 'destroy',:id => @problem.id}, class: "btn btn-danger", method: :delete, 
-								:confirm => "Are you sure you want to delete this Problem?" %>
-									</ul>
+	<ul class="navbar-brand pull-right"><%= button_to "Delete Problem",
+		{:controller => 'assignment_problems',:action => 'destroy',:id => @problem.id},
+		class: "btn btn-danger", method: :delete,
+		:confirm => "Are you sure you want to delete this Problem?" %>
+	</ul>
 </div>
