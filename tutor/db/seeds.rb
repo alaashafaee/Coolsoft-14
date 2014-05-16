@@ -10,7 +10,6 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
-	Admin.create(name: "Admin")
 
 puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
@@ -183,15 +182,26 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
+
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true)
-		Problem.create(title: "Problem 5", description: "This is very easy Problem",
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
+		Problem.create(title: "Problem 5", description: "This is very easy Problem",incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 					incomplete: true)
 		Problem.create(title: "Count Change", description: "Write a Java program CountChange 
 			to count change. Given the number of quarter, dimes, nickles, and pennies the 
@@ -200,6 +210,7 @@ puts("# ----------------------- Problems ----------------------- ")
 			- One dime corresponds to 10 pennies. - One nickle corresponds to 5 pennies.
 			For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies,
 			then the total is 1.06 dollars", incomplete: false, seen: true, duplicated: false)
+
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
