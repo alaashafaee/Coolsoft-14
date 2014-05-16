@@ -32,7 +32,7 @@ class PythonDebugger < Debugger
 		begin
 			$output, slave = PTY.open
 			master, $input = IO.pipe
-			pid = spawn("pdb", class_name, :in=>master, :out=>slave)
+			pid = spawn("python -m pdb #{class_name}", :in=>master, :out=>slave)
 			master.close
 			slave.close
 			nums = get_line
