@@ -4,7 +4,7 @@
 # Author: Ahmed Elassuty
 -->
 <%= form_tag utilities_simple_search_path, :method => 'get',
-		remote: controller?("utilities","simple_search"), class: "navbar-form navbar-left"  do %>
+		remote: controller?("utilities","simple_search"), class: "navbar-form navbar-left" do %>
 		<div class="input-group" style="width:350px">	
 			<%= text_field_tag :search, params[:search], class: "form-control col-lg-8",
 				placeholder: "Search for Users and Courses", id: "search_field",
