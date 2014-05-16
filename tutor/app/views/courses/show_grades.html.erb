@@ -3,8 +3,8 @@
 <br>
 <table class = "table table-striped", style = "width:60%">
 	<tr>
-		<th>Assignment</th>
-		<th>Assignment grade</th>
+		<th><center>Assignment</center></th>
+		<th><center>Assignment grade</center></th>
 	</tr>
 	<% @assignments.each do |assi| %>
 		<% if assi.publish %>
@@ -20,15 +20,14 @@
 			<% end %>
 			<% if @flag %>
 				<tr>
-					<td><%= assi.title%></td>
-					<td><%= @student_grade %>/<%= @total_grade %></td>
-					<td><%= button_to "Check Grades", {:controller => 'courses', :action => 'show_grades', :id => @course.id, :value => true}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
-					</td>
+					<td><center><%= assi.title%></center></td>
+					<td><center><%= @student_grade %>/<%= @total_grade %></center></td>
+					<td><%= link_to "Check correction", {:controller => 'assignments', :action => 'show_correction', method: :get, :id => assi.id }, class: "",  style: "font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none" %></td>		
 				</tr>
 			<% else%>
 				<tr>
-					<td><%= assi.title%></td>
-					<td><span class="badge">Not corrected yet</span></td>
+					<td><center><%= assi.title%></center></td>
+					<td><center><span class="badge">Not corrected yet</span></center></td>
 				</tr>
 			<% end %>
 			<% @total_grade = 0 %>

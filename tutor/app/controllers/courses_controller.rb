@@ -217,7 +217,13 @@ class CoursesController < ApplicationController
 		end
 	end
 
-	#Lin
+	# [View Corrected Assignment - Story 4.26]
+	# Shows the list of grades of assignments of a 
+	#	particular course that the student is enrolled in 
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: none
+	# Author: Lin Kassem
 	def show_grades
 		id = params[:id]
 		@course = Course.find_by_id(id)

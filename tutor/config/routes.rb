@@ -115,6 +115,12 @@ Tutor::Application.routes.draw do
 		end
 	end
 
+	resources :assignments do
+		member do
+			get 'show_correction'
+		end
+	end
+
 	resources :topics do
 		collection do           
 			post 'sort'

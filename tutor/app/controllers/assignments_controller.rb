@@ -1,4 +1,5 @@
 class AssignmentsController < ApplicationController
+	
 	# [View List Of Assignments - Story 4.24]
 	# Shows a particular assignment in a course
 	# Parameters: 
@@ -62,5 +63,20 @@ class AssignmentsController < ApplicationController
 			@can_edit = @course.can_edit(current_lecturer)
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 		end
+	end
+
+	# [View Corrected Assignment - Story 4.26]
+	# Shows TA's correction for the student's corrected
+	#	assignment.
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: none
+	# Author: Lin Kassem
+	def show_correction
+		id = params[:id]
+		@assignment = Assignment.find_by_id(id)
+		student_id = current_student.id
+		@course = @assignment.course
+		@problems = @assignment.problems
 	end
 end
