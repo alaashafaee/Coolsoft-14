@@ -1,33 +1,22 @@
 <div class="page-header">	
 	<h1>
 		<% if current_student %>
-
 			<% if @assignment_corrected_flag == false %>
-				<span class= "badge"  style="float: right;">Assignment not Corrected YET</span>
+				<% if @assignment_submitted_flag == true %>
+					<span class="badge" style="float: right;">Assignment submitted</span>
+					<br>
+					<span class="badge" style="float: right;">Assignment not corrected yet</span>
+				<% end %>
 			<% else %>
-				<span class= "badge"  style="float: right;">Assignment submitted</span>
+				<span class="badge" style="float: right;">Assignment submitted</span>
 				<br>
-				<span class= "badge"  style="float: right;">Assignemnt corrected </span>
-			<% end %>
-		
-		<% end %> <!--/if current_student-->
-		
-
+				<span class="badge" style="float: right;">Assignemnt corrected</span>
+			<% end %>		
+		<% end %> 
 		<%= link_to @course.name, @course, style: "color: black" %>	
 	</h1>
 </div>
 <br>
-
-
-
-
-
-
-
-
-
-
-
 <div id="assignment_info" style="text-align: center; font-size: 16pt;">
 	<p> Assignment title: <b><%= @assignment.title %></b></p>
 	<p> Submission: <%= @assignment.due_date.day %>.

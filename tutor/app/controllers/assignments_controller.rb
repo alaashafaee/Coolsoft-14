@@ -6,17 +6,19 @@ class AssignmentsController < ApplicationController
 	# Returns: 
 	#	The view of the assignmet if found, 
 	#	redirects to 'public/404' otherwise.
+	#	Lables denoting whether the assignment
+	#	is submitted or corrected. 
 	# Author: Lin Kassem
 	def show
-
 		@assignment_corrected_flag = false
-		@found = false
+		@assignment_submitted_flag = false
+		id = params[:id]
+		@assignment = Assignment.find_by_id(id)
+		@grade_records = []
+		@submitted_records = []
 		if student_signed_in?
 			student_id = current_student.id
 		end
-		@grade_records = Grade.where("student_id = ?", student_id)
-		id = params[:id]
-		@assignment = Assignment.find_by_id(id)
 		if @assignment
 			@course = @assignment.course
 			@problems = @assignment.problems
@@ -25,17 +27,23 @@ class AssignmentsController < ApplicationController
 		else
 			render ('public/404')
 		end
-
-		@new_grade_records = []
-
 		@problems.each do |p|
-			@new_grade_records = @new_grade_records + Grade.where("student_id = ? AND problem_id = ?", student_id, p.id )
+			@grade_records = @grade_records + 
+			Grade.where("student_id = ? AND problem_id = ?", student_id, p.id )
 		end
-
-		if @new_grade_records.size < @problems.size
+		if @grade_records.size < @problems.size
 			@assignment_corrected_flag = false
 		else
 			@assignment_corrected_flag = true
+		end
+		@problems.each do |p|
+			@submitted_records = @submitted_records + 
+			Solution.where("student_id = ? AND problem_id = ? AND problem_type = ?", student_id, p.id , "AssignmentProblem")
+		end
+		if @submitted_records.size < @problems.size
+			@assignment_submitted_flag = false
+		else
+			@assignment_submitted_flag = true
 		end
 	end
 
