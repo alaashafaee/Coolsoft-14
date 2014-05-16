@@ -153,10 +153,6 @@ class TestCasesController < ApplicationController
 		params.require(:test_case).permit(:input, :output, :problem_id)
 	end
 
-	def get_flag
-		params.require(:test_case).permit(:flag)
-	end
-
 	def test_case_params
 		params.require(:test_case).permit(:input, :output, :problem_id)
 	end

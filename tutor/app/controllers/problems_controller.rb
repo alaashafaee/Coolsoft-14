@@ -103,9 +103,6 @@ class ProblemsController < ApplicationController
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef & Ahmed Osam
 	def destroy
-		puts"DdddddddddddddddddddddddddddDDD>FV<VDV"
-		puts params
-		puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 		@problem = Problem.find_by_id(params[:problem_id])
 		@track = @problem.track_id
 		if @problem.destroy

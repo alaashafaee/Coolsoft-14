@@ -173,10 +173,6 @@ class TipsController < ApplicationController
 			params.require(:tip).permit(:message, :time)
 		end
 
-	def get_flag
-		params.require(:tip).permit(:flag)
-	end
-
 	# [Edit tip - Story 4.11]
 	# Take new information from a form on edit tip page
 	# Parameters:
@@ -189,6 +185,5 @@ class TipsController < ApplicationController
 		def tip_params_edit
 			params.require(:tip_edit).permit(:message, :time)
 		end
-
 
 end
