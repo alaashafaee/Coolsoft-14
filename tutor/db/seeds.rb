@@ -254,7 +254,12 @@ puts("# ----------------------- Assignments ----------------------- ")
 puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 100)
 	Grade.create(grade: 80)
-	
+
+puts("# ----------------------- Notifications ----------------------- ")
+	Notification.create(message: "Dr Wael Acknowledges your work", seen: false)
+	Notification.create(message: "google is a website", seen: false)
+	Notification.create(message: "akra, Has solved one brute-force problem", seen: true)
+	Notification.create(message: " message", seen: true)	
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -317,6 +322,12 @@ puts("# ----------------------- Lecturers ----------------------- ")
 	## Grades
 		Lecturer.first.grades << Grade.first
 		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
+	## Notifications
+		Lecturer.first.notifications << Notification.first
+		Lecturer.first.notifications << Notification.find_by_id(2)
+		Lecturer.first.notifications << Notification.find_by_id(3)
+		Lecturer.first.notifications << Notification.find_by_id(4)
+
 
 puts("# ----------------------- Students ----------------------- ")
 	## CourseStudent
@@ -368,6 +379,11 @@ puts("# ----------------------- Students ----------------------- ")
 	## Grades
 		Student.first.grades << Grade.first
 		Student.first.grades << Grade.find_by_id(2)
+	## Notifications
+		Student.first.notifications << Notification.first
+		Student.first.notifications << Notification.find_by_id(2)
+		Student.first.notifications << Notification.find_by_id(3)
+		Student.first.notifications << Notification.find_by_id(4)
 
 puts("# ----------------------- TeachingAssistants ----------------------- ")
 	## Courses
