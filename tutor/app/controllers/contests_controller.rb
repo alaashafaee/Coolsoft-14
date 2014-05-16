@@ -19,6 +19,10 @@ class ContestsController < ApplicationController
 			render ('public/404')
 		end
 		@problems = Cproblem.all
+		courseContests = @contest.course.contests
+		courseContests.length.times do |contest|
+			@problems = @problems - contest.problems
+		end
 	end
 
 	# [Add Contest Problem - Story 5.18]
