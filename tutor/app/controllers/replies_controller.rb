@@ -26,16 +26,18 @@ class RepliesController < ApplicationController
 		reply = Reply.new
 		reply.content = reply_content
 		new_notification = Notification.new
-
 		if lecturer_signed_in?
 			current_lecturer.replies << reply
-			new_notification.message = "#{current_lecturer.name} has replied to your post '#{post.title}' "
+			new_notification.message = "#{current_lecturer.name} 
+			has replied to your post '#{post.title}' "
 		elsif teaching_assistant_signed_in?
 			current_teaching_assistant.replies << reply
-			new_notification.message = "#{current_teaching_assistant} has replied to your post '#{post.title}' "
+			new_notification.message = "#{current_teaching_assistant} 
+			has replied to your post '#{post.title}' "
 		else
 			current_student.replies << reply
-			new_notification.message = "#{current_student} has replied to your post '#{post.title}' "			
+			new_notification.message = "#{current_student} has 
+			replied to your post '#{post.title}' "			
 		end
 		if  reply.owner_id != post.owner_id
 			new_notification.save
