@@ -7,11 +7,9 @@ class ApplicationController < ActionController::Base
 	before_action :update_sanitized_params, if: :devise_controller?
 	before_action :check_resource, if: :devise_controller?
 
-
 	#rescue_from Exception, :with => :render_not_found
-
-		private
-
+	
+	private
 		def render_not_found(exception)
 			render "/public/404.html"
 		end
