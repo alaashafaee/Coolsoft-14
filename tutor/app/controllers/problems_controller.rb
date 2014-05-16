@@ -114,7 +114,11 @@ class ProblemsController < ApplicationController
 	#	problem_params: a problem's title, description & track_id
 	# Returns:
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
+<<<<<<< HEAD
 	# Author: Abdullrahman Elhusseny + Mohamed Fadel
+=======
+	# Author: Abdullrahman Elhusseny + Rami Khalil
+>>>>>>> f2070dc284acdeb2503125cec14f707931ec2f9f
 	def update
 		@problem = Problem.find_by_id(params[:id])
 		@track = Track.find_by_id(@problem.track_id)
@@ -212,7 +216,11 @@ class ProblemsController < ApplicationController
 	# Parameters: none
 	# Returns:
 	#	Filtered parameter list for problems
+<<<<<<< HEAD
 	# Author: Abdullrahman Elhusseny + Mohamed Fadel
+=======
+	# Author: Abdullrahman Elhusseny + Rami Khalil
+>>>>>>> f2070dc284acdeb2503125cec14f707931ec2f9f
 	private
 		def problem_params
 			params.require(:Problem).permit(:title, :description, :track_id, :snippet)
