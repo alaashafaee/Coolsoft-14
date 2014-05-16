@@ -78,13 +78,13 @@ class TopicsController < ApplicationController
 	#					create_topic_form
 	# Returns: 
 	#	flash[:notice]: A message indicating the success or failure of the creation
-	# Author: Ahmed Akram
+	# Author: Ahmed Akram + Mohamed Saeed
 	def create
 		@new_topic = Topic.new
 		@new_topic.title = topic_params[:title]
 		@new_topic.description = topic_params[:description]
 		bool = @new_topic.save
-		if bool == true 
+		if bool == true
 			flash[:notice] = "Topic successfully created"
 			@course = Course.find(course_params[:course_id])
 			@course.topics << @new_topic
@@ -94,7 +94,7 @@ class TopicsController < ApplicationController
 			if @new_topic.errors.any?
 				flash[:notice] = @new_topic.errors.full_messages.first
 			end
-			render :action => 'new'  
+			render :action => 'new'
 		end
 	end
 
