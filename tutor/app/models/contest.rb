@@ -16,9 +16,9 @@ class Contest < ActiveRecord::Base
 
 	# [Contest Standings - Story 5.25]
 	# Sorts students in contest according to the number of correct problems
-	# they solved and the total time of submission
+	# 	they solved and the total time of submission
 	# Parameters: none
-	# Returns: sorted Hash containing ContestProgress of students
+	# Returns: Sorted Hash containing ContestProgress of students
 	def get_contest_standings
 		contest_standing_records = ContestProgress.where(contest_id: self.id)
 		contest_standings_unique = Hash.new
