@@ -2,6 +2,7 @@ ActiveAdmin.register AdminUser do
 
 	menu parent: "Users", priority: 4
 	permit_params :email, :password, :password_confirmation
+	
 	# [Admin - Story 3.19]
 	# creates table to show the attributes of the admins.
 	# Parameters: none.
@@ -16,6 +17,7 @@ ActiveAdmin.register AdminUser do
 		column :created_at
 		actions
 	end
+
 	# [Admin - Story 3.19]
 	# It is used to filter the results by the specified attributes.
 	# Parameters: none.
@@ -25,6 +27,7 @@ ActiveAdmin.register AdminUser do
 	filter :current_sign_in_at
 	filter :sign_in_count
 	filter :created_at
+
 	# [Admin - Story 3.19]
 	# creates a form for creating Admin
 	# Parameters: none.
