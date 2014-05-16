@@ -19,6 +19,7 @@ describe ProblemsController do
 		owner_id: lecturer.id)
 		problem = Problem.create(title: "problem example 2", description: "description here", snippet: "snippet here", views_count: "3", time_limit: "30", track_id: track.id, fill_gaps: false, incomplete: true, seen: true, duplicated: false, owner_id: lecturer.id, owner_type: "Lecturer")
 		ProblemsController.skip_before_filter :authenticate!
+		expect(Problem.where(id: problem.id)).to exist
 		expect {
 			delete :destroy, :problem_id => problem.id
 		}.to change(Problem, :count).by(-1)
