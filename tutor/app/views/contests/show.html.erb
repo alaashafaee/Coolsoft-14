@@ -7,7 +7,7 @@
 	<div align="center">
 		<h3><%= @contest.title %></h3>	
 	</div>
-	<% if @contest.start_time == nil || @contest.start_time < DateTime.now %>
+	<% if @contest.start_time == nil || @contest.start_time > DateTime.now %>
 		<h1> The Contest hasnt started yet <h1>
 	<% else %>
 		<%= link_to "Standings",
