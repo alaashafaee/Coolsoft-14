@@ -45,6 +45,13 @@ class AssignmentProblemsController < ApplicationController
 				@new_problem.assignment_id = @assignment.id
 				@new_problem.final_grade = 0
 				@new_problem.test_cases = @problem_select.test_cases
+				found = Array.new
+					a = AssignmentProblem.find_by(title: @new_problem.title)
+					puts "===================================="
+					puts a.title
+					puts "===================================="
+
+					found.push(a)
 				if lecturer_signed_in?
 					@new_problem.owner_id = current_lecturer.id
 					@new_problem.owner_type = "lecturer"
@@ -52,13 +59,28 @@ class AssignmentProblemsController < ApplicationController
 					@new_problem.owner_id = current_teaching_assistant.id
 					@new_problem.owner_type = "teaching assistant"
 				end
+			if found.empty?
 				if @new_problem.save
+
 					@assignment.problems << @new_problem
+					flash[:notice] = "problems are now added"
+					render :action => 'index' ,:id => @assignment.id
+					
+
 				end
+			else
+						flash[:duplicated] = "problem already exists"
+					redirect_to :back
+			end
+
+				
 			end
 		end
-		redirect_to :controller => 'assignment_problems', :action => 'index',
-		:id => @assignment.id
+		#redirect_to :controller => 'assignment_problems', :action => 'index',
+		#:id => @assignment.id
+		rescue
+			flash[:unchecked] = "no problems"
+			redirect_to :back
 	end
 
 	def index

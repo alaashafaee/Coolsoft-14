@@ -7,6 +7,24 @@
 			<li class="active"><a href="#">Copy from Existing Problems</a></li>
 		<% end %>
 	</ul>
+	<% if flash[:notice] %>
+				<div class = "alert alert-success"> Problem  is now added </div>
+			<% end %>
+	<% if flash[:duplicated] %>
+	<div id="error_explanation">
+	<h2>Error prohibited this problem from being saved:
+					</h2>
+		<li>problem already exists in the assignment</li>
+	</div>
+	<% end %>
+	<% if flash[:unchecked] %>
+	<div id="error_explanation">
+	<h2>Error:
+					</h2>
+	<li>Please check the problems to be saved or click on finish
+					</li>
+	</div>
+	<% end %>
 	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>
 		<div style= "float:left; width:47%;">
 			<div class= "tab-content">
