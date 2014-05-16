@@ -10,7 +10,6 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
-	Admin.create(name: "Admin")
 
 puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
@@ -183,16 +182,27 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
+
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true)
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true)
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
@@ -247,9 +257,11 @@ puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:false)
 
 puts("# ----------------------- Assignments ----------------------- ")
-	Assignment.create(title:"DSD Assignment_1", publish: true)
-	Assignment.create(title:"DMENT Assignment_2", publish: true)
-	Assignment.create(title:"DSD Assignment_3", publish: true)
+	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),
+		 description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
+	Assignment.create(title:"DMENT Assignment_2", publish: true, due_date: Date.new(2015,1,1))
+	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: DateTime.now.to_date)
+	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 100)
@@ -314,6 +326,7 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.assignments << Assignment.first
 		Lecturer.first.assignments << Assignment.find_by_id(2)
 		Lecturer.first.assignments << Assignment.find_by_id(3)
+		Lecturer.first.assignments << Assignment.find_by_id(4)
 	## Grades
 		Lecturer.first.grades << Grade.first
 		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
@@ -465,6 +478,7 @@ puts("# ----------------------- Courses ----------------------- ")
 	## Assignments
 		Course.first.assignments << Assignment.first
 		Course.first.assignments << Assignment.find_by_id(2)
+		Course.first.assignments << Assignment.find_by_id(4)
 		Course.find_by_id(2).assignments << Assignment.find_by_id(3)
 
 
