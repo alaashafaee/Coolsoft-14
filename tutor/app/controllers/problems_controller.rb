@@ -24,7 +24,7 @@ class ProblemsController < ApplicationController
 	#	description: problem's description through permitCreate action
 	# Returns:
 	#	Redirects to edit page on success, refreshes on failure
-	# Author: Abdullrahman Elhusseny & Ahmed Osam
+	# Author: Abdullrahman Elhusseny + Ahmed Osam
 	def create
 		@problem = Problem.new
 		@problem.title = problem_params_add[:title]
@@ -54,10 +54,11 @@ class ProblemsController < ApplicationController
 	# [Edit Problem - 4.5]
 	# Shows the problem's title and description (Further development is in Sprint 1)
 	# Parameters:
-	#	id: The id of the problem to be edited or newly created
+	#	problem_id: The id of the problem to be edited or newly created
+	#	topic_id: The id of the topic contains the problem
 	# Returns:
 	#	Redirects to edit page on success, refreshes on failure
-	# Author: Abdullrahman Elhusseny & Ahmed Osam
+	# Author: Abdullrahman Elhusseny + Ahmed Osam
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?
 			session[:problem_id] = params[:problem_id]
@@ -78,7 +79,7 @@ class ProblemsController < ApplicationController
 	#	track_id: The track id of the track that the problem will be added to
 	# Returns:
 	#	Redirects to add page on success or 404 on failure
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny + Ahmed Osam
 	def new
 		if lecturer_signed_in? || teaching_assistant_signed_in?
 			session[:track_id] = params[:track_id]
@@ -118,7 +119,7 @@ class ProblemsController < ApplicationController
 	#	problem_params: a problem's title, description & track_id
 	# Returns:
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
-	# Author: Abdullrahman Elhusseny + Rami Khalil
+	# Author: Abdullrahman Elhusseny + Rami Khalil + Ahmed Osam
 	def update
 		@problem = Problem.find_by_id(session[:problem_id])
 		@track = Track.find_by_id(@problem.track_id)
@@ -221,7 +222,7 @@ class ProblemsController < ApplicationController
 	# Parameters: none
 	# Returns:
 	#	Filtered parameter list for problems
-	# Author: Abdullrahman Elhusseny + Rami Khalil
+	# Author: Abdullrahman Elhusseny + Rami Khalil + Ahmed Osam
 	private
 		def problem_params
 			params.require(:Problem).permit(:title, :description, :track_id, :snippet)

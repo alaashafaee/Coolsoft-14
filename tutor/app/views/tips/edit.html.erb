@@ -2,7 +2,7 @@
 	<ul>
 		<li class = "sub"><a class = "preventclick">Problem</a> </li>
 		<li class = "sub1">
-			<a class = "preventclick", style="padding: 5px 12% 0 0px;">
+			<a class = "preventclick", style = "padding: 5px 12% 0 0px;">
 				Test Cases
 			</a>
 		</li>
@@ -15,8 +15,8 @@
 		<li class = "sub3"><a class = "visit">Tips</a></li>
 		<li class = "sub4">
 			<%= link_to "Hints", {:controller => 'hints', :action => 'index',
-			:model_answer_id => session[:model_answer_id],:track_id => session[:track_id],
-			:problem_id => params[:problem_id]},:method => :get %>
+			:model_answer_id => session[:model_answer_id], :track_id => session[:track_id],
+			:problem_id => params[:problem_id]}, :method => :get %>
 		</li>
 	</ul>
 </div><br><br><br>
@@ -25,7 +25,7 @@
 <div><ul class = "navbar-brand pull-right">
 		<%= link_to "Back", {:controller => 'tips', :action => 'index',
 			:track_id => session[:track_id], :problem_id => session[:problem_id],
-			:model_answer_id => session[:model_answer_id]},:method => :get,
+			:model_answer_id => session[:model_answer_id]}, :method => :get,
 			:class => "btn btn-info"%>
 	</ul>
 </div>
