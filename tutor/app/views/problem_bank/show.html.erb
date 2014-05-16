@@ -8,30 +8,30 @@
 	<p>There are no problems in the bank</p>
 <% end %>
 <% if !@problems.empty? %>
-		<table class="table table-striped" style = "width:60%">
-			<thead>
+	<table class="table table-striped" style = "width:60%">
+		<thead>
+			<tr>
+				<th style = "width:10%">Problem Title </th>
+				<th style = "width:2%"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @problems.each do |problem| %>
 				<tr>
-					<th style = "width:10%">Problem Title </th>
-					<th style = "width:2%"></th>
+					<% if (problem.seen && !problem.duplicated) %>
+						<td style = "max-width: 300px; word-wrap:break-word;">
+						<%= link_to problem.title ,:controller => 'problem_bank',
+							:action => 'index', :id => problem.id, :track_id => @track_id%>
+						</td>
+						<td style = "max-width: 300px; word-wrap:break-word;">
+						<%= link_to "ADD", {:controller => 'problem_bank',
+							:action => 'add', :id => problem.id, :track_id => @track_id}, class: "btn btn-primary"%>
+						</td>
+					<% end %>
 				</tr>
-			</thead>
-			<tbody>
-				<% @problems.each do |problem| %>
-					<tr>
-						<% if (problem.seen && !problem.duplicated) %>
-							<td style = "max-width: 300px; word-wrap:break-word;">
-							<%= link_to problem.title ,:controller => 'problem_bank',
-								:action => 'index', :id => problem.id, :track_id => @track_id%>
-							</td>
-							<td style = "max-width: 300px; word-wrap:break-word;">
-							<%= link_to "ADD", {:controller => 'problem_bank',
-								:action => 'add', :id => problem.id, :track_id => @track_id}, class: "btn btn-primary"%>
-							</td>
-						<% end %>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
+			<% end %>
+		</tbody>
+	</table>
 <% end %>
 <%= link_to "Return Back",{:controller => 'tracks',
 	:action => 'show'}, :id => @track_id, class: "btn btn-info" %>
