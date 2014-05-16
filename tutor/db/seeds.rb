@@ -137,7 +137,19 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 		float series = r1 + r2 + r3; float parallelInverse = 1/r1 + 1/r2 + 1/r3; 
 		float parallel = 1/parallelInverse; System.out.println(series); 
 		System.out.println(parallel);")
-	ModelAnswer.create(title: "Even or Odd", answer: "")
+	ModelAnswer.create(title: "Even or Odd", answer: "int oddNumber = 5; 
+		int evenNumber = 4; if ((evenNumber %2) == 0){ System.out.println(1);} else {
+		System.out.println(0);} if ((oddNumber %2) == 1){System.out.println(0);} else {
+		System.out.println(1);}")
+	ModelAnswer.create(title: "Palindrome", answer: "int palindrome = 12321; int reverse = 0; 
+		int number = palindrome; while(palindrome != 0){ int remainder = palindrome %10;
+		reverse = reverse*10 + remainder; palindrome = palindrome/10; if(number == reverse) {
+		System.out.println(1);} else{ System.out.println(-1);}")
+	ModelAnswer.create(title: "Fibonacci", answer: "int number = 5; if(number==1){ 
+		System.out.println(1);} else if (number==2){ System.out.print(1); 
+		System.out.print(1);} else {int fibo1 = 1, fibo2 = 1, fibonacci = 1; String fibo = 
+		fibo1 + fibo2; for(int i = 3; i <= number; i++){ fibonacci = fibo1 + fibo2; 
+		fibo += fibonacci; fibo1 = fibo2; fibo2 = fibonacci;} System.out.println(fibo);}")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -211,33 +223,36 @@ puts("# ----------------------- Problems ----------------------- ")
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					 {\n\t\t\n\t}\n}")
 					incomplete: true)
-		Problem.create(title: "Count Change", description: "Write a Java program CountChange 
+		Problem.create(title: "Count Change", description: "Write a program CountChange 
 			to count change. Given the number of quarter, dimes, nickles, and pennies the 
-			program should output the total as a single value in dollars and pennies. - 
+			program should output the total as a single value in dollars and pennies.
 			One dollar corresponds to 100 pennies.- One quarter corresponds to 25 pennies.
 			- One dime corresponds to 10 pennies. - One nickle corresponds to 5 pennies.
 			For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies,
-			then the total is 1.06 dollars", incomplete: false, seen: true, duplicated: false)
-		Problem.create(title: "Equivalent Resistance", description: "The equivalent resistance of
+			then the total is 1.06 dollars. Implement your program to execute the previous 
+			example.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(title: "Equivalent Resistance", description: "The equivalent resistance of 
 			resistors connected in series is calculated by adding the resistances of the 
 			individual resistors. The formula for resistors connected in parallel is a little 
 			complex. Given two resistors with resistances R1 and R2 connected in parallel the 
 			equivalent resistance is given by the inverse of the sum of the inverses, 
 			e.g. 1/Req = 1/R1 + 1/R2. Write a program that given 3 resistances outputs the 
 			equivalent resistance when they are connected in series and when they are connnected 
-			in parallel.", incomplete: false, seen: true, duplicated: false)
+			in parallel. Implement your program using values 8, 8, and 4 for three resistors.", 
+			incomplete: false, seen: true, duplicated: false)
 		Problem.create(title: "Even or Odd", description: "Write a program to check 
-			if a number is even or odd.",incomplete: false, seen: true, duplicated: false)
+			if a number is even or odd. Print 1 if even, and 0 if odd. Implement your code using 
+			two numbers 4 and 5, then test them consecutively. The program should print 1 
+			then 0.",incomplete: false, seen: true, duplicated: false)
 		Problem.create(title: "Palindrome", description: "Write a program to check if a 
-			number is a palindrome or not iteratively.",incomplete: false, 
-			seen: true, duplicated: false)
-		Problem.create(title: "Reverse", description: "Write a program to reverse any string",
-		 incomplete: false, seen: true, duplicated: false)
-		Problem.create(title: "Fibonacci", description: "Write a program to print Fibonacci 
-			series up to a given number iteratively", incomplete: false, seen: true, 
+			number is a palindrome or not iteratively. Print 1 if the number is a palindrome, 
+			and -1 if not. Test the value 12321 in your program.",incomplete: false, seen: true, 
 			duplicated: false)
+		Problem.create(title: "Fibonacci", description: "Write a program to print Fibonacci 
+			series up to a given number iteratively. Test your program using the value 5.", 
+			incomplete: false, seen: true, duplicated: false)
 		Problem.create(title: "", description: "",
-		 incomplete: false, seen: true, duplicated: false)
+			incomplete: false, seen: true, duplicated: false)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
