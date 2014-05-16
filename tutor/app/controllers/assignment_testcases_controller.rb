@@ -1,11 +1,24 @@
 class AssignmentTestcasesController < ApplicationController
 
+	# [Create Assignment - Story 4.27]
+	# To create a new testcase and save problem and assignment id.
+	# Parameters:
+	#	params[:cassignment_id]: id of the problem.
+	# Returns: none 
+	# Author: Nadine Adel
 	def new
 		@problem = AssignmentProblem.find_by_id(params[:assignment_id])
 		session[:assignment_problem_id] = params[:assignment_id]
-		session[:problem_assignment_id] = @problem.assignment_id	
+		session[:problem_assignment_id] = @problem.assignment_id
 	end
 
+	# [Create Assignment - Story 4.27]
+	# To create a new testcase related to acertain problem.
+	# Parameters:
+	#	new_test_case_params[]: parameters needed to save new test case.
+	# Returns: 
+	#	A message if the test case is saved or not 
+	# Author: Nadine Adel
 	def create
 		@problem = AssignmentProblem.find_by_id(new_test_case_params[:assignment_problem_id])
 		@test_case = TestCase.new
@@ -23,25 +36,24 @@ class AssignmentTestcasesController < ApplicationController
 		if @test_case.save
 			@problem.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
-			redirect_to :controller => 'assignment_problems', :action => 'new', 
+			redirect_to :controller => 'assignment_problems', :action => 'new',
 			:id => session[:problem_assignment_id]
 		else
 			render :action=>'new', :assignment_id => @test_case.assignment_problem_id
 
 		end
-
 	end
 
-  def show
-  end
-
-  def index
-  end
-
-  def edit
-  end
-  private
-  def new_test_case_params
+	# [Create Assignment - Story 4.27]
+	# To get from the new_test_case form the values needed to save new test case.
+	# Parameters: none
+	# Returns: 
+	#	input: input of the test case.
+	#	output: output of the testcase.
+	#	assignment_problem_id: problem id to which the test case is related.
+	# Author: Nadine Adel
+	private
+	def new_test_case_params
 		params.require(:new_test_case).permit(:input, :output, :assignment_problem_id)
 	end
 end

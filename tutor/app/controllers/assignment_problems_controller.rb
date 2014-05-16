@@ -174,8 +174,17 @@ class AssignmentProblemsController < ApplicationController
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 		end
 	end
+	
+
+	# [Create Assignment - Story 4.27]
+	# To get from the assignment_problem form the values needed to save new problem.
+	# Parameters: none
+	# Returns: 
+	#	title: title of the problem.
+	#	description: description of the problem.
+	# Author: Nadine Adel
 	private
-		def problem_params
-			params.require(:assignment_problem).permit(:title, :description)
-		end
+	def problem_params
+		params.require(:assignment_problem).permit(:title, :description)
+	end
 end

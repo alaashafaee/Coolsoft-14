@@ -82,6 +82,14 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
+	# [Create Assignment - Story 4.27]
+	# To get from the assignment form the values needed to save new assignment.
+	# Parameters: none
+	# Returns: 
+	#	title: title of the assignment.
+	#	description: description of the assignment.
+	#	date: duedate of the assignment.
+	# Author: Nadine Adel
 	private
 	def assignment_params
 		params.require(:assignment).permit(:title, :description, :date)
