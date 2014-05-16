@@ -71,6 +71,12 @@ class SolutionsController < ApplicationController
 			@solution = Solution.find_by_id(params[:submission_id])
 			if !@solution.blank?
 				@lines = @solution.code.split("\n")
+				@notes = Hash.new
+				@counter = 0
+				@lines.each do |line|
+					@counter+= 1
+					@notes[@counter]= Note.where(solution_id: @solution.id, line: @counter).last
+				end
 				@student = Student.find_by_id(@solution.student_id)
 				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
 				@course = @problem.assignment.course
@@ -96,6 +102,12 @@ class SolutionsController < ApplicationController
 	def view_submissions
 		@problem = AssignmentProblem.find_by_id(params[:problem_id])
 		@submissions = @problem.solutions.group(:student_id)
+		@students = Hash.new
+		@counter = 0
+		@submissions.each do |submission|
+			@counter+=1
+			@students[@counter] = Student.find_by_id(submission.student_id)
+		end
 		@course = @problem.assignment.course
 		@can_edit = @course.can_edit(current_lecturer)
 		@can_edit||= @course.can_edit(current_teaching_assistant)

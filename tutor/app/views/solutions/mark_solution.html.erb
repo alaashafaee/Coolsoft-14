@@ -12,7 +12,7 @@
 		<% @counter = 0 %>
 		<% @lines.each do |line| %>
 			<% @counter+= 1 %>
-			<% @note = Note.where(solution_id: @solution.id, line: @counter).last %>
+			<% @note = @notes[@counter] %>
 			<tr id = "<%= @counter %>",
 				onMouseOver = "show(this.id)",
 				onMouseOut = "hide(this.id)">

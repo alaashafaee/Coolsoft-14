@@ -11,9 +11,11 @@
 			<td width="50px"></td>
 			<td style = "font-weight:bold;font-size:200%;">Passed test cases</td>
 		</tr>
+			<% @counter = 0 %>
 			<% @submissions.each do |submission| %>
+				<% @counter+= 1 %>
 				<tr>
-					<% @student = Student.find_by_id(submission.student_id) %>
+					<% @student = @students[@counter] %>
 					<td><%= @student.name %></td>
 					<td width="50px"></td>
 					<td title = "<%= @problem.description %>"><%= @problem.title %></td>
