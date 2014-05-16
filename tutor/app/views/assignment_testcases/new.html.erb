@@ -24,4 +24,8 @@
 	<p>
 		<%= f.submit 'Add Test Case', class: "btn btn-large btn-info" %>
 	</p>
+	<ul class="navbar-brand pull-right">
+		<%= link_to "back", {:controller => 'assignment_problems',
+			:action => 'new', :id => session[:problem_assignment_id]} %>
+	</ul>
 <% end %>
