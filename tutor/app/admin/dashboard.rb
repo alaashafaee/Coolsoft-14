@@ -36,7 +36,7 @@ ActiveAdmin.register_page "Dashboard" do
             end
         end
     end
-      columns do
+    columns do
         column do
             panel "Recent Students" do
                 table_for Student.limit(4) do
