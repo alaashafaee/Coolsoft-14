@@ -43,9 +43,9 @@ class Cproblem < ActiveRecord::Base
 				if status == 1
 					cp.status = true
 				end
+				cp.trials = cp.trials + 1
+				cp.save
 			end
-			cp.trials = cp.trials + 1
-			cp.save
 		end
 	end
 

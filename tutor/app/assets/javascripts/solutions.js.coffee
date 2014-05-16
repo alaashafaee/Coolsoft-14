@@ -375,6 +375,8 @@ debug_console = ->
 			toggle_code_area()
 			if data['compiler_error']
 				compilation_error(data['compiler_output'])
+				contest_id = document.getElementById('contest_id').innerHTML
+				contest_problem_submission(0, contest_id, problem_id)
 				return
 			out = $('#validate_case')
 			out.html("")

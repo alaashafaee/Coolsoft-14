@@ -45,9 +45,8 @@ class SolutionsLayer
 			feed_back = compiler.compiler_feedback solution
 			if feed_back[:success]
 				solution.status = 3
-			else
-				solution.status = 2
 			end
+			solution.save
 			return feed_back
 		else
 			return
@@ -128,7 +127,7 @@ class SolutionsLayer
 	def self.get_solution code, student_id, problem_id, type = 'Problem', class_name
 		type = type.capitalize
 		solution = Solution.create({code: code, student_id: student_id,
-				problem_id: problem_id, problem_type: type, class_name: class_name})
+				problem_id: problem_id, problem_type: type, class_name: class_name, status: 2})
 		return solution
 	end
 
