@@ -15,7 +15,8 @@
 		</ul>
 	<% end %>
 	<div id = "div_hint">
-	<%= form_for :hint_edit, url: hint_path(@hint), method: :patch, remote: true do |hint_edit| %>
+	<%= form_for :hint_edit, url: hint_path(@hint), method: :patch,
+	remote: true do |hint_edit| %>
 		<p>
 			<h3><%= hint_edit.label :Content %></h3>
 			<h4 align ="left"><%= @hint.message %></h4>

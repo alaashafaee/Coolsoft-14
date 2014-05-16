@@ -6,8 +6,9 @@ class ModelAnswersController < ApplicationController
 	#	@problem: To fetch the problem to which the answer is added.
 	#	@answer: The new answer the user enters.
 	#	@answers: All the previous answers that had been entered before.
+	#	:flag: identification flag to decide between add or editing.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def new
 		@problem = Problem.find(params[:problem_id])
 		session[:problem_id] = params[:problem_id]
@@ -28,7 +29,7 @@ class ModelAnswersController < ApplicationController
 	#	@problems: The problem to which the answer is linked.
 	# Returns:
 	#	A message if the answer is added and another message if answer was not added.
-	# Author: Nadine Adel & Ahmed Osam
+	# Author: Nadine Adel + Ahmed Osam
 	def create
 		@new_answer = ModelAnswer.new
 		@new_answer.title = model_answer_params_add[:title]
@@ -69,7 +70,7 @@ class ModelAnswersController < ApplicationController
 	#	params[:id]: The current model answer's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef
+	# Author: Ahmed Atef + Ahmed Osam
 	def destroy
 		@model_answer = ModelAnswer.find_by_id(params[:model_answer_id])
 		@current = Problem.find_by_id(@model_answer.problem_id)
@@ -94,7 +95,7 @@ class ModelAnswersController < ApplicationController
 	#	@hints_check: Used to check the type of Hint.
 	# Returns:
 	#	A message if the answer is edited and another message if answer was not edited.
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def edit
 		session[:model_answer_id] = params[:model_answer_id]
 		session[:problem_id] = params[:problem_id]
@@ -112,7 +113,7 @@ class ModelAnswersController < ApplicationController
 	# Parameters:
 	#	@answer: Answer that is being updated.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def update
 		@answer = ModelAnswer.find(session[:model_answer_id])
 		if model_answer_params[:title] != @answer.title ||
@@ -164,7 +165,7 @@ class ModelAnswersController < ApplicationController
 	#	@answers: Previous answers that are saved in the database.
 	#	@problem: Problem to which the current answer is added.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def index
 		session[:problem_id] = params[:problem_id]
 		session[:track_id] = params[:track_id]
@@ -176,7 +177,7 @@ class ModelAnswersController < ApplicationController
 	# It requires the attributes from the form that we are interested in.
 	# Parameters: none
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	private
 	def model_answer_params
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
