@@ -40,7 +40,7 @@ class AssignmentProblemsController < ApplicationController
 		@problem = AssignmentProblem.find_by_id(params[:id])
 		if @problem.update_attributes(problem_params)
 			flash[:notice] = "Your problem is now updated"
-			redirect_to :action =>'show', :id => @problem.id
+			redirect_to :back
 		else
 			render :action=>'edit', :id => @problem.id
 		end

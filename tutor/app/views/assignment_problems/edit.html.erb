@@ -1,4 +1,7 @@
 <% provide(:title, "Edit Problem") %>
+<% if flash[:notice] %>
+				<div class = "alert alert-success"> Problem  is now updated</div>
+			<% end %>
 <%= form_for(@problem) do |f| %>
 	<% if @problem.errors.any? %>
 		<div id="error_explanation">
