@@ -102,7 +102,7 @@ class CoursesController < ApplicationController
 	#	none
 	# Returns: 
 	#	none
-	# Author: Mohamed Mamdouh
+	# Author: Mohamed Mamdouh + Ahmed Elassuty
 	def create
 		@new_course  = Course.new
 		@new_course.name = course_params[:name]
