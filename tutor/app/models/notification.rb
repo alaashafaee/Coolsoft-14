@@ -17,5 +17,31 @@ class Notification < ActiveRecord::Base
 		lecturer.notifications << new_notification
 	end
 
+	def self.assignments_notify assignment_id
+		assignment = Assignment.find_by_id(assignment_id)
+		course = Course.find_by_id(assignment.course_id)
+		students = course.students
+		students.each do |student|
+			new_notification = Notification.new
+			new_notification.message = "Assignment #{assignment.title} has been posted for the 
+				course #{course.name}"	
+			new_notification.save
+			student.notifications << new_notification
+		end
+	end
+
+	def self.contests_notify course_id,contest_id
+		contest = Contest.find_by_id(contest_id)
+		course = Course.find_by_id(course_id)
+		students = course.students
+		students.each do |student|
+			new_notification = Notification.new
+			new_notification.message = "Contest #{assignment.title} has been created for the 
+				course #{course.name}"	
+			new_notification.save
+			student.notifications << new_notification
+		end
+	end
+
 
 end
