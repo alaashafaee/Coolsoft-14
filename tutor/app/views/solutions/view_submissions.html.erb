@@ -19,14 +19,14 @@
 					<td title = "<%= @problem.description %>"><%= @problem.title %></td>
 					<td width="100px"></td>
 					<td><%= link_to "Mark and grade",
-						{:action => 'mark_solution',
-						:submission_id => submission.id},
-						class: "btn btn-info" %></td>
+							{:action => 'mark_solution',
+							:submission_id => submission.id},
+							class: "btn btn-info" %></td>
 				</tr>
 			<% end %>
 </table>
 <% end %>
 <br><br><br>
 <%= link_to "Back to assignment page",{:controller => 'assignments',
-	:action => 'show', :id => @problem.assignment.id }, 
+	:action => 'show', :id => @problem.assignment.id },
 	:method => :get, class: "btn btn-info" %>

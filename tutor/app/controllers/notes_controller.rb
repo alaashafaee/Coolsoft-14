@@ -24,7 +24,7 @@ class NotesController < ApplicationController
 		end
 		redirect_to :back
 	end
-	
+
 	# [Mark Assignment - 4.29]
 	# updates a record to Note Table
 	# Parameters:
