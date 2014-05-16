@@ -32,11 +32,11 @@ describe SolutionsLayer do
 
 	context "get_debugger tests" do
 		it "get java debugger" do
-				expect(SolutionsLayer.get_debugger "java").to eq JavaDebugger
+			expect(SolutionsLayer.get_debugger "java").to eq JavaDebugger
 		end
 
 		it "get python debugger" do
-				expect(SolutionsLayer.get_debugger "python").to eq PythonDebugger
+			expect(SolutionsLayer.get_debugger "python").to eq PythonDebugger
 		end
 
 		it "no such debugger named foo" do
