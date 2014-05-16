@@ -328,7 +328,6 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.notifications << Notification.find_by_id(3)
 		Lecturer.first.notifications << Notification.find_by_id(4)
 
-
 puts("# ----------------------- Students ----------------------- ")
 	## CourseStudent
 		Student.first.course_students << CourseStudent.first
@@ -379,11 +378,6 @@ puts("# ----------------------- Students ----------------------- ")
 	## Grades
 		Student.first.grades << Grade.first
 		Student.first.grades << Grade.find_by_id(2)
-	## Notifications
-		Student.first.notifications << Notification.first
-		Student.first.notifications << Notification.find_by_id(2)
-		Student.first.notifications << Notification.find_by_id(3)
-		Student.first.notifications << Notification.find_by_id(4)
 
 puts("# ----------------------- TeachingAssistants ----------------------- ")
 	## Courses
