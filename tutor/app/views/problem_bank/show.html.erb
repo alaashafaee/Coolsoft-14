@@ -20,12 +20,12 @@
 				<tr>
 					<% if (problem.seen && !problem.duplicated) %>
 						<td style = "max-width: 300px; word-wrap:break-word;">
-						<%= link_to problem.title ,:controller => 'problem_bank',
-							:action => 'index', :id => problem.id, :track_id => @track_id%>
+							<%= link_to problem.title ,:controller => 'problem_bank',
+								:action => 'index', :id => problem.id, :track_id => @track_id%>
 						</td>
 						<td style = "max-width: 300px; word-wrap:break-word;">
-						<%= link_to "ADD", {:controller => 'problem_bank',
-							:action => 'add', :id => problem.id, :track_id => @track_id}, class: "btn btn-primary"%>
+							<%= link_to "ADD", {:controller => 'problem_bank',
+								:action => 'add', :id => problem.id, :track_id => @track_id}, class: "btn btn-primary"%>
 						</td>
 					<% end %>
 				</tr>
