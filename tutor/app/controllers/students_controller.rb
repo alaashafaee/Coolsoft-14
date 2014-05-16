@@ -14,9 +14,8 @@ class StudentsController < ApplicationController
 		@solved = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@failed = Attempt.where(student_id:params[:student_id], failure:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
 		@incomplete = Attempt.where(student_id:params[:student_id], incomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
-		#Recheck here for the missing DB
-		#@solved_contest = Attempt.where(student_id:params[:student_id], success:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
-		#@failed_contest = Attempt.where(student_id:params[:student_id], failure:true).joins(contest_problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
+		@solved_contest = ContesProgress.where(student_id:params[:student_id], status:true).joins(:contest).where('contests.course_id' => params[:course_id]).select("DISTINCT cproblem_id").count
+		@solved_contest = ContesProgress.where(student_id:params[:student_id], status:false).joins(:contest).where('contests.course_id' => params[:course_id]).select("DISTINCT cproblem_id").count
 	end
 
 	def list_courses
@@ -55,8 +54,37 @@ class StudentsController < ApplicationController
 		@failure_list = Attempt.where(student_id:params[:student_id], icnomplete:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id")
 	end
 
+	# [Contest statistics - Story 5.30]
+	# This method retrieve variables from tables in the database
+	# Parameters:
+	# 	params: A hash of the request URL attributes
+	# Returns:
+	# 	An array of solved contest problems
+	# Author: Mahdi
+	def solved_contest_problems
+		@solved_contest_list = ContesProgress.where(student_id:params[:student_id], status:true).joins(:contest).where('contests.course_id' => params[:course_id]).select("DISTINCT cproblem_id")
+	end
+
+	# [Performance of a student - Story 5.3]
+	# This method retrieve variables from tables in the database 
+	# Parameters:
+	# 	params: A hash of the request URL attributes
+	# Returns:
+	# 	An array of failed problems
+	# Author: Mahdi
+	def failed_contest_problems
+		@failure_list = ContesProgress.where(student_id:params[:student_id], status:false).joins(:contest).where('contests.course_id' => params[:course_id]).select("DISTINCT cproblem_id")
+	end
+	
+	# [Contest Registrants - Story 5.27]
+	# This method retrieve variables from tables in the database 
+	# Parameters:
+	# 	params: A hash of the request URL attributes
+	# Returns:
+	# 	An array of contest registrants
+	# Author: Mahdi
 	def view_registrants
-		@contest_registrants = Contest.find_by_id(2).students
+		@contest_registrants = Contest.find_by_id(params[:id]).students
 	end
 
 	# [Profile - Story 5.8]

@@ -1,6 +1,4 @@
 <h4>Choose a course :- </h4><br>
 <% @courses_list.each do |crs| %>
 	<li> <%= link_to (Course.find_by_id(crs.course_id).name), students_get_performance_path(:student_id => crs.student_id, :course_id => crs.course_id) %></li><br>
-<% end %> 
-
-<%= debug(@courses_list) %>
+<% end %>

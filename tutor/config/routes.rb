@@ -1,5 +1,7 @@
 Tutor::Application.routes.draw do
-
+	
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -15,6 +17,8 @@ Tutor::Application.routes.draw do
 	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	get 'solutions/mark_solution'
+	get 'solutions/view_submissions'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
@@ -27,6 +31,8 @@ Tutor::Application.routes.draw do
 	post 'students/solved_problems' => 'students#solved_problems'
 	post 'students/failed_problems' => 'students#failed_problems'
 	post 'students/incomplete_problems' => 'students#incomplete_problems'
+	post 'students/solved_contest_problems' => 'students#solved_contest_problems'
+	post 'students/failed_contest_problems' => 'students#failed_contest_problems'
 	get 'students/view_registrants' => 'students#view_registrants'
 
 	get 'problems/edit'
@@ -36,8 +42,9 @@ Tutor::Application.routes.draw do
 	get "tips/show"
 	get "tips/index"
 	get "tips/edit"
-	get "tips/destroy"	
+	get "tips/destroy"
 	post "tips/:id/edit" => 'tips#update'
+	get "notes/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -94,6 +101,9 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :assignments
+	resources :assignment_problems
+	resources :notes
 
 	# Example resource route with options:
 	#   resources :products do

@@ -7,9 +7,15 @@
 		           ["Wrong ones", @failed_contest]]%>
 <%= column_chart data_exc, 
     library: {bar: {groupWidth: "10%"}},
-	colors: ["lightblue", "grey", "lightgrey"]%>
-
+	colors: ["lightblue"]%>
 
 <%= button_to "Solved Ones", {:controller => "students", :action => "solved_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
 <%= button_to "Wrong Ones", {:controller => "students", :action => "failed_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
 <%= button_to "Incomplete Ones", {:controller => "students", :action => "incomplete_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
+
+<%= column_chart data_contest, 
+    library: {bar: {groupWidth: "7%"}},
+	colors: ["grey"]%>
+
+<%= button_to "Solved Ones", {:controller => "students", :action => "solved_contest_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
+<%= button_to "Wrong Ones", {:controller => "students", :action => "failed_contest_problems", :student_id => params[:student_id], :course_id => params[:course_id]}, :class => 'btn btn-success' %>
