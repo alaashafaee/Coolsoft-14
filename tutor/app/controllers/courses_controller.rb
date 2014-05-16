@@ -37,6 +37,12 @@ class CoursesController < ApplicationController
 				student = Student.find(current_student.id)
 				if student.courses.find_by_id(@course.id) == nil
 					student.courses << @course
+					@course.topics.each do |topic|
+						topic.tracks.rach do |track|
+							progress = TrackProgression.create(level: 0, topic_id: topic.id)
+							student.progressions << progress
+						end
+					end
 				else
 					@status = "7"
 				end
