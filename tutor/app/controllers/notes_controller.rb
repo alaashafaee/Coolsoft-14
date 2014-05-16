@@ -18,7 +18,7 @@ class NotesController < ApplicationController
 			note_type = "teaching assistant"
 		end
 		if note.save
-			flash.keep[:notice] = "Note added! Hold your crusor over line of code to see the note"
+			flash.keep[:notice] = "Note added! Hold your cursor over line of code to see the note"
 		else
 			flash.keep[:notice] = "Note wasn't added"
 		end
