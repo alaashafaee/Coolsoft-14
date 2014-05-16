@@ -159,7 +159,14 @@ class CoursesController < ApplicationController
 			tracks = []
 			@topics.each do |t|
 				tracks = tracks + t.tracks
+			end			
+			@assignments = @course.assignments
+			assignment_problems = []
+			@assignments.each do |a|
+				assignment_problems = assignment_problems + a.problems
 			end
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
 		else
 			render ('public/404')
 		end
