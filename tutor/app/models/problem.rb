@@ -59,7 +59,7 @@ class Problem < ActiveRecord::Base
 	# Returns: 
 	#	the duplicated problem
 	# Author: Ahmed Sharaf
-	def duplicate 
+	def duplicate
 		@duplicated_problem = dup
 		test_cases.each do |t_cases|
 			@duplicated_problem.test_cases << t_cases.duplicate
@@ -69,4 +69,5 @@ class Problem < ActiveRecord::Base
 		end
 		return @duplicated_problem
 	end
+
 end

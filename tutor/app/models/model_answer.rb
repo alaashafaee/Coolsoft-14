@@ -22,8 +22,8 @@ class ModelAnswer < ActiveRecord::Base
 	# Returns: 
 	#	the duplicated model answers
 	# Author: Ahmed Sharaf
-	def duplicate 
-		@duplicated_model_answers = dup 
+	def duplicate
+		@duplicated_model_answers = dup
 		method_constraints.each do |m_constraint|
 			@duplicated_model_answers.method_constraints << m_constraint.duplictae
 		end
@@ -32,4 +32,5 @@ class ModelAnswer < ActiveRecord::Base
 		end
 		return @duplicated_model_answers
 	end
+
 end

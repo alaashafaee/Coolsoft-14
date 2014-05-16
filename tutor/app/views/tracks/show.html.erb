@@ -69,6 +69,6 @@
 	<%= link_to "Add", new_problem_path(:id => @track.id), class: "btn btn-info" %>
 <% end %>
 <% if @can_edit %>
-	<%= link_to "Problem Bank", {:controller => 'problem_bank', :action => 'show'}, 
+	<%= link_to "Problem Bank", {:controller => 'problem_bank', :action => 'show'},
 	class: "btn btn-info", :id => @track.id %>
 <% end %>

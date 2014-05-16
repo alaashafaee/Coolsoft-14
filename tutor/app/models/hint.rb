@@ -14,7 +14,8 @@ class Hint < ActiveRecord::Base
 	# Returns: 
 	#	the duplicated hints
 	# Author: Ahmed Sharaf
-	def duplicate 
-		return dup 
+	def duplicate
+		return dup
 	end
+
 end

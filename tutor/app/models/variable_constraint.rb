@@ -16,7 +16,8 @@ class VariableConstraint < ActiveRecord::Base
 	# Returns: 
 	#	the duplicated Variable Constraint
 	# Author: Ahmed Sharaf
-	def duplicate 
-		return dup 
+	def duplicate
+		return dup
 	end
+
 end

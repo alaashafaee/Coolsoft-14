@@ -18,7 +18,8 @@ class MethodParameter < ActiveRecord::Base
 	# Returns: 
 	#	the duplicated Method parameters
 	# Author: Ahmed Sharaf
-	def duplicate 
+	def duplicate
 		return dup
 	end
+
 end

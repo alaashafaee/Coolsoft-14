@@ -20,4 +20,5 @@ class TestCase < ActiveRecord::Base
 	def duplicate
 		return dup
 	end
+
 end
