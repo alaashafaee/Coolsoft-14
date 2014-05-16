@@ -7,32 +7,30 @@
 					<p>No Result match</p>
 				</div>
 			<% else %>
-				<% openable = true %>
 				<% if @lecturers.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form", objects: @lecturers, openable: openable %>
-						<% openable = false %>
+						<%= render "result_form", objects: @lecturers %>
 					</div>
 				<% end %>
 				<% if @students.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form", objects: @students, openable: openable %>
-						<% openable = false %>
+						<%= render "result_form", objects: @students %>
 					</div>
 				<% end %>
 				<% if @teaching_assisstants.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form", objects: @teaching_assisstants, openable: openable %>
-						<% openable = false %>
+						<%= render "result_form", objects: @teaching_assisstants %>
 					</div>
 				<% end %>
 				<% if @courses.present? %>
 					<div class="panel-group list-group" id="accordion">
-						<%= render "result_form", objects: @courses, openable: openable %>
-						<% openable = false %>
+						<%= render "result_form", objects: @courses %>
 					</div>
 				<% end %>
 			<% end %>
+			<div class="pagination pull-right">
+				<%= will_paginate (@objects) %>
+			</div>
 		</div>
 	</div>
 </div>
