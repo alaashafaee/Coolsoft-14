@@ -9,6 +9,8 @@ class StudentsController < ApplicationController
 	# 	@solved: [int] The number of solved problems
 	# 	@failed: [int] The number of failed problems
 	# 	@incomplete: [int] The number of incomplete problems
+	# 	@solved_contest: [int] The number of solved contest problems
+	# 	@failed_contest: [int] The number of failed contest problems
 	# Author: Mahdi
 	def get_performance
 		@solved = Attempt.where(student_id:params[:student_id], success:true).joins(problem: {track: :topic}).where('topics.course_id' => params[:course_id]).select("DISTINCT problem_id").count
@@ -18,6 +20,13 @@ class StudentsController < ApplicationController
 		@solved_contest = ContesProgress.where(student_id:params[:student_id], status:false).joins(:contest).where('contests.course_id' => params[:course_id]).select("DISTINCT cproblem_id").count
 	end
 
+	# [Performance of a student - Story 5.3]
+	# This method retrieve variables from tables in the database
+	# Parameters:
+	# 	params: A hash of the request URL attributes
+	# Returns:
+	# 	An array of registered courses by the student
+	# Author: Mahdi
 	def list_courses
 		@courses_list = CourseStudent.where(student_id: current_student.id)
 	end
