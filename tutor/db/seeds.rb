@@ -245,7 +245,7 @@ puts("# ----------------------- Recommendations ----------------------- ")
 
 puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-		incomplete:false, start_time: DateTime.now, end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
+		incomplete:false, start_time: DateTime.new(2014, 5, 1, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
 	Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
 		incomplete:false, start_time: DateTime.now)
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
@@ -254,13 +254,13 @@ puts("# ----------------------- Contests ----------------------- ")
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 1)
 	ContestProgress.create!(status:false, trials: 2)
+	ContestProgress.create!(status:true, trials: 3)
+	ContestProgress.create!(status:false, trials: 4)
 	ContestProgress.create!(status:true, trials: 5)
-	ContestProgress.create!(status:false, trials: 3)
-	ContestProgress.create!(status:false, trials: 1)
-	ContestProgress.create!(status:true, trials: 2)
-	ContestProgress.create!(status:false, trials:20)
-	ContestProgress.create!(status:true, trials: 18)
-	ContestProgress.create!(status:true, trials: 11)
+	ContestProgress.create!(status:false, trials: 6)
+	ContestProgress.create!(status:false, trials:7)
+	ContestProgress.create!(status:true, trials:8)
+	ContestProgress.create!(status:true, trials: 9)
 
 puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),

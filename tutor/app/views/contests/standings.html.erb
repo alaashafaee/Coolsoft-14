@@ -24,7 +24,9 @@
 	<ul>
 		<li><a href ="/contests/<%= @contest.id %>/standings">Standings</a></li>
 		<li><a href ="/contests/<%= @contest.id %>/registrants">Registrants</a></li>
+		<% if student_signed_in? %>
 		<li><a href ="/contests/<%= @contest.id %>/register">register</a></li>
+		<% end%>
 	</ul>
 </div>
 <table class="table table-bordered contest_table">
