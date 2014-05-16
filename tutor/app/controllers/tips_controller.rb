@@ -85,8 +85,6 @@ class TipsController < ApplicationController
 	# Author: Ahmed Osam
 	def show
 		@tip = Hint.find_by_id(params[:id])
-		redirect_to :controller => 'model_answers', :action => 'edit',
-			:model_answer_id => session[:model_answer_id]
 	end
 
 
