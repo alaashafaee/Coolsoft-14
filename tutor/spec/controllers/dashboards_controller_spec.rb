@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe DashboardsController do
 	before(:each) do
-		@course = Course.create(name:"Data Structures and Alogrithms", 
-				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
+		@course = Course.new(name:"Data Structures and Alogrithms", 
+				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1,
+				link: "http://www.test.org/")
+		@course.save!
+		@lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
+			password_confirmation: '123456789', name: 'LecturerI',
+			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+				degree: "PhD", university: "GUC", department: "MET")
+		@lecturer.save!
 		@student1 = Student.new(email: '1@student.com', password: '123456789', 
 				password_confirmation: '123456789', name: 'LecturerI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
@@ -49,55 +56,35 @@ describe DashboardsController do
 	end
 
 	it "sends notifications to lecturer when student signs up to his course" do
-		lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
-			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				degree: "PhD", university: "GUC", department: "MET")
-			lecturer.save!
-		lecturer.courses << @course
+		@lecturer.courses << @course
 		@course.students << @student1
 		DashboardsController.skip_before_filter :authenticate!
-		Notification.lecturer_notify(lecturer.id, @course.id, @student1.id)
-		expect(lecturer.notifications.last.message).to eq(
+		Notification.lecturer_notify(@lecturer.id, @course.id, @student1.id)
+		expect(@lecturer.notifications.last.message).to eq(
 			"#{@student1.name} subscribed to your course #{@course.name}")
-		expect(lecturer.notifications.count).to eq(1)
+		expect(@lecturer.notifications.count).to eq(1)
 	end
 
 	it "sends notifications to lecturer when student signs up to his course" do
-		lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
-			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				degree: "PhD", university: "GUC", department: "MET")
-			lecturer.save!
 		DashboardsController.skip_before_filter :authenticate!
-		Notification.acknowledgement_notify(@student1.id, lecturer.id)
+		Notification.acknowledgement_notify(@student1.id, @lecturer.id)
 		expect(@student1.notifications.last.message).to eq(
-			"#{lecturer.name} has sent you an acknowledgement")
+			"#{@lecturer.name} has sent you an acknowledgement")
 		expect(@student1.notifications.count).to eq(1)
 	end
 
 	it "sends notifications to lecturer when student signs up to his course" do
-		lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
-			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				degree: "PhD", university: "GUC", department: "MET")
-			lecturer.save!
-		lecturer.courses << @course
+		@lecturer.courses << @course
 		@course.students << @student1
 		DashboardsController.skip_before_filter :authenticate!
-		Notification.lecturer_notify(lecturer.id, @course.id, @student1.id)
-		expect(lecturer.notifications.last.message).to eq(
+		Notification.lecturer_notify(@lecturer.id, @course.id, @student1.id)
+		expect(@lecturer.notifications.last.message).to eq(
 			"#{@student1.name} subscribed to your course #{@course.name}")
-		expect(lecturer.notifications.count).to eq(1)
+		expect(@lecturer.notifications.count).to eq(1)
 	end
 
 	it "sends notifications to students when lecturer toggle discussion Board" do
-		lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
-			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				degree: "PhD", university: "GUC", department: "MET")
-			lecturer.save!
-		lecturer.courses << @course
+		@lecturer.courses << @course
 		discussion_board = DiscussionBoard.new(title: "Test DB")
 		discussion_board.save!
 		@course.discussion_board = discussion_board
