@@ -73,3 +73,4 @@ class ProblemBankController < ApplicationController
 		end
 		redirect_to :action => 'show', :id => @track.id
 	end
+end
