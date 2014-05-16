@@ -31,6 +31,7 @@ class JavaCompiler < ActiveRecord::Base
 	#		compilation process. The second element contains the compilation errors if any.
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
+		p solution
 		feedback = compile(solution, solution.code)
 		if feedback == ""
 			return {success: true, errors: nil}
