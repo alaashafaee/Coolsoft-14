@@ -14,7 +14,6 @@ ActiveAdmin.setup do |config|
         menu.add label: 'DBs/Posts', priority: 5
         menu.add label: 'Contest', priority: 6
         menu.add label: 'Assignment', priority: 7
-
       end
   end
   # Set the link url for the title. For example, to take
