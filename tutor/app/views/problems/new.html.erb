@@ -27,9 +27,6 @@
 		<%= problem.label :description %><br>
 		<%= problem.text_area :description, :cols => "50", :rows => "10",class: "form-control", style: "width:60%", :value => @problem.description %>
 	</p>
-<<<<<<< HEAD
-	<%= problem.hidden_field :track_id, value: session[:track_id] %>
-=======
 	<p>
 		<%= problem.label :snippet %><br>
 		<%= problem.text_area :snippet, cols: 50, rows: 10,
@@ -38,7 +35,6 @@
 			public static void main(String [] args) {\n\t\t\n\t}\n}" %>
 	</p>
 	<%= problem.hidden_field :track_id, value: params[:id] %>
->>>>>>> c318c6ced658a31f157242281a96054e483e0922
 	<p>
 		<%= problem.submit "Save Problem", class: "btn btn-info" %>
 	</p>

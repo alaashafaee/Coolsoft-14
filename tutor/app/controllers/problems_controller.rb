@@ -30,6 +30,7 @@ class ProblemsController < ApplicationController
 		@problem.title = problem_params_add[:title]
 		@problem.description = problem_params_add[:description]
 		@problem.track_id = session[:track_id]
+		@problem.snippet = problem_params_add[:snippet]
 		if lecturer_signed_in?
 			@problem.owner_id = current_lecturer.id
 			@problem.owner_type = "lecturer"
@@ -131,9 +132,12 @@ class ProblemsController < ApplicationController
 			@message = "Description updated"
 		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem has moved to Track #{problem_params[:track_id]}"
+		elsif problem_params[:snippet] != @problem.snippet
+			@message = "Snippet has changed"
 		elsif problem_params[:title] == @problem.title && 
 			problem_params[:description] == @problem.description && 
-			problem_params[:track_id].to_i == @problem.track_id
+			problem_params[:track_id].to_i == @problem.track_id &&
+			problem_params[:snippet] == @problem.snippet
 			flash[:notice] = "You have entered the same paramater no change has been made!"
 		else
 			flash[:notice] = "You have entered an empty paramater no change has been made!"
@@ -227,7 +231,7 @@ class ProblemsController < ApplicationController
 		end
 
 		def problem_params_add
-			params.require(:problem).permit(:title, :description, :track_id)
+			params.require(:problem).permit(:title, :description, :track_id, :snippet)
 		end
 
 end
