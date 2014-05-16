@@ -21,10 +21,10 @@ class NotificationsController < ApplicationController
 		@new_notifications = []
 		@old_notifications = []
 		@user.notifications.where("seen = 't'").each do |notification|
-			@old_notifications << notification
+			@old_notifications << notification.clone
 		end	
 		@user.notifications.where("seen = 'f'").each do |notification|
-			@new_notifications << notification
+			@new_notifications << notification.clone
 		end		
 		@user.notifications.where("seen = 'f'").each do |notification|
 			notification.seen = 't'
