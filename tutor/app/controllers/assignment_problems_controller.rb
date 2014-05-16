@@ -45,6 +45,17 @@ class AssignmentProblemsController < ApplicationController
 			render :action=>'edit', :id => @problem.id
 		end
 	end
+	def destroy
+		@problem = AssignmentProblem.find_by_id(params[:id])
+		@current = Assignment.find_by_id(@problem.assignment_id)
+		if @current.problems.count == 1
+			flash[:notice] = "Cannot delete problem's last model answer"
+			redirect_to :back and return
+		elsif @problem.destroy
+			flash[:notice] = "Answer successfully Deleted"
+			redirect_to :controller=>'assignments' ,:action=> 'show',:id=>@problem.assignment_id
+		end
+	end
 private
 	def problem_params
 			params.require(:assignment_problem).permit(:title, :description, :final_grade)
