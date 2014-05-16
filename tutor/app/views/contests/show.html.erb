@@ -11,7 +11,7 @@
 		<h1> The Contest hasnt started yet <h1>
 	<% else %>
 		<%= link_to "Standings",
-			"/standings/#{@contest.id}" %>
+			"/contests/#{@contest.id}/standings" %>
 		<%= link_to "Registrants",
 			"/registrants/#{@contest.id}",
 				style: "padding: 100px;" %>
@@ -29,8 +29,8 @@
 						<% counter = counter + 1 %>
 					</td>
 					<td> 
-						<%= link_to problem.title,
-							"/cproblem/#{problem.id}" %><br/>
+						<%= link_to problem.title,:controller =>'cproblems',:action =>'show',
+							:contest_id => @contest.id %><br/>
 					</td>
 					<td>
 						<%= problem.time_limit %><br/>
