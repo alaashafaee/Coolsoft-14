@@ -17,6 +17,8 @@ Tutor::Application.routes.draw do
 	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	get 'solutions/mark_solution'
+	get 'solutions/view_submissions'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
@@ -34,8 +36,9 @@ Tutor::Application.routes.draw do
 	get "tips/show"
 	get "tips/index"
 	get "tips/edit"
-	get "tips/destroy"	
+	get "tips/destroy"
 	post "tips/:id/edit" => 'tips#update'
+	get "notes/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -95,6 +98,7 @@ Tutor::Application.routes.draw do
 	resources :problem_bank
 	resources :assignments
 	resources :assignment_problems
+	resources :notes
 
 
 	# Example resource route with options:
