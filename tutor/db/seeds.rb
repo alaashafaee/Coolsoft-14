@@ -130,6 +130,7 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
 	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
 	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(title: "", answer: "System.out.println('SQL baaaad')-6")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -210,7 +211,26 @@ puts("# ----------------------- Problems ----------------------- ")
 			- One dime corresponds to 10 pennies. - One nickle corresponds to 5 pennies.
 			For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies,
 			then the total is 1.06 dollars", incomplete: false, seen: true, duplicated: false)
-
+		Problem.create(title: "Equivalent Resistance", description: "The equivalent resistance of
+			resistors connected in series is calculated by adding the resistances of the 
+			individual resistors. The formula for resistors connected in parallel is a little 
+			complex. Given two resistors with resistances R1 and R2 connected in parallel the 
+			equivalent resistance is given by the inverse of the sum of the inverses, 
+			e.g. 1/Req = 1/R1 + 1/R2. Write a program that given 3 resistances outputs the 
+			equivalent resistance when they are connected in series and when they are connnected 
+			in parallel.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(title: "Even or Odd", description: "Write a program to check 
+			if a number is even or odd.",incomplete: false, seen: true, duplicated: false)
+		Problem.create(title: "Palindrome", description: "Write a program to check if a 
+			number is a palindrome or not iteratively.",incomplete: false, 
+			seen: true, duplicated: false)
+		Problem.create(title: "Reverse", description: "Write a program to reverse any string",
+		 incomplete: false, seen: true, duplicated: false)
+		Problem.create(title: "Fibonacci", description: "Write a program to print Fibonacci 
+			series up to a given number iteratively", incomplete: false, seen: true, 
+			duplicated: false)
+		Problem.create(title: "", description: "",
+		 incomplete: false, seen: true, duplicated: false)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
