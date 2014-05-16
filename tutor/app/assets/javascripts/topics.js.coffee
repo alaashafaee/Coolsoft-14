@@ -3,7 +3,12 @@
 # Author: Mussab ElDash
 @newTrack = ->
 	create = document.getElementById("create_track")
+	new_track = document.getElementById("new_track")
 	create.hidden = !create.hidden
+	if create.hidden
+		new_track.innerText = "New"
+	else
+		new_track.innerText = "Hide"
 	return
 
 # [Edit Track Rating - Story 4.13]

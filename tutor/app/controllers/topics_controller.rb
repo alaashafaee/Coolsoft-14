@@ -38,6 +38,22 @@ class TopicsController < ApplicationController
 		@new_topic = Topic.new
 	end
 
+	# [Delete Topic - Story 1.34]
+	# This action takes the topic id, remove it from the database
+	#	and then redirects the user to the show courses page accompanied
+	#	with a "Topic deleted" message.
+	# Parameters:
+	#	params[:id]: The current topic's id
+	# Returns: none
+	# Author: Mohamed Saeed
+	def destroy
+		topic = Topic.find_by_id(params[:id])
+		topic.destroy
+		flash[:success_deletion] = "Topic deleted."
+		@course = topic.course
+		redirect_to :controller => 'courses', :action => 'show', :id => @course.id
+	end
+
 	# [Specify Topics - Story 1.2]
 	# This action takes the passed course id and assings
 	#	the respective topics of that course to an instance
