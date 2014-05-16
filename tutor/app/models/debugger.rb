@@ -32,7 +32,7 @@ class Debugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Inputs an input to the input stream of the debugger JDB
+	# Inputs an input to the input stream of the debugger
 	# Parameters:
 	# 	input : The input to be written in the sub stream
 	# Returns: none
