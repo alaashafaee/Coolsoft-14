@@ -1,23 +1,38 @@
-		<table class="table table-striped" style = "width:60%">
-			<thead>
-				<tr>
-					<th>Student's Name</th>
-					<th style = "width:20%">Created At</th>
-					<th style = "width:20%">Updated At</th>
-					<th>Grade</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @students.each do |student| %>
-					<% @total_grade = 0 %>
-					<% @problems.each do |problem| %>
-						<% @total_grade += Grade.where(problem_id: @problem.id).where(student_id: @student.id) %>
-					<% end %>
-					<tr>
- 						<td><%= student.name %></td>
-						<td><%= @total_grade %></td>
-					</tr>
+<table class="table table-striped" style = "width:90%">
+	<thead>
+		<tr>
+			<td style = "font-weight:bold;font-size:200%;">
+				Student</td>
+			<td width="5px"></td>
+			<% @problems.each do |problem| %>
+				<td width="5px"></td>
+				<td style = "font-weight:bold;font-size:200%;">
+					<%= problem.title %></td>
+			<% end %>
+			<td width="5px"></td>
+			<td style = "font-weight:bold;font-size:200%;">
+				Total Grade</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @counter = 1 %>
+		<% @students.each do |student| %>
+			<tr>
+				<td><%= student.name %></td>
+				<td width="5px"></td>
+				<% @total_grade = 0 %>
+				<% @total_final_grade = 0 %>
+				<% @problems.each do |problem| %>
+					<td width="5px"></td>
+					<td><%= @grades[@counter] %>/
+						<%= problem.final_grade %></td>
+					<% @total_grade += @grades[@counter] %>
+					<% @total_final_grade += problem.final_grade %>
+					<% @counter +=1 %>
 				<% end %>
-			</tbody>					
-	</table>
-	<% end %>
+				<td width="5px"></td>
+				<td><%= @total_grade %>/<%= @total_final_grade %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
