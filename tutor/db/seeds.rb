@@ -270,7 +270,7 @@ puts("# ----------------------- Grades ----------------------- ")
 puts("# ----------------------- Notifications ----------------------- ")
 	Notification.create(message: "<a href='courses/1'>Dr wael Acknowledged your work in this course</a>", seen: false)
 	Notification.create(message: "google is a website", seen: false)
-	Notification.create(message: "akra, Has solved one brute-force problem", seen: true)
+	Notification.create(message: "akram Has solved one brute-force problem", seen: true)
 	Notification.create(message: " message", seen: true)	
 
 puts("**************************************************************")
