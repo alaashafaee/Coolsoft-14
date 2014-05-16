@@ -25,11 +25,12 @@ class Solution < ActiveRecord::Base
 	def self.validate(solution, test_cases, language)
 		executer = language.capitalize + "Executer"
 		executer = eval(executer)
+		executer_instance = executer.new
 		response = []
 		test_cases.each do |testcase|
 			input = testcase.input
 			expected_output = testcase.output
-			runtime_check = executer.execute(solution, input)
+			runtime_check = executer_instance.execute(solution, input)
 			if(runtime_check[:executer_feedback])
 				output = runtime_check[:executer_output][:message]
 				if (output != expected_output)
