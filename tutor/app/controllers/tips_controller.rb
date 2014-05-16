@@ -20,6 +20,11 @@ class TipsController < ApplicationController
 	#	@tip: a new created tip to specific answer
 	# Author: Ahmed Osam
 	def new
+		if params[:flag] == "1" 
+			session[:flag] = params[:flag]
+		elsif params[:flag] == "0"
+			session[:flag] = params[:flag]
+		end
 		session[:track_id] = params[:track_id]
 		if(@tip == nil)
 			session[:model_answer_id] = params[:model_answer_id]
@@ -42,11 +47,6 @@ class TipsController < ApplicationController
 		@tip.message = tip_params[:message]
 		@tip.time = tip_params[:time]
 		@tip.category = true
-		if params[:flag] == "1" 
-		session[:flag] = params[:flag]
-	elsif get_flag[:flag] == "1"
-		session[:flag] = get_flag[:flag]
-			end
 		@tip.model_answer_id = session[:model_answer_id]
 		@tip.submission_counter = 0
 		if lecturer_signed_in?
@@ -63,7 +63,7 @@ class TipsController < ApplicationController
 				redirect_to :controller => 'tips', :action => 'index', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id], 
 				:model_answer_id => session[:model_answer_id]
-			else
+			elsif session[:flag] == "0"
 				redirect_to :controller => 'hints', :action => 'new', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id], 
 				:model_answer_id => params[:model_answer_id],:flag => session[:flag]

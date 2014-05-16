@@ -208,7 +208,7 @@ class ProblemsController < ApplicationController
 			@problem.save
 		end
 		redirect_to :controller => 'tips', :action => 'new', :model_answer_id => params[:model_answer_id],
-			:track_id => session[:track_id]
+			:track_id => session[:track_id], :flag => "0"
 	end
 
 	# [Add Problem - 4.4]

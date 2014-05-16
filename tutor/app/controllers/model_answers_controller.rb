@@ -48,7 +48,7 @@ class ModelAnswersController < ApplicationController
 			else
 				redirect_to :controller => 'problems', :action => 'done', 
 				:problem_id => session[:problem_id], :track_id => session[:track_id],
-				:model_answer_id => @new_answer.id
+				:model_answer_id => @new_answer.id, :flag => "0"
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @new_answer.id,
