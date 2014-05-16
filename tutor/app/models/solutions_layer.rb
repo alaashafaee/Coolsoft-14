@@ -27,7 +27,6 @@ class SolutionsLayer
 		else
 			create_file lang, solution
 		end
-		p cases
 		return executer.execute(solution, cases)
 	end
 

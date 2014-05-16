@@ -76,7 +76,6 @@ class Debugger
 	# Author: Mussab ElDash
 	def check_termination(line)
 		if line =~ $TERM
-			puts "Gonna Terminate"
 			raise 'Exited'
 		end
 	end

@@ -32,9 +32,11 @@ status = "The debugging session was successful."
 			clear_console()
 			stop_spin()
 			if data["data"] is false
+				toggle_code_area()
 				return
 			unless data["success"]
 				compilation_error data["data"]["errors"]
+				toggle_code_area()
 				return
 			variables = data["data"]
 			status = data["status"]

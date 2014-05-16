@@ -121,7 +121,8 @@ class PythonDebugger < Debugger
 		second_step = ""
 		first_step = line.sub(/> <string>\(1\)<module>\(\)->None\r\n/m, "")
 		second_step = first_step.sub(/.*\(Pdb\) /m, "")
-		return second_step
+		third_step = second_step.sub(/\-\-[A-Z][a-z]*\-\-\r\n/,"")
+		return third_step
 	end
 
 	# [Debugger: Debug Pyhton - Story X.8]
