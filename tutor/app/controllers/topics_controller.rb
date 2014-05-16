@@ -89,6 +89,7 @@ class TopicsController < ApplicationController
 			@course = Course.find(course_params[:course_id])
 			@course.topics << @new_topic
 			redirect_to :action => 'index'
+			Topic.update_track_progression @new_topic
 		else
 			if @new_topic.errors.any?
 				flash[:notice] = @new_topic.errors.full_messages.first

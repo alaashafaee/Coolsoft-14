@@ -42,4 +42,14 @@ class Topic < ActiveRecord::Base
 			end
 		end
 	end
+
+
+	def self.update_track_progression topic
+		course = Course.find_by_id(topic.course_id)
+		course.students.each do |student|
+			progress = TrackProgression.create(level: 0, topic_id: topic.id)
+			student.progressions << progress
+		end
+	end
+
 end
