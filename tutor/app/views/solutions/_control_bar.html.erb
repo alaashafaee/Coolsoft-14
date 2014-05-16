@@ -1,0 +1,28 @@
+<div class="input-group">
+	<span class="input-group-addon label-info">Class Name:</span>
+	<input id="class_name" type="text" class="form-control" value="CoolSoft" style="width:150px">
+
+	<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
+			onClick: "reload_template()", class: "btn btn-info" %>
+
+	<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
+					onClick: "compile(#{params[:id]},'Problem')", class: "btn btn-info" %>
+	<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
+					type: 'Button', onClick: "run_input(#{params[:id]},'Problem')" %>
+	<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
+					onclick: "start_debug(#{params[:id]},'Problem')", class: "btn btn-info" %>	
+	<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
+					style: "display: none", id: 'previousButton', 
+					onClick: 'previous()', hidden: true %>
+	<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
+					style: "display: none", id: 'nextButton',
+					onClick: 'next()', hidden: true %>
+	<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
+					style: "display: none", id: 'stopButton', 
+					onClick: 'stop()', hidden: true %>
+	<span id="spinner" class="" align="center"></span>
+	
+	<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
+					onClick: "validate_code(#{params[:id]},'Problem')", class: "btn btn-info pull-right" %>
+	
+</div>
