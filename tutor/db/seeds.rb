@@ -470,6 +470,10 @@ puts("# ----------------------- Courses ----------------------- ")
 		Course.first.assignments << Assignment.find_by_id(2)
 		Course.first.assignments << Assignment.find_by_id(4)
 		Course.find_by_id(2).assignments << Assignment.find_by_id(3)
+	## Contests
+		Course.first.contests << Contest.first
+		Course.first.contests << Contest.find(2)
+		Course.find(2).contests << Contest.find(3)
 
 
 puts("# ----------------------- DiscussionBoard ----------------------- ")
