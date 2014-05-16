@@ -1,7 +1,7 @@
 class ProblemBankController < ApplicationController
 
 	# [Problem Bank - Story 3.21]
-	# Description: Show the Problem bank main page
+	#	Show the Problem bank main page
 	# Parameters: 
 	#	params[]: it passes the track id to the problem bank page
 	# Returns: 
@@ -14,7 +14,7 @@ class ProblemBankController < ApplicationController
 	end
 
 	# [Problem Bank - Story 3.21]
-	# Description: Show the problem describtion in a new page
+	#	Show the problem describtion in a new page
 	# Parameters: 
 	#	params[:track_id]: it passes the track id
 	# 	params[:id]: it passes the problem id 
@@ -28,7 +28,7 @@ class ProblemBankController < ApplicationController
 	end
 
 	# [Problem Bank - Story 3.21]
-	# Description: Add the specific problem to the Lecturer/TA
+	#	Add the specific problem to the Lecturer/TA
 	# Parameters: 
 	#	params[:track_id]: it passes the track id
 	# 	params[:id]: it passes the problem id 
