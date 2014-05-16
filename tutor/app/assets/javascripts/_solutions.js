@@ -39,3 +39,23 @@ function changeFont(){
 	var new_font = $('#font').val();
 	editor.setFontSize(parseInt(new_font));
 }
+
+function show(id){
+	id += "add_button"
+	document.getElementById(id).style.opacity = 1;
+}
+function hide(id){
+	id += "add_button"
+	document.getElementById(id).style.opacity = 0;
+}
+function pop(id){
+	id += "form"
+	document.getElementById(id).style.display = 'initial'
+	$(document.getElementById(id)).bPopup({
+		modalClose: false,
+		opacity: 0.6,
+		positionStyle: 'fixed',
+		speed: 650,
+		transition: 'slideIn'
+	});
+}

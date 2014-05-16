@@ -88,27 +88,6 @@
 <%= link_to "I'm done marking",
 	{:action => 'view_submissions', :problem_id => @problem.id},
 	class: "btn btn-info" %>
-<script>
-	function show(id){
-		id += "add_button"
-		document.getElementById(id).style.opacity = 1;
-	}
-	function hide(id){
-		id += "add_button"
-		document.getElementById(id).style.opacity = 0;
-	}
-	function pop(id){
-		id += "form"
-		document.getElementById(id).style.display = 'initial'
-		$(document.getElementById(id)).bPopup({
-			modalClose: false,
-			opacity: 0.6,
-			positionStyle: 'fixed',
-			speed: 650,
-			transition: 'slideIn'
-		});
-	}
-</script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js">
 </script>
 <script src="jquery.bpopup-x.x.x.min.js"></script>

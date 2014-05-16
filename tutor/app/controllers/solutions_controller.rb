@@ -95,7 +95,7 @@ class SolutionsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def view_submissions
 		@problem = AssignmentProblem.find_by_id(params[:problem_id])
-		@submissions = @problem.solutions
+		@submissions = @problem.solutions.group(:student_id)
 		@course = @problem.assignment.course
 		@can_edit = @course.can_edit(current_lecturer)
 		@can_edit||= @course.can_edit(current_teaching_assistant)
