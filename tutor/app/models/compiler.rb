@@ -34,11 +34,11 @@ class Compiler < ActiveRecord::Base
 		feedback = compile(solution, solution.code)
 		new_feedback = change_error_headers(solution, feedback)
 		if new_feedback == ""
-			return {success: true, errors: nil}
+			return {success: true, errors: nil, warnings: nil}
 		elsif new_feedback =~ /\A#{solution.class_name}.java:\d:\swarning:/
-			return {success: true, errors: new_feedback}
+			return {success: true, errors: nil, warnings: new_feedback}
 		else	
-			return {success: false, errors: new_feedback}
+			return {success: false, errors: new_feedback, warnings: nil}
 		end
 	end
 

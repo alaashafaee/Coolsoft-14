@@ -72,7 +72,7 @@ index_number = 0
 				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
-			$('.compilation_feedback').html(compiler_feedback["errors"])
+			$('.compilation_feedback').html(compiler_feedback["warnings"])
 		error: ->
 			clear_console()
 			stop_spin()
