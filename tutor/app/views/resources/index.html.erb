@@ -28,7 +28,8 @@
 		</li>
 
 		<li>
-			<%= link_to "Add Resources", new_course_resource_path(@course), class: "btn btn-success",
+			<%= link_to "Add Resources", new_course_resource_path(@course),
+				class: "btn btn-success",
 				style: "float: left; margin-left: 15px", method: :get %>
 		</li>
 	</ul>
@@ -41,10 +42,13 @@
 		<%- @course.resources.each do |resource| %>
 			<div class="media">
 				<a class="pull-left" href="<%= resource.link %>">
-					<img class="media-object" src="<%= resource.img %>" height="64" width="64" alt="...">
+					<img class="media-object" src="<%= resource.img %>"\
+						height="64" width="64" alt="...">
 				</a>
 				<div class="media-body">
-					<h4 class="media-heading"><a href="<%= resource.link %>"><%= resource.link %></a></h4>
+					<h4 class="media-heading">
+						<a href="<%= resource.link %>"><%= resource.link %></a>
+					</h4>
 					<%= resource.description %>
 				</div>
 			</div>
