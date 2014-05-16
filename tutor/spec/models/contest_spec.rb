@@ -14,12 +14,6 @@ describe Contest do
 		expect(contest).not_to be_valid
 	end 
 
-	it 'is invalid with duplicate title' do
-		contest = Contest.new(title:"Iteration", description:"If you can",
-		incomplete:false, start_time:Time.now+3.days, end_time:Time.now+4.days)
-		expect(contest).not_to be_valid
-	end
-
 	it 'is invalid with end date not after start date' do
 		contest = Contest.new(title:"Any title", description:"Yes you can",
 		incomplete:false, start_time:Time.now+4.days, end_time:Time.now+3.days)
