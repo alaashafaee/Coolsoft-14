@@ -14,7 +14,6 @@ class DashboardsController < ApplicationController
 		else
 		@notifications = Student.find(params[:id]).notifications.order("created_at desc")
 		end
-  
 	end 
 
 end
