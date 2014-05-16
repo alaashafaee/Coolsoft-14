@@ -80,20 +80,18 @@ class AssignmentsController < ApplicationController
 		end
 		@course = @assignment.course
 		@problems = @assignment.problems
-
 		@solutions = []
 		@lines = []
 		@notes = []
 		@counter = 0 
-
 		@problems.each do |p|
-			@solutions = @solutions + Solution.where("student_id = ? AND problem_id = ?" ,
-				student_id, p.id )
+			@solutions = @solutions + 
+			Solution.where("student_id = ? AND problem_id = ?", student_id, p.id)
 		end
-
 		@solutions.each do |sol|
-			@notes = @notes + Note.where("solution_id = ?" , sol.id) 
+			@notes = @notes +
+			 Note.where("solution_id = ?", sol.id) 
 		end
 	end
-
+	
 end
