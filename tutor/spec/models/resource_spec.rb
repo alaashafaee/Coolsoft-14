@@ -13,5 +13,6 @@ describe Resource do
 
 	it 'is not valid with a link' do
 		expect(@resource_2).not_to be_valid
-	end	
+	end
+
 end
