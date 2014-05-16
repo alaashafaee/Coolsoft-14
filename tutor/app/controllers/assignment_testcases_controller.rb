@@ -1,12 +1,9 @@
 class AssignmentTestcasesController < ApplicationController
-  def new
+
+	def new
 		@problem = AssignmentProblem.find_by_id(params[:assignment_id])
 		session[:assignment_problem_id] = params[:assignment_id]
-		
-		
-		session[:problem_assignment_id] = @problem.assignment_id
-
-		
+		session[:problem_assignment_id] = @problem.assignment_id	
 	end
 
 	def create
@@ -29,7 +26,7 @@ class AssignmentTestcasesController < ApplicationController
 			redirect_to :controller => 'assignment_problems', :action => 'new', 
 			:id => session[:problem_assignment_id]
 		else
-			#render :action=>'new_test_case', :assignment_problem_id => @test_case.assignment_problem_id
+			render :action=>'new', :assignment_id => @test_case.assignment_problem_id
 
 		end
 
