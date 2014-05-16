@@ -36,6 +36,7 @@ class Cproblem < ActiveRecord::Base
 		if !cp
 			cp = ContestProgress.create(contest_id: contest_id, student_id: student_id,
 										cproblem_id: cproblem_id, status: false, trials: 0)
+			cp.save
 		end
 		if cp.status == false
 			if(contest_end_time - problem_submission_time > 0)
