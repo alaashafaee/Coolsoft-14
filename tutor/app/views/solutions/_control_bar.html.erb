@@ -1,28 +1,44 @@
-<div class="input-group">
-	<span class="input-group-addon label-info">Class Name:</span>
-	<input id="class_name" type="text" class="form-control" value="CoolSoft" style="width:150px">
-
-	<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
-			onClick: "reload_template()", class: "btn btn-info" %>
-
-	<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
-					onClick: "compile(#{params[:id]},'Problem')", class: "btn btn-info" %>
-	<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
-					type: 'Button', onClick: "run_input(#{params[:id]},'Problem')" %>
-	<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-					onclick: "start_debug(#{params[:id]},'Problem')", class: "btn btn-info" %>	
-	<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
-					style: "display: none", id: 'previousButton', 
-					onClick: 'previous()', hidden: true %>
-	<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
-					style: "display: none", id: 'nextButton',
-					onClick: 'next()', hidden: true %>
-	<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
-					style: "display: none", id: 'stopButton', 
-					onClick: 'stop()', hidden: true %>
-	<span id="spinner" class="" align="center"></span>
+<div class="a4" >
 	
-	<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
-					onClick: "validate_code(#{params[:id]},'Problem')", class: "btn btn-info pull-right" %>
+<table width='100%'><tr><td>
+	
+	<div class="" style="float:left; margin:5px; margin-left:10px;"><img src="/assets/compile_w.png" id='compileButton' onClick= "compile(<%=params[:id]%>, 'Problem')" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Compile" ></img></div>
+
+	<div class="" style="float:left; margin:5px;"><img src="/assets/run_w.png" id='testButton' onClick= "run_input(<%=params[:id]%>, 'Problem')" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Run Test Case" ></img></div>
+
+	<div class="" style="float:left; margin:5px;"><img src="/assets/debug_w.png" id='debugButton' onClick= "start_debug(<%=params[:id]%>, 'Problem')" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Start Debugging" ></img></div>
+	
+	
+	<div class="" style="float:left; margin:5px; margin-left:10px;"><img src="/assets/previous_w.png" id='previousButton' onClick= "previous()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Previous" hidden="true" ></img></div>
+
+	<div class="" style="float:left; margin:5px;"><img src="/assets/next_w.png" id='nextButton' onClick= "next()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Next" hidden="true" ></img></div>
+	
+	<div class="" style="float:left; margin:5px;"><img src="/assets/stop_w.png" id='stopButton' onClick= "stop()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Stop Debugging" hidden="true" ></img></div>
+
+	<div class="" style="float: left; margin:5px; color: white;">Class Name:</div>
+	<input id="class_name" type="text" class="" value="CoolSoft" style="width:150px; height: 32px; float: left; margin:5px;">
+
+	<div class="" style="float:left; margin:5px;"><img src="/assets/reload_w.png" id='reloadButton' onClick= "reload_template()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Reload Template" ></img></div>
+
+	
+				
+	<span id="spinner" class="" align="center"></span>
+
+	<div class="" style=" float: right; margin:5px;"><img src="/assets/submit_w.png" id='submitButton' onClick= "validate_code(<%=params[:id]%>, 'Problem')" style= "height: 32px; width: 32px; cursor:pointer; float:right;" title="Submit" ></img></div>
+
+</td></tr></table>
 	
 </div>
+
+
+<style type="text/css">
+
+.a4 {
+	background-color: rgb(35,35,35);
+	border-radius:4px;
+	border: thin;
+	border-style: solid;
+	border-color: rgb(204,204,204);
+	margin-bottom: 1px;
+}
+</style>
