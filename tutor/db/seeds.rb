@@ -120,9 +120,24 @@ puts("# ----------------------- Topics ----------------------- ")
 
 puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
- 	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
- 	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
-	
+	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
+	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
+	Hint.create(message: "You may need to multiply each change with its corresponding 
+		ammount in pennies.", category: false, time: 50, submission_counter:10)
+	Hint.create(message: "Follow the exact example from the problem and try substituting 
+		with the right variables.", category: false, time: 50, submission_counter:10)
+	Hint.create(message: "Try using %2 to test the numbers when the remainder is 0 then 
+		it is even and if the remainder is 1 then it is odd.", category: false, time: 50, 
+		submission_counter:10)
+	Hint.create(message: "Get the inverse of the number by making an empty string and 
+		concatenate the first digit from the number and then the second digit and so on 
+		until there are no digits remaining. After getting the inverse of the number compare 
+		it to the original number if they are equal then it's a palindrome.", 
+		category: false, time: 50, submission_counter:10)
+	Hint.create(message: "Try making an empty string and concatenate the numbers from the 
+		first digit which is 1 until you reach the desirable number.", category: false, 
+		time: 50, submission_counter:10)
+
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -469,6 +484,11 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(2).model_answers << ModelAnswer.find_by_id(4)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
+		Problem.find_by_id(6).model_answers << ModelAnswer.find_by_id(7)
+		Problem.find_by_id(7).model_answers << ModelAnswer.find_by_id(8)
+		Problem.find_by_id(8).model_answers << ModelAnswer.find_by_id(9)
+		Problem.find_by_id(9).model_answers << ModelAnswer.find_by_id(10)
+		Problem.find_by_id(10).model_answers << ModelAnswer.find_by_id(11)
 	## Solutions
 		AssignmentProblem.first.solutions << Solution.first
 		AssignmentProblem.first.solutions << Solution.find_by_id(4)
@@ -497,6 +517,11 @@ puts("# ----------------------- Problems ----------------------- ")
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 		Problem.first.model_answers.first.hints << Hint.all.second
+		Problem.find_by_id(6).model_answers.find_by_id(7).hints << Hint.find_by_id(4)
+		Problem.find_by_id(7).model_answers.find_by_id(8).hints << Hint.find_by_id(5)
+		Problem.find_by_id(8).model_answers.find_by_id(9).hints << Hint.find_by_id(6)
+		Problem.find_by_id(9).model_answers.find_by_id(10).hints << Hint.find_by_id(7)
+		Problem.find_by_id(10).model_answers.find_by_id(11).hints << Hint.find_by_id(8)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
