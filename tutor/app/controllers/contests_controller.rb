@@ -20,7 +20,7 @@ class ContestsController < ApplicationController
 		end
 		@problems = Cproblem.all
 		courseContests = @contest.course.contests
-		courseContests.length.times do |contest|
+		courseContests.each do |contest|
 			@problems = @problems - contest.problems
 		end
 	end
