@@ -13,9 +13,9 @@
 		<% @lines.each do |line| %>
 			<% @counter+= 1 %>
 			<% @note = Note.where(solution_id: @solution.id, line: @counter).last %>
-			<tr id = "<%= @counter %>", onMouseOver = "show(this.id)",
+			<tr id = "<%= @counter %>",
+				onMouseOver = "show(this.id)",
 				onMouseOut = "hide(this.id)">
-
 				<td><%= @counter %></td>
 				<td>
 					<pre title ="<%if !@note.blank?%><%= @note.content %>
@@ -25,25 +25,28 @@
 				<td >
 					<p align= "center">
 						<% if @note %>
-							<%= image_tag "edit_button.png", id: "#{@counter}edit_button",
+							<%= image_tag "edit_button.png",
+								id: "#{@counter}edit_button",
 								class: "edit_button",
 								onclick: "pop(this.id);" %>
 						<% else %>
-							<%= image_tag "note.png", id: "#{@counter}add_button",
+							<%= image_tag "note.png",
+								id: "#{@counter}add_button",
 								class: "add_note_button",
 								onclick: "pop(this.id);" %>
 						<% end %>
 					</p>
 				</td>
 				<% if @note %>
-					<div id = "<%= @counter %>edit_buttonform"
-						class = "form_div">
+					<div id = "<%= @counter %>edit_buttonform" class = "form_div">
 						<div>
 							<%= form_for :Note, url: note_path(@note),
 								method: :patch do |note| %>
 								<p>
-									<%= note.text_field :content, class: "form-control",
-										style: "width:60%", value: @note.content %>
+									<%= note.text_field :content,
+										class: "form-control",
+										style: "width:60%",
+										value: @note.content %>
 								</p>
 									<%= note.hidden_field :solution_id,
 										value: @solution.id %>
@@ -55,12 +58,12 @@
 							<% end %>
 						</div>
 						<%= button_to "Delete Note",{:controller => 'notes',
-							:action => 'destroy', :id => @note.id}, method: :delete,
+							:action => 'destroy',
+							:id => @note.id}, method: :delete,
 							class: "btn btn-info" %>
 					</div>
 				<% else %>
-					<div id = "<%= @counter %>add_buttonform"
-						class = "form_div">
+					<div id = "<%= @counter %>add_buttonform" class = "form_div">
 						<%= form_for :Note, url: {controller: "notes",
 							action: "create"} do |note| %>
 							<p>
@@ -84,8 +87,8 @@
 	</tbody>
 </table>
 <br><br><br>
-<%= link_to "I'm done marking", {:action => 'view_submissions',
-	:problem_id => @problem.id},
+<%= link_to "I'm done marking",
+	{:action => 'view_submissions', :problem_id => @problem.id},
 	class: "btn btn-info" %>
 <script>
 	function show(id){
