@@ -2,7 +2,7 @@ ActiveAdmin.register Lecturer do
 
 	menu parent: "Users",priority:1
 	permit_params   :email, :password, :password_confirmation, :dob, :gender, :degree,
-					:university, :department, :name
+				:university, :department, :name
 	# [Admin - Story 3.19]
 	# creates a form for creating Lecturer
 	# Parameters: none.

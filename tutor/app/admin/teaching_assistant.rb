@@ -2,7 +2,7 @@ ActiveAdmin.register TeachingAssistant do
 
 	menu parent: "Users",priority:2
 	permit_params	:email, :password, :password_confirmation, :dob, :gender, :degree, :graduated_year,
-					:graduated_from, :university, :department, :name          
+				:graduated_from, :university, :department, :name          
 	# [Admin - Story 3.19]
 	# creates a form for creating teaching_assistant
 	# Parameters: none.
