@@ -67,7 +67,7 @@ class Debugger
 		end
 	end
 
-	# [Debugger: Debug Pyhton - Story X.8]
+	# [Debugger: Debug Python - Story X.8]
 	# Checks if the line contains a line that 
 	# 	indicates the program has stopped debugging
 	# Parameters:
