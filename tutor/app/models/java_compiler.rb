@@ -1,7 +1,7 @@
-class Compiler < ActiveRecord::Base
+class JavaCompiler < ActiveRecord::Base
 
 	# Methods
-	
+
 	# [Compiler: Compile - Story 3.4]
 	# Writes the given code to a .java file in a folder with the name
 	#	st[student_id]pr[problem_id]so[solution_id] using folder_name/0.

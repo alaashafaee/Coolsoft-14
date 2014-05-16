@@ -55,6 +55,8 @@ class TeachingAssistant < ActiveRecord::Base
 	has_many :grades, as: :editor
 
 	has_many :resources, as: :owner
+	has_many :notes, as: :owner
+	has_many :notifications, as: :receiver
 	
 	#Methods
 	# [Advanced Search - Story 1.23]
