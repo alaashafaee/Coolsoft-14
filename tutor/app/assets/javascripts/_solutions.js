@@ -40,14 +40,34 @@ function changeFont(){
 	editor.setFontSize(parseInt(new_font));
 }
 
+// [Mark Solution - Story 4.29]
+//	shows the add note button when hovering over the the line
+// Parameters:
+//	id: id of the div that was hovered over 
+// Returns: none
+// Author: Abdullrahman Elhusseny
 function show(id){
 	id += "add_button"
 	document.getElementById(id).style.opacity = 1;
 }
+
+// [Mark Solution - Story 4.29]
+//	hides the add note button when the crusor leaves the the line
+// Parameters:
+//	id: id of the div that was hovered over 
+// Returns: none
+// Author: Abdullrahman Elhusseny
 function hide(id){
 	id += "add_button"
 	document.getElementById(id).style.opacity = 0;
 }
+
+// [Mark Solution - Story 4.29]
+//	pops a dialog box when trying to add or update note
+// Parameters:
+//	id: id of the button that was pressed
+// Returns: none
+// Author: Abdullrahman Elhusseny
 function pop(id){
 	id += "form"
 	document.getElementById(id).style.display = 'initial'
