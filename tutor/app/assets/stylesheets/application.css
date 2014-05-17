@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  *= require bootstrap
+ *= require alertify-themes/alertify.core
  */
 = require posts
 
@@ -91,4 +92,8 @@
 
 .no-scroll-x{
 	overflow-x: hidden;
+}
+
+.alertify-log-custom {
+	background: blue;
 }
