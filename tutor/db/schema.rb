@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509205739) do
+ActiveRecord::Schema.define(version: 20140515223322) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -22,14 +22,38 @@ ActiveRecord::Schema.define(version: 20140509205739) do
     t.datetime "updated_at"
   end
 
-  create_table "admins", force: true do |t|
-    t.string   "name"
-    t.date     "dob"
-    t.string   "profile_image"
-    t.boolean  "gender"
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "admin_users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "assignment_problems", force: true do |t|
     t.string   "title"
@@ -81,22 +105,21 @@ ActiveRecord::Schema.define(version: 20140509205739) do
   create_table "contest_progresses", force: true do |t|
     t.integer  "contest_id"
     t.integer  "student_id"
-    t.integer  "problem_id"
+    t.integer  "cproblem_id"
+    t.integer  "trials"
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contest_progresses", ["contest_id", "student_id", "problem_id"], name: "ConProgress", unique: true
+  add_index "contest_progresses", ["contest_id", "student_id", "cproblem_id"], name: "ConProgress", unique: true
 
   create_table "contests", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.boolean  "incomplete"
-    t.time     "start_time"
-    t.time     "end_time"
-    t.date     "start_date"
-    t.date     "end_date"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "course_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -270,10 +293,29 @@ ActiveRecord::Schema.define(version: 20140509205739) do
     t.datetime "updated_at"
   end
 
+  create_table "notes", force: true do |t|
+    t.string   "content"
+    t.integer  "line"
+    t.integer  "solution_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "notification_mails", force: true do |t|
     t.string   "subject"
     t.string   "email"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.string   "message",                       null: false
+    t.boolean  "seen",          default: false
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -303,13 +345,14 @@ ActiveRecord::Schema.define(version: 20140509205739) do
   create_table "problems", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.boolean  "incomplete"
-    t.integer  "views_count"
-    t.integer  "time_limit"
+    t.text     "snippet"
+    t.integer  "views_count", default: 0
+    t.integer  "time_limit",  default: 0
     t.integer  "track_id"
-    t.string   "snippet"
-    t.boolean  "fill_gaps"
-    t.boolean  "public"
+    t.boolean  "fill_gaps",   default: false
+    t.boolean  "incomplete",  default: true
+    t.boolean  "seen",        default: false
+    t.boolean  "duplicated",  default: false
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -352,9 +395,9 @@ ActiveRecord::Schema.define(version: 20140509205739) do
 
   create_table "solutions", force: true do |t|
     t.text     "code"
-    t.integer  "length"
+    t.integer  "length",       default: 0
     t.integer  "status"
-    t.integer  "time"
+    t.integer  "time",         default: 0
     t.text     "class_name"
     t.integer  "student_id"
     t.integer  "problem_id"
@@ -372,16 +415,16 @@ ActiveRecord::Schema.define(version: 20140509205739) do
     t.string   "faculty"
     t.string   "major"
     t.integer  "semester"
-    t.boolean  "advising"
-    t.boolean  "probation"
+    t.boolean  "advising",               default: false
+    t.boolean  "probation",              default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -443,6 +486,8 @@ ActiveRecord::Schema.define(version: 20140509205739) do
     t.string   "output"
     t.integer  "model_answer_id"
     t.integer  "problem_id"
+    t.integer  "cproblem_id"
+    t.integer  "assignment_problem_id"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -472,7 +517,7 @@ ActiveRecord::Schema.define(version: 20140509205739) do
   create_table "tracks", force: true do |t|
     t.string   "title"
     t.integer  "difficulty"
-    t.integer  "views_count"
+    t.integer  "views_count", default: 0
     t.integer  "topic_id"
     t.integer  "owner_id"
     t.string   "owner_type"

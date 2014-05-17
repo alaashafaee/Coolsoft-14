@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-1.10.4
 //= require_tree .
+//= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
 
@@ -26,4 +28,15 @@ $(function() {
 		};
 	})(this));
 	return setTimeout(flashCallback, 2000);
+});
+
+// [Simple Search auto-complete - Story 1.23]
+// autocomplete for the search bar
+// Parameters: search term
+// Returns: Array with the matched results
+// Author: Ahmed Elassuty
+$(function(){
+	$('#search_field').autocomplete({
+		source: $('#search_field').data("autocomplete-source")
+	});
 });
