@@ -20,7 +20,7 @@ describe Solution do
 				problem_id: @problem_id, problem_type: "Problem", class_name: "Coolsoft")
 		end
 
-		context "Execution" do
+		context "Java Execution" do
 			it "TestCases Passed" do
 				@code = "public class Coolsoft{public static void main(String [] args){ System.out.println(5); }}"
 				@solution.code = @code
@@ -51,6 +51,40 @@ describe Solution do
 					{:status=>4, :last=>true}
 				JavaCompiler.compiler_feedback @solution
 				expect(Solution.validate @solution, @testcases, "java").to eq response
+			end
+		end
+
+		context "Python Execution" do
+			it "TestCases Passed" do
+				@code = "print 5"
+				@solution.code = @code
+				@solution.save
+				response  = {:success=>true, :test_case=>"10 2", :response=>"Passed!"},
+					{:status=>1, :last=>true}
+				PythonCompiler.compiler_feedback @solution
+				expect(Solution.validate @solution, @testcases, "python").to eq response
+			end
+	
+			it "Logical Error in TestCases" do
+				@code = "print 1"
+				@solution.code = @code
+				@solution.save
+				response = {:success=>false, :test_case=>"10 2",
+				:response=>"Logic error: Expected output: 5, but your output was: 1\n"},
+					{:status=>5, :last=>true}
+				PythonCompiler.compiler_feedback @solution
+				expect(Solution.validate @solution, @testcases, "python").to eq response
+			end
+
+			it "Runtime Error in TestCases" do
+				@code = "print 1/0"
+				@solution.code = @code
+				@solution.save
+				response = {:success=>false, :test_case=>"10 2",
+					:response=>"Runtime error: Division by zero, for example: a/b, b = 0"},
+					{:status=>4, :last=>true}
+				PythonCompiler.compiler_feedback @solution
+				expect(Solution.validate @solution, @testcases, "python").to eq response
 			end
 		end
 	end

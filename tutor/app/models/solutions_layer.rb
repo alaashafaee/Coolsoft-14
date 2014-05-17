@@ -212,5 +212,4 @@ class SolutionsLayer
 			return ".py"
 		end
 	end
-
 end
