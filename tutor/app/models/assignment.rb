@@ -2,6 +2,8 @@ class Assignment < ActiveRecord::Base
 
 	#Validations
 	validates :title, presence: true
+	validate :validate_start_date_before_today
+
 
 	#Relations
 	belongs_to :course
@@ -12,5 +14,10 @@ class Assignment < ActiveRecord::Base
 	#Scoops
 
 	#Methods
+	def validate_start_date_before_today
+		if due_date <= Time.now
+			errors.add(:due_date," :Please change,already expired")
+		end
+	end
 
 end
