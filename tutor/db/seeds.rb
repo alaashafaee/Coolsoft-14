@@ -10,6 +10,8 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
+	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+	l.save!
 
 puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
@@ -135,9 +137,9 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
-	TestCase.create(output: "5.0\n", input:"10 2")
-	TestCase.create(output: "2.5\n", input:"5 2")
-	TestCase.create(output: "Infinity\n", input:"10 0")
+	TestCase.create(output: "5.0\n", input:"10\n2")
+	TestCase.create(output: "2.5\n", input:"5\n2")
+	TestCase.create(output: "Infinity\n", input:"10\n0")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
