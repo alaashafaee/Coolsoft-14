@@ -180,14 +180,25 @@ class CoursesController < ApplicationController
 	# 	null
 	# Author: Mohamed Metawaa
 	def update
-		@course = Course.find_by_id(params[:id])
-		@discussion_board = @course.discussion_board
-		if @course.update(course_params)
-			@topics = @course.topics
-			render 'show'
-		else 
-			render 'edit' 
+		course = Course.find_by_id(params[:id])
+		course.name = params[:course][:name]
+		course.code = params[:course][:code]
+		course.description = params[:course][:desc]
+		course.year = params[:course][:year]
+		course.link = params[:course][:link]
+		course.semester = params[:course][:semester]
+		if course.save
+			render json: course
+		else
+			render false
 		end
+		# @discussion_board = @course.discussion_board
+		# if @course.update(course_params)
+		# 	@topics = @course.topics
+		# 	render 'show'
+		# else 
+		# 	render 'edit' 
+		# end
 	end
 
 	# [Share Performance - Story 5.2, 5.13]
@@ -216,6 +227,16 @@ class CoursesController < ApplicationController
 		else
 			render ('public/404')
 		end
+	end
+
+	# Finds the course with spacific id for an ajax request
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: course object as json
+	# Author: Ahmed Mohmaed Magdi
+	def find_course
+		course = Course.find_by_id(params[:id])
+		render json: course
 	end
 
 	private

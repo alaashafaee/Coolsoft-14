@@ -63,7 +63,7 @@ function update_reply(reply_id) {
 		},
 		datatype: "JSON",
 		error: function() {
-			alert("Failed to add constraints, Check again");
+			alert("Failed update the reply, Check again");
 		}
 	});
 }
@@ -89,7 +89,7 @@ function edit_reply(reply_id,post_id) {
 		},
 		datatype: "JSON",
 		error: function() {
-			alert("Failed to add constraints, Check again");
+			alert("Failed editing rely, Check again");
 		}
 	});
 }

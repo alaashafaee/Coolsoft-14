@@ -1,0 +1,39 @@
+<!-- 	
+	Name: The New Topic Form 
+	Author: Ahmed Akram
+-->
+<div>
+	<br/>
+	<% if flash[:failure_notice] %>
+		<div class="alert alert-danger", style="display: inline-block;"><%= flash[:failure_notice] %></div>
+	<% end %>
+	<% if flash[:success_notice] %>
+		<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_notice] %></div>
+	<% end %>
+	<br/>
+
+	<%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
+		<% if @checkbox == true %>
+			<p>
+				<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+			</p>
+		<% else %>
+			<p>
+				<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+			</p>
+		<% end %>
+		<p>
+			<%= f.submit "Add TA", class: "btn btn-success"%>
+		</p>	
+	<% end %>
+
+	<div>
+		<% if @checkbox == true %>
+			<% str = "Show only TAs I worked with" %>
+		<% else %>
+			<% str = "Show All TAs" , @checkbox = nil%>
+		<% end %>
+		<div> <%= button_to str, {:controller => 'teaching_assistants', :action => 'new', check: @checkbox}, class: "btn btn-success"%> 
+		</div> 
+	</div>
+</div>

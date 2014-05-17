@@ -16,6 +16,7 @@ Tutor::Application.routes.draw do
 	get "utilities/advanced_search"
 	get "utilities/auto_complete"
 	get 'courses/sign_up'
+	get 'courses/find_course/:id' => 'courses#find_course'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'

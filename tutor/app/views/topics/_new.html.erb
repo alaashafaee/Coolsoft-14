@@ -1,0 +1,31 @@
+<!-- 	Name: The New Topic Form 
+Author: Ahmed Akram
+-->
+<div>
+	<%= form_for :topic, url: {action: "create"} do  |f| %>
+		<p>
+			<%= f.label "Title" %><br>
+			<% unless @new_topic.errors[:title].blank? %>
+				<span id="error_explanation">
+					Name <%= @new_topic.errors[:title].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<%= f.text_field :title, autofocus: true, class:"form-control",
+			 style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
+		</p>
+		<p>
+			<%= f.label :description %><br>
+				<% unless @new_topic.errors[:description].blank? %>
+					<span id="error_explanation">
+						Description <%= @new_topic.errors[:description].join(", ") %> 
+					</span>
+					<br>
+				<% end %>
+			<%= f.text_area :description, class:"form-control", style: "height:200px;width:500px;resize:none", placeholder: "Description", :value => @new_topic.description  %>
+		</p>
+		<p>
+			<%= f.submit "Save", class: "btn btn-success"%>
+		</p>
+	<% end %>
+</div>
