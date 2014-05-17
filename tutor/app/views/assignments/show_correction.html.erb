@@ -1,9 +1,9 @@
 <h1>Correction of: &nbsp;&nbsp;&nbsp;<%= @assignment.title %></h1>
 <br><br>
 <% @solutions.each do |s| %>
-	<% if s.problem_type == "AssignmentProblem"%>
+	<% if s.problem_type == "AssignmentProblem" %>
 		<h3><%= s.problem.title %></h3>
-		<table class= "table table-striped", style= "width:80%">		
+		<table class= "table table-striped", style= "width: 80%">		
 				<tr>
 					<th> Line number</th>
 					<th> Submitted solution</th>

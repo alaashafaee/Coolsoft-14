@@ -9,7 +9,8 @@ describe AssignmentsController do
  	describe "GET show" do
  		before(:each) do
  			sign_out :user
- 			@assignment = Assignment.create(title: "Assignment 1", description: "Assignment1 description")
+ 			@assignment = Assignment.create(title: "Assignment 1",
+ 				description: "Assignment1 description")
  		end
 
   		it "assigns the requested assignment to the @assignment" do

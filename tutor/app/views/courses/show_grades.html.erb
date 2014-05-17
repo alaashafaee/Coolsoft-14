@@ -22,7 +22,11 @@
 				<tr>
 					<td><center><%= assi.title%></center></td>
 					<td><center><%= @student_grade %>/<%= @total_grade %></center></td>
-					<td><%= link_to "Check correction", {:controller => 'assignments', :action => 'show_correction', method: :get, :id => assi.id }, class: "",  style: "font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none" %></td>		
+					<td><%= link_to "Check correction",
+						{:controller => 'assignments', :action => 'show_correction',
+						method: :get, :id => assi.id },
+						class: "",  style: "font-weight:bold; font-size:15px; color:#3498db;
+						font-dicoration:none" %></td>		
 				</tr>
 			<% else%>
 				<tr>

@@ -43,7 +43,8 @@ class AssignmentsController < ApplicationController
 		end
 		@problems.each do |p|
 			@submitted_records = @submitted_records + 
-			Solution.where("student_id = ? AND problem_id = ? AND problem_type = ?", student_id, p.id , "AssignmentProblem")
+			Solution.where("student_id = ? AND problem_id = ? AND problem_type = ?",
+			student_id, p.id , "AssignmentProblem")
 		end
 		if @submitted_records.size < @problems.size
 			@assignment_submitted_flag = false

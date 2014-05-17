@@ -51,7 +51,10 @@
 							</td>
 							<td>
 								<% if current_student %>
-									<%= button_to "Check Grades", {:controller => 'courses', :action => 'show_grades', :id => c.id, :value => true}, class: "btn btn-success", method: :get, style: "text-decoration:none" %>
+									<%= button_to "Check Grades", {:controller => 'courses',
+										:action => 'show_grades', :id => c.id, :value => true},
+										class: "btn btn-success", method: :get, 
+										style: "text-decoration:none" %>
 								<% end %>
 							</td>
 						</tr>
