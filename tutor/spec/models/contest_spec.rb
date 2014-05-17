@@ -35,9 +35,9 @@ describe Contest do
 	end
 
 	it 'is invalid with past start time' do
-		contest = Contest.new(title:"rspec contest",
-			description:"contest", incomplete:false,
-			start_time:Time.now-2.days, end_time:Time.now+7.days)
+		contest = Contest.new(title: "rspec contest",
+			description: "contest", incomplete: false,
+			start_time: Time.now - 2.days, end_time: Time.now + 7.days)
 		expect(contest).not_to be_valid
 	end
 
