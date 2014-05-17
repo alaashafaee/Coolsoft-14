@@ -12,7 +12,8 @@ describe TopicsController do
 			degree: "PhD", university: "GUC", department: "MET")
 		lecturer.save!
 		course = Course.create(name:"Data Structures and Alogrithms", 
-				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
+				description:"This is a very easy course", code:"CSEN1",
+				link:"http://www.test.org/", year:2014, semester:1)
 		topic = Topic.create(title: "Topic1", description: "This is Topic1 description",
 		lecturer_id: lecturer.id, course_id: course.id)
 		TopicsController.skip_before_filter :authenticate!
