@@ -39,3 +39,21 @@ function changeFont(){
 	var new_font = $('#font').val();
 	editor.setFontSize(parseInt(new_font));
 }
+
+// Author: Ahmed Moataz
+function increaseFont(){
+	var new_font = editor.getFontSize();
+	if (new_font < 24) {
+		new_font += 2;
+		editor.setFontSize(parseInt(new_font));
+	};	
+}
+
+// Author: Ahmed Moataz
+function decreaseFont(){
+	var new_font = editor.getFontSize();
+	if (new_font > 12) {
+		new_font -= 2;
+		editor.setFontSize(parseInt(new_font));
+	};	
+}

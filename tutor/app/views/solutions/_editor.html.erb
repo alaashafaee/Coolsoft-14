@@ -1,7 +1,6 @@
-
-<br>
-
-	<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="btn-info" data-width="auto">
+<div class="a4" >
+	<div style="margin-left: 10px; margin-top: 5px; float: left">
+	<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="a7" data-width="auto">
 		<option value="twilight">twilight</option>
 		<option value="eclipse">eclipse</option>
 		<option value="xcode">xcode</option>
@@ -13,13 +12,16 @@
 		<option value="github">github</option>
 		<option value="dreamweaver">dreamweaver</option>
 	</select> 
-
-	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="btn-info" data-width="auto">
+	</div>
+	<div style="margin-left: 5px; margin-top: 5px; float: left">
+	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="a7" data-width="auto">
 		<option value="java">Java</option>
 		<option value="python">Python</option>
 	</select>
+	</div>
 
-	<select id='font' onchange="changeFont()" class="selectpicker" data-style="btn-info" data-width="auto">
+	<div style="margin-left: 5px; margin-top: 5px; float: left">
+	<select id='font' onchange="changeFont()" class="selectpicker" data-style="a7" data-width="auto">
 		<option value="12">12</option>
 		<option value="14">14</option>
 		<option value="16">16</option>
@@ -28,7 +30,9 @@
 		<option value="22">22</option>
 		<option value="24">24</option>
 	</select>
-
+	</div>
+	<div class="" style="float:left; margin:5px;"><img src="/assets/increase_font_w.png" id='moataz' onClick= "increaseFont()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Increase Font"></img></div>
+	<div class="" style="float:left; margin:5px;"><img src="/assets/decrease_font_w.png" id='moataz' onClick= "decreaseFont()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Decrease Font"></img></div>
 
 <!-- Add editor -->
 <pre id="editor">public class CoolSoft {
@@ -36,4 +40,18 @@
 &#09;&#09;
 	}
 }</pre>
-<br><br><br><br>
+<br><br><br><br><br>
+</div>
+
+<style type="text/css">
+
+.a7 {
+	background-color: rgb(35,35,35);
+	border-radius:4px;
+	border: thin;
+	border-style: dashed;
+	border-color: rgb(248,248,248);
+	color: rgb(248,248,248);
+
+}
+</style>
