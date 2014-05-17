@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
 
 	before_action :validate_timer
-	
+
 	private
 
 		# [Contest Timer - Story 5.28]
@@ -39,7 +39,7 @@ class ContestsController < ApplicationController
 				@timer = nil
 				@message = "Contest has finished!"
 				@del = true
-			end	
+			end
 		end
 
 end

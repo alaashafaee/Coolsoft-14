@@ -4,7 +4,8 @@ describe ContestsController do
 
 	before(:all) do
 		Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-			incomplete:false)
+			incomplete:false, start_time:DateTime.now, end_time:DateTime.now+10.minutes, course_id:1,
+			owner_id:1, owner_type:"Lecturer")
 		@c = Contest.first
 	end
 
@@ -35,9 +36,10 @@ describe ContestsController do
 
 	context "Contest has already started" do
 		before(:all) do
-			@c.start_time = DateTime.now - 10.minutes
+			@c.start_time = DateTime.now + 1.second
 			@c.end_time = @c.start_time + 20.minutes
 			@c.save
+			sleep 2
 		end
 
 		it "checks the timer variable" do

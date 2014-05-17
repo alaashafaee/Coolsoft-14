@@ -30,7 +30,7 @@ jQuery(document).on("ready page:load", function() {
 		function highlightLast10(periods) { 
 			if ($.countdown.periodsToSeconds(periods) <= 10) { 
 				$(this).addClass('highlight'); 
-			} 
+			}
 		}
 		/*
 		[Contest Timer - Story 5.28]
