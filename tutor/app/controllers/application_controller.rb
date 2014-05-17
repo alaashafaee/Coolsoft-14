@@ -28,26 +28,23 @@ class ApplicationController < ActionController::Base
 		def update_sanitized_params
 			if "#{resource_name}" == "lecturer"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|lecturer| lecturer.permit(:name, :email, 
-						:password, :password_confirmation, :gender, 
-						:dob, :degree, :university, :department, 
-						:profile_image, :profile_image_cache)
+					|lecturer| lecturer.permit(:name, :email,
+						:password, :password_confirmation, :university,
+						:department)
 				}
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|student| student.permit(:name, :email, 
-						:password, :password_confirmation, :gender, 
-						:dob, :university, :faculty, :major, :semester, 
-						:advising, :probation, :profile_image, 
-						:profile_image_cache)
+					|student| student.permit(:name, :email,
+						:password, :password_confirmation,
+						:university, :faculty, :major, :semester,
+						:advising, :probation)
 				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|teaching_assistant| teaching_assistant.permit(:name, 
-						:email, :password, :password_confirmation, :gender, 
-						:dob, :graduated_from, :graduated_year, :degree, 
-						:university, :department, :profile_image, 
-						:profile_image_cache)
+					|teaching_assistant| teaching_assistant.permit(:name,
+						:email, :password, :password_confirmation,
+						:graduated_from, :graduated_year, :degree,
+						:university, :department)
 				}
 			end
 		end

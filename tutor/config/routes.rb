@@ -106,6 +106,7 @@ Tutor::Application.routes.draw do
 	resources :assignments
 	resources :assignment_problems
 	resources :notes
+	resources :grades
 
 
 	# Example resource route with options:

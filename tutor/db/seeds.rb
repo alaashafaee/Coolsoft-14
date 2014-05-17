@@ -156,7 +156,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		AssignmentProblem.create(title: "AssignmentProblem 1", description: "Your program is to use the brute-force approach in order 
 			to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from 
 			input to output. Stop processing input after reading in the number 42. All numbers at input are integers 
-			of one or two digits.", final_grade:10)
+			of one or two digits.", final_grade: 100)
 		AssignmentProblem.create(title: "AssignmentProblem 2", description: "he Antique Comedians of Malidinesia prefer 
 			comedies to tragedies. Unfortunately, most of the ancient plays are tragedies. Therefore 
 			the dramatic advisor of ACM has decided to transfigure some tragedies into comedies. 
@@ -173,7 +173,7 @@ puts("# ----------------------- Problems ----------------------- ")
 			reversed sum. Of course, the result is not unique because any particular number is a 
 			reversed form of several numbers (e.g. 21 could be 12, 120 or 1200 before reversing). 
 			Thus we must assume that no zeros were lost by reversing 
-			(e.g. assume that the original number was 12).", final_grade:10)
+			(e.g. assume that the original number was 12).", final_grade: 100)
 		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", final_grade:10)
 		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", final_grade:10)
 	## Contests
@@ -202,10 +202,369 @@ puts("# ----------------------- Problems ----------------------- ")
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					{\n\t\t\n\t}\n}", seen: true, duplicated: false)
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					{\n\t\t\n\t}\n}", seen: true, duplicated: false)
+	## Bank
+		## problem 1
+		Problem.create(id: 100, title: "Bubble Sort", description: "Given array of numbers a use them bubble 
+			sort to sort them descendingly ", incomplete: false, seen:true)
+		ModelAnswer.create(id: 100, title: "Answer1",problem_id: 100, answer: "")
+		TestCase.create(output: "1,2,2,3,5", input:"1,5,3,2,2", model_answer_id: 100)
+		TestCase.create(output: "-100,-20,49,100", input:"-100,-20,49,100", model_answer_id: 100)
+		ModelAnswer.create(id: 100, title: "Answer1", problem_id: 100, answer: '
+				import java.io.BufferedReader;
+				import java.io.IOException;
+				import java.io.InputStreamReader;
+				import java.util.Arrays;
+				public class Main {
+					public static void main(String[] args) throws IOException {
+						BufferedReader str = new BufferedReader(
+								new InputStreamReader(System.in));
+						String s;
+						int n = 0;
+						int[] num = null;
+						while (!(s = str.readLine()).equals(null)) {
+							String[] split = s.split(",");
+							n = split.length;
+							num = new int[n];
+							for (int i = 0; i < n; i++) {
+								num[i] = Integer.parseInt(split[i]);
+							}
+							insertionSort(num);
+							String result = Arrays.toString(num);
+							result = result.substring(1, result.length() - 1);
+							System.out.println(result);
+							break;
+						}
+					}
+						public static void BubbleSort(int[] num) {
+						int j;
+						boolean flag = true; // set flag to true to begin first pass
+						int temp; // holding variable
 
+						while (flag) {
+							flag = false; // set flag to false awaiting a possible swap
+							for (j = 0; j < num.length - 1; j++) {
+								if (num[j] < num[j + 1]) // change to > for ascending sort
+								{
+									temp = num[j]; // swap elements
+									num[j] = num[j + 1];
+									num[j + 1] = temp;
+									flag = true; // shows a swap occurred
+									}
+								}
+							}
+						}
+					}
+				} ')	
+		## problem 2
+		Problem.create(id: 101, title: "Insertion Sort", description: "Given array of numbers a use the insertion 
+			sort to sort them ascendingly  ",incomplete: true, seen:true)
+		ModelAnswer.create(id: 101, title: "Answer1", problem_id: 101, answer: 'import java.io.BufferedReader;
+				import java.io.IOException;
+				import java.io.InputStreamReader;
+				import java.util.Arrays;
+				public class Main {
+					public static void main(String[] args) throws IOException {
+						BufferedReader str = new BufferedReader(
+								new InputStreamReader(System.in));
+						String s;
+						int n = 0;
+						int[] num = null;
+						while (!(s = str.readLine()).equals(null)) {
+							String[] split = s.split(",");
+							n = split.length;
+							num = new int[n];
+							for (int i = 0; i < n; i++) {
+								num[i] = Integer.parseInt(split[i]);
+							}
+							insertionSort(num);
+							String result = Arrays.toString(num);
+							result = result.substring(1, result.length() - 1);
+							System.out.println(result);
+							break;
+						}
+					}
+					public static void insertionSort(int num[]) {
+						for (int i = 0; i < num.length; i++) {
+							int value = num[i];
+							int j = i - 1;
+							while (j >= 0 && num[j] > value) {
+								num[j + 1] = num[j];
+								j = j - 1;
+							}
+							num[j + 1] = value;
+						}
+					}
+				}')
+		TestCase.create(output: "1,2,2,3,5", input:"1,5,3,2,2", model_answer_id: 101)
+		TestCase.create(output: "-100,-20,49,100", input:"-100,-20,49,100", model_answer_id: 101)
+		## problem 3 	
+		Problem.create(id: 103 , title: "SelectionSort Sort", description: "Given array of numbers a use the selection 
+			sort to sort them descendingly ", incomplete: false, seen:true)
+		ModelAnswer.create(id: 103, title: "Answer1",problem_id: 103, answer: 'import java.io.BufferedReader;
+				import java.io.BufferedReader;
+				import java.io.IOException;
+				import java.io.InputStreamReader;
+				import java.util.Arrays;
+				public class Main {
+					public static void main(String[] args) throws IOException {
+						BufferedReader str = new BufferedReader(
+								new InputStreamReader(System.in));
+						String s;
+						int n = 0;
+						int[] num = null;
+						while (!(s = str.readLine()).equals(null)) {
+							String[] split = s.split(",");
+							n = split.length;
+							num = new int[n];
+							for (int i = 0; i < n; i++) {
+								num[i] = Integer.parseInt(split[i]);
+							}
+							SelectionSort(num);
+							String result = Arrays.toString(num);
+							result = result.substring(1, result.length() - 1);
+							System.out.println(result);
+							break;
+						}
+					}
+					public static void SelectionSort(int[] num) {
+						int i, j, first, temp;
+						for (i = num.length - 1; i > 0; i--) {
+							first = 0; // initialize to subscript of first element
+							for (j = 1; j <= i; j++) // locate smallest element between
+														// positions 1 and i.
+							{
+								if (num[j] < num[first])
+									first = j;
+							}
+							temp = num[first]; // swap smallest found with element in position
+												// i.
+							num[first] = num[i];
+							num[i] = temp;
+					}
+				}')
+		TestCase.create(output: "1,2,2,3,5", input:"1,5,3,2,2", model_answer_id: 103)
+		TestCase.create(output: "-100,-20,49,100", input:"-100,-20,49,100", model_answer_id: 103)	
+		## problem 4
+		Problem.create(id: 104, title: "The Mean", description: "Given array of numbers calclate 
+			the mean for them ", incomplete: false, seen:true)
+		TestCase.create(output: "1.0", input:"1 1 1 ", model_answer_id: 104)
+		TestCase.create(output: "2.0", input:"1 2 3 ", model_answer_id: 104)
+		TestCase.create(output: "2.3333333333333335", input:"1 2 4", model_answer_id: 104)
+		Hint.create(message: "The mean is the sum over the number of the items",
+		 			category: false, time: 5, submission_counter:1, model_answer_id: 104)
+		ModelAnswer.create(id: 104, title: "Answer1", problem_id: 104, answer: '
+			public class Main2 {
+				public static void main(String[] args) throws IOException {
+				BufferedReader str = new BufferedReader(
+				new InputStreamReader(System.in));
+				String s;
+				double n = 0.0;
+				double[] num = null;
+				double result = 0 ;
+				while (!(s = str.readLine()).equals(null)) {
+					String[] split = s.split(" ");
+					n = split.length;
+					num = new double[(int) n];
+					for (int i = 0; i < n; i++) {
+						num[i] = Double.parseDouble(split[i]);
+						result += num[i];
+					}
+					System.out.println(result/n);
+					break;
+				}
+			}
+		}')
+		## problem 5
+		Problem.create(id: 105 , title: "The max-so-far", description: "Given array of numbers get
+			the greatst elements so far",incomplete: false, seen:true)
+		TestCase.create(output: "1", input:"1 1 1 ", model_answer_id: 105)
+		TestCase.create(output: "222", input:"0 222 -2 ", model_answer_id: 105)
+		TestCase.create(output: "-1", input:"-1 -2 -5", model_answer_id: 105)
+		Hint.create(message: "Assume that the max-so-far is the first element ",
+		 			category: true, time: 5, submission_counter:1, model_answer_id: 105)
+		ModelAnswer.create(id: 105,title: "Answer1", problem_id: 105, answer:'
+			import java.io.BufferedReader;
+			import java.io.IOException;
+			import java.io.InputStreamReader;
+			public class Main {
+				public static void main(String[] args) throws IOException {
+					int n = 0;
+					BufferedReader str = new BufferedReader(
+							new InputStreamReader(System.in));
+					String s = str.readLine();
+					String[] split = s.split(" ");
+					n = split.length;
+					int[] num = new int[n];
+					int max = Integer.MIN_VALUE;
+					for (int i = 0; i < n; i++) {
+						num[i] = Integer.parseInt(split[i]);
+						if(num[i]>max)
+							max = num[i];
+					}
+					System.out.println(max);
+				}
+			}')
+		## problem 6
+		Problem.create(id: 106 , title: "The minmum-so-far", description: "Given array of numbers get
+			the smallest elements so far", incomplete: false, seen:true)
+		TestCase.create(output: "1", input:"1 1 1 ", model_answer_id: 106)
+		TestCase.create(output: "-2", input:"0 222 -2 ", model_answer_id: 106)
+		TestCase.create(output: "-4", input:"-1 -2 -5", model_answer_id: 106)
+		Hint.create(message: "Assume that the minmum-so-far is the first element ",
+		 			category: true, time: 5, submission_counter:1, model_answer_id: 106)
+		ModelAnswer.create(id: 106, title: "Answer1", problem_id: 106, answer:'
+			import java.io.BufferedReader;
+			import java.io.IOException;
+			import java.io.InputStreamReader;
+			public class Main {
+				public static void main(String[] args) throws IOException {
+					int n = 0;			
+					BufferedReader str = new BufferedReader(
+							new InputStreamReader(System.in));
+					String s = str.readLine();
+					String[] split = s.split(" ");
+					n = split.length;
+					int[] num = new int[n];
+					int max = Integer.MIN_VALUE;
+					for (int i = 0; i < n; i++) {
+						num[i] = Integer.parseInt(split[i]);
+						if(num[i]>max)
+							max = num[i];
+					}
+					System.out.println(max);
+				}
+			}')
+		## problem 7	
+		Problem.create(id: 107, title: "Triangle!", description: "Write a java method triangle that
+			takes two integers seed and level and displays a pattern like the one given in the 
+			examples below:
+			triangle(3,4), where 3 is the seed and 4 is the level will display:
+			3
+			4 5
+			6 7 8 
+			9 0 1 2
+			triangle(7,5), where 7 is the seed and 5 is the level
+			7
+			8 9
+			0 1 2
+			3 4 5 6	
+			7 8 9 0 1",incomplete: false, seen:true)
+		TestCase.create(output: "3 
+			4 5 
+			6 7 8 
+			9 0 1 2 ", input:"3 4", model_answer_id: 107)
+		TestCase.create(output: "7 
+			8 9 
+			0 1 2 
+			3 4 5 6 
+			7 8 9 0 1 ", input:"7 5", model_answer_id: 107)
+		ModelAnswer.create(id: 107, title: "Answer1",problem_id: 107, answer:'
+			import java.io.BufferedReader;
+			import java.io.IOException;
+			import java.io.InputStreamReader;
+			public class Main2 {
+				public static void main(String[] args) throws IOException {
+					InputStreamReader inStream = new InputStreamReader(System.in);
+					BufferedReader stdin = new BufferedReader(inStream);
+					String inData;
+					inData = stdin.readLine();
+					String [] split = inData.split(" ");
+					int seed = Integer.parseInt(split[0]);
+					int size = Integer.parseInt(split[1]);
+					drawPattern(seed, size);
+				}
+				public static void drawPattern(int seed, int size) {
+					int i, j;
+					for (i = 1; i <= size; i++) {
+						for (j = 1; j <= i; j++) {
+							if (seed > 9)
+								seed = 0;
+							System.out.print(seed + " ");
+							seed++;
+						}
+						System.out.println();
+					}
+				}
+			}')
+		## Problem 8
+		Problem.create(id: 108, title: "Multiplication", description: "Given array of numbers 
+			multipy all it elements",incomplete: false, seen:true)
+		TestCase.create(output: "6", input:"1 2 3 ", model_answer_id: 108)
+		TestCase.create(output: "0", input:"0 0 0 ", model_answer_id: 108)
+		TestCase.create(output: "-3", input:"-1 -1 -1", model_answer_id: 108)
+		ModelAnswer.create(id: 108,title: "Answer1",problem_id: 108, answer:'
+			import java.io.BufferedReader;
+			import java.io.IOException;
+			import java.io.InputStreamReader;
+			public class Main {
+				public static void main(String[] args) throws IOException {
+					int n = 0;
+					int result = 0;
+					BufferedReader str = new BufferedReader(
+							new InputStreamReader(System.in));
+					String s = str.readLine();
+					String[] split = s.split(" ");
+					n = split.length;
+					int[] num = new int[n];
+					for (int i = 0; i < n; i++) {
+						num[i] = Integer.parseInt(split[i]);
+						result*=num[i];
+					}
+					System.out.println(result);
+				}
+			}')
+		## Problem 9
+		Problem.create(id: 109, title: "The reminder", description: "Given two numbers
+			a ,b calculate the reminder from dividing a over b ",incomplete: false, seen:true)
+		TestCase.create(output: "1", input:"3 2", model_answer_id: 109)
+		TestCase.create(output: "0", input:"4 2", model_answer_id: 109)
+		TestCase.create(output: "-3", input:"-1 -1 -1", model_answer_id: 109)
+		Hint.create(message: "use the java pre-defined operator %",
+	 			category: false, time: 5, submission_counter:1, model_answer_id: 109)
+		ModelAnswer.create(id: 109,title: "Answer1",problem_id: 109, answer:'
+			import java.io.BufferedReader;
+			import java.io.IOException;
+			import java.io.InputStreamReader;
+			public class Main2 {
+				public static void main(String[] args) throws IOException {
+					BufferedReader str = new BufferedReader(
+							new InputStreamReader(System.in));
+					String s = str.readLine();
+					String[] split = s.split(" ");
+					int a = Integer.parseInt(split[0]);
+					int b = Integer.parseInt(split[1]);
+					System.out.println(a % b);
+				}
+			}')
+		## Problem 10
+		Problem.create(id: 110, title: "Fibonacci", description: "Use a recursive function to 
+			calculate the Fibonacci number", incomplete: false, seen:true)
+		TestCase.create(output: "1", input:"1", model_answer_id: 110)
+		TestCase.create(output: "5", input:"5", model_answer_id: 110)
+		TestCase.create(output: "8", input:"6", model_answer_id: 110)
+		ModelAnswer.create(id: 110,title: "Answer1",problem_id: 110, answer:'
+			import java.io.BufferedReader;
+			import java.io.IOException;
+			import java.io.InputStreamReader;
+			public class Main {
+				public static void main(String[] args) throws IOException {
+					BufferedReader str = new BufferedReader(
+							new InputStreamReader(System.in));
+					String s = str.readLine();
+					String[] split = s.split(" ");
+					int a = Integer.parseInt(split[0]);
+					System.out.println(fib(a));
+				}
+				public static int fib(int n) {
+					if (n <= 1)
+						return n;
+					else
+						return fib(n - 1) + fib(n - 2);
+				}
+			}')
+>>>>>>> 750556512f7774d55f37d3d20fe82aa150e23d5f
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
@@ -267,9 +626,9 @@ puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
-	Grade.create(grade: 100)
-	Grade.create(grade: 80)
 
+	Grade.create(grade: 100, student_id: 1, problem_id: 1)
+	Grade.create(grade: 80, student_id: 1, problem_id: 2)
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
