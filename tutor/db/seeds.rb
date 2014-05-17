@@ -202,10 +202,12 @@ puts("# ----------------------- Problems ----------------------- ")
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true)
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					{\n\t\t\n\t}\n}")
+		
 	## Bank
 		## problem 1
-		Problem.create(id: 100, title: "Bubble Sort", description: "Given array of numbers a use the bubble 
+		Problem.create(id: 100, title: "Bubble Sort", description: "Given array of numbers a use them bubble 
 			sort to sort them descendingly ", incomplete: false, seen:true)
 		ModelAnswer.create(id: 100, title: "Answer1",problem_id: 100, answer: "")
 		TestCase.create(output: "1,2,2,3,5", input:"1,5,3,2,2", model_answer_id: 100)
