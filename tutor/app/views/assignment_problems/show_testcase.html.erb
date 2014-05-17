@@ -6,7 +6,6 @@
 				{:controller => 'assignment_problems', :action => 'index',
 				:id => @assignment.id} %></li>
 		</ul>
-	
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
 			<%= form_for(@problem) do |f| %>
@@ -18,7 +17,6 @@
 				<h2> Create Testcase </h2>
 				<%= render partial: "test_cases/form" %>
 			<% end %>
-			
 			<ul class="navbar-brand pull-right"><%= link_to "Finish",
 				{:controller => 'assignments', :action => 'show',
 				:id=> @assignment.id}, class: "btn btn-info",

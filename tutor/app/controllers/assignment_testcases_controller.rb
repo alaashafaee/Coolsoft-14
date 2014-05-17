@@ -40,7 +40,6 @@ class AssignmentTestcasesController < ApplicationController
 			:id => session[:problem_assignment_id]
 		else
 			render :action=>'new', :assignment_id => @test_case.assignment_problem_id
-
 		end
 	end
 
@@ -56,4 +55,5 @@ class AssignmentTestcasesController < ApplicationController
 	def new_test_case_params
 		params.require(:new_test_case).permit(:input, :output, :assignment_problem_id)
 	end
+	
 end

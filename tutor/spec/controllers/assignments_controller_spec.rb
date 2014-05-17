@@ -16,13 +16,11 @@ describe AssignmentsController do
 			:link => "http://met.guc.edu.eg/")
 		@course.save!
 	end
-
-  	it "new returns http success" do
+	it "new returns http success" do
 		sign_in @lecturer
 		get :new
 		expect(response).to be_success
   	end
-
 	context "CREATE" do
 		it "creates a new assignment" do
 			sign_in @lecturer

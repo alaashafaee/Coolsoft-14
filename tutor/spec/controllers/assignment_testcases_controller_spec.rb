@@ -14,14 +14,12 @@ describe AssignmentTestcasesController do
 		@aproblem = AssignmentProblem.new(title: 'assignmentproblem', description: 'testcase for problem')
 		@aproblem.save!
 	end
-
 	it "new returns http success" do
 	sign_in @lecturer
 	get :new
 	expect(response).to be_success
 	end
-
- 	context "CREATE" do
+	context "CREATE" do
 		it "creates a new testcase for problem" do
 		sign_in @lecturer
 		expect{

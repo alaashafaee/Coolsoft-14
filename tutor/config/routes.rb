@@ -49,14 +49,13 @@ Tutor::Application.routes.draw do
 	resources :problems
 	resources :courses
 	resources :contests
-	
+
 	post "courses/choose"
 	post "courses/existing"
 	post "courses/duplicate"
 	get "model_answers/new"
 	post "model_answers/new"
-	post "assignments/new"
-		get "assignments/new"
+
 	resources :model_answers
 	#resources :test_cases
 	#devise_for :teaching_assistants
@@ -77,18 +76,15 @@ Tutor::Application.routes.draw do
 		post "model_answers/new"
 	end
 	resources :assignments do
-		post "assignments/new"
 		get "assignments/new"
 		post "assignments/show"
 		get "assignments/show"
 	end
 	resources :assignments_problems do
 		get "assignment_problems/new"
-		post "assignment_problems/new"
 		get "assignment_problems/edit"
 		get "assignment_problems/show"
 		get "assignment_problems/index"
-		post "assignment_problems/complete"
 		post "assignment_problems/update"
 		post "assignment_problems/show"
 	end

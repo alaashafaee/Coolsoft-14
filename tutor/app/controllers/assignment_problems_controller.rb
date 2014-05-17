@@ -10,7 +10,6 @@ class AssignmentProblemsController < ApplicationController
 		session[:assignment_id] = params[:id]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
 		@new_problem = AssignmentProblem.new
-	
 	end
 
 	# [Create Assignment - Story 4.27]
@@ -28,7 +27,7 @@ class AssignmentProblemsController < ApplicationController
 		@new_problem.final_grade = 0
 		@new_problem.assignment_id = session[:assignment_id]
 		session[:problem_id] = @new_problem.id
-		a = AssignmentProblem.find_by(title: @new_problem.title,
+		problem_exist = AssignmentProblem.find_by(title: @new_problem.title,
 			assignment_id: @new_problem.assignment_id)
 		if lecturer_signed_in?
 			@new_problem.owner_id = current_lecturer.id
@@ -37,7 +36,7 @@ class AssignmentProblemsController < ApplicationController
 			@new_problem.owner_id = current_teaching_assistant.id
 			@new_problem.owner_type = "teaching assistant"
 		end
-		if a.nil?
+		if problem_exist.nil?
 			if @new_problem.save
 				flash[:notices] = "saved"
 				redirect_to :controller => 'assignment_testcases',
@@ -73,7 +72,7 @@ class AssignmentProblemsController < ApplicationController
 				@new_problem.assignment_id = @assignment.id
 				@new_problem.final_grade = 0
 				@new_problem.test_cases = @problem_select.test_cases
-				@a = AssignmentProblem.find_by(title: @new_problem.title,
+				@problem_exist = AssignmentProblem.find_by(title: @new_problem.title,
 					assignment_id: @new_problem.assignment_id)
 				if lecturer_signed_in?
 					@new_problem.owner_id = current_lecturer.id
@@ -82,7 +81,7 @@ class AssignmentProblemsController < ApplicationController
 					@new_problem.owner_id = current_teaching_assistant.id
 					@new_problem.owner_type = "teaching assistant"
 				end
-				if @a.nil?
+				if @problem_exist.nil?
 					if @new_problem.save
 						@assignment.problems << @new_problem
 						flash[:notice] = "problems are now added"
@@ -176,7 +175,6 @@ class AssignmentProblemsController < ApplicationController
 		end
 	end
 	
-
 	# [Create Assignment - Story 4.27]
 	# To get from the assignment_problem form the values needed to save new problem.
 	# Parameters: none
@@ -188,4 +186,5 @@ class AssignmentProblemsController < ApplicationController
 	def problem_params
 		params.require(:assignment_problem).permit(:title, :description)
 	end
+	
 end

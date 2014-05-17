@@ -4,7 +4,6 @@ class Assignment < ActiveRecord::Base
 	validates :title, presence: true
 	validate :validate_start_date_before_today
 
-
 	#Relations
 	belongs_to :course
 	belongs_to :owner, polymorphic: true

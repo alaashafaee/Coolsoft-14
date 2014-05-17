@@ -20,13 +20,11 @@ describe AssignmentProblemsController do
 		 description:"assignment")
 		@assignment.save!
 	end
-
-  	it "new returns http success" do
+	it "new returns http success" do
 		sign_in @lecturer
 		get :new
 		expect(response).to be_success
   	end
-
 	context "CREATE" do
 		it "creates a new problem for assignment" do
 			sign_in @lecturer
