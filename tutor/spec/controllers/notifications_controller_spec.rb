@@ -17,7 +17,7 @@ describe NotificationsController do
 			student = Student.new(email: '1@lecturer.com', password: '123456789', 
  			password_confirmation: '123456789', name: 'LecturerI',
  			confirmed_at: Time.now, dob: DateTime.now.to_date, 
- 			gender: true,university: "GUC", faculty: "Engineering", semester: 6,major: "alwan")
+ 			gender: true,university: "GUC", faculty: "Engineering", semester: 6, major: "alwan")
 			student.save!
 			sign_in student
 			get :index
