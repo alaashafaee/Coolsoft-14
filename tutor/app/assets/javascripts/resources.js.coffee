@@ -1,3 +1,9 @@
+# [course resources - Story 1.25]
+# delete resource
+# Parameters: resource id
+# Returns: on success deletes resource
+# Author: Ahmed Elassuty
+
 $(document).ready ->
 	$("#resources").on "cocoon:before-remove", (e, resource) ->
 		$(this).data "remove-timeout", 1000
