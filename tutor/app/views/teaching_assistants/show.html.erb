@@ -1,23 +1,25 @@
-<div class= "row profile_info_row">
-	<img class = "profile_picture" src="/assets/profile.png">
-	<div class = "profile_info">
-		<p class="name"><%= @teaching_assistant.name %></p>
-		<div class="info">
-			<p><%= @teaching_assistant.email %></p>
-			<p><b>Degree: </b><%= @teaching_assistant.degree %></p>
-			<p><b>Department: </b><%= @teaching_assistant.department %></p>
-			<p><b>University: </b><%= @teaching_assistant.university %></p>
-			<p><b>Joined on: </b><%= @teaching_assistant.created_at.to_date %></p>
+<div class="left-content">
+	<div class= "row profile_info_row">
+		<img class = "profile_picture" src="/assets/profile.png">
+		<div class = "profile_info">
+			<p class="name"><%= @teaching_assistant.name %></p>
+			<div class="info">
+				<p><%= @teaching_assistant.email %></p>
+				<p><b>Degree: </b><%= @teaching_assistant.degree %></p>
+				<p><b>Department: </b><%= @teaching_assistant.department %></p>
+				<p><b>University: </b><%= @teaching_assistant.university %></p>
+				<p><b>Joined on: </b><%= @teaching_assistant.created_at.to_date %></p>
+			</div>
 		</div>
 	</div>
-</div>
-<div class = "row tabs">
-	<ul class = "tab-links"> 
-		<li class="active"><a href="#tab1">Courses</a></li>
-	</ul>
-	<div class = "tab-content">
-		<div id="tab1" class="tab active">
-			<%= render "courses/profile_courses"%>
-		</div>
-	</div>	
+	<div class = "row tabs">
+		<ul class = "tab-links"> 
+			<li class="active"><a href="#tab1">Courses</a></li>
+		</ul>
+		<div class = "tab-content">
+			<div id="tab1" class="tab active">
+				<%= render "courses/profile_courses"%>
+			</div>
+		</div>	
+	</div>
 </div>

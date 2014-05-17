@@ -1,39 +1,40 @@
-<!--Author: Mohab Ghanim -->
-<% if lecturer_signed_in? %>
-	<a href="/courses/new">Create new Course</a>
-<% elsif student_signed_in? %>
-	<a href="/courses/sign_up">Sign up for a course</a>
-<% end %>
-<% if !@courses.any? %>
-	<h1>You have no courses</h1>
-<% end %>
-<br>
-<%= flash[:success_deletion] %>
-<%= flash[:success_creation] %>
-<% if @courses.any? %>
-	<table class = "table table-striped", style = "width:80%">
-		<tr>
-			<th>Course Name</th>
-			<th>Code</th>
-		</tr>
-
-		<% @courses.each do |c| %>
-			<tr>	
-				<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, :method => :get, class: "", style:"font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none "%>
-				</td>
-				<td><%= c.code %></td>
-				<td>
-					<% if current_student %>
-						<% if @share[c.id] == "Show" %>
-							<%= button_to "Show Performance", {:controller => 'courses', :action => 'share',
-								:id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
-						<% else %>
-							<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share',
-								:id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
-						<% end %>
-					<% end %>
-				</td>
+<div class="left-container">
+	<% if lecturer_signed_in? %>
+		<a href="/courses/new">Create new Course</a>
+	<% elsif student_signed_in? %>
+		<a href="/courses/sign_up">Sign up for a course</a>
+	<% end %>
+	<% if !@courses.any? %>
+		<h1>You have no courses</h1>
+	<% end %>
+	<br>
+	<%= flash[:success_deletion] %>
+	<%= flash[:success_creation] %>
+	<% if @courses.any? %>
+		<table class = "table table-striped", style = "width:80%">
+			<tr>
+				<th>Course Name</th>
+				<th>Code</th>
 			</tr>
-		<% end %>
-	</table>
-<% end %>
+
+			<% @courses.each do |c| %>
+				<tr>	
+					<td><%= link_to c.name, { :controller => 'courses', :action => 'show', :id => c.id }, :method => :get, class: "", style:"font-weight:bold; font-size:15px; color:#3498db; font-dicoration:none "%>
+					</td>
+					<td><%= c.code %></td>
+					<td>
+						<% if current_student %>
+							<% if @share[c.id] == "Show" %>
+								<%= button_to "Show Performance", {:controller => 'courses', :action => 'share',
+									:id => c.id, :value => true}, class: "btn btn-success", style: "text-decoration:none" %>
+							<% else %>
+								<%= button_to "Hide Performance", {:controller => 'courses', :action => 'share',
+									:id => c.id, :value => false}, class: "btn btn-success", style: "text-decoration:none" %>
+							<% end %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+</div>

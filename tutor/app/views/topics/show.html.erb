@@ -1,110 +1,114 @@
-<div class = "course_info panel-body" >
-	<div class= "row course_title">
-		<div class="course_code"><%= @topic.course.code %></div>
-		<div class="course_name"><%= @topic.course.name %></div>
-		<div class="course_code"><%= @topic.title %></div>
-	</div>
-	<div class="row">
-		<div class="course_sem">
-			Semester <%= @topic.course.semester %>
-			Class <%= @topic.course.year %>
-		</div>
-	</div>
-</div>
-<div class="row topic_description">
-	<div class="description-body" ><%= @topic.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</div>
-</div>
-<% if @can_edit %>
-	<% if flash[:error] %>
-		<div class = "alert alert-danger" style = "width:25%; 
-				color: back" ><%= flash[:error] %>
-		</div><br>
-	<% end %>
-	<% if flash[:success] %>
-		<div class = "alert alert-success" style = "
-				width:25%;" ><%= flash[:success] %>
-		</div><br>
-	<% end %>
-<% end %>
-
-<% hash = (0..4).collect {|n| [n, (Track.get_difficulty_name n)]} %>
-<% hash = hash.to_h %>
-<% openable = true %>
-<div class="panel-group list-group" id="accordion">
-	<% @tracks.each do |track| %>
-		<% if openable %>
-			<% open = "in" %>
-			<% openarrow = "glyphicon-chevron-down" %>
-			<% openable = false %>
-		<% else %>
-			<% open = "" %>
-			<% openarrow = "glyphicon-chevron-right" %>
-		<% end %>
-		<div class = "panel panel-default" style = "width:50%">
-			<div class="panel-title list-group-item list-group-item-info">
-				<a class="icon glyphicon <%= openarrow %>" href="#<%= track.id.to_s %>"
-					data-toggle="collapse" data-parent="#accordion"
-					style="margin-right:1%;text-decoration: none;">
-				</a>
-				<%= link_to track.title , track , style: 'color:#003366;'%>
-				<% hash.delete track.difficulty %>
-				<span class="badge"><%= track.problems.count %></span>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_code"><%= @topic.course.code %></div>
+				<div class="course_name"><%= @topic.course.name %></div>
+				<div class="course_code"><%= @topic.title %></div>
 			</div>
-			<div id="<%= track.id.to_s %>" class="panel-collapse collapse <%= open %>">
-				<ul class="list-group">
-					<% track.problems.each do |problem|%>
-						<% color = "" %>
-						<% if student_signed_in? && 
-							problem.is_solved_by_student(current_student.id) %>
-							<% color = "label label-success" %>
-						<% end %>
-						<li class="list-group-item" data-toggle="tooltip"
-							data-placement="top" title="<%= problem.description%>">
-								<%= link_to problem.title , problem , class: color %>
-						</li>
-					<% end %>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @topic.course.semester %>
+					Class <%= @topic.course.year %>
+				</div>
+			</div>
+		</div>
+		<div class="row topic_description">
+			<div class="description-body" ><%= @topic.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</div>
+		</div>
+		<% if @can_edit %>
+			<% if flash[:error] %>
+				<div class = "alert alert-danger" style = "width:25%; 
+						color: back" ><%= flash[:error] %>
+				</div><br>
+			<% end %>
+			<% if flash[:success] %>
+				<div class = "alert alert-success" style = "
+						width:25%;" ><%= flash[:success] %>
+				</div><br>
+			<% end %>
+		<% end %>
+
+		<% hash = (0..4).collect {|n| [n, (Track.get_difficulty_name n)]} %>
+		<% hash = hash.to_h %>
+		<% openable = true %>
+		<div class="panel-group list-group" id="accordion">
+			<% @tracks.each do |track| %>
+				<% if openable %>
+					<% open = "in" %>
+					<% openarrow = "glyphicon-chevron-down" %>
+					<% openable = false %>
+				<% else %>
+					<% open = "" %>
+					<% openarrow = "glyphicon-chevron-right" %>
+				<% end %>
+				<div class = "panel panel-default" style = "width:50%">
+					<div class="panel-title list-group-item list-group-item-info">
+						<a class="icon glyphicon <%= openarrow %>" href="#<%= track.id.to_s %>"
+							data-toggle="collapse" data-parent="#accordion"
+							style="margin-right:1%;text-decoration: none;">
+						</a>
+						<%= link_to track.title , track , style: 'color:#003366;'%>
+						<% hash.delete track.difficulty %>
+						<span class="badge"><%= track.problems.count %></span>
+					</div>
+					<div id="<%= track.id.to_s %>" class="panel-collapse collapse <%= open %>">
+						<ul class="list-group">
+							<% track.problems.each do |problem|%>
+								<% color = "" %>
+								<% if student_signed_in? && 
+									problem.is_solved_by_student(current_student.id) %>
+									<% color = "label label-success" %>
+								<% end %>
+								<li class="list-group-item" data-toggle="tooltip"
+									data-placement="top" title="<%= problem.description%>">
+										<%= link_to problem.title , problem , class: color %>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+		<!-- thats a form for creating a track which is intially hidden
+				until the new button clicked -->
+		<% if @can_edit %>
+			<!-- On click dialog appears with the sortable list of tracks inside it -->
+			<span id="opener" , class="btn btn-info">Edit Track Rating</span>
+			<% if hash.count > 0 %>
+				<span class="btn btn-info" onclick="newTrack()" id="new_track">New</span>
+				<% if !flash[:title] && !flash[:difficulty] %>
+					<% hide = 'hidden=true' %>
+				<% end %>
+				<br><br>
+				<div id="create_track" <%= hide %> >
+					<%= form_for :Track , url: {controller: "tracks", action: "create"}, 
+					html: {class: "form-inline form-horizontal nifty_form", role: "form"} do |f| %>
+						<%= f.text_field :title , :value => flash[:title] , 
+							:class => "form-control", :style => "width:150px",
+								:placeholder => "Title"%></br></br>
+						<%= f.select :difficulty,
+								options_for_select(hash.collect{|key,value| [value, key]}) %>
+						</br></br>
+						<%= f.hidden_field :topic_id , :value => params[:id] %>
+						<%= f.submit "Create" , :class => "btn btn-info"%>
+					<% end %><!-- /form -->
+				</div><!-- /create_track -->
+			<% end %><!-- /if condition -->
+		<% end %><!-- /can_edit -->
+
+		<!-- Generates list of tracks in the topic -->
+		<div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
+			<p>Hold Press and Drag to sort the tracks 
+				<ul id="list-of-tracks" >
+				<% @tracks.each do |track| %>
+					<li id="<%= track.id %>" ><%= track.title %> </li> 
+				<% end %>
 				</ul>
-			</div>
+			</p>
 		</div>
-	<% end %>
-</div>
-
-<!-- thats a form for creating a track which is intially hidden
-		until the new button clicked -->
-<% if @can_edit %>
-	<!-- On click dialog appears with the sortable list of tracks inside it -->
-	<span id="opener" , class="btn btn-info">Edit Track Rating</span>
-	<% if hash.count > 0 %>
-		<span class="btn btn-info" onclick="newTrack()" id="new_track">New</span>
-		<% if !flash[:title] && !flash[:difficulty] %>
-			<% hide = 'hidden=true' %>
-		<% end %>
-		<br><br>
-		<div id="create_track" <%= hide %> >
-			<%= form_for :Track , url: {controller: "tracks", action: "create"}, 
-			html: {class: "form-inline form-horizontal nifty_form", role: "form"} do |f| %>
-				<%= f.text_field :title , :value => flash[:title] , 
-					:class => "form-control", :style => "width:150px",
-						:placeholder => "Title"%></br></br>
-				<%= f.select :difficulty,
-						options_for_select(hash.collect{|key,value| [value, key]}) %>
-				</br></br>
-				<%= f.hidden_field :topic_id , :value => params[:id] %>
-				<%= f.submit "Create" , :class => "btn btn-info"%>
-			<% end %><!-- /form -->
-		</div><!-- /create_track -->
-	<% end %><!-- /if condition -->
-<% end %><!-- /can_edit -->
-
-<!-- Generates list of tracks in the topic -->
-<div id="edit_track_rating_dialog" title="Edit Track Rating" hidden = "true">
-	<p>Hold Press and Drag to sort the tracks 
-		<ul id="list-of-tracks" >
-		<% @tracks.each do |track| %>
-			<li id="<%= track.id %>" ><%= track.title %> </li> 
-		<% end %>
-		</ul>
-	</p>
+	</div>
 </div>

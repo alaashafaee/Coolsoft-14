@@ -1,13 +1,15 @@
-<div class= "row profile_info_row">
-	<img class = "profile_picture" src="/assets/profile.png">
-	<div class = "profile_info">
-		<p class="name"><%= current_teaching_assistant.name %></p>
-		<div class="info">
-			<p><%= current_teaching_assistant.email %></p>
-			<p><b>Degree: </b><%= current_teaching_assistant.degree %></p>
-			<p><b>Department: </b><%= current_teaching_assistant.department %></p>
-			<p><b>University: </b><%= current_teaching_assistant.university %></p>
-			<p><b>Joined on: </b><%= current_teaching_assistant.created_at.to_date %></p>
+<div class="left-content">
+	<div class= "row profile_info_row">
+		<img class = "profile_picture" src="/assets/profile.png">
+		<div class = "profile_info">
+			<p class="name"><%= current_teaching_assistant.name %></p>
+			<div class="info">
+				<p><%= current_teaching_assistant.email %></p>
+				<p><b>Degree: </b><%= current_teaching_assistant.degree %></p>
+				<p><b>Department: </b><%= current_teaching_assistant.department %></p>
+				<p><b>University: </b><%= current_teaching_assistant.university %></p>
+				<p><b>Joined on: </b><%= current_teaching_assistant.created_at.to_date %></p>
+			</div>
 		</div>
 	</div>
 </div>

@@ -177,22 +177,46 @@
 	margin-bottom: 20px;
 	border-radius: 5px;
 	background-color: #FAFAFA;
+	margin-right: 2%;
 
 }
 
 .xox {
 	background-color: #FAFAFA;
 	border-radius: 5px;
+	margin: 0px;
+	margin-right: 2%;
 }	
 
-.topic-box .well {
-	max-width: 400px;
-	max-height: 260px;
-	min-width: 400px;
-	min-height: 260px;
-	overflow-y: auto;	
+.left-content{
+	margin-top: -20px;
+	margin-left: -15px;
+	margin-right: 4px;
+	border-radius: 5px;
+	background-color: #FAFAFA;;
 }
 
+.left-container {
+	margin-right: 4px;
+	margin-left: -15px;
+	border-radius: 5px;
+	background-color: #FAFAFA;;
+}
+
+.margin-10 {
+	margin: 10px;
+}
+.topic-box .well {
+	max-width: 400px;
+	max-height: 200px;
+	min-width: 400px;
+	min-height: 200px;
+	overflow-y: auto;
+}
+.bell .topic-box .well{
+	background-color: red;
+	margin-left: 3%;
+}
 .box-title {
 	font-size: 2em;
 	color: #808080;
@@ -207,4 +231,13 @@
 	float: right;
 	height: 40px;
 	text-align: center;
+}
+
+.topic-box .badge {
+	float: right;
+	color: white;
+}
+
+.delete {
+	background-color: #CF5044 !important;
 }
