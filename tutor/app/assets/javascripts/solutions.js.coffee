@@ -390,7 +390,7 @@ debug_console = ->
 				else 
 					content = "<font color ='green'>Passed all testcases</font>"
 				out.html(content)
-				return 
+				return
 			for i in data
 				if !i['last'] && i['success']
 					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
