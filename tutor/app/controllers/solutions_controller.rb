@@ -119,20 +119,6 @@ class SolutionsController < ApplicationController
 		end
 	end
 
-	# [Code Editor: Write Code - Story 3.3]
-	# Permits the id of the problem, code from the form_for
-	# Parameters:
-	# 	code: The written code for the problem
-	# 	problem_id: Hidden field for problem id
-	# Returns:
-	# 	none
-	# Author: MOHAMEDSAEED
-	def mark_solution
-		@solution.find_by_id(params[:id])
-		@problem = @solution.problem
-		@student = @solution.student
-	end
-
 	private
 	# [Code Editor: Write Code - Story 3.3]
 	# Permits the id of the problem, code from the form_for
