@@ -49,10 +49,7 @@ class Solution < ActiveRecord::Base
 				end
 			else
 				runtime_error = runtime_check[:executer_output]
-				puts "*******************"
-				puts runtime_error
 				explanation = get_response(runtime_error)
-
 				solution.status = 4
 				response << {success: false, test_case: input, 
 						response: "Runtime error: " + explanation}
