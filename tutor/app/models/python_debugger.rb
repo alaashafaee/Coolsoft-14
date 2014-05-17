@@ -36,9 +36,8 @@ class PythonDebugger < Debugger
 			master.close
 			slave.close
 			nums = get_line
-			# locals = get_variables
-			# nums[:locals] = locals
-			nums[:locals] = []
+			locals = get_variables
+			nums[:locals] = locals
 			$all << nums
 			status = TimeLimit.start(time){
 				debug
@@ -150,9 +149,9 @@ class PythonDebugger < Debugger
 	# 		false otherwise.
 	# Author: Khaled Helmy
 	def is_valid_variable name, value
-		if name.startswith("__")
+		if name =~ /^'__/
 			return false
-		elsif value.match("module") or value.match("function")
+		elsif value.include?("module") or value.include?("function")
 			return false
 		end
 		return true
@@ -169,7 +168,8 @@ class PythonDebugger < Debugger
 	def get_object_value name
 		result = ""
 		input name + ".__dict__"
-		output_buffer = buffer_until_complete
+		output_buffer = buffer_until [/\{.*\}\r\n$/m]
+		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
 		output_buffer.each_line do |line|
 			result << line
 		end
@@ -200,7 +200,8 @@ class PythonDebugger < Debugger
 		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
 		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
 		input type + "[" + name + "]"
-		output_buffer = buffer_until_complete
+		output_buffer = buffer_until [/\(Pdb\) .*\r\n/m]
+		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
 		output_buffer.each_line do |line|
 			value << line
 		end
@@ -227,7 +228,8 @@ class PythonDebugger < Debugger
 		all_lines = ""
 		result = []
 		input type + ".keys()"
-		output_buffer = buffer_until_complete
+		output_buffer = buffer_until [/\[.*\]\r\n$/m]
+		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
 		output_buffer.each_line do |line|
 			all_lines << line
 		end
@@ -272,7 +274,8 @@ class PythonDebugger < Debugger
 	def get_stack_trace
 		stack_trace = []
 		input "w"
-		output_buffer = buffer_until_complete
+		output_buffer = buffer_until [/.*>.*\r\n->.*\r\n$/m]
+		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
 		output_buffer = output_buffer[3..-3]
 		output_buffer.each_line do |line|
 			stack_trace << line
