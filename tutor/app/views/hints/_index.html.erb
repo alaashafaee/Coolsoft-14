@@ -1,3 +1,6 @@
+<br><ul class="navbar-brand pull-right"><%= link_to "Create New Hint", 
+	{:controller => 'hints', :action => 'new',
+	:model_answer_id => @answer.id }, {class: 'btn btn-primary btn' } %> </ul></br>
 <% @hints1=Array.new %>
 <% @hints_check.each do |hint2| %>
 	<% if hint2.category == false %>
