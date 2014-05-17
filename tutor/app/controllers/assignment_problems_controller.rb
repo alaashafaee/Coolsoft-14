@@ -22,8 +22,11 @@ class AssignmentProblemsController < ApplicationController
 	# Author: Nadine Adel
 	def create
 		@assignment = Assignment.find_by_id(session[:assignment_id])
-		@new_problem = AssignmentProblem.new(problem_params)
+		@new_problem = AssignmentProblem.new
+		@new_problem.title = problem_params[:title]
+		@new_problem.description = problem_params[:description]
 		@new_problem.final_grade = 0
+		@new_problem.assignment_id = session[:assignment_id]
 		session[:problem_id] = @new_problem.id
 		a = AssignmentProblem.find_by(title: @new_problem.title,
 			assignment_id: @new_problem.assignment_id)
@@ -36,7 +39,6 @@ class AssignmentProblemsController < ApplicationController
 		end
 		if a.nil?
 			if @new_problem.save
-				@assignment.problems << @new_problem
 				flash[:notice] = "saved"
 				redirect_to :controller => 'assignment_testcases',
 					:action => 'new', :assignment_id => @new_problem.id

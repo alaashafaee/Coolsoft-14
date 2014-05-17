@@ -28,14 +28,14 @@ describe AssignmentsController do
 			sign_in @lecturer
 			expect{
 				get :create, assignment: {:title => "Assignmentse",
-				:description => "try to solve", "date(1i)" => "2014",
-				"date(2i)" => "12","date(3i)" => "12",},:course_id => @course.id
+					:description => "try to solve", "date(1i)" => "2014",
+					"date(2i)" => "12","date(3i)" => "12",},:course_id => @course.id
 			}.to change(Assignment,:count).by(1)
 		end
 		it 'is invalid assignment without title' do
 			sign_in @lecturer
 			expect{
-			get :create, assignment: {
+				get :create, assignment: {
 				:description => "try to solve1", "date(1i)" => "2014",
 				"date(2i)" => "12","date(3i)" => "12",},:course_id => @course.id
 			}.to change(Assignment,:count).by(0)

@@ -36,7 +36,6 @@ class AssignmentsController < ApplicationController
 			@new_assignment.owner_type = "teaching assistant"
 		end
 		if @new_assignment.save
-			#@course.assignments << @new_assignment
 			redirect_to :controller => 'assignment_problems', :action => 'new',
 				:id => @new_assignment.id
 		else
