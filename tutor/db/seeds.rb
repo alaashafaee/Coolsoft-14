@@ -156,7 +156,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		AssignmentProblem.create(title: "AssignmentProblem 1", description: "Your program is to use the brute-force approach in order 
 			to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from 
 			input to output. Stop processing input after reading in the number 42. All numbers at input are integers 
-			of one or two digits.", final_grade:10)
+			of one or two digits.", final_grade: 100)
 		AssignmentProblem.create(title: "AssignmentProblem 2", description: "he Antique Comedians of Malidinesia prefer 
 			comedies to tragedies. Unfortunately, most of the ancient plays are tragedies. Therefore 
 			the dramatic advisor of ACM has decided to transfigure some tragedies into comedies. 
@@ -173,7 +173,7 @@ puts("# ----------------------- Problems ----------------------- ")
 			reversed sum. Of course, the result is not unique because any particular number is a 
 			reversed form of several numbers (e.g. 21 could be 12, 120 or 1200 before reversing). 
 			Thus we must assume that no zeros were lost by reversing 
-			(e.g. assume that the original number was 12).", final_grade:10)
+			(e.g. assume that the original number was 12).", final_grade: 100)
 		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", final_grade:10)
 		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", final_grade:10)
 	## Contests
@@ -267,9 +267,9 @@ puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
-	Grade.create(grade: 100)
-	Grade.create(grade: 80)
 
+	Grade.create(grade: 100, student_id: 1, problem_id: 1)
+	Grade.create(grade: 80, student_id: 1, problem_id: 2)
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
