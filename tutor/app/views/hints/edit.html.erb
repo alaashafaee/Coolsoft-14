@@ -8,9 +8,9 @@
 		</li>
 		<li class = "sub2">
 			<%= link_to "Model Answers", {:controller => 'model_answers', :action => 'edit',
-						:problem_id => params[:problem_id],:track_id => params[:track_id], 
-						:model_answer_id => params[:model_answer_id]},{:method => :get,
-							:style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"} %>
+				:problem_id => params[:problem_id],:track_id => params[:track_id], 
+				:model_answer_id => params[:model_answer_id]},{:method => :get,
+				:style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"} %>
 		</li>
 		<li class="sub3"><%= link_to "Tips", {:controller => 'tips', :action => 'index',
 			:model_answer_id => session[:model_answer_id],

@@ -20,8 +20,8 @@
 		:problem_id => session[:problem_id]}, :method => :get %>
 	</li>
 </ul>
-</div><br><br><br>
-
+</div>
+<br><br><br>
 <% provide(:title, "Edit Answer") %>
 <% if @answer.errors.any? %>
 	<div id="error_explanation">
@@ -38,9 +38,11 @@
 <div id = "divform_answer">
 	<%= form_for :model_answer, url: model_answer_path(@answer), method: :patch, remote: true do |model_answer| %> 
 		<br><%= model_answer.label :Title %>
-			<%= model_answer.text_field :title, :value => @answer.title, class: "form-control", style: "width:30%", :cols => "2", :rows => "1" %></br>
+		<%= model_answer.text_field :title, :value => @answer.title, class: "form-control",
+			style: "width:30%", :cols => "2", :rows => "1" %></br>
 	<br><%= model_answer.label :Answer %></br> 
-	<p><%= model_answer.text_area :answer, :value => @answer.answer, class: "form-control", style: "width:60%", :cols => "10", :rows => "10"   %></p> 
+	<p><%= model_answer.text_area :answer, :value => @answer.answer, class: "form-control",
+		style: "width:60%", :cols => "10", :rows => "10"   %></p> 
 	<%= model_answer.submit "Save changes", class: "btn btn-large btn-info" %>
 	<% end %>
 </div>

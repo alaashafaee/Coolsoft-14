@@ -10,15 +10,15 @@
 	</script>
 </body>
 <div id = "crumbs">
-    <ul>
+	<ul>
 <li class="sub"><%= link_to "Problems", {:controller => 'problems', :action => 'edit',
 					:problem_id => @problem.id,:track_id => @problem.track_id}, :method => :get %></li>
-     <li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'index',
-					:problem_id => @problem.id,:track_id => @problem.track_id},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
-    <li class="sub2"><a class = "visit" style="padding: 5px 3.75% 0 0px;">Model Answers</a> </li>
-    <li class="sub3"><a class="preventclick" >Tips</a> </li>
-    <li class="sub4"><a class="preventclick" >Hints</a> </li>    
-    </ul>
+	 <li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'index',
+						:problem_id => @problem.id,:track_id => @problem.track_id},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
+	<li class="sub2"><a class = "visit" style="padding: 5px 3.75% 0 0px;">Model Answers</a> </li>
+	<li class="sub3"><a class="preventclick" >Tips</a> </li>
+	<li class="sub4"><a class="preventclick" >Hints</a> </li>    
+	</ul>
  </div>
 <br><br><br>
 <div id="div1">
@@ -51,7 +51,7 @@
 			<tbody>
 				<% @answers.each do |answer1| %>
 					<tr>
- 						<td><%= answer1.title %></td>
+						<td><%= answer1.title %></td>
 						<td><%= answer1.created_at %></td>
 						<td><%= answer1.updated_at %></td>
 						<td><%= link_to "View/Edit", {:controller => 'model_answers',

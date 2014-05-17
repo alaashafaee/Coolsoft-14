@@ -32,7 +32,7 @@
 
 <div id = "diva"><br><br>
 	<%= form_for :test_case, url: test_case_path(@test_case), method: :patch,
-	remote: true do |test_case| %>
+		remote: true do |test_case| %>
 		<h2>Test Case </h2>
 		<h3><%= test_case.label :Input%> </h3>
 		<h4 align = "left"><%= @test_case.input %></h4>
@@ -46,5 +46,6 @@
 
 <div><ul class = "navbar-brand pull-right">
 		<%= link_to "Back", {:controller => 'test_cases', :action => 'index',
-					:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
+			:track_id => session[:track_id], :problem_id => session[:problem_id],
+			:model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
 </div>
