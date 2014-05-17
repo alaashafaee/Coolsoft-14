@@ -22,6 +22,7 @@ class ProblemsController < ApplicationController
 	# Parameters:
 	#	title: problem's title through permitCreate action
 	#	description: problem's description through permitCreate action
+	#	flag: identification flag to decide between add or editing.
 	# Returns:
 	#	Redirects to edit page on success, refreshes on failure
 	# Author: Abdullrahman Elhusseny + Ahmed Osam
@@ -198,6 +199,7 @@ class ProblemsController < ApplicationController
 	# Checks if problem is complete or not by checking the number of test cases and answers
 	# Parameters:
 	#	problem_id: ID of the problem being edited
+	#	flag: identification flag to decide between add or editing.	
 	# Returns:
 	#	On success redirects to the track page, on failure redirects to the edit page
 	# Author: Abdullrahman Elhusseny + Ahmed Osam

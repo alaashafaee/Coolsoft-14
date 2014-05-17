@@ -3,10 +3,9 @@ class HintsController < ApplicationController
   	# [View hints and tips-Story 4.22]
 	# It fetches from database all the previous hints.
 	# Parameters: 
-	#	@hints: All the previous hints that had been entered before.
-	#	@hints_check: All the previous hints that had been entered before to check if it is a hint or a tip.
+	#	@hints: previous hints that had been entered before related to the model answer.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def index
 		session[:model_answer_id] = params[:model_answer_id]
 		@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
@@ -17,7 +16,7 @@ class HintsController < ApplicationController
 	# This action creates the form and retrives the data of the selected problem 
 	#	to be being edited
 	# Parameters:
-	#	ID of the hint  
+	#	hint_id: id of the hint. 
 	# Returns: none
 	# Author: Mimi
 	def edit
@@ -136,7 +135,7 @@ class HintsController < ApplicationController
 	# [Remove hint - Story 4.12]
 	# Finds the hint that wanted to be removed
 	# Parameters:
-	#	id: id of the tip required to be removed
+	#	id: id of the hint required to be removed
 	# Returns:
 	#	@hint: hint which will be removed
 	# Author: Ahmed Osam

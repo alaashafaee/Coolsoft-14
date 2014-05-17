@@ -4,9 +4,8 @@ class ModelAnswersController < ApplicationController
 	# It creates the new answer.
 	# Parameters:
 	#	@problem: To fetch the problem to which the answer is added.
-	#	@answer: The new answer the user enters.
-	#	@answers: All the previous answers that had been entered before.
-	#	:flag: identification flag to decide between add or editing.
+	#	@new_answer: The new answer the user enters.
+	#	flag: decider flag to decide between add or editing.
 	# Returns: none
 	# Author: Nadine Adel + Ahmed Osam
 	def new
@@ -67,7 +66,7 @@ class ModelAnswersController < ApplicationController
 	#	problem and remove it from the database and then redirects the user to the edit problem 
 	#	page of the problem that had the answer with a "Model Answer successfully Deleted" message.
 	# Parameters:
-	#	params[:id]: The current model answer's id
+	#	params[:model_answer_id]: The current model answer's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef + Ahmed Osam
@@ -93,6 +92,8 @@ class ModelAnswersController < ApplicationController
 	#	@tips_check: Used to check the type of Hint.
 	#	@hints: Hints that are linked to the answer being edited.
 	#	@hints_check: Used to check the type of Hint.
+	#	params[:model_answer_id]: The current model answer's id.
+	#	params[problem_id]: The problem's id model answer related to.
 	# Returns:
 	#	A message if the answer is edited and another message if answer was not edited.
 	# Author: Nadine Adel + Ahmed Osam
@@ -112,6 +113,8 @@ class ModelAnswersController < ApplicationController
 	# Answer is updated in the database. 
 	# Parameters:
 	#	@answer: Answer that is being updated.
+	#	params[:model_answer_id]: The current model answer's id.
+	#	params[:title]: The current model answer's title.
 	# Returns: none
 	# Author: Nadine Adel + Ahmed Osam
 	def update
@@ -164,6 +167,8 @@ class ModelAnswersController < ApplicationController
 	# Parameters:
 	#	@answers: Previous answers that are saved in the database.
 	#	@problem: Problem to which the current answer is added.
+	#	params[:track_id]: The current track's id.
+	#	params[problem_id]: The problem's id model answer related to.
 	# Returns: none
 	# Author: Nadine Adel + Ahmed Osam
 	def index

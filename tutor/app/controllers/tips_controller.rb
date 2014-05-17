@@ -5,6 +5,7 @@ class TipsController < ApplicationController
 	# Parameters:
 	#	@tips: All the previous tips that had been entered before.
 	#	@tips_check:All the previous tips that had been entered before to check if it is a tip or hint.
+	#	flag: decider flag to decide between add or editing.
 	# Returns : none.
 	# Author: Nadine Adel
 	def index
@@ -18,6 +19,7 @@ class TipsController < ApplicationController
 	# Parameters: none
 	# Returns:
 	#	@tip: a new created tip to specific answer
+	#	flag: decider flag to decide between add or editing.
 	# Author: Ahmed Osam
 	def new
 		if params[:flag] == "1" 
@@ -37,8 +39,9 @@ class TipsController < ApplicationController
 	# Allows Lecturer/TA to create a tip to help the student_users while solving a problem
 	# Parameters: 
 	#	message: is the content of the tip
-	#	time: is a countdown timer that tip will appear after it ends
-	#	model_answer_id: is the id of the answer the tip related to
+	#	time: is a countdown timer that tip will appear after it ends.
+	#	model_answer_id: is the id of the answer the tip related to.
+	#	flag: decider flag to decide between add or editing.
 	# Returns:
 	#	@tip: a new created tip to specific answer
 	# Author: Ahmed Osam
