@@ -8,13 +8,16 @@ class SolutionsController < ApplicationController
 	# Returns: none
 	# Author: MOHAMEDSAEED
 	def create
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		solution.status = 0
-		solution.save
-		test_cases = solution.problem.test_cases
-		result = Solution.validate(solution, test_cases)
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		time = param[:time]
+		problem_type = param[:problem_type]
+		class_name = param[:class_name]
+		lang = param[:lang]
+		result = SolutionsLayer.validate(lang, code, student, problem,
+			problem_type, class_name, time)
 		render json: result
 	end
 
@@ -31,32 +34,88 @@ class SolutionsController < ApplicationController
 		end
 		id = current_student.id
 		pid = params[:problem_id]
-		input = params[:code]
-		cases = if params[:input] then params[:input] else "" end
-		result = Executer.create_solution(id, pid, input, cases)
+		code = params[:code]
+		problem_type = params[:problem_type]
+		class_name = params[:class_name]
+		lang = params[:lang]
+		cases = if params[:case] then params[:case] else "" end
+		result = SolutionsLayer.execute(lang, code, id, pid,
+			problem_type, class_name, cases)
 		render json: result
 	end
 
 	# [Compiler: Compile - Story 3.4]
 	# Creates a soution for the current problem in the database and compiles it.
-	#	Then it places the previous code and the compilation results and feedback in the flash hash.
 	# Parameters:
 	#	solution_params: submitted from the form_for
 	# Returns: none
 	# Author: Ahmed Moataz
 	def compile_solution
-		solution = Solution.new(solution_params)
-		solution.student_id = current_student.id
-		solution.length = solution.code.length
-		if solution.save
-			compiler_feedback = Compiler.compiler_feedback(solution)
-			if compiler_feedback[:success]
-				solution.status = 3
+		param = solution_params
+		code = param[:code]
+		student = current_student.id
+		problem = param[:problem_id]
+		problem_type = param[:problem_type]
+		class_name = param[:class_name]
+		lang = param[:lang]
+		compiler_feedback = SolutionsLayer.compile(lang, code, student, 
+			problem, problem_type, class_name)
+		render json: compiler_feedback
+	end
+
+	# [Mark Solution - Story 4.29]
+	# Allows a TA to mark a solution of a student
+	# Parameters:
+	#	submission_id: the id of the solution to be marked
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
+	def mark_solution
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			@solution = Solution.find_by_id(params[:submission_id])
+			if !@solution.blank?
+				@lines = @solution.code.split("\n")
+				@notes = Hash.new
+				@counter = 0
+				@lines.each do |line|
+					@counter+= 1
+					@notes[@counter]= Note.where(solution_id: @solution.id, line: @counter).last
+				end
+				@student = Student.find_by_id(@solution.student_id)
+				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
+				@course = @problem.assignment.course
+				@can_edit = @course.can_edit(current_lecturer)
+				@can_edit||= @course.can_edit(current_teaching_assistant)
+				if !@can_edit
+					render ('public/404')
+				end
 			else
-				solution.status = 2
+				render ('public/404')
 			end
-			solution.save
-			render json: compiler_feedback
+		else
+			render ('public/404')
+		end
+	end
+
+	# [Mark Solution - Story 4.29]
+	# Allows a TA to view all submitted solutions to a specific assignment
+	# Parameters:
+	#	problem_id: the id of the assignment problem to view its submissions
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
+	def view_submissions
+		@problem = AssignmentProblem.find_by_id(params[:problem_id])
+		@submissions = @problem.solutions.group(:student_id)
+		@students = Hash.new
+		@counter = 0
+		@submissions.each do |submission|
+			@counter+=1
+			@students[@counter] = Student.find_by_id(submission.student_id)
+		end
+		@course = @problem.assignment.course
+		@can_edit = @course.can_edit(current_lecturer)
+		@can_edit||= @course.can_edit(current_teaching_assistant)
+		if !@can_edit
+			render ('public/404')
 		end
 	end
 
@@ -70,7 +129,7 @@ class SolutionsController < ApplicationController
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time)
+		params.permit(:code, :problem_id, :time, :class_name, :problem_type, :lang)
 	end
 
 	# [Compiler: Test - Story 3.15]

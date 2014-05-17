@@ -1,18 +1,15 @@
 <% if objects.present? %>
 	<div class="panel panel-default">
 		<div class="panel-title list-group-item list-group-item-info"
-				data-toggle="collapse" data-parent="#accordion" 
-				href="#<%= objects.first.class.name.pluralize.to_s %>">
+				data-parent="#accordion" 
+				href="<%= objects.first.class.name.pluralize.to_s %>">
 			<div align="center">
 				<a class="panel-title">
 					<%= objects.first.class.name.pluralize.to_s %>
-					<span class="badge">
-						<%= objects.count %>
-					</span>
 				</a>
 			</div>
 		</div>
-		<div id="<%= objects.first.class.name.pluralize.to_s %>" class="panel-collapse collapse">
+		<div id="<%= objects.first.class.name.pluralize.to_s %>">
 			<ul class="list-group">
 				<% objects.each do |object| %>
 					<li class="list-group-item" data-toggle="tooltip"
@@ -27,4 +24,4 @@
 			</ul>
 		</div>
 	</div>
-<%end%>
+<% end %>

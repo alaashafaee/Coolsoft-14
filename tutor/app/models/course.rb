@@ -5,7 +5,8 @@ class Course < ActiveRecord::Base
 	include Tire::Model::Callbacks
 	
 	#Validations
-	validates :name, presence: true 
+	validates :name, presence: true
+	validates :link, :format => /\Ahttps?:\/\/((w{3})[.])?([\w]|-)+(\.com|\.org|\.guc|\.edu|\.eg|\.gov|\.biz|\.info|\.net)+((\?|#|\/)([\S])*)?\z/
 	validates :description, presence: true
 	validates :code, presence: true
 	validates :year, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: Date.today.year,
@@ -22,7 +23,11 @@ class Course < ActiveRecord::Base
 	has_many :course_students
 	has_many :students, through: :course_students
 	has_many :contests, dependent: :destroy
+	has_many :assignments, dependent: :destroy
 
+	has_many :tags, as: :tager
+	has_many :resources, dependent: :destroy
+	
 	#Scoops
 	
 	#Methods

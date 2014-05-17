@@ -34,7 +34,6 @@ class Lecturer < ActiveRecord::Base
 	has_many :replies, as: :owner, dependent: :destroy
 	has_many :topics
 	has_many :tracks, as: :owner
-	has_many :problems, as: :owner
 	has_many :model_answers, as: :owner
 	has_many :method_constraints, as: :owner
 	has_many :method_parameters, as: :owner
@@ -42,7 +41,20 @@ class Lecturer < ActiveRecord::Base
 	has_many :test_cases, as: :owner
 	has_many :hints, as: :owner
 	has_many :acknowledgements, dependent: :destroy
+	has_many :tags, as: :owner
+	
+	has_many :problems, class_name:"Problem", as: :owner
+
 	has_many :contests, as: :owner
+	has_many :contest_problems, class_name:"Cproblem", as: :owner
+
+	has_many :assignments, as: :owner
+	has_many :assignment_problems, class_name:"AssignmentProblem", as: :owner
+	has_many :grades, as: :editor
+
+	has_many :resources, as: :owner
+	has_many :notes, as: :owner
+	has_many :notifications, as: :receiver
 
 	#Methods
 	# [Advanced Search - Story 1.23]

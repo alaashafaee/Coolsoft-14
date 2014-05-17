@@ -37,6 +37,10 @@ class CoursesController < ApplicationController
 				student = Student.find(current_student.id)
 				if student.courses.find_by_id(@course.id) == nil
 					student.courses << @course
+					@course.topics.each do |topic|
+						progress = TrackProgression.create(level: 0, topic_id: topic.id)
+						student.progressions << progress
+					end
 				else
 					@status = "7"
 				end
@@ -102,7 +106,7 @@ class CoursesController < ApplicationController
 	#	none
 	# Returns: 
 	#	none
-	# Author: Mohamed Mamdouh
+	# Author: Mohamed Mamdouh + Ahmed Elassuty
 	def create
 		@new_course  = Course.new
 		@new_course.name = course_params[:name]
@@ -110,6 +114,7 @@ class CoursesController < ApplicationController
 		@new_course.year = course_params[:year]
 		@new_course.semester = course_params[:semester]
 		@new_course.description = course_params[:description]
+		@new_course.link = course_params[:link]
 		@new_course.university = current_lecturer.university
 		if @new_course.save
 			current_lecturer.courses << @new_course
@@ -155,7 +160,14 @@ class CoursesController < ApplicationController
 			tracks = []
 			@topics.each do |t|
 				tracks = tracks + t.tracks
+			end			
+			@assignments = @course.assignments
+			assignment_problems = []
+			@assignments.each do |a|
+				assignment_problems = assignment_problems + a.problems
 			end
+			@can_edit = @course.can_edit(current_lecturer)
+			@can_edit||= @course.can_edit(current_teaching_assistant)
 		else
 			render ('public/404')
 		end
@@ -212,7 +224,7 @@ class CoursesController < ApplicationController
 
 	private
 		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description)
+			params.require(:course).permit(:name,:code,:year,:semester,:description,:link)
 		end
 
 		# [Share Performance - Story 5.2, 5.13]
