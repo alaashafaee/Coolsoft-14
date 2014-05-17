@@ -1,17 +1,23 @@
 require 'spec_helper'
+include Devise::TestHelpers
+class ActiveSupport::TestCase
+include Devise::TestHelpers
+end
 
 describe AssignmentsController do
  	
  	describe "GET show" do
+
  		before(:each) do
- 			@assignment1 = Assignment.create(title: 'Test Assignment', description: 'Math Assignment') 			
+ 			sign_out :user
+ 			@assignment = Assignment.create(title: "Assignment 1", description: "Assignment1 description")
  		end
- 
- 		it "assigns the requested assignment to the @assignment1" do
+  		it "assigns the requested assignment to the @assignment" do
+ 			
  			AssignmentsController.skip_before_filter :authenticate!
- 			get :show, id: @assignment1.id
- 			expect(assigns(:assignment1)).to(@assignment1)
+ 			get :show, id: @assignment.id
+ 			expect(assigns(:assignment)).to eq(@assignment)
  		end
- 	end
  	
+ 	end 
 end
