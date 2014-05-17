@@ -19,7 +19,8 @@ class Notification < ActiveRecord::Base
 		student = Student.find_by_id(student_id)
 		course = Course.find_by_id(course_id)
 		new_notification = Notification.new
-		new_notification.message = "#{student.name} subscribed to your course #{course.name}"
+		new_notification.message = "<a href= '/students/#{student.id}'>
+		#{student.name}</a> subscribed to your course #{course.name}"
 		new_notification.save
 		lecturer.notifications << new_notification
 	end
@@ -36,8 +37,8 @@ class Notification < ActiveRecord::Base
 		students = course.students
 		students.each do |student|
 			new_notification = Notification.new
-			new_notification.message = "Assignment #{assignment.title} has been posted for the 
-				course #{course.name}"	
+			new_notification.message = "Assignment <a href= '/assignments/#{assignment.id}'>
+			#{assignment.title}</a> has been posted for the course #{course.name}"	
 			new_notification.save
 			student.notifications << new_notification
 		end
@@ -56,8 +57,8 @@ class Notification < ActiveRecord::Base
 		students = course.students
 		students.each do |student|
 			new_notification = Notification.new
-			new_notification.message = "Contest #{contest.title} has been created for the 
-				course #{course.name}"
+			new_notification.message = "Contest <a href= '/contests/#{contest.id}'>
+			#{contest.title}</a> has been created for the course #{course.name}"
 			new_notification.save
 			student.notifications << new_notification
 		end
@@ -94,10 +95,10 @@ class Notification < ActiveRecord::Base
 			new_notification = Notification.new
 			if discussion_board.activated
 				new_notification.message = "The discussion board for the course 
-				#{course.name} has been activated"
+				<a href= '/courses/#{course.id}'> #{course.name} </a>has been activated"
 			else
 				new_notification.message = "The discussion board for the course 
-				#{course.name} has been deactivated"
+				<a href= '/courses/#{course.id}'> #{course.name} </a>has been deactivated"
 			end
 			new_notification.save
 			student.notifications << new_notification

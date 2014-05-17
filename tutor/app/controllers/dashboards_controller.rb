@@ -6,7 +6,7 @@ class DashboardsController < ApplicationController
 	#	@notifications: The current notifications of the current user
 	# Returns: The view of the notifications
 	# Author: Ahmed Atef
-	def show 
+	def index
 		if lecturer_signed_in?
 			@notifications = Lecturer.find(params[:id]).notifications.order("created_at desc")
 		elsif teaching_assistant_signed_in?

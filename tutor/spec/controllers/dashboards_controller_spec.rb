@@ -12,17 +12,17 @@ describe DashboardsController do
 				degree: "PhD", university: "GUC", department: "MET")
 		@lecturer.save!
 		@student1 = Student.new(email: '1@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'LecturerI',
+				password_confirmation: '123456789', name: 'StudentI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				university: "GUC", semester: 4, faculty: "MET",major: "cs")
 		@student1.save!
 		@student2 = Student.new(email: '2@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'LecturerI',
+				password_confirmation: '123456789', name: 'StudentII',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				university: "GUC", semester: 4, faculty: "MET",major: "cs")
 		@student2.save!
 		@student3 = Student.new(email: '3@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'LecturerI',
+				password_confirmation: '123456789', name: 'StudentIII',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				university: "GUC", semester: 4, faculty: "MET",major: "cs")
 		@student3.save!
@@ -38,6 +38,9 @@ describe DashboardsController do
 		@course.students << @student2
 		DashboardsController.skip_before_filter :authenticate!
 		Notification.assignments_notify(assignment.id)
+		expect(@student1.notifications.last.message).to eq(
+		"Assignment <a href= '/assignments/#{assignment.id}'>
+			#{assignment.title}</a> has been posted for the course #{@course.name}")
 		expect(@student1.notifications.count).to eq(1)
 		expect(@student2.notifications.count).to eq(1)
 		expect(@student3.notifications.count).to eq(0)
@@ -50,6 +53,9 @@ describe DashboardsController do
 		@course.students << @student2
 		DashboardsController.skip_before_filter :authenticate!
 		Notification.contests_notify(@course.id, contest.id)
+		expect(@student1.notifications.last.message).to eq(
+		"Contest <a href= '/contests/#{contest.id}'>
+			#{contest.title}</a> has been created for the course #{@course.name}")
 		expect(@student1.notifications.count).to eq(1)
 		expect(@student2.notifications.count).to eq(1)
 		expect(@student3.notifications.count).to eq(0)
@@ -61,26 +67,17 @@ describe DashboardsController do
 		DashboardsController.skip_before_filter :authenticate!
 		Notification.lecturer_notify(@lecturer.id, @course.id, @student1.id)
 		expect(@lecturer.notifications.last.message).to eq(
-			"#{@student1.name} subscribed to your course #{@course.name}")
+		"<a href= '/students/#{@student1.id}'>
+		#{@student1.name}</a> subscribed to your course #{@course.name}")
 		expect(@lecturer.notifications.count).to eq(1)
 	end
 
-	it "sends notifications to lecturer when student signs up to his course" do
+	it "sends notifications to lecturer when lecturer acknowledge student" do
 		DashboardsController.skip_before_filter :authenticate!
 		Notification.acknowledgement_notify(@student1.id, @lecturer.id)
 		expect(@student1.notifications.last.message).to eq(
 			"#{@lecturer.name} has sent you an acknowledgement")
 		expect(@student1.notifications.count).to eq(1)
-	end
-
-	it "sends notifications to lecturer when student signs up to his course" do
-		@lecturer.courses << @course
-		@course.students << @student1
-		DashboardsController.skip_before_filter :authenticate!
-		Notification.lecturer_notify(@lecturer.id, @course.id, @student1.id)
-		expect(@lecturer.notifications.last.message).to eq(
-			"#{@student1.name} subscribed to your course #{@course.name}")
-		expect(@lecturer.notifications.count).to eq(1)
 	end
 
 	it "sends notifications to students when lecturer toggle discussion Board" do
@@ -93,7 +90,7 @@ describe DashboardsController do
 		DashboardsController.skip_before_filter :authenticate!
 		Notification.notify_students_discussion_board(@course.discussion_board.id)
 		expect(@student1.notifications.last.message).to eq("The discussion board for the course 
-				#{@course.name} has been deactivated")
+				<a href= '/courses/#{@course.id}'> #{@course.name} </a>has been deactivated")
 		expect(@student1.notifications.count).to eq(1)
 		expect(@student2.notifications.count).to eq(1)
 		discussion_board2 = DiscussionBoard.new(title: "Test DB", activated: true)
@@ -101,7 +98,7 @@ describe DashboardsController do
 		@course.discussion_board = discussion_board2
 		Notification.notify_students_discussion_board(@course.discussion_board.id)
 		expect(@student1.notifications.last.message).to eq("The discussion board for the course 
-				#{@course.name} has been activated")
+				<a href= '/courses/#{@course.id}'> #{@course.name} </a>has been activated")
 
 	end
 
