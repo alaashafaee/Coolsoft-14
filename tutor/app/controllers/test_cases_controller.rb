@@ -5,7 +5,7 @@ class TestCasesController < ApplicationController
 	# Parameters: none
 	# Returns:
 	#	List of all the test cases related to a certain problem.
-	# Author: Lin & Ahmed Osam
+	# Author: Lin + Ahmed Osam
 	def index
 		session[:track_id] = params[:track_id]
 		session[:problem_id] = params[:problem_id]
@@ -17,7 +17,7 @@ class TestCasesController < ApplicationController
 	# Display the form that is used to add a test case.
 	# Parameters: none
 	# Returns: none
-	# Author: Lin & Ahmed Osam
+	# Author: Lin + Ahmed Osam
 	def new
 		session[:track_id] = params[:track_id]
 		session[:problem_id] = params[:problem_id]
@@ -29,7 +29,6 @@ class TestCasesController < ApplicationController
 		@problem = Problem.find(session[:problem_id])
 		@test_case = TestCase.new
 	end
-
 
 	# [Add test case-story 4.8]
 	# Saves the new test case into the database.(What the form the 'new' method will submit to)
@@ -56,10 +55,10 @@ class TestCasesController < ApplicationController
 			@problem.test_cases << @test_case
 			if session[:flag] == "1"
 				redirect_to :controller => 'test_cases', :action => 'index', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "1"
+					:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "1"
 			elsif session[:flag] == "0"
 				redirect_to :controller => 'model_answers', :action => 'new', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "0"
+					:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "0"
 			end
 		else
 			render :action=>'new', :problem_id => @test_case.problem_id, :flag => session[:flag]
@@ -71,7 +70,7 @@ class TestCasesController < ApplicationController
 	# Parameters:
 	#	@test_case:Test case to be edited.
 	# Returns: none
-	# Author: Nadine Adel & Ahmed Osam
+	# Author: Nadine Adel + Ahmed Osam
 	def edit
 		session[:problem_id] = params[:problem_id]
 		session[:track_id] = params[:track_id]
@@ -85,7 +84,7 @@ class TestCasesController < ApplicationController
 	#	 @test_case:Test case to be updated.
 	# Returns:
 	#	Flash message if the test case is updated or not
-	# Author: Nadine Adel & Ahmed Osam
+	# Author: Nadine Adel + Ahmed Osam
 	def update
 		@test_case = TestCase.find(session[:test_case_id])
 		if test_case_params[:input] != @test_case.input ||
@@ -115,7 +114,7 @@ class TestCasesController < ApplicationController
 				respond_to do |format|
 					format.js
 					format.html {redirect_to :action => "edit", :format => :js,
-					:test_case_id => @test_case.id, :track_id => session[:track_id]}
+						:test_case_id => @test_case.id, :track_id => session[:track_id]}
 				end
 			end
 		end
@@ -129,7 +128,7 @@ class TestCasesController < ApplicationController
 	#	params[:id]: The current test case's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef & Ahmed Osam
+	# Author: Ahmed Atef + Ahmed Osam
 	def destroy
 		@test_case = TestCase.find_by_id(params[:test_case_id])
 		@current = Problem.find_by_id(@test_case.problem_id)
@@ -147,7 +146,7 @@ class TestCasesController < ApplicationController
 	# Private method. Controls the test case parameters that can be accessed.
 	# Parameters: none
 	# Returns: none
-	# Author: Lin
+	# Author: Lin + Ahmed Osam
 	private
 	def post_params
 		params.require(:test_case).permit(:input, :output, :problem_id)

@@ -153,7 +153,7 @@ class HintsController < ApplicationController
 	# Parameters: none
 	# Returns:
 	#	Hash of paramas 
-	# Author: Mimi
+	# Author: Mimi + Ahmed Osam
 	private
 		def hint_params
 			params.require(:hint).permit(:message, :submission_counter, :id)

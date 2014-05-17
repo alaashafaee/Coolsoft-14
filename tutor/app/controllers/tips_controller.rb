@@ -61,17 +61,17 @@ class TipsController < ApplicationController
 			@model_answer.hints << @tip
 			if session[:flag] == "1"
 				redirect_to :controller => 'tips', :action => 'index', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id], 
-				:model_answer_id => session[:model_answer_id]
+					:problem_id => session[:problem_id], :track_id => session[:track_id], 
+						:model_answer_id => session[:model_answer_id]
 			elsif session[:flag] == "0"
 				redirect_to :controller => 'hints', :action => 'new', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id], 
-				:model_answer_id => params[:model_answer_id],:flag => session[:flag]
+					:problem_id => session[:problem_id], :track_id => session[:track_id], 
+						:model_answer_id => params[:model_answer_id],:flag => session[:flag]
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @tip.model_answer_id,
-			 :flag => session[:flag],
-			:track_id => session[:track_id], :problem_id => params[:problem_id]}
+				:flag => session[:flag],
+					:track_id => session[:track_id], :problem_id => params[:problem_id]}
 		end
 	end
 
@@ -151,7 +151,7 @@ class TipsController < ApplicationController
 				respond_to do |format|
 					format.js
 					format.html {redirect_to :action => "edit", :format => :js,
-					:tip_id => @test_case.id, :track_id => session[:track_id]}
+						:tip_id => @test_case.id, :track_id => session[:track_id]}
 				end
 			end
 		end

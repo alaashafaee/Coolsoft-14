@@ -42,7 +42,7 @@ class ProblemsController < ApplicationController
 		begin
 			if @problem.save
 				redirect_to :controller => "test_cases", :action => "new",
-				:problem_id => @problem.id, :track_id => session[:track_id], :flag => "0"
+					:problem_id => @problem.id, :track_id => session[:track_id], :flag => "0"
 			else
 				render :action => 'new', :locals => {:track_id => session[:track_id]}
 			end
@@ -102,14 +102,14 @@ class ProblemsController < ApplicationController
 	#	params[:id]: The current problem's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef & Ahmed Osam
+	# Author: Ahmed Atef + Ahmed Osam
 	def destroy
 		@problem = Problem.find_by_id(params[:problem_id])
 		@track = @problem.track_id
 		if @problem.destroy
 			flash[:notice] = "Problem successfully Deleted"
 			redirect_to(:controller => 'tracks',
-				 :action => 'show' ,:id => @track)
+				:action => 'show' ,:id => @track)
 		end
 	end
 
@@ -167,7 +167,6 @@ class ProblemsController < ApplicationController
 						format.js
 						format.html {redirect_to :action => "edit", :format => :js, 
 							:problem_id => @problem.id, :track_id => session[:track_id]}
-						
 					end
 				end
 			end
@@ -201,7 +200,7 @@ class ProblemsController < ApplicationController
 	#	problem_id: ID of the problem being edited
 	# Returns:
 	#	On success redirects to the track page, on failure redirects to the edit page
-	# Author: Abdullrahman Elhusseny & Ahmed Osam
+	# Author: Abdullrahman Elhusseny + Ahmed Osam
 	def done
 		@problem = Problem.find_by_id(params[:problem_id])
 		session[:track_id] = params[:track_id]
