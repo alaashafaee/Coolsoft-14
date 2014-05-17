@@ -8,9 +8,8 @@ describe ProblemsController do
 
 
 			context "Create Problem and deletes it" do
-		it "create, edit and destroy the requested problem" do
+			it "create, edit and destroy the requested problem" do
 			lecturer = Lecturer.find_by_id(1)
-			lecturer.save!
 			course = Course.find_by_id(1)
 			topic = Topic.find_by_id(1)
 			track = Track.find_by_id(1)
@@ -29,20 +28,7 @@ describe ProblemsController do
 				delete :destroy, :problem_id => problem.id
 			}.to change(Problem, :count).by(-1)
 		
-		expect {
-
-      				@problem1 = { title: "problem example 213", description: "description here",
-      				 snippet: "snippet here", views_count: "3", time_limit: "30", track_id: track.id,
-      				  fill_gaps: false, incomplete: true,
-        			seen: true, duplicated: false, owner_id: lecturer.id, owner_type: "Lecturer" }
-			:new, :track_id => track.id
-	         	   
-
-	        }.to change(Problem, :count).by(1)
 	  end
 
         end			
-	    
-
-
 end

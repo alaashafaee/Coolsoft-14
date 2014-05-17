@@ -51,7 +51,7 @@
 			</p>
 			<p>
 				<%= t.label :Time_in_seconds %><br>
-				<%= t.text_field :time, style: "width:55px; height:35px;", :value => @tip.time %>
+				<%= t.text_field :time, class: "form-control", style: "width:55px; height:35px;", :value => @tip.time %>
 			</p>
 			<p>
 				<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
