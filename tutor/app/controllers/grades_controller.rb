@@ -60,6 +60,6 @@ class GradesController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	private
 		def grade_params
-			params.require(:Grade).permit(:grade , :problem_id, :student_id)
+			params.require(:Grade).permit(:grade, :problem_id, :student_id)
 		end
 end
