@@ -12,6 +12,18 @@ class ContestsController < ApplicationController
 
 	before_action :validate_timer
 
+	# [View Contest Problems - Story 5.26]
+	# Description: Displays the contest that the user chose
+	# Parameters:
+	#	@contest: The contest id that the user chose
+	#	@problems = The list of problems of the contest
+	# Returns: The view of the contest
+	# Author: Ahmed Atef
+	def show
+		@contest = Contest.find(params[:id])
+		@problems =  @contest.problems.all
+	end
+
 	# [Create Contest - Story 5.16]
 	# Defines a new Contest instance for the form in the new view
 	# Parameters: none
