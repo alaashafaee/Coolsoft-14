@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 	before_action :update_sanitized_params, if: :devise_controller?
 	before_action :check_resource, if: :devise_controller?
 
-	rescue_from Exception, :with => :render_not_found
+	#rescue_from Exception, :with => :render_not_found
 	
 	private
 
@@ -30,9 +30,8 @@ class ApplicationController < ActionController::Base
 			if "#{resource_name}" == "lecturer"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|lecturer| lecturer.permit(:name, :email,
-						:password, :password_confirmation, :gender,
-						:dob, :degree, :university, :department,
-						:profile_image, :profile_image_cache)
+						:password, :password_confirmation,
+						:university, :department)
 				}
 				devise_parameter_sanitizer.for(:account_update) {
 					|lecturer| lecturer.permit(:name, :current_password,
@@ -43,10 +42,9 @@ class ApplicationController < ActionController::Base
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|student| student.permit(:name, :email,
-						:password, :password_confirmation, :gender,
-						:dob, :university, :faculty, :major, :semester,
-						:advising, :probation, :profile_image,
-						:profile_image_cache)
+						:password, :password_confirmation,
+						:university, :faculty, :major, :semester,
+						:advising, :probation)
 				}
 				devise_parameter_sanitizer.for(:account_update) {
 					|student| student.permit(:name, :current_password,
@@ -58,10 +56,9 @@ class ApplicationController < ActionController::Base
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
 					|teaching_assistant| teaching_assistant.permit(:name,
-						:email, :password, :password_confirmation, :gender,
-						:dob, :graduated_from, :graduated_year, :degree,
-						:university, :department, :profile_image,
-						:profile_image_cache)
+						:email, :password, :password_confirmation,
+						:graduated_from, :graduated_year, :degree,
+						:university, :department)
 				}
 				devise_parameter_sanitizer.for(:account_update) {
 					|teaching_assistant| teaching_assistant.permit(:name,

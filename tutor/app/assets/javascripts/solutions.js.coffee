@@ -2,34 +2,45 @@
 variables = null
 # The number of the current index of the line to be executed
 index_number = 0
+# The status of the debugging session
+status = "The debugging session was successful."
 
 # [Debugger: Debug - Story 3.6]
 # Sends the code to the server and changes the Variables to the data recieved
 # Parameters:
 # 	problem_id: The id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns: none
 # Author: Mussab ElDash
-@start_debug = (problem_id) ->
-	input = $('#solution_code').val()
+@start_debug = (problem_id, problem_type) ->
+	input = get_editor_session().getValue()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
 	test = $('#solution_input').val()
+	class_name = $("#class_name").val()
+	lang = get_lang()
 	start_spin()
 	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/debuggers/' + problem_id
-		data: {code : input , case : test}
+		data: {code: input, case: test, class_name: class_name,\
+				problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
-			variables = data
 			stop_spin()
-			if !data["success"]
+			if data["data"] is false
+				toggle_code_area()
+				return
+			unless data["success"]
 				compilation_error data["data"]["errors"]
+				toggle_code_area()
 				return
 			variables = data["data"]
+			status = data["status"]
+			alert status
 			toggleDebug(1)
 			debug_console()
 			jump_state 0
@@ -44,11 +55,14 @@ index_number = 0
 # Sends the code to the server to be compiled
 # Parameters:
 # 	problem_id: The id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns:
 #	none
 # Author: Ahmed Akram
-@compile = (problem_id) ->
-	input = $('#solution_code').val()
+@compile = (problem_id, problem_type) ->
+	input = get_editor_session().getValue()
+	class_name = $("#class_name").val()
+	lang = get_lang()
 	if input.length is 0
 		alert "You didn't write any code"
 		return
@@ -57,7 +71,8 @@ index_number = 0
 	$.ajax
 		type: "POST"
 		url: '/solutions/compile_solution'
-		data: {code : input, problem_id : problem_id}
+		data: {code: input, problem_id: problem_id,\
+			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (unique) ->
 			clear_console()
@@ -78,21 +93,25 @@ index_number = 0
 # Sends the code and the test case to the server to be tested
 # Parameters:
 # 	problem_id: The id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns:
 #	none
 # Author: Ahmed Akram
-@run_input = (problem_id) ->
-	code = $('#solution_code').val()
+@run_input = (problem_id, problem_type) ->
+	code = get_editor_session().getValue()
 	if code.length is 0
 		alert "You didn't write any code"
 		return
 	test = $('#solution_input').val()
+	class_name = $("#class_name").val()
+	lang = get_lang()
 	start_spin()
 	toggle_code_area()
 	$.ajax
 		type: "POST"
 		url: '/solutions/execute'
-		data: {code : code, problem_id : problem_id, input : test}
+		data: {code: code, problem_id: problem_id, case: test,\
+			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -133,8 +152,8 @@ input_test_output = (data) ->
 #	none
 # Author: Ahmed Akram
 toggle_code_area = ->
-	$('#solution_code').prop 'disabled', !$('#solution_code').prop 'disabled'
 	$('#solution_input').prop 'disabled', !$('#solution_input').prop 'disabled'
+	$('#mode').prop 'disabled', !$('#mode').prop 'disabled'
 
 # [Compiler: Test - Story 3.15]
 # Fills the console with the runtime errors
@@ -222,7 +241,7 @@ debug_console = ->
 	$('#nextButton').toggle(state)
 	$('#previousButton').toggle(state)
 	$('#stopButton').toggle(state)
-	editor = ace.edit("editor")
+	editor = get_editor()
 	editor.setReadOnly(state)
 	normal_theme = "ace/theme/twilight"
 	debug_theme = normal_theme + "-debug"
@@ -244,7 +263,7 @@ debug_console = ->
 		alert "The online debugger can only step forward 100 times."
 		jump_state index_number
 	else
-		alert "The program has terminated."
+		alert status
 		jump_state index_number
 
 # [Execute Line By Line - Story 3.8]
@@ -266,7 +285,7 @@ debug_console = ->
 # Returns: none
 # Author: Rami Khalil
 @highlight_line = (line) ->
-	editor = ace.edit("editor")
+	editor = get_editor()
 	editor.gotoLine line, 0, true
 
 # [Execute Line By Line - Story 3.8]
@@ -322,24 +341,28 @@ debug_console = ->
 # 	using ajax showing an alert box for success and failure scenarios
 # Parameters:
 # 	problem_id: the id of the problem being solved
+#	problem_type: The type of the problem to be submitted
 # Returns: a json object containing two arrays one for the errors
 #	of the current code and the other containing success messages
 #	and the success and failure messages are displayed in a table
 # Author: MOHAMEDSAEED
-@validate_code = (problem_id) ->
-	code = $('#solution_code').val()
+@validate_code = (problem_id, problem_type) ->
+	code = get_editor_session().getValue()
 	mins = parseInt($('#mins').text())
 	secs = parseInt($('#secs').text())
 	time = (mins * 60) + secs
 	if code.length is 0
 		alert 'Blank submissions are not allowed'
 		return
+	class_name = $("#class_name").val()
+	lang = get_lang()
 	toggle_code_area()
 	start_spin()	
 	$.ajax
 		type: "POST"
 		url: '/solutions'
-		data: {problem_id: problem_id, code: code, time: time}
+		data: {problem_id: problem_id, code: code, time: time,\
+			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
 		success: (data) ->
 			clear_console()
@@ -379,10 +402,42 @@ debug_console = ->
 # Parameters: none
 # Returns: none
 # Author: MOHAMEDSAEED
-@reload_template = () -> 	
-	editor = ace.edit("editor");
-	edit_session = editor.getSession();
-	template = "public class CoolSoft {\n"
-	template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
-	edit_session.setValue(template);
+@reload_template = () ->
+	disabled = get_editor().getReadOnly()
+	unless disabled
+		if get_lang() == "java"
+			template = "public class CoolSoft {\n"
+			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+		else
+			template = ""
+		get_editor_session().setValue(template);
+		$('#class_name').val("CoolSoft");
 	return
+
+# [Debug: Debug Python - Story X.8]
+# Gets the editor
+# Parameters: none
+# Returns:
+# 	The editor
+# Author: Mussab ElDash
+get_editor = ->
+	ace.edit("editor")
+
+# [Debug: Debug Python - Story X.8]
+# Gets the session of the editor
+# Parameters: none
+# Returns:
+# 	The session of the editor
+# Author: Mussab ElDash
+get_editor_session = ->
+	get_editor().getSession()
+
+# [Debug: Debug Python - Story X.8]
+# Gets the language selected
+# Parameters: none
+# Returns:
+# 	The selected Language
+# Author: Mussab ElDash
+get_lang = ->
+	mode = get_editor_session().getMode()["$id"]
+	mode.substring(mode.lastIndexOf("/") + 1)

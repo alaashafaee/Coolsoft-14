@@ -16,15 +16,11 @@ class Lecturer < ActiveRecord::Base
 
 	#Validations
 	validate :duplicate_email
+	# validate :password_complexity
+	validate :letters_only
 	validates :name, presence: true
-	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
-	validates :degree, presence: true
-	validates_format_of :degree, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :university, presence: true
-	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :department, presence: true
-	validates_format_of :department, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
-	validates :dob, presence: true
 
 	#Relations
 	has_and_belongs_to_many :courses, join_table: "courses_lecturers"
@@ -53,6 +49,8 @@ class Lecturer < ActiveRecord::Base
 	has_many :grades, as: :editor
 
 	has_many :resources, as: :owner
+	has_many :notes, as: :owner
+	has_many :notifications, as: :receiver
 
 	#Methods
 	# [Advanced Search - Story 1.23]
@@ -93,6 +91,33 @@ class Lecturer < ActiveRecord::Base
 		if Student.find_by email: email or TeachingAssistant.find_by email: email
 			errors.add(:email, "has already been taken")
 		end
+	end
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks for the strength of the password used in the registration process where it
+	# 	doesn't allow weak passwords by requiring the used password to have at least one
+	# 	uppercase letter, one lowercase letter and one digit
+	# Parameters: none
+	# Returns: none
+	# Author: Khaled Helmy
+	def password_complexity
+		if password.present? and not password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+/)
+			errors.add(:password, "must include at least one lowercase letter, one" +
+				" uppercase letter, and one digit")
+		end
+	end
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks for the format of certain fields [name, university, faculty, major] to
+	# 	contain letters only.
+	# Parameters: none
+	# Returns: none
+	# Author: Khaled Helmy
+	def letters_only
+		regex = /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+		validates_format_of :name, :with => regex
+		validates_format_of :university, :with => regex
+		validates_format_of :department, :with => regex
 	end
 
 end

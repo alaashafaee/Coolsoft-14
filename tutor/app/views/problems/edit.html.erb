@@ -9,6 +9,7 @@
 	<%= form_for :Problem, url: problem_path(@problem), method: :patch, remote: true do |problem| %>
 		<%= problem.text_field :title %>
 		<%= problem.submit('update title') %>
+		<%= problem.hidden_field :snippet, value: @problem.snippet %>
 		<%= problem.hidden_field :description, value: @problem.description %>
 		<%= problem.hidden_field :track_id, value: @problem.track_id %>
 	<% end %>
@@ -21,6 +22,21 @@
 		<p>
 			<%= problem.submit('update description') %>
 		</p>
+		<%= problem.hidden_field :snippet, value: @problem.snippet %>
+		<%= problem.hidden_field :title, value: @problem.title %>
+		<%= problem.hidden_field :track_id, value: @problem.track_id %>
+	<% end %>
+</div>
+
+<div id="div5">
+	<p><%= @problem.snippet %></p>
+	<%= form_for :Problem, url: problem_path(@problem),
+		method: :patch, remote: true do |problem| %>
+		<%= problem.text_area :snippet, cols: 50, rows: 10 %>
+		<p>
+			<%= problem.submit('Update code snippet') %>
+		</p>
+		<%= problem.hidden_field :description, value: @problem.description %>
 		<%= problem.hidden_field :title, value: @problem.title %>
 		<%= problem.hidden_field :track_id, value: @problem.track_id %>
 	<% end %>
@@ -32,6 +48,7 @@
 		<% if @tracks.size > 1 %>
 			<%= problem.collection_select(:track_id, @tracks, :id, :title) %>
 			<%= problem.submit('Change Track') %>
+			<%= problem.hidden_field :snippet, value: @problem.snippet %>
 			<%= problem.hidden_field :title, value: @problem.title %>
 			<%= problem.hidden_field :description, value: @problem.description %>
 		<% end %>

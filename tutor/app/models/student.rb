@@ -16,16 +16,15 @@ class Student < ActiveRecord::Base
 
 	#Validations
 	validate :duplicate_email
+	# validate :password_complexity
+	validate :letters_only
 	validates :name, presence: true
-	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :university, presence: true
-	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :faculty, presence: true
-	validates_format_of :faculty, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :major, presence: true
-	validates_format_of :major, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :semester, presence: false, numericality: {only_integer: true, greater_than: 0, less_than: 11}
-	validates :dob, presence: true
+	validates :advising, inclusion: [true, false]
+	validates :probation, inclusion: [true, false]
 
 	#Relations
 	has_many :solutions, dependent: :destroy
@@ -47,6 +46,7 @@ class Student < ActiveRecord::Base
 	has_and_belongs_to_many :contests, class_name:"Contest", join_table: "contests_students"
 	
 	has_many :grades
+	has_many :notifications, as: :receiver
 
 	#Methods
 
@@ -60,6 +60,34 @@ class Student < ActiveRecord::Base
 		if Lecturer.find_by email: email or TeachingAssistant.find_by email: email
 			errors.add(:email, "has already been taken")
 		end
+	end
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks for the strength of the password used in the registration process where it
+	# 	doesn't allow weak passwords by requiring the used password to have at least one
+	# 	uppercase letter, one lowercase letter and one digit
+	# Parameters: none
+	# Returns: none
+	# Author: Khaled Helmy
+	def password_complexity
+		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
+			errors.add(:password, "must include at least one lowercase letter, " +
+				"one uppercase letter, and one digit")
+		end
+	end
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks for the format of certain fields [name, university, faculty, major] to
+	# 	contain letters only.
+	# Parameters: none
+	# Returns: none
+	# Author: Khaled Helmy
+	def letters_only
+		regex = /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+		validates_format_of :name, :with => regex
+		validates_format_of :university, :with => regex
+		validates_format_of :faculty, :with => regex
+		validates_format_of :major, :with => regex
 	end
 
 	# [Find Recommendations - Story 3.9]
