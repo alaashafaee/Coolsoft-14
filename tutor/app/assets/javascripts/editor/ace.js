@@ -16002,8 +16002,8 @@ var Editor = require("./editor").Editor;
     this.onPaste = function(text) {
         if (this.$readOnly)
             return;
-
-
+        //Cancel any paste actions
+        // return;
         var e = {text: text};
         this._signal("paste", e);
         text = e.text;

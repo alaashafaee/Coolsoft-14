@@ -4,7 +4,7 @@
 <br><br>
 
 <div class="input-group">
-  
+
 	<span class="input-group-addon label-info">Class Name:</span>
 	<input id="class_name" type="text" class="form-control" value="CoolSoft" style="width:150px">
 
@@ -19,7 +19,7 @@
 		<option value="tomorrow_night_eighties">tomorrow night eighties</option>
 		<option value="github">github</option>
 		<option value="dreamweaver">dreamweaver</option>
-	</select> 
+	</select>
 
 	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="btn-info" data-width="auto">
 		<option value="java">Java</option>
@@ -80,10 +80,10 @@
 
 <div>
 	<b>Input:</b><br>
-	<%= text_area :solution_input, placeholder: "Write your test case here", 
-		id: "solution_input", class: "form-control", style: "width:400px" %>
+	<textarea placeholder="Write your test case here" id="solution_input"
+		class="form-control" style="width:400px"></textarea>
 </div>
-<br>
+ <br>
 
 <!--Author: Ahmed Moataz-->
 <b>Console:</b><br/>
@@ -95,7 +95,7 @@
 	<!-- Test Cases -->
 	<div id="validate_case" >
 	</div>
-	<div id="output_section" style = "color: black; font-weight: bold; font-size: 20px"></div>
+	<div id="output_section" style = "white-space: pre;color: black; font-weight: bold; font-size: 20px"></div>
 	<!-- Runtime Messages -->
 	<div id="runtime_error", style="display: none">
 		<div class="panel-danger", style="white-space: pre">
@@ -120,20 +120,6 @@
 <script>
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
-	var hidden_code_field = document.getElementById('solution_code')
-	var code_header = "public class CoolSoft {\n";
-	var code_footer = "\n}";
-
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
-
-	edit_session.setValue(code_header + hidden_code_field.value + code_footer);
-
-	var code_filter_function = function(event_handler) {
-		var unfiltered_code = edit_session.getValue();
-		var code_len = unfiltered_code.length;
-		var line_count = edit_session.doc.getAllLines().length;
-		hidden_code_field.value = unfiltered_code.slice(code_header.length)
-	};
-	edit_session.on('change', code_filter_function);
 </script>
