@@ -12,6 +12,7 @@ class PythonExecuter < Executer
 		$lang = 'python '
 		$error = 'Error'
 		$extension = '.py'
+		$stream = ' 2>&1'
 		return super
 	end
 
@@ -24,9 +25,9 @@ class PythonExecuter < Executer
 	# Parameters:
 	#	exception: The exception to be explained
 	# Returns: The Explanation of the exception given
-	# Author: Mussab ElDash
+	# Author: Ahmed Akram
 	def self.get_runtime_explaination(exception)
-		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
+		if exception.include?("ZeroDivisionError") || exception.include?("ArithmeticException")
 			message = "Division by Zero results in infinity, " +
 				"which computers can not understand. Be careful !"
 			return {errors: exception, explanation: message}

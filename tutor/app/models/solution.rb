@@ -26,7 +26,8 @@ class Solution < ActiveRecord::Base
 		test_cases.each do |testcase|
 			input = testcase.input
 			expected_output = testcase.output
-			runtime_check = JavaExecuter.execute(solution, input)
+			executer = JavaExecuter.new
+			runtime_check = executer.execute(solution, input)
 			if(runtime_check[:executer_feedback])
 				output = runtime_check[:executer_output][:message]
 				if (output != expected_output)
@@ -48,7 +49,10 @@ class Solution < ActiveRecord::Base
 				end
 			else
 				runtime_error = runtime_check[:executer_output]
+				puts "*******************"
+				puts runtime_error
 				explanation = get_response(runtime_error)
+
 				solution.status = 4
 				response << {success: false, test_case: input, 
 						response: "Runtime error: " + explanation}
