@@ -19,29 +19,31 @@ describe ContestsController do
 		@lecturer.contests << @contest
 	end
 
-	it "edit returns http success" do
-		sign_in @lecturer
-		get 'edit', :id => @contest.id
-		expect(response).to be_success
-	end
-
 	context "CRUD" do
-		it "destroy contest" do
+		it "edit returns http success" do
 			sign_in @lecturer
-			course = Course.new(name:"Amirooo",
-				code:"tip101", year:2014, semester:1, :description => "hary",
-				:link => "http://www.test.org/")
-			course.save!
-			@lecturer.courses << course
-			expect{
-				get :create, contest: {:title => "Amir contest", :course => "Amirooo",
+			get 'edit', :id => @contest.id
+			expect(response).to be_success
+		end
+
+		it "update course info" do
+			sign_in @lecturer
+				patch :update, :id => @contest.id.to_s, contest:
+					{:title => "Miro contest", :course => "DSA",
 					:description => "hardest", "start_time(1i)" => "2014",
-					"start_time(2i)" => "5","start_time(3i)" => "19",
+					"start_time(2i)" => "8","start_time(3i)" => "19",
 					"start_time(4i)" => "22","start_time(5i)" => "01",
 					"end_time(1i)" => "2014","end_time(2i)" => "9",
 					"end_time(3i)" => "16","end_time(4i)" => "22",
 					"end_time(5i)" => "01",}
-			}.to change(Contest,:count).by(1)
+			Contest.find(@contest.id).title.should eql "Miro contest"
+		end
+
+		it "destroy contest" do
+			sign_in @lecturer
+			expect {
+				delete :destroy, :id => @contest.id
+			}.to change(Contest, :count).by(-1)
 		end
 	end
 
