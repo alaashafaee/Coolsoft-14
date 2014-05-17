@@ -12,6 +12,7 @@ describe ResourcesController do
 		@course_1.resources << Resource.create!(link: "https://www.facebook.com")
 		@resource = Resource.create!(link: "http://twitter.com")
 		ResourcesController.skip_before_filter :authenticate!
+		ResourcesController.skip_before_filter :authenticate_lecturer!
 	end
 
 	describe "Resourse" do
