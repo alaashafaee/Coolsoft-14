@@ -45,6 +45,7 @@ class ContestsController < ApplicationController
 
 		if @new_contest.save
 			flash[:success_creation]= "Contest added."
+			Notification.contests_notify(@new_contest.course_id, @new_contest.id)
 			redirect_to :action => 'index'
 		else
 			render :action=>'new'

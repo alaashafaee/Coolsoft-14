@@ -94,6 +94,7 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :notifications
 	resources :contests
 	resources :assignments
 	resources :assignment_problems
