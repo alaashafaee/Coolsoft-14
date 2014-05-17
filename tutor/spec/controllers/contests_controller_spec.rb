@@ -9,7 +9,7 @@ describe ContestsController do
 		end
 
 		before (:all) do
-			@lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789',
+			@lecturer = Lecturer.new(email: '1@mo7adr.com', password: '123456789',
 				password_confirmation: '123456789', name: 'LecturerI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
@@ -18,7 +18,7 @@ describe ContestsController do
 				code: "CSEN1", link: "http://www.test.org/", year: 2014,
 				semester: 1)
 			course.save!
-			@contest = Contest.new(title: "Iteration2", description: "If you",
+			@contest = Contest.new(title: "Iteratio2", description: "If you",
 				incomplete: false, start_time: Time.now+2.days,
 				end_time: Time.now+7.days)
 			@contest.save!
@@ -47,7 +47,7 @@ describe ContestsController do
 
 	context "CRUD" do
 		before (:all) do
-			@lecturer = Lecturer.new(email: '2@lecturer.com', password: '123456789',
+			@lecturer = Lecturer.new(email: '2@mo7adr.com', password: '123456789',
 				password_confirmation: '123456789', name: 'LecturerI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
@@ -82,7 +82,7 @@ describe ContestsController do
 	context "Timer" do
 
 		before(:all) do
-			Contest.create(title: "Iteration", description: "If you solv",
+			Contest.create(title: "Iteration khaled", description: "If you solv",
 				incomplete: false, start_time: DateTime.now + 1.minute,
 				end_time: DateTime.now + 10.minutes, course_id:1,
 				owner_id: 1, owner_type: "Lecturer")
