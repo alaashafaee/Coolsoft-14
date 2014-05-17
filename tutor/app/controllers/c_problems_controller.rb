@@ -22,8 +22,6 @@ class CProblemsController < ApplicationController
 			flash.keep[:notice] = "The problem can not have a blank title."
 		elsif @cproblem.description.length == 0
 			flash.keep[:notice] = "The problem can not have a blank description."
-		elsif @cproblem.time_limit.to_s.length == 0
-			flash.keep[:notice] = "The problem can not have a blank time limit."
 		elsif (!@cproblem.time_limit.is_a? Numeric) || @cproblem.time_limit < 1
 			flash.keep[:notice] = "The problem time limit must be a numeric value greater than zero."
 		else
