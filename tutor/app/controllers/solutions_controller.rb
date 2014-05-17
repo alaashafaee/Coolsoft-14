@@ -131,7 +131,6 @@ class SolutionsController < ApplicationController
 	# 	problem_id: Hidden field for problem id
 	#	time: The time taken by the student to solve the problem
 	#	class_name: the name of the class to be used
-
 	#	problem_type: the type of the problem to be solved
 	# Returns:
 	# 	none

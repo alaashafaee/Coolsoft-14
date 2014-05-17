@@ -1,5 +1,7 @@
 class Solution < ActiveRecord::Base
 	
+	before_save { |solution| solution.length = solution.code.length }
+
 	#Validations
 	validates :code, presence: true
 
