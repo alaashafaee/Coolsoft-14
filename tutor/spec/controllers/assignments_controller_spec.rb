@@ -22,8 +22,9 @@ describe AssignmentsController do
 			AssignmentsController.skip_before_filter :authenticate!
 			assignment = Assignment.new(title: "assignmentdelete",
 				description: "will be deleted", course_id: @course.id)
+			assignment.save!
 			expect {
-				delete :delete, :id => assignment.id
+				delete :destroy, :id => assignment.id
 			}.to change(Assignment, :count).by(-1)
 		end
 	end
