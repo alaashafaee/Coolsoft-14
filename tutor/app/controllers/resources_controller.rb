@@ -94,6 +94,7 @@ class ResourcesController < ApplicationController
 				images.insert(0,page.image) unless page.image.blank?
 				{ link: url, description: description, img: images.first, link_type: type }
 			rescue
+				flash[:notice] = "link #{link} is not valid or check your internet connection!!"
 				nil
 			end
 		end
