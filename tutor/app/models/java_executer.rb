@@ -25,7 +25,7 @@ class JavaExecuter < Executer
 	# Parameters:
 	#	exception: The exception to be explained
 	# Returns: The Explanation of the exception given
-	# Author: Mussab ElDash
+	# Author: Ahmed Akram
 	def self.get_runtime_explaination(exception)
 		if exception.include?("/ by zero") || exception.include?("ArithmeticException")
 			message = "Division by Zero results in infinity, " +
