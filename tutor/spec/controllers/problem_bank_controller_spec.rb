@@ -57,19 +57,23 @@ describe ProblemBankController do
 		get 'index' , {:id => problem.id, :track_id => track_id}
 		expect(response).not_to render_template("index")
 	end
-	it 'Add a new problem from the bank to the lecturer/ta track' do
-		problem = Problem.find_by_id(2)
-		problemm = Problem.find_by_id(1)
-		track_id = 1
-		lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
+	it 'Add a problem from the bank and checks if the same reference of 
+	the problem or a newly duplicated one' do
+		Problem.create(id: 10, title: "Insertion Sort", description: "Given array of numbers 
+		a use the insertion sort to sort them ascendingly",incomplete: true, seen:true)
+		Problem.create(id: 11, title: "Insertion Sort", description: "Given array of numbers 
+		a use the insertion sort to sort them ascendingly",incomplete: true, seen:true)
+		lecturer = Lecturer.new(id: 101, email: '1@lecturer.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'LecturerI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "PhD", university: "GUC", department: "MET")
 		lecturer.save!
 		sign_in lecturer
-		track = Track.find_by_id(track_id)
-		problemm.track_id = track_id
-		get 'add' , {:id => problem.id, :track_id => track_id}
+		Track.create(id: 1, title: "Track 1", difficulty: 0)
+		Track.find_by_id(1).problems << Problem.find_by_id(10)
+		Lecturer.find_by_id(101).tracks << Track.find_by_id(1)
+		get 'add' , {:id => 11, :track_id => 1}
+		expect(Track.find_by_id(1).problems).not_to include(Problem.find_by_id(11))
 	end
 
 end
