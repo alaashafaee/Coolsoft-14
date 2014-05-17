@@ -1,6 +1,7 @@
 # [course resources - Story 1.25]
 # delete resource
-# Parameters: resource id
+# Parameters:
+# 	  resource id
 # Returns: on success deletes resource
 # Author: Ahmed Elassuty
 
