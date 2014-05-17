@@ -17,15 +17,14 @@ class Student < ActiveRecord::Base
 	#Validations
 	validate :duplicate_email
 	validate :password_complexity
+	validate :letters_only
 	validates :name, presence: true
-	validates_format_of :name, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :university, presence: true
-	validates_format_of :university, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :faculty, presence: true
-	validates_format_of :faculty, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :major, presence: true
-	validates_format_of :major, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
 	validates :semester, presence: false, numericality: {only_integer: true, greater_than: 0, less_than: 11}
+	validates :advising, inclusion: [true, false]
+	validates :probation, inclusion: [true, false]
 
 	#Relations
 	has_many :solutions, dependent: :destroy
@@ -74,6 +73,20 @@ class Student < ActiveRecord::Base
 		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
 			errors.add(:password, "must include at least one lowercase letter, one uppercase letter, and one digit")
 		end
+	end
+
+	# [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+	# Checks for the format of certain fields [name, university, faculty, major] to
+	# 	contain letters only.
+	# Parameters: none
+	# Returns: none
+	# Author: Khaled Helmy
+	def letters_only
+		regex = /\A[^0-9`!@#\$%\^&*+_=]+\z|\A\z/
+		validates_format_of :name, :with => regex
+		validates_format_of :university, :with => regex
+		validates_format_of :faculty, :with => regex
+		validates_format_of :major, :with => regex
 	end
 
 	# [Find Recommendations - Story 3.9]
