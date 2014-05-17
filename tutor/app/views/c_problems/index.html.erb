@@ -1,0 +1,7 @@
+<h1> Contests </h1>
+<% @c_problems.each do |c_problem| %>
+	<%= link_to c_problem.title, 
+		controller: "/c_problem", 
+		action: "index"%><hr>
+		<div class="line-separator"></div>
+	<% end %>
