@@ -93,5 +93,4 @@ describe ContestsController do
 		end
 	end
 
->>>>>>> 409c730358745f49f6f0886d3effa9179ed46d8f
 end
