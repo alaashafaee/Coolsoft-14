@@ -82,6 +82,7 @@ class SolutionsController < ApplicationController
 				end
 				@student = Student.find_by_id(@solution.student_id)
 				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
+				@grade = Grade.where(problem_id: @problem.id, student_id: @student.id).first
 				@course = @problem.assignment.course
 				@can_edit = @course.can_edit(current_lecturer)
 				@can_edit||= @course.can_edit(current_teaching_assistant)

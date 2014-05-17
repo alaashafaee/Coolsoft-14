@@ -1,7 +1,7 @@
 <% if flash[:notice] %>
 	<div class= "alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
-<table style = "width:60%;float:right;">
+<table style = "width:60%;">
 	<tbody>
 		<tr>
 			<td style = "font-weight:bold;font-size:150%;"><p>Line</p></td>
@@ -53,13 +53,14 @@
 							<%= note.hidden_field :line,
 								value: @counter %>
 						<p style = "float:left;">
-							<%= note.submit "Update Note", class: "btn btn-info" %>
+							<%= note.submit "Update Note", class: "btn btn-info" %>&nbsp;
 						</p>
 					<% end %>
 					<%= button_to "Delete Note",{:controller => 'notes',
 						:action => 'destroy',
 						:id => @note.id}, method: :delete,
-						class: "btn btn-info" %>
+						class: "btn btn-info",
+						style: "float:left;" %>
 				</div>
 			<% else %>
 				<div id = "<%= @counter %>add_buttonform" class = "form_div">
@@ -75,8 +76,8 @@
 								value: @solution.id %>
 							<%= note.hidden_field :line,
 								value: @counter %>
-						<p>
-							<%= note.submit "Save Note", class: "btn btn-info" %>
+						<p style = "float:left;">
+							<%= note.submit "Save Note", class: "btn btn-info" %>&nbsp;
 						</p>
 					<% end %>
 				</div>
@@ -84,21 +85,62 @@
 		<% end %>
 	</tbody>
 </table>
-<div style = "float:right;">
-	<%= form_for :Grade, url: {action: "create"} do |grade| %>
-		<p>
-			<%= grade.label :grade %><br> 
-			<%= problem.text_field :grade, class: "form-control", style: "width:10%" %>
-			/<%= @problem.final_grade %>
-		</p>
-		<%= problem.hidden_field :problem_id, value: @problem.id %>
-		<%= problem.hidden_field :student_id, value: @student.id %>
-		<p>
-			<%= problem.submit "Grade Solution", class: "btn btn-info" %>
-		</p>
+<br><br><br>
+<button class= "btn btn-info", id = "grade",
+	onclick = "pop(this.id);">Grade this solution&nbsp;</button>
+<% if @grade %>
+	<%= link_to "I'm done marking",
+		{:action => 'view_submissions', :problem_id => @problem.id},
+		class: "btn btn-info" %>
+<% else %>
+	<button class= "btn btn-info", id = "exit",
+		onclick = "pop(this.id);">I'm done marking&nbsp;</button>
+<% end %>
+<div id = "gradeform" class = "form_div">
+	<% if @grade %>
+		<%= form_for :Grade, url: grade_path(@grade),
+			method: :patch do |grade| %>
+			<p style = "height:35px;">
+				<%= grade.text_field :grade,
+					class: "form-control",
+					style: "width:10%;float:left;",
+					value: @grade.grade %>
+				<span class = "total_grade">&nbsp;
+					/<%= @problem.final_grade %></span>
+			</p>
+				<%= grade.hidden_field :student_id,
+					value: @grade.student_id %>
+				<%= grade.hidden_field :problem_id,
+					value: @grade.problem_id %>
+			<p style = "float:left;">
+				<%= grade.submit "Update Grade",
+					class: "btn btn-info" %>&nbsp;
+			</p>
+		<% end %>
+	<% else %>
+		<%= form_for :Grade, url: {controller: "grades",
+			action: "create"} do |grade| %>
+			<p style = "height:35px;">
+				<%= grade.text_field :grade,
+					class: "form-control",
+					style: "width:10%;float:left;" %>
+				<span class = "total_grade">&nbsp;
+					/<%= @problem.final_grade %></span>
+			</p>
+			<%= grade.hidden_field :problem_id, value: @problem.id %>
+			<%= grade.hidden_field :student_id, value: @student.id %>
+			<p style = "float:left;">
+				<%= grade.submit "Grade Solution",
+					class: "btn btn-info" %>&nbsp;
+			</p>
+		<% end %>
 	<% end %>
 </div>
-<br><br><br>
-<%= link_to "I'm done marking",
-	{:action => 'view_submissions', :problem_id => @problem.id},
-	class: "btn btn-info" %>
+<div id = "exitform" class = "form_div">
+	<p class = "non_graded">You haven't graded this solution!</p>
+	<%= link_to "Proceed",
+		{:action => 'view_submissions', :problem_id => @problem.id},
+		class: "btn btn-info" %>
+	<button class= "btn btn-info", id = "exit",
+	onclick = "close_dialog(this.id);">Go Back</button>
+</div>
