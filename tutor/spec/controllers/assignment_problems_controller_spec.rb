@@ -32,4 +32,37 @@ describe AssignmentProblemsController do
 			}.to change(AssignmentProblem, :count).by(-1)
 		end
 	end
+	context "edit" do
+		it ":edit the requested problem" do
+			AssignmentProblemsController.skip_before_filter :authenticate!
+			@assignmentp = AssignmentProblem.new(title: "assignmentpdelete1",
+				description: "will be deleted", assignment_id: @assignment.id)
+			@assignmentp.save!
+			expect{
+				put :update, assignment_problem: {
+					:description => "try to solve1"},:id => @assignmentp.id
+				@assignmentp.reload
+			}.to change{@assignmentp.description}.from("will be deleted").to("try to solve1") 
+		end
+		it ":edit the requested assignment invalid as title can not be empty" do
+			AssignmentProblemsController.skip_before_filter :authenticate!
+			@assignmentp = AssignmentProblem.new(title: "assignmentdelete2",
+				description: "will be deleted", assignment_id: @assignment.id)
+			@assignmentp.save!
+			put :update, assignment_problem: {
+				:title => ""},:id => @assignmentp.id
+				@assignmentp.reload
+			@assignmentp.title.should eq("assignmentdelete2")
+		end
+			it ":edit the requested assignment invalid as description can not be empty" do
+			AssignmentProblemsController.skip_before_filter :authenticate!
+			@assignmentp = AssignmentProblem.new(title: "assignmentdelete2",
+				description: "will be deleted", assignment_id: @assignment.id)
+			@assignmentp.save!
+			put :update, assignment_problem: {
+				:description => ""},:id => @assignmentp.id
+				@assignmentp.reload
+			@assignmentp.description.should eq("will be deleted")
+		end
+	end
 end
