@@ -4,8 +4,9 @@ class SolutionsController < ApplicationController
 	# Creates a solution for a problem that the student chose
 	# Parameters:
 	#	solution_params: the parameters needed for the submitted solution
-	# Returns: JSON object containing the results of running the testcases of 
-	#	the submitted solution
+	# Returns: 
+	#	JSON object containing the results of running the testcases of
+	#		the submitted solution
 	# Author: MOHAMEDSAEED
 	def create
 		if lecturer_signed_in? || teaching_assistant_signed_in?

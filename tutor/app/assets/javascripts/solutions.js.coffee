@@ -336,10 +336,7 @@ debug_console = ->
 	variables = null;
 
 
-# [
-#	Compiler: Validate - Story 3.5
-#	Compiler: Validate - Story X.7
-# ]
+# [Compiler: Validate - Story X.7]
 # submits a solution in the form without refreshing
 # 	using ajax showing an alert box for success and failure scenarios
 # Parameters:
@@ -349,7 +346,7 @@ debug_console = ->
 #	of the current code and the other containing success messages
 #	in addition to the status of the submitted solution
 #	and the success and failure messages are displayed in a table
-#	in case of Exercises else a brief message is displayed
+#	in case of Exercises, else a brief message is displayed
 # Author: MOHAMEDSAEED
 @validate_code = (problem_id, problem_type) ->
 	code = get_editor_session().getValue()

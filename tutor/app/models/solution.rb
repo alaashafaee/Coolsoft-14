@@ -16,11 +16,12 @@ class Solution < ActiveRecord::Base
 	# Checks the validity of a submitted solution
 	# and show the runtime and logic errors if exist
 	# Parameters:
-	# 	solution: the solution to be validated
-	#   testcases: the testcases that will test the submitted code
-	#   langauge: the language of the submitted solution
-	# Returns: a hash response containing status for the solution,
-	#		   solution errors or success message.
+	#	solution: the solution to be validated
+	#	testcases: the testcases that will test the submitted code
+	#	langauge: the language of the submitted solution
+	# Returns: 
+	#	a hash response containing status for the solution,
+	#		solution errors or success message.
 	# Author: MOHAMEDSAEED
 	def self.validate(solution, test_cases, language)
 		executer = language.capitalize + "Executer"
