@@ -12,7 +12,7 @@ class HintsController < ApplicationController
 		@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
 		@hints = Hint.get_hints @model_answer.id
 	end
-	
+
 	# [Edit helping hints - Story 4.13 ]
 	# This action creates the form and retrives the data of the selected problem 
 	#	to be being edited

@@ -31,7 +31,7 @@ describe ProblemsController do
 				expect(Problem.where(id: problem.id)).to exist
 
 				expect{
-					problem.update_attributes(title: "problem edit")
+					post :update, problem.id ,{:title => "problem edit"}
 					problem.reload
 				}.to change{problem.title}.from("problem example 6").to("problem edit")
 				

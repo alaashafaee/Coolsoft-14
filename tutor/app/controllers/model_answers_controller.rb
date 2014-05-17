@@ -49,16 +49,16 @@ class ModelAnswersController < ApplicationController
 			session[:model_answer_id] = @new_answer.id
 			if session[:flag] == "1"
 				redirect_to :controller => 'model_answers', :action => 'index', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id],
-				:model_answer_id => @new_answer.id
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
+					:model_answer_id => @new_answer.id
 			elsif session[:flag] == "0"
 				redirect_to :controller => 'problems', :action => 'done', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id],
-				:model_answer_id => @new_answer.id, :flag => "0"
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
+					:model_answer_id => @new_answer.id, :flag => "0"
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @new_answer.id,
-			:track_id => session[:track_id], :problem_id => model_answer_params_add[:problem_id]}
+				:track_id => session[:track_id], :problem_id => model_answer_params_add[:problem_id]}
 		end
 	end
 
@@ -80,7 +80,7 @@ class ModelAnswersController < ApplicationController
 		elsif @model_answer.destroy
 			flash[:notice] = "Answer successfully Deleted"
 			redirect_to(:controller => 'model_answers', :action => 'index',
-			 :problem_id => @current.id, :track_id => session[:track_id])
+				:problem_id => @current.id, :track_id => session[:track_id])
 		end	
 	end
 
@@ -135,7 +135,7 @@ class ModelAnswersController < ApplicationController
 					respond_to do |format|
 						format.js
 						format.html {redirect_to :action => "edit", :format => :js, 
-						:model_answer_id => @answer.id, :track_id => session[:track_id]}		
+							:model_answer_id => @answer.id, :track_id => session[:track_id]}		
 					end
 				end
 				rescue
@@ -143,7 +143,7 @@ class ModelAnswersController < ApplicationController
 					respond_to do |format|
 					format.js
 					format.html {redirect_to :action => "edit", :format => :js, 
-					:model_answer_id => @answer.id, :track_id => session[:track_id]}	
+						:model_answer_id => @answer.id, :track_id => session[:track_id]}	
 				end
 			end
 		end
