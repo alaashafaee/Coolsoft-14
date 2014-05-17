@@ -134,7 +134,7 @@ class PythonDebugger < Debugger
 		name = $class_name.sub(/\.py/,"")
 		regex = /(\-\-[A-Z][a-z]*\-\-\r\n)?> (\/[a-zA-Z0-9\-_]+)*\/#{name}\.py\(#{num}\).*\r\n$/m
 		stream = line.sub(regex, "")
-		stream = stream.sub(/\(Pdb\) /, "")
+		stream = stream.sub(/(\(Pdb\) )*/, "")
 		return stream
 	end
 
@@ -149,7 +149,7 @@ class PythonDebugger < Debugger
 	# 		false otherwise.
 	# Author: Khaled Helmy
 	def is_valid_variable name, value
-		if name =~ /^'__/
+		if name.starts_with? "'__"
 			return false
 		elsif value.include?("module") or value.include?("function")
 			return false
@@ -169,7 +169,7 @@ class PythonDebugger < Debugger
 		result = ""
 		input name + ".__dict__"
 		output_buffer = buffer_until [/\{.*\}\r\n$/m]
-		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
+		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
 		output_buffer.each_line do |line|
 			result << line
 		end
@@ -190,18 +190,9 @@ class PythonDebugger < Debugger
 	# Author: Khaled Helmy	
 	def get_variable type, name
 		value = ""
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
-		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
 		input type + "[" + name + "]"
 		output_buffer = buffer_until [/\(Pdb\) .*\r\n/m]
-		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
+		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
 		output_buffer.each_line do |line|
 			value << line
 		end
@@ -229,16 +220,16 @@ class PythonDebugger < Debugger
 		result = []
 		input type + ".keys()"
 		output_buffer = buffer_until [/\[.*\]\r\n$/m]
-		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
+		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
 		output_buffer.each_line do |line|
 			all_lines << line
 		end
-		all_lines_trimmed = all_lines[1..-2]
+		all_lines_trimmed = all_lines[1..-4]
 		list_of_variables = all_lines_trimmed.split(", ")
 		list_of_variables.each do |variable|
 			name = variable
 			value = get_variable type, name
-			if is_valid_variable name, value == true
+			if is_valid_variable name, value
 				result << name + " = " + value
 			end
 		end
@@ -275,7 +266,7 @@ class PythonDebugger < Debugger
 		stack_trace = []
 		input "w"
 		output_buffer = buffer_until [/.*>.*\r\n->.*\r\n$/m]
-		output_buffer = output_buffer.sub(/\(Pdb\) /, "")
+		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
 		output_buffer = output_buffer[3..-3]
 		output_buffer.each_line do |line|
 			stack_trace << line
