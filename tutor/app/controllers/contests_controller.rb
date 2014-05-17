@@ -1,5 +1,20 @@
 class ContestsController < ApplicationController
 
+	# [Contest Registration - Story 5.24]
+	# Add the current student to the choosen contest
+	# Parameters:
+	# 	params[:id]: The current contest id
+	# Returns:
+	# 	none
+	# Author: Rania Abdel Fattah
+	def register
+			if student_signed_in?
+			contest = Contest.find_by_id(params[:id])
+			current_student.contests << contest
+			redirect_to "/contests"
+			end
+	end
+
 	before_action :validate_timer
 
 	private
