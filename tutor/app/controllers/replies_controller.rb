@@ -39,7 +39,7 @@ class RepliesController < ApplicationController
 			new_notification.message = "#{current_student.name} 
 			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"	
 		end
-		if  reply.owner_id != post.owner_id
+		if  reply.owner != post.owner
 			new_notification.save
 			post.owner.notifications << new_notification
 		end
