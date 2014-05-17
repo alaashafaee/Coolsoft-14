@@ -1,26 +1,6 @@
-require "open3"
-class JavaDebugger
+class JavaDebugger < Debugger
 
 	#Methods
-
-	# [Debugger: Debug - Story 3.6]
-	# Gets the output from the output stream of the debugger
-	# 	until the passed regex is encountered
-	# Parameters:
-	# 	regex : The input regex to be encountered to return
-	# Returns: A String of the buffer
-	# Author: Rami Khalil
-	def buffer_until(regex)
-		buffer = ""
-		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
-			begin
-				temp = $output.read_nonblock 2048
-				buffer += temp
-			rescue
-			end
-		end
-		return buffer
-	end
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
@@ -43,16 +23,6 @@ class JavaDebugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Inputs an input to the input stream of the debugger JDB
-	# Parameters:
-	# 	input : The input to be written in the sub stream
-	# Returns: none
-	# Author: Rami Khalil
-	def input(input)
-		$input.puts input
-	end
-
-	# [Debugger: Debug - Story 3.6]
 	# Starts the debugging session and return all variables and their values
 	# 	100 steps ahead
 	# Parameters:
@@ -60,63 +30,36 @@ class JavaDebugger
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(class_name, input)
+	def start(class_name, input, time = 30)
+		$step = "step"
+		$TERM = /\nThe application exited.*\n/
 		$all = []
-		source_path = "#{Rails.root.to_s}/#{Solution::JAVA_PATH}"
-		Dir.chdir(Solution::CLASS_PATH){
-			begin
-				$input, $output, $error, $wait_thread = Open3.popen3("jdb",
-					"-sourcepath", source_path, class_name, *input)
-				buffer_until_ready
-				input "stop in #{class_name}.main"
-				buffer_until_ready
-				input "run"
-				nums = get_line
-				locals = get_variables
-				stack = get_stack_trace
-				nums[:locals] = locals
-				nums[:stack] = stack
-				$all << nums
+		status = "The debugging session was successful."
+		begin
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
+			buffer_until_ready
+			input "stop in #{class_name}.main"
+			buffer_until_ready
+			input "run"
+			nums = get_line
+			locals = get_variables
+			stack = get_stack_trace
+			nums[:locals] = locals
+			nums[:stack] = stack
+			$all << nums
+			status = TimeLimit.start(time) {
 				debug
-			rescue => e
-				unless e.message === 'Exited'
-					return false
-				end
+			}
+		rescue => e
+			unless e.message === 'Exited'
+				return false
 			end
-		}
+		end
 		begin
 			Process.kill("TERM", $wait_thread.pid)
 		rescue => e
 		end
-		return $all
-	end
-
-	# [Debugger: Debug - Story 3.6]
-	# Iterates 100 times to get the value of all local variables in each step
-	# Parameters: none
-	# Returns: none
-	# Author: Mussab ElDash
-	def debug
-		counter = 0
-		while counter < 100 && !$input.closed? do
-			begin
-				input "step"
-				nums = get_line
-				locals = []
-				begin
-					locals = get_variables
-					stack = get_stack_trace
-				rescue => e
-				end
-				nums[:locals] = locals
-				nums[:stack] = stack
-				$all << nums
-				counter += 1
-			rescue => e
-				$input.close
-				raise 'Exited'
-			end
-		end
+		return $all, status
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -188,10 +131,9 @@ class JavaDebugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Checks if there is a runtime error thrown
-	# Parameters: 
-	# 	line: The line to be checked if it has a runtime error
-	# Returns: A hash of the exception and its explanation if exists
+	# Gets the thrown exception
+	# Parameters: none
+	# Returns: The exception
 	# Author: Mussab ElDash
 	def get_exception
 		input "step"
@@ -213,14 +155,9 @@ class JavaDebugger
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
-		debugger = JavaDebugger.new
-		class_name = solution.file_name
-		debugging = debugger.start(class_name, input.split(" "))
-		java_file = solution.java_file_name true, true
-		class_file = solution.class_file_name true, true
-		File.delete(java_file)
-		File.delete(class_file)
-		return {:success => true, data: debugging}
+		$class_name = solution.class_name
+		$debugger = JavaDebugger.new
+		return super
 	end
 
 	# [Debugger: View Variables - Story 3.7]
