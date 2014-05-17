@@ -26,7 +26,7 @@ class AssignmentsController < ApplicationController
 		@new_assignment.due_date = assignment_params[:due_date]
 		@new_assignment.course_id = session[:course_id]
 		t = DateTime.new(assignment_params["date(1i)"].to_i,
-			assignment_params["date(2i)"].to_i,assignment_params["date(3i)"].to_i )
+			assignment_params["date(2i)"].to_i, assignment_params["date(3i)"].to_i )
 		@new_assignment.due_date = t
 		if lecturer_signed_in?
 			@new_assignment.owner_id = current_lecturer.id

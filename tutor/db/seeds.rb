@@ -187,7 +187,6 @@ puts("# ----------------------- Problems ----------------------- ")
 					incomplete: false,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					 {\n\t\t\n\t}\n}")
-
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
 					incomplete: false,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
