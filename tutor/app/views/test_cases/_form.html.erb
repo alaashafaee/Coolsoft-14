@@ -2,9 +2,9 @@
 <%= form_for :test_case , url: test_cases_path do |f| %>
 	<p>
 		<%= f.label :Input %>
-		<%= f.text_field :input %>
-		<%= f.label :Output %>
-		<%= f.text_field :output %>
+		<%= f.text_area :input, style: "width:450px; height:200px;" %><br>
+ 		<%= f.label :Output %>
+		<%= f.text_area :output, style: "width:450px; height:200px;" %><br>
 		<%= f.hidden_field :problem_id, value: params[:problem_id] %>
 	</p>
 	<p>
