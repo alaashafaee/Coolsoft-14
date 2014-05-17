@@ -1,12 +1,104 @@
-<%= form_for :Grade, url: {action: "create"} do |grade| %>
-	<p>
-		<%= grade.label :grade %><br> 
-		<%= problem.text_field :grade, class: "form-control", style: "width:10%" %>
-		/<%= @problem.grade %>
-	</p>
-	<%= problem.hidden_field :problem_id, value: @problem.id %>
-	<%= problem.hidden_field :student_id, value: @student.id %>
-	<p>
-		<%= problem.submit "Grade Solution", class: "btn btn-info" %>
-	</p>
+<% if flash[:notice] %>
+	<div class= "alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
+<table style = "width:60%;float:right;">
+	<tbody>
+		<tr>
+			<td style = "font-weight:bold;font-size:150%;"><p>Line</p></td>
+			<td style = "font-weight:bold;font-size:150%;"><p>Code</p></td>
+			<td style = "font-weight:bold;font-size:150%;width:150px;">
+				<p align= "center">Note Action</p></td>
+		</tr>
+		<% @counter = 0 %>
+		<% @lines.each do |line| %>
+			<% @counter+= 1 %>
+			<% @note = @notes[@counter] %>
+			<tr id = "<%= @counter %>",
+				onMouseOver = "show(this.id)",
+				onMouseOut = "hide(this.id)">
+				<td><%= @counter %></td>
+				<td>
+					<pre title ="<%if !@note.blank?%><%= @note.content %>
+						<% else %><%= "No note added to this line" %>
+						<% end %>" style = "font-weight:bold;"><%= line %></pre>
+				</td>
+				<td >
+					<p align= "center">
+						<% if @note %>
+							<%= image_tag "edit_button.png",
+								id: "#{@counter}edit_button",
+								class: "edit_button",
+								onclick: "pop(this.id);" %>
+						<% else %>
+							<%= image_tag "note.png",
+								id: "#{@counter}add_button",
+								class: "add_note_button",
+								onclick: "pop(this.id);" %>
+						<% end %>
+					</p>
+				</td>
+			</tr>
+			<% if @note %>
+				<div id = "<%= @counter %>edit_buttonform" class = "form_div">
+					<%= form_for :Note, url: note_path(@note),
+						method: :patch do |note| %>
+						<p>
+							<%= note.text_field :content,
+								class: "form-control",
+								style: "width:60%",
+								value: @note.content %>
+						</p>
+							<%= note.hidden_field :solution_id,
+								value: @solution.id %>
+							<%= note.hidden_field :line,
+								value: @counter %>
+						<p style = "float:left;">
+							<%= note.submit "Update Note", class: "btn btn-info" %>
+						</p>
+					<% end %>
+					<%= button_to "Delete Note",{:controller => 'notes',
+						:action => 'destroy',
+						:id => @note.id}, method: :delete,
+						class: "btn btn-info" %>
+				</div>
+			<% else %>
+				<div id = "<%= @counter %>add_buttonform" class = "form_div">
+					<%= form_for :Note, url: {controller: "notes",
+						action: "create"} do |note| %>
+						<p>
+							<%= note.text_field :content,
+								class: "form-control",
+								style: "width:60%",
+								placeholder: "Write your note here!" %>
+						</p>
+							<%= note.hidden_field :solution_id,
+								value: @solution.id %>
+							<%= note.hidden_field :line,
+								value: @counter %>
+						<p>
+							<%= note.submit "Save Note", class: "btn btn-info" %>
+						</p>
+					<% end %>
+				</div>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
+<div style = "float:right;">
+	<%= form_for :Grade, url: {action: "create"} do |grade| %>
+		<p>
+			<%= grade.label :grade %><br> 
+			<%= problem.text_field :grade, class: "form-control", style: "width:10%" %>
+			/<%= @problem.final_grade %>
+		</p>
+		<%= problem.hidden_field :problem_id, value: @problem.id %>
+		<%= problem.hidden_field :student_id, value: @student.id %>
+		<p>
+			<%= problem.submit "Grade Solution", class: "btn btn-info" %>
+		</p>
+	<% end %>
+</div>
+<br><br><br>
+<%= link_to "I'm done marking",
+	{:action => 'view_submissions', :problem_id => @problem.id},
+	class: "btn btn-info" %>

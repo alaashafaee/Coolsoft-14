@@ -1,7 +1,5 @@
-class Compiler < ActiveRecord::Base
+class PythonCompiler
 
-	# Methods
-	
 	# [Compiler: Compile - Story 3.4]
 	# Writes the given code to a .java file in a folder with the name
 	#	st[student_id]pr[problem_id]so[solution_id] using folder_name/0.
@@ -15,10 +13,11 @@ class Compiler < ActiveRecord::Base
 	def self.compile(solution, code)
 		return solution.check_class_name if solution.check_class_name != ""
 		folder_name = solution.folder_name
-		file_path = solution.file_path
+		file_path = solution.file_path false
+		file_path = file_path + ".py"
 		%x[ #{'mkdir -p ' + Solution::SOLUTION_PATH + folder_name} ]
 		File.open(file_path, 'w') { |file| file.write(code) }
-		return %x[ #{'javac -g ' + file_path + ' 2>&1'} ]
+		return %x[ #{'python -m py_compile ' + file_path + ' 2>&1'} ]
 	end
 
 	# [Compiler: Compile - Story 3.4]
@@ -32,6 +31,7 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
 		feedback = compile(solution, solution.code)
+		feedback = feedback.gsub("\u0000"," ").gsub("\u001A"," ")
 		if feedback == ""
 			return {success: true, errors: nil}
 		else
@@ -50,7 +50,6 @@ class Compiler < ActiveRecord::Base
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
 		header = Solution::SOLUTION_PATH + solution.folder_name + solution.class_name
-		return feedback.gsub(header, solution.class_name).gsub(header, solution.class_name)
+		return feedback.gsub(header, solution.class_name)
 	end
-
 end
