@@ -42,7 +42,7 @@ class ContestsController < ApplicationController
 		elsif teaching_assistant_signed_in?
 			@new_contest.owner = current_teaching_assistant
 		end
-			
+
 		if @new_contest.save
 			flash[:success_creation]= "Contest added."
 			redirect_to :action => 'index'
