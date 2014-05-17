@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DashboardsController do
+describe NotificationsController do
 	before(:each) do
 		@course = Course.new(name:"Data Structures and Alogrithms", 
 				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1,
@@ -36,7 +36,7 @@ describe DashboardsController do
 		@course.assignments << assignment
 		@course.students << @student1
 		@course.students << @student2
-		DashboardsController.skip_before_filter :authenticate!
+		NotificationsController.skip_before_filter :authenticate!
 		Notification.assignments_notify(assignment.id)
 		expect(@student1.notifications.last.message).to eq(
 		"Assignment <a href= '/assignments/#{assignment.id}'>
@@ -51,7 +51,7 @@ describe DashboardsController do
 		@course.contests << contest
 		@course.students << @student1
 		@course.students << @student2
-		DashboardsController.skip_before_filter :authenticate!
+		NotificationsController.skip_before_filter :authenticate!
 		Notification.contests_notify(@course.id, contest.id)
 		expect(@student1.notifications.last.message).to eq(
 		"Contest <a href= '/contests/#{contest.id}'>
@@ -64,7 +64,7 @@ describe DashboardsController do
 	it "sends notifications to lecturer when student signs up to his course" do
 		@lecturer.courses << @course
 		@course.students << @student1
-		DashboardsController.skip_before_filter :authenticate!
+		NotificationsController.skip_before_filter :authenticate!
 		Notification.lecturer_notify(@lecturer.id, @course.id, @student1.id)
 		expect(@lecturer.notifications.last.message).to eq(
 		"<a href= '/students/#{@student1.id}'>
@@ -73,7 +73,7 @@ describe DashboardsController do
 	end
 
 	it "sends notifications to lecturer when lecturer acknowledge student" do
-		DashboardsController.skip_before_filter :authenticate!
+		NotificationsController.skip_before_filter :authenticate!
 		Notification.acknowledgement_notify(@student1.id, @lecturer.id)
 		expect(@student1.notifications.last.message).to eq(
 			"#{@lecturer.name} has sent you an acknowledgement")
@@ -87,7 +87,7 @@ describe DashboardsController do
 		@course.discussion_board = discussion_board
 		@course.students << @student1
 		@course.students << @student2
-		DashboardsController.skip_before_filter :authenticate!
+		NotificationsController.skip_before_filter :authenticate!
 		Notification.notify_students_discussion_board(@course.discussion_board.id)
 		expect(@student1.notifications.last.message).to eq("The discussion board for the course 
 				<a href= '/courses/#{@course.id}'> #{@course.name} </a>has been deactivated")

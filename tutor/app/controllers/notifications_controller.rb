@@ -1,4 +1,4 @@
-class DashboardsController < ApplicationController
+class NotificationsController < ApplicationController
 
 	# [Notification sending-story 2.9]
 	# Description: Displays Notifications of the user
