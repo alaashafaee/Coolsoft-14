@@ -10,6 +10,8 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
+	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+	l.save!
 
 puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
@@ -122,7 +124,7 @@ puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
-	
+
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -250,6 +252,12 @@ puts("# ----------------------- Contests ----------------------- ")
 		incomplete:false, start_time: DateTime.new(2014, 5, 5, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 6, 44, 2))
 	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
 		incomplete:false, start_time: DateTime.new(2014, 5, 10, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 9, 44, 2))
+	Contest.create(title: "Iteration", description: "If you can solve this you will get a level up",
+		incomplete: false, start_time: Time.now + 2.days, end_time: Time.now + 7.days)
+	Contest.create(title: "Recursion", description: "If you can solve this you will get 2 level up",
+		incomplete: false, start_time: Time.now + 3.days, end_time: Time.now + 10.days)
+	Contest.create(title: "DB", description: "If you can solve this you will get 4 level up",
+		incomplete: false, start_time: Time.now + 5.days, end_time: Time.now + 12.days)
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 1)
@@ -272,7 +280,7 @@ puts("# ----------------------- Assignments ----------------------- ")
 puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 100)
 	Grade.create(grade: 80)
-	
+
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
