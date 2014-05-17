@@ -18,6 +18,12 @@
 //= require jquery.tokeninput
 //= require utilities
 
+// [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+// Adds the behaviour of flash messages of the types alert, notice and error
+// 	to fade out after two seconds.
+// Parameters: none
+// Returns: none
+// Author: Khaled Helmy
 $(function() {
 	var flashCallback = function() {
 		return $(".alert, .notice, .error").fadeOut();

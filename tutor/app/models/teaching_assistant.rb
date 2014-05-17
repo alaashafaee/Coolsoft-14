@@ -103,8 +103,8 @@ class TeachingAssistant < ActiveRecord::Base
 	# Checks for the strength of the password used in the registration process where it
 	# 	doesn't allow weak passwords by requiring the used password to have at least one
 	# 	uppercase letter, one lowercase letter and one digit
-	# Parameters: None
-	# Returns: None
+	# Parameters: none
+	# Returns: none
 	# Author: Khaled Helmy
 	def password_complexity
 		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
