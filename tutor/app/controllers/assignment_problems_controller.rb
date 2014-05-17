@@ -39,7 +39,7 @@ class AssignmentProblemsController < ApplicationController
 		end
 		if a.nil?
 			if @new_problem.save
-				flash[:notice] = "saved"
+				flash[:notices] = "saved"
 				redirect_to :controller => 'assignment_testcases',
 					:action => 'new', :assignment_id => @new_problem.id
 			else

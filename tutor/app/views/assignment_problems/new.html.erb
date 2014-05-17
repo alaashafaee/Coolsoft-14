@@ -7,7 +7,7 @@
 	</ul>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
-			<% if flash[:notice] %>
+			<% if flash[:notices] %>
 				<div class = "alert alert-success"> Problem  is now added </div>
 			<% end %>
 			<% if @new_problem.errors.any? %>
