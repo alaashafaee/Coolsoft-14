@@ -31,7 +31,7 @@ class PythonCompiler
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
 		feedback = compile(solution, solution.code)
-		feedback = feedback.gsub("\u0000"," ")
+		feedback = feedback.gsub("\u0000"," ").gsub("\u001A"," ")
 		if feedback == ""
 			return {success: true, errors: nil}
 		else
