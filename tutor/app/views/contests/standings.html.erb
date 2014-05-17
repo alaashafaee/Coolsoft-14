@@ -1,6 +1,6 @@
 <!-- Author : Mohab Ghanim -->
 <div class="contest_information">
-	<h2> Contest: <%= @contest.title  %></h2>
+	<h2> Contest: <%= @contest.title %></h2>
 	<h3><%= @contest.description %></h3>
 	<h4><% if Time.now < @contest.end_time %>
 			<% if Time.now < @contest.start_time %>
@@ -16,9 +16,9 @@
 		<% end %>
 	</h4>
 	<h5><% if Time.now < @contest.start_time %>
-		Starts at
+			Starts at
 		<% else %>
-		Started at
+			Started at
 		<%end%>
 		<%= @contest.start_time %>
 	</h5>
@@ -26,8 +26,6 @@
 	<ul>
 		<li><a href ="/contests/<%= @contest.id %>/standings">Standings</a></li>
 		<li><a href ="/contests/<%= @contest.id %>/registrants">Registrants</a></li>
-		<% if student_signed_in? %>
-		<% end%>
 	</ul>
 </div>
 <table class="table table-bordered contest_table">
@@ -52,18 +50,19 @@
 						id: value[:record].student.id %>
 				</td>
 				<% @contest.problems.each do |problem| %>
+					<% trials =  ContestProgress.where(contest_id:
+						@contest.id, cproblem_id: problem.id,
+						student_id: value[:record].student.id).take.trials %>
 					<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id,
 						student_id: value[:record].student.id).take.status %>
-							<td class="solution-accepted"> <%= ContestProgress.where(contest_id: @contest.id,
-							 cproblem_id: problem.id, student_id: value[:record].student.id).take.trials %> / 
-							<%= ((ContestProgress.where(contest_id: @contest.id, cproblem_id: problem.id,
-							 student_id: value[:record].student.id).take.updated_at - Contest.find(@contest.id).
-							 start_time)/60).to_i %>
+							<% time_taken = ((ContestProgress.where(contest_id: @contest.id,
+								cproblem_id: problem.id, student_id: value[:record].student.id).
+								take.updated_at - Contest.find(@contest.id).
+								start_time)/60).to_i %>
+							<td class="solution-accepted"> <%= trials %>/<%=time_taken %> </td>
 					<% else %>
-							<td class="wrong-answer"> <%= ContestProgress.where(contest_id: @contest.id,
-							 cproblem_id: problem.id, student_id: value[:record].student.id).take.trials %> /--
+							<td class="wrong-answer"> <%= trials %> /-- </td>
 					<% end %>
-					</td>
 				<% end %>
 			</tr>
 		<% end %>
@@ -72,6 +71,10 @@
 	<% end %>
 </table>
 <div class="contest_note">
-	<div class="box-example"> X/Y </div><div class="box-note"> X : number of trials until the first success, Y submission time - contest start time
-</div>
+	<div class="box-example">
+		X/Y 
+	</div>
+	<div class="box-note">
+		X : number of trials until the first success, Y submission time - contest start time
+	</div>
 </div>

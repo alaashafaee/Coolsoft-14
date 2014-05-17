@@ -4,55 +4,64 @@ describe Contest do
  	context "Creations" do
 		before(:all) do
 
-			l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
+			l = Lecturer.new(email: '1@lecturer.com', password: '123456789',
 				password_confirmation: '123456789', name: 'LecturerI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
 			l.save!
-			l = Lecturer.new(email: '2@lecturer.com', password: '123456789', 
+			l = Lecturer.new(email: '2@lecturer.com', password: '123456789',
 				password_confirmation: '123456789', name: 'LecturerII',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "Uni", department: "Dep")
 			l.save!
 
-			s = Student.new(email: '1@student.com', password: '123456789', 
+			s = Student.new(email: '1@student.com', password: '123456789',
 				password_confirmation: '123456789', name: 'StudentI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				faculty: "MET", university: "GUC", major: "CS", semester: 6, 
+				faculty: "MET", university: "GUC", major: "CS", semester: 6,
 				advising: false, probation: false)
 			s.save!
-			s = Student.new(email: '2@student.com', password: '123456789', 
+			s = Student.new(email: '2@student.com', password: '123456789',
 				password_confirmation: '123456789', name: 'StudentII',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
-				faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
+				faculty: "Fac", university: "Uni", major: "Maj", semester: 6,
 				advising: true, probation: true)
 			s.save!
-			s = Student.new(email: '3@student.com', password: '123456789', 
+			s = Student.new(email: '3@student.com', password: '123456789',
 				password_confirmation: '123456789', name: 'StudentIII',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
-				faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
+				faculty: "Fac", university: "Uni", major: "Maj", semester: 6,
 				advising: false, probation: true)
 			s.save!
 
-			s = Student.new(email: '4@student.com', password: '123456789', 
+			s = Student.new(email: '4@student.com', password: '123456789',
 				password_confirmation: '123456789', name: 'StudentIV',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				faculty: "Fac", university: "Uni", major: "Maj", semester: 8, 
+				faculty: "Fac", university: "Uni", major: "Maj", semester: 8,
 				advising: true, probation: false)
 			s.save!
 
 
 			## Contests
-				Cproblem.create(title: "ContestProblem 1", description: "This is very easy Problem")
-				Cproblem.create(title: "ContestProblem 2", description: "Given two numbers a and b, output a/b")
-				Cproblem.create(title: "ContestProblem 3", description: "This is very hard Problem")
-				Cproblem.create(title: "ContestProblem 4", description: "This wont be a hard Problem")
-				Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
-				Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
+				Cproblem.create(title: "ContestProblem 1", 
+					description: "This is very easy Problem")
+				Cproblem.create(title: "ContestProblem 2", 
+					description: "Given two numbers a and b, output a/b")
+				Cproblem.create(title: "ContestProblem 3", 
+					description: "This is very hard Problem")
+				Cproblem.create(title: "ContestProblem 4", 
+					description: "This wont be a hard Problem")
+				Cproblem.create(title: "ContestProblem 5",
+				 description: "This will be very easy Problem")
+				Cproblem.create(title: "ContestProblem 6", 
+					description: "This is very easy Problem")
 
-				Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-					incomplete:false,  start_time: DateTime.now, end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
-				Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
+				Contest.create(title:"Iteration",
+					description:"If you can solve this you will get a level up",
+					incomplete:false,  start_time: DateTime.now,
+					end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
+				Contest.create(title:"Recursion", 
+					description:"If you can solve this you will get 2 level up",
 					incomplete:false,  start_time: DateTime.now)
 				Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
 					incomplete:false,  start_time: DateTime.now)
@@ -122,13 +131,16 @@ describe Contest do
 			it "TestCases Passed" do
 				c = Contest.first
 				result = Hash.new
-				x = ContestProgress.new(id: 3, contest_id: 1, student_id: 1, cproblem_id: 3, trials: 5, status: true)
+				x = ContestProgress.new(id: 3, contest_id: 1, student_id: 1,
+					cproblem_id: 3, trials: 5, status: true)
 				
 				result[1] = {:wrong_answers=>1, :record=>x, :time_spent=>0}
-				y = ContestProgress.new(id: 9, contest_id: 1, student_id: 3, cproblem_id: 3, trials: 11, status: true)
+				y = ContestProgress.new(id: 9, contest_id: 1, student_id: 3,
+					cproblem_id: 3, trials: 11, status: true)
 				
 				result[3] = {:wrong_answers=>1, :record=>y, :time_spent=>0}
-				z = ContestProgress.new(id: 6, contest_id: 1, student_id: 2, cproblem_id: 3, trials: 2, status: true)
+				z = ContestProgress.new(id: 6, contest_id: 1, student_id: 2,
+					cproblem_id: 3, trials: 2, status: true)
 				
 				result[2] = {:wrong_answers=>2, :record=>z, :time_spent=>0}
 				expect(c.get_contest_standings).to eq result 
