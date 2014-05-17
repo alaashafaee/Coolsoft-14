@@ -1,15 +1,18 @@
 require 'spec_helper'
 
+
+
 describe ResourcesController do
-	before(:all) do
+	before(:each) do
 		@course_1 = Course.create!(link: "http://www.google.com",
 			name: "CS1", description: "Course 1",
 			code: "434", year: "2014", semester: "1")
-		@course_2 = Course.create!(link: "https://www.google.com",
+		@course_2 = Course.create!(link: "http://www.google.com",
 			name: "CS2", description: "Course 2",
 			code: "400", year: "2014", semester: "2")
-		@course_1.resources << Resource.create!(link: "google.com")
-		@course_1.resources << Resource.create!(link: "facebook.com")
+		@course_1.resources << Resource.create!(link: "youtube.com")
+		@course_2.resources << Resource.create!(link: "google.com")
+		@course_2.resources << Resource.create!(link: "facebook.com")
 		@resource = Resource.create!(link: "twitter.com")
 		@resource_new = Resource.new(link: "linkedin.com")
 		ResourcesController.skip_before_filter :authenticate!
@@ -62,12 +65,6 @@ describe ResourcesController do
 				expect(response.status).to eq(404)
 			end
 
-			# it "deletes the requested resource of a course from database" do
-			# 	expect {
-			# 		delete :destroy, course_id: @course_1, id: @course_1.resources.first
-			# 	}.to change(Resource,:count).by(-1)
-			# end
-
 			it "does not delete the requested resource if not found" do
 				expect {
 					delete :destroy, course_id: @course_2, id: @resource
@@ -118,7 +115,25 @@ describe ResourcesController do
 						{ "1" => {link: "", id: @course_1.resources.last.id }}}
 				}.to change(Resource,:count).by(-1)
 			end
+
+			it "updates the resource if it is changed" do
+				expect{
+					post :create, course_id: @course_2.id,
+						course: { resources_attributes:
+						{ "1" => {link: "facebook.com", id: @course_2.resources.first.id }}}
+				}.to change(Resource,:count).by(0)
+			end
+
+			# it "updates the resource link if it is changed" do
+			# 	resource_id = @course_2.resources.first.id
+			# 	post :create, course_id: @course_2.id,
+			# 		course: { resources_attributes:
+			# 		{ "1" => {link: "facebook.com", id: @course_2.resources.first.id }}}
+			# 	expect(assigns(@course_2.resources).find(resource_id).link).to eq("https://facebook.com")
+				
+			# end
 		end
+
 	end
 
 end
