@@ -24,6 +24,9 @@ class CProblemsController < ApplicationController
 		elsif Problem.description.length == 0
 			flash.keep[:notice] = "The problem can not have a blank description."
 			redirect_to :back
+		elsif Problem.time_limit.length == 0
+			flash.keep[:notice] = "The problem can not have a blank time limit."
+			redirect_to :back
 		else
 			Problem.save
 		end
