@@ -10,7 +10,6 @@ class AssignmentTestcasesController < ApplicationController
 		@problem = AssignmentProblem.find_by_id(params[:assignment_id])
 		@test_case = TestCase.new
 		session[:assignment_problem_id] = params[:assignment_id]
-		session[:problem_assignment_id] = @problem.assignment_id
 	end
 
 	# [Create Assignment - Story 4.27]
@@ -23,6 +22,9 @@ class AssignmentTestcasesController < ApplicationController
 	def create
 		@problem = AssignmentProblem.find_by_id(new_test_case_params[:assignment_problem_id])
 		@test_case = TestCase.new(new_test_case_params)
+		@test_case.input = new_test_case_params[:input]
+		@test_case.output = new_test_case_params[:output]
+		@test_case.assignment_problem_id = new_test_case_params[:assignment_problem_id]
 		if lecturer_signed_in?
 			@test_case.owner_id = current_lecturer.id
 			@test_case.owner_type = "lecturer"
@@ -33,7 +35,6 @@ class AssignmentTestcasesController < ApplicationController
 			@test_case.assignment_problem_id = session[:assignment_problem_id]
 		end
 		if @test_case.save
-			@problem.test_cases << @test_case
 			flash[:notice] = "Your test case is now added"
 			redirect_to :controller => 'assignment_problems', :action => 'new',
 			:id => session[:problem_assignment_id]
