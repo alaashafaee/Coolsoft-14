@@ -18,5 +18,16 @@ class GradesController < ApplicationController
 			end
 		end
 	end
+
+	def download_grades
+		kit = PDFKit.new(html, :page_size => 'Letter')
+ 		pdf = kit.to_pdf
+ 		file = kit.to_file('/home/husseny/Downloads/GradesList/pdf')
+		kit = PDFKit.new(File.new('/views/grades/view_grades'))
+		PDFKit.new('<html><head><meta name="pdfkit-page_size" content="Letter"')
+		PDFKit.new('<html><head><meta name="pdfkit-cookie cookie_name1" content="cookie_value1"')
+		PDFKit.new('<html><head><meta name="pdfkit-cookie cookie_name2" content="cookie_value2"')
+	end
+
 end
 
