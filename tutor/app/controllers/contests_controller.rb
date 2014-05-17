@@ -22,7 +22,9 @@ class ContestsController < ApplicationController
 			@contests = []
 			@courses.each do |course|
 				course.contests.each do |contest|
-					@contests << contest
+					unless @my_contests.exists?(contest.id)
+						@contests << contest
+					end
 				end
 			end
 		end
@@ -128,5 +130,4 @@ class ContestsController < ApplicationController
 				@del = true
 			end
 		end
-
 end
