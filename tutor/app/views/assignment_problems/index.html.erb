@@ -29,10 +29,10 @@
 			<li>Please check on the problems to be saved or click on finish</li>
 		</div>
 	<% end %>
-
 	<%= form_tag("/assignment_problems/complete/", :method => "post") do %>
-		
 		<div style= "float:left; width:47%;">
+			<span class="glyphicon glyphicon-info-sign"></span>
+			To add problem click on checkboxes then click on save.
 			<div class= "tab-content">
 				<div id= "tab1" class= "tab active">
 					<% openable = true %>
@@ -84,7 +84,7 @@
 			</ul>
 		</div>		
 		
-		<div style= "float:right; width:47%;">
+		<div style= "float:right; width:47%; margin-top:2%">
 			<div class= "tab-content">
 				<div id= "tab1" class= "tab active">
 					<% openable = true %>
