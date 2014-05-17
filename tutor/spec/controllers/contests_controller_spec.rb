@@ -40,9 +40,10 @@ describe ContestsController do
 	context "Timer" do
 
 		before(:all) do
-			Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-				incomplete:false, start_time:DateTime.now+1.minute, end_time:DateTime.now+10.minutes, 
-				course_id:1, owner_id:1, owner_type:"Lecturer")
+			Contest.create(title:"Iteration", description:"If you solve this",
+				incomplete:false, start_time:DateTime.now+1.minute,
+				end_time:DateTime.now+10.minutes, course_id:1,
+				owner_id:1, owner_type:"Lecturer")
 			@c = Contest.first
 		end
 
