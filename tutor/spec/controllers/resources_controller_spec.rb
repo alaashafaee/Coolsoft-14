@@ -138,7 +138,6 @@ describe ResourcesController do
 			end
 
 			it "adds new resource for the course" do
-				resource_id = @course_2.resources.first.id
 				post :create, course_id: @course_2.id,
 					course: { resources_attributes:
 					{ "1" => {link: "youtube.com"}}}
@@ -150,7 +149,8 @@ describe ResourcesController do
 				post :create, course_id: @course_2.id,
 					course: { resources_attributes:
 					{ "1" => {link: "youtube.com"}}}
-				expect(assigns(:current_lecturer).resources.last.link).to eq("http://youtube.com")
+				expect(assigns(:current_lecturer)
+					.resources.last.link).to eq("http://youtube.com")
 			end
 		end
 	end

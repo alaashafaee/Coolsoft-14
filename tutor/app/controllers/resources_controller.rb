@@ -28,7 +28,22 @@ class ResourcesController < ApplicationController
 					if link_body.empty?
 						Resource.find(f[1][:id]).destroy
 					else
-						resource = inspect(link_body)
+						begin
+							page = MetaInspector.new(link_body,
+								:allow_redirections => :all, :timeout => 50)
+							type = page.content_type
+							url = page.url.chomp("\/")
+							title = page.meta_og_title || page.title
+							description = (type.eql? "application/pdf") ? nil : page.description
+							images = page.images.slice!(0,8)
+							images.insert(0,page.image) unless page.image.blank?
+							resource = { link: url, description: description,
+								img: images.first, link_type: type }
+						rescue
+							flash[:notice] =
+								"link #{link_body} is not valid or check your internet connection!!"
+							resource = nil
+						end
 						unless resource.nil?
 							@resource = Resource.find_by(id: f[1][:id],
 								course_id: @course.id)
@@ -79,30 +94,5 @@ class ResourcesController < ApplicationController
 		end
 		render nothing:true, status: :not_found
 	end
-
-	private
-
-		# [Course Resources - Story 1.25]
-		# detect the link
-		# Parameters: 
-		# 	  link string
-		# Returns: hash of the resource
-		# Author: Ahmed Elassuty
-		def inspect(link)
-			begin
-				page = MetaInspector.new(link,
-					:allow_redirections => :all, :timeout => 50)
-				type = page.content_type
-				url = page.url.chomp("\/")
-				title = page.meta_og_title || page.title
-				description = (type.eql? "application/pdf") ? nil : page.description
-				images = page.images.slice!(0,8)
-				images.insert(0,page.image) unless page.image.blank?
-				{ link: url, description: description, img: images.first, link_type: type }
-			rescue
-				flash[:notice] = "link #{link} is not valid or check your internet connection!!"
-				nil
-			end
-		end
 
 end
