@@ -1,6 +1,5 @@
 class ContestsController < ApplicationController
 
-
 	# [Contest Standings - Story 5.25]
 	# Returns the contest object whose id is params[:id]
 	# Parameters: none
