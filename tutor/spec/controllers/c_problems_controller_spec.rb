@@ -46,6 +46,5 @@ describe CProblemsController do
 			}.to_not change(Cproblem, :count)
 			expect(flash[:notice]).to_not be_nil
 		end
-
 	end
 end
