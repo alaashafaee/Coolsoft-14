@@ -124,6 +124,8 @@ puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
+ 	Hint.create(message: "No hints needed; very easy problem.", category: false, time: 1, submission_counter:10)
+ 	Hint.create(message: "No hints needed; very easy problem.", category: false, time: 1, submission_counter:10)
 	
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
@@ -132,6 +134,8 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
 	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
 	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(title: "Multiplication", answer: "int a, b, c; a = b*c; System.out.println(a);")
+	ModelAnswer.create(title: "Division", answer: "int a, b, c; a = b/c; System.out.println(a);")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -205,6 +209,10 @@ puts("# ----------------------- Problems ----------------------- ")
 					incomplete: true,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
 					 {\n\t\t\n\t}\n}")
+		Problem.create(title: "Problem 6 - Multiplication", description: "Multiply a & b and print the result", 
+					incomplete: false, seen: true, duplicated: false)
+		Problem.create(title: "Problem 7 - Division", description: "Divide a & b  and print the result", 
+					incomplete: false, seen: true, duplicated: false)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
@@ -421,6 +429,10 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(2).model_answers << ModelAnswer.find_by_id(4)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
+		Problem.find_by_id(6).model_answers << ModelAnswer.find_by_id(7)
+		Problem.find_by_id(7).model_answers << ModelAnswer.find_by_id(8)
+
+
 	## Solutions
 		AssignmentProblem.first.solutions << Solution.first
 		AssignmentProblem.first.solutions << Solution.find_by_id(4)
@@ -449,6 +461,8 @@ puts("# ----------------------- Problems ----------------------- ")
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 		Problem.first.model_answers.first.hints << Hint.all.second
+		Problem.find_by_id(6).model_answers.find_by_id(7).hints << Hint.find_by_id(4)
+		Problem.find_by_id(7).model_answers.find_by_id(8).hints << Hint.find_by_id(5)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
