@@ -246,12 +246,6 @@ puts("# ----------------------- Recommendations ----------------------- ")
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
 
 puts("# ----------------------- Contests ----------------------- ")
-	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-		incomplete:false, start_time: DateTime.new(2014, 5, 1, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
-	Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
-		incomplete:false, start_time: DateTime.new(2014, 5, 5, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 6, 44, 2))
-	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
-		incomplete:false, start_time: DateTime.new(2014, 5, 10, 5, 44, 2), end_time:  DateTime.new(2014, 6, 1, 9, 44, 2))
 	Contest.create(title: "Iteration", description: "If you can solve this you will get a level up",
 		incomplete: false, start_time: Time.now + 2.days, end_time: Time.now + 7.days)
 	Contest.create(title: "Recursion", description: "If you can solve this you will get 2 level up",

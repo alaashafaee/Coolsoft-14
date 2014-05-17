@@ -4,15 +4,11 @@ describe Contest do
  	context "Creations" do
 		before(:all) do
 
+puts("# ----------------------- Lecturers ----------------------- ")
 			l = Lecturer.new(email: '1@lecturer.com', password: '123456789',
 				password_confirmation: '123456789', name: 'LecturerI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
-			l.save!
-			l = Lecturer.new(email: '2@lecturer.com', password: '123456789',
-				password_confirmation: '123456789', name: 'LecturerII',
-				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-				degree: "PhD", university: "Uni", department: "Dep")
 			l.save!
 
 			s = Student.new(email: '1@student.com', password: '123456789',
@@ -41,7 +37,7 @@ describe Contest do
 				advising: true, probation: false)
 			s.save!
 
-
+puts("# ----------------------- cproblem ----------------------- ")
 			## Contests
 				Cproblem.create(title: "ContestProblem 1", 
 					description: "This is very easy Problem")
@@ -56,17 +52,13 @@ describe Contest do
 				Cproblem.create(title: "ContestProblem 6", 
 					description: "This is very easy Problem")
 
-				Contest.create(title:"Iteration",
-					description:"If you can solve this you will get a level up",
-					incomplete:false,  start_time: DateTime.now,
-					end_time:  DateTime.new(2014, 6, 1, 5, 44, 2))
-				Contest.create(title:"Recursion", 
-					description:"If you can solve this you will get 2 level up",
-					incomplete:false,  start_time: DateTime.now)
-				Contest.create(title:"DB", 
-					description:"If you can solve this you will get 4 level up",
-					incomplete:false,  start_time: DateTime.now)
+puts("# ----------------------- Contest ----------------------- ")
+	Contest.create(title: "Iteration", description: "If you can solve this you will get a level up",
+		incomplete: false, start_time: Time.now + 1.second, end_time: Time.now + 7.days)
+		sleep 3
 
+
+puts("# ----------------------- contest_progresses ----------------------- ")
 				ContestProgress.create!(status:true, trials: 1)
 				ContestProgress.create!(status:true, trials: 2)
 				ContestProgress.create!(status:false, trials: 5)
@@ -77,6 +69,7 @@ describe Contest do
 				ContestProgress.create!(status:true, trials: 18)
 				ContestProgress.create!(status:false, trials: 11)
 
+puts("# ----------------------- Lecturers problems ----------------------- ")
 				Lecturer.first.contest_problems << Cproblem.first
 				Lecturer.first.contest_problems << Cproblem.find_by_id(2)
 				Lecturer.first.contest_problems << Cproblem.find_by_id(3)
@@ -87,6 +80,8 @@ describe Contest do
 				Student.find_by_id(2).contests << Contest.first
 				Student.find_by_id(3).contests << Contest.first
 				Student.find_by_id(4).contests << Contest.first
+
+puts("# ----------------------- student contest progress ----------------------- ")				
 			## Contests progress
 				Student.first.contest_progresses << ContestProgress.first
 				Student.first.contest_progresses << ContestProgress.find_by_id(2)
@@ -97,7 +92,8 @@ describe Contest do
 				Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(7)
 				Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(8)
 				Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(9)
-				
+
+puts("# ----------------------- cproblem contest progress ----------------------- ")				
 			## Contest Progress
 				Cproblem.find_by_id(1).contests_progresses << ContestProgress.first
 				Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(2)
@@ -109,11 +105,13 @@ describe Contest do
 				Cproblem.find_by_id(2).contests_progresses << ContestProgress.find_by_id(8)
 				Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(9)
 
+puts("# ----------------------- problems contests_progresses ----------------------- ")
 			## Problems
 				Contest.first.problems << Cproblem.find_by_id(1)
 				Contest.first.problems << Cproblem.find_by_id(2)
 				Contest.first.problems << Cproblem.find_by_id(3)
 
+puts("# ----------------------- contests contests_progresses ----------------------- ")
 			## Contests Progress
 				Contest.first.progress << ContestProgress.first
 				Contest.first.progress << ContestProgress.find_by_id(2)
@@ -133,15 +131,15 @@ describe Contest do
 				c = Contest.first
 				result = Hash.new
 				x = ContestProgress.new(id: 3, contest_id: 1, student_id: 1,
-					cproblem_id: 3, trials: 5, status: true)
+					cproblem_id: 3, trials: 5, status: false, created_at: Time.now)
 				
 				result[1] = {:wrong_answers=>1, :record=>x, :time_spent=>0}
 				y = ContestProgress.new(id: 9, contest_id: 1, student_id: 3,
-					cproblem_id: 3, trials: 11, status: true)
+					cproblem_id: 3, trials: 11, status: false, created_at: Time.now)
 				
 				result[3] = {:wrong_answers=>1, :record=>y, :time_spent=>0}
 				z = ContestProgress.new(id: 6, contest_id: 1, student_id: 2,
-					cproblem_id: 3, trials: 2, status: true)
+					cproblem_id: 3, trials: 2, status: false, created_at: Time.now)
 				
 				result[2] = {:wrong_answers=>2, :record=>z, :time_spent=>0}
 				expect(c.get_contest_standings).to eq result 
