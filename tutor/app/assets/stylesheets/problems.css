@@ -14,3 +14,10 @@
 	float: left;
 }
 
+.fb-button {
+	width:10%;
+	height:3%;
+	margin_top:10px;
+	cursor:pointer;
+}
+
