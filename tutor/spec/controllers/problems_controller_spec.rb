@@ -10,8 +10,15 @@ describe ProblemsController do
 	before :each do
   		sign_out :user
 	end
+		before (:all) do 
+			@lecturer = Lecturer.new(email: '1@lecturer.com', 
+		password: '123456789', password_confirmation: '123456789', name: 'LecturerI', confirmed_at: Time.now,
+		 dob: DateTime.now.to_date, gender: true, degree: "PhD", university: "GUC", department: "MET") 
+	 end
+
 	context "Create Problem and deletes it" do
 			it "create, edit and destroy the requested problem" do
+				sign_in @lecturer 
 				lecturer = Lecturer.create(name: "sameh", gender: true, degree: "PhD",
 					department: "MET", university: "GUC", email: "1@tas.com",
 					encrypted_password: "string",
@@ -29,22 +36,34 @@ describe ProblemsController do
 					owner_id: lecturer.id, owner_type: "Lecturer")
 				ProblemsController.skip_before_filter :authenticate!
 				expect(Problem.where(id: problem.id)).to exist
-
 				expect{
-					post :update, problem.id ,{:title => "problem edit"}
+					get :create, problem: {title: "problemjex 6", description: "descdriwion here",
+					snippet: "snipt here" }, :track_id => 2 , :flag => 0
+				}.to change(Problem, :count).by(+1)
+				expect{
+					p "??????????????????????????????????????"
+					p problem.id 
+					p "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+					p problem.title
+					p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+					post :edit, :problem_id => problem.id, :Problem => {:title => "problem edit"} 
+					
+					p "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+					p problem.title
+					p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 					problem.reload
+					p "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+					p problem.title
+					p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 				}.to change{problem.title}.from("problem example 6").to("problem edit")
 				
 				expect {
 					delete :destroy, :problem_id => problem.id
 				}.to change(Problem, :count).by(-1)
-			
-				expect{
-					get :create, :problem => {title: "problem exampse 6", description: "descriwption here",
-					snippet: "snippewt here", views_count: "33", time_limit: "10",
-					track_id: track.id, fill_gaps: false, incomplete: true, seen: true, duplicated: false,
-					owner_id: lecturer.id, owner_type: "Lecturer"}, :track_id => track.id
-				}.to change(Problem,:count).by(+1)
+
 			end
+
 		end			
 end
+
+
