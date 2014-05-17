@@ -26,14 +26,21 @@
 				:course_id => @course.id}, class: "btn btn-success",
 				style: "float: left; margin-left: 15px", method: :get %>
 		</li>
-
-		<li>
-			<%= link_to "Add Resources", new_course_resource_path(@course),
-				class: "btn btn-success",
-				style: "float: left; margin-left: 15px", method: :get %>
-		</li>
+		<%- if lecturer_signed_in? %>
+			<li>
+				<%= link_to "Add Resources", new_course_resource_path(@course),
+					class: "btn btn-success",
+					style: "float: left; margin-left: 15px", method: :get %>
+			</li>
+		<% end %>
 	</ul>
 </div>
+<% unless flash[:notice].nil? %>
+	<div class= "alert alert-danger">
+		<%= flash[:notice] %>
+		<%- flash[:notice] = nil %>
+	</div>
+<% end %>
 <div>
 	<div class="page-header">
 		<h1><%= @course.name %><small> resources :</small></h1>

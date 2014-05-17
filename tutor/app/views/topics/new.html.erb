@@ -35,12 +35,13 @@
 						 style: "float: left; margin-left: 15px", method: :get
 							%> 
 			</li>
-
-			<li>
-				<%= link_to "Add Resources", new_course_resource_path(@course),
-					class: "btn btn-success",
-					style: "float: left; margin-left: 15px", method: :get %>
-			</li>
+			<%- if lecturer_signed_in? %>
+				<li>
+					<%= link_to "Add Resources", new_course_resource_path(@course),
+						class: "btn btn-success",
+						style: "float: left; margin-left: 15px", method: :get %>
+				</li>
+			<% end %>
 		</ul>
 		<!-- 	Name: The New Topic Form 
 		Author: Ahmed Akram
