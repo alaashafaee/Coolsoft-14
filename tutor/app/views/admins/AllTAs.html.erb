@@ -1,0 +1,15 @@
+<!--a view to show all TAs requests -->
+
+<table>
+	<h1>List for approval</h1>
+  
+  	<% @allTAs.each do |t| %>
+  	
+    <tr>
+      <td><%= t.name %></td>
+      <td><%= t.verified_type %></td>
+      <td><%= link_to "approve" , admin_approveRequestsTA_path(:id => t.id)%> </td>
+    </tr>
+
+  <% end %>
+</table>
