@@ -14,7 +14,6 @@
 	float: left;
 }
 
-<<<<<<< HEAD
 #crumbs ul {
 	list-style-type: none;
 }
@@ -121,11 +120,10 @@
 
 #crumbs ul li a.preventclick:before{
 	pointer-events: none;
-=======
+
 .fb-button {
 	width:10%;
 	height:3%;
 	margin_top:10px;
 	cursor:pointer;
->>>>>>> 364d0cdae856797feb4919decede385f50399426
 }
