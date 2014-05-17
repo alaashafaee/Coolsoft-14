@@ -48,7 +48,8 @@ class CProblemsController < ApplicationController
 	# [Add contest problem - Story 3.23]
 	# Filters the parameters required to create a CProblem
 	# Parameters: none
-	# Returns: Filtered parameters
+	# Returns: 
+	#	Filtered parameters
 	# Author: Rami Khalil
 	def cproblem_params
 		params.require(:cproblem).permit(:title, :description, :time_limit)
