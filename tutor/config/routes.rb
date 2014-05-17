@@ -93,7 +93,7 @@ Tutor::Application.routes.draw do
 	resources :contests
 	resources :assignments
 	resources :assignment_problems
-	
+
 	# Example resource route with options:
 	#   resources :products do
 	#     member do

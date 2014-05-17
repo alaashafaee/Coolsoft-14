@@ -9,5 +9,5 @@ class ContestsController < ApplicationController
 		@contest = Contest.find_by_id(params[:id])
 	end
 
-	
+
 end
