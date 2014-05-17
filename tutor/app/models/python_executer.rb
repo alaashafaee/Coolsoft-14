@@ -16,6 +16,12 @@ class PythonExecuter < Executer
 		return super
 	end
 
+	# [Run Python Code - Story X.5]
+	# Returns a message explaining what this error is
+	# Parameters:
+	#	exception: The exception to be explained
+	# Returns: The Explanation of the exception given
+	# Author: Ahmed Akram
 	def get_runtime_explaination(exception)
 		return PythonExecuter.get_runtime_explaination(exception)
 	end

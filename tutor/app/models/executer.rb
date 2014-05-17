@@ -80,8 +80,7 @@ class Executer
 
 	# [Compiler: Test - Story 3.15]
 	# Returns the output for the test case in case it ran successfully
-	# Parameters:
-	#	none
+	# Parameters: none
 	# Returns:
 	# 	$execute_res: The answer to the test case
 	# Author: Ahmed Akram
