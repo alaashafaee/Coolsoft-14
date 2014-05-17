@@ -1,10 +1,13 @@
 <!--  Name: The New Post Form 
     Author: Ahmed Atef
 -->
+<div class="row well post-header">
+    <h1><b> &raquo; Ask a question</b> </h1>
+    <hr>
+</div>
+
 
 <div align="center">
-    <h1>New Post</h1>
-    <br/>
     <% if @new_post.errors.any? %>
         <div id="error_explanation">
             <h2>
@@ -29,8 +32,10 @@
         </p>
         <p>
             <%= f.label :content %><br>
-            
-            <%= f.input :content, :as => :rich, :config => { :default_style => "myCrazyPaperclipStyle"%>
+            <%= f.text_area :content, class:"kube form-control",
+                    style: "height:200px;width:500px; white-space: pre",
+                        placeholder: "Enter your post",
+                            :value => @new_post.content %>
             <%= f.hidden_field :discussion_board_id,
                 value: params[:discussion_board_id],
                     :value => @discussion_board.id %>
@@ -40,3 +45,12 @@
         </p>
     <% end %>
 </div>
+
+<div class="kube"></div>
+
+
+<style type="text/css">
+    .post-header {
+        background-color: #c7cdcc !important;
+    }
+</style>

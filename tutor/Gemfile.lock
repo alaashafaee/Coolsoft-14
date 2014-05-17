@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Nerian/bootstrap-wysihtml5-rails.git
+  revision: 59f3d23504fc5986c736c620f31c08309e706943
+  specs:
+    bootstrap-wysihtml5-rails (0.3.1.24)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: 213984f19d7869429fbfb3c4dffe6e78d98e88b5
   specs:
@@ -254,6 +261,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts_as_list
+  bootstrap-wysihtml5-rails!
   carrierwave
   coffee-rails (~> 4.0.0)
   composite_primary_keys (~> 6.0.1)
@@ -263,7 +271,6 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)
   json_builder (= 3.1.0)
-  kaminari
   rails (= 4.0.4)
   rmagick
   rspec-rails (~> 3.0.0.beta)

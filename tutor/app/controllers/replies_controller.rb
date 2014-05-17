@@ -66,7 +66,7 @@ class RepliesController < ApplicationController
 		data = params[:content]
 		reply.content = data
 		if reply.save
-			render json: true
+			render json: reply
 		else
 			render json: false
 		end

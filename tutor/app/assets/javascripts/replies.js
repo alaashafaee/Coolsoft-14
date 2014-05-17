@@ -9,7 +9,7 @@
 // # Returns: JSON Request
 // # Author: Ahmed Mohamed Magdi
 function post_reply(_id) {
-	input = $("#ckeditor").val();
+	input = $("#input_field").val();
 	$.ajax({
 		error: function() {
 			alert("Failed to add constraints, Check again");
@@ -59,13 +59,18 @@ function update_reply(reply_id) {
 			content: input_data
 		},
 		success: function(data) {
-			window.location = window.location
+			// window.location = window.location
+			reform_updated_reply(data);
 		},
 		datatype: "JSON",
 		error: function() {
 			alert("Failed update the reply, Check again");
 		}
 	});
+}
+
+function reform_updated_reply(data) {
+	$("#reply_content_"+data.id).html("<h2>"+data.content+"</h2>");
 }
 
 // # [Edit a Reply - Story 1.19]
@@ -125,3 +130,4 @@ function delete_reply(reply_id,post_id) {
 		}
 	});
 }
+

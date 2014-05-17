@@ -69,6 +69,9 @@ gem 'whenever', :require => false
 # table_print
 gem 'table_print'
 
+# Text-editor
+gem 'bootstrap-wysihtml5-rails', require: 'bootstrap-wysihtml5-rails', github: 'Nerian/bootstrap-wysihtml5-rails'
+
 # real-time sync
 gem 'faye'
 gem 'thin', require: false

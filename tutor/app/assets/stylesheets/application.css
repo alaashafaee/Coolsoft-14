@@ -13,6 +13,7 @@
  *= require posts
  *= require bootstrap
  *= require jquery.countdown.css
+ *= require bootstrap-wysihtml5/b3
  */
  html, body {
 	width: 100%;

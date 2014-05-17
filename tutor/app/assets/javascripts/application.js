@@ -12,20 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-<<<<<<< HEAD
 //= require sync
-=======
 //= require jquery-ui-1.10.4
->>>>>>> 409c730358745f49f6f0886d3effa9179ed46d8f
 //= require_tree .
 //= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
-<<<<<<< HEAD
-
-=======
 //= require jquery.plugin.js
 //= require jquery.countdown.js
+//= require bootstrap-wysihtml5/b3
+//= require bootstrap-wysihtml5/locales
 
 // [Simple Search auto-complete - Story 1.23]
 // autocomplete for the search bar
@@ -37,4 +33,9 @@ $(function(){
 		source: $('#search_field').data("autocomplete-source")
 	});
 });
->>>>>>> 409c730358745f49f6f0886d3effa9179ed46d8f
+
+$(document).ready(function(){
+	$('.wysihtml5').each(function(i, elem) {
+	  $(elem).wysihtml5();
+	});
+})

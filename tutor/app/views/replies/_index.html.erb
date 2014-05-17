@@ -3,9 +3,14 @@
 </div>
 <div class="container submiting">
 	<div class="row editor_area">
-		<%= text_field_tag 'input_field', nil, style: "width:500px; height:100px" %>
+		<textarea id="input_field" class='wysihtml5' placeholder="Enter text ..."></textarea>
 	</div>
-	<div class="row submit_btn">
-		<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})" %>
-	</div>
+	<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})",style:"float:right" %>
 </div>
+
+<style type="text/css">
+	.wysihtml5 {
+		width: 100%;
+		height: 300px;
+	}
+</style>

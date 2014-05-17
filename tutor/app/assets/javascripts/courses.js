@@ -77,3 +77,7 @@ function update_course() {
 	});
 }
 
+function testing(){
+	
+}
+
