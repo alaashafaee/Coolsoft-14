@@ -43,6 +43,8 @@ class AcknowledgementsController < ApplicationController
 						@student.acknowledgements << @acknowledgement
 						current_lecturer.acknowledgements << @acknowledgement
 						@course.acknowledgements << @acknowledgement
+						Notification.acknowledgement_notify(@student.id, current_lecturer.id, 
+							@acknowledgement.id)
 					end
 				else
 					flash[:failure_notice] = "Acknowledgement failed."
