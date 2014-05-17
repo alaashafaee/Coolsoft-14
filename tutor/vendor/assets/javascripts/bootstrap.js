@@ -497,7 +497,6 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     var startEvent = $.Event('show.bs.collapse')
     this.$element.trigger(startEvent)
     if (startEvent.isDefaultPrevented()) return
-
     // var actives = this.$parent && this.$parent.find('> .panel > .in')
 
     // if (actives && actives.length) {
