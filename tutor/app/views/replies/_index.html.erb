@@ -2,8 +2,8 @@
 	<%= render "/replies/load_replies" %>
 </div>
 <div class="container submiting">
-	<div class="row editor_area">
-		<textarea id="input_field" class='wysihtml5' placeholder="Enter text ..."></textarea>" %>
+	<div class="row editor_area well">
+		<textarea id="input_field" class='wysihtml5' placeholder="Enter text ..."></textarea>
 	</div>
 	<%= submit_tag "Submit", class:"btn btn-success", onclick:"post_reply(#{params[:id]})",style:"float:right" %>
 </div>
