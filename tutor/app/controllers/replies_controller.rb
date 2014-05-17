@@ -29,15 +29,15 @@ class RepliesController < ApplicationController
 		if lecturer_signed_in?
 			current_lecturer.replies << reply
 			new_notification.message = "#{current_lecturer.name} 
-			has replied to your post '#{post.title}' "
+			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"
 		elsif teaching_assistant_signed_in?
 			current_teaching_assistant.replies << reply
-			new_notification.message = "#{current_teaching_assistant} 
-			has replied to your post '#{post.title}' "
+			new_notification.message = "#{current_teaching_assistant.name} 
+			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"
 		else
 			current_student.replies << reply
-			new_notification.message = "#{current_student} has 
-			replied to your post '#{post.title}' "	
+			new_notification.message = "#{current_student.name} 
+			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"	
 		end
 		if  reply.owner_id != post.owner_id
 			new_notification.save
