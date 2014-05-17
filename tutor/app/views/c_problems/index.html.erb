@@ -1,7 +1,7 @@
-<h1> Contests </h1>
+<h1> CProblems </h1>
+<p style="color: red" ><%= flash[:error] %></p>
 <% @c_problems.each do |c_problem| %>
-	<%= link_to c_problem.title, 
-		controller: "/c_problem", 
-		action: "index"%><hr>
+	<%= link_to c_problem.title, :controller => 'c_problems', :action => 'show', :id => c_problem.id %>
+	<hr>
 		<div class="line-separator"></div>
 	<% end %>

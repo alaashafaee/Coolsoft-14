@@ -97,6 +97,7 @@ Tutor::Application.routes.draw do
 	resources :assignments
 	resources :assignment_problems
 	resources :notes
+	resources :c_problems
 
 	# Example resource route with options:
 	#   resources :products do
