@@ -29,45 +29,45 @@ class ApplicationController < ActionController::Base
 		def update_sanitized_params
 			if "#{resource_name}" == "lecturer"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|lecturer| lecturer.permit(:name, :email, 
-						:password, :password_confirmation, :gender, 
-						:dob, :degree, :university, :department, 
+					|lecturer| lecturer.permit(:name, :email,
+						:password, :password_confirmation, :gender,
+						:dob, :degree, :university, :department,
 						:profile_image, :profile_image_cache)
 				}
 				devise_parameter_sanitizer.for(:account_update) {
 					|lecturer| lecturer.permit(:name, :current_password,
-						:password, :password_confirmation, 
-						:university, :department, 
+						:password, :password_confirmation,
+						:university, :department,
 						:profile_image, :profile_image_cache)
 				}
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|student| student.permit(:name, :email, 
-						:password, :password_confirmation, :gender, 
-						:dob, :university, :faculty, :major, :semester, 
-						:advising, :probation, :profile_image, 
+					|student| student.permit(:name, :email,
+						:password, :password_confirmation, :gender,
+						:dob, :university, :faculty, :major, :semester,
+						:advising, :probation, :profile_image,
 						:profile_image_cache)
 				}
 				devise_parameter_sanitizer.for(:account_update) {
 					|student| student.permit(:name, :current_password,
-						:password, :password_confirmation, 
-						:university, :faculty, :major, :semester, 
-						:advising, :probation, :profile_image, 
+						:password, :password_confirmation,
+						:university, :faculty, :major, :semester,
+						:advising, :probation, :profile_image,
 						:profile_image_cache)
 				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|teaching_assistant| teaching_assistant.permit(:name, 
-						:email, :password, :password_confirmation, :gender, 
-						:dob, :graduated_from, :graduated_year, :degree, 
-						:university, :department, :profile_image, 
+					|teaching_assistant| teaching_assistant.permit(:name,
+						:email, :password, :password_confirmation, :gender,
+						:dob, :graduated_from, :graduated_year, :degree,
+						:university, :department, :profile_image,
 						:profile_image_cache)
 				}
 				devise_parameter_sanitizer.for(:account_update) {
-					|teaching_assistant| teaching_assistant.permit(:name, 
-						:current_password, :password, :password_confirmation, 
-						:graduated_from, :graduated_year, :degree, 
-						:university, :department, :profile_image, 
+					|teaching_assistant| teaching_assistant.permit(:name,
+						:current_password, :password, :password_confirmation,
+						:graduated_from, :graduated_year, :degree,
+						:university, :department, :profile_image,
 						:profile_image_cache)
 				}
 			end
