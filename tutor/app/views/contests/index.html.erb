@@ -22,8 +22,7 @@
 			</tr>
 		<% end %>
 	</table>	
-<% end %>		
-				
+<% end %>	
 <h1> Contests </h1>
 <table class="table table-striped table-bordered table-responsive">
 	<% if @contests.size != 0 %>
@@ -56,8 +55,8 @@
 					</td>
 				<% else %>	
 					<td>
-						<h4><%= link_to "Register", :controller => 'contests', :action=> 'register',
-								:id => contest.id,:method => :get, class:
+						<h4><%= link_to "Register", :controller => 'contests', :action=> 'register'
+								,:id => contest.id,:method => :get, class:
 									"btn btn-success" %></h4>
 					</td>
 				<% end %>					
