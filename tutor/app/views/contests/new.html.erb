@@ -10,7 +10,7 @@
 				<br>
 			<% end %>
 			<%= f.text_field :title, :value => @new_contest.title,
-			class:"form-control", style: "width:300px", placeholder:"Title" %>
+			class: "form-control", style: "width:300px", placeholder:"Title" %>
 		</p>
 		<p>
 			<%= f.label :Start_Time %><br />
@@ -60,8 +60,8 @@
 				</span>
 				<br>
 			<% end %>
-			<%= f.text_area :description, class:"form-control", style:"width:300px",
-				placeholder:"Description", :value => @new_contest.description %>
+			<%= f.text_area :description, class: "form-control", style: "width:300px",
+				placeholder: "Description", :value => @new_contest.description %>
 		</p>
 		<p>
 			<%= f.submit "Save", class: "btn btn-info" %>
