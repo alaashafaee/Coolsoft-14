@@ -154,6 +154,7 @@ class PythonDebugger < Debugger
 			return false
 		elsif value.match("module") or value.match("function")
 			return false
+		end
 		return true
 	end
 
@@ -189,6 +190,15 @@ class PythonDebugger < Debugger
 	# Author: Khaled Helmy	
 	def get_variable type, name
 		value = ""
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
+		# ERROOOOOOOOOOOOOOOOOOR .. name should be in a string
 		input type + "[" + name + "]"
 		output_buffer = buffer_until_complete
 		output_buffer.each_line do |line|
@@ -196,6 +206,7 @@ class PythonDebugger < Debugger
 		end
 		if value.match("instance")
 			value = get_object_value name
+		end
 		return value
 	end
 
@@ -244,7 +255,7 @@ class PythonDebugger < Debugger
 	# Author: Khaled Helmy
 	def get_variables
 		variables = []
-		variables = get_variables_helper "locals()" + get_variables_helper "globals()"
+		variables = get_variables_helper("locals()") + get_variables_helper("globals()")
 		return variables
 	end
 
