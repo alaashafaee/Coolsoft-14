@@ -37,6 +37,14 @@
 					</br>
 					<%= @course.description %>
 				</p>
+				<p>
+					<b>Tags:</b>
+					</br>
+					<% @course.tags.each do |tag| %>
+						<%= tag.name %>
+						</br>
+					<% end %>	
+				</p>
 			</div>
 			<div  style="margin-left:70%; margin-top: -300px";>
 				<div>
