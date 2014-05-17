@@ -10,7 +10,8 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
-	Admin.create(name: "Admin")
+	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+	l.save!
 
 puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
@@ -67,19 +68,19 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 puts("# ----------------------- Courses ----------------------- ")
 
 	Course.create(name:"Data Structures and Alogrithms", 
-				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
+				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name:"Computer Programming Lab", 
-				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1)
+				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name:"Course3", 
-				description:"This is course three", code:3, year:2014, semester:1)
+				description:"This is course three", code:3, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 2", 
-				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC")
+				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 3", 
-				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC")
+				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 4", 
-				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC")
+				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 5", 
-				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC")
+				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 
 puts("# ----------------------- Course_Student ----------------------- ")
 	CourseStudent.create(share: true)
@@ -136,9 +137,9 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
-	TestCase.create(output: "5.0\n", input:"10 2")
-	TestCase.create(output: "2.5\n", input:"5 2")
-	TestCase.create(output: "Infinity\n", input:"10 0")
+	TestCase.create(output: "5.0\n", input:"10\n2")
+	TestCase.create(output: "2.5\n", input:"5\n2")
+	TestCase.create(output: "Infinity\n", input:"10\n0")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -183,16 +184,27 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 	## Exercise
+
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
-					incomplete: false)
+					incomplete: false,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
-					incomplete: true)
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					incomplete: true)
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
+					 {\n\t\t\n\t}\n}")
 
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
@@ -201,9 +213,10 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 4", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
-	Solution.create(code:"println(My first solution)", length:5, status:1)
+	Solution.create(code: "println(My first submitted solution);", length: 5, status: 1)
 	Solution.create(code:"println(My second solution)", length:5, status:0)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
+	Solution.create(code: "println(My first solution) \n int x =10;\n x++;\nDouble y\n y = x/3;", length: 5, status: 0)
 
 puts("# ----------------------- TrackProgression ----------------------- ")
 	TrackProgression.create(level: 1, topic_id: 1)
@@ -247,9 +260,11 @@ puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:false)
 
 puts("# ----------------------- Assignments ----------------------- ")
-	Assignment.create(title:"DSD Assignment_1", publish: true)
-	Assignment.create(title:"DMENT Assignment_2", publish: true)
-	Assignment.create(title:"DSD Assignment_3", publish: true)
+	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),
+		 description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
+	Assignment.create(title:"DMENT Assignment_2", publish: true, due_date: Date.new(2015,1,1))
+	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: DateTime.now.to_date)
+	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
 	Grade.create(grade: 100)
@@ -314,6 +329,7 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.assignments << Assignment.first
 		Lecturer.first.assignments << Assignment.find_by_id(2)
 		Lecturer.first.assignments << Assignment.find_by_id(3)
+		Lecturer.first.assignments << Assignment.find_by_id(4)
 	## Grades
 		Lecturer.first.grades << Grade.first
 		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
@@ -323,6 +339,7 @@ puts("# ----------------------- Students ----------------------- ")
 		Student.first.course_students << CourseStudent.first
 	## Solutions
 		Student.first.solutions << Solution.first
+		Student.first.solutions << Solution.find_by_id(4)
 		Student.first.solutions << Solution.find_by_id(2)
 		Student.first.solutions << Solution.find_by_id(3)
 	## Attempts
@@ -405,7 +422,8 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
 	## Solutions
-		Problem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.find_by_id(4)
 		Problem.find_by_id(2).solutions << Solution.find_by_id(2)
 		Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 	## Attempts
@@ -430,6 +448,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.find_by_id(4).contests_progresses << ContestProgress.find_by_id(4)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
+		Problem.first.model_answers.first.hints << Hint.all.second
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
@@ -464,6 +483,7 @@ puts("# ----------------------- Courses ----------------------- ")
 	## Assignments
 		Course.first.assignments << Assignment.first
 		Course.first.assignments << Assignment.find_by_id(2)
+		Course.first.assignments << Assignment.find_by_id(4)
 		Course.find_by_id(2).assignments << Assignment.find_by_id(3)
 
 
