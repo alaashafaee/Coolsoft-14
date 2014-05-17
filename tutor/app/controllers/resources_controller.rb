@@ -29,7 +29,7 @@ class ResourcesController < ApplicationController
 					else
 						resource = inspect(link_body)
 						unless resource.nil?
-							@resource = Resource.find_by(link: resource[:link],
+							@resource = Resource.find_by(id: f[1][:id],
 								course_id: @course.id)
 							if @resource.nil?
 								@resource = Resource.new(resource)
@@ -37,7 +37,9 @@ class ResourcesController < ApplicationController
 								@course.resources << @resource
 								current_lecturer.resources << @resource
 							else
-								@resource.update_attributes(resource)
+								unless resource[:link].eql? @resource.link
+									@resource.update_attributes(resource)
+								end
 							end
 						end
 					end
