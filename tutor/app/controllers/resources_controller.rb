@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
 
 	# [Course Resources - Story 1.25]
 	# Initialize resource
-	# Parameters: no parameters
+	# Parameters: none
 	# Returns: New Resource object
 	# Author: Ahmed Elassuty
 	def new
@@ -15,7 +15,8 @@ class ResourcesController < ApplicationController
 
 	# [Course Resources - Story 1.25]
 	# add resources to a course
-	# Parameters: hash of the resources attributes
+	# Parameters:
+	# 	  hash of the resources attributes
 	# Returns: redirect to course resources page
 	# Author: Ahmed Elassuty
 	def create
@@ -51,7 +52,8 @@ class ResourcesController < ApplicationController
 
 	# [Course Resources - Story 1.25]
 	# index resources of a course
-	# Parameters: course_id
+	# Parameters:
+	# 	  course_id
 	# Returns: course resources
 	# Author: Ahmed Elassuty
 	def index
@@ -63,7 +65,8 @@ class ResourcesController < ApplicationController
 
 	# [Course Resources - Story 1.25]
 	# remove resource
-	# Parameters: course_id and resource_id
+	# Parameters:
+	# 	  course_id and resource_id
 	# Returns: no return
 	# Author: Ahmed Elassuty
 	def destroy
@@ -81,7 +84,8 @@ class ResourcesController < ApplicationController
 
 		# [Course Resources - Story 1.25]
 		# detect the link
-		# Parameters: link string
+		# Parameters: 
+		# 	  link string
 		# Returns: hash of the resource
 		# Author: Ahmed Elassuty
 		def inspect(link)
