@@ -54,9 +54,9 @@ class TopicsController < ApplicationController
 	end
 
 	# [Specify Topics - Story 1.2]
-	# Description: This action takes the passed course id and assings
-	#              the respective topics of that course to an instance
-	#              variable.
+	# This action takes the passed course id and assings
+	# the respective topics of that course to an instance
+	# variable.
 	# Parameters:
 	#	params[:id]: The current course id
 	# Returns: 
@@ -68,11 +68,11 @@ class TopicsController < ApplicationController
 	end
 
 	# [Specify Topics - Story 1.2]
-	# Description: This action takes the passed parameters from 
-	#              the creation form, creates a new Topic record
-	#              and assigns it to the respective course. If the 
-	#              creation fails the user is redirected to the form
-	#              with a "Failed" message.
+	# This action takes the passed parameters from 
+	# the creation form, creates a new Topic record
+	# and assigns it to the respective course. If the 
+	# creation fails the user is redirected to the form
+	# with a "Failed" message.
 	# Parameters:
 	#	topic_params[]: A list that has all fields entered by the user to in the
 	# 					create_topic_form
