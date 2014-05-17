@@ -7,7 +7,7 @@ describe Contest do
 			@contest = Contest.new(title:"rspec contest",
 				description:"This contest will not see the light",
 				incomplete:false, start_time:Time.now+2.days,
-				end_time:Time.now+7.days)			
+				end_time:Time.now+7.days)
 		end
 
 		it 'is valid by passing all validations' do
