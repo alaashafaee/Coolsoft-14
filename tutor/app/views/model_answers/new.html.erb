@@ -39,8 +39,8 @@
 		<%= f.text_field :title, class: "form-control", style: "width:30%",
 		:cols => "2", :rows => "1" %><br>
 		<%= f.label :Answer %>
-		<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10"
-		, :rows => "8" %>
+		<%= f.text_area :answer, class: "form-control", style: "width:60%",:cols => "10",
+		:rows => "8" %>
 	</p><br>
 	<%= f.submit "Save Model Answer", type: "submit", value: "Save Model Answer",
 	onclick: "canleave()", class: "btn btn-large btn-info", :flag => params[:flag]  %>
