@@ -1,3 +1,4 @@
+
 <%= render partial: "solutions/timer"%>
 <%= render partial: "solutions/control_bar"%>
 <%= render partial: "solutions/editor"%>
@@ -5,23 +6,10 @@
 <br>
 <%= render partial: "solutions/console"%>
 
+
 <script>
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
-	var hidden_code_field = document.getElementById('solution_code')
-	var code_header = "public class CoolSoft {\n";
-	var code_footer = "\n}";
-
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
-
-	edit_session.setValue(code_header + hidden_code_field.value + code_footer);
-
-	var code_filter_function = function(event_handler) {
-		var unfiltered_code = edit_session.getValue();
-		var code_len = unfiltered_code.length;
-		var line_count = edit_session.doc.getAllLines().length;
-		hidden_code_field.value = unfiltered_code.slice(code_header.length)
-	};
-	edit_session.on('change', code_filter_function);
 </script>
