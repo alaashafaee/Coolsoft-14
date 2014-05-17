@@ -6,7 +6,7 @@
 <% openable = true %>
 <div class="panel-group list-group" id="accordion">
 	<% if flash[:added] %>
-		<%= flash[:added]%>
+		<%= flash[:added] %>
 	<% end %>
 	<% if @problems.size == 0 %>
 		<br>
@@ -27,7 +27,7 @@
 				<a class="icon glyphicon <%= openarrow %>"
 					href="#<%= problem.id.to_s %>"
 					data-toggle="collapse" data-parent="#accordion"
-					style="margin-right:1%;text-decoration: none;">
+					style="margin-right: 1%; text-decoration: none;">
 				</a>
 				<%= problem.title %>
 			</div>
