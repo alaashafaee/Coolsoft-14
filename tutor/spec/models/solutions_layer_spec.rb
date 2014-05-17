@@ -323,5 +323,5 @@ describe SolutionsLayer do
 			end
 		end
 	end
-
+	
 end
