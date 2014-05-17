@@ -221,9 +221,10 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 12", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
-	Solution.create(code:"println(My first solution)", length:5, status:1)
+	Solution.create(code: "println(My first submitted solution);", length: 5, status: 1)
 	Solution.create(code:"println(My second solution)", length:5, status:0)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
+	Solution.create(code: "println(My first solution) \n int x =10;\n x++;\nDouble y\n y = x/3;", length: 5, status: 0)
 
 puts("# ----------------------- TrackProgression ----------------------- ")
 	TrackProgression.create(level: 1, topic_id: 1)
@@ -357,6 +358,7 @@ puts("# ----------------------- Students ----------------------- ")
 		Student.first.course_students << CourseStudent.first
 	## Solutions
 		Student.first.solutions << Solution.first
+		Student.first.solutions << Solution.find_by_id(4)
 		Student.first.solutions << Solution.find_by_id(2)
 		Student.first.solutions << Solution.find_by_id(3)
 	## Attempts
@@ -439,7 +441,8 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
 	## Solutions
-		Problem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.find_by_id(4)
 		Problem.find_by_id(2).solutions << Solution.find_by_id(2)
 		Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 	## Attempts

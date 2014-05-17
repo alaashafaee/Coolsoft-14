@@ -69,8 +69,6 @@ gem 'whenever', :require => false
 # table_print
 gem 'table_print'
 
-gem 'kaminari'
-
 # real-time sync
 gem 'faye'
 gem 'thin', require: false
@@ -78,5 +76,7 @@ gem 'sync'
 
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
-
 end
+
+#pagination
+gem 'will_paginate', '~> 3.0.5'

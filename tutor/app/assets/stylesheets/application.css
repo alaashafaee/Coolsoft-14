@@ -12,6 +12,7 @@
  *= require_tree .
  *= require posts
  *= require bootstrap
+ *= require jquery.countdown.css
  */
  html, body {
 	width: 100%;
