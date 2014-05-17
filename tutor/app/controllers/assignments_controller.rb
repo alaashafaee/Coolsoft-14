@@ -20,28 +20,15 @@ class AssignmentsController < ApplicationController
 		if student_signed_in?
 			student_id = current_student.id
 		end
-		#if lecturer_signed_in?
-		#	@can_edit = @course.can_edit(current_lecturer)
-		#end
-	
-
-		#if teaching_assistant_signed_in?
-		#	teaching_assistant_id = current_teaching_assistant_id
-		#end
-
-		@canedit = false
 		if @assignment
 			@course = @assignment.course
 			@problems = @assignment.problems
 			if teaching_assistant_signed_in?
 				@can_edit = @course.can_edit(current_teaching_assistant)
 			end
-
 			if lecturer_signed_in?
-				@can_edit = @course.can_edit(current_lecturer)
+				@can_edit ||= @course.can_edit(current_lecturer)
 			end
-			#@can_edit = @course.can_edit(current_lecturer)
-			#@can_edit||= @course.can_edit(current_teaching_assistant)
 		else
 			render ('public/404')
 		end
