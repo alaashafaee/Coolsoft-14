@@ -401,7 +401,7 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED
+# Author: MOHAMEDSAEED + Rami Khalil
 @reload_template = () ->
 	disabled = get_editor().getReadOnly()
 	unless disabled
