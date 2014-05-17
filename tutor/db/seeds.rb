@@ -12,52 +12,52 @@ puts("**************************************************************")
 puts("# ----------------------- Admins ----------------------- ")
 
 puts("# ----------------------- Lecturers ----------------------- ")
-	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'LecturerI',
+	l = Lecturer.new(email: '1@lecturer.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'LecturerI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "PhD", university: "GUC", department: "MET")
 	l.save!
-	l = Lecturer.new(email: '2@lecturer.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'LecturerII',
+	l = Lecturer.new(email: '2@lecturer.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'LecturerII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "PhD", university: "Uni", department: "Dep")
 	l.save!
 
 puts("# ----------------------- Students ----------------------- ")
-	s = Student.new(email: '1@student.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'StudentI',
+	s = Student.new(email: '1@student.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'StudentI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		faculty: "MET", university: "GUC", major: "CS", semester: 6, 
 		advising: false, probation: false)
 	s.save!
-	s = Student.new(email: '2@student.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'StudentII',
+	s = Student.new(email: '2@student.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'StudentII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
 		advising: true, probation: true)
 	s.save!
-	s = Student.new(email: '3@student.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'StudentIII',
+	s = Student.new(email: '3@student.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'StudentIII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
 		advising: false, probation: true)
 	s.save!
-	s = Student.new(email: '4@student.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'StudentIV',
+	s = Student.new(email: '4@student.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'StudentIV',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 8, 
 		advising: true, probation: false)
 	s.save!
 
 puts("# ----------------------- TeachingAssistants ----------------------- ")
-	t = TeachingAssistant.new(email: '1@ta.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'TAI',
+	t = TeachingAssistant.new(email: '1@ta.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'TAI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "MSc", university: "GUC", department: "MET",
 		graduated_from: "GUC", graduated_year: 2005)
 	t.save!
-	t = TeachingAssistant.new(email: '2@ta.com', password: '123456789', 
-		password_confirmation: '123456789', name: 'TAII',
+	t = TeachingAssistant.new(email: '2@ta.com', password: 'aA123456789', 
+		password_confirmation: 'aA123456789', name: 'TAII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "BSc", university: "Uni", department: "Dep",
 		graduated_from: "Uni", graduated_year: 2009)
