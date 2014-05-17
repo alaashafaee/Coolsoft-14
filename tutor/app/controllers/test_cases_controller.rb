@@ -2,7 +2,9 @@ class TestCasesController < ApplicationController
 
 	# [Add test case-story 4.8]
 	# Shows all the test cases.
-	# Parameters: none
+	# Parameters:
+	#	track_id: track id containing problems.
+	#	problem_id: problem_id.
 	# Returns:
 	#	List of all the test cases related to a certain problem.
 	# Author: Lin + Ahmed Osam
@@ -15,7 +17,10 @@ class TestCasesController < ApplicationController
 
 	# [Add test case-story 4.8]
 	# Display the form that is used to add a test case.
-	# Parameters: none
+	# Parameters:
+	#	track_id: track id containing problems.
+	#	problem_id: problem id test case related to.
+	#	flag: to identify wether redirect to new or index page.
 	# Returns: none
 	# Author: Lin + Ahmed Osam
 	def new
@@ -32,7 +37,10 @@ class TestCasesController < ApplicationController
 
 	# [Add test case-story 4.8]
 	# Saves the new test case into the database.(What the form the 'new' method will submit to)
-	# Parameters: None
+	# Parameters:
+	#	problem_id: problem id test case related to.
+	#	track_id: track id containing problems
+	#	flag: to identify wether redirect to new or index page.
 	# Returns:
 	#	In case of success a flash notice will appear:"Post created successfully"
 	#	In case of failure a flash notice will appear:"Can't add test case!"
@@ -69,6 +77,10 @@ class TestCasesController < ApplicationController
 	# Edit test case
 	# Parameters:
 	#	@test_case:Test case to be edited.
+	#	track_id: track id containing problems.
+	#	problem_id: problem id test case related to.
+	#	test_case_id: test case id.
+	#	flag: to identify wether redirect to new or index page.
 	# Returns: none
 	# Author: Nadine Adel + Ahmed Osam
 	def edit
@@ -81,7 +93,9 @@ class TestCasesController < ApplicationController
 	# [Edit test case-story 4.9]
 	# Update test case in the database
 	# Parameters:
-	#	 @test_case:Test case to be updated.
+	#	@test_case:Test case to be updated.
+	#	input: input required for test case.
+	#	output: output required for test case.
 	# Returns:
 	#	Flash message if the test case is updated or not
 	# Author: Nadine Adel + Ahmed Osam
@@ -125,7 +139,7 @@ class TestCasesController < ApplicationController
 	#	and removes it from the database and then redirects the user to the edit problem page of 
 	#	the problem that had the test case with a "Test case successfully Deleted" message.
 	# Parameters:
-	#	params[:id]: The current test case's id
+	#	params[:test_case_id]: The current test case's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef + Ahmed Osam

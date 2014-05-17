@@ -3,22 +3,22 @@ include Warden::Test::Helpers
 include Devise::TestHelpers
 
 class ActiveSupport::TestCase
-  include Devise::TestHelpers
+	include Devise::TestHelpers
 end
 
 describe ProblemsController do
 	before :each do
-  		sign_out :user
+		sign_out :user
 	end
 	before (:all) do 
 		@lecturer = Lecturer.new(email: '1@lecturer.com', 
 			password: '123456789', password_confirmation: '123456789', name: 'LecturerI',
 			confirmed_at: Time.now,
-			dob: DateTime.now.to_date, gender: true, degree: "PhD", university: "GUC", department: "MET") 
-	 end
+			dob: DateTime.now.to_date, gender: true, degree: "PhD", university: "GUC", department: "MET")
+	end
 
 	context "Create Problem and deletes it" do
-		it "create, edit and destroy the requested problem" do
+		it "create and destroy the requested problem" do
 			sign_in @lecturer 
 			lecturer = Lecturer.create(name: "sameh", gender: true, degree: "PhD",
 				department: "MET", university: "GUC", email: "1@tas.com",
@@ -37,16 +37,16 @@ describe ProblemsController do
 				owner_id: lecturer.id, owner_type: "Lecturer")
 			ProblemsController.skip_before_filter :authenticate!
 			expect(Problem.where(id: problem.id)).to exist
-			
+
 			expect{
-				get :create, problem: {title: "problemjex 6", description: "descdriwion here",
-				snippet: "snipt here" }, :track_id => 2 , :flag => 0
+				get :create, problem: {title: "problem rspec test", description: "description here",
+				snippet: "snippet here" }, :track_id => 1 , :flag => 0
 			}.to change(Problem, :count).by(+1)
-			
+
 			expect {
 				delete :destroy, :problem_id => problem.id
 			}.to change(Problem, :count).by(-1)
 		end
-	end			
+	end
 
 end

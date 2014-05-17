@@ -99,7 +99,7 @@ class ProblemsController < ApplicationController
 	#	and then redirects the user to the show page of the track that had the problem
 	#	with a "Problem successfully Deleted" message.
 	# Parameters:
-	#	params[:id]: The current problem's id
+	#	params[:problem_id]: The current problem's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef + Ahmed Osam
