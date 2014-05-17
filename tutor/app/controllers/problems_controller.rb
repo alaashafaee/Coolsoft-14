@@ -63,6 +63,7 @@ class ProblemsController < ApplicationController
 			@track = Track.find_by_id(@problem.track_id)
 			@topic = Topic.find_by_id(@track.topic_id)
 			@tracks = Track.where(topic_id: @track.topic_id)
+			@snippet = @problem.snippet
 		else
 			render ('public/404')
 		end
@@ -112,7 +113,7 @@ class ProblemsController < ApplicationController
 	#	problem_params: a problem's title, description & track_id
 	# Returns:
 	#	Refreshes divisions in the page using AJAX without refreshing the whole page
-	# Author: Abdullrahman Elhusseny
+	# Author: Abdullrahman Elhusseny + Rami Khalil
 	def update
 		@problem = Problem.find_by_id(params[:id])
 		@track = Track.find_by_id(@problem.track_id)
@@ -123,13 +124,16 @@ class ProblemsController < ApplicationController
 			@message = "Description updated"
 		elsif problem_params[:track_id].to_i != @problem.track_id
 			@message = "Problem is moved to Track #{problem_params[:track_id]}"
+		elsif problem_params[:snippet] != @problem.snippet
+			@message = "Problem code template updated."
 		else
-			flash.keep[:notice] = "You have entered the same paramater no change has been made!"
+			flash.keep[:notice] = "You have entered the same parameters. No change has been made!"
 		end
 
 		if problem_params[:track_id].to_i == @problem.track_id
 			if problem_params[:title] != @problem.title ||
-				problem_params[:description] != @problem.description
+				problem_params[:description] != @problem.description ||
+				problem_params[:snippet] != @problem.snippet
 				begin
 					if @problem.update_attributes(problem_params)
 						flash.keep[:notice] = @message
@@ -204,16 +208,13 @@ class ProblemsController < ApplicationController
 
 	# [Add Problem - 4.4]
 	# Passes the input of the form as paramaters for create action to use it
-	# Parameters:
-	#	title: problem's title
-	#	description: problem's description
-	#	track_id: problem's track id
+	# Parameters: none
 	# Returns:
-	#	Params to create action & update action
-	# Author: Abdullrahman Elhusseny
+	#	Filtered parameter list for problems
+	# Author: Abdullrahman Elhusseny + Rami Khalil
 	private
 		def problem_params
-			params.require(:Problem).permit(:title, :description, :track_id)
+			params.require(:Problem).permit(:title, :description, :track_id, :snippet)
 		end
 
 end
