@@ -28,6 +28,10 @@ Tutor::Application.routes.draw do
 	post 'debuggers/:id' => 'debuggers#start'
 	get 'problem_bank/add'
 	post 'problem_bank/add' => 'problem_bank#add'
+	get 'problem_bank/show'
+	post 'problem_bank/show' => 'problem_bank#show'
+	get 'problem_bank/index'
+	post 'problem_bank/index' => 'problem_bank#index'
 
 	get 'problems/edit'
 

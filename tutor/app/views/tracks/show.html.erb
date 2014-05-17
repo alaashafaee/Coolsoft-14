@@ -68,7 +68,11 @@
 <% if @can_edit %>
 	<%= link_to "Add", new_problem_path(:id => @track.id), class: "btn btn-info" %>
 <% end %>
-<% if @can_edit %>
-	<%= link_to "Problem Bank", {:controller => 'problem_bank', :action => 'show'},
-	class: "btn btn-info", :id => @track.id %>
+<% if teaching_assistant_signed_in? || lecturer_signed_in? %>
+	<% if @can_edit %>
+		<%= link_to "Problem Bank", {:controller => 'problem_bank', :action => 'show'},
+		class: "btn btn-info", :id => @track.id %>
+	<% end %>
+<% else %>
+	<% render ('public/404') %>
 <% end %>

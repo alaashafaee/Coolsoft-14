@@ -9,8 +9,12 @@ class ProblemBankController < ApplicationController
 	#	@problems: returns all the problems in the database
 	# Author: Ahmed Sharaf
 	def show
-		@track_id = params[:id]
-		@problems = Problem.all
+		if teaching_assistant_signed_in? || lecturer_signed_in?
+			@track_id = params[:id]
+			@problems = Problem.all
+		else
+			render ('public/404')
+		end
 	end
 
 	# [Problem Bank - Story 3.21]
@@ -23,8 +27,12 @@ class ProblemBankController < ApplicationController
 	# 	@problem_id: the problem id to show the problem 
 	# Author: Ahmed Sharaf
 	def index
-		@track_id = params[:track_id]
-		@problem_id = params[:id]
+		if teaching_assistant_signed_in? || lecturer_signed_in?
+			@track_id = params[:track_id]
+			@problem_id = params[:id]
+		else
+			render ('public/404')
+		end
 	end
 
 	# [Problem Bank - Story 3.21]
@@ -46,10 +54,12 @@ class ProblemBankController < ApplicationController
 		@new_problem.duplicated = true
 		if teaching_assistant_signed_in?
 			@flag = true
-			@track.problems.each do |pr|
-				if pr.title == @new_problem.title
-					flash[:notice]= @new_problem.title,"You already have this problem"
-					@flag = false
+			if @track.problems.any?
+				@track.problems.each do |pr|
+					if pr.title == @new_problem.title
+						flash[:notice]= @new_problem.title,"You already have this problem"
+						@flag = false
+					end
 				end
 			end
 			if @flag == true
@@ -59,10 +69,12 @@ class ProblemBankController < ApplicationController
 			end
 		elsif lecturer_signed_in?
 			@flag = true
-			@track.problems.each do |pr|
-				if pr.title == @new_problem.title
-					flash[:notice]= @new_problem.title,"You already have this problem"
-					@flag = false
+			if @track.problems.any?
+				@track.problems.each do |pr|
+					if pr.title == @new_problem.title
+						flash[:notice]= @new_problem.title,"You already have this problem"
+						@flag = false
+					end
 				end
 			end
 			if @flag == true
