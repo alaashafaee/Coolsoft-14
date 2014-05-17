@@ -93,7 +93,7 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
-	resources :dashboards
+	resources :notifications
 	resources :assignments
 	resources :assignment_problems
 	resources :notes
