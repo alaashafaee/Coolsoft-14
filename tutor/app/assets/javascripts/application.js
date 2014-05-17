@@ -18,6 +18,26 @@
 //= require jquery.tokeninput
 //= require utilities
 //= require cocoon
+//= require jquery.plugin.js
+//= require jquery.countdown.js
+
+// [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+// Adds the behaviour of flash messages of the types alert, notice and error
+// 	to fade out after two seconds.
+// Parameters: none
+// Returns: none
+// Author: Khaled Helmy
+$(function() {
+	var flashCallback = function() {
+		return $(".alert, .notice, .error").fadeOut();
+	};
+	$(".alert, .notice, .error").bind('click', (function(_this) {
+		return function(ev) {
+			return $(".alert, .notice, .error").fadeOut();
+		};
+	})(this));
+	return setTimeout(flashCallback, 2000);
+});
 
 // [Simple Search auto-complete - Story 1.23]
 // autocomplete for the search bar

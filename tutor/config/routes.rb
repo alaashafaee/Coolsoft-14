@@ -1,7 +1,7 @@
 Tutor::Application.routes.draw do
 	
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+	ActiveAdmin.routes(self)
+	devise_for :admin_users, ActiveAdmin::Devise.config
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -20,7 +20,7 @@ Tutor::Application.routes.draw do
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	post 'solutions/execute' => 'solutions#execute'
- 	post '/posts/:id' => 'posts#update'
+	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
 
@@ -44,9 +44,10 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :contests
 	post "courses/choose"
 	post "courses/existing"
-  	post "courses/duplicate"
+	post "courses/duplicate"
 	get "model_answers/new"
 	post "model_answers/new"
 	resources :model_answers
@@ -90,9 +91,12 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :notifications
+	resources :contests
 	resources :assignments
 	resources :assignment_problems
 	resources :notes
+	resources :grades
 
 	# Example resource route with options:
 	#   resources :products do
