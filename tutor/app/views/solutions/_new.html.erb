@@ -122,4 +122,12 @@
 	var edit_session = editor.getSession();
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
+	var hidden_field_snippet = document.getElementById('snippet');
+
+	<!-- Author: Mohamed Fadel -->
+	if(hidden_field_snippet.value.length == 0)
+	edit_session.setValue(code_header + hidden_code_field.value);
+	else
+	edit_session.setValue(hidden_field_snippet.value);
+	<!--end-->
 </script>
