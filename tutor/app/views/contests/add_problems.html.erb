@@ -5,7 +5,11 @@
 </div>
 <% openable = true %>
 <div class="panel-group list-group" id="accordion">
+	<% if flash[:added] %>
+		<%= flash[:added]%>
+	<% end %>
 	<% if @problems.size == 0 %>
+		<br>
 		There are no problems to add.
 	<% end %>
 	<% @problems.each do |problem| %>

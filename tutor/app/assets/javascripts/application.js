@@ -17,6 +17,8 @@
 //= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
+//= require jquery.plugin.js
+//= require jquery.countdown.js
 
 // [Simple Search auto-complete - Story 1.23]
 // autocomplete for the search bar
