@@ -66,7 +66,7 @@ class HintsController < ApplicationController
 				respond_to do |format|
 					format.js
 					format.html {redirect_to :action => "edit", :format => :js,
-					:hint_id => @test_case.id, :track_id => session[:track_id]}
+						:hint_id => @test_case.id, :track_id => session[:track_id]}
 				end
 			end
 		end
@@ -119,17 +119,17 @@ class HintsController < ApplicationController
 		if @hint.save
 			if session[:flag] == "1"
 				redirect_to :controller => 'hints', :action => 'index', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id], 
-				:model_answer_id => session[:model_answer_id]
+					:problem_id => session[:problem_id], :track_id => session[:track_id], 
+					:model_answer_id => session[:model_answer_id]
 			elsif session[:flag] == "0"
 				redirect_to :controller => 'hints', :action => 'new', 
-				:problem_id => session[:problem_id], :track_id => session[:track_id], 
-				:model_answer_id => params[:model_answer_id],:flag => session[:flag]
+					:problem_id => session[:problem_id], :track_id => session[:track_id], 
+					:model_answer_id => params[:model_answer_id],:flag => session[:flag]
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @hint.model_answer_id,
-			 :flag => session[:flag],
-			:track_id => session[:track_id], :problem_id => params[:problem_id]}
+				:flag => session[:flag],
+				:track_id => session[:track_id], :problem_id => params[:problem_id]}
 		end	
 	end
 
@@ -143,7 +143,8 @@ class HintsController < ApplicationController
 	def destroy
 		@hint = Hint.find_by_id(params[:id])
 		@hint.destroy
-		redirect_to :controller => 'hints', :action => 'index', :problem_id => params[:problem_id], :track_id => params[:track_id], :model_answer_id => params[:model_answer_id]
+		redirect_to :controller => 'hints', :action => 'index', :problem_id => params[:problem_id],
+			:track_id => params[:track_id], :model_answer_id => params[:model_answer_id]
 	end
 
  	# [Edit helping hints - Story 4.13 ]
@@ -162,4 +163,3 @@ class HintsController < ApplicationController
 			params.require(:hint_edit).permit(:message, :submission_counter)
 		end
 end
-
