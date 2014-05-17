@@ -73,8 +73,9 @@ textarea  {
 	min-height: 150px;
 	background: white;
 	overflow: auto;
-	max-width: 750px;
-	min-width: 750px;
+	max-width: 100px;
+	min-width: 100%;
+
 }
 
 .compilation_succeeded {
