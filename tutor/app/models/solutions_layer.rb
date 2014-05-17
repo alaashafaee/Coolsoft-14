@@ -13,6 +13,7 @@ class SolutionsLayer
 	# Author: Mussab ElDash
 	def self.execute lang, code, student_id, problem_id, problem_type, class_name, cases
 		executer = get_executer lang
+		executer = executer.new
 		unless executer
 			return false
 		end
@@ -119,13 +120,22 @@ class SolutionsLayer
 	# 	code: The code to be debugged
 	# 	student_id: The id of the current signed in student
 	# 	problem_id: The id of the problem being solved
-	# Returns:
+	# 	problem_type: The type of the problem being solved
+	# 	class_name: The class name of the code
+	# Returns: 
 	#	A new Solution
 	# Author: Mussab ElDash
-	def self.get_solution code, student_id, problem_id, type = "Problem", class_name
-		type = type.capitalize
-		solution = Solution.create({code: code, student_id: student_id,
-				problem_id: problem_id, problem_type: type, class_name: class_name})
+	def self.get_solution code, student_id, problem_id, problem_type, class_name
+		problem_type = problem_type.capitalize
+		solution = Solution.create({code: code, student_id: student_id, class_name: class_name, status: 2})
+		if problem_type == "Problem"
+			Problem.find_by_id(problem_id).solutions << solution
+		elsif problem_type == "Cproblem"
+			Cproblem.find_by_id(problem_id).solutions << solution
+		else
+			AssignmentProblem.find_by_id(problem_id).solutions << solution
+		end
+		solution.save
 		return solution
 	end
 
