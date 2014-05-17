@@ -30,7 +30,7 @@ Tutor::Application.routes.draw do
 	get 'problems/edit'
 
 	get 'c_problems/new'
-	get 'c_problems/create'
+	post 'c_problems/create'
 
 	get "tips/new"
 	get "tips/create"

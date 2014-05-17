@@ -9,27 +9,29 @@ class CProblemsController < ApplicationController
 	# Returns: none
 	# Author: Rami Khalil
 	def create
-		cproblem = Problem.new(cproblem_params)
+		@cproblem = Cproblem.new(cproblem_params)
 		if lecturer_signed_in?
-			cproblem.owner_id = current_lecturer.id
-			cproblem.owner_type = "lecturer"
+			@cproblem.owner_id = current_lecturer.id
+			@cproblem.owner_type = "lecturer"
 		elsif teaching_assistant_signed_in?
-			cproblem.owner_id = current_teaching_assistant.id
-			cproblem.owner_type = "teaching assistant"
+			@cproblem.owner_id = current_teaching_assistant.id
+			@cproblem.owner_type = "teaching assistant"
 		end
 
-		if Problem.title.length == 0
+		if @cproblem.title.length == 0
 			flash.keep[:notice] = "The problem can not have a blank title."
-			redirect_to :back
-		elsif Problem.description.length == 0
+		elsif @cproblem.description.length == 0
 			flash.keep[:notice] = "The problem can not have a blank description."
-			redirect_to :back
-		elsif Problem.time_limit.length == 0
+		elsif @cproblem.time_limit.to_s.length == 0
 			flash.keep[:notice] = "The problem can not have a blank time limit."
-			redirect_to :back
+		elsif (!@cproblem.time_limit.is_a? Numeric) || @cproblem.time_limit < 1
+			flash.keep[:notice] = "The problem time limit must be a numeric value greater than zero."
 		else
-			Problem.save
+			@cproblem.save
+			flash.keep[:notice] = "Your contest problem has been created."
 		end
+		
+		render ('new')
 	end
 
 	# [Add contest problem - Story 3.23]
@@ -41,6 +43,7 @@ class CProblemsController < ApplicationController
 		if !lecturer_signed_in? && !teaching_assistant_signed_in?
 			render ('public/404')
 		else
+			@cproblem = Cproblem.new
 			render ('new')
 		end
 	end
@@ -51,6 +54,6 @@ class CProblemsController < ApplicationController
 	# Returns: Filtered parameters
 	# Author: Rami Khalil
 	def cproblem_params
-		params.require(:CProblem).permit(:title, :description, :time_limit)
+		params.require(:cproblem).permit(:title, :description, :time_limit)
 	end
 end

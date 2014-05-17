@@ -5,21 +5,21 @@
 	<div class = "alert alert-danger" style = "width: 50%;"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for :CProblem, url: {action: "create"} do |cproblem| %>
+<%= form_for @cproblem, url: {action: "create"} do |cproblem| %>
 	<p>
-		<%= problem.label :title %><br> 
-		<%= problem.text_field :title, class: "form-control", style: "width:60%" %>
+		<%= cproblem.label :title %><br> 
+		<%= cproblem.text_field :title, class: "form-control", style: "width:60%" %>
 	</p>
 	<p>
-		<%= problem.label :description %><br>
-		<%= problem.text_area :description, :cols => "50", :rows => "10",
+		<%= cproblem.label :description %><br>
+		<%= cproblem.text_area :description, :cols => "50", :rows => "10",
 			 class: "form-control", style: "width:60%" %>
 	</p>
 	<p>
-		<%= problem.label :time_limit %><br> 
-		<%= problem.text_field :time_limit, class: "form-control", style: "width:60%" %>
+		<%= cproblem.label :time_limit %><br> 
+		<%= cproblem.text_field :time_limit, class: "form-control", style: "width:60%" %>
 	</p>
 	<p>
-		<%= problem.submit "Save Contest Problem", class: "btn btn-info" %>
+		<%= cproblem.submit "Save Contest Problem", class: "btn btn-info" %>
 	</p>
 <% end %>
