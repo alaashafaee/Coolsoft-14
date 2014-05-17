@@ -84,8 +84,6 @@ class AssignmentProblemsController < ApplicationController
 					if @new_problem.save
 						@assignment.problems << @new_problem
 						flash[:notice] = "problems are now added"
-						redirect_to :back
-						return
 					end
 				else
 					@title = @a.title
@@ -95,6 +93,7 @@ class AssignmentProblemsController < ApplicationController
 					return
 				end
 			end
+			redirect_to :back
 		end
 	end
 
