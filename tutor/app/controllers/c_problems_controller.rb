@@ -1,5 +1,4 @@
 class CProblemsController < ApplicationController
-
 	# [Add contest problem - Story 3.23]
 	# Creates a new contest problem to be inserted in the problem table
 	# Parameters:
