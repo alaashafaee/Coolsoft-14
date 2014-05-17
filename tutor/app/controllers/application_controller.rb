@@ -28,22 +28,22 @@ class ApplicationController < ActionController::Base
 		def update_sanitized_params
 			if "#{resource_name}" == "lecturer"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|lecturer| lecturer.permit(:name, :email, 
-						:password, :password_confirmation, :university, 
+					|lecturer| lecturer.permit(:name, :email,
+						:password, :password_confirmation, :university,
 						:department)
 				}
 			elsif "#{resource_name}" == "student"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|student| student.permit(:name, :email, 
-						:password, :password_confirmation, 
-						:university, :faculty, :major, :semester, 
+					|student| student.permit(:name, :email,
+						:password, :password_confirmation,
+						:university, :faculty, :major, :semester,
 						:advising, :probation)
 				}
 			elsif "#{resource_name}" == "teaching_assistant"
 				devise_parameter_sanitizer.for(:sign_up) {
-					|teaching_assistant| teaching_assistant.permit(:name, 
-						:email, :password, :password_confirmation, 
-						:graduated_from, :graduated_year, :degree, 
+					|teaching_assistant| teaching_assistant.permit(:name,
+						:email, :password, :password_confirmation,
+						:graduated_from, :graduated_year, :degree,
 						:university, :department)
 				}
 			end

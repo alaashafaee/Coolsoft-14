@@ -105,7 +105,8 @@ class TeachingAssistant < ActiveRecord::Base
 	# Author: Khaled Helmy
 	def password_complexity
 		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
-			errors.add(:password, "must include at least one lowercase letter, one uppercase letter, and one digit")
+			errors.add(:password, "must include at least one lowercase letter, " +
+				"one uppercase letter, and one digit")
 		end
 	end
 
