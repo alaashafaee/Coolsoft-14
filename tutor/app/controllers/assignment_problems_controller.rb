@@ -61,6 +61,7 @@ class AssignmentProblemsController < ApplicationController
 	# Author: Nadine Adel
 	def destroy
 		@problem = AssignmentProblem.find_by_id(params[:id])
+		@problem.destroy
 		flash[:notice] = "Answer successfully Deleted"
 		redirect_to :controller=> 'assignments',
 			:action=> 'show', :id=> @problem.assignment_id
