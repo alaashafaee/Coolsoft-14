@@ -8,7 +8,7 @@ class Notification < ActiveRecord::Base
 	#Methods
 
 	# [Notification sending-story 2.9]
-	# sends notification to the lecturer of the course when a student signs up to it
+	# Sends notification to the lecturer of the course when a student signs up to it
 	# Parameters:
 	#	lecturer_id: the id of the lecturer
 	#	student_id : the id of the student who subscribed 
@@ -26,7 +26,7 @@ class Notification < ActiveRecord::Base
 	end
 
 	# [Notification sending-story 2.9]
-	# sends notifications to the students of the course when an assignment is added
+	# Sends notifications to the students of the course when an assignment is added
 	# Parameters:
 	#	assignment_id: the id of the assignment added
 	# Returns: None
@@ -45,7 +45,7 @@ class Notification < ActiveRecord::Base
 	end
 
 	# [Notification sending-story 2.9]
-	# sends notifications to the students of the course when a contest is created
+	# Sends notifications to the students of the course when a contest is created
 	# Parameters:
 	#	course_id: the id of the course of the contest
 	#	contest_id: the id of the contest created 
@@ -65,7 +65,7 @@ class Notification < ActiveRecord::Base
 	end
 
 	# [Notification sending-story 2.9]
-	# sends notification to the student when the student is acknowledged
+	# Sends notification to the student when the student is acknowledged
 	# Parameters:
 	#	student_id : the id of the student being acknowledged
 	#	lecturer_id: the id of the lecturer who is acknowleding
@@ -81,7 +81,7 @@ class Notification < ActiveRecord::Base
 	end	
 
 	# [Notification sending-story 2.9]
-	# sends notification to the students of a course when the lecturer 
+	# Sends notification to the students of a course when the lecturer 
 	# 	activate/deactivate the discussion board
 	# Parameters:
 	#	discussion_board_id: the id of the discussion board being toggled
