@@ -16,7 +16,7 @@ class TeachingAssistant < ActiveRecord::Base
 
 	#Validations
 	validate :duplicate_email
-	validate :password_complexity
+	# validate :password_complexity
 	validate :letters_only
 	validates :name, presence: true
 	validates :graduated_from, presence: true
