@@ -19,7 +19,7 @@
  	padding-top: 20px;
 }
 .content_container{
-	background-color: #FAFAFA;
+
 }
 .profile_picture {
 	width:200px;
@@ -165,4 +165,46 @@
 
 .sign_in_button {
 	margin-right: 20px;
+}
+
+.left-box{
+	margin: -30px -15px -15px;
+}
+
+.xob {
+	padding: 0px 20px 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	background-color: #FAFAFA;
+
+}
+
+.xox {
+	background-color: #FAFAFA;
+	border-radius: 5px;
+}	
+
+.topic-box .well {
+	max-width: 400px;
+	max-height: 260px;
+	min-width: 400px;
+	min-height: 260px;
+	overflow-y: auto;	
+}
+
+.box-title {
+	font-size: 2em;
+	color: #808080;
+	margin-bottom: 30px;
+	margin-top: 15px;
+	font-weight: lighter;
+	border-bottom: solid 0.5px #D2D3D4;
+	padding-bottom: 10px;
+}
+
+.box-title .btn {
+	float: right;
+	height: 40px;
+	text-align: center;
 }
