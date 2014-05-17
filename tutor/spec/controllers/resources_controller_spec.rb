@@ -1,22 +1,27 @@
 require 'spec_helper'
 
-
+include Devise::TestHelpers
 
 describe ResourcesController do
+	
 	before(:each) do
-		@course_1 = Course.create!(link: "http://www.google.com",
+		@course_1 = Course.new(link: "http://www.google.com",
 			name: "CS1", description: "Course 1",
 			code: "434", year: "2014", semester: "1")
-		@course_2 = Course.create!(link: "http://www.google.com",
+		@course_1.save!
+		@course_2 = Course.new(link: "http://www.google.com",
 			name: "CS2", description: "Course 2",
 			code: "400", year: "2014", semester: "2")
+		@course_2.save!
+		lecturer = Lecturer.last
 		@course_1.resources << Resource.create!(link: "youtube.com")
 		@course_2.resources << Resource.create!(link: "google.com")
 		@course_2.resources << Resource.create!(link: "facebook.com")
 		@resource = Resource.create!(link: "twitter.com")
 		@resource_new = Resource.new(link: "linkedin.com")
-		ResourcesController.skip_before_filter :authenticate!
-		ResourcesController.skip_before_filter :authenticate_lecturer!
+    	@request.env["devise.mapping"] = Devise.mappings[:lecturer]
+    	lecturer.confirm!
+		sign_in lecturer
 	end
 
 	describe "Resourse" do
@@ -124,16 +129,14 @@ describe ResourcesController do
 				}.to change(Resource,:count).by(0)
 			end
 
-			# it "updates the resource link if it is changed" do
-			# 	resource_id = @course_2.resources.first.id
-			# 	post :create, course_id: @course_2.id,
-			# 		course: { resources_attributes:
-			# 		{ "1" => {link: "facebook.com", id: @course_2.resources.first.id }}}
-			# 	expect(assigns(@course_2.resources).find(resource_id).link).to eq("https://facebook.com")
-				
-			# end
+			it "updates the resource link if it is changed" do
+				resource_id = @course_2.resources.first.id
+				post :create, course_id: @course_2.id,
+					course: { resources_attributes:
+					{ "1" => {link: "facebook.com", id: @course_2.resources.first.id }}}
+				expect(assigns(:course).resources.find(resource_id).link).to eq("http://facebook.com")
+			end
 		end
-
 	end
 
 end
