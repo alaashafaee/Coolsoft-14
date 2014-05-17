@@ -20,8 +20,8 @@ describe ContestsController do
 
 		it "creates a new contest" do
 			sign_in @lecturer
-			course = Course.new(name:"Amirooo",
-				code:"tip101", year:2014, semester:1, :description => "hary",
+			course = Course.new(name: "Amirooo",
+				code: "tip101", year: 2014, semester: 1, :description => "hary",
 				:link => "http://www.test.org/")
 			course.save!
 			@lecturer.courses << course
