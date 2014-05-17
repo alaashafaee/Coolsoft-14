@@ -103,7 +103,7 @@ class ProblemsController < ApplicationController
 		if Problem.find_by_id(params[:id]).destroy
 			flash[:notice] = "Problem successfully Deleted"
 			redirect_to(:controller => 'tracks',
-				 :action => 'show' ,:id => @track)
+				:action => 'show' ,:id => @track)
 		end
 	end
 
@@ -206,78 +206,6 @@ class ProblemsController < ApplicationController
 		end
 	end
 
-	# [Add Problem - 4.4]
-	# Passes the input of the form as paramaters for create action to use it
-	# Parameters: none
-	# Returns:
-	#	Filtered parameter list for problems
-	# Author: Abdullrahman Elhusseny + Rami Khalil
-	private
-		def problem_params
-			params.require(:Problem).permit(:title, :description, :track_id, :snippet)
-		end
-
-	# [average number of trials - Story 2.3]
-	# Select a problem_id and count the number of students who tried to answer this problem
-	# Parameters:
-	# Parameters :
-	# 	success_attempts:an intger value that shows the number of correct answers by students
-	# 	failure_attempts:an intger value that shows the number of wrong answers by students
-	# 	student_id:a unique value for every student who try to answer a problem
-	# 	problem_id:a unique value for every problem
-	# Returns: 
-	# 	an integer value : number of trials to answer a specific problem		
-	# 	in case of failure : a message "No one answered this problem "
-	# Author: Rana ElNagar
- 	def average
- 		@problem=Problem.find_by_id(params[:id])
-
- 		if Solution.find_by problem_id == @problem?
- 			@students=Solution.distinct.count.(:student_id)
- 		else 
- 			redirect_to "has_no_answer"
- 		end
- 		@number=Problem.count(:success_attempts)+Problem.count(:failure_attempts)
- 		@average=(@number / @students) * 100
- 		if @average.nil?
- 			flash[:notice]= "no one answered this problem"
- 			render "has_no_answer"
- 		else
- 			redirect_to "statistics"
- 		end
- 	end
-
-
- 	# [average time - Story 2.2]
-	# Select a problem_id and calculate the average time taken to answer a problem
-	# Parameters :
-	# 	student_id:a unique value for every student who try to answer a problem
-	# 	problem_id:a unique value for every problem
-	# 	time:an intger value to show the time taken to write a specific solution
-	# Returns: 
-	# 	an integer value : average time taken to answer a specific problem	
-	# 	in case of failure : a message "No one answered this problem "
-	# Author: Rana ElNagar
- 	def time
- 		@problem=Problem.find_by_id(params[:id])
- 		if Solution.find_by problem_id == @problem?
- 			@time = Solution.select("time") 
- 			unless @time.nil?
- 				@time = @time + Solution.select("time")
- 			end
- 			@students=Solution.distinct.count.(:student_id)
- 		else 
- 			redirect_to "statistics"
- 		end
- 		@averageTime=(@time / @students)*100
- 		if @averageTime.nil?
- 			flash[:notice]="no one answered this problem"
- 			render "has_no_answer"
- 		else
- 			render "statistics"
- 		end
- 	end
-
  	# [show attempts- Story 2.4]
 	# Select a problem_id and select the attempts to answer this problem
 	# Parameters :
@@ -289,18 +217,84 @@ class ProblemsController < ApplicationController
 	# Author: Rana ElNagar
  	def showAttempts
  		@problem=Problem.find_by_id(params[:id])
- 		@solution=Solution.find_by problem_id 
- 		if @problem == @solution?
- 			@attempt=Solution.select("code")
- 			if @attempt.nil?
+ 		if Solution.where(problem_id: @problem.id) != 0 
+ 			@attempt=Solution.where(problem_id: @problem.id).pluck(:code)
+ 			if @attempt == ""
  				flash[:notice]="no one answered this problem"
  				render "has_no_answer"
  			else 
  				render "statistics"
  			end
- 		else 
- 			redirect_to "showAttempts"
+ 		else
+ 			render "has_no_answer"
  		end
  	end
 
+ 	# [average number of trials - Story 2.3]
+	# Select a problem_id and count the number of students who tried to answer this problem
+	# Parameters :
+	# 	success_attempts:an intger value that shows the number of correct answers by students
+	# 	failure_attempts:an intger value that shows the number of wrong answers by students
+	# 	student_id:a unique value for every student who try to answer a problem
+	# 	problem_id:a unique value for every problem
+	# Returns: 
+	# 	an integer value : number of trials to answer a specific problem		
+	# 	in case of failure : a message "No one answered this problem "
+	# Author: Rana ElNagar
+ 	def average
+ 		@problem=Problem.find_by_id(params[:id])
+ 		if Solution.where(problem_id: @problem.id) != 0
+ 			@students=Solution.distinct.count(:student_id)
+ 		else 
+ 			render "has_no_answer"
+ 		end
+ 		@success=Attempt.where(problem_id: @problem.id).count(:success == true)
+ 		@failure= Attempt.where(problem_id: @problem.id).count(:failure == true)
+ 		@total= @success + @failure
+ 		@average= @total / @students
+ 		if @average == 0
+ 			flash[:notice]= "no one answered this problem"
+ 			render "has_no_answer"
+ 		else
+ 			render "statistics"
+ 		end
+
+ 	end
+ 	# [average time - Story 2.2]
+	# Select a problem_id and calculate the average time taken to solve this problem
+	# Parameters :
+	# 	time: an integer shows the time taken to answer a problem
+	# 	student_id:a unique value for every student who try to answer a problem
+	# 	problem_id:a unique value for every problem
+	# Returns: 
+	# 	an integer value : average time taken to answer		
+	# 	in case of failure : a message "No one answered this problem"
+	# Author: Rana ElNagar
+ 	def averageTime
+ 		@problem=Problem.find_by_id(params[:id])
+ 		if Solution.where(problem_id: @problem.id) != 0
+ 			@students=Solution.distinct.count(:student_id)
+ 		else 
+ 			render "has_no_answer"
+ 		end
+ 			@time= Solution.where(problem_id: @problem.id).sum(&:time)
+ 			@averageTime=( @time / @students)*100
+ 			if @averageTime ==0
+ 			flash[:notice]="no one answered this problem"
+ 			render "has_no_answer"
+ 		else 
+ 			render "statistics"
+ 		end
+	end
+
+ 	# [Add Problem - 4.4]
+	# Passes the input of the form as paramaters for create action to use it
+	# Parameters: none
+	# Returns:
+	#	Filtered parameter list for problems
+	# Author: Abdullrahman Elhusseny + Rami Khalil
+	private
+	def problem_params
+		params.require(:Problem).permit(:title, :description, :track_id, :snippet)
+	end
 end

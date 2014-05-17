@@ -53,6 +53,8 @@ Tutor::Application.routes.draw do
 	get "model_answers/new"
 	post "model_answers/new"
 	resources :model_answers
+	get 'problems/:id/statistics' => 'problems#statistics'
+
 	#resources :test_cases
 	#devise_for :teaching_assistants
 	#devise_for :students

@@ -1,1 +1,24 @@
-statistics.html.erb
+<h1> Statistics</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<%= column_chart [
+  [ "Average number of trials",  @average ],
+  [ "Avergae time", @averageTime ] ]
+  %>
+ <h1> Attempts </h1>
+ <body>
+	<table>
+		<tr>
+			<th>attempts</th>
+		</tr>
+		<tr>
+			<% if @attempt == "" %>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;No solutions added yet!</p>
+				<% else %>
+					<ul class="list-group">
+					<%= @attempt.each do |tmp| %>
+						<th> tmp.code </th>
+					<% end %>
+				<% end %>
+		</tr>
+	</table>
+</body>
