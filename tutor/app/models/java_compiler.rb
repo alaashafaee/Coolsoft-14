@@ -28,11 +28,12 @@ class JavaCompiler < ActiveRecord::Base
 	#	solution: The submitted solution.
 	# Returns:
 	#	A list. The first element is a boolean indicating the result of the
-	#		compilation process. The second element contains the compilation errors if any.
-	#		The third element contains the compilation warnings if any.
+	#		compilation process. The second element contains the compilation
+	#		errors if any. The third element contains the compilation warnings if any.
 	# Author: Ahmed Moataz
 	def self.compiler_feedback(solution)
 		feedback = compile(solution, solution.code)
+		
 		new_feedback = change_error_headers(solution, feedback)
 		if new_feedback == ""
 			return {success: true, errors: nil, warnings: nil}
@@ -49,11 +50,14 @@ class JavaCompiler < ActiveRecord::Base
 	#	solution: The submitted solution.
 	#	feedback: The compiler's feedback.
 	# Returns:
-	#	The compiler's feedback with the error headers changed to the solution's class name.
+	#	new_feedback: The compiler's feedback with the error headers changed
+	#	to the solution's class name.
 	# Author: Ahmed Moataz
 	def self.change_error_headers(solution, feedback)
 		header = Solution::SOLUTION_PATH + solution.folder_name + solution.class_name
-		return feedback.gsub(header, solution.class_name).gsub(header, solution.class_name)
+		new_feedback = feedback.gsub("\u0000"," ").gsub("\u001A"," ")\
+			.gsub(header, solution.class_name)
+		return new_feedback
 	end
 
 end
