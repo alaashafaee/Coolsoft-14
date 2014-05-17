@@ -16,7 +16,8 @@ class Executer
 		validity = check_input_validity(input, $solution.problem.id, problem_type)
 		if validity[:status]
 			Dir.chdir(Solution::SOLUTION_PATH + folder_name) {
-				$execute_res = %x[#{$lang + file_name + $extension + ' ' + input + ' 2>&1'}]
+				echo_input = 'echo ' + '\'' + input + '\'' + ' | '
+				$execute_res = %x[#{echo_input + $lang + ' ' + file_name + $extension}]
 			}
 			if $execute_res.include?($error)
 				return {executer_feedback: false, executer_output: get_runtime_error()}
@@ -39,7 +40,7 @@ class Executer
 	def check_input_validity(input, problem_id, problem_type)
 		test_cases = get_test_cases(problem_id, problem_type)
 		variables_number = test_cases.first.input.split(" ").count
-		if input.split(" ").count != variables_number
+		if input.split("\n").count != variables_number
 			msg = "Enter only " + variables_number.to_s + " inputs"
 			return {status: false, msg: msg}
 		end
