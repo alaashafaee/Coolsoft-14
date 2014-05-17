@@ -11,13 +11,14 @@ class ContestsController < ApplicationController
 	#	@contest: A list of all the user's contests
 	# Author: Muhammad Mamdouh
 	def index
-		if lecturer_signed_in?
+		if current_lecturer
 			@contests = current_lecturer.contests
-		elsif teaching_assistant_signed_in?
+		elsif current_teaching_assistant
 			@contests = current_teaching_assistant.contests
-		elsif student_signed_in?
+		elsif current_student
 			@my_contests = current_student.contests
 			@courses = current_student.courses
+			@contests = []
 			@courses.each do |course|
 				course.contests.each do |contest|
 					@contests << contest

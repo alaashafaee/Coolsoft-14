@@ -245,11 +245,11 @@ puts("# ----------------------- Recommendations ----------------------- ")
 
 puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-		incomplete:false, start_time: "11:12:00", end_time: "12:12:00", start_date:"1993-6-6", end_date: "1993-6-7")
+		incomplete:false, start_time: "1993-6-6 11:12:00", end_time: "1993-6-7 12:12:00")
 	Contest.create(title:"Recursion", description:"If you can solve this you will get a level up",
-		incomplete:false, start_time: "11:12:00", end_time: "12:12:00", start_date:"1993-6-6", end_date: "1993-6-7")
+		incomplete:false, start_time: "1993-6-6 11:12:00", end_time: "1993-6-7 12:12:00")
 	Contest.create(title:"Mosab2et A7la Ossa", description:"If you can solve this you will get a level up",
-		incomplete:false, start_time: "11:12:00", end_time: "12:12:00", start_date:"1993-6-6", end_date: "1993-6-7")
+		incomplete:false, start_time: "1993-6-6 11:12:00", end_time: "1993-6-7 12:12:00")
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true)
@@ -483,7 +483,9 @@ puts("# ----------------------- Courses ----------------------- ")
 		Course.first.assignments << Assignment.find_by_id(2)
 		Course.first.assignments << Assignment.find_by_id(4)
 		Course.find_by_id(2).assignments << Assignment.find_by_id(3)
-
+	## Contests
+		Course.first.contests << Contest.first
+		Course.first.contests << Contest.find_by_id(2)	
 
 puts("# ----------------------- DiscussionBoard ----------------------- ")
 	## Posts
