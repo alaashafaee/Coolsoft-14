@@ -1,4 +1,5 @@
 class ResourcesController < ApplicationController
+	before_action :authenticate_lecturer!, except: [:index]
 
 	# [Course Resources - Story 1.25]
 	# Initialize resource
@@ -18,36 +19,32 @@ class ResourcesController < ApplicationController
 	# Returns: redirect to course resources page
 	# Author: Ahmed Elassuty
 	def create
-		if lecturer_signed_in?
-			@course = Course.find_by_id(params[:course_id])
-			unless params[:course].nil?
-				params[:course][:resources_attributes].each do |f|
-					link_body = f[1][:link]
-					unless link_body.nil?
-						if link_body.empty?
-							Resource.find(f[1][:id]).destroy
-						else
-							resource = inspect(link_body)
-							unless resource.nil?
-								@resource = Resource.find_by(link: resource[:link],
-									course_id: @course.id)
-								if @resource.nil?
-									@resource = Resource.new(resource)
-									@resource.remote_img_url = resource[:img]
-									@course.resources << @resource
-									current_lecturer.resources << @resource
-								else
-									@resource.update_attributes(resource)
-								end
+		@course = Course.find_by_id(params[:course_id])
+		unless params[:course].nil?
+			params[:course][:resources_attributes].each do |f|
+				link_body = f[1][:link]
+				unless link_body.nil?
+					if link_body.empty?
+						Resource.find(f[1][:id]).destroy
+					else
+						resource = inspect(link_body)
+						unless resource.nil?
+							@resource = Resource.find_by(link: resource[:link],
+								course_id: @course.id)
+							if @resource.nil?
+								@resource = Resource.new(resource)
+								@resource.remote_img_url = resource[:img]
+								@course.resources << @resource
+								current_lecturer.resources << @resource
+							else
+								@resource.update_attributes(resource)
 							end
 						end
 					end
 				end
 			end
-			render action: :index
-		else
-			redirect_to :back
 		end
+		render action: :index
 	end
 
 	# [Course Resources - Story 1.25]
