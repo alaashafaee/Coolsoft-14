@@ -73,10 +73,13 @@ describe Notification do
 	end
 
 	it "sends notifications to lecturer when lecturer acknowledge student" do
+		acknowledgement = Acknowledgement.create(message: 'GoodJob')
+		@student1.acknowledgements << acknowledgement
 		NotificationsController.skip_before_filter :authenticate!
-		Notification.acknowledgement_notify(@student1.id, @lecturer.id)
+		Notification.acknowledgement_notify(@student1.id, @lecturer.id, acknowledgement.id)
 		expect(@student1.notifications.last.message).to eq(
-			"#{@lecturer.name} has sent you an acknowledgement")
+		"#{@lecturer.name} has sent you an acknowledgement saying 
+		'#{@student1.acknowledgements.last.message}'")
 		expect(@student1.notifications.count).to eq(1)
 	end
 

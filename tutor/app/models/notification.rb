@@ -71,11 +71,13 @@ class Notification < ActiveRecord::Base
 	#	lecturer_id: the id of the lecturer who is acknowleding
 	# Returns: None
 	# Author: Ahmed Atef
-	def self.acknowledgement_notify student_id,lecturer_id
+	def self.acknowledgement_notify student_id,lecturer_id,acknowledgement_id
 		student = Student.find_by_id(student_id)
 		lecturer = Lecturer.find_by_id(lecturer_id)
+		acknowledgement = Acknowledgement.find_by_id(acknowledgement_id)
 		new_notification = Notification.new
-		new_notification.message = "#{lecturer.name} has sent you an acknowledgement"
+		new_notification.message = "#{lecturer.name} has sent you an acknowledgement saying 
+		'#{acknowledgement.message}'"
 		new_notification.save
 		student.notifications << new_notification
 	end	
