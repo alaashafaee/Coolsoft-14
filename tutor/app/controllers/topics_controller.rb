@@ -124,8 +124,12 @@ class TopicsController < ApplicationController
 			params.require(:topic).permit(:title,:description)
 		end
 
+		def track_params
+			params.permit(:difficulty)
+		end
+
 		def course_params
-				params.permit(:course_id)
+			params.permit(:course_id)
 		end
 
 end
