@@ -18,8 +18,6 @@
 						style: "float: left;margin-left: 15px",method: :post %> 
 			</li> 
 
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <!--	<link rel="stylesheet" href="/resources/demos/style.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
 
@@ -32,11 +30,9 @@
 			</ul>
 		</p>
 	</div>
-
-	<button id="opener", class= "btn btn-success", style= "float: left;margin-left: 15px", 
-	style = "margin-top:10px;", data-ajax="false">Order topics
-		</button>
-
+			<li>
+				<span id="opener" , class="btn btn-info">Order topics</span>
+			</li>
 			<!-- This button activates the add TA action -->
 			<li>
 				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
