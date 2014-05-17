@@ -406,8 +406,7 @@ debug_console = ->
 	disabled = get_editor().getReadOnly()
 	unless disabled
 		if get_lang() == "java"
-			template = "public class CoolSoft {\n"
-			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+			template = $('#problem_default_code').val()
 		else
 			template = ""
 		get_editor_session().setValue(template);
