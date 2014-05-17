@@ -136,6 +136,22 @@ describe ResourcesController do
 					{ "1" => {link: "facebook.com", id: @course_2.resources.first.id }}}
 				expect(assigns(:course).resources.find(resource_id).link).to eq("http://facebook.com")
 			end
+
+			it "adds new resource for the course" do
+				resource_id = @course_2.resources.first.id
+				post :create, course_id: @course_2.id,
+					course: { resources_attributes:
+					{ "1" => {link: "youtube.com"}}}
+				expect(assigns(:course).resources.last.link).to eq("http://youtube.com")
+			end
+
+			it "assigns the resource for the current lecturer" do
+				resource_id = @course_2.resources.first.id
+				post :create, course_id: @course_2.id,
+					course: { resources_attributes:
+					{ "1" => {link: "youtube.com"}}}
+				expect(assigns(:current_lecturer).resources.last.link).to eq("http://youtube.com")
+			end
 		end
 	end
 
