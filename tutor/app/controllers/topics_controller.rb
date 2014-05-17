@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
 	# This Action should be put in the future in the 
 	# Topic controller
 	# Parameters: 
-	#   id: The id of the topic
+	#	id: The id of the topic
 	# Returns: The view of the requested topic
 	# Author: Mussab ElDash
 	def show
@@ -23,12 +23,11 @@ class TopicsController < ApplicationController
 	end
 
 	# [Specify Topics - Story 1.2]
-	# Description: This action takes the passed course id and assings
-	#              the respective course to an instance variable.
+	# This action takes the passed course id and assings
+	# the respective course to an instance variable.
 	# Parameters:
 	#	params[:course_id]: The current course id
-	# Returns: 
-	# 	none
+	# Returns: none
 	# Author: Ahmed Akram
 	def new
 		@course = Course.find(params[:course_id])
@@ -61,7 +60,7 @@ class TopicsController < ApplicationController
 	# Parameters:
 	#	params[:id]: The current course id
 	# Returns: 
-	# 	@topics: A list of all topics belonging to the course
+	#	@topics: A list of all topics belonging to the course
 	# Author: Ahmed Akram
 	def index
 		@course = Course.find(params[:course_id])
