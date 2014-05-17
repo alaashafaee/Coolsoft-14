@@ -50,6 +50,7 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :contests
 	post "courses/choose"
 	post "courses/existing"
   	post "courses/duplicate"
