@@ -71,7 +71,7 @@ describe Executer do
 				feed_back = SolutionsLayer.execute(@lang, @code, @student_id,
 							@problem_id, @problem_type, @class_name, @cases1)
 				expected_hash = {executer_feedback: true,
-					executer_output: {success: true, message: "5\n"}
+					executer_output: {success: true, message: "5\n"}}
 				expect(feed_back).to eq expected_hash
 			end
 		end
