@@ -10,6 +10,8 @@ puts("                      Creating records                    ")
 puts("**************************************************************")
 
 puts("# ----------------------- Admins ----------------------- ")
+	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+	l.save!
 
 puts("# ----------------------- Lecturers ----------------------- ")
 	l = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
@@ -66,19 +68,19 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 puts("# ----------------------- Courses ----------------------- ")
 
 	Course.create(name:"Data Structures and Alogrithms", 
-				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1)
+				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name:"Computer Programming Lab", 
-				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1)
+				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name:"Course3", 
-				description:"This is course three", code:3, year:2014, semester:1)
+				description:"This is course three", code:3, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 2", 
-				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC")
+				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 3", 
-				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC")
+				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 4", 
-				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC")
+				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 	Course.create(name: "CS 5", 
-				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC")
+				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
 
 puts("# ----------------------- Course_Student ----------------------- ")
 	CourseStudent.create(share: true)
@@ -122,7 +124,7 @@ puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
  	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
-	
+
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
 	ModelAnswer.create(title: "Answer2", answer: "System.out.println('SQL baaaad')-2")
@@ -135,9 +137,9 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
 	TestCase.create(output: "hello World 2", input:"x = 1")
 	TestCase.create(output: "hello World 3", input:"x = 2")
-	TestCase.create(output: "5.0\n", input:"10 2")
-	TestCase.create(output: "2.5\n", input:"5 2")
-	TestCase.create(output: "Infinity\n", input:"10 0")
+	TestCase.create(output: "5.0\n", input:"10\n2")
+	TestCase.create(output: "2.5\n", input:"5\n2")
+	TestCase.create(output: "Infinity\n", input:"10\n0")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -211,9 +213,10 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 4", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
-	Solution.create(code:"println(My first solution)", length:5, status:1)
+	Solution.create(code: "println(My first submitted solution);", length: 5, status: 1)
 	Solution.create(code:"println(My second solution)", length:5, status:0)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
+	Solution.create(code: "println(My first solution) \n int x =10;\n x++;\nDouble y\n y = x/3;", length: 5, status: 0)
 
 puts("# ----------------------- TrackProgression ----------------------- ")
 	TrackProgression.create(level: 1, topic_id: 1)
@@ -243,12 +246,12 @@ puts("# ----------------------- Recommendations ----------------------- ")
 	Recommendation.create(problem_id:5, student_id:1, recommender_id:2)
 
 puts("# ----------------------- Contests ----------------------- ")
-	Contest.create(title:"Iteration", description:"If you can solve this you will get a level up",
-		incomplete:false)
-	Contest.create(title:"Recursion", description:"If you can solve this you will get 2 level up",
-		incomplete:false)
-	Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
-		incomplete:false)
+	Contest.create(title: "Iteration", description: "If you can solve this you will get a level up",
+		incomplete: false, start_time: Time.now + 2.days, end_time: Time.now + 7.days)
+	Contest.create(title: "Recursion", description: "If you can solve this you will get 2 level up",
+		incomplete: false, start_time: Time.now + 3.days, end_time: Time.now + 10.days)
+	Contest.create(title: "DB", description: "If you can solve this you will get 4 level up",
+		incomplete: false, start_time: Time.now + 5.days, end_time: Time.now + 12.days)
 
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true)
@@ -271,7 +274,7 @@ puts("# ----------------------- Notifications ----------------------- ")
 	Notification.create(message: "<a href='courses/1'>Dr wael Acknowledged your work in this course</a>", seen: false)
 	Notification.create(message: "google is a website", seen: false)
 	Notification.create(message: "akram Has solved one brute-force problem", seen: true)
-	Notification.create(message: " message", seen: true)	
+	Notification.create(message: " message", seen: true)
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -346,6 +349,7 @@ puts("# ----------------------- Students ----------------------- ")
 		Student.first.course_students << CourseStudent.first
 	## Solutions
 		Student.first.solutions << Solution.first
+		Student.first.solutions << Solution.find_by_id(4)
 		Student.first.solutions << Solution.find_by_id(2)
 		Student.first.solutions << Solution.find_by_id(3)
 	## Attempts
@@ -428,7 +432,8 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
 	## Solutions
-		Problem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.first
+		AssignmentProblem.first.solutions << Solution.find_by_id(4)
 		Problem.find_by_id(2).solutions << Solution.find_by_id(2)
 		Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 	## Attempts
