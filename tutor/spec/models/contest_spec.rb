@@ -63,7 +63,8 @@ describe Contest do
 				Contest.create(title:"Recursion", 
 					description:"If you can solve this you will get 2 level up",
 					incomplete:false,  start_time: DateTime.now)
-				Contest.create(title:"DB", description:"If you can solve this you will get 4 level up",
+				Contest.create(title:"DB", 
+					description:"If you can solve this you will get 4 level up",
 					incomplete:false,  start_time: DateTime.now)
 
 				ContestProgress.create!(status:true, trials: 1)
