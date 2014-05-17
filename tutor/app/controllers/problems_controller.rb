@@ -216,4 +216,8 @@ class ProblemsController < ApplicationController
 			params.require(:Problem).permit(:title, :description, :track_id)
 		end
 
-end
+	def fetch_time problem_id, student_id
+		if ProblemOpeningTimes.where("problem_id = " + "\"" + problem.to_s + "\" AND student_id=  \"" + student.to_s + "\"") != nil
+			ProblemOpeningTimes.create({:time time, :student_id student_id, :problem_id problem_id, :created_at created_at})
+	end
+endo
