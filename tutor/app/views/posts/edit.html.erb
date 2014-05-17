@@ -29,7 +29,9 @@
         <p>
             <%= f.label :content %><br>
             <div class="well editor">
-                <%= f.cktext_area :content, cols: 10, :ckeditor => {:toolbar => 'basic'}  %>
+                 <%= f.text_area :content, class:"form-control", style: "margin-left:auto;
+                margin-right:auto;height:200px;width:500px;resize:none",
+                    placeholder: "Enter your post",:value => @post.content %>
             </div>
         </p>
         <p>

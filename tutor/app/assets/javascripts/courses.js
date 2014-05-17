@@ -22,6 +22,7 @@ function reset_form_course(course_up) {
 	form_print_html("course-year", course_up.year);
 	$("#course-submition").html("")
 }
+
 function form_print_html(div_id,info) {
 	$("#"+div_id).html("<p><font> "+info+" </font></p>")
 }
