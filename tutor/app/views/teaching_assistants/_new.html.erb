@@ -27,13 +27,22 @@
 		</p>	
 	<% end %>
 
+	<div class="onoffswitch">
+	    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+	    <label class="onoffswitch-label" for="myonoffswitch">
+	        <div class="onoffswitch-inner"></div>
+	        <div class="onoffswitch-switch"></div>
+	    </label>
+	</div>
+
 	<div>
 		<% if @checkbox == true %>
 			<% str = "Show only TAs I worked with" %>
 		<% else %>
 			<% str = "Show All TAs" , @checkbox = nil%>
 		<% end %>
-		<div> <%= button_to str, {:controller => 'teaching_assistants', :action => 'new', check: @checkbox}, class: "btn btn-success"%> 
-		</div> 
+		<div> 
+			<%= button_tag str, controller:'teaching_assistants', action:'new', check: @checkbox, class: "btn btn-success"%> 
+		</div>
 	</div>
 </div>

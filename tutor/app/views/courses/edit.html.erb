@@ -8,7 +8,7 @@
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs side-tab-left">
 		<li class="active"><a href="#Info" data-toggle="tab">Edit Info</a></li>
-		<li><a href="#TA" data-toggle="tab">Add TAs</a></li>
+		<li><a href="#TA" id="ta_call" data-toggle="tab">Add TAs</a></li>
 		<li><a href="#ack" data-toggle="tab">Acknowledge Student</a></li>
 		<li><a href="#Delete" data-toggle="tab">Delete Course</a></li>
 	</ul>
@@ -91,7 +91,7 @@
 					</h1>
 					<hr>
 				</div>
-				<%= render 'teaching_assistants/new', :course_id => @course.id %>
+				<%= render 'teaching_assistants/new', :course_id => @course.id, :@checkbox => true %>
 			</div>
 		</div>
 		<div class="tab-pane" id="ack">
@@ -153,13 +153,12 @@
 	.side-tab-left {
 	    border-right: 1px solid #ddd;
 	}
-	/*.side-tab-right {
-	    border-left: 1px solid #ddd;
-	}*/
+
 	.side-tab-left li {
 	    float: none;
 	    margin-bottom: 2px;
 	}
+	
 	.side-tab-left li {
 	    margin-right: -1px;
 	}
@@ -181,30 +180,39 @@
 		margin-left: -4.5%;
 		box-shadow: none;
 	}
+	
 	.tab-content .info-title {
 		vertical-align: center;
 	}
+	
 	.tab-content .info-title font {
 		font-size: 0.8em;
 	}
+	
 	.tab-content .info-title span {
 		font-size: 0.5em;
 	}
+	
 	.tab-content .info-desc h3 font {
 		font-size: 0.9em;
 	}
+	
 	.tab-content .info-desc p {
 		margin-left: 5%;
 	}
+	
 	.tab-content .info-desc p font {
 		font-size: 1.1em;
 	}
+	
 	.alert {
 		margin-left: 5%;
 		width: 90%;
 		background-color: #c23a34;
 	}
+	
 	.alert .danger-message font {
 		font-size: 0.6em;
 	}
+
 </style>
