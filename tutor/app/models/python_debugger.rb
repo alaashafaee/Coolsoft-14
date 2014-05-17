@@ -113,7 +113,7 @@ class PythonDebugger
 	end
 
 	# [View Variables Python Code - Story X.8]
-	# Fetches the the stack trace of the code at the current state
+	# Fetches the stack trace of the code at the current state
 	# 	where the call stack is examined which contains the list of
 	# 	methods which did not finish its execution and thus did not
 	# 	return yet
