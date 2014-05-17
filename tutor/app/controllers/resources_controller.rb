@@ -69,9 +69,13 @@ class ResourcesController < ApplicationController
 	# Author: Ahmed Elassuty
 	def destroy
 		@resource = Resource.find_by(id: params[:id],course_id: params[:course_id])
-		if @resource.destroy
-			render nothing:true
+		unless @resource.nil?
+			if @resource.destroy
+				render nothing:true, status: :ok
+				return
+			end
 		end
+		render nothing:true, status: :not_found
 	end
 
 	private
