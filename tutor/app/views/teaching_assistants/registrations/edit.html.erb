@@ -24,7 +24,8 @@
 		</div>
 
 		<div>
-			<%= f.text_field :degree, class: "form-control", placeholder: "Degree" %>
+			<%= f.label :degree %>
+			<%= f.select(:degree, [['BSc', "BSc"], ['MSc', "MSc"]]) %>
 		</div>
 
 		<div>
