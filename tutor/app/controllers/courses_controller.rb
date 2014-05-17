@@ -232,6 +232,7 @@ class CoursesController < ApplicationController
 		#	student_id = current_student.id
 		#end
 		student_id = current_student.id
+		@course = Course.find_by_id(id)
 		@records = Grade.where("student_id = ?", student_id)
 		@assignments = @course.assignments
 		@total_grade = 0 
