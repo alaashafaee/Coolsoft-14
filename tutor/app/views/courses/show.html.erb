@@ -37,7 +37,21 @@
 					</br>
 					<%= @course.description %>
 				</p>
+				<p>
+					<b>Tags:</b>
+					</br>
+					<% @course.tags.each do |tag| %>
+						<%= tag.name %>
+						</br>
+					<% end %>	
+				</p>
 			</div>
+			<br>
+			<br>
+			<%= link_to "Create Assignment", { :controller => 'assignments',
+					:action => 'new', :course_id => params[:id] },
+						class: "btn btn-info", method: :get,
+							style: "text-decoration:none; margin-top: -20px;" %>
 			<div  style="margin-left:70%; margin-top: -300px";>
 				<div class="row">
 					<div>
@@ -91,7 +105,6 @@
 						</div>	
 					<% end %>
 				</div>
-
 			<% openable = true %>
 			<div class="panel-group list-group" id="accordion2" style="width:100%;">
 				<% if openable %>
@@ -114,15 +127,11 @@
 					<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
 						<ul class="list-group">
 							<% if @can_edit %>
-								<% @course.assignments.each do |a| %>
-									<% color = "label label-default" %>
-									<li style="border-style:hidden;" class="list-group-item">
-										<%= link_to a.title, a, class: color %>
-									<% if @can_edit %>
-										<% if !a.publish %>
-											<span class="badge">unpublished</span>
-											</li>
-										<% end %>
+								<% if a.publish %>
+									<% @course.assignments.each do |a| %>
+										<% color = "label label-default" %>
+										<li style="border-style:hidden;" class="list-group-item">
+											<%= link_to a.title, a, class: color %>
 									<% end %>
 								<% end %>
 							<% else %>

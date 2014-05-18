@@ -10,20 +10,25 @@ class Debugger
 	# 	regex : The input regex to be encountered to return
 	# Returns: A String of the buffer
 	# Author: Rami Khalil
-	def buffer_until(regex)
+	def buffer_until(regex, readchar = false)
 		buffer = ""
 		TimeLimit.start(0.5){
 			bool = false
-			if $wait_thread
-				bool = !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression }
-			else
-				bool = regex.any? { |expression| buffer =~ expression }
+			unless $wait_thread.nil?
+				bool = !$wait_thread.alive?
 			end
-			until bool do
+			until regex.any? { |expression| buffer =~ expression } or bool do
 				begin
-					temp = $output.readchar
+					if readchar
+						temp = $output.readchar
+					else
+						temp = $output.read_nonblock 2048
+					end
 					buffer += temp
 				rescue
+				end
+				unless $wait_thread.nil?
+					bool = !$wait_thread.alive?
 				end
 			end
 		}

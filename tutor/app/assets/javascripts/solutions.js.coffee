@@ -74,14 +74,15 @@ status = "The debugging session was successful."
 		data: {code: input, problem_id: problem_id,\
 			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
-		success: (unique) ->
+		success: (compiler_feedback) ->
 			clear_console()
 			stop_spin()
 			toggle_code_area()
-			if !unique["success"]
-				compilation_error unique["errors"]
+			if !compiler_feedback["success"]
+				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
+			$('.compilation_feedback').html(compiler_feedback["warnings"])
 		error: ->
 			clear_console()
 			stop_spin()
@@ -243,12 +244,6 @@ debug_console = ->
 	$('#stopButton').toggle(state)
 	editor = get_editor()
 	editor.setReadOnly(state)
-	normal_theme = "ace/theme/twilight"
-	debug_theme = normal_theme + "-debug"
-	if editor.getTheme() == normal_theme
-		editor.setTheme debug_theme
-	else
-		editor.setTheme normal_theme
 
 
 # [Execute Line By Line - Story 3.8]
@@ -449,13 +444,12 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED
+# Author: MOHAMEDSAEED + Rami Khalil
 @reload_template = () ->
 	disabled = get_editor().getReadOnly()
 	unless disabled
 		if get_lang() == "java"
-			template = "public class CoolSoft {\n"
-			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+			template = $('#problem_default_code').val()
 		else
 			template = ""
 		get_editor_session().setValue(template);
