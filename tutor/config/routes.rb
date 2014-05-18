@@ -24,9 +24,9 @@ Tutor::Application.routes.draw do
 	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
+	post 'cproblems/submit' => 'cproblems#submit'
 	get 'contests/:id/standings' => 'contests#standings'
 	post 'contests/add/:id' => 'contests#add'
-
 	get 'problems/edit'
 
 	get 'c_problems/new'
@@ -53,11 +53,13 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
+	resources :contests
 	resources :assignment_testcases
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :cproblems
 	resources :contests
 
 	post "courses/choose"

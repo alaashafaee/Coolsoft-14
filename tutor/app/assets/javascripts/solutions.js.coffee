@@ -364,6 +364,23 @@ debug_console = ->
 	toggle_code_area()
 	variables = null;
 
+# [Solve Contest Problem - Story 5.20]
+# Sends the contest submission results to the contests controllers
+# Parameters:
+#	status: Whether accepted or not
+#	contest_id: The contest id
+#	problem_id: The id of the problem being solved
+# Returns: none
+# Author: Ahmed Akram
+@contest_problem_submission = (status, contest_id, problem_id) ->
+	$.ajax
+		type: "POST"
+		url: '/cproblems/submit'
+		data: {cproblem_id: problem_id, contest_id: contest_id, status: status}
+		datatype: 'json'
+		success: (data) ->
+			return
+	return
 
 # [Compiler: Validate - Story X.7]
 # submits a solution in the form without refreshing
@@ -401,6 +418,9 @@ debug_console = ->
 			toggle_code_area()
 			if data['compiler_error']
 				compilation_error(data['compiler_output'])
+				if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
+					contest_id = document.getElementById('contest_id').innerHTML
+					contest_problem_submission(0, contest_id, problem_id)
 				return
 			out = $('#validate_case')
 			out.html("")
@@ -408,7 +428,7 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
-			if problem_type == "cProblem" || problem_type == "AssignmentProblem" 
+			if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
 				i = data[data.length-1]['status']
 				if i == 2 
 					content = "<font color ='red'>Compilation failed</font>"
@@ -419,14 +439,16 @@ debug_console = ->
 				else 
 					content = "<font color ='green'>Passed all testcases</font>"
 				out.html(content)
+				contest_id = document.getElementById('contest_id').innerHTML
+				contest_problem_submission(i, contest_id, problem_id)
 				return
 			for i in data
-				if !i['last'] && i['success']
+				if i['success']
 					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
 						"</td></tr>"
-				else if !i['last'] && !i['success']
+				else
 					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+

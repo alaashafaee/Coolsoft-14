@@ -7,6 +7,7 @@ gem 'rails', '4.0.4'
 
 # User authentication
 gem 'devise'
+gem 'table_print'
 
 # File uploading
 gem 'carrierwave'

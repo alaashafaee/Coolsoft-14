@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.integer  "cproblem_id"
     t.integer  "trials"
     t.boolean  "status"
+    t.integer  "trials"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

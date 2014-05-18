@@ -113,8 +113,7 @@ class TopicsController < ApplicationController
  		new_Order_Array = params[:methodParam]
 
 		@tracks.each do |track|
-			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1 
-			puts(track.save)
+			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1
 		end
 		render :nothing => true
 	end
