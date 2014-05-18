@@ -45,7 +45,7 @@ describe GradesController do
 			@grades = Hash.new
 			grade = Grade.where(problem_id: problem.id, student_id: student.id).first
 			@grades[1] = grade.grade
-			expect(@grades[1].blank).not_to be_valid
+			@grades[1].should eq 10
 		end
 	end
 end
