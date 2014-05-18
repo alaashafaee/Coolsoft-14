@@ -4,6 +4,11 @@ include Devise::TestHelpers
 
 describe ResourcesController do
 	
+	after(:all) do
+		Course.delete_all
+		Resource.delete_all
+	end
+
 	before(:each) do
 		@course_1 = Course.new(link: "http://www.google.com",
 			name: "CS1", description: "Course 1",
