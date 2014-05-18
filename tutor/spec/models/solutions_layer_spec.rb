@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe SolutionsLayer do
 
+	after(:all) do
+		Solution.delte_all
+		Student.delte_all
+		TestCase.delte_all
+		Problem.delte_all
+	end
+
 	context "get_compiler tests" do
 		it "get java compiler" do
 			expect(SolutionsLayer.get_compiler "java").to eq JavaCompiler

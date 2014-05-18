@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Executer do
 
+	after(:all) do
+		Student.delete_all
+	end
+
 	context "get_executer tests" do
 		it "get java executer" do
 			expect(SolutionsLayer.get_executer "java").to eq JavaExecuter

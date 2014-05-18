@@ -12,6 +12,13 @@ describe ContestsController do
 				course_id:1, owner_id: 1, owner_type: "Lecturer")
 		end
 
+		after(:all) do
+			Contest.delete_all
+			Course.delete_all
+			Lecturer.delete_all
+			Cproblem.delete_all
+		end
+
 		it "assigns the requested contest to the @contest" do
 			ContestsController.skip_before_filter :authenticate!
 			get :show, id: @contest1.id
@@ -81,6 +88,10 @@ describe ContestsController do
 			@lecturer.contests << @contest
 		end
 
+		after(:all) do
+			Lecturer.delete_all
+		end
+
 		it "new returns http success" do
 			sign_in @lecturer
 			get 'new'
@@ -145,6 +156,10 @@ describe ContestsController do
 		before(:each) do
 			controller.class.skip_before_action :authenticate!
 			get 'show', {:id => '1'}
+		end
+
+		after(:all) do
+			Contest.delete_all
 		end
 
 		context "Contest hasn't started yet" do

@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Note do
+
+	after(:all) do
+		Solution.delete_all
+		Note.delete_all
+	end
+
 	it 'is valid with a content, solution_id and line' do
 		solution = Solution.new(
 			code: "println(My first solution)\n
