@@ -230,6 +230,9 @@ class PythonDebugger < Debugger
 			name = variable
 			value = get_variable type, name
 			if is_valid_variable name, value
+				if type == "globals()"
+					name = "global." + name
+				end
 				result << name + " = " + value
 			end
 		end
