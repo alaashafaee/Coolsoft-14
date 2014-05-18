@@ -139,34 +139,42 @@
     display:block !important;
 }
 
-.tab-content {
-	border: none !important;
-	margin-left: -4.5% !important;
-	box-shadow: none !important;
-}
-
-.tab-content .info-title {
-	vertical-align: center !important;
-}
-
-.tab-content .info-title font {
-	font-size: 0.8em !important;
-}
-
-.tab-content .info-title span {
-	font-size: 0.5em !important;
-}
-
-.tab-content .info-desc h3 font {
-	font-size: 0.9em !important;
-}
-
-.tab-content .info-desc p {
+.alert {
 	margin-left: 5% !important;
+	width: 90% !important;
+	background-color: #c23a34 !important;
 }
 
-.tab-content .info-desc p font {
-	font-size: 1.1em !important;
+.alert .danger-message font {
+	font-size: 0.6em !important;
+}
+
+.switch_sharing {
+	background-color: transparent;
+	border: none;
+	color: #2fb899;
+	margin-top: -2px;
+}
+
+.course-box{
+	color : black;
+	height: 260px;
+}
+
+.course-box a {
+	color : #3B8FA3;
+}
+
+.course-box a:hover {
+	color : #2C3E50;
+}
+
+.hide-p {
+	margin-top: 3px;
+	background-color: #CF5044;
+	border-radius: 100px;
+	color: white;
+	transition: all 1s;
 }
 .danger-alert {
 	margin-left: 5% !important;
@@ -181,6 +189,17 @@
 .danger-alert .danger-message font {
 	color: #ffffff;
 	font-size: 0.6em !important;
+}
+.show-p {
+	margin-top: 3px;
+	background-color: #96AB4F;
+	border-radius: 100px;
+	color: white;
+	transition: all 1s;
+}
+
+.hide-p:hover{
+	background-color: #FF6354;
 }
 .tab-pane .delete-course-bt  {
 	width:90% !important;
@@ -200,3 +219,45 @@
 	text-align:center;
 
 }
+.show-p:hover {
+	background-color: #BCD663;
+}
+.c-description-label{
+	height: 82px;
+	font-weight: lighter;
+	font-family: sans-serif;
+}
+
+.course_sign_up {
+	padding: 10px;
+	background-color: #2A6775;
+	border-radius: 5px;
+	font-size: 1em;
+	font-weight: lighter;
+	font-family: sans-serif;
+	color: #fff;
+}
+
+.course_sign_up:hover {
+	background-color: #3B8FA3;
+	color: white;
+}
+
+.tag-area {
+}
+
+.tag {
+	background-color: #C4DAE9;
+	font-size: 14px;
+	margin-right: 10px;
+	padding: 5px;
+	height: 30px;
+	color: #3B8FA3;
+	box-shadow: 1px 1px 0.5px #888888;
+}
+
+.tag:hover{
+	// color: #C4DAE9;
+	cursor: pointer;
+	color: #3B8FA3;
+};

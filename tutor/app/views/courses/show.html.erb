@@ -31,25 +31,19 @@
 				</div>
 			<% end %>
 		</div>
-		<div style ="background: red">	
-					<p>
-					<b>Tags:</b>
-					</br>
-					<% @course.tags.each do |tag| %>
-						<%= tag.name %>
-						</br>
-					<% end %>	
-				</p>
-
-									<div>
-						<%= link_to "View Resources", course_resources_path(@course),
-							class: "btn btn-primary" %>
-					</div>
-				
-		</div>
 		<div class="view_discussion">
 			<%= link_to "View Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => params[:id] }, method: :get %>
 		</div>
+		<div class="view_discussion">
+			<%= link_to "View Resources", course_resources_path(@course)%>
+		</div>
+		<div class="tag-area"> 
+			<span class="view_discussion"> Tags : </span>	
+			<% @course.tags.each do |tag| %>
+				<span class="tag"><%= tag.name %></span>
+			<% end %>	
+		</div>
+				
 	</div>
 
 	<div class="xox">
