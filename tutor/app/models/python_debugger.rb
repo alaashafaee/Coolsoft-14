@@ -153,7 +153,8 @@ class PythonDebugger < Debugger
 	def is_valid_variable name, value
 		if name.starts_with? "'__"
 			return false
-		elsif value.include?("module") or value.include?("function")
+		elsif value.include?("module") or value.include?("function") or value.include?("exception") \
+			or value.include?("method")
 			return false
 		end
 		return true
