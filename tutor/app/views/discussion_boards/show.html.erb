@@ -19,8 +19,8 @@
 		<div class="well add_newss">
 			<%= link_to "Ask Question", new_post_path(discussion_board_id:@discussionBoard.id) %> 
 		</div>
-		<div class="container posts">
-			<% if !@discussionBoard.blank? %>
+		<% if !@discussionBoard.blank? %>
+			<div class="container posts">
 				<% @discussionBoard.posts.each do |post| %>
 					<div class="row box">
 						<div class="well col-sm-1 col_1">
@@ -38,8 +38,7 @@
 						</div>
 					</div>
 				<% end %>
-			<% else %>
-			<% end %>
-		</div>
+			</div>
+		<% end %>
 	</div>
 </div>

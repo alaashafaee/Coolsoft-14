@@ -13,7 +13,7 @@
 	text-align: center;
 }
 .main_row {
-	background-color: #fff;
+
 }
 .main_row .post h2{
 	font-size: 1.3em;
@@ -28,12 +28,16 @@
 }
 
 .post {
-	width:100%;
+	margin-right: 15px;
+	margin-left: 15px;
 }
 
 .post .p_div {
-	background-color:#dddddd !important;
-	width:100% !important;"
+	background-color:#EAEAEA !important;
+	width:100% !important;
+	border-radius: 5px !important;
+	margin-top: -10px;
+	margin
 }
 
 .edit_post {

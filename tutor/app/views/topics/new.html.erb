@@ -1,35 +1,45 @@
-<div class="left-content">
-	<h1>New Topic</h1>
-
-	<!-- Rendering the form fields -->
-	<%= form_for :topic, url: {action: "create"} do  |f| %>
-		<p>
-			<%= f.label "Title" %><br>
-			<% unless @new_topic.errors[:title].blank? %>
-				<span id="error_explanation">
-					Name <%= @new_topic.errors[:title].join(", ") %> 
-				</span>
-				<br>
+<div class= "left-box" >
+	<div class="xob" style="padding : 0px 15px 2px;">
+		<div class = "course_info panel-body" style="margin-left: 15px;">
+			<div class= "row course_title">
+				<div class="course_code">New Topic</div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					<% course = Course.find(params[:course_id]) %>
+					Course | <%= course.name %>
+				</div>
+			</div>
+		</div>
+		<div class="left-content container" style="width: 100%;">
+			<hr>
+			<!-- Rendering the form fields -->
+			<%= form_for :topic, url: {action: "create"} do  |f| %>
+				<p>
+					<%= f.label "Title" %><br>
+					<% unless @new_topic.errors[:title].blank? %>
+						<span id="error_explanation">
+							Name <%= @new_topic.errors[:title].join(", ") %> 
+						</span>
+						<br>
+					<% end %>
+					<%= f.text_field :title, autofocus: true, class:"form-control",
+					 style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
+				</p>
+				<p>
+					<%= f.label :description %><br>
+						<% unless @new_topic.errors[:description].blank? %>
+							<span id="error_explanation">
+								Description <%= @new_topic.errors[:description].join(", ") %> 
+							</span>
+							<br>
+						<% end %>
+					<%= f.text_area :description, class:"form-control", style: "height:200px;width:500px;resize:none", placeholder: "Description", :value => @new_topic.description  %>
+				</p>
+				<p>
+					<%= f.submit "Save", class: "btn btn-success"%>
+				</p>
 			<% end %>
-			<%= f.text_field :title, autofocus: true, class:"form-control",
-			 style: "width:300px", placeholder: "Title", :value => @new_topic.title %>
-		</p>
-		<p>
-			<%= f.label :description %><br>
-				<% unless @new_topic.errors[:description].blank? %>
-					<span id="error_explanation">
-						Description <%= @new_topic.errors[:description].join(", ") %> 
-					</span>
-					<br>
-				<% end %>
-			<%= f.text_area :description, class:"form-control", style: "height:200px;width:500px;resize:none", placeholder: "Description", :value => @new_topic.description  %>
-		</p>
-		<p>
-			<%= f.submit "Save", class: "btn btn-success"%>
-		</p>
-	<% end %>
-
-	<!-- A back to courses list button -->
-	<%= button_to "Back", {:controller => 'courses', :action => 'index'},
-	 class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
+		</div>
+	</div>
 </div>

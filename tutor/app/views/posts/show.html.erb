@@ -1,24 +1,42 @@
-<div class="row">
-	
-</div>
-<div class="row main_row" >
-	<div class="post ">
-		<font></font>
-		<div class="container p_div">
-			<div class="header"> 
-				<h1><%= @post.title %></h1>
+<div class= "left-box" >
+    <div class="xob" style="padding : 0px 15px 2px;">
+        <div class = "c_info panel-body" >
+            <div class= "row c_title">
+                <% post = Post.find(params[:id]) %>
+                <div class="c_code"><%= post.discussion_board.course.code %></div>
+                <div class="c_name"><%= link_to post.discussion_board.course.name, post.discussion_board.course.name, style: "color: black" %> &nbsp Discussion Board</div>
+            </div>
+            <div class="row">
+                <div class="course_sem">
+                    Semester <%= post.discussion_board.course.semester %>
+                    Class <%= post.discussion_board.course.year %>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>    
+		<div class="row">	
+		</div>
+		<div class="row main_row" >
+			<div class="post ">
+				<font></font>
+				<div class="container p_div">
+					<div class="header"> 
+						<h1><%= @post.title %></h1>
+					</div>
+					<div class="edit_post">
+						<%= link_to "Edit Post", edit_post_path(@post) %>
+					</div>
+					<br>
+					<h2><%= @post.content.html_safe %></h2>
+					<hr>
+					<h3><%= distance_of_time_in_words_to_now @post.created_at %> 
+						ago by <%= link_to @post.owner.name , @post.owner %> </h3>
+				</div>
 			</div>
-			<div class="edit_post">
-				<%= link_to "Edit Post", edit_post_path(@post) %>
-			</div>
-			<br>
-			<h2><%= @post.content.html_safe %></h2>
-			<hr>
-			<h3><%= distance_of_time_in_words_to_now @post.created_at %> 
-				ago by <%= link_to @post.owner.name , @post.owner %> </h3>
+		</div>
+		<div class="row">
+			<%= render "/replies/index", :@replies => @replies, :@post => @post %>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<%= render "/replies/index", :@replies => @replies, :@post => @post %>
 </div>

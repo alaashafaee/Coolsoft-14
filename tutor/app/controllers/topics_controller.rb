@@ -88,7 +88,7 @@ class TopicsController < ApplicationController
 			flash[:notice] = "Topic successfully created"
 			@course = Course.find(course_params[:course_id])
 			@course.topics << @new_topic
-			redirect_to :action => 'index'
+			redirect_to :controller => 'courses', :action => 'show', :id => course_params[:course_id]
 			Topic.update_track_progression @new_topic
 		else
 			if @new_topic.errors.any?

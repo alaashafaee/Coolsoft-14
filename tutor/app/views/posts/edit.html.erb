@@ -1,39 +1,60 @@
-<div align="center">
-    <h1>Edit Post</h1>
-    <br/>
-    <% if @post.errors.any? %>
-        <div id="error_explanation">
-            <h2>
-                <%= pluralize(@post.errors.count, "error") %>
-                    prohibited the Post from being edited:
-            </h2>
-        </div>
-        <ul>
-            <% @post.errors.full_messages.each do |msg| %>
-                <li>
-                    <%= msg %>
-                </li>
-            <% end %>
-        </ul>
-    <% end %>
-    <br/><br/><br/>
-    <%= form_for :post, url: {action: "update", :id => @post.id} do  |f| %>
-        <p>
-            <%= f.label "Title" %><br>
-            <%= f.text_field :title, autofocus: true, class:"form-control", style: "width:300px", placeholder: "Title",:value => @post.title %>
-        </p>
-        <p>
-            <%= f.label :content %><br>
-            <div class="well editor">
-                 <%= f.text_area :content, class:"wysihtml5 form-control", style:"margin-left:auto;
-                margin-right:auto;height:200px;width:100%;resize:none",
-                    placeholder: "Enter your post",:value => @post.content %>
+<div class= "left-box" >
+    <div class="xob" style="padding : 0px 15px 2px;">
+        <div class = "c_info panel-body" >
+            <div class= "row c_title">
+                <% post = Post.find(params[:id]) %>
+                <div class="c_code"><%= post.discussion_board.course.code %></div>
+                <div class="c_name"><%= link_to post.discussion_board.course.name, post.discussion_board.course.name, style: "color: black" %> &nbsp Discussion Board</div>
             </div>
-        </p>
-        <p>
-            <%= f.submit "Update Post", class: "btn btn-success" %>
-        </p>
-    <% end %>
-    <%= button_to "Delete Post", {:action => 'destroy', :id => params[:id]}, method: :delete,
-        class: 'btn btn-primary', :confirm => "Are you sure??" %>
+            <div class="row">
+                <div class="course_sem">
+                    Semester <%= post.discussion_board.course.semester %>
+                    Class <%= post.discussion_board.course.year %>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>        
+        <div align="center">
+            <h1>Edit Post</h1>
+            <br/>
+            <% if @post.errors.any? %>
+                <div id="error_explanation">
+                    <h2>
+                        <%= pluralize(@post.errors.count, "error") %>
+                            prohibited the Post from being edited:
+                    </h2>
+                </div>
+                <ul>
+                    <% @post.errors.full_messages.each do |msg| %>
+                        <li>
+                            <%= msg %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+            <br/><br/><br/>
+            <div class= "row" >
+                <%= form_for :post, url: {action: "update", :id => @post.id} do  |f| %>
+                    <p>
+                        <%= f.label "Title" %><br>
+                        <%= f.text_field :title, autofocus: true, class:"form-control", style: "width:300px", placeholder: "Title",:value => @post.title %>
+                    </p>
+                    <p>
+                        <%= f.label :content %><br>
+                        <div class="well editor">
+                             <%= f.text_area :content, class:"wysihtml5 form-control", style:"margin-left:auto;
+                            margin-right:auto;height:200px;width:100%;resize:none",
+                                placeholder: "Enter your post",:value => @post.content %>
+                        </div>
+                    </p>
+                    <p>
+                        <%= f.submit "Update Post", class: "btn btn-success", style: 'margin:auto; display:inline;' %>
+                    </p>
+                <% end %>
+                <%= button_to "Delete Post", {:action => 'destroy', :id => params[:id]}, method: :delete,
+                    class: 'btn btn-danger', :confirm => "Are you sure??", style: 'margin:auto; display:inline; ' %>
+            </div>
+        </div>
+    </div>
 </div>
