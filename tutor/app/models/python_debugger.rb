@@ -171,7 +171,7 @@ class PythonDebugger < Debugger
 	def get_object_value name
 		result = ""
 		input name + ".__dict__"
-		output_buffer = buffer_until [/\{.*\}\r\n$/m]
+		output_buffer = buffer_until [/\{.*\}\r\n$/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			result << line
@@ -194,7 +194,7 @@ class PythonDebugger < Debugger
 	def get_variable type, name
 		value = ""
 		input type + "[" + name + "]"
-		output_buffer = buffer_until [/\(Pdb\) .*\r\n/m]
+		output_buffer = buffer_until [/\(Pdb\) .*\r\n/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			value << line
@@ -222,7 +222,7 @@ class PythonDebugger < Debugger
 		all_lines = ""
 		result = []
 		input type + ".keys()"
-		output_buffer = buffer_until [/\[.*\]\r\n$/m]
+		output_buffer = buffer_until [/\[.*\]\r\n$/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			all_lines << line
@@ -272,7 +272,7 @@ class PythonDebugger < Debugger
 		stack_trace = []
 		if false
 			input "w"
-			output_buffer = buffer_until [/.*>.*\r\n->.*\r\n$/m]
+			output_buffer = buffer_until [/.*>.*\r\n->.*\r\n$/m], true
 			output_buffer = output_buffer.sub($buffer_regex, "")
 			output_buffer = output_buffer[3..-3]
 			output_buffer.each_line do |line|
