@@ -72,8 +72,10 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
-	resources :test_cases
-	
+	resources :courses do
+		post 'hide', on: :member
+	end
+	resources :test_cases	
 
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
@@ -117,6 +119,13 @@ Tutor::Application.routes.draw do
 			get 'getProblems'
 		end
 	end
+
+	resources :courses do
+		collection do
+			post 'sort'
+		end
+	end
+
 
 	resources :topics do
 		collection do           
