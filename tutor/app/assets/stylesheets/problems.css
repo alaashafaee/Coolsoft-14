@@ -120,6 +120,7 @@
 
 #crumbs ul li a.preventclick:before{
 	pointer-events: none;
+}
 
 .fb-button {
 	width:10%;
