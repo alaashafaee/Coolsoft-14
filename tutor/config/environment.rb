@@ -6,3 +6,6 @@ Tutor::Application.initialize!
 
 #paginate
 require 'will_paginate'
+
+#link detection
+require 'metainspector'

@@ -26,4 +26,9 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
 		%w(jpg jpeg gif png)
 	end
 
+	# Add a default image as a fallback
+	def default_url
+		"/assets/profile.png"
+	end
+
 end
