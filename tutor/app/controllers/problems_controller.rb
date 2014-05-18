@@ -111,7 +111,7 @@ class ProblemsController < ApplicationController
 		if @problem.destroy
 			flash[:notice] = "Problem successfully Deleted"
 			redirect_to(:controller => 'tracks',
-				:action => 'show' ,:id => @track)
+				:action => 'show', :id => @track)
 		end
 	end
 
