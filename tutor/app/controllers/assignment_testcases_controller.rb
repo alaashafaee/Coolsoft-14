@@ -10,6 +10,7 @@ class AssignmentTestcasesController < ApplicationController
 		@problem = AssignmentProblem.find_by_id(params[:assignment_id])
 		@test_case = TestCase.new
 		session[:assignment_problem_id] = params[:assignment_id]
+		session[:problem_assignment_id] = @problem.assignment_id
 	end
 
 	# [Create Assignment - Story 4.27]
