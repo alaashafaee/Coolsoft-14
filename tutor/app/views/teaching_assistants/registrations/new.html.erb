@@ -25,21 +25,12 @@
 		</div>
 
 		<div>
-			<%= f.label :gender %>
-			<%= f.select(:gender, [['Male', true], ['Female', false]]) %>
-		</div>
-
-		<div>
-			<%= f.label :date_of_birth %><br />
-			<%= f.date_select :dob, {:start_year => Date.today.year-10, :end_year => Date.today.year-90} %>
-		</div>
-
-		<div>
 			<%= f.text_field :graduated_from, class: "form-control", placeholder: "Graduated From" %>
 		</div>
 
 		<div>
-			<%= f.text_field :degree, class: "form-control", placeholder: "Degree" %>
+			<%= f.label :degree %>
+			<%= f.select(:degree, [['BSc', "BSc"], ['MSc', "MSc"]]) %>
 		</div>
 
 		<div>
@@ -53,12 +44,6 @@
 
 		<div>
 			<%= f.text_field :department, class: "form-control", placeholder: "Department" %>
-		</div>
-
-		<div>
-			<%= f.label :profile_image %><br />
-			<%= f.file_field :profile_image, {:accept => 'image/png,image/gif,image/jpeg'} %>
-			<%= f.hidden_field :profile_image_cache %>
 		</div>
 		
 		<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>

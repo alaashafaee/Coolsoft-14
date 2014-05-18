@@ -1,0 +1,55 @@
+<div>
+	<ul class="tab-links">
+		<!-- This button activates the new topic action and passes the course id  -->
+		<li>
+			<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
+				:id => @course.id}, class: "btn btn-success",
+				style: "float: left;margin-left: 15px",method: :get %>
+		</li>
+
+		<li>
+			<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
+				:course_id => @course.id}, class: "btn btn-success",
+				style: "float: left;margin-left: 15px",method: :post %>
+		</li> 
+
+		<!-- This button activates the add TA action -->
+		<li>
+			<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
+				:course_id => @course.id}, class: "btn btn-success",
+				style: "float: left; margin-left: 15px", :method => :get %>
+		</li>
+
+		<!-- This button activates the acknowledge a student action -->
+		<li>
+			<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
+				:course_id => @course.id}, class: "btn btn-success",
+				style: "float: left; margin-left: 15px", method: :get %>
+		</li>
+		<%- if lecturer_signed_in? %>
+			<li>
+				<%= link_to "Add Resources", new_course_resource_path(@course),
+					class: "btn btn-success",
+					style: "float: left; margin-left: 15px", method: :get %>
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div>
+	<%= form_for @course, url: { controller: "resources", action: "create"}, method: :post do |f| %>
+		<div id="resources" class="resources">
+			<%= link_to_add_association "Add More Resources", f, :resources,\
+				"data-association-insertion-method" => "append",\
+				class: "pull-right btn btn-primary" %>
+			<div>
+				<%= f.fields_for :resources do |resource| %>
+					<%= render "resource_fields" , f: resource %>
+				<% end %>
+			</div>
+		</div>
+		<br/>
+		<p>
+			<%= f.submit "Save", class: "btn btn-success"%>
+		</p>
+	<% end %>
+</div>
