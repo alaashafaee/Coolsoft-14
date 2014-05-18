@@ -3,6 +3,7 @@ class AssignmentProblem < ActiveRecord::Base
 	#Validations
 	validates :title, presence:true
 	validates :description, presence:true
+	validates :final_grade, numericality: { only_integer: true }
 
 	#Relations
 	belongs_to :owner, polymorphic: true

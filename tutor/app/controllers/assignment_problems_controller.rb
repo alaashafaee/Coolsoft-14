@@ -67,4 +67,16 @@ class AssignmentProblemsController < ApplicationController
 			:action=> 'show', :id=> @problem.assignment_id
 	end
 
+	# [Edit Assignment - Story 4.28]
+	# To get from the assignment_problem form the values needed to save edited problem.
+	# Parameters: none
+	# Returns: 
+	#	title: title of the problem.
+	#	description: description of the problem.
+	# Author: Nadine Adel
+	private
+	def problem_params
+		params.require(:assignment_problem).permit(:title, :description, :final_grade)
+	end
+
 end

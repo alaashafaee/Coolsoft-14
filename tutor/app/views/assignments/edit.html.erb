@@ -20,7 +20,7 @@
 	<p><%= f.text_field :title, placeholder:"Title" %></p>
 	<h3><%= f.label :Description %></h3>
 	<p><%= f.text_area :description,
-		placeholder:"Description", :cols => "60", :rows => "10"; %>
+		placeholder:"Description", :cols => "60", :rows => "10" %>
 	</p>
 	<p><h3><%= f.label :Due_date %></h3></p>
 	<p><%= f.date_select :due_date, {:start_year => Date.today.year+1,
