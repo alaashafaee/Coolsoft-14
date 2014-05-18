@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe GradesController do
 	context "Create grade and update it" do
+
+		after(:all) do
+			Student.delete_all
+			AssignmentProblem.delete_all
+		end
+
 		it "updates the requested grade" do
 			student = Student.new(email: '1@student.com', password: '123456789',
 			password_confirmation: '123456789', name: 'StudentI',

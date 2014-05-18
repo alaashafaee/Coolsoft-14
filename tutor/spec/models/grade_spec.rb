@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Grade do
+
+	after(:all) do
+		AssignmentProblem.delete_all
+		Grade.delete_all
+	end
+
 	it 'is valid with a grade, student_id and problem_id' do
 		problem = AssignmentProblem.new(title: "AssignmentProblem 1",
 			description: "long description", final_grade: 100)

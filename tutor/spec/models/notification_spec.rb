@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe Notification do
+
+	after(:all) do
+		Course.delte_all
+		Lecturer.delte_all
+		Student.delte_all
+		Assignment.delte_all
+		Date.delte_all
+		Contest.delte_all
+		DiscussionBoard.delte_all
+		Acknowledgement.delte_all
+	end
+
 	before(:each) do
 		@course = Course.new(name:"Data Structures and Alogrithms", 
 				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1,

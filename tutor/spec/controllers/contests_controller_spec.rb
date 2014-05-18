@@ -1,10 +1,14 @@
-require 'spec_helper'
+	require 'spec_helper'
 include Devise::TestHelpers
 
 describe ContestsController do
 	describe "GET show" do
 		before(:each) do
 			@contest1 = Contest.create(title: 'TestContest', description: 'Some description')
+		end
+
+		after(:all) do
+			Contest.delete_all
 		end
 
 		it "assigns the requested contest to the @contest" do
@@ -27,6 +31,10 @@ describe ContestsController do
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
 			@lecturer.save!
+		end
+
+		after(:all) do
+			Lecturer.delete_all
 		end
 
 		it "new returns http success" do
@@ -67,6 +75,10 @@ describe ContestsController do
 		before(:each) do
 			controller.class.skip_before_action :authenticate!
 			get 'show', {:id => '1'}
+		end
+
+		after(:all) do
+			Contest.delete_all
 		end
 
 		context "Contest hasn't started yet" do

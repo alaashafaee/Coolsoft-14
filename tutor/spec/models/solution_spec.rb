@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe Solution do
+
+	after(:all) do
+		Course.delte_all
+		Lecturer.delte_all
+		Student.delte_all
+		TestCase.delte_all
+		Problem.delte_all
+	end
+
  	context "Creations" do
 		before(:each) do
 			s = Student.create(email: '1@student.com', password: '123456789', 

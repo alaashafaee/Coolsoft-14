@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe Assignment do
+
+	after(:all) do
+		Assignment.delete_all
+		AssignmentProblem.delete_all
+	end
+
 	it 'is valid with a title and description' do
 		assignment = Assignment.new(
 			title: 'rspec assignemt',

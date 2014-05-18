@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Contest do
+
+	after(:all) do
+		Contest.delete_all
+	end
+
 	context "Valid" do
 
 		before (:all) do
