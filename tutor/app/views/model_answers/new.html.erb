@@ -46,23 +46,23 @@
 	onclick: "canleave()", class: "btn btn-large btn-info", :flag => params[:flag]  %>
 <% end %>
 <script>
-// confirmBrowseAway is a funcction to prevent user from leaving the page without confirming that.
-// workIsDone Boolean variable.
-var workIsDone = false;
-window.onbeforeunload = confirmBrowseAway;
-function confirmBrowseAway()
-{
-	if (!workIsDone) {
-		return "Your problem will be saved as Incomplete! " +
-		"\n You can create new model answer any time " +
-		" \n and it will be saved as complete then. ";
+	// confirmBrowseAway is a funcction to prevent user from leaving the page without confirming that.
+	// workIsDone Boolean variable.
+	var workIsDone = false;
+	window.onbeforeunload = confirmBrowseAway;
+	function confirmBrowseAway()
+	{
+		if (!workIsDone) {
+			return "Your problem will be saved as Incomplete! " +
+			"\n You can create new model answer any time " +
+			" \n and it will be saved as complete then. ";
+		}
 	}
-}
-function canleave()
-{
-	//canleave is a function to let the user leave when called without any confirming boxes.
-	// The user has finished their work, so we don't
-	// need a warning anymore!
-	workIsDone = true;
-}
+	function canleave()
+	{
+		//canleave is a function to let the user leave when called without any confirming boxes.
+		// The user has finished their work, so we don't
+		// need a warning anymore!
+		workIsDone = true;
+	}
 </script>

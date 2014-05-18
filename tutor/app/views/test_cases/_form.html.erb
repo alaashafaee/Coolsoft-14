@@ -1,6 +1,10 @@
 <%-#Lin: This is a form where the TA can add a test case.It has 2 labels and 2 textfields -%>
 <%= form_for :test_case , url: test_cases_path do |f| %>
 	<p>
+		<p> 
+			<span class="glyphicon glyphicon-info-sign"></span>
+			Please insert values in input and output fields each in an new line if more than one.
+		</p>
 		<%= f.label :Input %>
 		<%= f.text_area :input, style: "width:450px; height:200px;" %><br>
  		<%= f.label :Output %>

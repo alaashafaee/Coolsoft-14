@@ -32,7 +32,11 @@
 		</h2>
 	</h1>
 	<p>
-		<%= flash[:notice] %>
+		<p>
+			<span class="glyphicon glyphicon-info-sign"></span>
+			Please insert values in input and output fields each in
+				an new line if more than one value in the same test case.
+		</p>
 		<%= f.label :Input %>
 		<br><%= f.text_area :input, class: "form-control",
 				style: "width:450px; height:200px;" %><br>
@@ -48,22 +52,23 @@
 	</p>
 <% end %>
 <script>
-// confirmBrowseAway is a funcction to prevent user from leaving the page without confirming that.
-// workIsDone Boolean variable.
+	// confirmBrowseAway is a funcction to prevent user from leaving the page without confirming that.
+	// workIsDone Boolean variable.
 	var workIsDone = false;
 	window.onbeforeunload = confirmBrowseAway;
 	function confirmBrowseAway()
 	{
 		if (!workIsDone) {
-			return "Your problem will be saved as Incomplete! " + 
-			"\n You can create new model answer any time \n and it will be saved
-			as complete then. ";
+			return "Your problem will be saved as Incomplete! " +
+			"\n You can create new test case any time " +
+			" \n and it will be saved as complete if having at least 1 test case and 1 model answer.";
 		}
 	}
 	function canleave()
 	{
 		//canleave is a function to let the user leave when called without any confirming boxes.
-
+		// The user has finished their work, so we don't
+		// need a warning anymore!
 		workIsDone = true;
 	}
 </script>
