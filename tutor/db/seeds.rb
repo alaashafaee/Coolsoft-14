@@ -817,9 +817,11 @@ puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
-
 	Grade.create(grade: 100, student_id: 1, problem_id: 1)
 	Grade.create(grade: 80, student_id: 1, problem_id: 2)
+puts("# -----------------------Tags----------------------- ")
+	Tag.create(name: "Java")
+	Tag.create(name: "Python")
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
