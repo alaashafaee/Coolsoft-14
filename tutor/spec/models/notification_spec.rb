@@ -7,7 +7,6 @@ describe Notification do
 		Lecturer.delte_all
 		Student.delte_all
 		Assignment.delte_all
-		Date.delte_all
 		Contest.delte_all
 		DiscussionBoard.delte_all
 		Acknowledgement.delte_all
