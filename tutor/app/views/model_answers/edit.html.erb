@@ -1,28 +1,57 @@
+<div id = "crumbs">
+<ul>
+	<li class = "sub"><a class = "preventclick">Problem</a></li>
+	<li class = "sub1">
+		<a class="preventclick", style = "padding: 5px 15% 0 0px;">
+			Test Cases
+		</a>
+	</li>
+	<li class="sub2">
+		<a class = "visit", style = "padding: 5px 3.75% 0 0px;">
+			Model Answers
+		</a>
+	</li>
+	<li class = "sub3"><%= link_to "Tips", {:controller => 'tips', :action => 'index',
+		:problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id],
+		:track_id => params[:track_id]}, :method => :get %>
+	</li>
+	<li class = "sub4"><%= link_to "Hints", {:controller => 'hints', :action => 'index',
+		:model_answer_id => session[:model_answer_id], :track_id => params[:track_id],
+		:problem_id => session[:problem_id]}, :method => :get %>
+	</li>
+</ul>
+</div>
+<br><br><br>
 <% provide(:title, "Edit Answer") %>
-<%= form_for(@answer) do |f| %>
-	<% if @answer.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@answer.errors.count, "error") %> prohibited this course from being saved:</h2>
-			<ul>
-				<% @answer.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% else %> 
-		<%= f.hidden_field :problem_id, :value => @problem.id %>
+<% if @answer.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@answer.errors.count, "error") %>
+		 prohibited this course from being saved:</h2>
+		<ul>
+			<% @answer.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<%end%>
+
+<div id = "divform_answer">
+	<%= form_for :model_answer, url: model_answer_path(@answer), method: :patch, remote: true do |model_answer| %> 
+		<br><%= model_answer.label :Title %>
+		<%= model_answer.text_field :title, :value => @answer.title, class: "form-control",
+			style: "width:30%", :cols => "2", :rows => "1" %></br>
+	<br><%= model_answer.label :Answer %></br> 
+	<p><%= model_answer.text_area :answer, :value => @answer.answer, class: "form-control",
+		style: "width:60%", :cols => "10", :rows => "10"   %></p> 
+	<%= model_answer.submit "Save changes", class: "btn btn-large btn-info" %>
 	<% end %>
-	<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page",
-		:controller => 'problems', :action => 'edit', :id => @answer.problem_id,
-		:method => :get, class: 'btn btn-default btn-xs' %></ul>
-	<%= flash[:notice] %>
-	<br><%= f.label :Title %>
-		<%= f.text_field :title %></br>
-	<br><%= f.label :Answer %></br> 
-	<p><%= f.text_area :answer, :cols => "50", :rows => "15" %></p> 
-	<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-	<% if !@answer.errors.any? %>
-		<br><%= render partial: "tips/index" %></br>
-		<br><%= render partial: "hints/index" %></br>
-	<% end %>
-<% end %>
+</div>
+
+<div>
+	<ul class = "navbar-brand pull-right">
+		<%= link_to "Back", {:controller => 'model_answers', :action => 'index',
+		:track_id => session[:track_id], :problem_id => session[:problem_id],
+		:model_answer_id => session[:model_answer_id]}, :method => :get,
+		:class => "btn btn-info"%>
+	</ul>
+</div>

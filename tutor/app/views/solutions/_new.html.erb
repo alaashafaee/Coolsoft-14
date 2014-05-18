@@ -1,125 +1,16 @@
-<!-- Timer that starts when problem is shown -->
-<b>Time spent:</b>
-<span id="mins">0</span>:<span id="secs">00</span>
-<br><br>
-
-<div class="input-group">
-
-	<span class="input-group-addon label-info">Class Name:</span>
-	<input id="class_name" type="text" class="form-control" value="CoolSoft" style="width:150px">
-
-	<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="btn-info" data-width="auto">
-		<option value="twilight">twilight</option>
-		<option value="eclipse">eclipse</option>
-		<option value="xcode">xcode</option>
-		<option value="chaos">chaos</option>
-		<option value="chrome">chrome</option>
-		<option value="clouds">clouds</option>
-		<option value="tomorrow_night_blue">night blue</option>
-		<option value="tomorrow_night_eighties">tomorrow night eighties</option>
-		<option value="github">github</option>
-		<option value="dreamweaver">dreamweaver</option>
-	</select>
-
-	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="btn-info" data-width="auto">
-		<option value="java">Java</option>
-		<option value="python">Python</option>
-	</select>
-
-	<select id='font' onchange="changeFont()" class="selectpicker" data-style="btn-info" data-width="auto">
-		<option value="12">12</option>
-		<option value="14">14</option>
-		<option value="16">16</option>
-		<option value="18">18</option>
-		<option value="20">20</option>
-		<option value="22">22</option>
-		<option value="24">24</option>
-	</select>
-
-	<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
-		onClick: "reload_template()", class: "btn btn-info pull-right" %>
+<%= render partial: "solutions/timer" %>
+<%= render partial: "solutions/control_bar" %>
+<div class="a4">
+	<%= render partial: "solutions/editor" %>
+	<%= render partial: "solutions/input_box" %>
+	<%= render partial: "solutions/console" %>
 </div>
-<!-- Add editor -->
-<pre id="editor">public class CoolSoft {
-	public static void main(String [] args) {
-&#09;&#09;
-	}
-}</pre>
-<br><br><br><br>
-<table width='100%'>
-	<tr>
-		<td>
-			<%= button_tag 'Compile', type: 'Button',id: 'compileButton', 
-				onClick: "compile(#{params[:id]},'Problem')", class: "btn btn-info" %>
-			<%= button_tag 'Run Test Case', class: "btn btn-info", id: 'testButton', 
-				type: 'Button', onClick: "run_input(#{params[:id]},'Problem')" %>
-			<%= button_tag 'Start Debugging', id: 'debugButton', type: 'button',
-				onclick: "start_debug(#{params[:id]},'Problem')", class: "btn btn-info" %>	
-			<%= button_tag 'Previous', type: 'Button', class: "btn btn-info", 
-				style: "display: none", id: 'previousButton', 
-				onClick: 'previous()', hidden: true %>
-			<%= button_tag 'Next', type: 'Button', class: "btn btn-info",
-				style: "display: none", id: 'nextButton',
-				onClick: 'next()', hidden: true %>
-			<%= button_tag 'Stop Debugging', type: 'Button', class: "btn btn-info",
-				style: "display: none", id: 'stopButton', 
-				onClick: 'stop()', hidden: true %>
-			<span id="spinner" class="" align="center"></span>
-		</td>
-		<td style='text-align:right;'>
-			<b class='accepted'>Accepted</b>
-			<b class='wrong_answer'>Wrong Answer</b>
-			<b class='runtime_error'>Runtime Error</b>
-			<b class='compilation_error'>Compilation Error</b>
-			<%= button_tag 'Submit', type: 'Button',id: 'submitButton', 
-				onClick: "validate_code(#{params[:id]},'Problem')", class: "btn btn-info" %>
-		</td>
-	</tr>
-</table>
-<br>
 
-<div class="input-group">
-	<span class="input-group-addon label-info">Input:</span>
-	<textarea placeholder="Write your test case here" id="solution_input"
-		class="form-control" style="width:400px"></textarea>
-</div>
- <br>
-
-<!--Author: Ahmed Moataz-->
-<b>Console:</b><br/>
-<div class="console">	
-	<!-- Compiler -->
-	<p class="compilation_succeeded"></p>
-	<p class="compilation_failed"></p>
-	<p class="compilation_feedback"></p>
-	<!-- Test Cases -->
-	<div id="validate_case" >
-	</div>
-	<div id="output_section" style = "white-space: pre;color: black; font-weight: bold; font-size: 20px"></div>
-	<!-- Runtime Messages -->
-	<div id="runtime_error", style="display: none">
-		<div class="panel-danger", style="white-space: pre">
-			<div class="panel-heading", style="min-height: 30px;
-				max-height: 30px; line-height:0.25px; margin-top: -45px">
-				<h3 class="panel-title"> Error </h3>
-			</div>
-			<br/>
-			<div id="error_section" class="panel-body" style= "margin-top:-100px">
-			</div>
-			
-			<div class="panel-heading", style="min-height: 30px;
-				max-height: 30px; line-height:0.25px; margin-top: -90px">
-				<h3 class="panel-title"> Explanation </h3>
-			</div>
-			<br/>
-			<div id="explanation_section" class = "panel-body" 
-				style = "margin-top:-100px; min-height: 50px;max-height: 50px;"></div>
-		</div>
-	</div>
-</div>
 <script>
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
+	var default_code = document.getElementById('problem_default_code');
+	edit_session.setValue(default_code.value);
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
 </script>
