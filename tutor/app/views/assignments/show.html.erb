@@ -55,7 +55,7 @@
 								<% if @can_edit %>
 									<%= link_to "View Submissions", { :controller => 'solutions',
 										:action => 'view_submissions', :problem_id => ap.id },
-										class: "btn btn-info" %>
+										 :style => 'float: right;' %>
 								<% end %>
 							</li>
 						<% end %>
