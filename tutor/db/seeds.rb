@@ -1097,7 +1097,6 @@ puts("# ----------------------- Courses ----------------------- ")
 		Course.find(2).contests << Contest.find(3)
 		Course.first.contests << Contest.find(4)
 
-
 puts("# ----------------------- DiscussionBoard ----------------------- ")
 	## Posts
 		DiscussionBoard.first.posts << Post.first

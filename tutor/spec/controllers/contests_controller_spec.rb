@@ -2,6 +2,56 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe ContestsController do
+	describe "GET index" do
+		it "renders the index template for lecturer" do
+			lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
+ 			password_confirmation: '123456789', name: 'LecturerI',
+ 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+			degree: "PhD", university: "GUC", department: "MET")
+			lecturer.save!
+			sign_in lecturer
+			get :index
+			expect(response).to render_template("index")
+		end
+		it "renders the index template for student" do
+			student = Student.new(email: '1@lecturer.com', password: '123456789', 
+ 			password_confirmation: '123456789', name: 'LecturerI',
+ 			confirmed_at: Time.now, dob: DateTime.now.to_date, 
+ 			gender: true,university: "GUC", faculty: "Engineering", semester: 6,major: "alwan")
+			student.save!
+			sign_in student
+			get :index
+			expect(response).to render_template("index")
+		end
+		it "renders the index template for teaching assistant" do
+			teaching_assistant = TeachingAssistant.new(email: '1@lecturer.com', password: '123456789', 
+ 			password_confirmation: '123456789', name: 'LecturerI',
+ 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
+			degree: "MSc", graduated_from: "GUC", department: "MET", university: "GUC", graduated_year: 2005)
+			teaching_assistant.save!
+			sign_in teaching_assistant
+			get :index
+			expect(response).to render_template("index")
+		end
+	end	
+
+	describe "GET show" do
+		before(:each) do
+			@contest1 = Contest.create(title: 'TestContest', description: 'Some description')
+		end
+
+		it "assigns the requested contest to the @contest" do
+			ContestsController.skip_before_filter :authenticate!
+			get :show, id: @contest1.id
+			expect(assigns(:contest)).to eq(@contest1)
+		end
+
+		it "render show template" do
+			ContestsController.skip_before_filter :authenticate!	
+			get :show, id: @contest1.id
+			expect(response).to render_template("show")
+		end
+	end
 
 	describe "GET show" do
 		before(:each) do
