@@ -10,7 +10,7 @@ class LecturersController < ApplicationController
 		@courses = @lecturer.courses.order("created_at desc")
 	end
 
-	# [number_of_problems_answered_correctly - Story 2.1]
+	# [Number Of Problem Answered Correctly- Story 2.1]
 	# Select all problems which have success_attempts greater than zero and count the records
 	# Parameters:
 	# 	success_attempts:an intger value that shows how many times does the problem have to be answered correctly
@@ -27,5 +27,5 @@ class LecturersController < ApplicationController
   			render "show_statistics"
   		end
  	end
- 	
+
 end

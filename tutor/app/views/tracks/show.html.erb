@@ -54,7 +54,9 @@
 					<% if @can_edit %>
 						<%= link_to "Edit", edit_problem_path(:id => problem.id),
 							class: 'btn btn-info' %>
-						<%= link_to "Statistics" , {:controller => 'problems', :action => 'statistics' , :id => problem.id}, class: 'btn btn-info' %>
+						<%= link_to "Statistics" , {:controller => 'problems', 
+							:action => 'statistics' , :id => problem.id}, 
+							class: 'btn btn-info' %>
 					<% end %>
 				</div>
 			</div>
