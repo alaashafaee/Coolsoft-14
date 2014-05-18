@@ -29,6 +29,9 @@ Tutor::Application.routes.draw do
 
 	get 'problems/edit'
 
+	get 'c_problems/new'
+	post 'c_problems/create'
+
 	get "tips/new"
 	get "tips/create"
 	get "tips/show"
