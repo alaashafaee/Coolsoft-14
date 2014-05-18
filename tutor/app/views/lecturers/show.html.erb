@@ -1,29 +1,25 @@
-<div class= "left-box" >
-	<div class="xob" style="padding : 0px 15px 2px;">
-		<div class = "c_info panel-body" style="margin-bottom: -60px;">
-		</div>
-		<div class= "row profile_info_row">
-			<img class = "profile_picture" src="/assets/profile.png">
-			<div class = "profile_info">
-				<p class="name"><%= @lecturer.name %></p>
-				<div class="info">
-					<p><%= @lecturer.email %></p>
-					<p> <b>Degree: </b><%= @lecturer.degree %></p>
-					<p> <b>Department: </b><%= @lecturer.department %></p>
-					<p> <b>University: </b><%= @lecturer.university %></p>
-					<p> <b>Joined on: </b><%= @lecturer.created_at.to_date %></p>
-				</div>
+<div class="left-row">
+	<div class= "profile_info_row">
+		<img class = "profile_picture" src="/assets/profile.png">
+		<div class = "profile_info">
+			<p class="name"><%= @lecturer.name %></p>
+			<div class="info">
+				<p><%= @lecturer.email %></p>
+				<p> <b>Degree: </b><%= @lecturer.degree %></p>
+				<p> <b>Department: </b><%= @lecturer.department %></p>
+				<p> <b>University: </b><%= @lecturer.university %></p>
+				<p> <b>Joined on: </b><%= @lecturer.created_at.to_date %></p>
 			</div>
 		</div>
-		<div class = "row tabs">
-			<ul class = "tab-links"> 
-				<li class="active"><a href="#tab1">Courses</a></li>
-			</ul>
-			<div class = "tab-content">
-				<div id="tab1" class="tab active">
-					<%= render "courses/profile_courses"%>
-				</div>
-			</div>	
-		</div>
+	</div>
+	<div class = "tabs">
+		<ul class = "tab-links"> 
+			<li class="active"><a href="#tab1">Courses</a></li>
+		</ul>
+		<div class = "tab-content">
+			<div id="tab1" class="tab active">
+				<%= render "courses/profile_courses"%>
+			</div>
+		</div>	
 	</div>
 </div>
