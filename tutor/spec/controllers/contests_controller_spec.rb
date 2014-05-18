@@ -6,7 +6,10 @@ describe ContestsController do
 	describe "GET show" do
 		before(:each) do
 			@contest1 = Contest.create(title: 'TestContesttt',
-				description: 'Some description')
+				description: 'Some description', incomplete: false,
+				start_time: DateTime.now + 1.minute,
+				end_time: DateTime.now + 10.minutes,
+				course_id:1, owner_id: 1, owner_type: "Lecturer")
 		end
 
 		it "assigns the requested contest to the @contest" do
