@@ -67,9 +67,4 @@ class AssignmentsController < ApplicationController
 			:action=> 'show',:id=> @assignment.course_id
 	end
 
-	private
-	def assignment_params
-		params.require(:assignment).permit(:title, :description, :due_date)
-	end
-
 end

@@ -67,8 +67,4 @@ class AssignmentProblemsController < ApplicationController
 			:action=> 'show', :id=> @problem.assignment_id
 	end
 
-private
-	def problem_params
-			params.require(:assignment_problem).permit(:title, :description, :final_grade)
-	end
 end

@@ -6,7 +6,8 @@
 	<% if @problem.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@problem.errors.count, "error") %>
-			prohibited this course from being saved:</h2>
+				prohibited this course from being saved:
+			</h2>
 			<ul>
 				<% @problem.errors.full_messages.each do |msg| %>
 					<li><%= msg %></li>
@@ -14,7 +15,6 @@
 			</ul>
 		</div>
 	<% end %>
-	
 	<h2> Edit Problem </h2>
 	<p>
 		<%= f.label :title %><br>
