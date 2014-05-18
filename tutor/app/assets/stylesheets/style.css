@@ -17,6 +17,7 @@
     margin-bottom: 10px;
  	padding-left: 20px;
  	padding-top: 20px;
+ 	min-height: 250px;
 }
 .content_container{
 /*	background-color: #FAFAFA;
@@ -234,4 +235,8 @@
 
 .delete {
 	background-color: #CF5044 !important;
+}
+
+.delete a {
+	color: white;F
 }
