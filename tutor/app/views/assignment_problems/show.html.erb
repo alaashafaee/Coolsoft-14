@@ -16,7 +16,8 @@
 			<br>
 			<br>
 			<hr>
-			<label><%= @assignment.title %></label>
+			<%= link_to @assignment.title, { :controller => 'assignments',
+						:action => 'show', :id => @assignment.id } %>
 			<br /><br />
 			<div class='assignment problem'>
 				<label><%= @problem.title %></label><br/>
@@ -28,9 +29,11 @@
 							<% if @can_edit %>
 								<%= link_to "Edit problem", { :controller => 'assignment_problems',
 									:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
-								<div id= "test" style="display:true;">
-									<%= render partial: "solutions/new" %>
-								</div >
+								<%= link_to "Remove Problem",
+									{:controller => 'assignment_problems',
+									:action => 'destroy', :id => @problem.id},
+									class: "btn btn-info", method: :delete,
+									:confirm => "Are you sure you want to delete this Problem?" %>
 							<% end %>
 							<% if !@can_edit %> 
 							 	<%= render partial: "solutions/new" %>
