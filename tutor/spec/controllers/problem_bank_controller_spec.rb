@@ -16,7 +16,7 @@ describe ProblemBankController do
 		teaching_assistant = TeachingAssistant.new(email: '1@ta.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'taI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-		degree: "PhD", graduated_from: "GUC", department: "MET", university: "GUC", 
+		degree: "BSc", graduated_from: "GUC", department: "MET", university: "GUC", 
 		graduated_year: 2005)
 		teaching_assistant.save!
 		sign_in teaching_assistant
@@ -42,7 +42,7 @@ describe ProblemBankController do
 		degree: "PhD", university: "GUC", department: "MET")
 		lecturer.save!
 		sign_in lecturer
-		get 'index' , {:id => problem.id, :track_id => track_id}
+		get 'index' , {:id => 1, :track_id => track_id}
 		expect(response).to render_template("index")
 	end
 	it 'Does not Show problem describtion for student' do
@@ -54,7 +54,7 @@ describe ProblemBankController do
 		gender: true, university: "GUC", faculty: "Engineering", semester: 6,major: "alwan")
 		student.save!
 		sign_in student
-		get 'index' , {:id => problem.id, :track_id => track_id}
+		get 'index' , {:id => 1, :track_id => track_id}
 		expect(response).not_to render_template("index")
 	end
 	it 'Add a problem from the bank and checks if the same reference of 

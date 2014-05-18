@@ -564,7 +564,7 @@ puts("# ----------------------- Problems ----------------------- ")
 						return fib(n - 1) + fib(n - 2);
 				}
 			}')
->>>>>>> 750556512f7774d55f37d3d20fe82aa150e23d5f
+
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
