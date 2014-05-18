@@ -76,7 +76,7 @@ class SolutionsLayer
 		if compiler
 			feed_back = compiler.compiler_feedback solution
 			if feed_back[:success]
-				return Solution.validate solution, test_cases
+				return Solution.validate solution, test_cases, lang
 			end
 		else
 			create_file lang, solution
