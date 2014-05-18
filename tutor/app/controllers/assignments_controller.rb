@@ -25,8 +25,8 @@ class AssignmentsController < ApplicationController
 		@new_assignment.description = assignment_params[:description]
 		@new_assignment.due_date = assignment_params[:date]
 		@new_assignment.course_id = session[:course_id]
-		deadline = DateTime.new(assignment_params["date(1i)"].to_i,
-			assignment_params["date(2i)"].to_i, assignment_params["date(3i)"].to_i )
+		deadline = DateTime.new(assignment_params["due_date(1i)"].to_i,
+			assignment_params["due_date(2i)"].to_i, assignment_params["due_date(3i)"].to_i )
 		@new_assignment.due_date = deadline
 		if lecturer_signed_in?
 			@new_assignment.owner_id = current_lecturer.id
@@ -124,7 +124,7 @@ class AssignmentsController < ApplicationController
 		@assignment = Assignment.find_by_id(params[:id])
 		if @assignment.update_attributes(assignment_params)
 			flash[:notice] = "Your Assignment is now updated"
-			redirect_to :controller=>'assignmentproblems',
+			redirect_to :controller=>'assignment_problems',
 				:action=>'new', :id=> params[:id]
 		else
 			render :action=>'edit', :id => @assignment.id
