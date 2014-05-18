@@ -40,6 +40,10 @@ function changeFont(){
 	editor.setFontSize(parseInt(new_font));
 }
 
+// [Solve A Problem - Story 3.1]
+// Increase the font-size of the editor.
+// Parameters: none
+// Returns: none
 // Author: Ahmed Moataz
 function increaseFont(){
 	var new_font = editor.getFontSize();
@@ -49,6 +53,10 @@ function increaseFont(){
 	};	
 }
 
+// [Solve A Problem - Story 3.1]
+// Decrease the font-size of the editor.
+// Parameters: none
+// Returns: none
 // Author: Ahmed Moataz
 function decreaseFont(){
 	var new_font = editor.getFontSize();
