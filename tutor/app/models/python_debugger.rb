@@ -26,7 +26,7 @@ class PythonDebugger < Debugger
 		$step = "step"
 		$wait_thread = nil
 		$TERM = /\(Pdb\) The program finished and will be restarted\r\n/m
-		$regex = [/(Pdb) .+ ->.+\r\n$/m]
+		$regex = [/\(Pdb\) .+->.+\r\n$/m]
 		$all = []
 		status = "The debugging session was successful."
 		begin
