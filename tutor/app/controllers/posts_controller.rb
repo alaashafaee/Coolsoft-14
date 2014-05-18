@@ -1,4 +1,4 @@
-	class PostsController < ApplicationController
+class PostsController < ApplicationController
 
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed discussion board id and assigns

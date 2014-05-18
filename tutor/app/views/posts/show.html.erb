@@ -2,14 +2,16 @@
     Author: Ahmed Atef
 -->
 <div class="row">
-	<div class="well header"> 
-		<h1><%= @post.title %></h1>
-	</div>
+	
 </div>
 <div class="row main_row" >
 	<div class="post ">
 		<font></font>
-		<div class="well container p_div">
+		<div class="container p_div">
+			<div class="header"> 
+				<h1><%= @post.title %></h1>
+			</div>
+			<br>
 			<h2><%= @post.content.html_safe %></h2>
 			<hr>
 			<h3><%= distance_of_time_in_words_to_now @post.created_at %> 

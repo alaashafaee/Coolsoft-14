@@ -29,8 +29,8 @@
         <p>
             <%= f.label :content %><br>
             <div class="well editor">
-                 <%= f.text_area :content, class:"form-control", style: "margin-left:auto;
-                margin-right:auto;height:200px;width:500px;resize:none",
+                 <%= f.text_area :content, class:"wysihtml5 form-control", style:"margin-left:auto;
+                margin-right:auto;height:200px;width:100%;resize:none",
                     placeholder: "Enter your post",:value => @post.content %>
             </div>
         </p>

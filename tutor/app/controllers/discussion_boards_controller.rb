@@ -28,7 +28,13 @@ class DiscussionBoardsController < ApplicationController
 	end
 
 	private
-
+	
+	# [Design_layout - Story 2.13]
+	# Description: Checking the current loged-in user
+	# Parameters: none
+	# Returns:
+	# 	@current_user: The current loged-in user
+	# Author: Ahmed Mohamed Magdi
 	def current_user
 		if student_signed_in?
 			@current_user = current_student

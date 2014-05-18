@@ -2,47 +2,58 @@
 	<% unless @replies.blank? %>
 		<div class="row well main_row" >
 			<% @replies.each do |reply| %>
+			<!-- Start of the row -->
 				<div class="row reply", id="reply_<%=reply.id%>" >
-					<div class="col-sm-9" id="reply_content_<%=reply.id%>" >
-						<h2><%= reply.content.html_safe %></h2>
-					</div>
-					<div class="col-sm-3" >
+				<!-- First Col -->
+					<div class="col-sm-10" >
+						<div class="row container well reply-content" id="reply_content_<%=reply.id%>" >
+							<h2><%= reply.content.html_safe %></h2>
+						</div>
 						<div class="row poster">
 							<font><%= distance_of_time_in_words_to_now reply.created_at %> ago by <%= link_to reply.owner.name, reply.owner %> </font>
 						</div>
+					</div>
+				<!-- Second Col -->
+					<div class="col-sm-2" >
 						<div class="row edit-reply">
 							<div>
 								<% if lecturer_signed_in? %>
 									<% if current_lecturer.email == reply.owner.email %>
-										<div >
-											<td><%= image_tag "delete_button_2.png", 
-													style: "width:10%;height:10%;margin_top:10px;cursor:pointer", 
-													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
-											<td><%= image_tag "edit_button.png", 
-													style: "width:10%;height:10%;margin_top:10px;cursor:pointer", 
-													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+										<div>
+											<td>
+												<%= image_tag "edit_button.png",  
+													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
+											</td>
+											<td>
+												<%= image_tag "delete_button_2.png", 
+													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
+											</td>
 										</div>
 									<% end %>
 								<% elsif teaching_assistant_signed_in? %>
 									<% if current_teaching_assistant.email == reply.owner.email %>
 										<div>
-											<td><%= image_tag "delete_button_2.png", 
-													style: "width:10%;height:10%;margin_top:10px;cursor:pointer", 
-													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
-											<td><%= image_tag "edit_button.png", 
-													style: "width:10%;height:10%;margin_top:10px;cursor:pointer", 
-													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+											<td>
+												<%= image_tag "edit_button.png", 
+													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
+											</td>
+											<td>
+												<%= image_tag "delete_button_2.png", 
+													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
+											</td>
 										</div>
 									<% end %>
 								<% else %>
 									<% if current_student.email == reply.owner.email %>
 										<div>
-											<td><%= image_tag "delete_button_2.png", 
-													style: "width:10%;height:10%;margin_top:10px;cursor:pointer", 
-													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %></td>
-											<td><%= image_tag "edit_button.png", 
-													style: "width:10%;height:10%;margin_top:10px;cursor:pointer", 
-													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %></td>
+											<td>
+												<%= image_tag "edit_button.png", 
+													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
+											</td>
+											<td>
+												<%= image_tag "delete_button_2.png", 
+													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
+											</td>
 										</div>
 									<% end %>
 								<% end %>
@@ -59,32 +70,3 @@
 		</div>
 	<% end %>
 </div>
-
-
-<style type="text/css">
-	.reply {
-		width: 100%;
-	}
-	.raplies {
-		width: 100%;
-	}
-	.main_row .reply h2{
-		font-size: 1.3em;
-	}
-	.main_row .reply h3{
-		font-size: 0.8em;
-		float: right;
-	}
-	.reply font {
-		font-size: 0.8em;
-		float: right;
-	}
-	.edit-reply {
-		width: 100%;
-		text-align: center;
-	}
-	.poster font {
-		font-size: 1em;
-	}
-
-</style>
