@@ -24,7 +24,10 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+<<<<<<< HEAD
 
+=======
+>>>>>>> 403ebc01ac53a826bcdcb77772d369597cf2f97f
   config.include Devise::TestHelpers, :type => :controller
   config.include Rails.application.routes.url_helpers
 
