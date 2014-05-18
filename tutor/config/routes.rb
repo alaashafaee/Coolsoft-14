@@ -12,11 +12,9 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
-	get "utilities/simple_search"
-	get "utilities/advanced_search"
-	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	get 'contests/add_problems/:id' => 'contests#add_problems'
 	get 'solutions/mark_solution'
 	get 'solutions/view_submissions'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
@@ -32,6 +30,7 @@ Tutor::Application.routes.draw do
 	post 'problem_bank/show' => 'problem_bank#show'
 	get 'problem_bank/index'
 	post 'problem_bank/index' => 'problem_bank#index'
+	post 'contests/add/:id' => 'contests#add'
 
 	get 'problems/edit'
 
@@ -180,8 +179,14 @@ Tutor::Application.routes.draw do
 		resources :teaching_assistants
 		post 'teaching_assistants/new' => 'teaching_assistants#new'
 		resources :acknowledgements
+		resources :resources, only: [:create, :index, :new, :destroy] do
+			get :add_more, on: :collection
+		end
 	end
 
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
 	# Example resource route with concerns:
 	#   concern :toggleable do
 	#     post 'toggle'
