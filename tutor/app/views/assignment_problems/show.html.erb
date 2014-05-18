@@ -1,25 +1,44 @@
-<label><%= @course.name %></label>\
-<label><%= @assignment.title %></label>\
-<label><%= @problem.title %></label> 
-<br /><br />
-<div class='assignment problem'>
-	<label><%= @problem.title %></label><br/>
-	<label><%= @problem.description %></label><br />
-	<table width='100%'>
-		<tr>
-			<td width='80%'>
-				<br>
-				<% if @can_edit %>
-					<%= link_to "Edit problem", { :controller => 'assignment_problems',
-						:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
-					<div id= "test" style="display:true;">
-						<%= render partial: "solutions/new" %>
-					</div >
-				<% end %>
-				<% if !@can_edit %> 
-				 	<%= render partial: "solutions/new" %>
-				<% end %>
-			</td>
-		</tr>
-	</table>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "c_info panel-body" >
+			<div class= "row c_title">
+				<div class="c_code"><%= @course.code %></div>
+				<div class="c_name"><%= link_to @course.name, @course, style: "color: black" %></div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
+				</div>
+			</div>
+		</div>
+		<div>
+			<br>
+			<br>
+			<hr>
+			<label><%= @assignment.title %></label>
+			<br /><br />
+			<div class='assignment problem'>
+				<label><%= @problem.title %></label><br/>
+				<label><%= @problem.description %></label><br />
+				<table width='100%'>
+					<tr>
+						<td width='80%'>
+							<br>
+							<% if @can_edit %>
+								<%= link_to "Edit problem", { :controller => 'assignment_problems',
+									:action => 'edit', :id => @problem.id	}, class: "btn btn-info" %>
+								<div id= "test" style="display:true;">
+									<%= render partial: "solutions/new" %>
+								</div >
+							<% end %>
+							<% if !@can_edit %> 
+							 	<%= render partial: "solutions/new" %>
+							<% end %>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>

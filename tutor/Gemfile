@@ -66,6 +66,9 @@ gem 'json_builder', '3.1.0'
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
 
+# Text-editor
+gem 'bootstrap-wysihtml5-rails', require: 'bootstrap-wysihtml5-rails', github: 'Nerian/bootstrap-wysihtml5-rails'
+
 gem 'table_print'
 
 #pagination

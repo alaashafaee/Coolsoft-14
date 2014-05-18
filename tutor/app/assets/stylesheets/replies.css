@@ -1,0 +1,61 @@
+/*
+ * Place all the styles related to the replies controller here.
+ * They will automatically be included in application.css.
+ * You can use Sass (SCSS) here: http://sass-lang.com/
+ */
+
+.submiting {
+	width:100% !important;
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+.submiting .submit_btn{
+	padding-top: 1%;
+	padding-right: 1%;
+	float: right;
+}
+
+.submiting .input_field {
+	width:500px !important;
+	height:100px !important;
+}
+
+.reply {
+	width: 100%;
+}
+.raplies {
+	width: 100% !important;
+}
+.main_row .reply h2{
+	font-size: 1.3em;
+}
+.main_row .reply h3{
+	font-size: 0.8em;
+	float: right;
+}
+.reply font {
+	font-size: 0.8em;
+	float: right;
+}
+.edit-reply {
+	width: 100%;
+	text-align: center;
+}
+.edit-reply img{
+	width: 15% !important;
+	margin-top:10px;
+	cursor:pointer
+}
+.poster font {
+	font-size: 0.8em;
+}
+
+.reply-content {
+	width: 100% !important;
+}
+
+.wysihtml5 {
+	width: 100%;
+	height: 300px;
+}

@@ -13,6 +13,7 @@ Tutor::Application.routes.draw do
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
 	get 'courses/sign_up'
+	get 'courses/find_course/:id' => 'courses#find_course'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
 	get 'contests/add_problems/:id' => 'contests#add_problems'
 	get 'solutions/mark_solution'

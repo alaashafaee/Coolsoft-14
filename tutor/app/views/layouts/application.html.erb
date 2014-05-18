@@ -6,14 +6,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Tutor</title>
+		<title>Valorous.io</title>
 		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<link rel="stylesheet" href="../assets/alertify-themes/alertify.default.css" id="toggleCSS" />
 		<%= csrf_meta_tags %>
 		<meta name="viewport" content="width=device-width"/>
 	</head>
-	<body>
+	<body style="background: #EEEFE9;">
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -34,37 +34,48 @@
 							<%= render "layouts/log_out_form" %>
 						</li>
 					<% else %>
-						<li class="dropdown" style="padding-right:10px">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret">
-							</b></a>
-							<ul class="dropdown-menu">
-								<li><a href="../lecturers/sign_in">Lecturer</a></li>
-								<li><a href="../teaching_assistants/sign_in">Teaching Assistant</a></li>
-								<li><a href="../students/sign_in">Student</a></li>
-							</ul>
+						<li>
+							<a class="sign_in_button" onclick="pop_up_dialog('sign_in_dialog')">sign in</a>
+							<div id="sign_in_dialog">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#student" data-toggle="tab">student</a></li>
+									<li><a href="#ta" data-toggle="tab">Teaching Assistant</a></li>
+									<li><a href="#lecturer" data-toggle="tab">Lecturer</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="student">
+										<%= render "students/sessions/new" %> 
+									</div>
+									<div class="tab-pane" id="lecturer">
+										<%= render "lecturers/sessions/new" %> 
+									</div>
+									<div class="tab-pane" id="ta">
+										<%= render "teaching_assistants/sessions/new" %> </div>
+								</div>
+							</div>	
 						</li>
 					<% end %>
 				</ul>
 			</div>
 		</div>
-		<br>
-		<div id="main home" class="container" style="width:100%;min-width:1000px;">
-			<% if signed_in? %>
-				<div class="row">
-					<%= render "layouts/right_side_bar" %>
-					<div class="well main-content" style="min-height:600px;">
-						<%= yield %>
-					</div>
-				</div>
-			<% else %>
-				<div align="center" class="well container main-content" style="min-height:700px;">
+		<% if signed_in? %>
+			<div class="container cont">
+				<div class="col-md-10 left_side">
 					<%= yield %>
 				</div>
-			<% end %>
-		</div>
+				<div class="col-xs-hidden col-md-2 right_side">
+						<%= render "layouts/right_side_bar" %>
+
+				</div>
+			</div>
+		<% else %>
+			<div class="row" style="background: #eeefe9;">
+					<%= yield %>
+			</div> 
+		<% end %>
 		</br>
 		<div align="center" class="navbar navbar-default
-			navbar-static-bottom footer" style="min-width:1000px">
+			navbar-static-bottom footer" style="min-width:1000px; border-radius: 0px;">
 			<%= render "layouts/footer" %>
 		</div>
 	</body>

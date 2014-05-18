@@ -1,3 +1,9 @@
 // Place all the styles related to the Acknowledgements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#students_{
+	width:300px;
+	margin-left:5% !important;
+	overflow-y: scroll; 
+}

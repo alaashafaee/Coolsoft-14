@@ -10,39 +10,62 @@
  *
  *= require_self
  *= require_tree .
+ *= require posts
  *= require bootstrap
  *= require alertify-themes/alertify.core
  *= require posts
  *= require jquery.countdown.css
+ *= require bootstrap-wysihtml5/b3
  */
 
-.side-left {
-	height:700px;
-	margin-left:6px;
+ html, body {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	background: #EEEFE9 !important;
+}
+body .container {
+	
+}
+::-webkit-scrollbar {
+    width: 1px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
-.side-right {
-	margin-top:80px;
-	height:auto;
-	margin-right:0.5%;
+footer {
+	width: 100%;
 }
 
-.main-content {
-	margin-top:80px;
-	margin-bottom:70px;
-	width:78%;
-	margin-left:1%;
-	min-width:500px;
-	overflow:auto;
-	position:static;
+hr {
+	border-top: 1px solid #1a5f63 !important;
 }
 
-.footer {
-	width:100%;
-	border-radius: 2px;
-	margin-top: 1.65%;
+.ftr {
+	background-image: url("/assets/ftr_bg_2.png");
+	background-repeat: repeat;
+	padding: 30px ;
+	/*position: fixed;*/
+	min-width: 100%;
+	max-width: 100%;
 }
 
+.ftr address, .ftr a, .ftr p{
+    color: #fff;   
+}
+
+.ft_space{
+    padding: 0 10px;
+    margin-top: 1.65%; 
+}
 .auto-height {
 	height: auto;
 }
@@ -58,6 +81,25 @@
 
 .home {
 	overflow:auto;
+}
+
+.well {
+	background: transparent;
+}
+a{
+	text-decoration: none;
+	transition: all 0.5s;
+}
+a:hover{
+	text-decoration: none !important;
+	
+}
+.well{
+	background-color: transparent !important;
+}
+
+.no-scroll-x{
+	overflow-x: hidden;
 }
 
 .alertify-log-custom {

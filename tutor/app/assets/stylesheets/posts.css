@@ -1,0 +1,49 @@
+.greyLine {
+	border-bottom: 1px solid #D0D0D0;
+}
+
+.reply {
+	padding-left:30px;
+	border-bottom: 1px solid #D0D0D0;
+}
+
+.header h1{
+	font-size: 2.0em;
+	color: black;
+	text-align: center;
+}
+.main_row {
+
+}
+.main_row .post h2{
+	font-size: 1.3em;
+}
+.main_row .post h3{
+	font-size: 0.8em;
+	padding-left: 10px;
+	float: right;
+}
+.main_row .post font {
+	font-size: 1.0em;
+}
+
+.post {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.post .p_div {
+	background-color:#EAEAEA !important;
+	width:100% !important;
+	border-radius: 5px !important;
+	margin-top: -10px;
+	margin
+}
+
+.edit_post {
+	float: right;
+}
+
+.editor {
+	width: 100%;
+}
