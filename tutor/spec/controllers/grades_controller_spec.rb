@@ -19,7 +19,7 @@ describe GradesController do
 				problem_id: problem.id)
 			grade.save
 			GradesController.skip_before_filter :authenticate!
-			grade.update_attributes(grade: 80, student_id: 1,
+			grade.update_attributes(grade: 80, student_id: student.id,
 				problem_id: problem.id)
 			grade.grade.should eq 80
 		end
@@ -43,7 +43,7 @@ describe GradesController do
 			grade.save
 			GradesController.skip_before_filter :authenticate!
 			@grades = Hash.new
-			grade = Grade.where(problem_id: problem.id, student_id: 1).first
+			grade = Grade.where(problem_id: problem.id, student_id: student.id).first
 			@grades[1] = grade.grade
 			expect(@grades[1].blank).not_to be_valid
 		end
