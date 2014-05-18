@@ -87,7 +87,7 @@ class AssignmentProblemsController < ApplicationController
 						flash[:notice] = "problems are now added"
 					end
 				else
-					@title = @a.title
+					@title = @problem_exist.title
 					session[:title] = @title
 					flash[:duplicated] = "problem already exists"
 					redirect_to :back
