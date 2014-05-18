@@ -136,6 +136,8 @@ class PythonDebugger < Debugger
 		name = $class_name.sub(/\.py/,"")
 		regex = /(\-\-[A-Z][a-z]*\-\-\r\n)?> (\/[a-zA-Z0-9\-_]+)*\/#{name}\.py\(#{num}\).*\r\n$/m
 		stream = line.sub(regex, "")
+		regexp1 = /\(Pdb\) .*\(Pdb\) /m
+		stream = stream.sub(regexp1, "")
 		stream = stream.sub($buffer_regex, "")
 		return stream
 	end
@@ -194,7 +196,7 @@ class PythonDebugger < Debugger
 	def get_variable type, name
 		value = ""
 		input type + "[" + name + "]"
-		output_buffer = buffer_until [/\(Pdb\) .*\r\n/m], true
+		output_buffer = buffer_until [/#{$buffer_regex}.*\r\n/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			value << line
@@ -222,7 +224,8 @@ class PythonDebugger < Debugger
 		all_lines = ""
 		result = []
 		input type + ".keys()"
-		output_buffer = buffer_until [/\[.*\]\r\n$/m], true
+		output_buffer = buffer_until [/^\(Pdb\) \[.*\]\r\n$/m], true
+		output_buffer = output_buffer.sub(/.*\(Pdb\) /m, "")
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			all_lines << line
