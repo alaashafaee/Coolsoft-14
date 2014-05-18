@@ -48,6 +48,11 @@
 						<%= link_to "View Resources", course_resources_path(@course),
 							class: "btn btn-primary" %>
 					</div>
+					<div>
+						<%= link_to "View Statistics", {:controller => 'courses', 
+							:action => 'showCorrectAnswers', :id => @course.id}, 
+							class: 'btn btn-info' %>
+					</div>
 				</div>
 				<%= flash[:success_deletion] %>
 				<% openable = true %>

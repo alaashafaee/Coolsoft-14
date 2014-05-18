@@ -55,6 +55,7 @@ Tutor::Application.routes.draw do
 	post "model_answers/new"
 	resources :model_answers
 	get 'problems/:id/statistics' => 'problems#statistics'
+	get 'courses/:id/statistics' => 'courses#showCorrectAnswers'
 
 	#resources :test_cases
 	#devise_for :teaching_assistants
