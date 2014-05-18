@@ -202,4 +202,17 @@ class Student < ActiveRecord::Base
 		end
 	end
 
+	def get_contest_progress
+		contest_progress = ContestProgress.where(:status => true)
+		contest_progress_hash = Hash.new
+		contest_progress.each do |c_problem|
+			contest_progress_hash[c_problem.cproblem_id] = Hash.new
+			contest_title = Contest.where(:id => c_problem.contest_id)
+			cproblem_title = Cproblem.where(:id => c_problem.cproblem_id)
+			contest_progress_hash[c_problem.cproblem_id]['contest_title'] = contest_title
+			contest_progress_hash[c_problem.cproblem_id]['cproblem_title'] = cproblem_title
+		end
+		return contest_progress_hash
+	end
+
 end

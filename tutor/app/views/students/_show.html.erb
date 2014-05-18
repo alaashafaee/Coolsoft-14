@@ -13,7 +13,31 @@
 			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 		</div>
 		<div id = "tab2" class = "tab">
-			Performance under construction
+			<div class="tabbable tabs-left">
+        		<ul class="nav nav-tabs">
+          			<li class="active"><a href="#a" data-toggle="tab">Course</a></li>
+          			<li><a href="#b" data-toggle="tab">Contest</a></li>
+       		 	</ul>
+        		<div class="tab-content">
+        			<div class="tab-pane active" id="a">
+        			</div>
+        			<div class="tab-pane" id="b">
+        				<h2 align="center">Your Progress</h2>
+							<div style="margin-left: 100px">
+							
+							<% contest_progress = current_student.get_contest_progress %>
+							<% contest_progress.each do |key , value| %>
+							<%= value["contest_title"] %>
+								<%= link_to value["cproblem_id"], 
+											controller: "/c_problems", 
+											action: "show", 
+											id: key %>
+												<br><br>
+								<div class="line-separator"></div>
+								<br>
+							<% end %>
+							</div>
+					</div>
 		</div>
 		<div id = "tab3" class = "tab">
 			Statistics under construction
