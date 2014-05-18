@@ -71,12 +71,16 @@ textarea  {
 	border: #999999;
 	border-style: solid;
 	border-width: thin;
-	max-height: 150px;
-	min-height: 150px;
+	max-height: 100px;
+	min-height: 100px;
 	background: white;
+	overflow-y: scroll;
+	overflow-x: scroll;
 	overflow: auto;
-	max-width: 750px;
-	min-width: 750px;
+	max-width: 100px;
+	min-width: 100%;
+	border-radius: 4px;
+	background-color: rgb(35,35,35);
 }
 
 .compilation_succeeded {
@@ -116,6 +120,13 @@ textarea  {
 
 .hidden {
 	visibility: false;
+}
+
+.output {
+	white-space: pre;
+	color: black;
+	font-weight: bold;
+	font-size: 20px
 }
 
 .edit_button {

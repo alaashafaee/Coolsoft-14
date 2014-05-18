@@ -1,0 +1,19 @@
+<!-- 	Name: The New Topic Form 
+Author: Ahmed Akram
+-->
+<div class="container" style="width:100%;">
+	<div class="errors">
+		
+	</div>
+
+	<div class="row ">
+		<h3><font> Students </font> </h3>
+		<%=select_tag 'students[]', options_for_select(
+			@course.students.map {|p| [p.name, p.id]}), :multiple => true %>
+	</div>
+	<div class="row">
+		<h3><font> Message </font> </h3>
+		<textarea id="acknowledgement_description" style:"width:300px" class="wysihtml5">Good Job!</textarea>
+	</div>
+		<button type="button" class="btn btn-success" onclick="acknowledge(<%= course_id %>);">Send Acknowledgement</button>
+</div>

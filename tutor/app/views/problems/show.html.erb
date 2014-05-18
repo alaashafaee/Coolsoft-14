@@ -1,17 +1,18 @@
+
 <label><%= @course.name %></label>\
 <label><%= @topic.title %></label>\
 <label><%= @track.title %></label>
 <br /><br />
 <div id="fb-root"></div>
 <div class='problem'>
+	<img src="/assets/facebooksharebutton.png" class="fb-button" style="float: right; width: 32px; height: 32px;" onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>
 	<label><%= @problem.title %></label><br/>
 	<%= @problem.description %>
 	<table width='100%'>
 		<tr>
 			<td width='80%'>
 				<% if student_signed_in? %>
-					<%= image_tag "facebooksharebutton.png", class: 'fb-button',
-							onclick: "openBackWindow('/facebook', 'Facebook')" %>
+					
 					<% track_progess = TrackProgression.get_progress(current_student,
 					@problem.track.topic) %>
  					<% if track_progess >= @problem.track.difficulty %>
@@ -30,18 +31,24 @@
 								</div>
 								<br />
 								<div id="stack" class="fixed-dimensions">
-									<table class="table table-striped table-bordered
-										table-condensed table-hover" border="3">
-										<tr class='info'>
-											<th>Stack Trace</th>
-										</tr>
-									</table>
 								</div>
 								<br /><br />
-								<b>Hints:</b><br /><br />
+								<script type="text/javascript">
+								$('#tip').tooltip(options)</script>
+								<button id='tip'type="button" 
+									class="btn btn-info" 
+									data-toggle="tooltip" 
+									data-placement="left" 
+									title="Appears based on number of submissions">
+									Hints</button><br /><br /><br /><br />
 								<%= render partial: "hints/give" %>
 								<br /><br />
-								<b>Tips:</b><br /><br />
+								<button id='tip'type="button" 
+									class="btn btn-info" 
+									data-toggle="tooltip" 
+									data-placement="left" 
+									title="Appears based on the time counter">
+									Tips</button><br /><br />
 								<%= render partial: "tips/give" %>
 							</div>
 						</td>

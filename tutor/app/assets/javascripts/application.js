@@ -17,9 +17,12 @@
 //= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
+//= require alertify
 //= require cocoon
 //= require jquery.plugin.js
 //= require jquery.countdown.js
+//= require bootstrap-wysihtml5/b3
+//= require bootstrap-wysihtml5/locales
 
 // [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
 // Adds the behaviour of flash messages of the types alert, notice and error
@@ -50,3 +53,9 @@ $(function(){
 		source: $('#search_field').data("autocomplete-source")
 	});
 });
+
+$(document).ready(function(){
+	$('.wysihtml5').each(function(i, elem) {
+	  $(elem).wysihtml5();
+	});
+})

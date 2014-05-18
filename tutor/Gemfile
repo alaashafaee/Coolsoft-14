@@ -7,6 +7,7 @@ gem 'rails', '4.0.4'
 
 # User authentication
 gem 'devise'
+gem 'table_print'
 
 # File uploading
 gem 'carrierwave'
@@ -53,7 +54,6 @@ gem 'foreman'
 
 # Use composite primary keys in models
 gem 'composite_primary_keys', '~> 6.0.1'
-
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 #
@@ -65,6 +65,9 @@ gem 'json_builder', '3.1.0'
 
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
+
+# Text-editor
+gem 'bootstrap-wysihtml5-rails', require: 'bootstrap-wysihtml5-rails', github: 'Nerian/bootstrap-wysihtml5-rails'
 
 gem 'table_print'
 
@@ -79,4 +82,5 @@ gem "cocoon"
 
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
+	gem "capybara"
 end

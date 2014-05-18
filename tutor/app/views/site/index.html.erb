@@ -1,52 +1,165 @@
 <%- unless student_signed_in? || lecturer_signed_in? || teaching_assistant_signed_in? %>
-	<% if flash[:notice] %>
-		<div class="alert alert-warning", style="display:inline;margin-top:40px;vertical-align:middle">
-			<%= flash[:notice] %> 
-		</div>
-	<% end %>
-	<div class="bs-docs-section">
+<!-- Introduction Section -->		
+	<div class="intro">
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="bs-component">
-					<div class="jumbotron" style="text-align:center">
-						<h1>Java Tutor</h1>
-						<p>Java Tutor helps you to learn Java easily since we are tracking you step by step and giving you hints to be better. Whenever you need us we will be there.
-						</p>
-					</div>
-					<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
-					</div>
+<!-- 		<img class="img-md-responsive" src="/assets/Top3.jpg"> -->
+			<div class="container" style="margin-top: 100px;">
+				<div class="col-sm-6 mac-description" >
+					<h1>
+						<font class="h1-tag">valorous.io</font>
+						<span class="text-muted">  &raquo; Your Tutor Companion </span>
+					</h1>
+					<p>
+						<font class="p-tag">
+							Programming is difficult for many, they can't grasp the way of how to write a code. Our Website will be their tutor, with tons of problems relating to all data structures and algorithms. Our website supports multiple languages which will improve programming skills.
+						</font>
+					</p>
 				</div>
+				<div class="col-sm-6 mac" >
+					<img class="img-md-responsive" src="/assets/Macbook-Flat-Mockup.png">
+				</div>
+				
+				<!-- <div class="well row">
+					<h1 class="head-test-b" style="color:red;"><b></b></h1>
+				</div> -->
 			</div>
 		</div>
 	</div>
-	<hr/>
-	<div id="register" align="center" class="well">
-		<div class="col-lg-4">
-			<div class="bs-component">
-				<div class="well">
-					<%= button_to 'Student', new_student_registration_path, style: "height:100px", class: "btn btn-success  btn-lg", method: :get %>
-				</div>
-				<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
-				</div>
-			</div>
+<!-- Features Section -->
+<!-- 	<div class="intro-block">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-xs-3">
+	                <img class="img-responsive tpad" src="images/moveMe.png">
+	            </div>
+	            <div class="col-xs-9">
+	                <h1>MOVE ME <span class="text-muted">&raquo; Your Travel Companion</span></h1>
+	                <p class="lead">Move Me is a unique App designed to help people all over the world to get home quicker, by connecting with your local transport network</p>
+	            </div>
+	        </div>
+	    </div>    
+	</div> -->
+<!-- Features Section -->
+	<div class="features">
+		<div class="container padded" style="width:50% !important;">
+		    <div class="well row">
+		        <div class="col-lg-12"><h1><b>&raquo;Features</b></h1><hr></div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_bug.png">
+		    	</div>
+		    	<div class="col-sm-9 content_de">
+		    		<h3><b>Debugging</b></h3>
+		            <p>Debug your code on the go. Our website offers you with a debugging environment for multiple language that works on any web browser and even on mobile devices. It will help you through the process of tracing and debugging your code.</p>
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-9 content_de">
+	    			<h3><b>Contests</b></h3>
+		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		    	</div>
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_cup.png">
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_db.png">
+		    	</div>
+		    	<div class="col-sm-9 content_de">
+		            <h3><b>Questions/Answers</b></h3>
+			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		    	</div>
+		    </div>
+		    <div class="row">
+		    	<div class="col-sm-9 content_de">
+		    		<h3><b>Assignments</b></h3>
+			            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		    	</div>
+		    	<div class="col-sm-3">
+		    		<img class="img-circle img-responsive" src="/assets/hexa_assignment.png">
+		    	</div>
+		    </div>
+		    </div>
 		</div>
-		<div class="col-lg-4">
-			<div class="bs-component">
-				<div class="well">
-				<%= button_to 'Teaching Assistant', new_teaching_assistant_registration_path, style: "height:100px", class: "btn btn-success  btn-lg", method: :get %>
-				</div>
-				<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
-			</div>
-		</div>
-		<div class="col-lg-4">
-			<div class="bs-component">
-				<div class="well">
-					<%= button_to 'Lecturer', new_lecturer_registration_path, style: "height:100px",class: "btn btn-success  btn-lg", method: :get %>
-				</div>
-				<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
-			</div>
+	</div>    
+<!-- SignUp Section -->
+	<div class="how-it-works">
+	    <div class="container">
+	        <div class="row">
+	        	<div class="well row-sm">
+	                <h3 class="tpad">HOW IT WORKS</h3><hr>
+	            </div>
+	            <div class="well row-sm tabbable">
+	                <!-- Tabs go here -->
+	                <ul id="myTab" class="nav nav-tabs">
+	                    <li class="active"><a href="#student" data-toggle="tab">Student</a></li>
+	                    <li><a href="#lec" data-toggle="tab">Lecturer</a></li>
+	                    <li><a href="#ta" data-toggle="tab">Teaching Assistant</a></li>
+	                </ul>
+	                <div class="tab-content">
+	                    <div class="tab-pane fade in active" id="student"><p>You can solve many problems to get your level up in coding. competting with your friends, You also can have contests as well as asking profionals for questions for just ask on facebook,twitter </p></div>
+	                    <div class="tab-pane fade in" id="lec"><p>You can create courses, adding topics,tracks, problems and create assignments as well as creating contests and assign Teaching Assistants for a course you teach.</p></div>
+	                    <div class="tab-pane fade in" id="ta">
+
+	                    </div>
+
+		            </div>
+		        </div>
+		    </div>       
 		</div>
 	</div>
+	<!-- 
+	<div class="marketing">
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-sm-6">
+	                <img class="img-responsive" src="images/app.png">
+	            </div>
+	            <div class="col-sm-6">
+	                <h3 class="tpad">ALWAYS ON HAND</h3><hr>
+	                <p>Download the App for your device now and try it for yourself. No matter how regularly you make a journey this App will completely change the way you travel.</p>
+	                <p><a class="btn btn-large btn-primary" href="#">Get it now!</a></p>
+	            </div>
+	        </div>
+	    </div>    
+	</div> 
+	 -->
+	<div class="registration">
+	    <!-- <div class="row"> -->
+	        <div class="container">
+				<div class="row" style="margin: 0px auto 0px auto">
+					<div >
+						<h1><b>&raquo;&raquo; Register now &laquo;&laquo;</b></h1>
+					</div>
+					<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+					<hr>
+				</div>
+				<!-- <br><br> -->
+				<div class="row" style="margin: 0px auto 0px auto">
+					<div class="col-sm-4">
+						<div class="well">
+							<%= button_to 'Student', new_student_registration_path, style: "height:100px; width:200px", class: "btn btn-success  btn-lg", method: :get %>
+							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="well">
+							<%= button_to 'Lecturer', new_lecturer_registration_path, style: "height:100px; width:200px",class: "btn btn-success  btn-lg", method: :get %>
+							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="well">
+							<%= button_to 'Teaching Assistant', new_teaching_assistant_registration_path, style: "height:100px; width:200px", class: "btn btn-success  btn-lg", method: :get %>
+							</div>
+							<div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
+						</div>
+				</div>
+	        <!-- </div> -->
+	    </div>    
+	</div> 
 <% end %>
 
 <!-- If the user is signed in, display "My Courses" button 
@@ -61,3 +174,17 @@
 		<%= render 'teaching_assistants/show'%>
 	<% end %>
 <% end %>
+
+
+<style type="text/css">
+
+	.features .content_de {
+		/*height: 100% !important;*/
+		padding-top: 5%;
+	}
+	.features .fut_col {
+		width: 50%;
+	}
+
+
+</style>

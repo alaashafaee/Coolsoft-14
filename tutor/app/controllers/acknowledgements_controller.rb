@@ -24,34 +24,40 @@ class AcknowledgementsController < ApplicationController
 	#	the ID of the course
 	#	the description of the acknowledgement.
 	# Returns: A message indicating the success or failure of the creation
-	# Author: Muhammad Mamdouh
+	# Author: Muhammad Mamdouh + Ahmed mohamed magdi
 	def create
-		if params[:students] == nil
-			flash[:failure_notice] = "Acknowledgement failed. Please select a student"
-		else	
-			params[:students].each do |student|
-				@student = Student.find_by_id(student)
+		status = []
+		students = params[:students].to_a
+		if params[:students] != nil
+			students.each do |student|
+				puts(student.to_i)
+				@student = Student.find_by_id(student.to_i)
 				@course = Course.find_by_id(params[:course_id])
 				@acknowledgement = Acknowledgement.new
-				@acknowledgement.message = params[:acknowledgement][:description]
-				bool = @acknowledgement.save
-				if bool == true
-					if @student == nil
-						flash[:failure_notice]= "Please choose a student to acknowledge."
-					else
-						flash[:success_notice] = "Acknowledgement successfully created"
+				@acknowledgement.message = params[:description]
+				if @acknowledgement.save
+					if @student != nil
 						@student.acknowledgements << @acknowledgement
 						current_lecturer.acknowledgements << @acknowledgement
 						@course.acknowledgements << @acknowledgement
+						status << true
 						Notification.acknowledgement_notify(@student.id, current_lecturer.id, 
 							@acknowledgement.id)
 					end
-				else
-					flash[:failure_notice] = "Acknowledgement failed."
 				end
 			end	
 		end
-	redirect_to :action => 'new'
+		pass = true
+		status.each do |state|
+			unless state
+				pass = false
+			end
+		end
+		if pass
+			render json: @acknowledgement
+		else
+			render false
+		end
 	end
 
 end

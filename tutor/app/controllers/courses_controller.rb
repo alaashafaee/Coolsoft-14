@@ -124,6 +124,9 @@ class CoursesController < ApplicationController
 			@discussion_board.course_id = @new_course.id
 			@discussion_board.save
 			@new_course.discussion_board = @discussion_board
+			params[:tags].each do |tag|
+				@new_course.tags << Tag.find_by_id(tag)
+			end
 			flash[:success_creation]= "Course added."
 			redirect_to :action => 'index'
 		else 
@@ -146,6 +149,7 @@ class CoursesController < ApplicationController
 			redirect_to :root
 		end
 		@discussion_board = @course.discussion_board
+		@topics = @course.topics
 	end
 
 	# [View a course - story 1.21]
@@ -176,23 +180,50 @@ class CoursesController < ApplicationController
 
 	def manage
 	end
+	
+	#[Find Recommendations - Story 4.9]
+	# Description: This action orders the topics of a specific course
+	# Parameters:
+	# 	:id : The current course's id
+	# Returns: none
+	# Author: Mohamed Metawaa
+	def sort
+		@topic = Topic.find(params[:methodParam][0])  
+		@course = @topic.course 
+		@topics = @course.topics
+		@topics.each do |t|
+			t.order_factor = (params[:methodParam]).index(t.id.to_s)
+			t.save
+		end
+		render 'show'
+	end
 
 	# [Edit a course - story 1.17]
 	#Description: This action is resposible for editing a specific course.
 	#Parameters: 
-	#   id: Course id
-	# Returns:
-	# 	null
+	#	id: Course id
+	# Returns: none
 	# Author: Mohamed Metawaa
 	def update
-		@course = Course.find_by_id(params[:id])
-		@discussion_board = @course.discussion_board
-		if @course.update(course_params)
-			@topics = @course.topics
-			render 'show'
-		else 
-			render 'edit' 
+		course = Course.find_by_id(params[:id])
+		course.name = params[:course][:name]
+		course.code = params[:course][:code]
+		course.description = params[:course][:desc]
+		course.year = params[:course][:year]
+		course.link = params[:course][:link]
+		course.semester = params[:course][:semester]
+		if course.save
+			render json: course
+		else
+			render false
 		end
+		# @discussion_board = @course.discussion_board
+		# if @course.update(course_params)
+		# 	@topics = @course.topics
+		# 	render 'show'
+		# else 
+		# 	render 'edit' 
+		# end
 	end
 
 	# [Share Performance - Story 5.2, 5.13]
@@ -223,9 +254,54 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	# Finds the course with spacific id for an ajax request
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: course object as json
+	# Author: Ahmed Mohmaed Magdi
+	def find_course
+		course = Course.find_by_id(params[:id])
+		render json: course
+	end
+	
+	# [View Corrected Assignment - Story 4.26]
+	# Shows the list of grades of assignments of a 
+	#	particular course that the student is enrolled in 
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: none
+	# Author: Lin Kassem
+	def show_grades
+		id = params[:id]
+		@course = Course.find_by_id(id)
+		student_id = current_student.id
+		@records = Grade.where("student_id = ?", student_id)
+		@assignments = @course.assignments
+		@total_grade = 0 
+		@problems = []
+		@student_grade = 0
+		@assignment_corrected = false 
+	end
+
+	# [Hide course - Story 1.26]
+	# Determines whether a course is visible or not
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: none
+	# Author: Mohamed Metawaa
+	def hide
+		@course = Course.find_by_id(params[:id])
+		@course.visible = !@course.visible
+		@course.save
+		redirect_to :back
+	end
+
 	private
 		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description,:link)
+			params.require(:course).permit(:name, :code, :year, :semester, :description)
+		end
+		def topic_params
+			params.permit(:order_factor)
 		end
 
 		# [Share Performance - Story 5.2, 5.13]
@@ -240,7 +316,6 @@ class CoursesController < ApplicationController
 		def find_state courses
 			states = Hash.new
 			student_id = current_student.id
-			puts student_id
 			courses.each do |c|
 				course_id = c.id
 				result = CourseStudent.where("student_id = ? AND course_id = ?",

@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Nerian/bootstrap-wysihtml5-rails.git
+  revision: 59f3d23504fc5986c736c620f31c08309e706943
+  specs:
+    bootstrap-wysihtml5-rails (0.3.1.24)
+      railties (>= 3.0)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: 213984f19d7869429fbfb3c4dffe6e78d98e88b5
   specs:
@@ -54,6 +61,12 @@ GEM
       sass (~> 3.2)
       thor
     builder (3.1.4)
+    capybara (2.2.1)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -230,6 +243,8 @@ GEM
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
     will_paginate (3.0.5)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -237,6 +252,8 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts_as_list
+  bootstrap-wysihtml5-rails!
+  capybara
   carrierwave
   cocoon
   coffee-rails (~> 4.0.0)

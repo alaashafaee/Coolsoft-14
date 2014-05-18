@@ -74,14 +74,15 @@ status = "The debugging session was successful."
 		data: {code: input, problem_id: problem_id,\
 			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
-		success: (unique) ->
+		success: (compiler_feedback) ->
 			clear_console()
 			stop_spin()
 			toggle_code_area()
-			if !unique["success"]
-				compilation_error unique["errors"]
+			if !compiler_feedback["success"]
+				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
+			$('.compilation_feedback').html(compiler_feedback["warnings"])
 		error: ->
 			clear_console()
 			stop_spin()
@@ -309,14 +310,26 @@ debug_console = ->
 	list_of_variables = variables[state_number]["locals"]
 	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
 	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
+	globals = ""
+	global = "global"
 	i = 0
 	while i < list_of_variables.length
 		values = list_of_variables[i].split " = "
-		content += "<tr class='success'><td>" + values[0] + "</td>"
-		content += "<td>" + values[1] + "</td></tr>"
+		tmp = values[0].split "."
+		if tmp[0] == global
+			globals += "<tr class='success'><td>" + tmp[1] + "</td>"
+			globals += "<td>" + values[1] + "</td></tr>"
+		else
+			content += "<tr class='success'><td>" + values[0] + "</td>"
+			content += "<td>" + values[1] + "</td></tr>"
 		i++
 	content += "</table>"
-	div.innerHTML = content
+	if globals.length > 0
+		append = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+		append += "<tr class='info'><th>Global</th><th>Value</th></tr>"
+		globals = append + globals
+		globals += "</table>"
+	div.innerHTML = globals + content
 	return
 
 # [View Variables - Story 3.7]
@@ -336,7 +349,8 @@ debug_console = ->
 		content += "<tr class='success'><td>" + current_method + "</td></tr>"
 		i++
 	content += "</table>"
-	div.innerHTML = content
+	if list_of_methods.length > 0
+		div.innerHTML = content
 	return
 
 # [Debug - Story 3.6]
@@ -350,6 +364,23 @@ debug_console = ->
 	toggle_code_area()
 	variables = null;
 
+# [Solve Contest Problem - Story 5.20]
+# Sends the contest submission results to the contests controllers
+# Parameters:
+#	status: Whether accepted or not
+#	contest_id: The contest id
+#	problem_id: The id of the problem being solved
+# Returns: none
+# Author: Ahmed Akram
+@contest_problem_submission = (status, contest_id, problem_id) ->
+	$.ajax
+		type: "POST"
+		url: '/cproblems/submit'
+		data: {cproblem_id: problem_id, contest_id: contest_id, status: status}
+		datatype: 'json'
+		success: (data) ->
+			return
+	return
 
 # [Compiler: Validate - Story X.7]
 # submits a solution in the form without refreshing
@@ -387,6 +418,9 @@ debug_console = ->
 			toggle_code_area()
 			if data['compiler_error']
 				compilation_error(data['compiler_output'])
+				if problem_type == "Cproblem" 
+					contest_id = document.getElementById('contest_id').innerHTML
+					contest_problem_submission(0, contest_id, problem_id)
 				return
 			out = $('#validate_case')
 			out.html("")
@@ -394,7 +428,7 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
-			if problem_type == "cProblem" || problem_type == "AssignmentProblem" 
+			if problem_type == "Cproblem"
 				i = data[data.length-1]['status']
 				if i == 2 
 					content = "<font color ='red'>Compilation failed</font>"
@@ -405,14 +439,16 @@ debug_console = ->
 				else 
 					content = "<font color ='green'>Passed all testcases</font>"
 				out.html(content)
+				contest_id = document.getElementById('contest_id').innerHTML
+				contest_problem_submission(i, contest_id, problem_id)
 				return
 			for i in data
-				if !i['last'] && i['success']
+				if i['success']
 					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
 						"</td></tr>"
-				else if !i['last'] && !i['success']
+				else
 					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+
@@ -430,13 +466,12 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED
+# Author: MOHAMEDSAEED + Rami Khalil
 @reload_template = () ->
 	disabled = get_editor().getReadOnly()
 	unless disabled
 		if get_lang() == "java"
-			template = "public class CoolSoft {\n"
-			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+			template = $('#problem_default_code').val()
 		else
 			template = ""
 		get_editor_session().setValue(template);

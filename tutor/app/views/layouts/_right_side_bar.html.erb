@@ -1,5 +1,5 @@
-# [View Layout - Story 1.2]
-# General layout for right side bar
+<!-- # [View Layout - Story 1.2]
+	# General layout for right side bar -->
 <!-- 
 	Author: Ahmed Elassuty
 	right nagigation bar 
@@ -7,142 +7,102 @@
 <!-- 
 	Author:Rania Abdel Fattah
  -->
-<div id="right_side_bar" class="pull-right side-right" style="width:20%;min-width:200px;
-	position:static;overflow:auto">
-	<div style="margin-bottom:12px" class="well">
-
-
-		<div>
-
-			<ul class="navigation-list">
-				<% if student_signed_in? %>
-			            	<li><%= link_to image_tag("glyphicons_003_user.png") +
-		            			 " Profile", 
-						{:controller => '/site', :action => 'index'},
-						style: "margin-left:auto; 
-						margin-right:auto; margin-bottom: 5px;
-						width: 100%", method: :get %>
-					</li>
-			            	<li><%= link_to image_tag("glyphicons_136_cogwheel.png") +
-		            			" Dashboard",
-						{:controller => '/site', :action => 'index'},
-						style: "margin-left:auto; 
-						margin-right:auto; margin-bottom: 5px;
-						width: 100%", method: :get %>
-					</li>
-			            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
-		           			" Courses", 
-						{:controller => '/courses', :action => 'index'},
-						style: "margin-left:auto; 
-						margin-right:autox; margin-bottom: 5px;
-						width: 100%", method: :get %>
-					</li>
-			            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
-		           			 " Settings",
-						edit_student_registration_path,
-						style: "margin-left:auto; 
-						margin-right:auto;
-						width: 100%", method: :get %>
-					</li>
-			  	<% else %>
-			             	<li><%= link_to image_tag("glyphicons_003_user.png") +
-		             			"Profile", 
-						{:controller => '/site', :action => 'index'},
-						style: "margin-left:auto; 
-						margin-right:auto; margin-bottom: 5px;
-						width: 100%", method: :get %>
-					</li>
-			            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
-		            			"Courses", 
-						{:controller => '/courses', :action => 'index'},
-						style: "margin-left:auto;
-						margin-right:auto; margin-bottom: 5px;
-						width: 100%", method: :get %>
-					</li>
-					<li>
-						<% if lecturer_signed_in? %>
-							<%= link_to image_tag("glyphicons_280_settings.png") +
-								"Settings",
-							edit_lecturer_registration_path,
-							style: "margin-left: auto;
-							margin-right: auto;
-							width: 100%", method: :get %>
-						<% else %>
-							<%= link_to image_tag("glyphicons_280_settings.png") +
-								"Settings",
-							edit_teaching_assistant_registration_path,
-							style: "margin-left: auto;
-							margin-right: auto;
-							width: 100%", method: :get %>
-						<% end %>
-					</li>
-	    			<% end %>
-			</ul>
-		</div>
-		
-
-		</div>
+<!-- 		<div style="padding-top: 30px; style="width:100%;""> -->
+	<div class="right_side list-group">
+		<a href="/" class="list-group-item selected"><span class="rectangle profile"></span	>Profile</a>
+		<a href="#" class="list-group-item"><span class="rectangle dashboard"></span>Dashboard</a>
+		<a href="/courses" class="list-group-item"><span class="rectangle courses"></span>Courses</a>
+		<a href="#" class="list-group-item"><span class="rectangle settings"></span>Settings</a>
+	</div>
 <!--end of Rania's story -->
-	<div class="well">
-		<% if student_signed_in? %>
-			<div>
-				<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
-				<% if next_problems_to_solve != nil then %>
-					<table class="table table-striped table-bordered table-responsive">
-						<caption><b>Your Next Problems<b></caption>
-						<% next_problems_to_solve.each do |key , value| %>
-							<tr>
-								<td>
-									<%= link_to value.title, 
-											controller: "/problems", 
-											action: "show", 
-											id: value.id %>
-								</td>
-								<td>
-									<%= key %>
-								</td>
-							</tr>
-						<% end %>
-					</table>
-				<% end %>
+
+	<% if student_signed_in? %>
+		<div class="right_side list-group table">
+			<% next_problems_to_solve = current_student.get_next_problems_to_solve %> 
+			<div class="panel-group">
+	  			<div class="panel panel-default">
+					<% if next_problems_to_solve != nil then %>
+							<div class="panel-heading icon glyphicon glyphicon-chevron-right"
+							data-toggle="collapse" data-parent="#accordion" href="#Nextproblems">
+								Next problems to solve
+							</div>
+							<div id="Nextproblems" class="panel-collapse collapse">
+								<div class="panel-body">
+									<% next_problems_to_solve.each do |key , value| %>
+										<div class="list-group-item">
+											<div>
+												<%= link_to value.title, 
+														controller: "/problems", 
+														action: "show", 
+														id: value.id %>
+											</div>
+											<div>
+												<%= key %>
+											</div>
+										</div>
+									<% end %>
+								</div>
+							</div>
+					<% else %>
+					You Have No Problems to solve, Please Subscribe to some courses
+					<% end %>
+				</div>
 			</div>
+		</div>
 		<!--
 		# [Get Recommended Problems - Story 5.6]
 		# Displays the recommende problem hash in a table as [recommender_name | problem]
 		# Author: Mohab Ghanim
 		-->
-			<div>
-				<% recommended_problems = current_student.getClassMatesRecommendations 
-				if recommended_problems != nil then %>
-					<table class="table table-striped table-bordered table-responsive">
-						<caption><b>Recommendations by classmates<b></caption>
-						<% recommended_problems.each do |key , value| %>
-							<tr>
-								<td>
-									<%= value["recommender_name"] %>
-								</td>
-								<td>
-									<%= link_to value["problem_title"], 
-											controller: "/problems", 
-											action: "show", 
-											id: key %>
-								</td>
-							</tr>
-						<% end %>
-					</table>
-				<% end %>
+		<div class="right_side list-group table">
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<% recommended_problems = current_student.getClassMatesRecommendations 
+					if recommended_problems != nil then %>
+						<div class="panel-heading icon glyphicon glyphicon-chevron-right"
+							data-toggle="collapse" data-parent="#accordion"
+							href="#ClassmateRecommendations">
+							Classmates Recommendations
+						</div>
+						<div id="ClassmateRecommendations" class="panel-collapse collapse">
+							<div class="panel-body">
+								<% recommended_problems.each do |key , value| %>
+									<div class="list-group-item">
+										<div>
+											<%= link_to value["problem_title"], 
+													controller: "/problems", 
+													action: "show", 
+													id: key %>
+										</div>
+										<div>
+											<%= value["recommender_name"] %>
+										</div>
+									</div>
+								<% end %>
+							</div>
+						</div>	
+					<% end %>
+				</div>
 			</div>
-			<div>
-				<table class="table table-striped table-bordered table-responsive">
-					<caption><b>System Recommendations<b></caption>
-					<tr>
-						<td style = "text-align : center">
-						<%= render "problems/system_recommendation" if student_signed_in? %>
-						</td>
-					</tr>
-				</table>
+		</div>
+		
+		<div class="right_side list-group table">
+			<div class="panel-group">
+				<div class="panel panel-default">
+					<div class="panel-heading icon glyphicon glyphicon-chevron-right"
+					data-toggle="collapse" data-parent="#accordion" href="#SystemRecommendation">
+						System Recommendations
+					</div>
+					<div id="SystemRecommendation" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="list-group-item">
+								<%= render "problems/system_recommendation" if student_signed_in? %>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 </div>
 

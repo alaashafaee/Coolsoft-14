@@ -1,17 +1,19 @@
-<%= image_tag(current_teaching_assistant.profile_image_url.to_s, :class => "profile_picture") %>
-<%= render 'layouts/profile' %> 
-		<li class = "active"><a href = "#tab1">Info</a></li>
-	</ul>
-	<div class = "tab-content">
-		<div id = "tab1" class = "tab active">
-			<p><b>Name: </b><%= current_teaching_assistant.name %></p>
-			<p><b>Email: </b><%= current_teaching_assistant.email %></p>
-			<p><b>Degree: </b><%= current_teaching_assistant.degree %></p>
-			<p><b>Graduated from: </b><%= current_teaching_assistant.graduated_from %></p>
-			<p><b>Graduated year: </b><%= current_teaching_assistant.graduated_year %></p>
-			<p><b>Department: </b><%= current_teaching_assistant.department %></p>
-			<p><b>University: </b><%= current_teaching_assistant.university %></p>
-			<p><b>Joined on: </b><%= current_teaching_assistant.created_at.to_date %></p>
+<div class= "left-box" >
+	<div class="xob" style="padding : 0px 15px 2px;">
+		<div class = "c_info panel-body" style="margin-bottom: -60px;">
+		</div>
+		<div class= "row profile_info_row">
+			<img class = "profile_picture" src="/assets/profile.png">
+			<div class = "profile_info">
+				<p class="name"><%= current_teaching_assistant.name %></p>
+				<div class="info">
+					<p><%= current_teaching_assistant.email %></p>
+					<p><b>Degree: </b><%= current_teaching_assistant.degree %></p>
+					<p><b>Department: </b><%= current_teaching_assistant.department %></p>
+					<p><b>University: </b><%= current_teaching_assistant.university %></p>
+					<p><b>Joined on: </b><%= current_teaching_assistant.created_at.to_date %></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

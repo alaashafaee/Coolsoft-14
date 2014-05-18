@@ -1,70 +1,88 @@
-<div class="page-header">
-	<h1>
-		<%= link_to @course.name, @course, style: "color: black" %>
-		<small8><%= link_to @topic.title, @topic, style: "color: black" %></small8>
-	</h1>
-</div>
-<% if @can_edit %>
-	<% if flash[:error] %>
-		<div align="center" class="alert alert-warning" ><%= flash[:error] %>
-		</div><br>
-	<% end %>
-	<% if flash[:success] %>
-		<div align="center" class="alert alert-success" ><%= flash[:success] %>
-		</div><br>
-		<% end %>
-<% end %>
-<% openable = true %>
-<div class="panel-group list-group" id="accordion">
-	<% @problems.each do |problem| %>
-		<% if (problem.incomplete? && @can_edit) || !problem.incomplete? %>
-			<% color = "" %>
-			<% if student_signed_in? && problem.is_solved_by_student(current_student.id) %>
-				<% color = "label label-success" %>
-			<% end %>
-			<% if openable %>
-				<% open = "in" %>
-				<% openarrow = "glyphicon-chevron-down" %>
-				<% openable = false %>
-			<% else %>
-				<% open = "" %>
-				<% openarrow = "glyphicon-chevron-right" %>
-			<% end %>
-			<div class="panel panel-default">
-				<div class="panel-title list-group-item list-group-item-info">
-					<a class="icon glyphicon <%= openarrow %>"
-						href="#<%= problem.id.to_s %>"
-						data-toggle="collapse" data-parent="#accordion"
-						style="margin-right:1%;text-decoration: none;">
-					</a>
-					<%= link_to problem.title, problem, style: 'color:#003366;', class: color %>
-					<% if student_signed_in? %>
-						<span class="badge">
-								<div onclick="showdialog(<%= problem.id.to_s %>,
-									<%= current_student.id %>)">
-									Recommend to classmates</div>
-						</span>
-						<span class="badge" style="margin-right:1%;">
-							<%= problem.number_of_success %>
-						</span>
-					<% end %>
-				</div>
-				<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
-					<%= problem.description %>
-					<% if @can_edit %>
-						<%= link_to "Edit", edit_problem_path(:id => problem.id),
-							class: 'btn btn-info' %>
-					<% end %>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "c_info panel-body" >
+			<div class= "row c_title">
+				<div class="c_code"><%= @course.code %></div>
+				<div class="c_name"><%= link_to @course.name, @course, style: "color: black" %></div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
 				</div>
 			</div>
+		</div>		
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_code"><%= @topic.title %> | </div>
+				<div class="course_name"><%= @track.title %></div>
+			</div>
+		</div>	
+		<% if @can_edit %>
+			<% if flash[:error] %>
+				<div align="center" class="alert alert-warning" ><%= flash[:error] %>
+				</div><br>
+			<% end %>
+			<% if flash[:success] %>
+				<div align="center" class="alert alert-success" ><%= flash[:success] %>
+				</div><br>
+				<% end %>
 		<% end %>
-	<% end %>
-	<div class="classmates_list">
-		<div id="container">
+		<% openable = true %>
+		<div class="panel-group list-group" id="accordion">
+			<% @problems.each do |problem| %>
+				<% if (problem.incomplete? && @can_edit) || !problem.incomplete? %>
+					<% color = "" %>
+					<% if student_signed_in? && problem.is_solved_by_student(current_student.id) %>
+						<% color = "label label-success" %>
+					<% end %>
+					<% if openable %>
+						<% open = "in" %>
+						<% openarrow = "glyphicon-chevron-down" %>
+						<% openable = false %>
+					<% else %>
+						<% open = "" %>
+						<% openarrow = "glyphicon-chevron-right" %>
+
+					<% end %>
+					<div class="panel panel-default">
+						<div class="panel-title list-group-item list-group-item-info">
+							<a class="icon glyphicon <%= openarrow %>"
+								href="#<%= problem.id.to_s %>"
+								data-toggle="collapse" data-parent="#accordion"
+								style="margin-right:1%;text-decoration: none;">
+							</a>
+							<%= link_to problem.title, problem, style: 'color:#003366;', class: color %>
+							<% if student_signed_in? %>
+								<span class="badge">
+										<div onclick="showdialog(<%= problem.id.to_s %>,
+											<%= current_student.id %>)">
+											Recommend to classmates</div>
+								</span>
+								<span class="badge" style="margin-right:1%;">
+									<%= problem.number_of_success %>
+								</span>
+							<% end %>
+						</div>
+						<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
+							<%= problem.description %>
+							<% if @can_edit %>
+								<%= link_to "Edit", edit_problem_path(:id => problem.id),
+									class: 'btn btn-info', style: 'float :right; margin-right:10px;' %>
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+			<div class="classmates_list">
+				<div id="container">
+				</div>
+			</div>
 		</div>
+
+		<% if @can_edit %>
+			<%= link_to "Add", new_problem_path(:id => @track.id), class: "btn btn-info" %>
+		<% end %>
 	</div>
 </div>
 
-<% if @can_edit %>
-	<%= link_to "Add", new_problem_path(:id => @track.id), class: "btn btn-info" %>
-<% end %>
