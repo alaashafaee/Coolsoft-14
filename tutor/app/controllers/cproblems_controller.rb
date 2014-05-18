@@ -10,7 +10,7 @@ class CproblemsController < ApplicationController
 	# Author: Ahmed Akram
 	def show
 		puts "*************"
-		puts get_contest_id
+		puts params
 		@contest = Contest.find_by_id(params[:id])
 		@problem = Cproblem.find_by_id(params[:id])
 		if @problem.nil?
@@ -30,6 +30,8 @@ class CproblemsController < ApplicationController
 		student_id = current_student.id
 		cproblem_id = get_params[:cproblem_id]
 		status = get_params[:status]
+		puts "***********"
+		puts get_params
 		Cproblem.submit(contest_id, cproblem_id, student_id, status)
 		render json: {}
 	end
