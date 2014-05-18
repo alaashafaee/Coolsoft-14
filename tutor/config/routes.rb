@@ -14,6 +14,7 @@ Tutor::Application.routes.draw do
 	# 	get 'products/index'
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	get 'contests/add_problems/:id' => 'contests#add_problems'
 	get 'solutions/mark_solution'
 	get 'solutions/view_submissions'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
@@ -23,6 +24,7 @@ Tutor::Application.routes.draw do
 	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
+	post 'contests/add/:id' => 'contests#add'
 
 	get 'problems/edit'
 
