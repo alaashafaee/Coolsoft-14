@@ -252,11 +252,8 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts_as_list
-<<<<<<< HEAD
   bootstrap-wysihtml5-rails!
-=======
   capybara
->>>>>>> a3de61e780470be7477eb56d1ce8de674eba289b
   carrierwave
   cocoon
   coffee-rails (~> 4.0.0)

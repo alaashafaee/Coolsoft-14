@@ -262,7 +262,8 @@ class CoursesController < ApplicationController
 	def find_course
 		course = Course.find_by_id(params[:id])
 		render json: course
-
+	end
+	
 	# [View Corrected Assignment - Story 4.26]
 	# Shows the list of grades of assignments of a 
 	#	particular course that the student is enrolled in 

@@ -1,55 +1,4 @@
-<<<<<<< HEAD
-<div class= "left-box" >
-	<div class="xob">
-		<div class = "c_info panel-body" >
-			<div class= "row c_title">
-				<% problem = Problem.find(params[:id]) %>
-				<div class="c_code"><%= problem.track.topic.course.code %></div>
-				<div class="c_name"><%= problem.track.topic.course.name %></div>
-			</div>
-			<div class="row">
-				<div class="course_sem">
-					Semester <%= problem.track.topic.course.semester %>
-					Class <%= problem.track.topic.course.year %>
-				</div>
-			</div>
-		</div>
-		<br>
-		<br>
-		<div id="fb-root"></div>
-		<div class='problem'>
-			<label><%= @problem.title %></label><br/>
-			<%= @problem.description %>
-			<table width='100%'>
-				<tr>
-					<td width='80%'>
-						<% if student_signed_in? %>
-							<%=button_tag 'Ask Facebook', type: 'Button', id:'facebook', onClick: "openBackWindow('/facebook', 'Facebook')" %>
-							<% track_progess = TrackProgression.get_progress(current_student,
-							@problem.track.topic) %> 
-		 					<% if track_progess >= @problem.track.difficulty %>
-		 						<%= render partial: "solutions/new"%>
-		 						<td style='vertical-align:top;'>
-									<div style='margin-left:1em;'>
-										<b>Memory Contents:</b>
-										<div id="memory" class="fixed-horizontal"></div>
-										<br /><br /><br /><br />
-										<b>Hints:</b><br /><br />
-										<%= render partial: "hints/give" %>
-										<br /><br />
-										<b>Tips:</b><br /><br />
-										<%= render partial: "tips/give" %>
-									</div>
-								</td>
-							<% end %>
-						<% end %>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-</div>
-=======
+
 <label><%= @course.name %></label>\
 <label><%= @topic.title %></label>\
 <label><%= @track.title %></label>
@@ -109,4 +58,3 @@
 		</tr>
 	</table>
 </div>
->>>>>>> a3de61e780470be7477eb56d1ce8de674eba289b
