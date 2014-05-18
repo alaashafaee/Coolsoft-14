@@ -202,14 +202,9 @@ puts("# ----------------------- Problems ----------------------- ")
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
 					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-<<<<<<< HEAD
 					incomplete: true,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
 					\t\t\n\t}\n}")
-
-=======
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					{\n\t\t\n\t}\n}")
 		
 	## Bank
 		## problem 1
@@ -571,7 +566,6 @@ puts("# ----------------------- Problems ----------------------- ")
 						return fib(n - 1) + fib(n - 2);
 				}
 			}')
->>>>>>> master
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
