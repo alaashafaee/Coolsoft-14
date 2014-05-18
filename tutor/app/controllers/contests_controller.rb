@@ -71,6 +71,7 @@ class ContestsController < ApplicationController
 				end
 			end
 		end
+	end	
 
 	# [View Contest Problems - Story 5.26]
 	# Description: Displays the contest that the user chose
