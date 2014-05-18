@@ -243,12 +243,6 @@ debug_console = ->
 	$('#stopButton').toggle(state)
 	editor = get_editor()
 	editor.setReadOnly(state)
-	normal_theme = "ace/theme/twilight"
-	debug_theme = normal_theme + "-debug"
-	if editor.getTheme() == normal_theme
-		editor.setTheme debug_theme
-	else
-		editor.setTheme normal_theme
 
 
 # [Execute Line By Line - Story 3.8]
