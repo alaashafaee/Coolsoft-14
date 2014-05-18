@@ -13,8 +13,8 @@ class Executer
 		file_name = $solution.class_name
 		folder_name = $solution.folder_name
 		problem_type = sol.problem_type
-		validity = check_input_validity(input, $solution.problem.id, problem_type)
-		if validity[:status]
+		# validity = check_input_validity(input, $solution.problem.id, problem_type)
+		# if validity[:status]
 			Dir.chdir(Solution::SOLUTION_PATH + folder_name) {
 				echo_input = 'echo ' + '\'' + input + '\'' + ' | '
 				$execute_res = %x[#{echo_input + $lang + ' ' + file_name + $extension + $stream}]
@@ -24,9 +24,9 @@ class Executer
 			else
 				return {executer_feedback: true, executer_output: get_output()}
 			end
-		else
-			return {executer_feedback: false, executer_output: validity[:msg]}
-		end
+		# else
+			# return {executer_feedback: false, executer_output: validity[:msg]}
+		# end
 	end
 
 	# [Compiler: Test - Story 3.15]

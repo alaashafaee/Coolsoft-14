@@ -1,3 +1,15 @@
+
+<% @type = "" %>
+<% @controller = params[:controller] %>
+<% if @controller == "problems" %>
+	<% @type = "Problem" %>
+<% elsif @controller == "cproblems" %>
+	<% @type = "Cproblem" %>
+	<div hidden id = "contest_id"><%= @contest.id %></div>
+<% else %>
+	<% @type = "AssignmentProblem" %>
+<% end %>
+
 <%= render partial: "solutions/timer" %>
 <%= render partial: "solutions/control_bar" %>
 <div class="a4">
@@ -14,3 +26,4 @@
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
 </script>
+

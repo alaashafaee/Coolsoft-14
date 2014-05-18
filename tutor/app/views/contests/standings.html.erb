@@ -49,18 +49,23 @@
 						id: value[:record].student.id %>
 				</td>
 				<% @contest.problems.each do |problem| %>
-					<% trials =  ContestProgress.where(contest_id:
+					<% progress = ContestProgress.where(contest_id:
 						@contest.id, cproblem_id: problem.id,
-						student_id: value[:record].student.id).take.trials %>
-					<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id,
-						student_id: value[:record].student.id).take.status %>
-							<% time_taken = ((ContestProgress.where(contest_id: @contest.id,
-								cproblem_id: problem.id, student_id: value[:record].student.id).
-								take.updated_at - Contest.find(@contest.id).
-								start_time)/60).to_i %>
-							<td class="solution-accepted"> <%= trials %>/<%=time_taken %> </td>
-					<% else %>
-							<td class="wrong-answer"> <%= trials %> /-- </td>
+						student_id: value[:record].student.id).take %>
+					<% unless progress == nil %>
+						<% trials =  ContestProgress.where(contest_id:
+							@contest.id, cproblem_id: problem.id,
+							student_id: value[:record].student.id).take.trials %>
+						<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id,
+							student_id: value[:record].student.id).take.status %>
+								<% time_taken = ((ContestProgress.where(contest_id: @contest.id,
+									cproblem_id: problem.id, student_id: value[:record].student.id).
+									take.updated_at - Contest.find(@contest.id).
+									start_time)/60).to_i %>
+								<td class="solution-accepted"> <%= trials %>/<%=time_taken %> </td>
+						<% else %>
+								<td class="wrong-answer"> <%= trials %> /-- </td>
+						<% end %>
 					<% end %>
 				<% end %>
 			</tr>

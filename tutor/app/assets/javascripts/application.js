@@ -17,6 +17,8 @@
 //= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
+//= require alertify
+//= require cocoon
 //= require jquery.plugin.js
 //= require jquery.countdown.js
 //= require bootstrap-wysihtml5/b3

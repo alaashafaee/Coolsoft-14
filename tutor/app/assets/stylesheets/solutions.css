@@ -71,9 +71,11 @@ textarea  {
 	border: #999999;
 	border-style: solid;
 	border-width: thin;
-	max-height: 150px;
-	min-height: 150px;
+	max-height: 100px;
+	min-height: 100px;
 	background: white;
+	overflow-y: scroll;
+	overflow-x: scroll;
 	overflow: auto;
 	max-width: 100px;
 	min-width: 100%;
@@ -118,6 +120,13 @@ textarea  {
 
 .hidden {
 	visibility: false;
+}
+
+.output {
+	white-space: pre;
+	color: black;
+	font-weight: bold;
+	font-size: 20px
 }
 
 .edit_button {
