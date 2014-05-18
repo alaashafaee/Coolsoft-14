@@ -44,3 +44,10 @@
 	<%= link_to "Edit assignment", { :controller => 'assignments',
 		:action => 'edit', :id => @assignment.id }, class: "btn btn-info" %>
 <% end %>
+<% if !@can_edit %>
+	<% if @all_problems_submitted %>
+		<%= link_to "Submit Assignment", { :controller => 'assignments',
+			:action => 'submit', :id => @assignment.id },
+			class: "btn btn-info" %>
+	<% end %>
+<% end %>

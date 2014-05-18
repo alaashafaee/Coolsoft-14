@@ -153,6 +153,12 @@ Tutor::Application.routes.draw do
 		get 'destroy_problem'
 	end
 
+	resources :assignments do
+		member do
+			get 'submit'
+		end
+	end
+
 	# Example resource route with sub-resources:
 	#   resources :products do
 	#     resources :comments, :sales
