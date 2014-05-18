@@ -1,5 +1,9 @@
 class ContestsController < ApplicationController
 
+	def index
+		@contests = Contest.all
+	end
+
 	# [Contest Registration - Story 5.24]
 	# Add the current student to the choosen contest
 	# Parameters:

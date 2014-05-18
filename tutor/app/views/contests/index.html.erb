@@ -1,0 +1,9 @@
+<!-- not in this story it is only for the test -->
+<h1> Contests </h1>
+<% @contests.each do |contest| %>
+	<%= link_to contest.title, 
+		controller: "/contests", 
+		action: "index"%>
+		<%= link_to "Register", {:controller => 'contests', :action => 'register' , :id => contest.id} %>
+		<div class="line-separator"></div>
+	<% end %>
