@@ -173,9 +173,8 @@ class TestCasesController < ApplicationController
 	# Returns:
 	#	Hash of paramas
 	# Author: Ahmed Osam
+		def test_case_params
+			params.require(:test_case).permit(:input, :output, :problem_id)
+		end
 
-	def test_case_params
-		params.require(:test_case).permit(:input, :output, :problem_id)
-	end
-	
 end

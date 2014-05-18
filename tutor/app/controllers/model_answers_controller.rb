@@ -195,8 +195,8 @@ class ModelAnswersController < ApplicationController
 	# Returns:
 	#	Hash of paramas
 	# Author: Ahmed Osam
+		def model_answer_params_add
+			params.require(:model_answer).permit(:title, :answer, :problem_id)
+		end
 
-	def model_answer_params_add
-		params.require(:model_answer).permit(:title, :answer, :problem_id)
-	end
 end

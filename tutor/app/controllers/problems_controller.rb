@@ -238,7 +238,6 @@ class ProblemsController < ApplicationController
 	# Returns:
 	#	Hash of paramas
 	# Author: Ahmed Osam
-
 		def problem_params_add
 			params.require(:problem).permit(:title, :description, :track_id, :snippet)
 		end

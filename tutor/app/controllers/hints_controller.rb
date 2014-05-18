@@ -165,7 +165,6 @@ class HintsController < ApplicationController
 	# Returns:
 	#	Hash of paramas
 	# Author: Ahmed Osam
-
 		def hint_params_edit
 			params.require(:hint_edit).permit(:message, :submission_counter)
 		end
