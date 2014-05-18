@@ -3,11 +3,26 @@
 # General layout for footer
 # Author: Ahmed Elassuty
 -->
-<div style="margin-top:15px">
+<!-- <div style="margin-top:15px">
 	<span style="margin:5px">
 		<%= link_to "About us"%>
 	</span>
 	<span style="margin:5px">
 		<%= link_to "Contact us"%>
 	</span>
+</div> -->
+<div class="pull-left ft_space">
+    <address>
+    <h3>MoveMe Inc.</h3>
+    200 Trafalgar Road<br>
+    Oakville, ON M6L 6Y9<br>
+    <a href="mailto: first.last@moveme.com">hello@moveme.com</a><br>
+    <abbr title="Phone">P:</abbr>906 123-4567
+    </address>
+    <%= link_to "About us"%><br>
+    <%= link_to "Contact us"%>
+</div>
+<div class="pull-right ft_space">
+    <img class="img-responsive" src="/assets/logo.png" width="50%" height="50%">
+    <p>&copy; MoveMe Inc. 2014</p>
 </div>

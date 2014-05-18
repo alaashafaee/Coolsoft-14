@@ -1,0 +1,68 @@
+<%= form_for :course, url: courses_path do |f| %>
+	<div class="row">
+		<% unless @new_course.errors[:code].blank? %>
+			<span id="error_explanation">
+				Code <%= @new_course.errors[:code].join(", ") %> 
+			</span>
+			<br>
+		<% end %>
+		<div class="col-sm-2">
+			<h3>Code</h3>
+		</div>
+		<div class="col-sm-10">
+			<%= f.text_field :code, :value => @new_course.code, class:"form-control", style: "width:300px", placeholder:"Code"%>
+		</div>
+	</div>
+
+	<div class="row">
+		<% unless @new_course.errors[:name].blank? %>
+			<span id="error_explanation">
+				Name <%= @new_course.errors[:name].join(", ") %> 
+			</span>
+			<br>
+		<% end %>
+		<div class="col-sm-2"><h3>Name</h3></div>
+		<div class="col-sm-10">
+		<%= f.text_field :name, :value => @new_course.name, class:"form-control", style: "width:300px", placeholder:"Name" %>
+		</div>
+	</div>
+	<div class="row">
+		<% unless @new_course.errors[:description].blank? %>
+			<span id="error_explanation">
+				Description <%= @new_course.errors[:description].join(", ") %> 
+			</span>
+			<br>
+		<% end %>
+		<div class="col-sm-2"><h3>Description</h3></div>
+		<div class="col-sm-10">
+		<%= f.text_area :description, class:"form-control", style:"width:70%", 
+			placeholder:"Description", :value => @new_course.description %>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<%= f.label :Semester %><br>
+		<% unless @new_course.errors[:semester].blank? %>
+			<span id="error_explanation">
+				Semester <%= @new_course.errors[:semester].join(", ") %> 
+			</span>
+			<br>
+		<% end %>
+		<%= f.text_field :semester, :value => @new_course.semester, class:"form-control", style: "width:70px", placeholder:"No." %>
+	</div>
+	<div class="row">
+		<%= f.label :Year %><br>
+		<% unless @new_course.errors[:year].blank? %>
+			<span id="error_explanation">
+				Year <%= @new_course.errors[:year].join(", ") %> 
+			</span>
+			<br>
+		<% end %>
+		<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:70px", placeholder:"Year" %>
+	</div>
+	
+	<div style="flote:right">
+		<%= f.submit "Save", class: "btn btn-info" %>
+	</div>
+<% end %>	

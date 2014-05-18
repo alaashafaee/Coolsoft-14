@@ -9,9 +9,11 @@
 		<title>Tutor</title>
 		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
+		<%= javascript_include_tag Sync.adapter_javascript_url %>
 		<%= csrf_meta_tags %>
 	</head>
-	<body style="background: #EEEFE9;">
+<!-- Navbar Section -->
+	<body>
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed"
@@ -20,7 +22,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="../" class="navbar-brand">CoolSoft - Java Tutor</a>
+				<a href="../" class="navbar-brand">Valorous</a>
 			</div>
 			<div class="navbar-collapse navbar-responsive-collapse collapse">
 				<% if signed_in? %>
@@ -56,6 +58,7 @@
 				</ul>
 			</div>
 		</div>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 		<div class="container cont">
 			<% if signed_in? %>
 					<div class="col-md-10 left_side">
@@ -76,5 +79,16 @@
 			navbar-static-bottom footer" style="min-width:1000px">
 			<%= render "layouts/footer" %>
 		</div>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 	</body>
+	<!-- Start Of Footer Section -->
+	<!-- <footer>
+		<div class="ftr">
+			<div class="row">
+				<div class="container">	
+					
+				</div>
+			</div>
+		</div>	
+	</footer> -->
 </html>

@@ -1,4 +1,4 @@
-	class PostsController < ApplicationController
+class PostsController < ApplicationController
 
 	# [Add Post - Story 1.13]
 	# Description: This action takes the passed discussion board id and assigns
@@ -35,8 +35,7 @@
 	#	flash[:notice]: A message indicating the success of the deletion
 	# Author: Ahmed Atef
 	def destroy
-		@disscusion_board = DiscussionBoard.find_by_id
-			(Post.find_by_id(params[:id]).discussion_board_id)
+		@disscusion_board = DiscussionBoard.find_by_id(Post.find_by_id(params[:id]).discussion_board_id)
 		if Post.find_by_id(params[:id]).destroy
 			flash[:notice] = "Post successfully Deleted"
 			redirect_to(:controller => 'discussion_boards', 

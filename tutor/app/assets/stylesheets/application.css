@@ -10,37 +10,60 @@
  *
  *= require_self
  *= require_tree .
+ *= require posts
  *= require bootstrap
+ *= require jquery.countdown.css
+ *= require bootstrap-wysihtml5/b3
  */
-= require posts
-
-.side-left {
-	height:700px;
-	margin-left:6px;
+ html, body {
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	background: #EEEFE9 !important;
+}
+body .container {
+	
 }
 
-.side-right {
-	margin-top:80px;
-	height:auto;
-	margin-right:0.5%;
+::-webkit-scrollbar {
+    width: 1px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
-.main-content {
-	margin-top:80px;
-	margin-bottom:70px;
-	width:78%;
-	margin-left:1%;
-	min-width:500px;
-	overflow:auto;
-	position:static;
+footer {
+	width: 100%;
 }
 
-.footer {
-	width:100%;
-	border-radius: 2px;
-	margin-top: 1.65%;
+hr {
+	border-top: 1px solid #1a5f63 !important;
 }
 
+.ftr {
+	background-image: url("/assets/ftr_bg_2.png");
+	background-repeat: repeat;
+	padding: 30px ;
+	/*position: fixed;*/
+	min-width: 100%;
+	max-width: 100%;
+}
+
+.ftr address, .ftr a, .ftr p{
+    color: #fff;   
+}
+
+.ft_space{
+    padding: 0 10px;
+    margin-top: 1.65%; 
+}
 .auto-height {
 	height: auto;
 }
@@ -58,6 +81,12 @@
 	overflow:auto;
 }
 
+/*<<<<<<< HEAD
+=======*/
+.no-scroll-x{
+	overflow-x: hidden;
+}
+/*>>>>>>> 7c28f34d0606199e00a6c09199a1d0f7335dddca*/
 .well {
 	background: transparent;
 }
@@ -71,6 +100,8 @@ a:hover{
 }
 .well{
 	background-color: transparent !important;
+/*<<<<<<< HEAD*/
+}
 
 .zooming {
 	-ms-transform: scale(0.8); /* IE 9 */
@@ -105,4 +136,6 @@ a:hover{
 
 .no-scroll-x{
 	overflow-x: hidden;
+/*=======
+>>>>>>> 7c28f34d0606199e00a6c09199a1d0f7335dddca*/
 }
