@@ -13,12 +13,12 @@
 		<tr>
 			<% if @attempt == "" %>
 				<p>&nbsp;&nbsp;&nbsp;&nbsp;No solutions added yet!</p>
-				<% else %>
+			<% else %>
 					<ul class="list-group"></ul>
 					<%= @attempt.each do |tmp| %>
 						<th> tmp.code </th>
 					<% end %>
-				<% end %>
+			<% end %>
 		</tr>
 	</table>
 </body>
