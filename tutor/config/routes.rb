@@ -59,16 +59,19 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
+	resources :assignment_testcases
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
 	resources :courses
 	resources :contests
+
 	post "courses/choose"
 	post "courses/existing"
 	post "courses/duplicate"
 	get "model_answers/new"
 	post "model_answers/new"
+
 	resources :model_answers
 	#resources :test_cases
 	#devise_for :teaching_assistants
@@ -88,11 +91,33 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
+
+	resources :assignments do
+		get "assignments/new"
+		post "assignments/show"
+		get "assignments/show"
+	end
+	resources :assignments_problems do
+		get "assignment_problems/new"
+		get "assignment_problems/edit"
+		get "assignment_problems/show"
+		get "assignment_problems/index"
+		post "assignment_problems/update"
+		post "assignment_problems/show"
+	end
+	post "/assignment_problems/complete"
+	resources :assignments_testcases do
+		get "assignment_testcases/new"
+		get "assignment_testcases/show"
+		get "assignment_testcases/index"
+		get "assignment_testcases/edit"
+		get "/assignment_testcases/new"
+	end
+
 	resources :courses do
 		post 'hide', on: :member
 	end
-	resources :test_cases	
-
+	resources :test_cases
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

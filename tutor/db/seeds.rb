@@ -811,15 +811,22 @@ puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 9)
 
 puts("# ----------------------- Assignments ----------------------- ")
-	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),
+	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2015,6,13),
 		 description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
 	Assignment.create(title:"DMENT Assignment_2", publish: true, due_date: Date.new(2015,1,1))
-	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: DateTime.now.to_date)
-	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
+	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: Date.new(2015,5,17))
+	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date:Date.new(2015,1,1))
 
 puts("# ----------------------- Grades ----------------------- ")
-	Grade.create(grade: 4, student_id: 1, problem_id: 1)
-	Grade.create(grade: 5, student_id: 1, problem_id: 2)
+
+	Grade.create(grade: 100, student_id: 1, problem_id: 1)
+	Grade.create(grade: 80, student_id: 1, problem_id: 2)
+
+puts("# ----------------------- Notifications ----------------------- ")
+	Notification.create(message: "<a href='courses/1'>Dr wael Acknowledged your work in this course</a>", seen: false)
+	Notification.create(message: "google is a website", seen: false)
+	Notification.create(message: "akram Has solved one brute-force problem", seen: true)
+	Notification.create(message: " message", seen: true)
 
 puts("# ----------------------- Notes ----------------------- ")
 	Note.create(content:"Note1", line: 1, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
@@ -830,7 +837,6 @@ puts("# ----------------------- Notes ----------------------- ")
 puts("# -----------------------Tags----------------------- ")
 	Tag.create(name: "Java")
 	Tag.create(name: "Python")
-
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -894,6 +900,11 @@ puts("# ----------------------- Lecturers ----------------------- ")
 	## Grades
 		Lecturer.first.grades << Grade.first
 		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
+	## Notifications
+		Lecturer.first.notifications << Notification.first
+		Lecturer.first.notifications << Notification.find_by_id(2)
+		Lecturer.first.notifications << Notification.find_by_id(3)
+		Lecturer.first.notifications << Notification.find_by_id(4)
 
 puts("# ----------------------- Students ----------------------- ")
 	## CourseStudent

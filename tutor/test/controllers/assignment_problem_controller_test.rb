@@ -1,7 +1,6 @@
 require 'test_helper'
 
-class AssignmentProblemsControllerTest < ActionController::TestCase
-
+class AssignmentProblemControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
@@ -21,9 +20,5 @@ class AssignmentProblemsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
   end
-
-  # test "the truth" do
-  #   assert true
-  # end
 
 end

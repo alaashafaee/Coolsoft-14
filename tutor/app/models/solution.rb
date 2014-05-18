@@ -190,7 +190,7 @@ class Solution < ActiveRecord::Base
 	#	A String containing feedback on what it found.
 	# Author: Ahmed Moataz
 	def check_class_name
-		special = "?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
+		special = "!?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
 		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 		if class_name =~ regex
 			return "The file name cannot contain special characters"
@@ -198,6 +198,8 @@ class Solution < ActiveRecord::Base
 			return "The file name cannot contain line breaks"
 		elsif class_name.include?(" ") || class_name.include?("\t")
 			return "The file name cannot contain white spaces"
+		elsif class_name == ""
+			return "The file name cannot be empty"
 		else
 			return ""
 		end
