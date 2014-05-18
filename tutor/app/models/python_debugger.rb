@@ -132,10 +132,16 @@ class PythonDebugger < Debugger
 	# Returns: A hash of the exception and its explanation if exists
 	# Author: Mussab ElDash
 	def get_stream(line, num)
+		puts ">>>>>>>>>>>>>>>>>Here>>>>>>>>>>>>>>>>>>>>>>>>"
+		p line
 		name = $class_name.sub(/\.py/,"")
 		regex = /(\-\-[A-Z][a-z]*\-\-\r\n)?> (\/[a-zA-Z0-9\-_]+)*\/#{name}\.py\(#{num}\).*\r\n$/m
 		stream = line.sub(regex, "")
+		puts ">>>>>>>>>>>>>>>>>AndHere>>>>>>>>>>>>>>>>>>>>>>>>"
+		puts stream
 		stream = stream.sub(/\(Pdb\) /, "")
+		puts ">>>>>>>>>>>>>>>>>AndHereAnd>>>>>>>>>>>>>>>>>>>>>>>>"
+		puts stream
 		return stream
 	end
 end
