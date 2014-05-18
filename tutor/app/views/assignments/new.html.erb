@@ -1,0 +1,33 @@
+<div class="body2" style="vertical-align: auto;horizontal-align: auto; float:left;">
+	<% if @new_assignment.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@new_assignment.errors.count, "error") %>
+				prohibited this assignment from being saved:
+			</h2>
+			<ul>
+				<% @new_assignment.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+	<%= form_for :assignment, url: assignments_path do |f| %>
+		<h2> Create Assignment </h2>
+		<br>
+		<p><h3><%= f.label :Title %></h3></p>
+		<p><%= f.text_field :title, class:"form-control", placeholder:"Title" %></p>
+		<h3><%= f.label :Description %></h3>
+		<p><%= f.text_area :description, class:"form-control" ,
+			placeholder:"Description", :cols => "50", :rows => "10"; %>
+		</p>
+		<p><h3><%= f.label :Due_date %></h3></p>
+		<p><%= f.date_select :due_date, {:start_year => Date.today.year+1,
+			:end_year => Date.today.year, :order => [:day, :month, :year],
+			:value => Time.now} %></p>
+		<br>
+		<p>
+			<%= f.submit "Save", class: "btn btn-info btn-large" %>
+		</p>
+	<% end %>
+</div>

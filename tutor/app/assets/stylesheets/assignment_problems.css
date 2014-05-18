@@ -3,20 +3,21 @@
 		background-color: #6699CC;
 		border-color: black;
 }
+
 .tab-links > li > a {
 	background-color: #fff; 
 	border-color: #777777;
 }
-.centered
-{
+
+.centered {
 	text-align:left;
 }
-.center
-{
+
+.center {
 	text-align:center;
 }
 
-input[type="radio"], input[type="checkbox"] {
+#check input[type="checkbox"] {
 	height: 20px;
 	width: 20px;
 	float:right;
