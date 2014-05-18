@@ -1,0 +1,6 @@
+<div class="resource">
+	<%= f.label :link %>
+	<%= f.url_field :link , autofocus: true, class:"form-control",
+		style: "width:300px", placeholder: "Link" %>
+	<%= link_to_remove_association "remove resource", f, {wrapper_class: 'resource'} %>
+</div>
