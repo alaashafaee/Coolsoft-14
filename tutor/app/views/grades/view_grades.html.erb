@@ -1,16 +1,16 @@
-<table class="table table-striped" style = "width: 90%">
+<table class="table table-striped" style ="width: 90%">
 	<thead>
 		<tr>
-			<td class = "table_element">
+			<td class="table_element">
 				Student</td>
-			<td width = "5px"></td>
+			<td width="5px"></td>
 			<% @problems.each do |problem| %>
-				<td width = "5px"></td>
-				<td class = "table_element">
+				<td width="5px"></td>
+				<td class="table_element">
 					<%= problem.title %></td>
 			<% end %>
-			<td width= "5px"></td>
-			<td class = "table_element">
+			<td width="5px"></td>
+			<td class="table_element">
 				Total Grade</td>
 		</tr>
 	</thead>
@@ -19,18 +19,18 @@
 		<% @students.each do |student| %>
 			<tr>
 				<td><%= student.name %></td>
-				<td width = "5px"></td>
+				<td width="5px"></td>
 				<% @total_grade = 0 %>
 				<% @total_final_grade = 0 %>
 				<% @problems.each do |problem| %>
-					<td width = "5px"></td>
+					<td width="5px"></td>
 					<td><%= @grades[@counter] %>/
 						<%= problem.final_grade %></td>
 					<% @total_grade += @grades[@counter] %>
 					<% @total_final_grade += problem.final_grade %>
 					<% @counter +=1 %>
 				<% end %>
-				<td width = "5px"></td>
+				<td width="5px"></td>
 				<td><%= @total_grade %>/<%= @total_final_grade %></td>
 			</tr>
 		<% end %>

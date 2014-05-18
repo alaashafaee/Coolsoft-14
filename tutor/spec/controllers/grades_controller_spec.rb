@@ -49,4 +49,5 @@ describe GradesController do
 			@grades[1].should eq 10
 		end
 	end
+
 end
