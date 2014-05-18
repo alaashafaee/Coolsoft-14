@@ -21,12 +21,21 @@
 			<div class="post ">
 				<font></font>
 				<div class="container p_div">
+					<% if student_signed_in? %>
+						<% user = current_student %>
+					<% elsif teaching_assistant_signed_in?%>
+						<% user = current_teaching_assistant %>
+					<% else %>
+						<% user = current_lecturer %>
+					<% end %>
 					<div class="header"> 
 						<h1><%= @post.title %></h1>
 					</div>
-					<div class="edit_post">
-						<%= link_to "Edit Post", edit_post_path(@post) %>
-					</div>
+					<% if user == @post.owner %>
+						<div class="edit_post">
+							<%= link_to "Edit Post", edit_post_path(@post) %>
+						</div>
+					<% end %>
 					<br>
 					<h2><%= @post.content.html_safe %></h2>
 					<hr>
