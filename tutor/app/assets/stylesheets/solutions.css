@@ -45,8 +45,10 @@ textarea  {
 	overflow: auto;
 }
 
-.fixed-horizontal {
-	max-width: 175px;
+.fixed-dimensions {
+	max-height: 230px;
+	min-width: 180px;
+	max-width: 180px;
 	overflow: auto;
 }
 
@@ -148,4 +150,16 @@ textarea  {
 	height: 20%;
 	margin_top: 10px;
 	cursor: default;
+}
+
+.total_grade {
+	height: 100px;
+	color: white;
+	font-size: 2em;
+}
+
+.non_graded {
+	height: 50px;
+	color: white;
+	font-size: 2em;"
 }

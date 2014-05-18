@@ -55,9 +55,11 @@ class Debugger
 				locals = []
 				begin
 					locals = get_variables
+					stack = get_stack_trace
 				rescue => e
 				end
 				nums[:locals] = locals
+				nums[:stack] = stack
 				$all << nums
 				counter += 1
 			rescue => e
