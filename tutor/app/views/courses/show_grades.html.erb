@@ -13,12 +13,12 @@
 				<% @records.each do |r| %>
 					<% if r.problem_id == p.id %>
 						<% @student_grade = @student_grade + r.grade %>
-						<% @flag =  true %>
+						<% @assignment_corrected =  true %>
 					<% end %>
 				<% end %>
 				<% @total_grade = p.final_grade %>
 			<% end %>
-			<% if @flag %>
+			<% if @assignment_corrected %>
 				<tr>
 					<td><center><%= assi.title%></center></td>
 					<td><center><%= @student_grade %>/<%= @total_grade %></center></td>
@@ -36,7 +36,7 @@
 			<% end %>
 			<% @total_grade = 0 %>
 			<% @student_grade = 0 %>
-			<% @flag = false%>
+			<% @assignment_corrected = false%>
 		<% end %>
 	<% end %>
 </table>
