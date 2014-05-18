@@ -1,6 +1,12 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-manage-container {
+	width: 100% !important;
+	background-color: #f6f6f6 !important;
+	border-radius: 2px;
+}
 .btn.btn-primary {
 	font-weight: bold;
 	font-family: Courier;
@@ -162,15 +168,24 @@
 .tab-content .info-desc p font {
 	font-size: 1.1em !important;
 }
-
-.alert {
+.danger-alert {
 	margin-left: 5% !important;
 	width: 90% !important;
 	background-color: #c23a34 !important;
+	border-radius: 10px;
 }
 
-.alert .danger-message font {
+.danger-alert .danger-title font {
+	color: #ffffff;
+}
+.danger-alert .danger-message font {
+	color: #ffffff;
 	font-size: 0.6em !important;
+}
+.tab-pane .delete-course-bt  {
+	width:90% !important;
+	margin-left: 5% !important;
+	text-align: center;
 }
 
 .switch_sharing {
@@ -178,4 +193,10 @@
 	border: none;
 	color: #2fb899;
 	margin-top: -2px;
+}
+
+.ta-main .more-links {
+	width:90% !important;
+	text-align:center;
+
 }
