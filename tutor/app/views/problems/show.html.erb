@@ -19,8 +19,25 @@
  						<td style='vertical-align:top;'>
 							<div style='margin-left:1em;'>
 								<b>Memory Contents:</b>
-								<div id="memory" class="fixed-horizontal"></div>
-								<br /><br /><br /><br />
+								<div id="memory" class="fixed-dimensions">
+									<table class="table table-striped table-bordered
+										table-condensed table-hover" border="3">
+										<tr class='info'>
+											<th>Variable</th>
+											<th>Value</th>
+										</tr>
+									</table>
+								</div>
+								<br />
+								<div id="stack" class="fixed-dimensions">
+									<table class="table table-striped table-bordered
+										table-condensed table-hover" border="3">
+										<tr class='info'>
+											<th>Stack Trace</th>
+										</tr>
+									</table>
+								</div>
+								<br /><br />
 								<b>Hints:</b><br /><br />
 								<%= render partial: "hints/give" %>
 								<br /><br />
