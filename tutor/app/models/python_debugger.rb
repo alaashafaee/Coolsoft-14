@@ -64,7 +64,7 @@ class PythonDebugger < Debugger
 	# Returns: The number of the line to be executed
 	# Author: Mussab ElDash
 	def get_line
-		out_stream = buffer_until $regex
+		out_stream = buffer_until $regex, true
 		exceptions = has_exception out_stream
 		name_string = $class_name.sub(/\.py/,"")
 		/#{name_string}\.py\(\d+\).*\r\n/ =~ out_stream
