@@ -157,7 +157,6 @@ puts("# ----------------------- Problems ----------------------- ")
 			to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from 
 			input to output. Stop processing input after reading in the number 42. All numbers at input are integers 
 			of one or two digits.", final_grade: 100)
-
 		AssignmentProblem.create(title: "AssignmentProblem 2", description: "he Antique Comedians of Malidinesia prefer 
 			comedies to tragedies. Unfortunately, most of the ancient plays are tragedies. Therefore 
 			the dramatic advisor of ACM has decided to transfigure some tragedies into comedies. 
@@ -177,7 +176,6 @@ puts("# ----------------------- Problems ----------------------- ")
 			(e.g. assume that the original number was 12).", final_grade: 100)
 		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", final_grade:10)
 		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", final_grade:10)
-
 	## Contests
 		Cproblem.create(title: "ContestProblem 1", description: "This is very easy Problem")
 		Cproblem.create(title: "ContestProblem 2", description: "Given two numbers a and b, output a/b")

@@ -114,7 +114,6 @@ GEM
     minitest (4.7.5)
     multi_json (1.9.2)
     orm_adapter (0.5.0)
-    pdfkit (0.6.2)
     polyamorous (1.0.0)
       activerecord (>= 3.0)
     polyglot (0.3.4)
@@ -231,7 +230,6 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)
   json_builder (= 3.1.0)
-  pdfkit
   rails (= 4.0.4)
   rmagick
   rspec-rails (~> 3.0.0.beta)

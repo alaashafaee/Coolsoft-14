@@ -49,6 +49,12 @@ class GradesController < ApplicationController
 		redirect_to :back
 	end
 
+	# [Grades' List - 4.31]
+	# shows records of Grade Table in a specific course
+	# Parameters:
+	#	assignment_id: the id of the assignment to be viewed its grades
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
 	def view_grades
 		@assignment = Assignment.find_by_id(params[:assignment_id])
 		@problems = @assignment.problems
@@ -61,22 +67,12 @@ class GradesController < ApplicationController
 				grade = Grade.where(problem_id: problem.id, student_id: student.id).first
 				if grade
 					@grades[@counter] = grade.grade
-				else 
+				else
 					@grades[@counter] = 0
 				end
 				@counter += 1
 			end
 		end
-	end
-
-	def download_grades
-		kit = PDFKit.new(html, :page_size => 'Letter')
- 		pdf = kit.to_pdf
- 		file = kit.to_file('/home/husseny/Downloads/GradesList/pdf')
-		kit = PDFKit.new(File.new('/views/grades/view_grades'))
-		PDFKit.new('<html><head><meta name="pdfkit-page_size" content="Letter"')
-		PDFKit.new('<html><head><meta name="pdfkit-cookie cookie_name1" content="cookie_value1"')
-		PDFKit.new('<html><head><meta name="pdfkit-cookie cookie_name2" content="cookie_value2"')
 	end
 
 	# [Grade Solution - 4.30]
@@ -93,4 +89,3 @@ class GradesController < ApplicationController
 			params.require(:Grade).permit(:grade, :problem_id, :student_id)
 		end
 end
->>>>>>> 750556512f7774d55f37d3d20fe82aa150e23d5f
