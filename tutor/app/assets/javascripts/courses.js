@@ -77,7 +77,23 @@ function update_course() {
 	});
 }
 
-function testing(){
-	
+function acknowledge(courseid){
+	students_selected = $("#students_").val();
+	desc = $("#acknowledgement_description").val();
+	$.ajax({
+		type: "POST",
+		url: "/courses/"+courseid+"/acknowledgements",
+		data:{
+			course_id: courseid,
+			students: students_selected,
+			description: desc
+		},
+		success: function(data) {
+			alert("Acknowledgements sent successfully")
+		},
+		error: function() {
+			alert("Wrong Inputs, check student selectoins")
+		}
+	});
 }
 

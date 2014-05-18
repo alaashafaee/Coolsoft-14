@@ -72,11 +72,6 @@ gem 'table_print'
 # Text-editor
 gem 'bootstrap-wysihtml5-rails', require: 'bootstrap-wysihtml5-rails', github: 'Nerian/bootstrap-wysihtml5-rails'
 
-# real-time sync
-gem 'faye'
-gem 'thin', require: false
-gem 'sync'
-
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
 end

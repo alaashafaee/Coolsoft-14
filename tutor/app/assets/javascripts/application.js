@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require sync
 //= require jquery-ui-1.10.4
 //= require_tree .
 //= require bootstrap
