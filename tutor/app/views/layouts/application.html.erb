@@ -56,24 +56,24 @@
 				</ul>
 			</div>
 		</div>
-		<div class="container cont">
-			<% if signed_in? %>
-					<div class="col-md-10 left_side">
-						<%= yield %>
-					</div>
-					<div class="col-xs-hidden col-md-2 right_side">
-							<%= render "layouts/right_side_bar" %>
+		<% if signed_in? %>
+			<div class="container cont">
+				<div class="col-md-10 left_side">
+					<%= yield %>
+				</div>
+				<div class="col-xs-hidden col-md-2 right_side">
+						<%= render "layouts/right_side_bar" %>
 
-					</div>
-			<% else %>
-				<div class="row" style="background: #eeefe9;">
-						<%= yield %>
-				</div> 
-			<% end %>
-		</div>
+				</div>
+			</div>
+		<% else %>
+			<div class="row" style="background: #eeefe9;">
+					<%= yield %>
+			</div> 
+		<% end %>
 		</br>
 		<div align="center" class="navbar navbar-default
-			navbar-static-bottom footer" style="min-width:1000px">
+			navbar-static-bottom footer" style="min-width:1000px; border-radius: 0px;">
 			<%= render "layouts/footer" %>
 		</div>
 	</body>
