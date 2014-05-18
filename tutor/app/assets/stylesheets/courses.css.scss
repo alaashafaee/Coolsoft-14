@@ -168,6 +168,7 @@
 	background-color: #CF5044;
 	border-radius: 100px;
 	color: white;
+	transition: all 1s;
 }
 
 .show-p {
@@ -175,9 +176,34 @@
 	background-color: #96AB4F;
 	border-radius: 100px;
 	color: white;
+	transition: all 1s;
 
 }
 
+.hide-p:hover{
+	background-color: #FF6354;
+}
+
+.show-p:hover {
+	background-color: #BCD663;
+}
 .c-description-label{
 	height: 82px;
+	font-weight: lighter;
+	font-family: sans-serif;
+}
+
+.course_sign_up {
+	padding: 10px;
+	background-color: #2A6775;
+	border-radius: 5px;
+	font-size: 1em;
+	font-weight: lighter;
+	font-family: sans-serif;
+	color: #fff;
+}
+
+.course_sign_up:hover {
+	background-color: #3B8FA3;
+	color: white;
 }
