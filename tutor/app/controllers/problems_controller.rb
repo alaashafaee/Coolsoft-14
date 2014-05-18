@@ -111,11 +111,8 @@ class ProblemsController < ApplicationController
 		if @problem.destroy
 			flash[:notice] = "Problem successfully Deleted"
 			redirect_to(:controller => 'tracks',
-<<<<<<< HEAD
-				:action => 'show' ,:id => @track)
-=======
 				:action => 'show', :id => @track)
->>>>>>> 4af6006b07f5e48ac978258da182ec0f6e595dc3
+				:action => 'show', :id => @track)
 		end
 	end
 
@@ -213,22 +210,19 @@ class ProblemsController < ApplicationController
 		session[:track_id] = params[:track_id]
 		session[:model_answer_id] = params[:model_answer_id]
 		if @problem.model_answers.empty? || @problem.test_cases.empty?
-<<<<<<< HEAD
 			@failure = true
 			flash.keep[:notice] = "Problem is incomplete, 
 			please add necessary paramaters or save as incomplete"
-			redirect_to :action => "edit" , :id => @problem.id
+			redirect_to :action => "edit", :id => @problem.id
 		else
 			@problem.incomplete = false
 			@problem.save
 			redirect_to :controller => "tracks", :action => "show" , :id => @problem.track_id
-=======
 			flash[:notice] = "Problem is incomplete,
 			please add necessary at least 1or save as incomplete"
 		else
 			@problem.incomplete = false
 			@problem.save
->>>>>>> 4af6006b07f5e48ac978258da182ec0f6e595dc3
 		end
 		redirect_to :controller => 'tips', :action => 'new',
 			:model_answer_id => params[:model_answer_id],
