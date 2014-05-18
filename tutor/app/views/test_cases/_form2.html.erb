@@ -1,0 +1,21 @@
+<div id="div1">
+	<% if flash[:notice] %>
+		<div class= "alert alert-success"><%= flash[:notice] %></div>
+	<% end %>
+</div>
+<%= form_for :test_case, url: test_case_path(@test_case), method: :patch, remote: true do |test_case| %>
+	<h2>Test Case </h2>
+	<p>
+		<span class="glyphicon glyphicon-info-sign"></span>
+		Please insert values in input and output fields each in an new line if more than one.
+	</p>
+	<h3><%= test_case.label :Input%> </h3>
+	<h4 align ="left"><%= @test_case.input %></h4>
+	<%= test_case.text_area :input, class:"form-control",
+		style: "width:450px; height:200px;" %><br>
+	<h3><%= test_case.label :Output %></h3>
+	<h4 align ="left"><%= @test_case.output %></h4>
+	<%= test_case.text_area :output, class:"form-control",
+		style: "width:450px; height:200px;" %><br>
+	<br><%= test_case.submit "Save changes", class: "btn btn-large btn-info" %><br>
+<% end %>

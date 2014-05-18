@@ -1,7 +1,18 @@
-<!-- Timer that starts when problem is shown -->
-<b>Time spent:</b>
-<span id="mins">0</span>:<span id="secs">00</span>
 
-<%= render partial: "solutions/editor"%>
+<%= render partial: "solutions/timer" %>
+<%= render partial: "solutions/control_bar" %>
+<div class="a4">
+	<%= render partial: "solutions/editor" %>
+	<%= render partial: "solutions/input_box" %>
+	<%= render partial: "solutions/console" %>
+</div>
 
-<%= render partial: "solutions/input_output"%>
+<script>
+	var editor = ace.edit("editor");
+	var edit_session = editor.getSession();
+	var default_code = document.getElementById('problem_default_code');
+	edit_session.setValue(default_code.value);
+	editor.setTheme("ace/theme/twilight");
+	edit_session.setMode("ace/mode/java");
+</script>
+

@@ -122,8 +122,34 @@ puts("# ----------------------- Topics ----------------------- ")
 
 puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
- 	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
- 	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
+	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
+	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
+	Hint.create(id: 501, message: "You may need to multiply each change with its corresponding 
+		ammount in pennies.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 502, message: "Follow the exact example from the problem and try substituting 
+		with the right variables.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 503, message: "Try using %2 to test the numbers when the remainder is 0 then 
+		it is even and if the remainder is 1 then it is odd.", category: true, time: 50, 
+		submission_counter:1)
+	Hint.create(id: 504, message: "Get the inverse of the number by making an empty string and 
+		concatenate the first digit from the number and then the second digit and so on 
+		until there are no digits remaining. After getting the inverse of the number compare 
+		it to the original number if they are equal then it's a palindrome.", 
+		category: true, time: 50, submission_counter:1)
+	Hint.create(id: 505, message: "Try making an empty string and concatenate the numbers from the 
+		first digit which is 1 until you reach the desirable number.", category: true, 
+		time: 50, submission_counter:1)
+	Hint.create(id: 506, message: "Make nested for-loops, one for testing the whole array and the 
+		other to sort the array.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 507, message: "Trying taking each digit of the number by the modulus sign
+		and multiply it consecutively", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 508, message: "In the recursive method write the base case if one of the 
+		numbers is zero.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 509, message: "Try using the predefined method Math.sqrt(number)",
+		category: true, time: 50, submission_counter:1)
+	Hint.create(id: 510, message: "Make two for loops, one for printing the numbers, 
+		and the other for the printing a new line.", category: true, 
+		time: 50, submission_counter:1)
 
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
@@ -132,6 +158,110 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
 	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
 	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
+	ModelAnswer.create(id: 501, title: "Count Change", answer: "
+		int quarters, dimes, nickles, pennies;
+		quarters = 3;
+		dimes = 2;
+		nickles = 1;
+		pennies = 6;
+		double total = quarters*25 + dimes*10 + nickles* 5 + pennies;
+		System.out.print(total/100);")
+	ModelAnswer.create(id: 502, title: "Equivalent Resistance", answer: "
+		float r1 = 8, r2 = 8, r3 = 4;
+		float series = r1 + r2 + r3;
+		float parallelInverse = 1/r1 + 1/r2 + 1/r3;
+		float parallel = 1/parallelInverse;
+		System.out.println(series);
+		System.out.println(parallel);")
+	ModelAnswer.create(id: 503, title: "Even or Odd", answer: "
+		int oddNumber = 5;
+		int evenNumber = 4;
+		if ((evenNumber %2) == 0){
+			System.out.println(1);}
+		else {
+			System.out.println(0);}
+		if ((oddNumber %2) == 1){
+			System.out.println(0);}
+		else {
+			System.out.println(1);}")
+	ModelAnswer.create(id: 504, title: "Palindrome", answer: "
+		int palindrome = 12321;
+		int reverse = 0;
+		int number = palindrome;
+		while(palindrome != 0){
+			int remainder = palindrome %10;
+			reverse = reverse*10 + remainder;
+			palindrome = palindrome/10;
+		}
+		if(number == reverse) {
+			System.out.println(1);}
+		else{ System.out.println(-1);}")
+	ModelAnswer.create(id: 505, title: "Fibonacci", answer: "
+		int number = 5;
+		if(number==1){
+			System.out.println(1);}
+		else if (number==2){
+			System.out.print(1);
+			System.out.print(1);}
+		else {
+			int fibo1 = 1,
+			fibo2 = 1,
+			fibonacci = 1;
+			String fibo = fibo1 + fibo2;
+			for(int i = 3; i <= number; i++){
+				fibonacci = fibo1 + fibo2;
+				fibo += fibonacci;
+				fibo1 = fibo2;
+				fibo2 = fibonacci;}
+				System.out.println(fibo);}")
+	ModelAnswer.create(id: 506, title: "Bubble sort", answer: "
+		int[] unsorted = {32, 39, 21, 45, 23, 3};
+		for(int i=0; i<unsorted.length -1; i++){
+			for(int j= 1; j<unsorted.length -i; j++){
+				if(unsorted[j-1] > unsorted[j]){
+					int temp = unsorted[j];
+					unsorted[j] = unsorted[j-1];
+					unsorted[j-1] = temp;
+				}
+			}
+			System.out.printf(Arrays.toString(unsorted));
+		}")
+	ModelAnswer.create(id: 507, title: "Armstrong", answer: "
+		int number = 153;
+		int result = 0;
+		int orig = number;
+		while(number != 0){
+			int remainder = number%10;
+			result = result + remainder*remainder*remainder;
+			number = number/10;
+		}
+		if(orig == result){
+			return System.out.printf(1);
+		} else {
+			return System.out.printf(-1);
+		}")
+	ModelAnswer.create(id: 508, title: "GCD", answer: "
+		int number1 = 12;
+		int number2 = 90;
+		System.out.println(findGCD(number1,number2));
+		private static int findGCD(int number1, int number2) {
+			if(number2 == 0){
+				return number1;
+			}
+		return findGCD(number2, number1%number2); }")
+	ModelAnswer.create(id: 509, title: "Square Root", answer: "
+		double square = 25;
+		double squareRoot = Math.sqrt(square);
+		System.out.println(squareRoot);
+		")
+	ModelAnswer.create(id: 510, title: "Structure", answer: "
+		int number = 5;
+		for (int i = 1; i<=number; i++) {
+			for (int j = 1; j<=number; j++){
+				System.out.printf(number);
+			}
+			System.out.println();
+		}")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -193,24 +323,74 @@ puts("# ----------------------- Problems ----------------------- ")
 
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
 					incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
-		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					{\n\t\t\n\t}\n}")
-		
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
+		Problem.create(title: "Problem 5", description: "This is very easy Problem", incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
+		Problem.create(id: 501, title: "Count Change", description: "Write a program CountChange 
+			to count change. Given the number of quarter, dimes, nickles, and pennies the 
+			program should output the total as a single value in dollars and pennies.
+			One dollar corresponds to 100 pennies.- One quarter corresponds to 25 pennies.
+			- One dime corresponds to 10 pennies. - One nickle corresponds to 5 pennies.
+			For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies,
+			then the total is 1.06 dollars. Implement your program to execute the previous 
+			example.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 502, title: "Equivalent Resistance", description: "The equivalent resistance of 
+			resistors connected in series is calculated by adding the resistances of the 
+			individual resistors. The formula for resistors connected in parallel is a little 
+			complex. Given two resistors with resistances R1 and R2 connected in parallel the 
+			equivalent resistance is given by the inverse of the sum of the inverses, 
+			e.g. 1/Req = 1/R1 + 1/R2. Write a program that given 3 resistances outputs the 
+			equivalent resistance when they are connected in series and when they are connnected 
+			in parallel. Implement your program using values 8, 8, and 4 for three resistors.", 
+			incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 503, title: "Even or Odd", description: "Write a program to check 
+			if a number is even or odd. Print 1 if even, and 0 if odd. Implement your code using 
+			two numbers 4 and 5, then test them consecutively. The program should print 1 
+			then 0.",incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 504, title: "Palindrome", description: "Write a program to check if a 
+			number is a palindrome or not iteratively. Print 1 if the number is a palindrome, 
+			and -1 if not. Test the value 12321 in your program.",incomplete: false, seen: true, 
+			duplicated: false)
+		Problem.create(id: 505, title: "Fibonacci", description: "Write a program to print 
+			Fibonacci series up to a given number iteratively. Test your program using the 
+			value 5.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 506, title: "Bubble sort", description: " Write a program to sort an 
+			integer array using the bubble sort method. Write your program using the array [32, 
+			39, 21, 45, 23, 3]", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 507, title: "Armstrong", description: "Write a program to check 
+			if a number is Armstrong number or not. An Armstrong number of 3 digit is a 
+			number for which sum of cube of its digits are equal to number e.g. 371 is an
+			Armstrong number because 3*3*3 + 7*7*7 + 1*1*1 = 371). Implement your code 
+			testing the value 153. Print 1 if Armstrong and -1 otherwise.", incomplete: false, 
+			seen: true, duplicated: false)
+		Problem.create(id: 508, title: "GCD", description: "Write a  program to find GCD 
+			of two numbers in Java recursively. GCD: Greatest Common Divisor. Implement your code 
+			testing the numbers 12 90. The program should print 6.", incomplete: false, 
+			seen: true, duplicated: false)
+		Problem.create(id: 509, title: "Square Root", description: "How to find square root of 
+			a number in Java. Implement your program testing the value 25, the program should 
+			print the value 5.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 510, title: "Structure", description: "Print the following structure:
+			1
+			22
+			333
+			4444
+			55555", incomplete: false, seen: true, duplicated: false)
+					
 	## Bank
 		## problem 1
 		Problem.create(id: 100, title: "Bubble Sort", description: "Given array of numbers a use them bubble 
@@ -571,6 +751,7 @@ puts("# ----------------------- Problems ----------------------- ")
 						return fib(n - 1) + fib(n - 2);
 				}
 			}')
+
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
@@ -578,8 +759,9 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 4", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
-	Solution.create(code: "println(My first submitted solution);", length: 5, status: 1)
-	Solution.create(code:"println(My second solution)", length:5, status:0)
+
+	Solution.create(code:"println(My first solution) \n int a =1;\n int b = 2;\n int r = a+b; ", length:5, status:0)
+	Solution.create(code: "println(My second submitted solution);", length: 5, status: 1)
 	Solution.create(code:"println(My third solution)", length:5, status:3)
 	Solution.create(code: "println(My first solution) \n int x =10;\n x++;\nDouble y\n y = x/3;", length: 5, status: 0)
 
@@ -636,16 +818,32 @@ puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 9)
 
 puts("# ----------------------- Assignments ----------------------- ")
-	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2009,6,13),
+	Assignment.create(title:"DSD Assignment_1", publish: true, due_date: Date.new(2015,6,13),
 		 description:"This is your first DSD assignment. It contains exersices on basics of logic design.")
 	Assignment.create(title:"DMENT Assignment_2", publish: true, due_date: Date.new(2015,1,1))
-	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: DateTime.now.to_date)
-	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
+	Assignment.create(title:"DSD Assignment_3", publish: true, due_date: Date.new(2015,5,17))
+	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date:Date.new(2015,1,1))
 
 puts("# ----------------------- Grades ----------------------- ")
 
 	Grade.create(grade: 100, student_id: 1, problem_id: 1)
 	Grade.create(grade: 80, student_id: 1, problem_id: 2)
+
+puts("# ----------------------- Notifications ----------------------- ")
+	Notification.create(message: "<a href='courses/1'>Dr wael Acknowledged your work in this course</a>", seen: false)
+	Notification.create(message: "google is a website", seen: false)
+	Notification.create(message: "akram Has solved one brute-force problem", seen: true)
+	Notification.create(message: " message", seen: true)
+
+puts("# ----------------------- Notes ----------------------- ")
+	Note.create(content:"Note1", line: 1, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	Note.create(content:"Note2", line: 2, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	Note.create(content:"Note3", line: 3, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	Note.create(content:"Note4", line: 4, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+
+puts("# -----------------------Tags----------------------- ")
+	Tag.create(name: "Java")
+	Tag.create(name: "Python")
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
@@ -709,6 +907,11 @@ puts("# ----------------------- Lecturers ----------------------- ")
 	## Grades
 		Lecturer.first.grades << Grade.first
 		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
+	## Notifications
+		Lecturer.first.notifications << Notification.first
+		Lecturer.first.notifications << Notification.find_by_id(2)
+		Lecturer.first.notifications << Notification.find_by_id(3)
+		Lecturer.first.notifications << Notification.find_by_id(4)
 
 puts("# ----------------------- Students ----------------------- ")
 	## CourseStudent
@@ -810,6 +1013,16 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(2).model_answers << ModelAnswer.find_by_id(4)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
+		Problem.find_by_id(501).model_answers << ModelAnswer.find_by_id(501)
+		Problem.find_by_id(502).model_answers << ModelAnswer.find_by_id(502)
+		Problem.find_by_id(503).model_answers << ModelAnswer.find_by_id(503)
+		Problem.find_by_id(504).model_answers << ModelAnswer.find_by_id(504)
+		Problem.find_by_id(505).model_answers << ModelAnswer.find_by_id(505)
+		Problem.find_by_id(506).model_answers << ModelAnswer.find_by_id(506)
+		Problem.find_by_id(507).model_answers << ModelAnswer.find_by_id(507)
+		Problem.find_by_id(508).model_answers << ModelAnswer.find_by_id(508)
+		Problem.find_by_id(509).model_answers << ModelAnswer.find_by_id(509)
+		Problem.find_by_id(510).model_answers << ModelAnswer.find_by_id(510)
 	## Solutions
 		AssignmentProblem.first.solutions << Solution.first
 		AssignmentProblem.first.solutions << Solution.find_by_id(4)
@@ -842,6 +1055,16 @@ puts("# ----------------------- Problems ----------------------- ")
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 		Problem.first.model_answers.first.hints << Hint.all.second
+		Problem.find_by_id(501).model_answers.find_by_id(501).hints << Hint.find_by_id(501)
+		Problem.find_by_id(502).model_answers.find_by_id(502).hints << Hint.find_by_id(502)
+		Problem.find_by_id(503).model_answers.find_by_id(503).hints << Hint.find_by_id(503)
+		Problem.find_by_id(504).model_answers.find_by_id(504).hints << Hint.find_by_id(504)
+		Problem.find_by_id(505).model_answers.find_by_id(505).hints << Hint.find_by_id(505)
+		Problem.find_by_id(506).model_answers.find_by_id(506).hints << Hint.find_by_id(506)
+		Problem.find_by_id(507).model_answers.find_by_id(507).hints << Hint.find_by_id(507)
+		Problem.find_by_id(508).model_answers.find_by_id(508).hints << Hint.find_by_id(508)
+		Problem.find_by_id(509).model_answers.find_by_id(509).hints << Hint.find_by_id(509)
+		Problem.find_by_id(510).model_answers.find_by_id(510).hints << Hint.find_by_id(510)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems

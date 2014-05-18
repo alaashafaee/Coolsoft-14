@@ -29,6 +29,9 @@ Tutor::Application.routes.draw do
 	post 'contests/add/:id' => 'contests#add'
 	get 'problems/edit'
 
+	get 'c_problems/new'
+	post 'c_problems/create'
+
 	get "tips/new"
 	get "tips/create"
 	get "tips/show"
@@ -36,6 +39,13 @@ Tutor::Application.routes.draw do
 	get "tips/edit"
 	get "tips/destroy"
 	post "tips/:id/edit" => 'tips#update'
+	get "problems/destroy"
+	get "test_cases/edit"
+	get "test_cases/destroy"
+	get "model_answers/edit"
+	get "hints/edit"
+	get "model_answers/destroy"
+	get "model_answers/back"
 	get "notes/destroy"
 
 	# You can have the root of your site routed with "root"
@@ -43,20 +53,21 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
-
 	resources :contests
-
+	resources :assignment_testcases
 	resources :problems_by_tas
 	resources :solutions
 	resources :problems
 	resources :courses
 	resources :cproblems
 	resources :contests
+
 	post "courses/choose"
 	post "courses/existing"
 	post "courses/duplicate"
 	get "model_answers/new"
 	post "model_answers/new"
+
 	resources :model_answers
 	#resources :test_cases
 	#devise_for :teaching_assistants
@@ -76,9 +87,33 @@ Tutor::Application.routes.draw do
 	resources :model_answers do
 		post "model_answers/new"
 	end
-	resources :test_cases
-	
 
+	resources :assignments do
+		get "assignments/new"
+		post "assignments/show"
+		get "assignments/show"
+	end
+	resources :assignments_problems do
+		get "assignment_problems/new"
+		get "assignment_problems/edit"
+		get "assignment_problems/show"
+		get "assignment_problems/index"
+		post "assignment_problems/update"
+		post "assignment_problems/show"
+	end
+	post "/assignment_problems/complete"
+	resources :assignments_testcases do
+		get "assignment_testcases/new"
+		get "assignment_testcases/show"
+		get "assignment_testcases/index"
+		get "assignment_testcases/edit"
+		get "/assignment_testcases/new"
+	end
+
+	resources :courses do
+		post 'hide', on: :member
+	end
+	resources :test_cases
 
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -119,6 +154,24 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		member do
 			get 'getProblems'
+		end
+	end
+
+	resources :courses do
+		member do
+			get 'show_grades'
+		end
+	end
+
+	resources :assignments do
+		member do
+			get 'show_correction'
+		end
+	end
+
+	resources :courses do
+		collection do
+			post 'sort'
 		end
 	end
 

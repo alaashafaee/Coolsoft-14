@@ -1,0 +1,25 @@
+<h1 align ="center">Add a contest problem</h1>
+</br>
+
+<% if flash[:notice] %>
+	<div class = "alert alert-danger" style = "width: 50%;"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_for @cproblem, url: {action: "create"} do |cproblem| %>
+	<p>
+		<%= cproblem.label :title %><br> 
+		<%= cproblem.text_field :title, class: "form-control", style: "width:60%" %>
+	</p>
+	<p>
+		<%= cproblem.label :description %><br>
+		<%= cproblem.text_area :description, :cols => "50", :rows => "10",
+			 class: "form-control", style: "width:60%" %>
+	</p>
+	<p>
+		<%= cproblem.label :time_limit %><br> 
+		<%= cproblem.text_field :time_limit, class: "form-control", style: "width:60%" %>
+	</p>
+	<p>
+		<%= cproblem.submit "Save Contest Problem", class: "btn btn-info" %>
+	</p>
+<% end %>

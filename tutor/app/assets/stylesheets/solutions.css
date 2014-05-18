@@ -45,8 +45,10 @@ textarea  {
 	overflow: auto;
 }
 
-.fixed-horizontal {
-	max-width: 175px;
+.fixed-dimensions {
+	max-height: 230px;
+	min-width: 180px;
+	max-width: 180px;
 	overflow: auto;
 }
 
@@ -75,8 +77,10 @@ textarea  {
 	overflow-y: scroll;
 	overflow-x: scroll;
 	overflow: auto;
-	max-width: 750px;
-	min-width: 750px;
+	max-width: 100px;
+	min-width: 100%;
+	border-radius: 4px;
+	background-color: rgb(35,35,35);
 }
 
 .compilation_succeeded {

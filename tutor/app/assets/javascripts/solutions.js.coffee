@@ -74,15 +74,15 @@ status = "The debugging session was successful."
 		data: {code: input, problem_id: problem_id,\
 			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
-
-		success: (unique) ->
+		success: (compiler_feedback) ->
 			clear_console()
 			stop_spin()
 			toggle_code_area()
-			if !unique["success"]
-				compilation_error unique["errors"]
+			if !compiler_feedback["success"]
+				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
+			$('.compilation_feedback').html(compiler_feedback["warnings"])
 		error: ->
 			clear_console()
 			stop_spin()
@@ -244,12 +244,6 @@ debug_console = ->
 	$('#stopButton').toggle(state)
 	editor = get_editor()
 	editor.setReadOnly(state)
-	normal_theme = "ace/theme/twilight"
-	debug_theme = normal_theme + "-debug"
-	if editor.getTheme() == normal_theme
-		editor.setTheme debug_theme
-	else
-		editor.setTheme normal_theme
 
 
 # [Execute Line By Line - Story 3.8]
@@ -303,6 +297,7 @@ debug_console = ->
 	if variables[state_number]["exception"]
 		runtime_error variables[state_number]["exception"]
 	update_memory_contents state_number
+	update_stack_trace state_number
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
@@ -315,14 +310,47 @@ debug_console = ->
 	list_of_variables = variables[state_number]["locals"]
 	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
 	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
+	globals = ""
+	global = "global"
 	i = 0
 	while i < list_of_variables.length
 		values = list_of_variables[i].split " = "
-		content += "<tr class='success'><td>" + values[0] + "</td>"
-		content += "<td>" + values[1] + "</td></tr>"
+		tmp = values[0].split "."
+		if tmp[0] == global
+			globals += "<tr class='success'><td>" + tmp[1] + "</td>"
+			globals += "<td>" + values[1] + "</td></tr>"
+		else
+			content += "<tr class='success'><td>" + values[0] + "</td>"
+			content += "<td>" + values[1] + "</td></tr>"
 		i++
 	content += "</table>"
-	div.innerHTML = content
+	if globals.length > 0
+		append = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+		append += "<tr class='info'><th>Global</th><th>Value</th></tr>"
+		globals = append + globals
+		globals += "</table>"
+	div.innerHTML = globals + content
+	return
+
+# [View Variables - Story 3.7]
+# Updates the stack trace according to a certain state
+# Parameters:
+#	state_number: The target state number.
+# Returns: none
+# Author: Khaled Helmy
+@update_stack_trace = (state_number) ->
+	div = document.getElementById("stack")
+	list_of_methods = variables[state_number]["stack"]
+	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+	content += "<tr class='info'><th>Stack Trace</th></tr>"
+	i = 0
+	while i < list_of_methods.length
+		current_method = list_of_methods[i]
+		content += "<tr class='success'><td>" + current_method + "</td></tr>"
+		i++
+	content += "</table>"
+	if list_of_methods.length > 0
+		div.innerHTML = content
 	return
 
 # [Debug - Story 3.6]
@@ -438,13 +466,12 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED
+# Author: MOHAMEDSAEED + Rami Khalil
 @reload_template = () ->
 	disabled = get_editor().getReadOnly()
 	unless disabled
 		if get_lang() == "java"
-			template = "public class CoolSoft {\n"
-			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+			template = $('#problem_default_code').val()
 		else
 			template = ""
 		get_editor_session().setValue(template);

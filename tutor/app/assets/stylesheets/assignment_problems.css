@@ -1,0 +1,24 @@
+.white .active a,
+	.white.active a:hover {
+		background-color: #6699CC;
+		border-color: black;
+}
+
+.tab-links > li > a {
+	background-color: #fff; 
+	border-color: #777777;
+}
+
+.centered {
+	text-align:left;
+}
+
+.center {
+	text-align:center;
+}
+
+#check input[type="checkbox"] {
+	height: 20px;
+	width: 20px;
+	float:right;
+}

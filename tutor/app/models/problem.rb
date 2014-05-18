@@ -3,7 +3,7 @@ class Problem < ActiveRecord::Base
 	#Validations
 	validates_presence_of :title
 	validates_presence_of :description
-
+	validates_uniqueness_of :title, :scope => :track_id
 	#Relations
 	belongs_to :owner, polymorphic: true
 	belongs_to :track

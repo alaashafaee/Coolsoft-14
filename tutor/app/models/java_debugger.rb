@@ -34,6 +34,7 @@ class JavaDebugger < Debugger
 		$step = "step"
 		$TERM = /\nThe application exited.*\n/
 		$all = []
+		$wait_thread = nil
 		status = "The debugging session was successful."
 		begin
 			$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
@@ -42,8 +43,11 @@ class JavaDebugger < Debugger
 			buffer_until_ready
 			input "run"
 			nums = get_line
+			locals = []
 			locals = get_variables
+			stack = get_stack_trace
 			nums[:locals] = locals
+			nums[:stack] = stack
 			$all << nums
 			status = TimeLimit.start(time) {
 				debug
@@ -71,13 +75,6 @@ class JavaDebugger < Debugger
 		stream = get_stream out_stream
 		/,\sline=\d+/ =~ out_stream
 		line_first = $&
-		begin
-			input "list"
-			out_stream = buffer_until_complete
-			/\n\d+\s=>/ =~ out_stream
-			line_second = $&
-		rescue => e
-		end
 		if line_first
 			line_first = line_first[7..-1]
 			exceptions[:line] = line_first.to_i
@@ -86,10 +83,6 @@ class JavaDebugger < Debugger
 			else
 				exceptions[:stream] = ""
 			end
-			return exceptions
-		elsif line_second
-			line_second = line_second[0..-4]
-			exceptions[:line] = line_second.to_i
 			return exceptions
 		else
 			raise 'Exited'
@@ -276,6 +269,28 @@ class JavaDebugger < Debugger
 			end
 		end
 		return method_arguments + local_variables + class_variables
+	end
+
+	# [Debugger: View Variables - Story 3.7]
+	# Fetches the the stack trace of the code at the current state
+	# 	where the call stack is examined which contains the list of
+	# 	methods which did not finish its execution and thus did not
+	# 	return yet
+	# Parameters: none
+	# Returns:
+	# 	An array. It contains the list of methods in the call stack
+	# 		which have not returned yet
+	# Author: Khaled Helmy
+	def get_stack_trace
+		stack_trace = []
+		input "where"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			unless line == "main[1] \n"
+				stack_trace << line
+			end
+		end
+		return stack_trace
 	end
 
 end

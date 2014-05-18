@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 	#rescue_from Exception, :with => :render_not_found
 	
 	private
-
 		def render_not_found(exception)
 			render "/public/404.html"
 		end

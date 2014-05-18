@@ -1,7 +1,24 @@
-<% provide(:title, "Edit Test case") %>
-<%= form_for(@test_case) do |f| %>
+<div id = "crumbs">
+	<ul>
+		<li class = "sub"><a class = "preventclick">Problem</a></li>
+		<li class = "sub1">
+			<a class = "visit" style = "padding: 5px 15% 0 0px;">
+				Test Cases
+			</a>
+		</li>
+		<li class = "sub2">
+			<a class = "preventclick" style = "padding: 5px 3.75% 0 0px;">
+				Model Answers
+			</a>
+		</li>
+		<li class = "sub3"><a class = "preventclick" >Tips</a> </li>
+		<li class = "sub4"><a class = "preventclick">Hints</a> </li>
+	</ul>
+</div><br><br>
+
+<% provide(:title, "Edit Test Case") %>
 <% if @test_case.errors.any? %>
-	<div id="error_explanation">
+	<div id = "error_explanation">
 		<h2><%= pluralize(@test_case.errors.count, "error") %>
 			prohibited this course from being saved:
 		</h2>
@@ -13,15 +30,24 @@
 	</div>
 <% end %>
 
-<ul class="navbar-brand pull-right"> <%= link_to "Back to edit problem page",
-		:controller => 'problems', :action => 'edit',
-		:id => @test_case.problem_id, :method => :get,
-		class: 'btn btn-default btn-xs' %></ul> 
-<h2>Test Case </h2>
-<%= flash[:notice] %>
-<br><%= f.label :Input %>
-	<%= f.text_field :input %></br>
-<br><%= f.label :Output %>
-	<%= f.text_field :output %></br>
-<br> <%= f.submit "Save changes", class: "btn btn-large btn-primary" %><br>         
-<% end %>
+<div id = "diva"><br><br>
+	<%= form_for :test_case, url: test_case_path(@test_case), method: :patch,
+		remote: true do |test_case| %>
+		<h2>Test Case </h2>
+		<h3><%= test_case.label :Input%> </h3>
+		<h4 align = "left"><%= @test_case.input %></h4>
+		<%= test_case.text_area :input, class:"form-control",
+			style: "width:450px; height:200px;" %><br>
+		<h3><%= test_case.label :Output %></h3>
+		<h4 align = "left"><%= @test_case.output %></h4>
+		<%= test_case.text_area :output, class:"form-control",
+			style: "width:450px; height:200px;" %><br>
+		<%= test_case.submit "Save changes", class: "btn btn-large btn-info" %><br>
+	<% end %>
+</div>
+
+<div><ul class = "navbar-brand pull-right">
+		<%= link_to "Back", {:controller => 'test_cases', :action => 'index',
+			:track_id => session[:track_id], :problem_id => session[:problem_id],
+			:model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
+</div>
