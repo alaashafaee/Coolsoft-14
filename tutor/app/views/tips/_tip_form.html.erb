@@ -1,0 +1,18 @@
+<div id="div1">
+	<% if flash[:notice] %>
+		<div class= "alert alert-success"><%= flash[:notice] %></div>
+	<% end %>
+</div>
+<%= form_for :tip_edit, url: tip_path(@tip), method: :patch, remote: true do |tip_edit| %>
+	<p>
+		<h3><%= tip_edit.label :Content %></h3>
+		<h4 align ="left"><%= @tip.message %></h4>
+		<%= tip_edit.text_area :message, class:"form-control", style:"width:650px; height:250px;", :value => @tip.message %>
+	</p>
+	<p>
+		<h3><%= tip_edit.label :Time_in_seconds %></h3>
+		<h4 align ="left"><%= @tip.time %></h4>
+		<%= tip_edit.text_field :time, class:"form-control", style:"width:65px; height:40px;", :value => @tip.time %>
+	</p>
+		<%= tip_edit.submit "Save changes", class: "btn btn-large btn-info", style: "float:left" %>
+<% end %>

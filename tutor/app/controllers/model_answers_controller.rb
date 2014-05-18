@@ -4,13 +4,18 @@ class ModelAnswersController < ApplicationController
 	# It creates the new answer.
 	# Parameters:
 	#	@problem: To fetch the problem to which the answer is added.
-	#	@answer: The new answer the user enters.
-	#	@answers: All the previous answers that had been entered before.
+	#	@new_answer: The new answer the user enters.
+	#	flag: decider flag to decide between add or editing.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def new
 		@problem = Problem.find(params[:problem_id])
 		session[:problem_id] = params[:problem_id]
+		if params[:flag] == "1" 
+			session[:flag] = params[:flag]
+		elsif params[:flag] == "0"
+			session[:flag] = params[:flag]
+		end
 		if(@new_answer == nil)
 			@new_answer = ModelAnswer.new
 		end
@@ -23,11 +28,11 @@ class ModelAnswersController < ApplicationController
 	#	@problems: The problem to which the answer is linked.
 	# Returns:
 	#	A message if the answer is added and another message if answer was not added.
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def create
 		@new_answer = ModelAnswer.new
-		@new_answer.title = post_params[:title]
-		@new_answer.answer = post_params[:answer]
+		@new_answer.title = model_answer_params_add[:title]
+		@new_answer.answer = model_answer_params_add[:answer]
 		@new_answer.problem_id = session[:problem_id] 
 		@problems = Problem.find_by_id(session[:problem_id])
 		if lecturer_signed_in?
@@ -38,11 +43,21 @@ class ModelAnswersController < ApplicationController
 			@new_answer.owner_type = "teaching assistant"
 		end
 		if @new_answer.save
-			flash[:success_creation]= "Answer added."
 			@problems.model_answers << @new_answer
-			redirect_to :controller => 'model_answers', :action => 'edit', :id => @new_answer.id
+			session[:problem_id] = @new_answer.problem_id
+			session[:model_answer_id] = @new_answer.id
+			if session[:flag] == "1"
+				redirect_to :controller => 'model_answers', :action => 'index', 
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
+					:model_answer_id => @new_answer.id
+			elsif session[:flag] == "0"
+				redirect_to :controller => 'problems', :action => 'done', 
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
+					:model_answer_id => @new_answer.id, :flag => "0"
+			end
 		else
-			render :action=>'new', :problem_id => post_params[:problem_id]
+			render :action=>'new', :locals => { :model_answer_id => @new_answer.id,
+				:track_id => session[:track_id], :problem_id => model_answer_params_add[:problem_id]}
 		end
 	end
 
@@ -51,19 +66,20 @@ class ModelAnswersController < ApplicationController
 	#	problem and remove it from the database and then redirects the user to the edit problem 
 	#	page of the problem that had the answer with a "Model Answer successfully Deleted" message.
 	# Parameters:
-	#	params[:id]: The current model answer's id
+	#	params[:model_answer_id]: The current model answer's id
 	# Returns: 
 	#	flash[:notice]: A message indicating the success of the deletion
-	# Author: Ahmed Atef
+	# Author: Ahmed Atef + Ahmed Osam
 	def destroy
-		@model_answer = ModelAnswer.find_by_id(params[:id])
+		@model_answer = ModelAnswer.find_by_id(params[:model_answer_id])
 		@current = Problem.find_by_id(@model_answer.problem_id)
 		if @current.model_answers.count == 1
 			flash[:notice] = "Cannot delete problem's last model answer"
 			redirect_to :back and return
 		elsif @model_answer.destroy
 			flash[:notice] = "Answer successfully Deleted"
-			redirect_to(:controller => 'problems', :action => 'edit', :id => @current.id)
+			redirect_to(:controller => 'model_answers', :action => 'index',
+				:problem_id => @current.id, :track_id => session[:track_id])
 		end
 	end
 
@@ -76,11 +92,16 @@ class ModelAnswersController < ApplicationController
 	#	@tips_check: Used to check the type of Hint.
 	#	@hints: Hints that are linked to the answer being edited.
 	#	@hints_check: Used to check the type of Hint.
+	#	params[:model_answer_id]: The current model answer's id.
+	#	params[problem_id]: The problem's id model answer related to.
 	# Returns:
 	#	A message if the answer is edited and another message if answer was not edited.
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def edit
-		@answer = ModelAnswer.find(params[:id])
+		session[:model_answer_id] = params[:model_answer_id]
+		session[:problem_id] = params[:problem_id]
+		session[:track_id] = params[:track_id]
+		@answer = ModelAnswer.find(params[:model_answer_id])
 		@problem = Problem.find(@answer.problem_id)
 		@tips = @answer.hints
 		@tips_check = @answer.hints
@@ -92,16 +113,42 @@ class ModelAnswersController < ApplicationController
 	# Answer is updated in the database. 
 	# Parameters:
 	#	@answer: Answer that is being updated.
+	#	params[:model_answer_id]: The current model answer's id.
+	#	params[:title]: The current model answer's title.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def update
-		@answer = ModelAnswer.find(params[:id])
-		if @answer.update_attributes(post_params)
-			flash[:notice] = "Your Answer is now updated"
-  			redirect_to :controller => 'problems', :action => 'edit', :id => session[:problem_id]
-		else
-			render :action=>'edit', :problem_id => @answer.problem_id
-
+		@answer = ModelAnswer.find(session[:model_answer_id])
+		if model_answer_params[:title] != @answer.title ||
+			model_answer_params[:answer] != @answer.answer
+			if @answer.title != model_answer_params[:title]
+				flash[:notice] = "Title has changed"
+			elsif @answer.answer != model_answer_params[:answer]
+				flash[:notice] = "Answer has changed"
+			end
+			begin
+				if @answer.update_attributes(model_answer_params)
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:model_answer_id => @answer.id, :track_id => session[:track_id]}
+					end
+				else
+					@answer = ModelAnswer.find_by_id(params[:model_answer_id])
+					respond_to do |format|
+						format.js
+						format.html {redirect_to :action => "edit", :format => :js, 
+							:model_answer_id => @answer.id, :track_id => session[:track_id]}
+					end
+				end
+				rescue
+				@answer = ModelAnswer.find_by_id(session[:model_answer_id])
+				respond_to do |format|
+					format.js
+					format.html {redirect_to :action => "edit", :format => :js, 
+						:model_answer_id => @answer.id, :track_id => session[:track_id]}
+				end
+			end
 		end
 	end
 
@@ -120,20 +167,36 @@ class ModelAnswersController < ApplicationController
 	# Parameters:
 	#	@answers: Previous answers that are saved in the database.
 	#	@problem: Problem to which the current answer is added.
+	#	params[:track_id]: The current track's id.
+	#	params[problem_id]: The problem's id model answer related to.
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	def index
-		@problem = Problem.find_by_id(params[:id])
-		@answers = ModelAnswer.all
+		session[:problem_id] = params[:problem_id]
+		session[:track_id] = params[:track_id]
+		@problem = Problem.find_by_id(params[:problem_id])
+		@answers = @problem.model_answers
 	end
 
 	# [Add answer story 4.6]
 	# It requires the attributes from the form that we are interested in.
 	# Parameters: none
 	# Returns: none
-	# Author: Nadine Adel
+	# Author: Nadine Adel + Ahmed Osam
 	private
-	def post_params
+	def model_answer_params
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end	
+
+	# [Add/Edit wizard - Story 1.28 ]
+	# Description:
+	#	take the parameters from the from
+	# Parameters: none
+	# Returns:
+	#	Hash of paramas
+	# Author: Ahmed Osam
+		def model_answer_params_add
+			params.require(:model_answer).permit(:title, :answer, :problem_id)
+		end
+
 end

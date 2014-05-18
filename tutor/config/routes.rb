@@ -35,6 +35,9 @@ Tutor::Application.routes.draw do
 
 	get 'problems/edit'
 
+	get 'c_problems/new'
+	post 'c_problems/create'
+
 	get "tips/new"
 	get "tips/create"
 	get "tips/show"
@@ -42,6 +45,13 @@ Tutor::Application.routes.draw do
 	get "tips/edit"
 	get "tips/destroy"
 	post "tips/:id/edit" => 'tips#update'
+	get "problems/destroy"
+	get "test_cases/edit"
+	get "test_cases/destroy"
+	get "model_answers/edit"
+	get "hints/edit"
+	get "model_answers/destroy"
+	get "model_answers/back"
 	get "notes/destroy"
 
 	# You can have the root of your site routed with "root"
@@ -129,11 +139,22 @@ Tutor::Application.routes.draw do
 	end
 
 	resources :courses do
+		member do
+			get 'show_grades'
+		end
+	end
+
+	resources :assignments do
+		member do
+			get 'show_correction'
+		end
+	end
+
+	resources :courses do
 		collection do
 			post 'sort'
 		end
 	end
-
 
 	resources :topics do
 		collection do           
