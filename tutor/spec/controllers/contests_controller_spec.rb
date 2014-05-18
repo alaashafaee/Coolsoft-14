@@ -41,7 +41,7 @@ describe ContestsController do
 			problem2.save!
 			expect{
 				get :add,  {:id => @contest.id, :problem_id => problem2.id}
-			}.to change(@contest.problems,:count).by(1)
+			}.to change(@contest.problems, :count).by(1)
 		end
 	end
 
