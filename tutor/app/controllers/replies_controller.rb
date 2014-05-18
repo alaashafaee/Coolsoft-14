@@ -1,6 +1,5 @@
 class RepliesController < ApplicationController
 	
-	before_action :current_user!
 	# [Edit a Reply - Story 1.19]
 	# Description: Shows the replies with id
 	# Parameters:

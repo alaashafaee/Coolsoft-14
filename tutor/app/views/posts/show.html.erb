@@ -1,6 +1,3 @@
-<!--  Name: The Show Post Form 
-    Author: Ahmed Atef
--->
 <div class="row">
 	
 </div>
@@ -10,6 +7,9 @@
 		<div class="container p_div">
 			<div class="header"> 
 				<h1><%= @post.title %></h1>
+			</div>
+			<div class="edit_post">
+				<%= link_to "Edit Post", edit_post_path(@post) %>
 			</div>
 			<br>
 			<h2><%= @post.content.html_safe %></h2>

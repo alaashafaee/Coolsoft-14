@@ -23,6 +23,8 @@
 	width: 100% !important;
 }
 .profile_picture {
+	border-radius: 50%;
+	border: 3px solid #1a5f63 !important;
 	width:200px;
 	height:200px;
 	background-color:#999;

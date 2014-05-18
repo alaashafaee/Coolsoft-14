@@ -35,3 +35,11 @@
 	background-color:#dddddd !important;
 	width:100% !important;"
 }
+
+.edit_post {
+	float: right;
+}
+
+.editor {
+	width: 100%;
+}

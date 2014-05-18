@@ -1,7 +1,3 @@
-<!--  Name: The Edit Post Form 
-    Author: Ahmed Atef
--->
-
 <div align="center">
     <h1>Edit Post</h1>
     <br/>
@@ -41,9 +37,3 @@
     <%= button_to "Delete Post", {:action => 'destroy', :id => params[:id]}, method: :delete,
         class: 'btn btn-primary', :confirm => "Are you sure??" %>
 </div>
-
-<style type="text/css">
-    .editor {
-        width: 100%;
-    }
-</style>

@@ -54,3 +54,8 @@
 .reply-content {
 	width: 100% !important;
 }
+
+.wysihtml5 {
+	width: 100%;
+	height: 300px;
+}
