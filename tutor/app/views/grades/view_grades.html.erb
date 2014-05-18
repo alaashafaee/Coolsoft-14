@@ -2,16 +2,19 @@
 	<thead>
 		<tr>
 			<td class="table_element">
-				Student</td>
+				Student
+			</td>
 			<td width="5px"></td>
 			<% @problems.each do |problem| %>
 				<td width="5px"></td>
 				<td class="table_element">
-					<%= problem.title %></td>
+					<%= problem.title %>
+				</td>
 			<% end %>
 			<td width="5px"></td>
 			<td class="table_element">
-				Total Grade</td>
+				Total Grade
+			</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,7 +28,8 @@
 				<% @problems.each do |problem| %>
 					<td width="5px"></td>
 					<td><%= @grades[@counter] %>/
-						<%= problem.final_grade %></td>
+						<%= problem.final_grade %>
+					</td>
 					<% @total_grade += @grades[@counter] %>
 					<% @total_final_grade += problem.final_grade %>
 					<% @counter +=1 %>
