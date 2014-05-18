@@ -9,7 +9,9 @@
 				</span>
 				<br>
 			<% end %>
-			<%= f.text_field :title, :value => @contest.title, class:"form-control", style: "width:300px", placeholder:"Title" %>
+			<%= f.text_field :title, :value => @contest.title,
+				class: "form-control", style: "width:300px",
+					placeholder: "Title" %>
 		</p>
 		<p>
 			<%= f.label :Start_Time %><br />
@@ -19,7 +21,8 @@
 				</span>
 				<br>
 			<% end %>
-			<%= f.datetime_select :start_time, {:start_year => Date.today.year + 1, :end_year => Date.today.year, :value => @contest.start_time} %>
+			<%= f.datetime_select :start_time, {:start_year => Date.today.year + 1,
+				:end_year => Date.today.year, :value => @contest.start_time} %>
 		</p>
 		<p>
 			<%= f.label :End_Time %><br />
@@ -29,7 +32,8 @@
 				</span>
 				<br>
 			<% end %>
-			<%= f.datetime_select :end_time, {:start_year => Date.today.year + 1, :end_year => Date.today.year, :value => @contest.end_time} %>
+			<%= f.datetime_select :end_time, {:start_year => Date.today.year + 1,
+				:end_year => Date.today.year, :value => @contest.end_time} %>
 		</p>
 		<p>
 			<% if lecturer_signed_in? %>
@@ -46,7 +50,8 @@
 				</span>
 				<br>
 			<% end %>
-			<%= f.collection_select :course, @owner_courses, :to_s, :to_s, :include_blank => false %>
+			<%= f.collection_select :course, @owner_courses, :to_s, :to_s,
+			:include_blank => false %>
 		</p>
 		<p>
 			<%= f.label :Description %><br>
@@ -56,12 +61,15 @@
 				</span>
 				<br>
 			<% end %>
-			<%= f.text_area :description, class:"form-control", style:"width:300px",
-					placeholder:"Description", :value => @contest.description %>
+			<%= f.text_area :description, class: "form-control",
+			style: "width:300px", placeholder: "Description",
+			:value => @contest.description %>
 		</p>
 		<p>
 			<% if false %>
-			<%= link_to "Add problems", {:action => 'add_problems', :id => @contest.id}, class: "btn btn-success", style: "float: left;margin-left: 15px",method: :get %>
+			<%= link_to "Add problems", {:action => 'add_problems',
+				:id => @contest.id}, class: "btn btn-success",
+				style: "float: left;margin-left: 15px",method: :get %>
 			<% end %>
 		</p>
 		<p>

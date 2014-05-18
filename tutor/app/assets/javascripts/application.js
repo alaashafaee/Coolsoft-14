@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require jquery.tokeninput
 //= require utilities
+//= require cocoon
 //= require jquery.plugin.js
 //= require jquery.countdown.js
 
@@ -40,7 +41,8 @@ $(function() {
 
 // [Simple Search auto-complete - Story 1.23]
 // autocomplete for the search bar
-// Parameters: search term
+// Parameters:
+// 		search term
 // Returns: Array with the matched results
 // Author: Ahmed Elassuty
 $(function(){
