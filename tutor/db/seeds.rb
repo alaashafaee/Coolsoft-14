@@ -247,12 +247,15 @@ puts("# ----------------------- Recommendations ----------------------- ")
 
 puts("# ----------------------- Contests ----------------------- ")
 	Contest.create(title: "Iteration", description: "If you can solve this you will get a level up",
-		incomplete: false, start_time: Time.now + 2.days, end_time: Time.now + 7.days)
+		incomplete: false, start_time: Time.now + 1.second, end_time: Time.now + 7.days)
 	Contest.create(title: "Recursion", description: "If you can solve this you will get 2 level up",
-		incomplete: false, start_time: Time.now + 3.days, end_time: Time.now + 10.days)
+		incomplete: false, start_time: Time.now + 1.days, end_time: Time.now + 10.days)
 	Contest.create(title: "DB", description: "If you can solve this you will get 4 level up",
-		incomplete: false, start_time: Time.now + 5.days, end_time: Time.now + 12.days)
+		incomplete: false, start_time: Time.now + 1.second, end_time: Time.now + 12.days)
 
+puts("# ----------------------- Sleeping ----------------------- ")	
+	sleep 3
+puts("# ----------------------- Finished ----------------------- ")	
 puts("# ----------------------- Contests ----------------------- ")
 	ContestProgress.create!(status:true, trials: 1)
 	ContestProgress.create!(status:false, trials: 2)
