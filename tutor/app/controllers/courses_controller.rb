@@ -124,6 +124,9 @@ class CoursesController < ApplicationController
 			@discussion_board.course_id = @new_course.id
 			@discussion_board.save
 			@new_course.discussion_board = @discussion_board
+			params[:tags].each do |tag|
+				@new_course.tags << Tag.find_by_id(tag)
+			end
 			flash[:success_creation]= "Course added."
 			redirect_to :action => 'index'
 		else 

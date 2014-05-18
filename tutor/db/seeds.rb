@@ -187,23 +187,24 @@ puts("# ----------------------- Problems ----------------------- ")
 
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
 					incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					 {\n\t\t\n\t}\n}")
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		Problem.create(title: "Problem 5", description: "This is very easy Problem",
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args)
-					{\n\t\t\n\t}\n}")
+					incomplete: true,
+					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
+					\t\t\n\t}\n}")
 		
 	## Bank
 		## problem 1
@@ -637,7 +638,6 @@ puts("# ----------------------- Assignments ----------------------- ")
 	Assignment.create(title:"CA Assignment", publish: false, description:"Allows practice on instruction set formats.", due_date: DateTime.now.to_date)
 
 puts("# ----------------------- Grades ----------------------- ")
-
 	Grade.create(grade: 4, student_id: 1, problem_id: 1)
 	Grade.create(grade: 5, student_id: 1, problem_id: 2)
 
@@ -646,6 +646,11 @@ puts("# ----------------------- Notes ----------------------- ")
 	Note.create(content:"Note2", line: 2, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
 	Note.create(content:"Note3", line: 3, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
 	Note.create(content:"Note4", line: 4, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+
+puts("# -----------------------Tags----------------------- ")
+	Tag.create(name: "Java")
+	Tag.create(name: "Python")
+
 
 puts("**************************************************************")
 puts("                      Creating Relations                    ")
