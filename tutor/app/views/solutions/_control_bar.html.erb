@@ -35,7 +35,7 @@
 		</div>
 
 		<div style"width:20px;">
-			<span id="spinner" align="center" style="float:left; margin-left:-18px; margin-top:5px;
+			<span id="spinner" align="center" style="float:left; margin-left:-15px; margin-top:5px;
 			width:32px; height:32px;"></span>
 		</div>
 
@@ -55,9 +55,8 @@
 			style= "height:32px; width:32px; cursor:pointer; float:left;" title="Reload Template" ></img>
 		</div>
 
-
 		<div style=" float:right; margin:5px;">
-			<img src="/assets/submit_w.png" id='submitButton' onClick= "validate_code(<%=params[:id]%>, 'Problem')"
+			<img src="/assets/submit_w.png" id='submitButton' onClick= "validate_code(<%=params[:id]%>, '<%=@type%>')"
 			style= "height:32px; width:32px; cursor:pointer; float:right;" title="Submit" ></img>
 		</div>
 
