@@ -11,6 +11,7 @@
 		<div id="tab1" class="tab active">
 			<div class = "panel-body" style = "font-family: Lucida Sans Unicode">
 				<h1><%= @course.name %></h1>
+				<h4><a href="<%=@course.link%>">Course Link</a></h4>
 			</div>
 			<div style = "float:top">
 				<p>
@@ -37,12 +38,18 @@
 					<%= @course.description %>
 				</p>
 			</div>
-
 			<div  style="margin-left:70%; margin-top: -300px";>
-				<div>
-					<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
-						:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
+				<div class="row">
+					<div>
+						<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
+							:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
+					</div>
+					<div>
+						<%= link_to "View Resources", course_resources_path(@course),
+							class: "btn btn-primary" %>
+					</div>
 				</div>
+				<%= flash[:success_deletion] %>
 				<% openable = true %>
 				<div class="panel-group list-group" id="accordion" style="width:100%;">
 					<% @topics.each do |t| %>	
@@ -63,10 +70,16 @@
 								</a>
 								<%= link_to t.title, t, style: 'color:#003366;' %></b>
 								<span class="badge"><%= t.tracks.count %></span>
+								<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+									<%= link_to "Delete Topic", {controller: "topics",
+										action: "destroy", :id => t.id},
+										style: 'float: right',
+										class: "btn btn-danger btn-xs", method: :delete %>
+								<% end %>
 							</div>
 							<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
 								<ul class="list-group">
-									<% t.tracks.each do |tt|%>
+									<% t.tracks.each do |tt| %>
 										<% color = "label label-default" %>
 										<li style="border-style:hidden;" class="list-group-item" data-toggle="tooltip"
 											data-placement="top" title="<%= tt.difficulty %>">
@@ -78,6 +91,58 @@
 						</div>	
 					<% end %>
 				</div>
+
+			<% openable = true %>
+			<div class="panel-group list-group" id="accordion2" style="width:100%;">
+				<% if openable %>
+					<% open = "in" %>
+					<% openarrow = "glyphicon-chevron-down" %>
+					<% openable = false %>
+				<% else %>
+					<% open = "" %>
+					<% openarrow = "glyphicon-chevron-right" %>
+				<% end %>
+				<div class="panel panel-default">
+					<div class="panel-title list-group-item list-group-item-info">
+						<a class="icon glyphicon <%= openarrow %>"
+							href="#listOfAssignments"
+							data-toggle="collapse" data-parent="#accordion2"
+							style="margin-right:1%;text-decoration: none;">Assignments
+						</a>
+						<span class="badge"> <%= @course.assignments.count %></span>
+					</div>
+					<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
+						<ul class="list-group">
+							<% if @can_edit %>
+								<% @course.assignments.each do |a| %>
+									<% color = "label label-default" %>
+									<li style="border-style:hidden;" class="list-group-item">
+										<%= link_to a.title, a, class: color %>
+									<% if @can_edit %>
+										<% if !a.publish %>
+											<span class="badge">unpublished</span>
+											</li>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% else %>
+								<% @course.assignments.each do |a| %>
+									<% if a.publish %>
+										<% color = "label label-default" %>
+										<li style="border-style:hidden;" 
+											class="list-group-item">
+											<%= link_to a.title, a, class: color %>
+											<% if a.due_date > DateTime.now.to_date %>
+											<span class="badge">Due</span>
+										</li>
+										<% end %>
+									<% end %>
+								<% end %>
+							<% end %>
+						</ul>
+					</div>
+				</div>	
+			</div>
 			</div>
 		</div>
 	</div>

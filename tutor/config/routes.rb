@@ -1,5 +1,7 @@
 Tutor::Application.routes.draw do
-
+	
+	ActiveAdmin.routes(self)
+	devise_for :admin_users, ActiveAdmin::Devise.config
 	devise_for :teaching_assistants
 	devise_for :students
 	devise_for :lecturers
@@ -10,18 +12,19 @@ Tutor::Application.routes.draw do
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
 	# 	get 'products/index'
-	get "utilities/simple_search"
-	get "utilities/advanced_search"
-	get "utilities/auto_complete"
 	get 'courses/sign_up'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
+	get 'contests/add_problems/:id' => 'contests#add_problems'
+	get 'solutions/mark_solution'
+	get 'solutions/view_submissions'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
 	post 'courses/new' => 'courses#new'
 	post 'courses/share' => 'courses#share'
 	post 'solutions/execute' => 'solutions#execute'
- 	post '/posts/:id' => 'posts#update'
+	post '/posts/:id' => 'posts#update'
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
+	post 'contests/add/:id' => 'contests#add'
 
 	get 'problems/edit'
 
@@ -30,8 +33,9 @@ Tutor::Application.routes.draw do
 	get "tips/show"
 	get "tips/index"
 	get "tips/edit"
-	get "tips/destroy"	
+	get "tips/destroy"
 	post "tips/:id/edit" => 'tips#update'
+	get "notes/destroy"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
@@ -42,9 +46,10 @@ Tutor::Application.routes.draw do
 	resources :solutions
 	resources :problems
 	resources :courses
+	resources :contests
 	post "courses/choose"
 	post "courses/existing"
-  	post "courses/duplicate"
+	post "courses/duplicate"
 	get "model_answers/new"
 	post "model_answers/new"
 	resources :model_answers
@@ -90,6 +95,12 @@ Tutor::Application.routes.draw do
 	resources :posts
 	resources :facebook
 	resources :tips
+	resources :notifications
+	resources :contests
+	resources :assignments
+	resources :assignment_problems
+	resources :notes
+	resources :grades
 
 	# Example resource route with options:
 	#   resources :products do
@@ -162,8 +173,14 @@ Tutor::Application.routes.draw do
 		resources :teaching_assistants
 		post 'teaching_assistants/new' => 'teaching_assistants#new'
 		resources :acknowledgements
+		resources :resources, only: [:create, :index, :new, :destroy] do
+			get :add_more, on: :collection
+		end
 	end
 
+	get "utilities/simple_search"
+	get "utilities/advanced_search"
+	get "utilities/auto_complete"
 	# Example resource route with concerns:
 	#   concern :toggleable do
 	#     post 'toggle'
