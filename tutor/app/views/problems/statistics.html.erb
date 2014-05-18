@@ -14,10 +14,9 @@
 			<% if @attempt == "" %>
 				<p>&nbsp;&nbsp;&nbsp;&nbsp;No solutions added yet!</p>
 				<% else %>
-					<ul class="list-group">
+					<ul class="list-group"></ul>
 					<%= @attempt.each do |tmp| %>
 						<th> tmp.code </th>
-						</ul>
 					<% end %>
 				<% end %>
 		</tr>
