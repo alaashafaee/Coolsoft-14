@@ -1,0 +1,35 @@
+<% if @test_case.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@test_case.errors.count, "error") %>
+				prohibited this problem from being saved:
+		</h2>
+		<ul>
+			<% @test_case.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<%= form_for :new_test_case , url: assignment_testcases_path do |f| %>
+	<h1>Please insert Test Case for problem</h1>
+	<p>
+		<span class="glyphicon glyphicon-info-sign"></span>
+		Please insert values in input and output fields each in an new line 
+		if more than  one.
+	</p>
+	<h2 style="color:red;"><%= @problem.title %></h2></h1>
+		<%= flash[:notice] %>
+		<%= f.label :Input %>
+		<br><%= f.text_area :input, class: "form-control", style: "width:320px; height:90px;" %>
+		<%= f.label :Output %>
+		<br><%= f.text_area :output, class: "form-control", style: "width:320px; height:90px;" %>
+		<%= f.hidden_field :assignment_problem_id, :value => @problem.id %>
+	</p>
+	<p>
+		<%= f.submit 'Add Test Case', class: "btn btn-large btn-info" %>
+	</p>
+	<ul class="navbar-brand pull-right">
+		<%= link_to "back", {:controller => 'assignment_problems',
+			:action => 'new', :id => session[:problem_assignment_id]} %>
+	</ul>
+<% end %>

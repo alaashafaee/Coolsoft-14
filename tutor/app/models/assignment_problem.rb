@@ -1,7 +1,8 @@
 class AssignmentProblem < ActiveRecord::Base
 
 	#Validations
-	validates :title, presence:true
+	validates :title, presence: true
+	validates :description, presence: true
 
 	#Relations
 	belongs_to :owner, polymorphic: true
