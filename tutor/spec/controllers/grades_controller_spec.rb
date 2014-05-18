@@ -43,7 +43,8 @@ describe GradesController do
 			grade.save
 			GradesController.skip_before_filter :authenticate!
 			@grades = Hash.new
-			grade = Grade.where(problem_id: problem.id, student_id: student.id).first
+			grade = Grade.where(problem_id: problem.id,
+				student_id: student.id).first
 			@grades[1] = grade.grade
 			@grades[1].should eq 10
 		end
