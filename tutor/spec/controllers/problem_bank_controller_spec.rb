@@ -61,7 +61,7 @@ describe ProblemBankController do
 	the problem or a newly duplicated one' do
 		Problem.create(id: 10, title: "Insertion Sort", description: "Given array of numbers 
 		a use the insertion sort to sort them ascendingly",incomplete: true, seen:true)
-		Problem.create(id: 11, title: "Insertion Sort", description: "Given array of numbers 
+		Problem.create(id: 11, title: "Insertions Sort", description: "Givenn array of numbers 
 		a use the insertion sort to sort them ascendingly",incomplete: true, seen:true)
 		lecturer = Lecturer.new(id: 101, email: '1@lecturer.com', password: '123456789', 
 		password_confirmation: '123456789', name: 'LecturerI',
@@ -70,10 +70,10 @@ describe ProblemBankController do
 		lecturer.save!
 		sign_in lecturer
 		Track.create(id: 1, title: "Track 1", difficulty: 0)
-		Track.find_by_id(1).problems << Problem.find_by_id(10)
+		Track.find_by_id(1).problems << Problem.find_by_id(11)
 		Lecturer.find_by_id(101).tracks << Track.find_by_id(1)
-		get 'add' , {:id => 11, :track_id => 1}
-		expect(Track.find_by_id(1).problems).not_to include(Problem.find_by_id(11))
+		get 'add' , {:id => 10, :track_id => 1}
+		expect(Track.find_by_id(1).problems).not_to include(Problem.find_by_id(10))
 	end
 
 end
