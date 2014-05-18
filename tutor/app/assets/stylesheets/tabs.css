@@ -1,9 +1,12 @@
 .tabs {
 	display:inline-block;
-	width: 103.25%;
+	width: 100%;
+	margin-top: 2%;
 }
+
 .tab-links{
 	margin:0px;
+	border-bottom: 1px solid #CCCCCC;
 }
 .tab-links:after {
 	display:block;
@@ -46,8 +49,7 @@ li.active a, li.active a:hover {
 .tab-content {
 	padding:15px;
 	border-radius:3px;
-	box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
-	background:#fff;
+	box-shadow: 0px 1px 1px rgba(0,0,0,0.15);	
 }
 
 .tab {
