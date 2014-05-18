@@ -74,14 +74,15 @@ status = "The debugging session was successful."
 		data: {code: input, problem_id: problem_id,\
 			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
-		success: (unique) ->
+		success: (compiler_feedback) ->
 			clear_console()
 			stop_spin()
 			toggle_code_area()
-			if !unique["success"]
-				compilation_error unique["errors"]
+			if !compiler_feedback["success"]
+				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
+			$('.compilation_feedback').html(compiler_feedback["warnings"])
 		error: ->
 			clear_console()
 			stop_spin()
@@ -302,6 +303,7 @@ debug_console = ->
 	if variables[state_number]["exception"]
 		runtime_error variables[state_number]["exception"]
 	update_memory_contents state_number
+	update_stack_trace state_number
 
 # [View Variables - Story 3.7]
 # Updates the variables values according to a certain state
@@ -319,6 +321,26 @@ debug_console = ->
 		values = list_of_variables[i].split " = "
 		content += "<tr class='success'><td>" + values[0] + "</td>"
 		content += "<td>" + values[1] + "</td></tr>"
+		i++
+	content += "</table>"
+	div.innerHTML = content
+	return
+
+# [View Variables - Story 3.7]
+# Updates the stack trace according to a certain state
+# Parameters:
+#	state_number: The target state number.
+# Returns: none
+# Author: Khaled Helmy
+@update_stack_trace = (state_number) ->
+	div = document.getElementById("stack")
+	list_of_methods = variables[state_number]["stack"]
+	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+	content += "<tr class='info'><th>Stack Trace</th></tr>"
+	i = 0
+	while i < list_of_methods.length
+		current_method = list_of_methods[i]
+		content += "<tr class='success'><td>" + current_method + "</td></tr>"
 		i++
 	content += "</table>"
 	div.innerHTML = content
@@ -415,13 +437,12 @@ debug_console = ->
 # reloads the template that is displayed inside the editor
 # Parameters: none
 # Returns: none
-# Author: MOHAMEDSAEED
+# Author: MOHAMEDSAEED + Rami Khalil
 @reload_template = () ->
 	disabled = get_editor().getReadOnly()
 	unless disabled
 		if get_lang() == "java"
-			template = "public class CoolSoft {\n"
-			template += "\tpublic static void main(String [] args) {\n\t\t\n\t}\n}"
+			template = $('#problem_default_code').val()
 		else
 			template = ""
 		get_editor_session().setValue(template);
