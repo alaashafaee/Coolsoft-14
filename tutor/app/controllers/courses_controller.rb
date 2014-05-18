@@ -146,6 +146,7 @@ class CoursesController < ApplicationController
 			redirect_to :root
 		end
 		@discussion_board = @course.discussion_board
+		@topics = @course.topics
 	end
 
 	# [View a course - story 1.21]
@@ -176,13 +177,29 @@ class CoursesController < ApplicationController
 
 	def manage
 	end
+	
+	#[Find Recommendations - Story 4.9]
+	# Description: This action orders the topics of a specific course
+	# Parameters:
+	# 	:id : The current course's id
+	# Returns: none
+	# Author: Mohamed Metawaa
+	def sort
+		@topic = Topic.find(params[:methodParam][0])  
+		@course = @topic.course 
+		@topics = @course.topics
+		@topics.each do |t|
+			t.order_factor = (params[:methodParam]).index(t.id.to_s)
+			t.save
+		end
+		render 'show'
+	end
 
 	# [Edit a course - story 1.17]
 	#Description: This action is resposible for editing a specific course.
 	#Parameters: 
-	#   id: Course id
-	# Returns:
-	# 	null
+	#	id: Course id
+	# Returns: none
 	# Author: Mohamed Metawaa
 	def update
 		@course = Course.find_by_id(params[:id])
@@ -225,7 +242,10 @@ class CoursesController < ApplicationController
 
 	private
 		def course_params 
-			params.require(:course).permit(:name,:code,:year,:semester,:description,:link)
+			params.require(:course).permit(:name, :code, :year, :semester, :description)
+		end
+		def topic_params
+			params.permit(:order_factor)
 		end
 
 		# [Share Performance - Story 5.2, 5.13]

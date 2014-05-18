@@ -118,6 +118,13 @@ Tutor::Application.routes.draw do
 		end
 	end
 
+	resources :courses do
+		collection do
+			post 'sort'
+		end
+	end
+
+
 	resources :topics do
 		collection do           
 			post 'sort'
