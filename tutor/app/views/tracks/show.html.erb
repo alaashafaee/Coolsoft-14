@@ -52,11 +52,16 @@
 				<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
 					<%= problem.description %>
 					<% if @can_edit %>
+<<<<<<< HEAD
 						<%= link_to "Edit", edit_problem_path(:id => problem.id),
 							class: 'btn btn-info' %>
 						<%= link_to "Statistics", {:controller => 'problems', 
 							:action => 'statistics', :id => problem.id}, 
 							class: 'btn btn-info' %>
+=======
+						<%= link_to "Edit", edit_problem_path(:problem_id => problem.id,
+						:track_id => @track.id, :id => @track.id,), class: 'btn btn-info' %>
+>>>>>>> 4af6006b07f5e48ac978258da182ec0f6e595dc3
 					<% end %>
 				</div>
 			</div>
@@ -69,5 +74,5 @@
 </div>
 
 <% if @can_edit %>
-	<%= link_to "Add", new_problem_path(:id => @track.id), class: "btn btn-info" %>
+	<%= link_to "Add", new_problem_path(:track_id => @track.id), class: "btn btn-info" %>
 <% end %>

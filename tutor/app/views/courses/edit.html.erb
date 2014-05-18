@@ -70,11 +70,11 @@
 
 			<p>
 				<% if @course.visible %>
-					<% ButtonStr = "Hide course" %>
+					<% buttonStr = "Hide course" %>
 				<% else %>
-					<% ButtonStr = "Unhide course" %>
+					<% buttonStr = "Unhide course" %>
 				<% end %>
-				<%= link_to str, {:controller => :courses, :action => 'hide',
+				<%= link_to buttonStr, {:controller => :courses, :action => 'hide',
 							:id => @course.id}, class: "btn btn-success", method: 'post',
 							 style: "float: left; margin-left: 15px" %>
 			</p>

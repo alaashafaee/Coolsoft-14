@@ -1,0 +1,29 @@
+<h1>Correction of: &nbsp;&nbsp;&nbsp;<%= @assignment.title %></h1>
+<br><br>
+<% @solutions.each do |s| %>
+	<% if s.problem_type == "AssignmentProblem" %>
+		<h3><%= s.problem.title %></h3>
+		<table class= "table table-striped", style= "width: 80%">		
+			<tr>
+				<th> Line number</th>
+				<th> Submitted solution</th>
+				<th> Instructor's comments</th>
+			</tr>
+			<% @lines = s.code.split("\n") %>
+			<% @lines.each do |line| %>
+				<tr>
+					<% @counter = @counter +1 %>
+					<td> <%= @counter %></td>
+					<td> <%= line %></td>
+					<% @notes.each do |note| %>
+						<% if note.solution_id == s.id && note.line == @counter %>
+							<td> <%= note.content %></td>
+						<% end %>
+					<% end %>
+				</tr>
+			<% end %>
+			<% @counter = 0 %>	
+		</table>
+		<br></br>
+	<% end %>
+<% end %>

@@ -1,0 +1,27 @@
+<div class ="tabs">
+	<ul class="tab-links red">
+		<li><%= link_to "Create problems", {:controller => 'assignment_problems',
+				:action => 'new', :method => :get, :id => @assignment.id} %></li>
+		<li><%= link_to "Copy from Existing Problems",
+				{:controller => 'assignment_problems', :action => 'index',
+				:id => @assignment.id} %></li>
+	</ul>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+			<%= form_for(@problem) do |f| %>
+				<div class ="center">
+					<h2><%= @problem.title %></h2>
+				</div>
+				<%= @problem.description %>
+				<br>
+				<h2> Create Testcase </h2>
+				<%= render partial: "test_cases/form" %>
+			<% end %>
+			<ul class="navbar-brand pull-right"><%= link_to "Finish",
+				{:controller => 'assignments', :action => 'show',
+				:id=> @assignment.id}, class: "btn btn-info",
+				style: "float: left;margin-left: 15px" %>
+			</ul>
+		</div>
+	</div>
+</div>

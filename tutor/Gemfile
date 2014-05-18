@@ -82,5 +82,8 @@ group :development, :test do
 #graphs
 gem "chartkick"
 gem "googlecharts", :require => "gchart"
+
+gem "capybara"
+
 end
 
