@@ -22,7 +22,7 @@ describe SolutionsLayer do
 		end
 
 		it "get python executer" do
-			expect(SolutionsLayer.get_executer "python").to eq false
+			expect(SolutionsLayer.get_executer "python").to eq PythonExecuter
 		end
 	
 		it "no such executer named foo" do
@@ -53,14 +53,14 @@ describe SolutionsLayer do
 				advising: false, probation: false)
 			problem = Problem.create(title: "Problem 1",
 				description: "Given two numbers a and b, output a/b", incomplete: false)
-			test_cases = TestCase.create(output: "5\n", input:"10 2")
+			test_cases = TestCase.create(output: "5\n", input:"10\n2")
 			problem.test_cases << test_cases
 			@code = "public class Coolsoft{public static void main(String [] args){}}"
 			@student_id = 1
 			@problem_id = problem.id
 			@lang = "java"
-			@cases1 = "1 12 123"
-			@cases2 = "1 12"
+			@cases1 = "1\n12\n123"
+			@cases2 = "1\n12"
 			@problem_type = "Problem"
 			@class_name = "Coolsoft"
 			@solution = Solution.create(code: @code, student_id: @student_id,
@@ -108,7 +108,7 @@ describe SolutionsLayer do
 			it "Compiled successfuly but wrong input" do
 				feed_back = SolutionsLayer.execute(@lang, @code, @student_id,
 					@problem_id, @problem_type, @class_name, @cases1)
-				expected_hash = {executer_feedback: false, executer_output: "Enter only 2 numbers"}
+				expected_hash = {executer_feedback: false, executer_output: "Enter only 2 inputs"}
 				expect(feed_back).to eq expected_hash
 			end
 
@@ -245,19 +245,40 @@ describe SolutionsLayer do
 		end
 
 		context "executer" do
-			xit "get_compiler was called and JavaCompiler was returned" do
+			it "get_compiler was called and PythonCompiler was returned" do
+				expect(SolutionsLayer).to receive(:get_compiler).with("python"){PythonCompiler}
+				SolutionsLayer.execute(@lang, @code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases1)
 			end
 
-			xit "Compiled successfuly but wrong input" do
+			it "Compiled successfuly and run successfuly with no output" do
+				code = "x = 6\ny = 5"
+				feed_back = SolutionsLayer.execute(@lang, code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases2)
+				expected_hash = {executer_feedback: true,
+					executer_output: {success: true, message: ""}
+				}
+				expect(feed_back).to eq expected_hash
 			end
 
-			xit "Compiled successfuly and run successfuly with no output" do
+			it "Compilation error" do
+				code = "prin 5"
+				feed_back = SolutionsLayer.execute(@lang, code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases2)
+				expected_hash = {compiler_error: true, compiler_output: {success: false,
+					errors: "  File \"Coolsoft.py\", line 1\n    prin 5\n         ^\nSyntaxError: invalid syntax\n"}
+				}
+				expect(feed_back).to eq expected_hash
 			end
 
-			xit "Compilation error" do
-			end
-
-			xit "Compiled successfuly and run successfuly with output" do
+			it "Compiled successfuly and run successfuly with output" do
+				code = "print 5"
+				feed_back = SolutionsLayer.execute(@lang, code, @student_id,
+					@problem_id, @problem_type, @class_name, @cases2)
+				expected_hash = {executer_feedback: true,
+					executer_output: {success: true, message: "5\n"}
+				}
+				expect(feed_back).to eq expected_hash
 			end
 		end
 
@@ -302,5 +323,5 @@ describe SolutionsLayer do
 			end
 		end
 	end
-
+	
 end

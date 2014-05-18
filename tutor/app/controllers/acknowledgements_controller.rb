@@ -41,6 +41,8 @@ class AcknowledgementsController < ApplicationController
 						current_lecturer.acknowledgements << @acknowledgement
 						@course.acknowledgements << @acknowledgement
 						status << true
+						Notification.acknowledgement_notify(@student.id, current_lecturer.id, 
+							@acknowledgement.id)
 					end
 				end
 			end	

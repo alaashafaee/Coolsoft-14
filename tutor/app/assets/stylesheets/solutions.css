@@ -45,8 +45,10 @@ textarea  {
 	overflow: auto;
 }
 
-.fixed-horizontal {
-	max-width: 175px;
+.fixed-dimensions {
+	max-height: 230px;
+	min-width: 180px;
+	max-width: 180px;
 	overflow: auto;
 }
 
@@ -73,8 +75,10 @@ textarea  {
 	min-height: 150px;
 	background: white;
 	overflow: auto;
-	max-width: 750px;
-	min-width: 750px;
+	max-width: 100px;
+	min-width: 100%;
+	border-radius: 4px;
+	background-color: rgb(35,35,35);
 }
 
 .compilation_succeeded {
@@ -148,4 +152,16 @@ textarea  {
 	height: 20%;
 	margin_top: 10px;
 	cursor: default;
+}
+
+.total_grade {
+	height: 100px;
+	color: white;
+	font-size: 2em;
+}
+
+.non_graded {
+	height: 50px;
+	color: white;
+	font-size: 2em;"
 }

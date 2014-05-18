@@ -22,9 +22,28 @@
 //= require bootstrap-wysihtml5/b3
 //= require bootstrap-wysihtml5/locales
 
+// [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
+// Adds the behaviour of flash messages of the types alert, notice and error
+// 	to fade out after two seconds.
+// Parameters: none
+// Returns: none
+// Author: Khaled Helmy
+$(function() {
+	var flashCallback = function() {
+		return $(".alert, .notice, .error").fadeOut();
+	};
+	$(".alert, .notice, .error").bind('click', (function(_this) {
+		return function(ev) {
+			return $(".alert, .notice, .error").fadeOut();
+		};
+	})(this));
+	return setTimeout(flashCallback, 2000);
+});
+
 // [Simple Search auto-complete - Story 1.23]
 // autocomplete for the search bar
-// Parameters: search term
+// Parameters:
+// 		search term
 // Returns: Array with the matched results
 // Author: Ahmed Elassuty
 $(function(){

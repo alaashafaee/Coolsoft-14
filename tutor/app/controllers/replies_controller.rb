@@ -25,12 +25,23 @@ class RepliesController < ApplicationController
 		post = Post.find_by_id(params[:id])
 		reply = Reply.new
 		reply.content = reply_content
+		new_notification = Notification.new
 		if lecturer_signed_in?
 			current_lecturer.replies << reply
+			new_notification.message = "#{current_lecturer.name} 
+			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"
 		elsif teaching_assistant_signed_in?
 			current_teaching_assistant.replies << reply
+			new_notification.message = "#{current_teaching_assistant.name} 
+			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"
 		else
 			current_student.replies << reply
+			new_notification.message = "#{current_student.name} 
+			has replied to your post <a href= '/posts/#{post.id}'> '#{post.title}'</a>"	
+		end
+		if  reply.owner != post.owner
+			new_notification.save
+			post.owner.notifications << new_notification
 		end
 		post.replies << reply
 		render json: reply

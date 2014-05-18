@@ -40,6 +40,32 @@ function changeFont(){
 	editor.setFontSize(parseInt(new_font));
 }
 
+// [Solve A Problem - Story 3.1]
+// Increase the font-size of the editor.
+// Parameters: none
+// Returns: none
+// Author: Ahmed Moataz
+function increaseFont(){
+	var new_font = editor.getFontSize();
+	if (new_font < 24) {
+		new_font += 2;
+		editor.setFontSize(parseInt(new_font));
+	};	
+}
+
+// [Solve A Problem - Story 3.1]
+// Decrease the font-size of the editor.
+// Parameters: none
+// Returns: none
+// Author: Ahmed Moataz
+function decreaseFont(){
+	var new_font = editor.getFontSize();
+	if (new_font > 12) {
+		new_font -= 2;
+		editor.setFontSize(parseInt(new_font));
+	};	
+}
+
 // [Mark Solution - Story 4.29]
 //	shows the add note button when hovering over the the line
 // Parameters:
@@ -74,8 +100,19 @@ function pop(id){
 	$(document.getElementById(id)).bPopup({
 		modalClose: false,
 		opacity: 0.6,
-		positionStyle: 'fixed',
+		position: [650,300],
 		speed: 650,
 		transition: 'slideIn'
 	});
+}
+
+// [Grade Solution - 4.30]
+//	closes the dialog box when cancelling or going back
+// Parameters:
+//	id: id of the button that was pressed
+// Returns: none
+// Author: Abdullrahman Elhusseny
+function close_dialog(id){
+	id += "form"
+	$(document.getElementById(id)).bPopup().close();
 }

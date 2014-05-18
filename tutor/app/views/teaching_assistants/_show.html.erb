@@ -4,6 +4,7 @@
 		</div>
 		<div class= "row profile_info_row">
 			<img class = "profile_picture" src="/assets/profile.png">
+			<%= image_tag(current_teaching_assistant.profile_image_url.to_s, :class => "profile_picture") %>
 			<div class = "profile_info">
 				<p class="name"><%= current_teaching_assistant.name %></p>
 				<div class="info">

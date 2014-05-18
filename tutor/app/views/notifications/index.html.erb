@@ -1,0 +1,37 @@
+<% if flash[:notice] %>
+	<div class="alert alert-warning"><%= flash[:notice] %></div>
+<% end %>
+
+<% if @new_notifications.size != 0 %>
+	<h1> Unread Notifications </h1>
+	<table class="table table-striped table-bordered table-responsive">
+		<% @new_notifications.each do |notification| %>
+			<tr>
+				<td class = "timeCol">
+					<h6><%== notification.created_at %></h6>
+				</td>
+				<td>
+					<h5><%== notification.message %></h5>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<div class="alert alert-warning"><%= "You have no new notifications" %></div>
+<% end %>		
+
+<% if @old_notifications != 0 %>
+	<h1> Older Notifications </h1>
+	<table class="table table-striped table-bordered table-responsive">
+		<% @old_notifications.each do |notification| %>
+			<tr>
+				<td class = "timeCol">
+					<h6><%== notification.created_at %></h6>
+				</td>
+				<td>
+					<h5><%== notification.message %></h5>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
