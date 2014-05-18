@@ -34,7 +34,6 @@
 				<div id= "tab1" class= "tab active">
 					<% openable = true %>
 					<h3> Exercise problems </h3>
-					
 					<% if @problems.empty? %>
 						<p> There are no problems </p>
 					<% end %>
@@ -82,25 +81,24 @@
 				<div id= "tab1" class= "tab active">
 					<% openable = true %>
 					<h3> Bank of problems </h3>
-
 					<% if @cproblems.empty? %>
 						<p> There are no problems </p>
 					<% end %>
 					<% if @cproblems.any? %>
 						<div class="panel-group list-group" id="accordion2"
 							style="width:100%;">
-							<% if openable %>
-								<% open = "in" %>
-								<% openarrow = "glyphicon-chevron-down" %>
-								<% openable = false %>
-							<% else %>
-								<% open = "" %>
-								<% openarrow = "glyphicon-chevron-right" %>
-							<% end %>
 							<% @cproblems.each do |cproblem| %>
+								<% if openable %>
+									<% open = "in" %>
+									<% openarrow = "glyphicon-chevron-down" %>
+									<% openable = false %>
+								<% else %>
+									<% open = "" %>
+									<% openarrow = "glyphicon-chevron-right" %>
+								<% end %>
 								<div class="panel-title list-group-item list-group-item-info">
 									<a class="icon glyphicon <%= openarrow %>"
-										href="#listOfProblems"
+										href="#<%= cproblem.id.to_s %>"
 										data-toggle="collapse" data-parent="#accordion2"
 										style="float:left;text-decoration: none;">
 									</a>
@@ -109,11 +107,9 @@
 									</div>
 									<%= cproblem.title %>
 								</div>
-								<div id="listOfProblems" class="panel-collapse collapse <%= open %>">
-									<div id="<%= cproblem.id.to_s %>"
-										class="panel-collapse collapse <%= open %>">
-										<%= cproblem.description %>
-									</div>
+								<div id="<%= cproblem.id.to_s %>"
+									class="panel-collapse collapse <%= open %>">
+									<%= cproblem.description %>
 								</div>
 							<% end %>
 						</div>
