@@ -183,7 +183,7 @@ class Solution < ActiveRecord::Base
 	#	A String containing feedback on what it found.
 	# Author: Ahmed Moataz
 	def check_class_name
-		special = "?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
+		special = "!?<>',?[]}{=-)(*&|^%$#`~{}/\\:;"
 		regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
 		if class_name =~ regex
 			return "The file name cannot contain special characters"

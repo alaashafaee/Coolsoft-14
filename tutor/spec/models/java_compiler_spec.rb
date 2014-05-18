@@ -75,6 +75,27 @@ describe JavaCompiler do
 					"  \n                                                                   " +
 					" ^\n1 error\n", :warnings=>nil})
 			end
+
+			it "file name contains special characters" do
+				@solution.class_name = "CoolSoft!"
+				expect(JavaCompiler.compile @solution, @code).to eq("The file name cannot contain special characters")			
+			end
+
+			it "file name contains line breaks" do
+				@solution.class_name = "Cool\nSoft"
+				expect(JavaCompiler.compile @solution, @code).to eq("The file name cannot contain line breaks")			
+			end
+
+			it "file name contains white spaces" do
+				@solution.class_name = "Cool Soft"
+				expect(JavaCompiler.compile @solution, @code).to eq("The file name cannot contain white spaces")		
+			end
+
+			it "file name is empty" do
+				@solution.class_name = ""
+				expect(JavaCompiler.compile @solution, @code).to eq("The file name cannot be empty")
+			end
+
 		end
 	end
 end
