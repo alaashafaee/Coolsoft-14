@@ -310,14 +310,26 @@ debug_console = ->
 	list_of_variables = variables[state_number]["locals"]
 	content = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
 	content += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
+	globals = ""
+	global = "global"
 	i = 0
 	while i < list_of_variables.length
 		values = list_of_variables[i].split " = "
-		content += "<tr class='success'><td>" + values[0] + "</td>"
-		content += "<td>" + values[1] + "</td></tr>"
+		tmp = values[0].split "."
+		if tmp[0] == global
+			globals += "<tr class='success'><td>" + tmp[1] + "</td>"
+			globals += "<td>" + values[1] + "</td></tr>"
+		else
+			content += "<tr class='success'><td>" + values[0] + "</td>"
+			content += "<td>" + values[1] + "</td></tr>"
 		i++
 	content += "</table>"
-	div.innerHTML = content
+	if globals.length > 0
+		append = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
+		append += "<tr class='info'><th>Global</th><th>Value</th></tr>"
+		globals = append + globals
+		globals += "</table>"
+	div.innerHTML = globals + content
 	return
 
 # [View Variables - Story 3.7]
@@ -337,7 +349,8 @@ debug_console = ->
 		content += "<tr class='success'><td>" + current_method + "</td></tr>"
 		i++
 	content += "</table>"
-	div.innerHTML = content
+	if list_of_methods.length > 0
+		div.innerHTML = content
 	return
 
 # [Debug - Story 3.6]
