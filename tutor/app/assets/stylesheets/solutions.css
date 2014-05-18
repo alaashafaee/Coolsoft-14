@@ -149,3 +149,15 @@ textarea  {
 	margin_top: 10px;
 	cursor: default;
 }
+
+.total_grade {
+	height: 100px;
+	color: white;
+	font-size: 2em;
+}
+
+.non_graded {
+	height: 50px;
+	color: white;
+	font-size: 2em;"
+}
