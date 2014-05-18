@@ -143,11 +143,12 @@ puts("# ----------------------- Hints ----------------------- ")
 		other to sort the array.", category: true, time: 50, submission_counter:1)
 	Hint.create(id: 507, message: "Trying taking each digit of the number by the modulus sign
 		and multiply it consecutively", category: true, time: 50, submission_counter:1)
-	Hint.create(id: 508, message: "ghg", category: true, 
-		time: 50, submission_counter:1)
-	Hint.create(id: 509, message: "ghgh", category: true, 
-		time: 50, submission_counter:1)
-	Hint.create(id: 510, message: "ghgh", category: true, 
+	Hint.create(id: 508, message: "In the recursive method write the base case if one of the 
+		numbers is zero.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 509, message: "Try using the predefined method Math.sqrt(number)",
+		category: true, time: 50, submission_counter:1)
+	Hint.create(id: 510, message: "Make two for loops, one for printing the numbers, 
+		and the other for the printing a new line.", category: true, 
 		time: 50, submission_counter:1)
 
 puts("# ----------------------- ModelAnswer ----------------------- ")
@@ -239,9 +240,28 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 		} else {
 			return System.out.printf(-1);
 		}")
-	ModelAnswer.create(id: 508, title: "hgg", answer: "hgh")
-	ModelAnswer.create(id: 509, title: "ghhg", answer: "ghhg")
-	ModelAnswer.create(id: 510, title: "ghgh", answer: "ghgh")
+	ModelAnswer.create(id: 508, title: "GCD", answer: "
+		int number1 = 12;
+		int number2 = 90;
+		System.out.println(findGCD(number1,number2));
+		private static int findGCD(int number1, int number2) {
+			if(number2 == 0){
+				return number1;
+			}
+		return findGCD(number2, number1%number2); }")
+	ModelAnswer.create(id: 509, title: "Square Root", answer: "
+		double square = 25;
+		double squareRoot = Math.sqrt(square);
+		System.out.println(squareRoot);
+		")
+	ModelAnswer.create(id: 510, title: "Structure", answer: "
+		int number = 5;
+		for (int i = 1; i<=number; i++) {
+			for (int j = 1; j<=number; j++){
+				System.out.printf(number);
+			}
+			System.out.println();
+		}")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -339,11 +359,11 @@ puts("# ----------------------- Problems ----------------------- ")
 			number is a palindrome or not iteratively. Print 1 if the number is a palindrome, 
 			and -1 if not. Test the value 12321 in your program.",incomplete: false, seen: true, 
 			duplicated: false)
-		Problem.create(id: 505, title: "Fibonacci", description: "Write a program to print Fibonacci 
-			series up to a given number iteratively. Test your program using the value 5.", 
-			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 506, title: "Bubble sort", description: " Write a program to sort an integer 
-			array using the bubble sort method. Write your program using the array [32, 
+		Problem.create(id: 505, title: "Fibonacci", description: "Write a program to print 
+			Fibonacci series up to a given number iteratively. Test your program using the 
+			value 5.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 506, title: "Bubble sort", description: " Write a program to sort an 
+			integer array using the bubble sort method. Write your program using the array [32, 
 			39, 21, 45, 23, 3]", incomplete: false, seen: true, duplicated: false)
 		Problem.create(id: 507, title: "Armstrong", description: "Write a program to check 
 			if a number is Armstrong number or not. An Armstrong number of 3 digit is a 
@@ -351,12 +371,19 @@ puts("# ----------------------- Problems ----------------------- ")
 			Armstrong number because 3*3*3 + 7*7*7 + 1*1*1 = 371). Implement your code 
 			testing the value 153. Print 1 if Armstrong and -1 otherwise.", incomplete: false, 
 			seen: true, duplicated: false)
-		Problem.create(id: 508, title: "ghhg", description: "ghhg",
-			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 509, title: "ghhg", description: "ghhg",
-			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 510, title: "ghhg", description: "ghgh",
-			incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 508, title: "GCD", description: "Write a  program to find GCD 
+			of two numbers in Java recursively. GCD: Greatest Common Divisor. Implement your code 
+			testing the numbers 12 90. The program should print 6.", incomplete: false, 
+			seen: true, duplicated: false)
+		Problem.create(id: 509, title: "Square Root", description: "How to find square root of 
+			a number in Java. Implement your program testing the value 25, the program should 
+			print the value 5.", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 510, title: "Structure", description: "Print the following structure:
+			1
+			22
+			333
+			4444
+			55555", incomplete: false, seen: true, duplicated: false)
 
 	## Bank
 		## problem 1
