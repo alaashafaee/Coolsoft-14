@@ -10,7 +10,7 @@ gem 'devise'
 
 # File uploading
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', :require => 'RMagick'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -66,8 +66,16 @@ gem 'json_builder', '3.1.0'
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
 
+gem 'table_print'
+
 #pagination
 gem 'will_paginate', '~> 3.0.5'
+
+#link inspect
+gem "metainspector",        '1.15.4'
+
+#forms
+gem "cocoon"
 
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0.beta'
