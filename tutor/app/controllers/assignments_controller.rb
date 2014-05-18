@@ -7,6 +7,16 @@ class AssignmentsController < ApplicationController
 	# Returns: none 
 	# Author: Nadine Adel
 	def new
+		course = Course.find(params[:course_id])
+		if teaching_assistant_signed_in?
+			@can_edit = course.can_edit(current_teaching_assistant)
+		end
+		if lecturer_signed_in?
+			@can_edit ||= course.can_edit(current_lecturer)
+		end
+		if !@can_edit
+			render('public/404')
+		end
 		session[:course_id] = params[:course_id]
 		@course = Course.find_by_id(session[:course_id])
 		@new_assignment = Assignment.new
