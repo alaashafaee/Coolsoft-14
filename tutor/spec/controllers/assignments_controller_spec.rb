@@ -1,6 +1,5 @@
 require 'spec_helper'
 include Devise::TestHelpers
-<<<<<<< HEAD
 class ActiveSupport::Assignment
 	include Devise::TestHelpers
 end
@@ -40,12 +39,6 @@ describe AssignmentsController do
 			}.to change(Assignment,:count).by(0)
 		end
 	end
-=======
-class ActiveSupport::TestCase
-include Devise::TestHelpers
-end
-
-describe AssignmentsController do
  	
  	describe "GET show" do
  		before(:each) do
@@ -66,5 +59,5 @@ describe AssignmentsController do
  			expect(assigns(:assignment)).to eq(@assignment)
  		end
  	end 
->>>>>>> 403ebc01ac53a826bcdcb77772d369597cf2f97f
+
 end
