@@ -14,6 +14,7 @@ class ProblemsController < ApplicationController
 			@track = @problem.track
 			@topic = @track.topic
 			@course = @topic.course
+			@snippet = @problem.snippet
 		end
 	end
 
@@ -198,29 +199,29 @@ class ProblemsController < ApplicationController
 			@failure = true
 			flash.keep[:notice] = "Problem is incomplete, 
 			please add necessary paramaters or save as incomplete"
-			redirect_to :action => "edit", :id => @problem.id
+			redirect_to :action => "edit" , :id => @problem.id
 		else
 			@problem.incomplete = false
 			@problem.save
-			redirect_to :controller => "tracks", :action => "show", :id => @problem.track_id
+			redirect_to :controller => "tracks", :action => "show" , :id => @problem.track_id
 		end
 	end
 
  	# [show attempts- Story 2.4]
 	# Select a problem_id and select the attempts to answer this problem
 	# Parameters:
-	# 	problem_id:a unique value for every problem
-	# 	code:a text to show the solution of a problem
+	# 	problem_id: a unique value for every problem
+	# 	code: a text to show the solution of a problem
 	# Returns: 
-	# 	text:trials for answering a problem
-	# 	in case of failure : a message "No one answered this problem "
+	# 	text: trials for answering a problem
+	# 	in case of failure: a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def showAttempts
- 		@problem=Problem.find_by_id(params[:id])
+ 		@problem = Problem.find_by_id(params[:id])
  		if Solution.where(problem_id: @problem.id) != 0 
- 			@attempt=Solution.where(problem_id: @problem.id).pluck(:code)
+ 			@attempt = Solution.where(problem_id: @problem.id).pluck(:code)
  			if @attempt == ""
- 				flash[:notice]="no one answered this problem"
+ 				flash[:notice] = "no one answered this problem"
  				render "has_no_answer"
  			else 
  				render "statistics"
@@ -233,27 +234,27 @@ class ProblemsController < ApplicationController
  	# [average number of trials - Story 2.3]
 	# Select a problem_id and count the number of students who tried to answer this problem
 	# Parameters:
-	# 	success:an intger value that shows the number of correct answers by students
-	# 	failure:an intger value that shows the number of wrong answers by students
-	# 	student_id:a unique value for every student who try to answer a problem
-	# 	problem_id:a unique value for every problem
+	# 	success: an intger value that shows the number of correct answers by students
+	# 	failure: an intger value that shows the number of wrong answers by students
+	# 	student_id: a unique value for every student who try to answer a problem
+	# 	problem_id: a unique value for every problem
 	# Returns: 
-	# 	an integer value:number of trials to answer a specific problem		
-	# 	in case of failure:a message "No one answered this problem "
+	# 	an integer value: number of trials to answer a specific problem		
+	# 	in case of failure: a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def average
- 		@problem=Problem.find_by_id(params[:id])
+ 		@problem = Problem.find_by_id(params[:id])
  		if Solution.where(problem_id: @problem.id) != 0
- 			@students=Solution.distinct.count(:student_id)
+ 			@students = Solution.distinct.count(:student_id)
  		else 
  			render "has_no_answer"
  		end
- 		@success=Attempt.where(problem_id: @problem.id).count(:success == true)
- 		@failure= Attempt.where(problem_id: @problem.id).count(:failure == true)
- 		@total= @success + @failure
- 		@average= @total / @students
+ 		@success = Attempt.where(problem_id: @problem.id).count(:success == true)
+ 		@failure = Attempt.where(problem_id: @problem.id).count(:failure == true)
+ 		@total = @success + @failure
+ 		@average = @total / @students
  		if @average == 0
- 			flash[:notice]= "no one answered this problem"
+ 			flash[:notice] = "no one answered this problem"
  			render "has_no_answer"
  		else
  			render "statistics"
@@ -263,24 +264,24 @@ class ProblemsController < ApplicationController
  	# [average time - Story 2.2]
 	# Select a problem_id and calculate the average time taken to solve this problem
 	# Parameters:
-	# 	time:an integer shows the time taken to answer a problem
-	# 	student_id:a unique value for every student who try to answer a problem
-	# 	problem_id:a unique value for every problem
+	# 	time: an integer shows the time taken to answer a problem
+	# 	student_id: a unique value for every student who try to answer a problem
+	# 	problem_id: a unique value for every problem
 	# Returns: 
-	# 	an integer value:average time taken to answer		
-	# 	in case of failure:a message "No one answered this problem"
+	# 	an integer value: average time taken to answer		
+	# 	in case of failure: a message "No one answered this problem"
 	# Author: Rana ElNagar
  	def averageTime
- 		@problem=Problem.find_by_id(params[:id])
+ 		@problem = Problem.find_by_id(params[:id])
  		if Solution.where(problem_id: @problem.id) != 0
- 			@students=Solution.distinct.count(:student_id)
+ 			@students = Solution.distinct.count(:student_id)
  		else 
  			render "has_no_answer"
  		end
- 			@time= Solution.where(problem_id: @problem.id).sum(&:time)
- 			@averageTime=( @time / @students)*100
- 			if @averageTime ==0
- 			flash[:notice]="no one answered this problem"
+ 			@time = Solution.where(problem_id: @problem.id).sum(&:time)
+ 			@averageTime = ( @time / @students)*100
+ 			if @averageTime == 0
+ 			flash[:notice] = "no one answered this problem"
  			render "has_no_answer"
  		else 
  			render "statistics"

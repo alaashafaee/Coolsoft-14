@@ -1,3 +1,4 @@
+<%= image_tag(current_student.profile_image_url.to_s, :class => "profile_picture") %>
 <%= render 'layouts/profile' %> 
 		<li class = "active"><a href = "#tab1">Info</a></li>
 		<li><a href = "#tab2">Performance</a></li>
@@ -10,6 +11,9 @@
 			<p><b>University: </b><%= current_student.university %></p>
 			<p><b>Faculty: </b><%= current_student.faculty %></p>
 			<p><b>Major: </b><%= current_student.major %></p>
+			<p><b>Semester: </b><%= current_student.semester %></p>
+			<p><b>Advising: </b><%= (current_student.advising == true) ? "Yes" : "No" %></p>
+			<p><b>Probation: </b><%= (current_student.probation == true) ? "Yes" : "No" %></p>
 			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 		</div>
 		<div id = "tab2" class = "tab">

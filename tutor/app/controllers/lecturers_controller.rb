@@ -13,14 +13,18 @@ class LecturersController < ApplicationController
 	# [Number Of Problem Answered Correctly- Story 2.1]
 	# Select all problems which have success_attempts greater than zero and count the records
 	# Parameters:
-	# 	success_attempts:an intger value that shows how many times does the problem have to be answered correctly
+	# 	success: an intger value that shows how many times does the problem have to be answered correctly
 	# Returns:
-	# 	an integer value : number of problems answered correctly	
-	# 	in case of failure : a message "No problem is answered correctly"
+	# 	an integer value: number of problems answered correctly	
+	# 	in case of failure: a message "No problem is answered correctly"
 	# Author: Rana ElNagar
   	def showCorrectAnswers
-  		@solutions = Problem.count(:success_attempts).where.not(:success_attempts == 0)
-  		if @problems.nil?
+  		@course = Course.find(params[:id])
+  		@topics = Topic.where(course_id: @course.id).find(params[:id])
+  		@tracks = Track.where(topic_id: @topics.id).find(params[:id])
+  		@problems = Problem.where(track_id: @tracks.id).find(params[:id])
+  		@solutions = Attempt.where(problem_id: @problems.id).count(:success == true)
+  		if @solutions == 0
   			flash[:notice] = "No problem is answered correctly"
   			render "no_correct_answer"
   		else 
