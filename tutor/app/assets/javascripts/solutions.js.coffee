@@ -74,14 +74,15 @@ status = "The debugging session was successful."
 		data: {code: input, problem_id: problem_id,\
 			class_name: class_name, problem_type: problem_type, lang: lang}
 		datatype: 'json'
-		success: (unique) ->
+		success: (compiler_feedback) ->
 			clear_console()
 			stop_spin()
 			toggle_code_area()
-			if !unique["success"]
-				compilation_error unique["errors"]
+			if !compiler_feedback["success"]
+				compilation_error compiler_feedback["errors"]
 				return
 			$('.compilation_succeeded').html("Compilation Succeeded!")
+			$('.compilation_feedback').html(compiler_feedback["warnings"])
 		error: ->
 			clear_console()
 			stop_spin()
