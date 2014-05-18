@@ -12,9 +12,9 @@
  *= require_tree .
  *= require bootstrap
  *= require alertify-themes/alertify.core
+ *= require posts
  *= require jquery.countdown.css
  */
-= require posts
 
 .side-left {
 	height:700px;
