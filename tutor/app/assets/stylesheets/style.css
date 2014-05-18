@@ -210,17 +210,7 @@
 .margin-10 {
 	margin: 10px;
 }
-.topic-box .well {
-	max-width: 400px;
-	max-height: 200px;
-	min-width: 400px;
-	min-height: 200px;
-	overflow-y: auto;
-}
-.bell .topic-box .well{
-	background-color: red;
-	margin-left: 3%;
-}
+
 .box-title {
 	font-size: 2em;
 	color: #808080;
