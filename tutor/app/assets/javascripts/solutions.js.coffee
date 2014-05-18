@@ -418,7 +418,7 @@ debug_console = ->
 			toggle_code_area()
 			if data['compiler_error']
 				compilation_error(data['compiler_output'])
-				if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
+				if problem_type == "Cproblem" 
 					contest_id = document.getElementById('contest_id').innerHTML
 					contest_problem_submission(0, contest_id, problem_id)
 				return
@@ -428,7 +428,7 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
-			if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
+			if problem_type == "Cproblem"
 				i = data[data.length-1]['status']
 				if i == 2 
 					content = "<font color ='red'>Compilation failed</font>"

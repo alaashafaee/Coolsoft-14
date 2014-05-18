@@ -1,14 +1,3 @@
-<% @type = "" %>
-<% @controller = params[:controller] %>
-<% if @controller == "problems" %>
-	<% @type = "Problem" %>
-<% elsif @controller == "cproblems" %>
-	<% @type = "Cproblem" %>
-	<div hidden id = "contest_id"><%= @contest.id %></div>
-<% else %>
-	<% @type = "AssignmentProblem" %>
-<% end %>
-
 
 
 <div>
@@ -52,7 +41,7 @@
 		</div>
 	</div>
 	<%= hidden_field :problem, :default_code, value: @snippet %>
-
+<br><br><br>
 
 <!-- Add editor -->
 <pre id="editor">public class CoolSoft {
@@ -60,7 +49,7 @@
 &#09;&#09;
 	}
 }</pre>
-<br><br><br><br>
+
 </div>
 
 <style type="text/css">
