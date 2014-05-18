@@ -86,7 +86,7 @@ class PostsController < ApplicationController
 			if @new_post.errors.any?
 				flash[:notice] = @new_post.errors.full_messages.first
 			end
-			render :action => 'new' 
+			render :action => 'new'
 		end
 	end
 

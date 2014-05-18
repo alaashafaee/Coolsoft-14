@@ -1,29 +1,45 @@
-<div class="well header" >
-	<h1><b><%= @discussionBoard.title %></b></h1>
-	<hr>
-</div>
-<div class="well add_newss">
-	<%= link_to "Ask Question", new_post_path(discussion_board_id:@discussionBoard.id) %> 
-</div>
-<div class="container posts">
-	<% if !@discussionBoard.blank? %>
-		<% @discussionBoard.posts.each do |post| %>
-			<div class="row box">
-				<div class="well col-sm-1 col_1">
-					<%= image_tag @current_user.profile_image_url.to_s, class:"profile_image" %> 
-				</div>
-				<div class="col-sm-9 col_2">
-					<div><h2><b><%= link_to post.title, post %></b></h2></div>
-					<div><font><%= distance_of_time_in_words_to_now post.created_at %> ago by <%= link_to post.owner.name , post.owner %></font></div>
-				</div>
-				<div class="col-sm-1 col_3 details">
-					<h3>Views</h3> <font><%= post.views_count %></font> 
-				</div>
-				<div class="col-sm-1 col_3 details">
-					<h3>Answers</h3> <font><%= post.replies.count %></font> 
+<div class= "left-box" >
+	<div class="xob" style="padding : 0px 15px 2px;">
+		<div class = "c_info panel-body" >
+			<div class= "row c_title">
+				<div class="c_code"><%= @course.code %></div>
+				<div class="c_name"><%= link_to @course.name, @course, style: "color: black" %></div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
 				</div>
 			</div>
-		<% end %>
-	<% else %>
-	<% end %>
+		</div>
+		<div class="well header" >
+			<h1><b><%= @discussionBoard.title %></b></h1>
+			<hr>
+		</div>
+		<div class="well add_newss">
+			<%= link_to "Ask Question", new_post_path(discussion_board_id:@discussionBoard.id) %> 
+		</div>
+		<div class="container posts">
+			<% if !@discussionBoard.blank? %>
+				<% @discussionBoard.posts.each do |post| %>
+					<div class="row box">
+						<div class="well col-sm-1 col_1">
+							<%= image_tag @current_user.profile_image_url.to_s, class:"profile_image" %> 
+						</div>
+						<div class="col-sm-9 col_2">
+							<div><h2><b><%= link_to post.title, post %></b></h2></div>
+							<div><font><%= distance_of_time_in_words_to_now post.created_at %> ago by <%= link_to post.owner.name , post.owner %></font></div>
+						</div>
+						<div class="col-sm-1 col_3 details">
+							<h3>Views</h3> <font><%= post.views_count %></font> 
+						</div>
+						<div class="col-sm-1 col_3 details">
+							<h3>Answers</h3> <font><%= post.replies.count %></font> 
+						</div>
+					</div>
+				<% end %>
+			<% else %>
+			<% end %>
+		</div>
+	</div>
 </div>

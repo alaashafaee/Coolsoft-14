@@ -1,36 +1,44 @@
-<!--Author: Mohab Ghanim -->
-<div>
-	<br><br><br>
-	<div class="row">
-		<div class="container">
-			<div class="col-md-8"><h2><b>&raquo; Courses</b></h2></div>
-			<div class="col-md-4 pop_new">
-				<%= link_to "Add Course", new_course_path %>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
 			</div>
-			
-		</div>
-	</div>
-	<div class="well">
-		<% if @courses.any? %>
-			<div class="row">
-				<% @courses.each do |course| %>
-					<div class="container col-sm-6">
-						<div class="well" style="background-color: #d7dde2 !important;">
-							<h3><b><%= link_to course.name, course %></b><hr></h3>
-							<label><%= course.description %></label><br><br>
-							<% if lecturer_signed_in? %>
-								<% if current_lecturer.courses.find(course) %>
-									<%= link_to "Manage ", edit_course_path(course)%><b>|</b>	
-								<% end %>
-							<% elsif student_signed_in? %>
-								
-							<% end %>
-							<%= link_to " Disscussion Board", course.discussion_board%>
-						</div>
+			<div>
+				<br><br><br>
+				<div class="row">
+					<div class="container">
+						<div class="col-md-8"><h2><b>&raquo; Courses</b></h2></div>
+						<% if current_lecturer %>
+							<div class="col-md-4 pop_new">
+								<%= link_to "Add Course", new_course_path %>
+							</div>
+						<% end %>						
 					</div>
-				<%end%>
+				</div>
+				<div class="well">
+					<% if @courses.any? %>
+						<div class="row">
+							<% @courses.each do |course| %>
+								<div class="container col-sm-6">
+									<div class="well" style="background-color: #d7dde2 !important;">
+										<h3><b><%= link_to course.name, course %></b><hr></h3>
+										<label><%= course.description %></label><br><br>
+										<% if lecturer_signed_in? %>
+											<% if current_lecturer.courses.find(course) %>
+												<%= link_to "Manage ", edit_course_path(course)%><b>|</b>	
+											<% end %>
+										<% elsif student_signed_in? %>
+											
+										<% end %>
+										<%= link_to " Disscussion Board", course.discussion_board%>
+									</div>
+								</div>
+							<%end%>
+						</div>
+					<% end %>
+				</div>
 			</div>
-		<% end %>
+		</div>
 	</div>
 </div>
 <style type="text/css">
