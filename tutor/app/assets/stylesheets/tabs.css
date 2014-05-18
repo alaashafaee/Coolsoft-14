@@ -1,31 +1,30 @@
-.left-row .tabs {
+.tabs {
 	display:inline-block;
 	width: 100%;
 	margin-top: 2%;
 }
 
-.left-row .tab-links{
+.tab-links{
 	margin:0px;
 	border-bottom: 1px solid #CCCCCC;
 }
-
-.left-row .tab-links:after {
+.tab-links:after {
 	display:block;
 	clear:both;
 	content:'';
 }
 
-.left-row .tab-links li {
+.tab-links li {
 	margin:0px 2px;
 	display: inline;
 	list-style:none;
 }
 
-.left-row .tab-content .table {
+.tab-content .table {
 	width: 130% !important;
 }
 
-.left-row .tab-links a {
+.tab-links a {
 	padding:9px 15px;
 	display:inline-block;
 	border-radius:3px 3px 0px 0px;
@@ -35,7 +34,7 @@
 	background-color: white;
 }
 
-.left-row .tab-links a:hover {
+.tab-links a:hover {
 	background:#a7cce5;
 	text-decoration:none;
 }
@@ -47,17 +46,17 @@ li.active a, li.active a:hover {
 
 }
 
-.left-row .tab-content {
+.tab-content {
 	padding:15px;
 	border-radius:3px;
 	box-shadow: 0px 1px 1px rgba(0,0,0,0.15);	
 }
 
-.left-row .tab {
+.tab {
 	display:none;
 }
 
-.left-row .tab.active {
+.tab.active {
 	display:block;
 }
 

@@ -149,3 +149,35 @@
 	color: #2fb899;
 	margin-top: -2px;
 }
+
+.course-box{
+	color : black;
+	height: 260px;
+}
+
+.course-box a {
+	color : #3B8FA3;
+}
+
+.course-box a:hover {
+	color : #2C3E50;
+}
+
+.hide-p {
+	margin-top: 3px;
+	background-color: #CF5044;
+	border-radius: 100px;
+	color: white;
+}
+
+.show-p {
+	margin-top: 3px;
+	background-color: #96AB4F;
+	border-radius: 100px;
+	color: white;
+
+}
+
+.c-description-label{
+	height: 82px;
+}
