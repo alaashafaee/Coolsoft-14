@@ -1,0 +1,42 @@
+<h1>Grades</h2>
+<br>
+<br>
+<table class = "table table-striped", style = "width:60%">
+	<tr>
+		<th><center>Assignment</center></th>
+		<th><center>Assignment grade</center></th>
+	</tr>
+	<% @assignments.each do |assi| %>
+		<% if assi.publish %>
+			<% @problems = assi.problems %>
+			<% @problems.each do |p| %>
+				<% @records.each do |r| %>
+					<% if r.problem_id == p.id %>
+						<% @student_grade = @student_grade + r.grade %>
+						<% @assignment_corrected =  true %>
+					<% end %>
+				<% end %>
+				<% @total_grade = p.final_grade %>
+			<% end %>
+			<% if @assignment_corrected %>
+				<tr>
+					<td><center><%= assi.title%></center></td>
+					<td><center><%= @student_grade %>/<%= @total_grade %></center></td>
+					<td><%= link_to "Check correction",
+						{:controller => 'assignments', :action => 'show_correction',
+						method: :get, :id => assi.id },
+						class: "",  style: "font-weight:bold; font-size:15px; color:#3498db;
+						font-dicoration:none" %></td>		
+				</tr>
+			<% else%>
+				<tr>
+					<td><center><%= assi.title%></center></td>
+					<td><center><span class="badge">Not corrected yet</span></center></td>
+				</tr>
+			<% end %>
+			<% @total_grade = 0 %>
+			<% @student_grade = 0 %>
+			<% @assignment_corrected = false%>
+		<% end %>
+	<% end %>
+</table>

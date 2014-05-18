@@ -38,7 +38,10 @@
 
 	<%= button_tag 'Reload Template', type: 'Button', id: 'reloadButton',
 		onClick: "reload_template()", class: "btn btn-info pull-right" %>
+
+	<%= hidden_field :problem, :default_code, value: @snippet %>
 </div>
+
 <!-- Add editor -->
 <pre id="editor">public class CoolSoft {
 	public static void main(String [] args) {
@@ -78,8 +81,8 @@
 </table>
 <br>
 
-<div>
-	<b>Input:</b><br>
+<div class="input-group">
+	<span class="input-group-addon label-info">Input:</span>
 	<textarea placeholder="Write your test case here" id="solution_input"
 		class="form-control" style="width:400px"></textarea>
 </div>
@@ -120,6 +123,8 @@
 <script>
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
+	var default_code = document.getElementById('problem_default_code');
+	edit_session.setValue(default_code.value);
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
 </script>
