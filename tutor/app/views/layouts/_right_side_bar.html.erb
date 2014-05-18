@@ -18,28 +18,28 @@
 				<% if student_signed_in? %>
 			            	<li><%= link_to image_tag("glyphicons_003_user.png") +
 		            			 " Profile", 
-						{:controller => 'site', :action => 'index'},
+						{:controller => '/site', :action => 'index'},
 						style: "margin-left:auto; 
 						margin-right:auto; margin-bottom: 5px;
 						width: 100%", method: :get %>
 					</li>
 			            	<li><%= link_to image_tag("glyphicons_136_cogwheel.png") +
 		            			" Dashboard",
-						{:controller => 'site', :action => 'index'},
+						{:controller => '/site', :action => 'index'},
 						style: "margin-left:auto; 
 						margin-right:auto; margin-bottom: 5px;
 						width: 100%", method: :get %>
 					</li>
 			            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
 		           			" Courses", 
-						{:controller => 'courses', :action => 'index'},
+						{:controller => '/courses', :action => 'index'},
 						style: "margin-left:auto; 
 						margin-right:autox; margin-bottom: 5px;
 						width: 100%", method: :get %>
 					</li>
 			            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
 		           			 " Settings",
-						{:controller => 'site', :action => 'index'},
+						edit_student_registration_path,
 						style: "margin-left:auto; 
 						margin-right:auto;
 						width: 100%", method: :get %>
@@ -47,24 +47,34 @@
 			  	<% else %>
 			             	<li><%= link_to image_tag("glyphicons_003_user.png") +
 		             			"Profile", 
-						{:controller => 'site', :action => 'index'},
+						{:controller => '/site', :action => 'index'},
 						style: "margin-left:auto; 
 						margin-right:auto; margin-bottom: 5px;
 						width: 100%", method: :get %>
 					</li>
 			            	<li><%= link_to image_tag("glyphicons_318_more_items.png") +
 		            			"Courses", 
-						{:controller => 'courses', :action => 'index'},
+						{:controller => '/courses', :action => 'index'},
 						style: "margin-left:auto;
 						margin-right:auto; margin-bottom: 5px;
 						width: 100%", method: :get %>
 					</li>
-			            	<li><%= link_to image_tag("glyphicons_280_settings.png") +
-			       			 "Settings",
-						{:controller => 'site', :action => 'index'},
-						style: "margin-left:auto;
-						margin-right:auto;
-						width: 100%", method: :get %>
+					<li>
+						<% if lecturer_signed_in? %>
+							<%= link_to image_tag("glyphicons_280_settings.png") +
+								"Settings",
+							edit_lecturer_registration_path,
+							style: "margin-left: auto;
+							margin-right: auto;
+							width: 100%", method: :get %>
+						<% else %>
+							<%= link_to image_tag("glyphicons_280_settings.png") +
+								"Settings",
+							edit_teaching_assistant_registration_path,
+							style: "margin-left: auto;
+							margin-right: auto;
+							width: 100%", method: :get %>
+						<% end %>
 					</li>
 	    			<% end %>
 			</ul>

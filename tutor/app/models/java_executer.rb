@@ -12,7 +12,7 @@ class JavaExecuter < Executer
 		$lang = 'java '
 		$error = 'Exception'
 		$extension = ''
-		$stream = ''
+		$stream = ' 2>&1'
 		return super
 	end
 

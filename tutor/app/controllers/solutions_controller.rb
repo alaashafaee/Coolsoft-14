@@ -2,12 +2,16 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	#	and outputs 2 flash messages for success and failure scenarios
 	# Parameters:
-	#	solution_params: submitted from the form_for
-	# Returns: none
+	#	solution_params: the parameters needed for the submitted solution
+	# Returns: 
+	#	JSON object containing the results of running the testcases of
+	#		the submitted solution
 	# Author: MOHAMEDSAEED
 	def create
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			render json: {}
+		end
 		param = solution_params
 		code = param[:code]
 		student = current_student.id
@@ -82,6 +86,7 @@ class SolutionsController < ApplicationController
 				end
 				@student = Student.find_by_id(@solution.student_id)
 				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
+				@grade = Grade.where(problem_id: @problem.id, student_id: @student.id).first
 				@course = @problem.assignment.course
 				@can_edit = @course.can_edit(current_lecturer)
 				@can_edit||= @course.can_edit(current_teaching_assistant)
@@ -125,6 +130,9 @@ class SolutionsController < ApplicationController
 	# Parameters:
 	# 	code: The written code for the problem
 	# 	problem_id: Hidden field for problem id
+	#	time: The time taken by the student to solve the problem
+	#	class_name: the name of the class to be used
+	#	problem_type: the type of the problem to be solved
 	# Returns:
 	# 	none
 	# Author: MOHAMEDSAEED

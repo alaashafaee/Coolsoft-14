@@ -27,7 +27,7 @@ describe NotificationsController do
 			teaching_assistant = TeachingAssistant.new(email: '1@lecturer.com', password: '123456789', 
  			password_confirmation: '123456789', name: 'LecturerI',
  			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
-			degree: "PhD", graduated_from: "GUC", department: "MET", university: "GUC", graduated_year: 2005)
+			degree: "MSc", graduated_from: "GUC", department: "MET", university: "GUC", graduated_year: 2005)
 			teaching_assistant.save!
 			sign_in teaching_assistant
 			get :index
