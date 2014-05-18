@@ -44,6 +44,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
+    addressable (2.3.6)
     ansi (1.4.3)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -59,6 +60,7 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
     chronic (0.10.2)
+    cocoon (1.2.6)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -86,6 +88,7 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hashie (2.0.5)
     hashr (0.0.22)
     hike (1.2.3)
     i18n (0.6.9)
@@ -110,9 +113,18 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metainspector (1.15.4)
+      addressable (~> 2.3.4)
+      nokogiri (~> 1.5)
+      open_uri_redirections (~> 0.1.0)
+      rash (~> 0.4.0)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.9.2)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
+    open_uri_redirections (0.1.4)
     orm_adapter (0.5.0)
     polyamorous (1.0.0)
       activerecord (>= 3.0)
@@ -141,6 +153,8 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.0.0)
+    rash (0.4.0)
+      hashie (~> 2.0.0)
     rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
@@ -223,6 +237,7 @@ DEPENDENCIES
   activeadmin!
   acts_as_list
   carrierwave
+  cocoon
   coffee-rails (~> 4.0.0)
   composite_primary_keys (~> 6.0.1)
   devise
@@ -230,6 +245,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)
   json_builder (= 3.1.0)
+  metainspector (= 1.15.4)
   rails (= 4.0.4)
   rmagick
   rspec-rails (~> 3.0.0.beta)
