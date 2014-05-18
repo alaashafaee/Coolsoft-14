@@ -47,8 +47,8 @@ class AssignmentsController < ApplicationController
 		@assignment = Assignment.find_by_id(params[:id])
 		if @assignment.update_attributes(assignment_params)
 			flash[:notice] = "Your Assignment is now updated"
-			redirect_to :controller=>'assignmentproblems'
-				:action=>'new', :id =>params[:id]
+			redirect_to :controller=>'assignmentproblems',
+				:action=>'new', :id=> params[:id]
 		else
 			render :action=>'edit', :id => @assignment.id
 		end
@@ -78,7 +78,7 @@ class AssignmentsController < ApplicationController
 	# Author: Nadine Adel
 	private
 	def assignment_params
-		params.require(:assignment).permit(:title, :description, :date)
+		params.require(:assignment).permit(:title, :description, :due_date)
 	end
 
 end
