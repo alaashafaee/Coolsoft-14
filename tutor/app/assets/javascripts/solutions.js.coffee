@@ -354,7 +354,8 @@ debug_console = ->
 		content += "<tr class='success'><td>" + current_method + "</td></tr>"
 		i++
 	content += "</table>"
-	div.innerHTML = content
+	if list_of_methods.length > 0
+		div.innerHTML = content
 	return
 
 # [Debug - Story 3.6]

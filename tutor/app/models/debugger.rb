@@ -53,6 +53,7 @@ class Debugger
 				input $step
 				nums = get_line
 				locals = []
+				stack = []
 				begin
 					locals = get_variables
 					stack = get_stack_trace

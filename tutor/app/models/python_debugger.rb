@@ -1,5 +1,7 @@
 class PythonDebugger < Debugger
 
+	$buffer_regex = /(\(Pdb\) )*/
+
 	# [Debugger: Debug Python - Story X.8]
 	# Start python debugging
 	# Parameters:
@@ -134,7 +136,7 @@ class PythonDebugger < Debugger
 		name = $class_name.sub(/\.py/,"")
 		regex = /(\-\-[A-Z][a-z]*\-\-\r\n)?> (\/[a-zA-Z0-9\-_]+)*\/#{name}\.py\(#{num}\).*\r\n$/m
 		stream = line.sub(regex, "")
-		stream = stream.sub(/(\(Pdb\) )*/, "")
+		stream = stream.sub($buffer_regex, "")
 		return stream
 	end
 
@@ -169,7 +171,7 @@ class PythonDebugger < Debugger
 		result = ""
 		input name + ".__dict__"
 		output_buffer = buffer_until [/\{.*\}\r\n$/m]
-		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
+		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			result << line
 		end
@@ -192,7 +194,7 @@ class PythonDebugger < Debugger
 		value = ""
 		input type + "[" + name + "]"
 		output_buffer = buffer_until [/\(Pdb\) .*\r\n/m]
-		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
+		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			value << line
 		end
@@ -220,7 +222,7 @@ class PythonDebugger < Debugger
 		result = []
 		input type + ".keys()"
 		output_buffer = buffer_until [/\[.*\]\r\n$/m]
-		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
+		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			all_lines << line
 		end
@@ -267,12 +269,14 @@ class PythonDebugger < Debugger
 	# Author: Khaled Helmy
 	def get_stack_trace
 		stack_trace = []
-		input "w"
-		output_buffer = buffer_until [/.*>.*\r\n->.*\r\n$/m]
-		output_buffer = output_buffer.sub(/(\(Pdb\) )*/, "")
-		output_buffer = output_buffer[3..-3]
-		output_buffer.each_line do |line|
+		if false
+			input "w"
+			output_buffer = buffer_until [/.*>.*\r\n->.*\r\n$/m]
+			output_buffer = output_buffer.sub($buffer_regex, "")
+			output_buffer = output_buffer[3..-3]
+			output_buffer.each_line do |line|
 			stack_trace << line
+		end
 		end
 		return stack_trace
 	end
