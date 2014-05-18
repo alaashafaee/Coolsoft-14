@@ -124,21 +124,31 @@ puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
 	Hint.create(message: "Do not Try to Solve CS problem-2", category: true, time: 5, submission_counter:10)
 	Hint.create(message: "Do not Try to Solve CS problem-3", category: false, time: 5, submission_counter:10)
-	Hint.create(message: "You may need to multiply each change with its corresponding 
-		ammount in pennies.", category: false, time: 50, submission_counter:10)
-	Hint.create(message: "Follow the exact example from the problem and try substituting 
-		with the right variables.", category: false, time: 50, submission_counter:10)
-	Hint.create(message: "Try using %2 to test the numbers when the remainder is 0 then 
-		it is even and if the remainder is 1 then it is odd.", category: false, time: 50, 
-		submission_counter:10)
-	Hint.create(message: "Get the inverse of the number by making an empty string and 
+	Hint.create(id: 501, message: "You may need to multiply each change with its corresponding 
+		ammount in pennies.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 502, message: "Follow the exact example from the problem and try substituting 
+		with the right variables.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 503, message: "Try using %2 to test the numbers when the remainder is 0 then 
+		it is even and if the remainder is 1 then it is odd.", category: true, time: 50, 
+		submission_counter:1)
+	Hint.create(id: 504, message: "Get the inverse of the number by making an empty string and 
 		concatenate the first digit from the number and then the second digit and so on 
 		until there are no digits remaining. After getting the inverse of the number compare 
 		it to the original number if they are equal then it's a palindrome.", 
-		category: false, time: 50, submission_counter:10)
-	Hint.create(message: "Try making an empty string and concatenate the numbers from the 
-		first digit which is 1 until you reach the desirable number.", category: false, 
-		time: 50, submission_counter:10)
+		category: true, time: 50, submission_counter:1)
+	Hint.create(id: 505, message: "Try making an empty string and concatenate the numbers from the 
+		first digit which is 1 until you reach the desirable number.", category: true, 
+		time: 50, submission_counter:1)
+	Hint.create(id: 506, message: "Make nested for-loops, one for testing the whole array and the 
+		other to sort the array.", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 507, message: "Trying taking each digit of the number by the modulus sign
+		and multiply it consecutively", category: true, time: 50, submission_counter:1)
+	Hint.create(id: 508, message: "ghg", category: true, 
+		time: 50, submission_counter:1)
+	Hint.create(id: 509, message: "ghgh", category: true, 
+		time: 50, submission_counter:1)
+	Hint.create(id: 510, message: "ghgh", category: true, 
+		time: 50, submission_counter:1)
 
 puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer1", answer: "System.out.println('SQL baaaad')-1")
@@ -147,12 +157,20 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 	ModelAnswer.create(title: "Answer4", answer: "System.out.println('SQL baaaad')-4")
 	ModelAnswer.create(title: "Answer5", answer: "System.out.println('SQL baaaad')-5")
 	ModelAnswer.create(title: "Answer6", answer: "System.out.println('SQL baaaad')-6")
-	ModelAnswer.create(id: 501, title: "Count Change", answer: "int quarters, dimes, nickles, pennies;
-		quarters = 3; dimes = 2; nickles = 1; pennies = 6; double total = quarters*25 
-		+ dimes*10 + nickles* 5 + pennies; System.out.print(total/100);")
-	ModelAnswer.create(id: 502, title: "Equivalent Resistance", answer: "float r1 = 8, r2 = 8, r3 = 4;
-		float series = r1 + r2 + r3; float parallelInverse = 1/r1 + 1/r2 + 1/r3; 
-		float parallel = 1/parallelInverse; System.out.println(series); 
+	ModelAnswer.create(id: 501, title: "Count Change", answer: "
+		int quarters, dimes, nickles, pennies;
+		quarters = 3;
+		dimes = 2;
+		nickles = 1;
+		pennies = 6;
+		double total = quarters*25 + dimes*10 + nickles* 5 + pennies;
+		System.out.print(total/100);")
+	ModelAnswer.create(id: 502, title: "Equivalent Resistance", answer: "
+		float r1 = 8, r2 = 8, r3 = 4;
+		float series = r1 + r2 + r3;
+		float parallelInverse = 1/r1 + 1/r2 + 1/r3;
+		float parallel = 1/parallelInverse;
+		System.out.println(series);
 		System.out.println(parallel);")
 	ModelAnswer.create(id: 503, title: "Even or Odd", answer: "
 		int oddNumber = 5;
@@ -195,11 +213,35 @@ puts("# ----------------------- ModelAnswer ----------------------- ")
 				fibo1 = fibo2;
 				fibo2 = fibonacci;}
 				System.out.println(fibo);}")
-	ModelAnswer.create(id: 506, title: "", answer: "")
-	ModelAnswer.create(id: 507, title: "", answer: "")
-	ModelAnswer.create(id: 508, title: "", answer: "")
-	ModelAnswer.create(id: 509, title: "", answer: "")
-	ModelAnswer.create(id: 510, title: "", answer: "")
+	ModelAnswer.create(id: 506, title: "Bubble sort", answer: "
+		int[] unsorted = {32, 39, 21, 45, 23, 3};
+		for(int i=0; i<unsorted.length -1; i++){
+			for(int j= 1; j<unsorted.length -i; j++){
+				if(unsorted[j-1] > unsorted[j]){
+					int temp = unsorted[j];
+					unsorted[j] = unsorted[j-1];
+					unsorted[j-1] = temp;
+				}
+			}
+			System.out.printf(Arrays.toString(unsorted));
+		}")
+	ModelAnswer.create(id: 507, title: "Armstrong", answer: "
+		int number = 153;
+		int result = 0;
+		int orig = number;
+		while(number != 0){
+			int remainder = number%10;
+			result = result + remainder*remainder*remainder;
+			number = number/10;
+		}
+		if(orig == result){
+			return System.out.printf(1);
+		} else {
+			return System.out.printf(-1);
+		}")
+	ModelAnswer.create(id: 508, title: "hgg", answer: "hgh")
+	ModelAnswer.create(id: 509, title: "ghhg", answer: "ghhg")
+	ModelAnswer.create(id: 510, title: "ghgh", answer: "ghgh")
 
 puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "hello World 1", input:"x = 0")
@@ -300,15 +342,20 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.create(id: 505, title: "Fibonacci", description: "Write a program to print Fibonacci 
 			series up to a given number iteratively. Test your program using the value 5.", 
 			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 506, title: "", description: "",
+		Problem.create(id: 506, title: "Bubble sort", description: " Write a program to sort an integer 
+			array using the bubble sort method. Write your program using the array [32, 
+			39, 21, 45, 23, 3]", incomplete: false, seen: true, duplicated: false)
+		Problem.create(id: 507, title: "Armstrong", description: "Write a program to check 
+			if a number is Armstrong number or not. An Armstrong number of 3 digit is a 
+			number for which sum of cube of its digits are equal to number e.g. 371 is an
+			Armstrong number because 3*3*3 + 7*7*7 + 1*1*1 = 371). Implement your code 
+			testing the value 153. Print 1 if Armstrong and -1 otherwise.", incomplete: false, 
+			seen: true, duplicated: false)
+		Problem.create(id: 508, title: "ghhg", description: "ghhg",
 			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 507, title: "", description: "",
+		Problem.create(id: 509, title: "ghhg", description: "ghhg",
 			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 508, title: "", description: "",
-			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 509, title: "", description: "",
-			incomplete: false, seen: true, duplicated: false)
-		Problem.create(id: 510, title: "", description: "",
+		Problem.create(id: 510, title: "ghhg", description: "ghgh",
 			incomplete: false, seen: true, duplicated: false)
 
 	## Bank
@@ -671,7 +718,7 @@ puts("# ----------------------- Problems ----------------------- ")
 						return fib(n - 1) + fib(n - 2);
 				}
 			}')
->>>>>>> 750556512f7774d55f37d3d20fe82aa150e23d5f
+
 puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 1", difficulty: 0)
 	Track.create(title: "Track 2", difficulty: 1)
@@ -887,11 +934,16 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(2).model_answers << ModelAnswer.find_by_id(4)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(5)
 		Problem.find_by_id(3).model_answers << ModelAnswer.find_by_id(6)
-		Problem.find_by_id(6).model_answers << ModelAnswer.find_by_id(7)
-		Problem.find_by_id(7).model_answers << ModelAnswer.find_by_id(8)
-		Problem.find_by_id(8).model_answers << ModelAnswer.find_by_id(9)
-		Problem.find_by_id(9).model_answers << ModelAnswer.find_by_id(10)
-		Problem.find_by_id(10).model_answers << ModelAnswer.find_by_id(11)
+		Problem.find_by_id(501).model_answers << ModelAnswer.find_by_id(501)
+		Problem.find_by_id(502).model_answers << ModelAnswer.find_by_id(502)
+		Problem.find_by_id(503).model_answers << ModelAnswer.find_by_id(503)
+		Problem.find_by_id(504).model_answers << ModelAnswer.find_by_id(504)
+		Problem.find_by_id(505).model_answers << ModelAnswer.find_by_id(505)
+		Problem.find_by_id(506).model_answers << ModelAnswer.find_by_id(506)
+		Problem.find_by_id(507).model_answers << ModelAnswer.find_by_id(507)
+		Problem.find_by_id(508).model_answers << ModelAnswer.find_by_id(508)
+		Problem.find_by_id(509).model_answers << ModelAnswer.find_by_id(509)
+		Problem.find_by_id(510).model_answers << ModelAnswer.find_by_id(510)
 	## Solutions
 		AssignmentProblem.first.solutions << Solution.first
 		AssignmentProblem.first.solutions << Solution.find_by_id(4)
@@ -920,11 +972,16 @@ puts("# ----------------------- Problems ----------------------- ")
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
 		Problem.first.model_answers.first.hints << Hint.all.second
-		Problem.find_by_id(6).model_answers.find_by_id(7).hints << Hint.find_by_id(4)
-		Problem.find_by_id(7).model_answers.find_by_id(8).hints << Hint.find_by_id(5)
-		Problem.find_by_id(8).model_answers.find_by_id(9).hints << Hint.find_by_id(6)
-		Problem.find_by_id(9).model_answers.find_by_id(10).hints << Hint.find_by_id(7)
-		Problem.find_by_id(10).model_answers.find_by_id(11).hints << Hint.find_by_id(8)
+		Problem.find_by_id(501).model_answers.find_by_id(501).hints << Hint.find_by_id(501)
+		Problem.find_by_id(502).model_answers.find_by_id(502).hints << Hint.find_by_id(502)
+		Problem.find_by_id(503).model_answers.find_by_id(503).hints << Hint.find_by_id(503)
+		Problem.find_by_id(504).model_answers.find_by_id(504).hints << Hint.find_by_id(504)
+		Problem.find_by_id(505).model_answers.find_by_id(505).hints << Hint.find_by_id(505)
+		Problem.find_by_id(506).model_answers.find_by_id(506).hints << Hint.find_by_id(506)
+		Problem.find_by_id(507).model_answers.find_by_id(507).hints << Hint.find_by_id(507)
+		Problem.find_by_id(508).model_answers.find_by_id(508).hints << Hint.find_by_id(508)
+		Problem.find_by_id(509).model_answers.find_by_id(509).hints << Hint.find_by_id(509)
+		Problem.find_by_id(510).model_answers.find_by_id(510).hints << Hint.find_by_id(510)
 
 puts("# ----------------------- Tracks ----------------------- ")
 	## Problems
