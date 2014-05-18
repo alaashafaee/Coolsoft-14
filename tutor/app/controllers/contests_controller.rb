@@ -12,8 +12,6 @@ class ContestsController < ApplicationController
 		@contest = Contest.find_by_id(params[:id])
 	end
 
-	before_action :validate_timer
-
 	# [Edit Contest - Story 5.17]
 	# Passes instance variable of the contest to be edited to the edit
 	# 	view and renders the edit view

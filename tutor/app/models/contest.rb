@@ -43,7 +43,7 @@ class Contest < ActiveRecord::Base
 				record: record, time_spent: time_spent}
 		end
 		return Hash[contest_standings_unique.sort_by {|key, value| [value[:wrong_answers],
-		 value[:time_spent]]}.to_a]
+			value[:time_spent]]}.to_a]
 	end
 
 	# [Create Contest - Story 5.16]
