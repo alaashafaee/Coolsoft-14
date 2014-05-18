@@ -208,11 +208,11 @@ class ProblemsController < ApplicationController
 
  	# [show attempts- Story 2.4]
 	# Select a problem_id and select the attempts to answer this problem
-	# Parameters :
+	# Parameters:
 	# 	problem_id:a unique value for every problem
 	# 	code:a text to show the solution of a problem
 	# Returns: 
-	# 	text : trials for answering a problem
+	# 	text:trials for answering a problem
 	# 	in case of failure : a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def showAttempts
@@ -232,14 +232,14 @@ class ProblemsController < ApplicationController
 
  	# [average number of trials - Story 2.3]
 	# Select a problem_id and count the number of students who tried to answer this problem
-	# Parameters :
-	# 	success_attempts:an intger value that shows the number of correct answers by students
-	# 	failure_attempts:an intger value that shows the number of wrong answers by students
+	# Parameters:
+	# 	success:an intger value that shows the number of correct answers by students
+	# 	failure:an intger value that shows the number of wrong answers by students
 	# 	student_id:a unique value for every student who try to answer a problem
 	# 	problem_id:a unique value for every problem
 	# Returns: 
-	# 	an integer value : number of trials to answer a specific problem		
-	# 	in case of failure : a message "No one answered this problem "
+	# 	an integer value:number of trials to answer a specific problem		
+	# 	in case of failure:a message "No one answered this problem "
 	# Author: Rana ElNagar
  	def average
  		@problem=Problem.find_by_id(params[:id])
@@ -258,17 +258,17 @@ class ProblemsController < ApplicationController
  		else
  			render "statistics"
  		end
-
  	end
+
  	# [average time - Story 2.2]
 	# Select a problem_id and calculate the average time taken to solve this problem
-	# Parameters :
-	# 	time: an integer shows the time taken to answer a problem
+	# Parameters:
+	# 	time:an integer shows the time taken to answer a problem
 	# 	student_id:a unique value for every student who try to answer a problem
 	# 	problem_id:a unique value for every problem
 	# Returns: 
-	# 	an integer value : average time taken to answer		
-	# 	in case of failure : a message "No one answered this problem"
+	# 	an integer value:average time taken to answer		
+	# 	in case of failure:a message "No one answered this problem"
 	# Author: Rana ElNagar
  	def averageTime
  		@problem=Problem.find_by_id(params[:id])
@@ -297,4 +297,5 @@ class ProblemsController < ApplicationController
 	def problem_params
 		params.require(:Problem).permit(:title, :description, :track_id, :snippet)
 	end
+
 end

@@ -206,6 +206,4 @@ class Solution < ActiveRecord::Base
 	CLASS_PATH	=	'students_solutions/Class/'
 	SOLUTION_PATH	=	'students_solutions/'
 
-
-
 end

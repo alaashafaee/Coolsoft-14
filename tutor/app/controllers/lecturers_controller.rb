@@ -27,4 +27,5 @@ class LecturersController < ApplicationController
   			render "show_statistics"
   		end
  	end
+ 	
 end
