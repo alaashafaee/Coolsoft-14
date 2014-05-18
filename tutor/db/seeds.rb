@@ -1025,7 +1025,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.find_by_id(510).model_answers << ModelAnswer.find_by_id(510)
 	## Solutions
 		AssignmentProblem.first.solutions << Solution.first
-		AssignmentProblem.first.solutions << Solution.find_by_id(4)
+		AssignmentProblem.find_by_id(2).solutions << Solution.find_by_id(4)
 		Problem.find_by_id(2).solutions << Solution.find_by_id(2)
 		Problem.find_by_id(3).solutions << Solution.find_by_id(3)
 	## Attempts

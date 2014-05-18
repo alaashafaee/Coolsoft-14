@@ -127,7 +127,7 @@
 					<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
 						<ul class="list-group">
 							<% if @can_edit %>
-									<% @course.assignments.each do |a| %>
+								<% @course.assignments.each do |a| %>
 									<% if a.publish %>
 										<% color = "label label-default" %>
 										<li style="border-style:hidden;" class="list-group-item">

@@ -56,4 +56,7 @@
 <% if @can_edit %>
 	<%= link_to "Edit assignment", { :controller => 'assignments',
 		:action => 'edit', :id => @assignment.id }, class: "btn btn-info" %>
+	<%= link_to "View students' grades", {:controller => 'grades',
+		:action => 'view_grades', :assignment_id => @assignment.id},
+		:method => :get, class: 'btn btn-info' %>
 <% end %>

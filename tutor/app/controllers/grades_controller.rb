@@ -49,6 +49,32 @@ class GradesController < ApplicationController
 		redirect_to :back
 	end
 
+	# [Grades' List - 4.31]
+	# shows records of Grade Table in a specific course
+	# Parameters:
+	#	assignment_id: the id of the assignment to be viewed its grades
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
+	def view_grades
+		@assignment = Assignment.find_by_id(params[:assignment_id])
+		@problems = @assignment.problems
+		@students = @assignment.course.students
+		@grade = 0
+		@grades = Hash.new
+		@counter = 1
+		@students.each do |student|
+			@problems.each do |problem|
+				grade = Grade.where(problem_id: problem.id, student_id: student.id).first
+				if grade
+					@grades[@counter] = grade.grade
+				else
+					@grades[@counter] = 0
+				end
+				@counter += 1
+			end
+		end
+	end
+
 	# [Grade Solution - 4.30]
 	# passes the input of the form as paramaters for create & update action
 	# Parameters:

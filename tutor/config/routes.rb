@@ -47,6 +47,7 @@ Tutor::Application.routes.draw do
 	get "model_answers/destroy"
 	get "model_answers/back"
 	get "notes/destroy"
+	get "grades/view_grades"
 
 	# You can have the root of your site routed with "root"
 	root 'site#index'
