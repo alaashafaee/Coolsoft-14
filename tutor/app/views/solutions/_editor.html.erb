@@ -1,7 +1,16 @@
 <div class="" >
 	<div style="margin-left: 10px; margin-top: 5px; float: left">
 
-	<div class="" style="float:left; margin:5px; margin-right: 10px;"><img src="/assets/theme_w.png" id='' onClick= "" style= "height: 32px; width: 32px; cursor:; float:left;" title=""></img></div>
+	<div class="" style="float:left; margin:5px; margin-right: 10px;"><img src="/assets/lang_w.png" id='' onClick= "" style= "height: 32px; width: 32px; cursor:; float:left;" title=""></img></div>
+
+	<div style="float: left">
+	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="a7" data-width="auto">
+		<option value="java">Java</option>
+		<option value="python">Python</option>
+	</select>
+	</div>
+
+	<div class="" style="float:left; margin:5px; margin-right: 10px; margin-left: 10px;"><img src="/assets/theme_w.png" id='' onClick= "" style= "height: 32px; width: 32px; cursor:; float:left;" title=""></img></div>
 
 	<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="a7" data-width="auto">
 		<option value="twilight">twilight</option>
@@ -16,14 +25,8 @@
 		<option value="dreamweaver">dreamweaver</option>
 	</select> 
 	</div>
-	<div style="margin-left: 5px; margin-top: 5px; float: left">
-	<select id='mode' onchange="changeMode()" class="selectpicker" data-style="a7" data-width="auto">
-		<option value="java">Java</option>
-		<option value="python">Python</option>
-	</select>
-	</div>
 
-	<div style="margin-left: 5px; margin-top: 5px; float: left">
+	<div style="margin-left: 10px; margin-top: 5px; float: left">
 		<div class="" style="float:left; margin:5px;"><img src="/assets/increase_font_w.png" id='' onClick= "increaseFont()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Increase Font"></img></div>
 
 		<div class="" style="float:left; margin:5px;"><img src="/assets/decrease_font_w.png" id='' onClick= "decreaseFont()" style= "height: 32px; width: 32px; cursor:pointer; float:left;" title="Decrease Font"></img></div>
@@ -50,7 +53,7 @@
 	border-style: dashed;
 	border-color: rgb(248,248,248);
 	color: rgb(248,248,248);
-	
+
 
 }
 </style>

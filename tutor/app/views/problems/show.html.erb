@@ -4,14 +4,14 @@
 <br /><br />
 <div id="fb-root"></div>
 <div class='problem'>
+	<img src="/assets/facebooksharebutton.png" class="fb-button" style="float: right; width: 32px; height: 32px;" onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>
 	<label><%= @problem.title %></label><br/>
 	<%= @problem.description %>
 	<table width='100%'>
 		<tr>
 			<td width='80%'>
 				<% if student_signed_in? %>
-					<%= image_tag "facebooksharebutton.png", class: 'fb-button',
-							onclick: "openBackWindow('/facebook', 'Facebook')" %>
+					
 					<% track_progess = TrackProgression.get_progress(current_student,
 					@problem.track.topic) %>
  					<% if track_progess >= @problem.track.difficulty %>
