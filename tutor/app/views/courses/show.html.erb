@@ -155,12 +155,13 @@
 								<div class="row">
 									<div class="container col-sm-6 box-bag topic-box">
 										<div class="well" style="background-color: #d7dde2 !important;">
-											<h3><b><%= link_to assignment[0].title, assignment[0]%></b><hr></h3>
+											<h3><b><%= link_to assignment[0].title, assignment[0]%></b>
+												<% if assignment[0].due_date > DateTime.now.to_date %>
+													<span class="badge">Due</span>
+												<% end %>
+												<hr></h3>
 											<% if assignment[0].description %>
 												<label><%= assignment[0].description %></label><br><br>
-											<% end %>
-											<% if assignment[0].due_date > DateTime.now.to_date %>
-												<span class="badge">Due</span>
 											<% end %>
 										</div>
 									</div>
@@ -172,12 +173,13 @@
 									<% if assignment.publish %>
 										<div class="container col-sm-6 topic-box">
 											<div class="well" style="background-color: #d7dde2 !important;">
-												<h3><b><%= link_to assignment.title, assignment %></b><hr></h3>
+												<h3><b><%= link_to assignment.title, assignment %></b>
+													<% if assignment.due_date > DateTime.now.to_date %>
+														<span class="badge">Due</span>
+													<% end %>
+													<hr></h3>
 												<% if assignment.description %>
 													<label><%= assignment.description %></label><br><br>
-												<% end %>
-												<% if assignment.due_date > DateTime.now.to_date %>
-													<span class="badge">Due</span>
 												<% end %>
 											</div>
 										</div>

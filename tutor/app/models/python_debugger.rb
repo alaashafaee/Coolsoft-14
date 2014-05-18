@@ -28,7 +28,7 @@ class PythonDebugger < Debugger
 		$step = "step"
 		$wait_thread = nil
 		$TERM = /\(Pdb\) The program finished and will be restarted\r\n/m
-		$regex = [/\(Pdb\) .+->.+\r\n$/m]
+		$regex = [/(\(Pdb\) )?.+->.+\r\n$/m]
 		$all = []
 		status = "The debugging session was successful."
 		begin
@@ -173,7 +173,7 @@ class PythonDebugger < Debugger
 	def get_object_value name
 		result = ""
 		input name + ".__dict__"
-		output_buffer = buffer_until [/\{.*\}\r\n$/m], true
+		output_buffer = buffer_until [/[\{"].*\}\r\n$/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			result << line
@@ -196,7 +196,7 @@ class PythonDebugger < Debugger
 	def get_variable type, name
 		value = ""
 		input type + "[" + name + "]"
-		output_buffer = buffer_until [/#{$buffer_regex}.*\r\n/m], true
+		output_buffer = buffer_until [/(\(Pdb\) )*.*\r\n/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			value << line
@@ -224,7 +224,8 @@ class PythonDebugger < Debugger
 		all_lines = ""
 		result = []
 		input type + ".keys()"
-		output_buffer = buffer_until [/^\(Pdb\) \[.*\]\r\n$/m], true
+		output_buffer = buffer_until [/^(\(Pdb\) )*\[.*\]\r\n$/m], true
+		# p output_buffer
 		output_buffer = output_buffer.sub(/.*\(Pdb\) /m, "")
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
