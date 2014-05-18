@@ -1,5 +1,4 @@
 class AssignmentsController < ApplicationController
-
 	# [View List Of Assignments - Story 4.24]
 	# Shows a particular assignment in a course
 	# Parameters: 

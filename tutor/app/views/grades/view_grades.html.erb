@@ -36,3 +36,8 @@
 		<% end %>
 	</tbody>
 </table>
+<br><br><br>
+<%= link_to "Back to assignment page",
+		{:controller => 'assignments', :action => 'show',
+		:id => @assignment.id},
+		class: "btn btn-info" %>
