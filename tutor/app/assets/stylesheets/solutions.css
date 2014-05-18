@@ -45,8 +45,10 @@ textarea  {
 	overflow: auto;
 }
 
-.fixed-horizontal {
-	max-width: 175px;
+.fixed-dimensions {
+	max-height: 230px;
+	min-width: 180px;
+	max-width: 180px;
 	overflow: auto;
 }
 
