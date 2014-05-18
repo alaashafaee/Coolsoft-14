@@ -18,6 +18,21 @@
 						style: "float: left;margin-left: 15px",method: :post %> 
 			</li> 
 
+<!--	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
+
+	<div id="order_topics_dialog" title="Order topics" hidden = "true">
+		<p>Hold Press and Drag to sort the topics 
+			<ul id="list-of-topics">
+				<% @topics.each do |topic| %>
+					<li id="<%= topic.id %>" class="ui-state-highlight"><%= topic.title %></li> 
+				<% end %>
+			</ul>
+		</p>
+	</div>
+			<li>
+				<span id="opener" , class="btn btn-success">Order topics</span>
+			</li>
 			<!-- This button activates the add TA action -->
 			<li>
 				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
@@ -52,6 +67,17 @@
 							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
 							 style: "float: left; margin-left: 15px" %>
 			</p> 
+
+			<p>
+				<% if @course.visible %>
+					<% buttonStr = "Hide course" %>
+				<% else %>
+					<% buttonStr = "Unhide course" %>
+				<% end %>
+				<%= link_to buttonStr, {:controller => :courses, :action => 'hide',
+							:id => @course.id}, class: "btn btn-success", method: 'post',
+							 style: "float: left; margin-left: 15px" %>
+			</p>
 		
 		<br>
 		<div>
