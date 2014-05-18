@@ -75,8 +75,10 @@ textarea  {
 	min-height: 150px;
 	background: white;
 	overflow: auto;
-	max-width: 750px;
-	min-width: 750px;
+	max-width: 100px;
+	min-width: 100%;
+	border-radius: 4px;
+	background-color: rgb(35,35,35);
 }
 
 .compilation_succeeded {
