@@ -3,6 +3,13 @@
  * You can use CoffeeScript in this file: http://coffeescript.org/
  */
 
+// # [Design_layout - Story 2.13]
+// # Description: Editing the information 
+// # Parameters:
+// # 	data: the data to be showed
+// # Returns:
+// # 	none
+// # Author: Ahmed Mohamed Magdi
 function edit_form_course(data) {
 	$("#course-name").html("<input type=\"text\" name=\"coursename\" id=\"coursename\" value=\""+data.name+"\" placeholder=\"name\">")
 	$("#course-code").html("<input type=\"text\" name=\"coursecode\" id=\"coursecode\" value=\""+data.code+"\" placeholder=\"code\">")
@@ -13,6 +20,13 @@ function edit_form_course(data) {
 	$("#course-submition").html("<button class=\"btn btn-success submit-course\" type=\"button\" onclick=\"update_course();\">Save</button>")
 }
 
+// # [Design_layout - Story 2.13]
+// # Description: Sends the data to the view
+// # Parameters:
+// # 	course_up: course updated info
+// # Returns:
+// # 	none
+// # Author: Ahmed Mohamed Magdi
 function reset_form_course(course_up) {
 	form_print_html("course-name", course_up.name);
 	form_print_html("course-code", course_up.code);
@@ -23,10 +37,25 @@ function reset_form_course(course_up) {
 	$("#course-submition").html("")
 }
 
+// # [Design_layout - Story 2.13]
+// # Description: For fringing the delfaul view before editing
+// # Parameters:
+// # 	div_id: The course ID
+// # 	info: the data to be showed
+// # Returns:
+// # 	none
+// # Author: Ahmed Mohamed Magdi
 function form_print_html(div_id,info) {
 	$("#"+div_id).html("<p><font> "+info+" </font></p>")
 }
 
+// # [Design_layout - Story 2.13]
+// # Description: For editing the course
+// # Parameters:
+// # 	course_id: The course ID
+// # Returns:
+// # 	none
+// # Author: Ahmed Mohamed Magdi
 var course;
 function edit_course(course_id) {
 	course = course_id;
@@ -45,6 +74,13 @@ function edit_course(course_id) {
 	});
 }
 
+// # [Design_layout - Story 2.13]
+// # Description: For updateing the course
+// # Parameters:
+// # 	none
+// # Returns:
+// # 	alert: for successfully created or not
+// # Author: Ahmed Mohamed Magdi
 function update_course() {
 	Cname = $("#coursename").val();
 	Ccode = $("#coursecode").val();
@@ -77,7 +113,41 @@ function update_course() {
 	});
 }
 
-function testing(){
-	
+// # [Design_layout - Story 2.13]
+// # Description: For acknowledgement students via lecturers
+// # Parameters:
+// # 	courseid: The course ID
+// # Returns:
+// # 	alert: for successfully created or not
+// # Author: Ahmed Mohamed Magdi
+function acknowledge(courseid){
+	students_selected = $("#students_").val();
+	desc = $("#acknowledgement_description").val();
+	$.ajax({
+		type: "POST",
+		url: "/courses/"+courseid+"/acknowledgements",
+		data:{
+			course_id: courseid,
+			students: students_selected,
+			description: desc
+		},
+		success: function(data) {
+			alert("Acknowledgements sent successfully")
+		},
+		error: function() {
+			alert("Wrong Inputs, check student selectoins")
+		}
+	});
 }
 
+// # [Design_layout - Story 2.13]
+// # Description: Checking the current loged-in user
+// # Parameters: none
+// # Returns:
+// # 	@current_user: The current loged-in user
+// # Author: Ahmed Mohamed Magdi
+$(document).ready(function(){
+	$("#ta_call").click(function(){
+		
+	});
+});
