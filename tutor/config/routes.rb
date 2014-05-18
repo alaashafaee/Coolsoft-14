@@ -124,11 +124,22 @@ Tutor::Application.routes.draw do
 	end
 
 	resources :courses do
+		member do
+			get 'show_grades'
+		end
+	end
+
+	resources :assignments do
+		member do
+			get 'show_correction'
+		end
+	end
+
+	resources :courses do
 		collection do
 			post 'sort'
 		end
 	end
-
 
 	resources :topics do
 		collection do           

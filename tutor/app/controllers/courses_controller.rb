@@ -243,6 +243,25 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	# [View Corrected Assignment - Story 4.26]
+	# Shows the list of grades of assignments of a 
+	#	particular course that the student is enrolled in 
+	# Parameters:
+	#	params[:id]: The course id
+	# Returns: none
+	# Author: Lin Kassem
+	def show_grades
+		id = params[:id]
+		@course = Course.find_by_id(id)
+		student_id = current_student.id
+		@records = Grade.where("student_id = ?", student_id)
+		@assignments = @course.assignments
+		@total_grade = 0 
+		@problems = []
+		@student_grade = 0
+		@assignment_corrected = false 
+	end
+
 	# [Hide course - Story 1.26]
 	# Determines whether a course is visible or not
 	# Parameters:

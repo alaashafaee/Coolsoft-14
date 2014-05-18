@@ -1,5 +1,6 @@
 class Assignment < ActiveRecord::Base
 
+	default_scope order('due_date DESC')
 	#Validations
 	validates :title, presence:true
 
