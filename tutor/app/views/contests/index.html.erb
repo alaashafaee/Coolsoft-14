@@ -4,6 +4,7 @@
 	<%= link_to contest.title, 
 		controller: "/contests", 
 		action: "index"%>
+		<% if student_signed_in? %>
 		<%= link_to "Register", {:controller => 'contests', :action => 'register' , :id => contest.id} %>
 		<div class="line-separator"></div>
 	<% end %>
