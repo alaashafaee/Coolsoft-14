@@ -1,4 +1,4 @@
-	require 'spec_helper'
+\	require 'spec_helper'
 include Devise::TestHelpers
 
 describe ContestsController do
@@ -9,6 +9,9 @@ describe ContestsController do
 
 		after(:all) do
 			Contest.delete_all
+			Course.delete_all
+			Lecturer.delete_all
+			Cproblem.delete_all
 		end
 
 		it "assigns the requested contest to the @contest" do
