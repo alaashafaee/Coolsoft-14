@@ -27,14 +27,6 @@
 		</p>	
 	<% end %>
 
-	<div class="onoffswitch">
-	    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-	    <label class="onoffswitch-label" for="myonoffswitch">
-	        <div class="onoffswitch-inner"></div>
-	        <div class="onoffswitch-switch"></div>
-	    </label>
-	</div>
-
 	<div>
 		<% if @checkbox == true %>
 			<% str = "Show only TAs I worked with" %>
@@ -43,6 +35,7 @@
 		<% end %>
 		<div> 
 			<%= button_tag str, controller:'teaching_assistants', action:'new', check: @checkbox, class: "btn btn-success"%> 
+			<button type="button" class="btn btn-success" onclick="acknowledge(<%= course_id %>);">Send Acknowledgement</button>
 		</div>
 	</div>
 </div>

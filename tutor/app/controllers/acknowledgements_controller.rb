@@ -24,7 +24,7 @@ class AcknowledgementsController < ApplicationController
 	#	the ID of the course
 	#	the description of the acknowledgement.
 	# Returns: A message indicating the success or failure of the creation
-	# Author: Muhammad Mamdouh
+	# Author: Muhammad Mamdouh + Ahmed mohamed magdi
 	def create
 		status = []
 		students = params[:students].to_a
