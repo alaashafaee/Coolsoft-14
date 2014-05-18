@@ -71,6 +71,11 @@
 				<%= f.text_field :year, :value => @new_course.year, class:"form-control", style: "width:70px", placeholder:"Year" %>
 			</p>
 			<p>
+				<%= f.label :Tags %><br>
+				<%= select_tag 'tags[]', options_for_select(
+					Tag.all.map {|p| [p.name, p.id]}), :multiple => true, style: "width:300px" %>
+			</p>
+			<p>
 				<%= f.submit "Save", class: "btn btn-info" %>
 			</p>
 		<% end %>
