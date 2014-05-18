@@ -12,13 +12,12 @@ describe CoursesController do
 			sign_in lecturer
 			get :new 
 			get :create, :course =>{:name =>'adssa',
- :code =>'121',
- :description => 'fdsa',
- :link =>'http://www.amgad.com',
- :semester =>123,
- :year => 132312},
- :tags => [1,
- 2]
+ 				:code =>'121',
+ 				:description => 'fdsa',
+ 				:link =>'http://www.amgad.com',
+ 				:semester =>123,
+ 				:year => 132312},
+ 				:tags => [1,2]
 			expect(lecturer.courses.first).to be_an_instance_of Course 
 		end
 	end
