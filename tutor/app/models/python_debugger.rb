@@ -275,8 +275,8 @@ class PythonDebugger < Debugger
 			output_buffer = output_buffer.sub($buffer_regex, "")
 			output_buffer = output_buffer[3..-3]
 			output_buffer.each_line do |line|
-			stack_trace << line
-		end
+				stack_trace << line
+			end
 		end
 		return stack_trace
 	end
