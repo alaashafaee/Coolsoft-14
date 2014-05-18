@@ -92,8 +92,19 @@ function pop(id){
 	$(document.getElementById(id)).bPopup({
 		modalClose: false,
 		opacity: 0.6,
-		positionStyle: 'fixed',
+		position: [650,300],
 		speed: 650,
 		transition: 'slideIn'
 	});
+}
+
+// [Grade Solution - 4.30]
+//	closes the dialog box when cancelling or going back
+// Parameters:
+//	id: id of the button that was pressed
+// Returns: none
+// Author: Abdullrahman Elhusseny
+function close_dialog(id){
+	id += "form"
+	$(document.getElementById(id)).bPopup().close();
 }
