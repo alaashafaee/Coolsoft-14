@@ -6,6 +6,7 @@
 			<td>Start time</td>
 			<td>Duration</td>
 		</tr>
+		<% if @my_contests.size !=0 %>
 		<% @my_contests.each do |contest| %>
 			<tr>
 				<td>
@@ -20,6 +21,7 @@
 					<h4><%=((contest.end_time - contest.start_time)/(60*60)).to_i %> hours</h4>
 				</td>
 			</tr>
+		<% end %>
 		<% end %>
 	</table>	
 <% end %>	

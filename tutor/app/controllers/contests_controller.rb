@@ -1,7 +1,7 @@
 class ContestsController < ApplicationController
 
 	before_action :validate_timer, :except => ['new', 'create', 'edit', 'update',
-		'destroy', 'add_problems', 'add']
+		'destroy', 'add_problems', 'add', 'index']
 
 	# [Contest Standings - Story 5.25]
 	# Returns the contest object whose id is params[:id]
