@@ -6,5 +6,5 @@ class DiscussionBoard < ActiveRecord::Base
 	#Relations
 	belongs_to :course
 	has_many :posts, dependent: :destroy
-	
+
 end

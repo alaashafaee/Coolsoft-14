@@ -1,5 +1,7 @@
 class Solution < ActiveRecord::Base
 	
+	before_save { |solution| solution.length = solution.code.length }
+
 	#Validations
 	validates :code, presence: true
 
@@ -16,18 +18,22 @@ class Solution < ActiveRecord::Base
 	# Checks the validity of a submitted solution
 	# and show the runtime and logic errors if exist
 	# Parameters:
-	# 	solution: the solution to be validated
-	#   testcases: the testcases that will test the submitted code
-	# Returns: a hash response containing status for the solution,
-	#		   solution errors or success message.
+	#	solution: the solution to be validated
+	#	testcases: the testcases that will test the submitted code
+	#	langauge: the language of the submitted solution
+	# Returns: 
+	#	a hash response containing status for the solution,
+	#		solution errors or success message.
 	# Author: MOHAMEDSAEED
-	def self.validate(solution, test_cases)
+	def self.validate(solution, test_cases, language)
+		executer = language.capitalize + "Executer"
+		executer = eval(executer)
+		executer_instance = executer.new
 		response = []
 		test_cases.each do |testcase|
 			input = testcase.input
 			expected_output = testcase.output
-			executer = JavaExecuter.new
-			runtime_check = executer.execute(solution, input)
+			runtime_check = executer_instance.execute(solution, input)
 			if(runtime_check[:executer_feedback])
 				output = runtime_check[:executer_output][:message]
 				if (output != expected_output)
@@ -55,6 +61,7 @@ class Solution < ActiveRecord::Base
 						response: "Runtime error: " + explanation}
 			end
 		end
+		response << {status: solution.status, last: true}
 		solution.save
 		return response
 	end
