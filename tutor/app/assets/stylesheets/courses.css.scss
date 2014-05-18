@@ -207,3 +207,22 @@
 	background-color: #3B8FA3;
 	color: white;
 }
+
+.tag-area {
+}
+
+.tag {
+	background-color: #C4DAE9;
+	font-size: 14px;
+	margin-right: 10px;
+	padding: 5px;
+	height: 30px;
+	color: #3B8FA3;
+	box-shadow: 1px 1px 0.5px #888888;
+}
+
+.tag:hover{
+	color: #C4DAE9;
+	cursor: pointer;
+	color: #3B8FA3;
+};
