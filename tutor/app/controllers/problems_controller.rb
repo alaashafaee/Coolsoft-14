@@ -231,6 +231,14 @@ class ProblemsController < ApplicationController
 			params.require(:Problem).permit(:title, :description, :track_id, :snippet)
 		end
 
+	# [Add/Edit wizard - Story 1.28 ]
+	# Description:
+	#	take the parameters from the from
+	# Parameters: none
+	# Returns:
+	#	Hash of paramas
+	# Author: Ahmed Osam
+
 		def problem_params_add
 			params.require(:problem).permit(:title, :description, :track_id, :snippet)
 		end

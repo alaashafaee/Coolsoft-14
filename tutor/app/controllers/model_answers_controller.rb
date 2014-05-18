@@ -188,6 +188,14 @@ class ModelAnswersController < ApplicationController
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end	
 
+	# [Add/Edit wizard - Story 1.28 ]
+	# Description:
+	#	take the parameters from the from
+	# Parameters: none
+	# Returns:
+	#	Hash of paramas
+	# Author: Ahmed Osam
+
 	def model_answer_params_add
 		params.require(:model_answer).permit(:title, :answer, :problem_id)
 	end

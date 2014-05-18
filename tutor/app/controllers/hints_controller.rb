@@ -146,19 +146,28 @@ class HintsController < ApplicationController
 			:track_id => params[:track_id], :model_answer_id => params[:model_answer_id]
 	end
 
- 	# [Edit helping hints - Story 4.13 ]
+	# [Edit helping hints - Story 4.13 ]
 	# Description: 
 	#	take the parameters from the from
 	# Parameters: none
 	# Returns:
 	#	Hash of paramas 
-	# Author: Mimi + Ahmed Osam
+	# Author: Mimi
 	private
 		def hint_params
 			params.require(:hint).permit(:message, :submission_counter, :id)
 		end
 
+	# [Add/Edit wizard - Story 1.28 ]
+	# Description:
+	#	take the parameters from the from
+	# Parameters: none
+	# Returns:
+	#	Hash of paramas
+	# Author: Ahmed Osam
+
 		def hint_params_edit
 			params.require(:hint_edit).permit(:message, :submission_counter)
 		end
+
 end
