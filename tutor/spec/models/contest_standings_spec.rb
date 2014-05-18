@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Contest do
+	after(:all) do 
+		Student.delte_all 
+		Lecturer.delte_all 
+		Student.delte_all 
+		Cproblem.delte_all 
+		Contest.delte_all 
+		ContestProgress.delte_all 
+	end
  	context "Creations" do
 		before(:all) do
 
