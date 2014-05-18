@@ -133,8 +133,8 @@ class ProblemsController < ApplicationController
 			@message = "Problem has moved to Track #{problem_params[:track_id]}"
 		elsif problem_params[:snippet] != @problem.snippet
 			@message = "Snippet has changed"
-		elsif problem_params[:title] == @problem.title && 
-			problem_params[:description] == @problem.description && 
+		elsif problem_params[:title] == @problem.title &&
+			problem_params[:description] == @problem.description &&
 			problem_params[:track_id].to_i == @problem.track_id &&
 			problem_params[:snippet] == @problem.snippet
 			flash[:notice] = "You have entered the same paramater no change has been made!"
@@ -166,7 +166,7 @@ class ProblemsController < ApplicationController
 					@problem = Problem.find_by_id(params[:problem_id])
 					respond_to do |format|
 						format.js
-						format.html {redirect_to :action => "edit", :format => :js, 
+						format.html {redirect_to :action => "edit", :format => :js,
 							:problem_id => @problem.id, :track_id => session[:track_id]}
 					end
 				end
@@ -179,7 +179,7 @@ class ProblemsController < ApplicationController
 					flash[:notice] = @message
 					respond_to do |format|
 						format.js
-						format.html {redirect_to :action => "edit", :format => :js, 
+						format.html {redirect_to :action => "edit", :format => :js,
 							:problem_id => @problem.id, :track_id => session[:track_id]}
 					end
 				end
@@ -208,13 +208,14 @@ class ProblemsController < ApplicationController
 		session[:track_id] = params[:track_id]
 		session[:model_answer_id] = params[:model_answer_id]
 		if @problem.model_answers.empty? || @problem.test_cases.empty?
-			flash[:notice] = "Problem is incomplete, 
+			flash[:notice] = "Problem is incomplete,
 			please add necessary at least 1or save as incomplete"
-		else	
+		else
 			@problem.incomplete = false
 			@problem.save
 		end
-		redirect_to :controller => 'tips', :action => 'new', :model_answer_id => params[:model_answer_id],
+		redirect_to :controller => 'tips', :action => 'new',
+			:model_answer_id => params[:model_answer_id],
 			:track_id => session[:track_id], :flag => "0"
 	end
 

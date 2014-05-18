@@ -22,7 +22,7 @@ class TipsController < ApplicationController
 	#	flag: decider flag to decide between add or editing.
 	# Author: Ahmed Osam
 	def new
-		if params[:flag] == "1" 
+		if params[:flag] == "1"
 			session[:flag] = params[:flag]
 		elsif params[:flag] == "0"
 			session[:flag] = params[:flag]
@@ -63,18 +63,18 @@ class TipsController < ApplicationController
 			@model_answer = ModelAnswer.find_by_id(session[:model_answer_id])
 			@model_answer.hints << @tip
 			if session[:flag] == "1"
-				redirect_to :controller => 'tips', :action => 'index', 
-					:problem_id => session[:problem_id], :track_id => session[:track_id], 
-						:model_answer_id => session[:model_answer_id]
+				redirect_to :controller => 'tips', :action => 'index',
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
+					:model_answer_id => session[:model_answer_id]
 			elsif session[:flag] == "0"
-				redirect_to :controller => 'hints', :action => 'new', 
-					:problem_id => session[:problem_id], :track_id => session[:track_id], 
-						:model_answer_id => params[:model_answer_id],:flag => session[:flag]
+				redirect_to :controller => 'hints', :action => 'new',
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
+					:model_answer_id => params[:model_answer_id],:flag => session[:flag]
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @tip.model_answer_id,
 				:flag => session[:flag],
-					:track_id => session[:track_id], :problem_id => params[:problem_id]}
+				:track_id => session[:track_id], :problem_id => params[:problem_id]}
 		end
 	end
 
@@ -101,7 +101,9 @@ class TipsController < ApplicationController
 	def destroy
 		@tip = Hint.find_by_id(params[:id])
 		@tip.destroy
-		redirect_to :controller => 'tips', :action => 'index', :problem_id => params[:problem_id], :track_id => params[:track_id], :model_answer_id => params[:model_answer_id]
+		redirect_to :controller => 'tips', :action => 'index',
+			:problem_id => params[:problem_id], :track_id => params[:track_id],
+			:model_answer_id => params[:model_answer_id]
 	end
 
 	# [Edit tip - Story 4.10]

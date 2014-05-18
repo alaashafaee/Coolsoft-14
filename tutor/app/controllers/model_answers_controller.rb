@@ -80,7 +80,7 @@ class ModelAnswersController < ApplicationController
 			flash[:notice] = "Answer successfully Deleted"
 			redirect_to(:controller => 'model_answers', :action => 'index',
 				:problem_id => @current.id, :track_id => session[:track_id])
-		end	
+		end
 	end
 
 	# [Edit answer story 4.7]
@@ -138,15 +138,15 @@ class ModelAnswersController < ApplicationController
 					respond_to do |format|
 						format.js
 						format.html {redirect_to :action => "edit", :format => :js, 
-							:model_answer_id => @answer.id, :track_id => session[:track_id]}		
+							:model_answer_id => @answer.id, :track_id => session[:track_id]}
 					end
 				end
 				rescue
-					@answer = ModelAnswer.find_by_id(session[:model_answer_id])
-					respond_to do |format|
+				@answer = ModelAnswer.find_by_id(session[:model_answer_id])
+				respond_to do |format|
 					format.js
 					format.html {redirect_to :action => "edit", :format => :js, 
-						:model_answer_id => @answer.id, :track_id => session[:track_id]}	
+						:model_answer_id => @answer.id, :track_id => session[:track_id]}
 				end
 			end
 		end

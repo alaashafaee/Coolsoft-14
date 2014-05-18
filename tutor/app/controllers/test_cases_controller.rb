@@ -62,10 +62,10 @@ class TestCasesController < ApplicationController
 		if @test_case.save
 			@problem.test_cases << @test_case
 			if session[:flag] == "1"
-				redirect_to :controller => 'test_cases', :action => 'index', 
+				redirect_to :controller => 'test_cases', :action => 'index',
 					:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "1"
 			elsif session[:flag] == "0"
-				redirect_to :controller => 'model_answers', :action => 'new', 
+				redirect_to :controller => 'model_answers', :action => 'new',
 					:problem_id => session[:problem_id], :track_id => session[:track_id], :flag => "0"
 			end
 		else
@@ -87,7 +87,7 @@ class TestCasesController < ApplicationController
 		session[:problem_id] = params[:problem_id]
 		session[:track_id] = params[:track_id]
 		session[:test_case_id] = params[:test_case_id]
-		@test_case =TestCase.find_by_id(session[:test_case_id])		
+		@test_case =TestCase.find_by_id(session[:test_case_id])
 	end
 
 	# [Edit test case-story 4.9]

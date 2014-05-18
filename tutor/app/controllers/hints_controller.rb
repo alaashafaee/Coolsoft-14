@@ -118,18 +118,18 @@ class HintsController < ApplicationController
 		if @hint.save
 			if session[:flag] == "1"
 				redirect_to :controller => 'hints', :action => 'index', 
-					:problem_id => session[:problem_id], :track_id => session[:track_id], 
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
 					:model_answer_id => session[:model_answer_id]
 			elsif session[:flag] == "0"
 				redirect_to :controller => 'hints', :action => 'new', 
-					:problem_id => session[:problem_id], :track_id => session[:track_id], 
+					:problem_id => session[:problem_id], :track_id => session[:track_id],
 					:model_answer_id => params[:model_answer_id],:flag => session[:flag]
 			end
 		else
 			render :action=>'new', :locals => { :model_answer_id => @hint.model_answer_id,
 				:flag => session[:flag],
 				:track_id => session[:track_id], :problem_id => params[:problem_id]}
-		end	
+		end
 	end
 
 	# [Remove hint - Story 4.12]
