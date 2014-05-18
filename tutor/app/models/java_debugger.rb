@@ -43,7 +43,9 @@ class JavaDebugger < Debugger
 			input "run"
 			nums = get_line
 			locals = get_variables
+			stack = get_stack_trace
 			nums[:locals] = locals
+			nums[:stack] = stack
 			$all << nums
 			status = TimeLimit.start(time) {
 				debug
@@ -276,6 +278,28 @@ class JavaDebugger < Debugger
 			end
 		end
 		return method_arguments + local_variables + class_variables
+	end
+
+	# [Debugger: View Variables - Story 3.7]
+	# Fetches the the stack trace of the code at the current state
+	# 	where the call stack is examined which contains the list of
+	# 	methods which did not finish its execution and thus did not
+	# 	return yet
+	# Parameters: none
+	# Returns:
+	# 	An array. It contains the list of methods in the call stack
+	# 		which have not returned yet
+	# Author: Khaled Helmy
+	def get_stack_trace
+		stack_trace = []
+		input "where"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			unless line == "main[1] \n"
+				stack_trace << line
+			end
+		end
+		return stack_trace
 	end
 
 end

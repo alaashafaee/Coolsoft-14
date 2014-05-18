@@ -2,9 +2,14 @@ require 'spec_helper'
 include Devise::TestHelpers
 
 describe ContestsController do
+
 	describe "GET show" do
 		before(:each) do
-			@contest1 = Contest.create(title: 'TestContest', description: 'Some description')
+			@contest1 = Contest.create(title: 'TestContesttt',
+				description: 'Some description', incomplete: false,
+				start_time: DateTime.now + 1.minute,
+				end_time: DateTime.now + 10.minutes,
+				course_id:1, owner_id: 1, owner_type: "Lecturer")
 		end
 
 		it "assigns the requested contest to the @contest" do
@@ -36,8 +41,8 @@ describe ContestsController do
 				semester: 1)
 			course.save!
 			@contest = Contest.new(title: "Iteratio2", description: "If you",
-				incomplete: false, start_time: Time.now+2.days,
-				end_time: Time.now+7.days)
+				incomplete: false, start_time: Time.now + 2.days,
+				end_time: Time.now + 7.days)
 			@contest.save!
 			course.contests << @contest
 			@lecturer.contests << @contest
@@ -69,12 +74,43 @@ describe ContestsController do
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
 			@lecturer.save!
+			@contest = Contest.new(title: "not dupl", description: "If you",
+				incomplete: false, start_time: Time.now+2.days,
+				end_time: Time.now+7.days)
+			@contest.save!
+			@lecturer.contests << @contest
 		end
 
 		it "new returns http success" do
 			sign_in @lecturer
 			get 'new'
 			expect(response).to be_success
+		end
+
+		it "edit returns http success" do
+			sign_in @lecturer
+			get 'edit', :id => @contest.id
+			expect(response).to be_success
+		end
+
+		it "update course info" do
+			sign_in @lecturer
+				patch :update, :id => @contest.id.to_s, contest:
+					{:title => "Miro contest", :course => "DSA",
+					:description => "hardest", "start_time(1i)" => "2014",
+					"start_time(2i)" => "8", "start_time(3i)" => "19",
+					"start_time(4i)" => "22", "start_time(5i)" => "01",
+					"end_time(1i)" => "2014", "end_time(2i)" => "9",
+					"end_time(3i)" => "16", "end_time(4i)" => "22",
+					"end_time(5i)" => "01",}
+				Contest.find(@contest.id).title.should eql "Miro contest"
+		end
+
+		it "destroy contest" do
+			sign_in @lecturer
+			expect {
+				delete :destroy, :id => @contest.id
+			}.to change(Contest, :count).by(-1)
 		end
 
 		it "creates a new contest" do
@@ -91,7 +127,7 @@ describe ContestsController do
 					"start_time(3i)" => "19", "start_time(4i)" => "22",
 					"start_time(5i)" => "01", "end_time(1i)" => "2014",
 					"end_time(2i)" => "9", "end_time(3i)" => "16",
-					"end_time(4i)" => "22", "end_time(5i)" => "01",}
+					"end_time(4i)" => "22", "end_time(5i)" => "01"}
 			}.to change(Contest,:count).by(1)
 		end
 	end
