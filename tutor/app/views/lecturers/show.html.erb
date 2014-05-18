@@ -1,67 +1,29 @@
-<h1>
-	<%= image_tag(@lecturer.profile_image_url.to_s) if @lecturer.profile_image? %>
-	<%= @lecturer.name %>
-</h1>
-<div class = "profile_picture" ></div>
-<div class = "tabs" style = "float:left; margin-left:10px;">
-	<ul class="tab-links">
-		<li class="active"><a href="#tab1">Courses</a></li>
-		<li><a href="#tab2">Info</a></li>
-	</ul>
-	<div class="tab-content">
-		<div id="tab1" class="tab active">
-			<table class = "table table-striped", style = "width:80%">
-				<tr>
-					<th>Name</th>
-					<th>Code</th>
-					<th>Options</th>
-					<th></th>
-				</tr>
-				<% @courses.each do |course| %>
-					<tr>
-						<td>
-							<%= link_to course.name,
-								:controller => 'courses',
-								:action => 'show',
-								:id => course.id, :method => :get,
-								class: "btn btn-success" %>
-						</td>
-						<td><%= course.code %></td>
-						<% if current_lecturer %>
-							<td>
-								<%= link_to "Manage Course",
-									{
-										:controller => 'courses',
-										:action => 'edit',
-										:method => :get,
-										:id => course.id
-									},
-									class: "btn btn-success",
-									style: "text-decoration:none" %>
-							</td>
-						<% end %>
-						<td>
-							<%= link_to "Discussion Board",
-								{
-									:controller => 'discussion_boards',
-									:action => 'show',
-									:id => course.id
-								},
-								class: "btn btn-success",
-								method: :get,
-								style: "text-decoration:none" %>
-						</td>
-					</tr>
-				<% end %>
-			</table>
+<div class= "left-box" >
+	<div class="xob" style="padding : 0px 15px 2px;">
+		<div class = "c_info panel-body" style="margin-bottom: -60px;">
 		</div>
-		<div id="tab2" class="tab">
-			<p> <b>Name:</b> <%= @lecturer.name %> </p>
-			<p> <b>Email:</b> <%= @lecturer.email %> </p>
-			<p> <b>Degree: </b><%= @lecturer.degree %></p>
-			<p> <b>Department: </b><%= @lecturer.department %></p>
-			<p> <b>University: </b><%= @lecturer.university %></p>
-			<p> <b>Joined on: </b><%= @lecturer.created_at.to_date %></p>
+		<div class= "row profile_info_row">
+			<img class = "profile_picture" src="/assets/profile.png">
+			<div class = "profile_info">
+				<p class="name"><%= @lecturer.name %></p>
+				<div class="info">
+					<p><%= @lecturer.email %></p>
+					<p> <b>Degree: </b><%= @lecturer.degree %></p>
+					<p> <b>Department: </b><%= @lecturer.department %></p>
+					<p> <b>University: </b><%= @lecturer.university %></p>
+					<p> <b>Joined on: </b><%= @lecturer.created_at.to_date %></p>
+				</div>
+			</div>
+		</div>
+		<div class = "row tabs">
+			<ul class = "tab-links"> 
+				<li class="active"><a href="#tab1">Courses</a></li>
+			</ul>
+			<div class = "tab-content">
+				<div id="tab1" class="tab active">
+					<%= render "courses/profile_courses"%>
+				</div>
+			</div>	
 		</div>
 	</div>
 </div>

@@ -1,25 +1,132 @@
-<div class ="tabs">
-	<ul class="tab-links">
-		<li><a href="/courses/">My Courses</a></li>
-		<li><a href="/courses/new">Create new Course</a></li>
+<div class="container course-manage-main">
+	<h1> 
+		<font> &raquo; Manage Course </font>
+		<hr>
+	</h1>
+</div>
+<div class="col-sm-3"> <!-- required for floating -->
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs side-tab-left">
+		<li class="active"><a href="#Info" data-toggle="tab">Edit Info</a></li>
+		<li><a href="#TA" id="ta_call" data-toggle="tab">Add TAs</a></li>
+		<li><a href="#ack" data-toggle="tab">Acknowledge Student</a></li>
+		<li><a href="#Delete" data-toggle="tab">Delete Course</a></li>
 	</ul>
+</div>
+<div class="col-sm-9">
+	<!-- Tab panes -->
 	<div class="tab-content">
-<!--	Name: Course Edit Page
-		Author: Ahmed Akram
--->
-		<ul class="tab-links">
-			<!-- This button activates the new topic action and passes the course id  -->
-			<li>
-				<a href = "#">Edit Info</a> 
-			</li> 
-			<li>
-				<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
-					:course_id => @course.id}, class: "btn btn-success", 
-						style: "float: left;margin-left: 15px",method: :post %> 
-			</li> 
+		<div class="tab-pane active" id="Info">
+			<div class="container" style="width:100% !important;">
+				<div class="row info-title" >
+					<h1>
+						<font>  &raquo; Edit Course Info </font>
+						<div  id="course-edit-span">
+							<span class="glyphicon glyphicon-edit" style="float:right; cursor:pointer" onclick="edit_course(<%=@course.id%>);"></span>
+						</div>
+					</h1>
+					<hr>
+				</div>
+				<div class="row info-desc" style="margin-left:2%">
+					<div class="row">
+						<h3> <font>Name</font> </h3>
+						<div id="course-name">
+							<p> 
+								<font> <%= @course.name %> </font> 
+							</p>
+						</div>
+					</div>
+					<div class="row">
+      					<h3> <font>Link</font> </h3>
+						<div id="course-link">
+							<p> 
+								<font> <%= @course.link %> </font> 
+							</p>
+						</div>
+ 					</div>
+					<div class="row">
+						<h3> <font>Description</font> </h3>
+      				<div id="course-description">
+      					<p> 
+      						<font> <%= @course.description %> </font> 
+      					</p>
+      				</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-sm-4">
+      					<h3> <font>Code</font> </h3>
+      					<div id="course-code">
+      					<p>
+      						<font> <%= @course.code %> </font> 
+      					</p>
+      				</div>
+      				</div>
+      				<div class="col-sm-4">
+  						<h3> <font>Semester</font> </h3>
+  						<div id="course-semester">
+      					<p>
+      						<font> <%= @course.semester %> </font>
+      					</p>
+      				</div>
+      				</div>
+      				<div class="col-sm-4">
+  						<h3> <font>Year</font> </h3>
+  						<div id="course-year">
+      						<p>
+      							<font> <%= @course.year %> </font> 
+      						</p>
+      					</div>
+      				</div>
+      			</div>
+      			<div class="container well submit-course-container" id="course-submition">
+      			</div>
+      		</div>
+      	</div>
+	</div>
+		<div class="tab-pane" id="TA">
+			<div class="container" style="width:100% !important;">
+				<div class="row info-title" >
+					<h1>
+						<font>  &raquo; Add Teaching Assistant </font>
+					</h1>
+					<hr>
+				</div>
+				<%= render 'teaching_assistants/new', :course_id => @course.id, :@checkbox => true %>
+			</div>
+		</div>
+		<div class="tab-pane" id="ack">
+			<div class="container" style="width:100% !important;">
+				<div class="row info-title" >
+					<h1>
+						<font>  &raquo; Acknowledge A student </font>
+					</h1>
+					<hr>
+				</div>
+				<%= render 'acknowledgements/new', :course_id=>@course.id %>
+			</div>
+		</div>
+      <div class="tab-pane" id="Delete">
+      	<div class="alert alert-danger row">
+      		<div class="col-sm-2 col-sm-offset-2">
+      			<span class="glyphicon glyphicon-warning-sign" style="font-size:5em; "></span>
+      		</div>
+      		<div class="col-sm-8">
+      			<h1>Danger Zone</h1>
+      		</div>
+      		<hr style="width:100%">
+      		<div class="danger-message"style="margin-left:2%; width:100%">
+      			<h3><font>By deleteing the Course, you will delete all the content that belong the his Course.</font></h3>
+      		</div>
+      	</div>
+      	
+      	<div class="row container well" style="width:100%; font-aline:center;" >
+			<%= button_to "Delete Course", {:action => "destroy"},
+			 class: "btn btn-danger", method: :delete %>
+		</div>
+      </div>
+    </div>
+</div>
 
-<!--	<link rel="stylesheet" href="/resources/demos/style.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
 
 	<div id="order_topics_dialog" title="Order topics" hidden = "true">
 		<p>Hold Press and Drag to sort the topics 
@@ -30,43 +137,13 @@
 			</ul>
 		</p>
 	</div>
-			<li>
-				<span id="opener" , class="btn btn-success">Order topics</span>
-			</li>
-			<!-- This button activates the add TA action -->
-			<li>
-				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
-					:course_id => @course.id}, class: "btn btn-success",
-						 style: "float: left; margin-left: 15px", :method => :get %>
-			</li>
-
-			<!-- This button activates the acknowledge a student action -->
-			<li>
-				<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
-					:course_id => @course.id}, class: "btn btn-success",
-						 style: "float: left; margin-left: 15px", method: :get
-							%> 
-			</li>
 
 			<li>
 				<%= link_to "Add Resources", new_course_resource_path(@course),
 					class: "btn btn-success",
 					style: "float: left; margin-left: 15px", method: :get %>
 			</li>
-		</ul>
 
-			<!-- This if statement checks for the condition of the discussion board -->
-			<p>
-				<% if @discussion_board.activated == true %>
-					<% str = "Deactivate DiscussionBoard" %>
-				<% else %>
-					<% str = "Activate DiscussionBoard" %>
-				<% end %>
-				<!-- This button toggles the activation of the discussion board -->
-				<%= link_to str, {:controller => :discussion_boards, :action => 'toggle',
-							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
-							 style: "float: left; margin-left: 15px" %>
-			</p> 
 
 			<p>
 				<% if @course.visible %>
@@ -79,52 +156,14 @@
 							 style: "float: left; margin-left: 15px" %>
 			</p>
 		
-		<br>
-		<div>
-			<%= form_for :course, url: course_path(@course), method: :patch do |c| %>
-				<p>
-					<br><br><%= c.label :name %><br>
-					<%= c.text_field :name %>
-				</p>
-	
-				<p>
-					<%= c.label :code %><br>
-					<%= c.text_area :code %>
-				</p>
-	
-				<p>
-					<%= c.label :year %><br>
-					<%= c.text_area :year %>
-				</p>
-	
-				<p>
-					<%= c.label :semester %><br>
-					<%= c.text_area :semester %>
-				</p>
-				
-				<p>
-					<%= c.label :link %><br>
-					<%= c.url_field :link %>
-				</p>
-	
-				<p>
-					<%= c.label :description %><br>
-					<%= c.text_area :description %>
-				</p>
-	
-				<p>
-					<%= c.submit %>
-				</p>
-			<% end %>
-			<%= link_to 'Back', courses_path %>
-		</div>	
-		<!-- This button deletes the course -->
-		<div>
-			<%= button_to "Delete Course", {:action => "destroy"},
-			 class: "btn btn-danger", style: "margin-top: 100px; float: right", method: :delete %>
-		</div>
-
-		<%= button_to "Back", {:controller => 'courses', :action => 'index'}, class: "btn btn-success",
-			style: "margin-left:600px; margin-top: 250px", :method => :get %>
-	</div>
-</div>
+			<p>
+				<% if @discussion_board.activated == true %>
+					<% str = "Deactivate DiscussionBoard" %>
+				<% else %>
+					<% str = "Activate DiscussionBoard" %>
+				<% end %>
+				<!-- This button toggles the activation of the discussion board -->
+				<%= link_to str, {:controller => :discussion_boards, :action => 'toggle',
+							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
+							 style: "float: left; margin-left: 15px" %>
+			</p> 

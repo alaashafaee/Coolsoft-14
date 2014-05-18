@@ -1,0 +1,14 @@
+			<table class = "table table-striped", style = "width:80%">
+				<% @courses.each do |course| %>
+					<tr>
+						<td>
+							<%= link_to course.name,
+								:controller => 'courses',
+								:action => 'show',
+								:id => course.id,
+								:method => :get,
+								class: "btn btn-success" %>
+						</td>
+					</tr>
+				<% end %>
+			</table>

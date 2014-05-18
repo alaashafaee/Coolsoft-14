@@ -94,9 +94,11 @@ puts("# ----------------------- DiscussionBoards ----------------------- ")
 	DiscussionBoard.create(title:"DiscussionBoard6", activated: true)
 	DiscussionBoard.create(title:"DiscussionBoard7", activated: true)
 
-puts("# ----------------------- Posts ----------------------- ")
-	Post.create(title:"My 1st Post", content: "The Main Objective is to be a winner", views_count: 20)
-	Post.create(title:"My 2nd Post", content: "It is very hard to keep in this life, be happy", views_count: 100)
+puts("# --------------------------Posts------------------------------")
+	Post.create(title:"Nginx return empty data, while header is 200 OK",
+				content: "The Main Objective is to be a winner", views_count: 20)
+	Post.create(title:"how sqlserver accept NUMERIC values from JDBC driver",
+				content: "It is very hard to keep in this life, be happy", views_count: 100)
 	Post.create(title:"My 3th Post", content: "Post3")
 	Post.create(title:"My 4th Post", content: "Post4")
 
@@ -757,6 +759,14 @@ puts("# ----------------------- Tracks ----------------------- ")
 	Track.create(title: "Track 2", difficulty: 1)
 	Track.create(title: "Track 3", difficulty: 2)
 	Track.create(title: "Track 4", difficulty: 3)
+	Track.create(title: "Track 5", difficulty: 3)
+	Track.create(title: "Track 6", difficulty: 3)
+	Track.create(title: "Track 7", difficulty: 3)
+	Track.create(title: "Track 8", difficulty: 3)
+	Track.create(title: "Track 9", difficulty: 3)
+	Track.create(title: "Track 10", difficulty: 3)
+	Track.create(title: "Track 11", difficulty: 3)
+	Track.create(title: "Track 12", difficulty: 3)
 
 puts("# -----------------------Solutions---------------------------")
 
@@ -854,6 +864,17 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.topics << Topic.first
 	## Tracks
 		Lecturer.first.tracks << Track.first
+		Lecturer.first.tracks << Track.find_by_id(2)
+		Lecturer.first.tracks << Track.find_by_id(3)
+		Lecturer.first.tracks << Track.find_by_id(4)
+		Lecturer.first.tracks << Track.find_by_id(5)
+		Lecturer.first.tracks << Track.find_by_id(6)
+		Lecturer.first.tracks << Track.find_by_id(7)
+		Lecturer.first.tracks << Track.find_by_id(8)
+		Lecturer.first.tracks << Track.find_by_id(9)
+		Lecturer.first.tracks << Track.find_by_id(10)
+		Lecturer.first.tracks << Track.find_by_id(11)
+		Lecturer.first.tracks << Track.find_by_id(12)
 	## Problems
 		Lecturer.first.problems << Problem.first
 		Lecturer.first.problems << Problem.find_by_id(2)
@@ -1078,8 +1099,16 @@ puts("# ----------------------- Topics ----------------------- ")
 	## Tracks
 		Topic.first.tracks << Track.first
 		Topic.first.tracks << Track.find_by_id(2)
-		Topic.find_by_id(2).tracks << Track.find_by_id(3)
-		Topic.find_by_id(3).tracks << Track.find_by_id(4)
+		Topic.first.tracks << Track.find_by_id(3)
+		Topic.first.tracks << Track.find_by_id(4)
+		Topic.first.tracks << Track.find_by_id(5)
+		Topic.first.tracks << Track.find_by_id(6)
+		Topic.first.tracks << Track.find_by_id(7)
+		Topic.first.tracks << Track.find_by_id(8)
+		Topic.first.tracks << Track.find_by_id(9)
+		Topic.first.tracks << Track.find_by_id(10)
+		Topic.first.tracks << Track.find_by_id(11)
+		Topic.first.tracks << Track.find_by_id(12)
 
 puts("# ----------------------- Courses ----------------------- ")
 	## Topics

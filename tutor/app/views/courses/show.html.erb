@@ -1,43 +1,38 @@
-<div class ="tabs">
-	<ul class="tab-links">
-		<li ><a href="/courses/">My Courses</a></li>
-		<% if lecturer_signed_in? %>
-			<li><a href="/courses/new">Create new Course</a></li>
-		<% elsif student_signed_in? %>
-			<li><a href="/courses/sign_up">Sign up for a course</a></li>
-		<% end %>
-	</ul>
-	<div class = "tab-content" style = "min-height: 400px">
-		<div id="tab1" class="tab active">
-			<div class = "panel-body" style = "font-family: Lucida Sans Unicode">
-				<h1><%= @course.name %></h1>
-				<h4><a href="<%=@course.link%>">Course Link</a></h4>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_code"><%= @course.code %></div>
+				<div class="course_name"><%= @course.name %></div>
+				<% if current_lecturer %>
+					<div class="course_manage">
+							<%= link_to "Manage", { :controller => 'courses', :action => 'edit',
+							:method => :get, :id => params[:id] }, class: ""	%>
+					</div>
+				<% end %>
 			</div>
-			<div style = "float:top">
-				<p>
-					<b>Code:</b>
-					</br>
-					<%= @course.code %>
-				</p>
-				</br>
-				<p>
-					<b>Year:</b>
-					</br>
-					<%= @course.year %>
-				</p>
-				</br>
-				<p>
-					<b>Semester:</b>
-					</br>
-					<%= @course.semester %>
-				</p>
-				</br>
-				<p>
-					<b>Description:</b>
-					</br>
-					<%= @course.description %>
-				</p>
-				<p>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
+				</div>
+			</div>
+		</div>
+		<div class="row course_description">
+			<p>About the Course</p>
+			<% if @course.description %>
+				<div class="description-body" >
+					<%= @course.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			<% end %>
+		</div>
+		<div style ="background: red">	
+					<p>
 					<b>Tags:</b>
 					</br>
 					<% @course.tags.each do |tag| %>
@@ -45,116 +40,160 @@
 						</br>
 					<% end %>	
 				</p>
-			</div>
-			<br>
-			<br>
-			<% if @can_edit %>
-				<%= link_to "Create Assignment", { :controller => 'assignments',
-						:action => 'new', :course_id => params[:id] },
-							class: "btn btn-info", method: :get,
-							style: "text-decoration:none; margin-top: -20px;" %>
-			<% end %>
-			<div  style="margin-left:70%; margin-top: -300px";>
-				<div class="row">
-					<div>
-						<%= link_to "View Discussion Board", { :controller => 'discussion_boards',
-							:action => 'show', :id => @course.id	}, class: "btn btn-default", method: :get, style: "text-decoration:none; margin-top: -70px" %>
-					</div>
 					<div>
 						<%= link_to "View Resources", course_resources_path(@course),
 							class: "btn btn-primary" %>
 					</div>
-				</div>
-				<%= flash[:success_deletion] %>
-				<% openable = true %>
-				<div class="panel-group list-group" id="accordion" style="width:100%;">
-					<% @topics.each do |t| %>	
-						<% if openable %>
-							<% open = "in" %>
-							<% openarrow = "glyphicon-chevron-down" %>
-							<% openable = false %>
-						<% else %>
-							<% open = "" %>
-							<% openarrow = "glyphicon-chevron-right" %>
-						<% end %>
-						<div class="panel panel-default">
-							<div class="panel-title list-group-item list-group-item-info">
-								<a class="icon glyphicon <%= openarrow %>"
-									href="#<%= t.id.to_s %>"
-									data-toggle="collapse" data-parent="#accordion"
-									style="margin-right:1%;text-decoration: none;">
-								</a>
-								<%= link_to t.title, t, style: 'color:#003366;' %></b>
-								<span class="badge"><%= t.tracks.count %></span>
-								<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
-									<%= link_to "Delete Topic", {controller: "topics",
-										action: "destroy", :id => t.id},
-										style: 'float: right',
-										class: "btn btn-danger btn-xs", method: :delete %>
-								<% end %>
-							</div>
-							<div id="<%= t.id.to_s %>" class="panel-collapse collapse <%= open %>">
-								<ul class="list-group">
-									<% t.tracks.each do |tt| %>
-										<% color = "label label-default" %>
-										<li style="border-style:hidden;" class="list-group-item" data-toggle="tooltip"
-											data-placement="top" title="<%= tt.difficulty %>">
-											<%= link_to tt.title, tt, class: color %>
-										</li>
-									<% end %>
-								</ul>
-							</div>
-						</div>	
-					<% end %>
-				</div>
-			<% openable = true %>
-			<div class="panel-group list-group" id="accordion2" style="width:100%;">
-				<% if openable %>
-					<% open = "in" %>
-					<% openarrow = "glyphicon-chevron-down" %>
-					<% openable = false %>
-				<% else %>
-					<% open = "" %>
-					<% openarrow = "glyphicon-chevron-right" %>
-				<% end %>
-				<div class="panel panel-default">
-					<div class="panel-title list-group-item list-group-item-info">
-						<a class="icon glyphicon <%= openarrow %>"
-							href="#listOfAssignments"
-							data-toggle="collapse" data-parent="#accordion2"
-							style="margin-right:1%;text-decoration: none;">Assignments
-						</a>
-						<span class="badge"> <%= @course.assignments.count %></span>
-					</div>
-					<div id="listOfAssignments" class="panel-collapse collapse <%= open %>">
-						<ul class="list-group">
-							<% if @can_edit %>
-								<% @course.assignments.each do |a| %>
-									<% if a.publish %>
-										<% color = "label label-default" %>
-										<li style="border-style:hidden;" class="list-group-item">
-											<%= link_to a.title, a, class: color %>
-									<% end %>
-								<% end %>
-							<% else %>
-								<% @course.assignments.each do |a| %>
-									<% if a.publish %>
-										<% color = "label label-default" %>
-										<li style="border-style:hidden;" 
-											class="list-group-item">
-											<%= link_to a.title, a, class: color %>
-											<% if a.due_date > DateTime.now.to_date %>
-											<span class="badge">Due</span>
-										</li>
-										<% end %>
-									<% end %>
-								<% end %>
-							<% end %>
-						</ul>
-					</div>
-				</div>	
-			</div>
-			</div>
+				
+		</div>
+		<div class="view_discussion">
+			<%= link_to "View Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => params[:id] }, method: :get %>
 		</div>
 	</div>
-</div>
+
+	<div class="xox">
+		<div class="well bell">
+			<div class="box-title"> Topics
+				<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+					<%= link_to "Add Topic", {:controller => 'topics', :action => 'new',
+						:course_id => @course.id}, class: "btn btn-default", method: :post %> 
+				<% end %>
+			</div>
+			<% topics = @course.topics %>
+			<% if topics.any? %>
+				<% topics.each_slice(2) do |topic| %>
+					<% if topic.count == 1 %>
+						<div class="row">
+							<div class="container col-sm-6 box-bag topic-box">
+								<div class="well" style="background-color: #d7dde2 !important;">
+									<h3><b><%= link_to topic[0].title, topic[0]%></b>
+										<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+											<%= link_to "Delete", {controller: "topics",
+											action: "destroy", :id => topic[0].id},
+											class: "badge delete", method: :delete %>	
+										<% end %>
+										<hr></h3>
+									<% if topic[0].description %>
+										<label><%= crop(topic[0].description, 150) %></label><br><br>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					<% else %>
+						<div class="row">
+							<% topics.each do |topic| %>
+								<div class="container col-sm-6 topic-box">
+									<div class="well" style="background-color: #d7dde2 !important;">
+										<h3><b><%= link_to topic.title, topic %></b>
+											<% if lecturer_signed_in? || 	teaching_assistant_signed_in? %>
+												<%= link_to "Delete", {controller: "topics",
+												action: "destroy", :id => topic.id},
+												class: "badge delete", method: :delete %>	
+										<% end %>								
+										<hr></h3>
+										<% if topic.description %>
+											<label><%=  crop(topic.description,150) %></label><br><br>
+										<% end %>
+									</div>
+								</div>
+							<%end%>
+						</div>
+					<% end %>
+				<% end %>
+<<<<<<< HEAD
+			<% end %>
+		</div>
+	</div>
+
+	<div class="xox">
+		<div class="well bell">
+			<div class="box-title"> Assignments
+				<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+					<div class="btn btn-default"> Create Assignment</div> 
+				<% end %>
+			</div>
+			<% assignments = @course.assignments %>
+				<% if assignments.any? %>
+					<% if @can_edit %>
+						<% assignments.each_slice(2) do |assignment| %>
+							<% if assignment.count == 1 %>
+								<div class="row">
+									<div class="container col-sm-6 box-bag topic-box">
+										<div class="well" style="background-color: #d7dde2 !important;">
+											<h3><b><%= link_to assignment[0].title, assignment[0]%></b>
+												<% if @can_edit %>
+													<% if !assignment[0].publish %>
+														<span class="badge">unpublished</span>
+													<% end %>
+												<% end %>
+												<hr></h3>
+											<% if assignment[0].description %>
+												<label><%= crop(assignment[0].description,150) %></label><br><br>
+											<% end %>
+										</div>
+									</div>
+								</div>
+							<% else %>
+								<div class="row">
+									<% assignment.each do |assignment| %>
+										<div class="container col-sm-6 topic-box">
+											<div class="well" style="background-color: #d7dde2 !important;">
+												<h3><b><%= link_to assignment.title, assignment %></b>
+													<% if @can_edit %>
+														<% if !assignment.publish %>
+															<span class="badge">unpublished</span>
+														<% end %>
+													<% end %>
+													<hr></h3>
+												<% if assignment.description %>
+													<label><%= assignment.description %></label><br><br>
+												<% end %>
+											</div>
+										</div>
+									<%end%>
+								</div>
+							<% end %>
+						<% end %>
+					<% else %>
+						<% assignments.each_slice(2) do |assignment| %>
+						<% if assignment.count == 1 %>
+							<% if assignment[0].publish %>
+								<div class="row">
+									<div class="container col-sm-6 box-bag topic-box">
+										<div class="well" style="background-color: #d7dde2 !important;">
+											<h3><b><%= link_to assignment[0].title, assignment[0]%></b><hr></h3>
+											<% if assignment[0].description %>
+												<label><%= assignment[0].description %></label><br><br>
+											<% end %>
+											<% if assignment[0].due_date > DateTime.now.to_date %>
+												<span class="badge">Due</span>
+											<% end %>
+										</div>
+									</div>
+								</div>
+							<% end %>
+						<% else %>
+							<div class="row">
+								<% assignment.each do |assignment| %>
+									<% if assignment.publish %>
+										<div class="container col-sm-6 topic-box">
+											<div class="well" style="background-color: #d7dde2 !important;">
+												<h3><b><%= link_to assignment.title, assignment %></b><hr></h3>
+												<% if assignment.description %>
+													<label><%= assignment.description %></label><br><br>
+												<% end %>
+												<% if assignment.due_date > DateTime.now.to_date %>
+													<span class="badge">Due</span>
+												<% end %>
+											</div>
+										</div>
+									<% end %>
+								<%end%>
+							</div>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>	
