@@ -87,13 +87,13 @@ class TestCasesController < ApplicationController
 		session[:problem_id] = params[:problem_id]
 		session[:track_id] = params[:track_id]
 		session[:test_case_id] = params[:test_case_id]
-		@test_case =TestCase.find_by_id(session[:test_case_id])
+		@test_case = TestCase.find_by_id(session[:test_case_id])
 	end
 
 	# [Edit test case-story 4.9]
 	# Update test case in the database
 	# Parameters:
-	#	@test_case:Test case to be updated.
+	#	@test_case: Test case to be updated.
 	#	input: input required for test case.
 	#	output: output required for test case.
 	# Returns:
