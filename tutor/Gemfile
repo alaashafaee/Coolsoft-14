@@ -66,6 +66,8 @@ gem 'json_builder', '3.1.0'
 # whenever gem for scheduling tasks
 gem 'whenever', :require => false
 
+gem 'table_print'
+
 #pagination
 gem 'will_paginate', '~> 3.0.5'
 

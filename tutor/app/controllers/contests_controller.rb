@@ -3,6 +3,15 @@ class ContestsController < ApplicationController
 	before_action :validate_timer, :except => ['new', 'create', 'edit', 'update',
 		'destroy', 'add_problems', 'add']
 
+	# [Contest Standings - Story 5.25]
+	# Returns the contest object whose id is params[:id]
+	# Parameters: none
+	# Returns: none
+	# Author: Mohab Ghanim
+	def standings
+		@contest = Contest.find_by_id(params[:id])
+	end
+
 	# [Edit Contest - Story 5.17]
 	# Passes instance variable of the contest to be edited to the edit
 	# 	view and renders the edit view
