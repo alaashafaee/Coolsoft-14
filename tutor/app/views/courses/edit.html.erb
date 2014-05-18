@@ -67,6 +67,17 @@
 							:id => @discussion_board.id}, class: "btn btn-success", method: 'post',
 							 style: "float: left; margin-left: 15px" %>
 			</p> 
+
+			<p>
+				<% if @course.visible %>
+					<% ButtonStr = "Hide course" %>
+				<% else %>
+					<% ButtonStr = "Unhide course" %>
+				<% end %>
+				<%= link_to str, {:controller => :courses, :action => 'hide',
+							:id => @course.id}, class: "btn btn-success", method: 'post',
+							 style: "float: left; margin-left: 15px" %>
+			</p>
 		
 		<br>
 		<div>
