@@ -233,9 +233,6 @@ class CoursesController < ApplicationController
 	def show_grades
 		id = params[:id]
 		@course = Course.find_by_id(id)
-		#if student_signed_in?
-		#	student_id = current_student.id
-		#end
 		student_id = current_student.id
 		@course = Course.find_by_id(id)
 		@records = Grade.where("student_id = ?", student_id)
