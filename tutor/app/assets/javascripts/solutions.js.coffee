@@ -390,8 +390,9 @@ debug_console = ->
 			toggle_code_area()
 			if data['compiler_error']
 				compilation_error(data['compiler_output'])
-				contest_id = document.getElementById('contest_id').innerHTML
-				contest_problem_submission(0, contest_id, problem_id)
+				if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
+					contest_id = document.getElementById('contest_id').innerHTML
+					contest_problem_submission(0, contest_id, problem_id)
 				return
 			out = $('#validate_case')
 			out.html("")
@@ -399,7 +400,7 @@ debug_console = ->
 			content = '<table class="table table-striped table-bordered
 				table-condensed table-hover" border="3">'
 			content += "<tr class='info'><th>TestCase</th><th>Status</th></tr>"
-			if problem_type == "cProblem" || problem_type == "AssignmentProblem" 
+			if problem_type == "Cproblem" || problem_type == "AssignmentProblem" 
 				i = data[data.length-1]['status']
 				if i == 2 
 					content = "<font color ='red'>Compilation failed</font>"
@@ -410,6 +411,8 @@ debug_console = ->
 				else 
 					content = "<font color ='green'>Passed all testcases</font>"
 				out.html(content)
+				contest_id = document.getElementById('contest_id').innerHTML
+				contest_problem_submission(i, contest_id, problem_id)
 				return
 			for i in data
 				if i['success']
