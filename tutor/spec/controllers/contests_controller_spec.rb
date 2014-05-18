@@ -95,10 +95,10 @@ describe ContestsController do
 				patch :update, :id => @contest.id.to_s, contest:
 					{:title => "Miro contest", :course => "DSA",
 					:description => "hardest", "start_time(1i)" => "2014",
-					"start_time(2i)" => "8","start_time(3i)" => "19",
-					"start_time(4i)" => "22","start_time(5i)" => "01",
-					"end_time(1i)" => "2014","end_time(2i)" => "9",
-					"end_time(3i)" => "16","end_time(4i)" => "22",
+					"start_time(2i)" => "8", "start_time(3i)" => "19",
+					"start_time(4i)" => "22", "start_time(5i)" => "01",
+					"end_time(1i)" => "2014", "end_time(2i)" => "9",
+					"end_time(3i)" => "16", "end_time(4i)" => "22",
 					"end_time(5i)" => "01",}
 				Contest.find(@contest.id).title.should eql "Miro contest"
 		end
@@ -124,7 +124,7 @@ describe ContestsController do
 					"start_time(3i)" => "19", "start_time(4i)" => "22",
 					"start_time(5i)" => "01", "end_time(1i)" => "2014",
 					"end_time(2i)" => "9", "end_time(3i)" => "16",
-					"end_time(4i)" => "22", "end_time(5i)" => "01",}
+					"end_time(4i)" => "22", "end_time(5i)" => "01"}
 			}.to change(Contest,:count).by(1)
 		end
 	end
