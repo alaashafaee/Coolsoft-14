@@ -1,3 +1,3 @@
 @showDiv = ->
-	ocument.getElementById("test").style.display = ""
+	Document.getElementById("test").style.display = ""
 	return

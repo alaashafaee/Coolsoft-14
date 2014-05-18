@@ -6,7 +6,7 @@
  * https://github.com/mugifly/jquery-simple-datetimepicker
  */
 
- (function($) {
+ (function() {
 	var lang = {
 		en: {
 			days: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
@@ -1380,4 +1380,4 @@
 		});
 	});
 
-})(jQuery);
+})();
