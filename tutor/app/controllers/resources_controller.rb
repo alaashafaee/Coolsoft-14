@@ -26,7 +26,9 @@ class ResourcesController < ApplicationController
 				link_body = f[1][:link]
 				unless link_body.nil?
 					if link_body.empty?
-						Resource.find(f[1][:id]).destroy
+						unless f[1][:id].nil?
+							Resource.find(f[1][:id]).destroy
+						end
 					else
 						begin
 							page = MetaInspector.new(link_body,
