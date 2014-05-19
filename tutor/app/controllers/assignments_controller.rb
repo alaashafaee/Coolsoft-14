@@ -18,7 +18,9 @@ class AssignmentsController < ApplicationController
 	#	params[]: the values needed for the assignment to be saved.
 	# Returns: none 
 	# Author: Nadine Adel
-	def create 
+	def create
+		puts '*****************'
+		puts assignment_params
 		@course = Course.find_by_id(session[:course_id])
 		@new_assignment = Assignment.new
 		@new_assignment.title = assignment_params[:title]

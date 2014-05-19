@@ -6,19 +6,15 @@ end
 
 describe AssignmentProblemsController do
 	before (:all) do
-<<<<<<< HEAD
-=======
 		@lecturer = Lecturer.new(email: '50@lecturer.com', password: '123456789',
 			password_confirmation: '123456789', name: 'LecturerI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			degree: "PhD", university: "GUC", department: "MET")
 		@lecturer.save!
->>>>>>> 9512ee23808807d3daecde4f65566c2d9630972a
 		@course = Course.new(name:"SE2",
 			code:"Se2", year:2014, semester:6, :description => "last sprint",
 			:link => "http://met.guc.edu.eg/")
 		@course.save!
-<<<<<<< HEAD
 		@assignment = Assignment.new(title: "assignmentdelete",
 			description: "will be deleted", course_id: @course.id)
 		@assignment.save!
@@ -67,7 +63,6 @@ describe AssignmentProblemsController do
 				:description => ""},:id => @assignmentp.id
 				@assignmentp.reload
 			@assignmentp.description.should eq("will be deleted")
-=======
 		@assignment = Assignment.new(title:"DSD Assignment_1",
 		 publish: true, due_date: Date.new(2015,6,13),
 		 description:"assignment")
@@ -102,7 +97,6 @@ describe AssignmentProblemsController do
 					:title => "Assignmentproblemse2", :final_grade =>10
 					},:assignment_id => @assignment.id
 			}.to change(AssignmentProblem,:count).by(0)
->>>>>>> 9512ee23808807d3daecde4f65566c2d9630972a
 		end
 	end
 end

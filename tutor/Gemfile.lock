@@ -52,7 +52,6 @@ GEM
     acts_as_list (0.4.0)
       activerecord (>= 3.0)
     addressable (2.3.6)
-    ansi (1.4.3)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.2)
@@ -102,7 +101,6 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (2.0.5)
-    hashr (0.0.22)
     hike (1.2.3)
     i18n (0.6.9)
     inherited_resources (1.4.1)
@@ -172,8 +170,6 @@ GEM
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rmagick (2.13.2)
     rspec-collection_matchers (0.0.4)
       rspec-expectations (>= 2.99.0.beta1)
@@ -218,14 +214,6 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
-    tire (0.6.2)
-      activemodel (>= 3.0)
-      activesupport
-      ansi
-      hashr (~> 0.0.19)
-      multi_json (~> 1.3)
-      rake
-      rest-client (~> 1.6)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -271,7 +259,6 @@ DEPENDENCIES
   sdoc
   sqlite3
   table_print
-  tire
   uglifier (>= 1.3.0)
   unicorn
   whenever
