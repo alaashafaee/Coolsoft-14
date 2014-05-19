@@ -36,7 +36,7 @@ function post_reply(_id) {
 // # Author: Ahmed Mohamed Magdi
 function edit_form_reply(reply_id,data) {
 	$("#reply_content_"+reply_id).html("<table> <tr> \
-		<td><textarea id=\"textarea_"+reply_id+"\" class=\"wysihtml5\" placeholder=\"Enter text ...\">"+data+"</textarea> \
+		<td><textarea id=\"textarea_"+reply_id+"\" class=\"wysihtml5\" style=\" width:100% !important;\"placeholder=\"Enter text ...\">"+data+"</textarea> \
 		</td><td width=\"20px\"></td><td><input class=\"btn btn-default btn-sm\" name=\"commit\" \
 		onclick=\"update_reply("+reply_id+")\" type=\"submit\" value=\"Update\"></td></tr></table>");
 }

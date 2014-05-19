@@ -23,9 +23,7 @@
 				</div>
 			</div>
 		</div>	
-
 		<br><br>
-
 		<div id="fb-root"></div>
 		<div class='problem'>
 			<% if !lecturer_signed_in? %>
@@ -41,11 +39,8 @@
 			<div class="problem_desc">
 				<%= @problem.description %>
 			</div>
-
 			<br><br>
-
-			<%= render partial: "solutions/test_cases_time_limit"
-
+			<%= render partial: "solutions/test_cases_time_limit" %>
 			<table width='100%'>
 				<tr>
 					<td width='80%'>

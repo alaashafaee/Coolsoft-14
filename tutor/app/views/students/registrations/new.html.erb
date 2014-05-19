@@ -10,7 +10,8 @@
 }
 </style>
 
-<div class="container well" align="center">
+<div class="container well" align="center" style="margin-top:30px">
+	<div class="left-row" style="width:50%;">
 	<div class="student_registration">
 		<h2>Sign up</h2>
 		<%= form_for(resource, as: resource_name, url: registration_path(resource_name), 
@@ -77,10 +78,11 @@
 				<%= f.hidden_field :profile_image_cache %>
 			</div>
 
-			<div><%= f.submit "Sign up", class: "btn btn-success button-devise" %></div>
+			<div><%= f.submit "Sign up", class: "btn btn-info button-devise" %></div>
 		<% end %>
 
 		<%= render "students/shared/links" %>	
 
+	</div>
 	</div>
 </div>
