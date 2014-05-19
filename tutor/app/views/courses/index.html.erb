@@ -5,9 +5,6 @@
 				style="color:#808088; font-family:sans-serif; font-weight:lighter">
 				<h2>&raquo; Courses</h2>
 			</div>
-				<% if current_lecturer %>
-					<%= link_to "Add Course", new_course_path %>
-				<% end %>
 		</div>
 	</div>
 	<div class="well">
@@ -50,6 +47,11 @@
 				<%end%>
 			</div>
 		<% end %>
-		<%= link_to "Sign up for a course" , {:controller => 'courses', :action => 'sign_up'}, class: 'course_sign_up' %>
+		<% if current_student %>
+			<%= link_to "Sign up for a course" , {:controller => 'courses', :action => 'sign_up'},
+			 class: 'course_sign_up' %>
+		<% elsif current_lecturer %>
+			<%= link_to "Add Course", new_course_path, class: 'course_sign_up' %>
+		<% end %>
 	</div>
 </div>

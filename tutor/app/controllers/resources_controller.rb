@@ -48,7 +48,7 @@ class ResourcesController < ApplicationController
 							@resource = Resource.find_by(id: f[1][:id],
 								course_id: @course.id)
 							if @resource.nil?
-								@resource = Resource.new(resource)
+								@resource = Resource.create(resource)
 								@resource.remote_img_url = resource[:img]
 								@course.resources << @resource
 								current_lecturer.resources << @resource
