@@ -1,70 +1,51 @@
-<div>
-	<ul class="tab-links">
-		<!-- This button activates the new topic action and passes the course id  -->
-		<li>
-			<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
-				:id => @course.id}, class: "btn btn-success",
-				style: "float: left;margin-left: 15px",method: :get %>
-		</li>
-
-		<li>
-			<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
-				:course_id => @course.id}, class: "btn btn-success",
-				style: "float: left;margin-left: 15px",method: :post %>
-		</li> 
-
-		<!-- This button activates the add TA action -->
-		<li>
-			<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
-				:course_id => @course.id}, class: "btn btn-success",
-				style: "float: left; margin-left: 15px", :method => :get %>
-		</li>
-
-		<!-- This button activates the acknowledge a student action -->
-		<li>
-			<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
-				:course_id => @course.id}, class: "btn btn-success",
-				style: "float: left; margin-left: 15px", method: :get %>
-		</li>
-		<%- if lecturer_signed_in? %>
-			<li>
-				<%= link_to "Add Resources", new_course_resource_path(@course),
-					class: "btn btn-success",
-					style: "float: left; margin-left: 15px", method: :get %>
-			</li>
-		<% end %>
-	</ul>
-</div>
-<% unless flash[:notice].nil? %>
-	<div class= "alert alert-danger">
-		<%= flash[:notice] %>
-		<%- flash[:notice] = nil %>
-	</div>
-<% end %>
-<div>
-	<div class="page-header">
-		<h1><%= @course.name %><small> resources :</small></h1>
-	</div>
-	<%- unless @course.resources.empty? %>
-		<%- @course.resources.each do |resource| %>
-			<div class="media">
-				<a class="pull-left" href="<%= resource.link %>">
-					<img class="media-object" src="<%= resource.img %>"\
-						height="64" width="64" alt="...">
-				</a>
-				<div class="media-body">
-					<h4 class="media-heading">
-						<a href="<%= resource.link %>"><%= resource.link %></a>
-					</h4>
-					<%= resource.description %>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_code"><%= @course.code %></div>
+				<div class="course_name"><%= @course.name %> | Resources</div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
 				</div>
 			</div>
-		<% end%>
-	<% else %>
-		<div class="panel panel-default">
-			<div class="panel-body" align="center">
-				<h3>No Resources</h3>
-			</div>
 		</div>
-	<% end %>
-</div>
+			<% unless flash[:notice].nil? %>
+				<div class= "alert alert-danger">
+					<%= flash[:notice] %>
+					<%- flash[:notice] = nil %>
+				</div>
+			<% end %>
+			<div>
+				<%- unless @course.resources.empty? %>
+					<%- @course.resources.each do |resource| %>
+						<div class="media">
+							<a class="pull-left" href="<%= resource.link %>">
+								<img class="media-object" src="<%= resource.img %>"\
+									height="64" width="64" alt="...">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading">
+									<a href="<%= resource.link %>"><%= resource.link %></a>
+								</h4>
+								<%= resource.description %>
+							</div>
+						</div>
+					<% end%>
+				<% else %>
+					<div class="panel panel-default">
+						<div class="panel-body" align="center">
+							<h3>No Resources</h3>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<%- if lecturer_signed_in? %>
+				<%= link_to "Add Resources", new_course_resource_path(@course),
+				class: "btn btn-success",
+					 method: :get %>
+			<% end %>
+		</div>
+	</div>
