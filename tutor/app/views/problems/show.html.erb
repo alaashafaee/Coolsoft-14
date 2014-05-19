@@ -53,6 +53,7 @@
 							<% track_progess = TrackProgression.get_progress(current_student,
 							@problem.track.topic) %>
 		 					<% if track_progess >= @problem.track.difficulty %>
+		 						<%= render partial: "solutions/timer" %>
 		 						<%= render partial: "solutions/new"%>
 		 						<td style='vertical-align:top;'>
 									<div style='margin-left:1em;'>
