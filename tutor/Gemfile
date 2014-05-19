@@ -60,6 +60,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'acts_as_list'
 
 #search
+gem 'tire'
 gem 'json_builder', '3.1.0'
 
 # whenever gem for scheduling tasks
