@@ -173,7 +173,7 @@ class PythonDebugger < Debugger
 	def get_object_value name
 		result = ""
 		input name[1..-2] + ".__dict__"
-		output_buffer = buffer_until [/[\{"].*\}\r\n$/m], true
+		output_buffer = buffer_until [/\{.*\}\r\n$/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			result << line

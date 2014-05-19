@@ -4,7 +4,9 @@
 	</div>
 	<br>
 	<div class="example_input">
-		<label style="border: none; white-space:pre"><%= @problem.test_cases.first.input %></label>
+		<% if @problem.test_cases.first %>
+			<label style="border: none; white-space:pre"><%= @problem.test_cases.first.input %></label>
+		<% end %>
 	</div>
 </div>
 
@@ -14,7 +16,9 @@
 	</div>
 	<br>
 	<div class="example_input">
-		<label style="border: none; white-space:pre"><%= @problem.test_cases.first.output %></label>
+		<% if @problem.test_cases.first %>
+			<label style="border: none; white-space:pre"><%= @problem.test_cases.first.output %></label>
+		<% end %>
 	</div>
 </div>
 
@@ -24,6 +28,8 @@
 	</div>
 	<br>
 	<div class="example_input">
-		<label style="border: none; white-space:pre"><%= @problem.time_limit %> Sec</label>
+		<% if @problem.time_limit %>
+			<label style="border: none; white-space:pre"><%= @problem.time_limit %> Sec</label>
+		<% end %>
 	</div>
 </div>
