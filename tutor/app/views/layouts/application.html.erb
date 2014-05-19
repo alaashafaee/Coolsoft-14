@@ -34,26 +34,26 @@
 							<%= render "layouts/log_out_form" %>
 						</li>
 					<% else %>
-						<div class="navbar-collapse collapse" id="navbar-main">
-							<ul class="nav navbar-nav navbar-right">
-								<li class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Sign in&nbsp&nbsp
-										<span class="caret"></span>
-									</a>
-									<ul class="dropdown-menu" aria-labelledby="themes">
-										<li>
-											<a href="../lecturers/sign_in">Lecturer</a>
-										</li>
-										<li>
-											<a href="../teaching_assistants/sign_in">Teaching Assistant</a>
-										</li>
-										<li>
-											<a href="../students/sign_in">Student</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
+						<li>
+							<a class="sign_in_button" onclick="pop_up_dialog('sign_in_dialog')">Sign in</a>
+							<div id="sign_in_dialog">
+								<ul class="nav nav-tabs">
+									<li class="active"><a href="#student" data-toggle="tab">Student</a></li>
+									<li><a href="#ta" data-toggle="tab">Teaching Assistant</a></li>
+									<li><a href="#lecturer" data-toggle="tab">Lecturer</a></li>
+								</ul>
+								<div class="tab-content">
+									<div class="tab-pane active" id="student">
+										<%= render "students/sessions/new" %> 
+									</div>
+									<div class="tab-pane" id="lecturer">
+										<%= render "lecturers/sessions/new" %> 
+									</div>
+									<div class="tab-pane" id="ta">
+										<%= render "teaching_assistants/sessions/new" %> </div>
+								</div>
+							</div>	
+						</li>
 					<% end %>
 				</ul>
 			</div>
