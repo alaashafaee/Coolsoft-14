@@ -4,8 +4,8 @@ include Devise::TestHelpers
 describe CoursesController do
 	describe "GET create" do
 		it "Seen value changes after load" do
-			lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
- 			password_confirmation: '123456789', name: 'LecturerI',
+			lecturer = Lecturer.new(email: '1@lecturer.com', password: 'Aa123456789', 
+ 			password_confirmation: 'Aa123456789', name: 'LecturerI',
  			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			degree: "PhD", university: "GUC", department: "MET")
 			lecturer.save!
@@ -23,8 +23,8 @@ describe CoursesController do
 	end
 	describe "POST hide" do
 		it "Seen value changes after load" do
-			lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
+			lecturer = Lecturer.new(email: '1@lecturer.com', password: 'Aa123456789', 
+			password_confirmation: 'Aa123456789', name: 'LecturerI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			degree: "PhD", university: "GUC", department: "MET")
 			lecturer.save!
@@ -38,8 +38,8 @@ describe CoursesController do
 			expect(lecturer.courses.first.visible).to be(true)
 		end
 		it "Seen value changes" do
-			lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
+			lecturer = Lecturer.new(email: '1@lecturer.com', password: 'Aa123456789', 
+			password_confirmation: 'Aa123456789', name: 'LecturerI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			degree: "PhD", university: "GUC", department: "MET")
 			lecturer.save!

@@ -6,8 +6,8 @@ describe TopicsController do
 
 	context "Create Topic and deletes it" do
 		it "destroys the requested topic" do
-		lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
+		lecturer = Lecturer.new(email: '1@lecturer.com', password: 'Aa123456789', 
+			password_confirmation: 'Aa123456789', name: 'LecturerI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			degree: "PhD", university: "GUC", department: "MET")
 		lecturer.save!

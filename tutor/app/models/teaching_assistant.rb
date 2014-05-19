@@ -9,7 +9,7 @@ class TeachingAssistant < ActiveRecord::Base
 
 	#Validations
 	validate :duplicate_email
-	# validate :password_complexity
+	validate :password_complexity
 	validate :letters_only
 	validates :name, presence: true
 	validates :graduated_from, presence: true
@@ -97,7 +97,7 @@ class TeachingAssistant < ActiveRecord::Base
 	# Returns: none
 	# Author: Khaled Helmy
 	def password_complexity
-		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
+		if password.present? and not password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+/)
 			errors.add(:password, "must include at least one lowercase letter, " +
 				"one uppercase letter, and one digit")
 		end
