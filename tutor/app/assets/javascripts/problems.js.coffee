@@ -27,9 +27,13 @@ timer = ->
 		tip = $('#tip' + i)
 		if typeof(tip.attr 'time') == 'undefined'
 			break
-		time = tip.attr 'time'
-		if time <= min*60 + parseInt(digit, 10)
-			tip.attr 'class', ''
+		if typeof(tip.attr 'shown') == 'undefined'
+			time = tip.attr 'time'
+			if time <= min*60 + parseInt(digit, 10)
+				tip.attr 'class', ''
+				the_tip = 'Tip: ' + tip.html()
+				tip.attr 'shown', ''
+				log = alert the_tip, 'log', 0
 		i++
 
 activate = ->
