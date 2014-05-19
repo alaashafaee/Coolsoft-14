@@ -1,71 +1,75 @@
-<% if (lecturer_signed_in? || teaching_assistant_signed_in?) &&
-	session[:model_answer_id] != nil %>
-	<div id = "crumbs">
-		<ul >
-			<li class = "sub"><a class = "preventclick">Problem</a></li>
-			<li class = "sub1">
-				<a class = "preventclick" style = "padding:5px 15% 0 0px;">
-					Test Cases
-				</a>
-			</li>
-			<li class = "sub2">
-				<a class = "preventclick" style = "padding: 5px 3.75% 0 0px;">
-					Model Answers
-				</a>
-			</li>
-			<li class = "sub3"><a class = "visit">Tips</a></li>
-			<li class = "sub4"><a class = "preventclick">Hints</a></li>
-		</ul>
-	</div><br><br>
-	<div id = "div1">
-		<% if flash[:notice] %>
-			<div class = "alert alert-success"><%= flash[:notice] %></div>
-		<% end %>
-	</div>
-	<h2>Create Tip for model answer 
-		<h1 style = "color:red;">
-			<%= ModelAnswer.find_by_id(session[:model_answer_id]).title %>
-		</h1>
-	</h2>
-	<div style = "vertical-align: auto; horizontal-align: auto; float:center;">
-		<%= form_for :tip, url: tips_path do |t| %>
-			<% if @tip.errors.any? %>
-				<div id = "error_explanation">
-					<h2>
-						<%= pluralize(@tip.errors.count, "error") %>
-						prohibited the Tip from being saved:
-					</h2>
-					<ul>
-						<% @tip.errors.full_messages.each do |msg| %>
-							<li>
-								<%= msg %>
-							</li>
-						<% end %>
-					</ul>
-				</div>
-			<% end %>
-			<p>
-				<%= t.label :Content %><br>
-				<%= t.text_area :message, class:"form-control", style:"width:350px",
-					placeholder:"Content", :value => @tip.message %>
-			</p>
-			<p>
-				<%= t.label :Time_in_seconds %><br>
-				<%= t.text_field :time, class: "form-control", style: "width:55px; height:35px;", :value => @tip.time %>
-			</p>
-			<p>
-				<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
-			</p>
-			<p>
-				<%= t.submit class: 'btn btn-info', :flag => session[:flag] %>
-			</p>
-		<% end %>
-	</div>
-	<div>
-		<ul class = "navbar-brand pull-right">
-			<%= link_to "Done", {:controller => 'tracks', :action => 'show',
-				:id => session[:track_id]},:method => :get,:class => "btn btn-info"%>
-		</ul>
-	</div>
+<div class="left-row">
+	<div class="container" style='width:100%;'>
+		<% if (lecturer_signed_in? || teaching_assistant_signed_in?) &&
+			session[:model_answer_id] != nil %>
+			<div id = "crumbs">
+				<ul >
+					<li class = "sub"><a class = "preventclick">Problem</a></li>
+					<li class = "sub1">
+						<a class = "preventclick" style = "padding:5px 15% 0 0px;">
+							Test Cases
+						</a>
+					</li>
+					<li class = "sub2">
+						<a class = "preventclick" style = "padding: 5px 3.75% 0 0px;">
+							Model Answers
+						</a>
+					</li>
+					<li class = "sub3"><a class = "visit">Tips</a></li>
+					<li class = "sub4"><a class = "preventclick">Hints</a></li>
+				</ul>
+			</div><br><br>
+			<div id = "div1">
+				<% if flash[:notice] %>
+					<div class = "alert alert-success"><%= flash[:notice] %></div>
+				<% end %>
+			</div>
+			<h2>Create Tip for model answer 
+				<h1 style = "color:red;">
+					<%= ModelAnswer.find_by_id(session[:model_answer_id]).title %>
+				</h1>
+			</h2>
+			<div style = "vertical-align: auto; horizontal-align: auto; float:center;">
+				<%= form_for :tip, url: tips_path do |t| %>
+					<% if @tip.errors.any? %>
+						<div id = "error_explanation">
+							<h2>
+								<%= pluralize(@tip.errors.count, "error") %>
+								prohibited the Tip from being saved:
+							</h2>
+							<ul>
+								<% @tip.errors.full_messages.each do |msg| %>
+									<li>
+										<%= msg %>
+									</li>
+								<% end %>
+							</ul>
+						</div>
+					<% end %>
+					<p>
+						<%= t.label :Content %><br>
+						<%= t.text_area :message, class:"form-control", style:"width:350px",
+							placeholder:"Content", :value => @tip.message %>
+					</p>
+					<p>
+						<%= t.label :Time_in_seconds %><br>
+						<%= t.text_field :time, class: "form-control", style: "width:55px; height:35px;", :value => @tip.time %>
+					</p>
+					<p>
+						<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
+					</p>
+					<p>
+						<%= t.submit class: 'btn btn-info', :flag => session[:flag] %>
+					</p>
+				<% end %>
+			</div>
+			<div>
+				<ul class = "navbar-brand pull-right">
+					<%= link_to "Done", {:controller => 'tracks', :action => 'show',
+						:id => session[:track_id]},:method => :get,:class => "btn btn-info"%>
+				</ul>
+			</div>
 
-<% end %>
+		<% end %>
+	</div>
+</div>
