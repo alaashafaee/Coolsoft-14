@@ -1,56 +1,60 @@
-<div id = "crumbs">
-	<ul>
-		<li class="sub"><a class = "preventclick">Problem</a></li>
-		<li class="sub1"><a class="visit" style="padding: 5px 15% 0 0px;">Test Cases</a> </li>
-		<li class="sub2">
-			<a class="preventclick" style="padding: 5px 3.75% 0 0px;">
-			Model Answers</a>
-		</li>
-		<li class="sub3"><a class="preventclick">Tips</a></li>
-		<li class="sub4"><a class="preventclick">Hints</a></li>
-	</ul>
-</div><br><br>
-<%= form_for :test_case , url: test_cases_path do |f| %>
-	<% if @test_case.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@test_case.errors.count, "error") %>
-				prohibited this course from being saved:
-			</h2>
+<div class="left-row">
+	<div class="container" style='width:100%;'>
+		<div id = "crumbs">
 			<ul>
-				<% @test_case.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
+				<li class="sub"><a class = "preventclick">Problem</a></li>
+				<li class="sub1"><a class="visit" style="padding: 5px 15% 0 0px;">Test Cases</a> </li>
+				<li class="sub2">
+					<a class="preventclick" style="padding: 5px 3.75% 0 0px;">
+					Model Answers</a>
+				</li>
+				<li class="sub3"><a class="preventclick">Tips</a></li>
+				<li class="sub4"><a class="preventclick">Hints</a></li>
 			</ul>
-		</div>
-	<% else %>
-		<%= f.hidden_field :problem_id, :value => @problem.id %>
-	<% end %>
-	<h1>
-		Please insert Test Case for problem
-		<h2 style="color:red;">
-			<%= @problem.title %>
-		</h2>
-	</h1>
-	<p>
-		<p>
-			<span class="glyphicon glyphicon-info-sign"></span>
-			Please insert values in input and output fields each in
-				an new line if more than one value in the same test case.
-		</p>
-		<%= f.label :Input %>
-		<br><%= f.text_area :input, class: "form-control",
-				style: "width:450px; height:200px;" %><br>
-		<%= f.label :Output %>
-		<br><%= f.text_area :output, class: "form-control",
-				style: "width:450px; height:200px;" %>
-		<%= f.hidden_field :problem_id, :value => session[:problem_id] %>
-	</p>
-	<p>
-		<%= f.submit 'Add Test Case', type: "submit" ,value: "Add Test Case",
-			onclick: "canleave()", class: "btn btn-large btn-info",
-			:flag => params[:flag] %>
-	</p>
-<% end %>
+		</div><br><br>
+		<%= form_for :test_case , url: test_cases_path do |f| %>
+			<% if @test_case.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@test_case.errors.count, "error") %>
+						prohibited this course from being saved:
+					</h2>
+					<ul>
+						<% @test_case.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% else %>
+				<%= f.hidden_field :problem_id, :value => @problem.id %>
+			<% end %>
+			<h1>
+				Please insert Test Case for problem
+				<h2 style="color:red;">
+					<%= @problem.title %>
+				</h2>
+			</h1>
+			<p>
+				<p>
+					<span class="glyphicon glyphicon-info-sign"></span>
+					Please insert values in input and output fields each in
+						an new line if more than one value in the same test case.
+				</p>
+				<%= f.label :Input %>
+				<br><%= f.text_area :input, class: "form-control",
+						style: "width:450px; height:200px;" %><br>
+				<%= f.label :Output %>
+				<br><%= f.text_area :output, class: "form-control",
+						style: "width:450px; height:200px;" %>
+				<%= f.hidden_field :problem_id, :value => session[:problem_id] %>
+			</p>
+			<p>
+				<%= f.submit 'Add Test Case', type: "submit" ,value: "Add Test Case",
+					onclick: "canleave()", class: "btn btn-large btn-info",
+					:flag => params[:flag] %>
+			</p>
+		<% end %>
+	</div>
+</div>		
 <script>
 	// confirmBrowseAway is a funcction to prevent user from leaving the page without confirming that.
 	// workIsDone Boolean variable.
