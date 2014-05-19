@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-	
+
 	#Elasticsearch
 	include Tire::Model::Search
 	include Tire::Model::Callbacks

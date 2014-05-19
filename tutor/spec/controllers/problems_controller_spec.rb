@@ -12,7 +12,7 @@ describe ProblemsController do
 	end
 	before (:all) do 
 		@lecturer = Lecturer.new(email: '1@lecturer.com', 
-			password: '123456789', password_confirmation: '123456789', name: 'LecturerI',
+			password: 'Aa123456789', password_confirmation: 'Aa123456789', name: 'LecturerI',
 			confirmed_at: Time.now,
 			dob: DateTime.now.to_date, gender: true, degree: "PhD", university: "GUC", department: "MET")
 	end

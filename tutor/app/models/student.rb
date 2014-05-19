@@ -3,11 +3,11 @@ class Student < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 		:recoverable, :rememberable, :trackable,
 		:validatable, :confirmable
-	
+
 	#Elasticsearch
 	include Tire::Model::Search
 	include Tire::Model::Callbacks
-	
+
 	#concerns
 	include Searchable
 
@@ -16,7 +16,7 @@ class Student < ActiveRecord::Base
 
 	#Validations
 	validate :duplicate_email
-	# validate :password_complexity
+	validate :password_complexity
 	validate :letters_only
 	validates :name, presence: true
 	validates :university, presence: true
@@ -70,7 +70,7 @@ class Student < ActiveRecord::Base
 	# Returns: none
 	# Author: Khaled Helmy
 	def password_complexity
-		if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d). /)
+		if password.present? and not password.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+/)
 			errors.add(:password, "must include at least one lowercase letter, " +
 				"one uppercase letter, and one digit")
 		end

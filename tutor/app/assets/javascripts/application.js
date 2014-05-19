@@ -60,3 +60,7 @@ $(document).ready(function(){
 	  $(elem).wysihtml5();
 	});
 })
+
+$(function() {
+	$( "#tabs" ).tabs();
+});
