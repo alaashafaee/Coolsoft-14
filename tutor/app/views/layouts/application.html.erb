@@ -13,6 +13,11 @@
 		<%= csrf_meta_tags %>
 		<meta name="viewport" content="width=device-width"/>
 	</head>
+	 <script>
+$(function() {
+$( "#tabs" ).tabs();
+});
+</script>
 	<body style="background: #EEEFE9;">
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="navbar-header">
@@ -36,23 +41,24 @@
 					<% else %>
 						<li>
 							<a class="sign_in_button" onclick="pop_up_dialog('sign_in_dialog')">sign in</a>
-							<div id="sign_in_dialog">
-								<ul class="nav nav-tabs">
-									<li class="active"><a href="#student" data-toggle="tab">student</a></li>
-									<li><a href="#ta" data-toggle="tab">Teaching Assistant</a></li>
-									<li><a href="#lecturer" data-toggle="tab">Lecturer</a></li>
-								</ul>
-								<div class="tab-content">
-									<div class="tab-pane active" id="student">
-										<%= render "students/sessions/new" %> 
-									</div>
-									<div class="tab-pane" id="lecturer">
-										<%= render "lecturers/sessions/new" %> 
-									</div>
-									<div class="tab-pane" id="ta">
-										<%= render "teaching_assistants/sessions/new" %> </div>
-								</div>
-							</div>	
+<div id ="sign_in_dialog">
+<div id="tabs">
+<ul>
+<li><a href="#tabs-1">Student</a></li>
+<li><a href="#tabs-2">Lecturer</a></li>
+<li><a href="#tabs-3">Ta</a></li>
+</ul>
+<div id="tabs-1">
+	<%= render "students/sessions/new" %> 
+</div>
+<div id="tabs-2">
+	<%= render 'lecturers/sessions/new' %>
+</div>
+<div id="tabs-3">
+	<%= render 'teaching_assistants/sessions/new' %>
+</div>
+</div>
+</div>
 						</li>
 					<% end %>
 				</ul>
