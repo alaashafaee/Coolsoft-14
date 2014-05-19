@@ -67,9 +67,11 @@
 											class: "badge delete", method: :delete %>	
 										<% end %>
 										<hr></h3>
-									<% if topic[0].description %>
-										<label class="c-description-label"><%= crop(topic[0].description, 150) %></label><br><br>
-									<% end %>
+									<label class="c-description-label">
+										<% if topic[0].description %>
+											<%= crop(topic[0].description, 150) %>
+										<% end %>
+									</label><br><br>
 								</div>
 							</div>
 						</div>
@@ -85,9 +87,11 @@
 												class: "badge delete", method: :delete %>	
 										<% end %>								
 										<hr></h3>
-										<% if topic.description %>
-											<label class="c-description-label"><%=  crop(topic.description,150) %></label><br><br>
-										<% end %>
+										<label class="c-description-label">
+											<% if topic.description %>
+												<%=  crop(topic.description,150) %>
+											<% end %>
+										</label><br><br>
 									</div>
 								</div>
 							<%end%>
@@ -120,9 +124,11 @@
 													<% end %>
 												<% end %>
 												<hr></h3>
-											<% if assignment[0].description %>
-												<label class="c-description-label"><%= crop(assignment[0].description,150) %></label><br><br>
-											<% end %>
+											<label class="c-description-label">
+												<% if assignment[0].description %>
+													<%= crop(assignment[0].description,150) %>
+												<% end %>
+											</label><br><br>
 										</div>
 									</div>
 								</div>
@@ -138,9 +144,11 @@
 														<% end %>
 													<% end %>
 													<hr></h3>
-												<% if assignment.description %>
-													<label class="c-description-label"><%= crop(assignment.description,150) %></label><br><br>
-												<% end %>
+												<label class="c-description-label">
+													<% if assignment.description %>
+														<%= crop(assignment.description,150) %>
+													<% end %>
+												</label><br><br>
 											</div>
 										</div>
 									<%end%>
@@ -155,9 +163,11 @@
 									<div class="container col-sm-6 box-bag topic-box">
 										<div class="well topic-box" style="background-color: #d7dde2 !important;">
 											<h3><b><%= link_to assignment[0].title, assignment[0]%></b><hr></h3>
-											<% if assignment[0].description %>
-												<label class="c-description-label"><%= crop(assignment[0].description,150) %></label><br><br>
-											<% end %>
+											<label class="c-description-label">
+												<% if assignment[0].description %>
+													<%= crop(assignment[0].description,150) %>
+												<% end %>
+											</label><br><br>
 											<% if assignment[0].due_date > DateTime.now.to_date %>
 												<span class="badge">Due</span>
 											<% end %>
@@ -172,9 +182,11 @@
 										<div class="container col-sm-6 topic-box">
 											<div class="well topic-box" style="background-color: #d7dde2 !important;">
 												<h3><b><%= link_to assignment.title, assignment %></b><hr></h3>
-												<% if assignment.description %>
-													<label class="c-description-label"><%= crop(assignment.description, 150) %></label><br><br>
-												<% end %>
+												<label class="c-description-label">
+													<% if assignment.description %>
+														<%= crop(assignment.description, 150) %>
+													<% end %>
+												</label><br><br>
 												<% if assignment.due_date > DateTime.now.to_date %>
 													<span class="badge">Due</span>
 												<% end %>
