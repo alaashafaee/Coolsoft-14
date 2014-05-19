@@ -4,7 +4,7 @@
             <div class= "row c_title">
                 <% post = Post.find(params[:id]) %>
                 <div class="c_code"><%= post.discussion_board.course.code %></div>
-                <div class="c_name"><%= link_to post.discussion_board.course.name, post.discussion_board.course.name, style: "color: black" %> &nbsp Discussion Board</div>
+                <div class="c_name"><%= link_to post.discussion_board.course.name, post.discussion_board.course, style: "color: black" %> &nbsp Discussion Board</div>
             </div>
             <div class="row">
                 <div class="course_sem">
