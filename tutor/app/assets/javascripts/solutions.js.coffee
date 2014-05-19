@@ -352,6 +352,8 @@ debug_console = ->
 	content += "</table>"
 	if list_of_methods.length > 0
 		div.innerHTML = content
+	else
+		div.innerHTML = ""
 	return
 
 # [Debug - Story 3.6]
