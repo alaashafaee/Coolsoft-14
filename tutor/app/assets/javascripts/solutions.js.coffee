@@ -326,7 +326,7 @@ debug_console = ->
 	content += "</table>"
 	if globals.length > 0
 		append = '<table class="table table-striped table-bordered table-condensed table-hover" border="3">'
-		append += "<tr class='info'><th>Global</th><th>Value</th></tr>"
+		append += "<tr class='info'><th>Variable</th><th>Value</th></tr>"
 		globals = append + globals
 		globals += "</table>"
 	# div.innerHTML = globals + content
