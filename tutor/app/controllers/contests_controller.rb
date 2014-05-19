@@ -1,7 +1,6 @@
 class ContestsController < ApplicationController
 
-	before_action :validate_timer, :except => ['new', 'create', 'edit', 'update',
-		'destroy', 'add_problems', 'add']
+	before_action :validate_timer, only: [:standings, :show, :registrants]
 
 	# [Contest Standings - Story 5.25]
 	# Returns the contest object whose id is params[:id]
@@ -10,6 +9,20 @@ class ContestsController < ApplicationController
 	# Author: Mohab Ghanim
 	def standings
 		@contest = Contest.find_by_id(params[:id])
+	end
+
+	# [Contest Registration - Story 5.24]
+	# Add the current student to the choosen contest
+	# Parameters:
+	# 	params[:id]: The current contest id
+	# Returns: none
+	# Author: Rania Abdel Fattah
+	def register
+		if student_signed_in?
+			contest = Contest.find_by_id(params[:id])
+			current_student.contests << contest
+			redirect_to "/contests"
+		end
 	end
 
 	# [Edit Contest - Story 5.17]
@@ -43,6 +56,35 @@ class ContestsController < ApplicationController
 		@contest = Contest.find(params[:id])
 		@problems =  @contest.problems.all
 	end
+
+	# [View Contests - Stroy 5.19]
+	# This action renders a list of all contests belonging to 
+	#	the current user.
+	# Parameters:
+	#	current_lecturer: The current signed in lecturer
+	#	current_teaching_assistant: The currrent signed in teaching assistant
+	#	current_students: The current signed in student	
+	# Returns: 
+	#	@contest: A list of all the user's contests
+	# Author: Muhammad Mamdouh
+	def index
+		if current_lecturer
+			@contests = current_lecturer.contests
+		elsif current_teaching_assistant
+			@contests = current_teaching_assistant.contests
+		elsif current_student
+			@my_contests = current_student.contests
+			@courses = current_student.courses
+			@contests = []
+			@courses.each do |course|
+				course.contests.each do |contest|
+					unless @my_contests.exists?(contest.id)
+						@contests << contest
+					end
+				end
+			end
+		end
+	end	
 
 	# [Create Contest - Story 5.16]
 	# Defines a new Contest instance for the form in the new view
@@ -180,6 +222,10 @@ class ContestsController < ApplicationController
 		flash[:success_deletion] = "Contest deleted."
 		redirect_to :action => 'index'
 		end
+	end
+
+	def registrants
+		@contest_registrants = Contest.find_by_id(params[:id]).students
 	end
 
 	# [Create Contest - Story 5.16]

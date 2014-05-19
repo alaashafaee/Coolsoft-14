@@ -25,7 +25,7 @@ class PythonDebugger < Debugger
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
 	def start(class_name, input, time = 30)
-		$step = "step"
+		$step = "next"
 		$wait_thread = nil
 		$TERM = /\(Pdb\) The program finished and will be restarted\r\n/m
 		$regex = [/(\(Pdb\) )?.+->.+\r\n$/m]
@@ -156,7 +156,7 @@ class PythonDebugger < Debugger
 		if name.starts_with? "'__"
 			return false
 		elsif value.include?("module") or value.include?("function") or value.include?("exception") \
-			or value.include?("method")
+			or value.include?("method") or value.include?("class")
 			return false
 		end
 		return true
@@ -172,8 +172,8 @@ class PythonDebugger < Debugger
 	# Author: Khaled Helmy
 	def get_object_value name
 		result = ""
-		input name + ".__dict__"
-		output_buffer = buffer_until [/[\{"].*\}\r\n$/m], true
+		input name[1..-2] + ".__dict__"
+		output_buffer = buffer_until [/\{.*\}\r\n$/m], true
 		output_buffer = output_buffer.sub($buffer_regex, "")
 		output_buffer.each_line do |line|
 			result << line

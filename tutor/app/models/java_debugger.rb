@@ -180,15 +180,15 @@ class JavaDebugger < Debugger
 			input "print " + variable_name
 			output_buffer2 = buffer_until_complete.split("main").first
 			unless output_buffer1.match("instance")
-				result << output_buffer1
+				result << "global." + output_buffer1
 			end
 			if output_buffer1 != output_buffer2
 				unless output_buffer2.match("instance")
-					result << output_buffer2
+					result << "global." + output_buffer2
 				end
 			end
 		else
-			result << variable
+			result << "global." + variable
 		end
 		return result
 	end
@@ -220,7 +220,7 @@ class JavaDebugger < Debugger
 						input "print this." + field_name
 						field_result = buffer_until_complete
 						field_result = field_result.split(".").last.split("main").first
-						result << field_result
+						result << "global." + field_result
 					end
 				end
 			else
