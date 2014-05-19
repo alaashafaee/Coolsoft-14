@@ -329,7 +329,8 @@ debug_console = ->
 		append += "<tr class='info'><th>Global</th><th>Value</th></tr>"
 		globals = append + globals
 		globals += "</table>"
-	div.innerHTML = globals + content
+	# div.innerHTML = globals + content
+	div.innerHTML = globals
 	return
 
 # [View Variables - Story 3.7]
