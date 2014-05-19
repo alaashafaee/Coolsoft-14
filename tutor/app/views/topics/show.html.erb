@@ -1,9 +1,9 @@
 <div class= "left-box" >
 	<div class="xob">
-		<div class = "c_info panel-body" >
+		<div class = "course_info panel-body" >
 			<div class= "row c_title">
-				<div class="c_code"><%= @course.code %></div>
-				<div class="c_name"><%= link_to @course.name, @course, style: "color: black" %></div>
+				<div class="course_code"><%= @course.code %></div>
+				<div class="course_name"><%= link_to @course.name, @course, style: "color: grey" %></div>
 			</div>
 			<div class="row">
 				<div class="course_sem">
@@ -12,7 +12,7 @@
 				</div>
 			</div>
 		</div>
-		<div class = "course_info panel-body" >
+		<div class = "topic_info panel-body" >
 			<div class= "row course_title">
 				<div class="course_code"><%= Topic %> : </div>
 				<div class="course_name"><%= @topic.title %></div>

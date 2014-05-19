@@ -5,16 +5,12 @@
 				style="color:#808088; font-family:sans-serif; font-weight:lighter">
 				<h2>&raquo; Courses</h2>
 			</div>
-				<% if lecturer_signed_in? %>
-					<%= link_to "Add Course", new_course_path %>
-				<% end %>
 		</div>
 	</div>
 	<div class="well">
 		<% if @courses.any? %>
 			<div class="row">
 				<% @courses.each do |course| %>
-					<% if course.visible || lecturer_signed_in? %>
 					<div class="container col-sm-6">
 						<div class="well course-box" style="background-color: #D7DDE2 !important;">
 							<h3><%= link_to course.name, course %><hr></h3>
@@ -28,7 +24,6 @@
 							<% elsif student_signed_in? %>
 								<div class="row">
 									<div class="col-sm-4">
-
 									<% if lecturer_signed_in? %>
 									<% if current_lecturer.courses.find(course) %>
 										<%= link_to "Manage ", edit_course_path(course)%>	
@@ -48,11 +43,15 @@
 								</div>
 							<% end %>
 						</div>
-					<% end %>
 					</div>
 				<%end%>
 			</div>
 		<% end %>
-		<%= link_to "Sign up for a course" , {:controller => 'courses', :action => 'sign_up'}, class: 'course_sign_up' %>
+		<% if current_student %>
+			<%= link_to "Sign up for a course" , {:controller => 'courses', :action => 'sign_up'},
+			 class: 'course_sign_up' %>
+		<% elsif current_lecturer %>
+			<%= link_to "Add Course", new_course_path, class: 'course_sign_up' %>
+		<% end %>
 	</div>
 </div>
