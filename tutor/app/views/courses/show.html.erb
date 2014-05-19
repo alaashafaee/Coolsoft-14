@@ -6,8 +6,7 @@
 				<div class="course_name"><%= @course.name %></div>
 				<% if current_lecturer %>
 					<div class="course_manage">
-							<%= link_to "Manage", { :controller => 'courses', :action => 'edit',
-							:method => :get, :id => params[:id] }, class: ""	%>
+							<%= link_to "Manage", { :controller => 'courses', :action => 'edit' } %>
 					</div>
 				<% end %>
 			</div>
