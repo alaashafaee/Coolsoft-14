@@ -66,14 +66,14 @@
 			:value => @contest.description %>
 		</p>
 		<p>
-			<% if false %>
-			<%= link_to "Add problems", {:action => 'add_problems',
-				:id => @contest.id}, class: "btn btn-success",
-				style: "float: left; margin-left: 15px", method: :get %>
+			<% if true %>
+			<center><%= link_to "Add problems", {:action => 'add_problems',
+				:id => @contest.id}, class: "btn btn-success" %></center>
+			<br />
 			<% end %>
 		</p>
 		<p>
-			<%= f.submit "Update contest", class: "btn btn-info" %>
+			<center><%= f.submit "Update contest", class: "btn btn-info" %></center>
 		</p>
 	<% end %>
 </div>

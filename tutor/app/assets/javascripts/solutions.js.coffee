@@ -329,7 +329,8 @@ debug_console = ->
 		append += "<tr class='info'><th>Global</th><th>Value</th></tr>"
 		globals = append + globals
 		globals += "</table>"
-	div.innerHTML = globals + content
+	# div.innerHTML = globals + content
+	div.innerHTML = globals
 	return
 
 # [View Variables - Story 3.7]
@@ -351,6 +352,8 @@ debug_console = ->
 	content += "</table>"
 	if list_of_methods.length > 0
 		div.innerHTML = content
+	else
+		div.innerHTML = ""
 	return
 
 # [Debug - Story 3.6]

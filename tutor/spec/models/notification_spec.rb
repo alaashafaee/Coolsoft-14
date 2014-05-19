@@ -6,23 +6,23 @@ describe Notification do
 				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1,
 				link: "http://www.test.org/")
 		@course.save!
-		@lecturer = Lecturer.new(email: '1@lecturer.com', password: '123456789', 
-			password_confirmation: '123456789', name: 'LecturerI',
+		@lecturer = Lecturer.new(email: '1@lecturer.com', password: 'Aa123456789', 
+			password_confirmation: 'Aa123456789', name: 'LecturerI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
 		@lecturer.save!
-		@student1 = Student.new(email: '1@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'StudentI',
+		@student1 = Student.new(email: '1@student.com', password: 'Aa123456789', 
+				password_confirmation: 'Aa123456789', name: 'StudentI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				university: "GUC", semester: 4, faculty: "MET",major: "cs")
 		@student1.save!
-		@student2 = Student.new(email: '2@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'StudentII',
+		@student2 = Student.new(email: '2@student.com', password: 'Aa123456789', 
+				password_confirmation: 'Aa123456789', name: 'StudentII',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				university: "GUC", semester: 4, faculty: "MET",major: "cs")
 		@student2.save!
-		@student3 = Student.new(email: '3@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'StudentIII',
+		@student3 = Student.new(email: '3@student.com', password: 'Aa123456789', 
+				password_confirmation: 'Aa123456789', name: 'StudentIII',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				university: "GUC", semester: 4, faculty: "MET",major: "cs")
 		@student3.save!

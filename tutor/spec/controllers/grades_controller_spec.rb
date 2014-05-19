@@ -4,8 +4,8 @@ describe GradesController do
 
 	context "Create grade and update it" do
 		it "updates the requested grade" do
-			student = Student.new(email: '1@student.com', password: '123456789',
-			password_confirmation: '123456789', name: 'StudentI',
+			student = Student.new(email: '1@student.com', password: 'Aa123456789',
+			password_confirmation: 'Aa123456789', name: 'StudentI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			faculty: "MET", university: "GUC", major: "CS", semester: 6,
 			advising: false, probation: false)
@@ -27,8 +27,8 @@ describe GradesController do
 
 	context "Viewing all grades" do
 		it "grades hash is updated with student's grade" do
-			student = Student.new(email: '1@student.com', password: '123456789',
-			password_confirmation: '123456789', name: 'StudentI',
+			student = Student.new(email: '1@student.com', password: 'Aa123456789',
+			password_confirmation: 'Aa123456789', name: 'StudentI',
 			confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 			faculty: "MET", university: "GUC", major: "CS", semester: 6,
 			advising: false, probation: false)

@@ -31,8 +31,8 @@ describe ContestsController do
 		end
 
 		before (:all) do
-			@lecturer = Lecturer.new(email: '1@mo7adr.com', password: '123456789',
-				password_confirmation: '123456789', name: 'LecturerI',
+			@lecturer = Lecturer.new(email: '1@mo7adr.com', password: 'Aa123456789',
+				password_confirmation: 'Aa123456789', name: 'LecturerI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
 			@lecturer.save!
@@ -69,8 +69,8 @@ describe ContestsController do
 
 	context "CRUD" do
 		before (:all) do
-			@lecturer = Lecturer.new(email: '2@mo7adr.com', password: '123456789',
-				password_confirmation: '123456789', name: 'LecturerI',
+			@lecturer = Lecturer.new(email: '2@mo7adr.com', password: 'Aa123456789',
+				password_confirmation: 'Aa123456789', name: 'LecturerI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				degree: "PhD", university: "GUC", department: "MET")
 			@lecturer.save!
