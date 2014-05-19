@@ -1,43 +1,49 @@
 <!--  Name: The Show contest view 
     Author: Ahmed Atef
 -->
-<%= render "contests/show_timer" %>
-<table class="table table-striped table-bordered table-responsive">
-	<div align="center">
-		<h3><%= @contest.title %></h3>	
+<div class='left-row'>
+	<div class="container" style='width:100%'>
+		<%= render "contests/show_timer" %>
+		<table class="table table-striped table-bordered table-responsive">
+			<div align="center">
+				<h3><%= @contest.title %></h3>	
+			</div>
+			<% if @contest.start_time == nil || @contest.start_time > DateTime.now %>
+				<h1> The Contest hasnt started yet <h1>
+			<% else %>
+				<div class="contest_information">
+					<%= link_to "Standings",
+						"/contests/#{@contest.id}/standings" %>
+					<%= link_to "Registrants",
+						"/registrants/#{@contest.id}",
+							style: "padding: 100px;" %>
+				<div>
+				<% unless @problems.blank? %>
+					<tr>
+						<td>Problem Number</td>
+						<td>Title</td>
+						<td>Time limit</td>
+					</tr>
+					<% counter = 1 %>
+					<% @problems.each do |problem| %>
+						<tr>
+							<td>
+								<%= counter %> <br/>
+								<% counter = counter + 1 %>
+							</td>
+							<td> 
+								<%= link_to problem.title,:controller =>'cproblems',:action =>'show',
+									:contest_id => @contest.id %><br/>
+							</td>
+							<td>
+								<%= problem.time_limit %><br/>
+							</td>
+						</tr>
+					<% end %>
+				<% else %>
+					No Problems yet in this contest
+				<% end %>
+			<% end %>	
+		</table>
 	</div>
-	<% if @contest.start_time == nil || @contest.start_time > DateTime.now %>
-		<h1> The Contest hasnt started yet <h1>
-	<% else %>
-		<%= link_to "Standings",
-			"/contests/#{@contest.id}/standings" %>
-		<%= link_to "Registrants",
-			"/registrants/#{@contest.id}",
-				style: "padding: 100px;" %>
-		<% unless @problems.blank? %>
-			<tr>
-				<td>Problem Number</td>
-				<td>Title</td>
-				<td>Time limit</td>
-			</tr>
-			<% counter = 1 %>
-			<% @problems.each do |problem| %>
-				<tr>
-					<td>
-						<%= counter %> <br/>
-						<% counter = counter + 1 %>
-					</td>
-					<td> 
-						<%= link_to problem.title,:controller =>'cproblems',:action =>'show',
-							:contest_id => @contest.id %><br/>
-					</td>
-					<td>
-						<%= problem.time_limit %><br/>
-					</td>
-				</tr>
-			<% end %>
-		<% else %>
-			No Problems yet in this contest
-		<% end %>
-	<% end %>	
-</table>
+</div>
