@@ -1,37 +1,53 @@
-<div>
-	<h1>Add a Teaching Assistant</h1>
-
-	<% if flash[:failure_notice] %>
-		<div class="alert alert-danger", style="display: inline-block;"><%= flash[:failure_notice] %></div>
-	<% end %>
-	<% if flash[:success_notice] %>
-		<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_notice] %></div>
-	<% end %>
-	<br>
-
-	<%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
-		<% if @checkbox == true %>
-			<p>
-				<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
-			</p>
-			<% else %>
-			<p>
-				<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
-			</p>
-		<% end %>
-		<p>
-			<%= f.submit "Add TA", class: "btn btn-success"%>
-		</p>	
-	<% end %>
+<div class="left-row">
+	<div class="row well add-ta-header">
+		<h1>Add a Teaching Assistant</h1>
+		<hr>
+	</div>
 
 	<div>
-		<% if @checkbox == true %>
-			<% str = "Show only TAs I worked with" %>
-		<% else %>
-			<% str = "Show All TAs" , @checkbox = nil%>
+		<% if flash[:failure_notice] %>
+			<div class="alert alert-danger", style="display: inline-block;"><%= flash[:failure_notice] %></div>
 		<% end %>
-		<div> 
-			<%= button_to str, {:controller => 'teaching_assistants', :action => 'new', check: @checkbox}, class: "btn btn-success"%> 
-		</div> 
+		<% if flash[:success_notice] %>
+			<div class="alert alert-success", style="display: inline-block;"><%= flash[:success_notice] %></div>
+		<% end %>
+	</div>
+	<br>
+	<div class="well">
+		<%= form_for :teaching_assistant, url: {action: "create"} do  |f| %>
+			<div class="row">
+				<div class="col-sm-2 col-sm-offset-4">
+					<% if @checkbox == true %>
+						<p>
+							<%= select("teaching_assistant", "id", TeachingAssistant.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+							<% str = "Show only TAs I worked with" %>
+						</p>
+					<% else %>
+						<p>
+							<%= select("teaching_assistant", "id", current_lecturer.worked_with.find(:all).collect{|p| [p.name ,p.id ] }, {:prompt => 'Select'}) %>
+							<% str = "Show All TAs" , @checkbox = nil%>
+						</p>
+					<% end %>
+				</div>
+				<div class="col-sm-4">
+					<%= button_to str, {:controller => 'teaching_assistants', :action => 'new', check: @checkbox}, class: "btn btn-success", style:""%> 
+				</div>
+
+			</div>
+			<p>
+				<%= f.submit "Add TA", class: "btn btn-success"%>
+			</p>	
+		<% end %>
+
+		<div>
+			<% if @checkbox == true %>
+				
+			<% else %>
+				
+			<% end %>
+			<div> 
+				
+			</div> 
+		</div>
 	</div>
 </div>
