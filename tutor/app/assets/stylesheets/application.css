@@ -28,10 +28,6 @@ body .container {
 	
 }
 
-a {
-	color: #378195 !important;
-}
-
 ::-webkit-scrollbar {
     width: 1px;
 }
