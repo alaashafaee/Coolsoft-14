@@ -1,9 +1,9 @@
 <div class= "left-box" >
 	<div class="xob">
-		<div class = "c_info panel-body" >
+		<div class = "course_info panel-body" >
 			<div class= "row c_title">
-				<div class="c_code"><%= @course.code %></div>
-				<div class="c_name"><%= link_to @course.name, @course, style: "color: black" %></div>
+				<div class="course_code"><%= @course.code %></div>
+				<div class="course_name"><%= link_to @course.name, @course, style: "color: grey" %></div>
 			</div>
 			<div class="row">
 				<div class="course_sem">
@@ -11,10 +11,12 @@
 					Class <%= @course.year %>
 				</div>
 			</div>
-		</div>		
+		</div>
 		<div class = "course_info panel-body" >
 			<div class= "row course_title">
-				<div class="course_code"><%= @topic.title %> | </div>
+				<div class="course_code">
+					<%= link_to @topic.title, {controller: 'topics', action: 'show', id: params[:id]},  style: "color: gray" %> | 
+				</div>
 				<div class="course_name"><%= @track.title %></div>
 			</div>
 		</div>	
@@ -45,7 +47,8 @@
 						<% openarrow = "glyphicon-chevron-right" %>
 
 					<% end %>
-					<div class="panel panel-default">
+					<br>
+					<div class="bars panel panel-default">
 						<div class="panel-title list-group-item list-group-item-info">
 							<a class="icon glyphicon <%= openarrow %>"
 								href="#<%= problem.id.to_s %>"

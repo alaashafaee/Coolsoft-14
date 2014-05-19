@@ -441,14 +441,17 @@ debug_console = ->
 				out.html(content)
 				contest_id = document.getElementById('contest_id').innerHTML
 				contest_problem_submission(i, contest_id, problem_id)
+			else if problem_type == "AssignmentProblem" 
+				content = "<font color ='green'>Solution has been submitted succefully</font>"
+				out.html(content)
 				return
 			for i in data
-				if i['success']
+				if !i['last'] && i['success']
 					content += "<tr><td>" + "<font color ='green'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='green'>#{i['response']}</font>" +
 						"</td></tr>"
-				else
+				else if !i['last'] && !i['success']
 					content += "<tr><td>" + "<font color ='red'>#{i['test_case']}</font>" +
 						"</td>"
 					content += "<td>" + "<font color ='red'>#{i['response']}</font>"+

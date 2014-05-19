@@ -3,7 +3,9 @@
 		<div class = "course_info panel-body" >
 			<div class= "row c_title">
 				<div class="course_code"><%= @course.code %></div>
-				<div class="course_name"><%= link_to @course.name, @course, style: "color: grey" %></div>
+				<div class="course_name">
+					<%= link_to @course.name, @course, style: "color: grey" %>
+				</div>
 			</div>
 			<div class="row">
 				<div class="course_sem">
@@ -11,20 +13,43 @@
 					Class <%= @course.year %>
 				</div>
 			</div>
-		</div>
-		<label><%= @topic.title %></label>\
-		<label><%= @track.title %></label>
-		<br /><br />
+			<div class= "row c_title">
+				<div class="course_code">
+					<%= link_to @topic.title, {controller: 'topics', action: 'show', id: @topic.id},  style: "color: gray" %> | 
+				</div>
+				<div class="course_code">
+					<%= link_to @track.title, {controller: 'tracks',
+						action: 'show', id: @track.id},  style: "color: gray" %>
+				</div>
+			</div>
+		</div>	
+
+		<br><br>
+
 		<div id="fb-root"></div>
 		<div class='problem'>
-			<img src="/assets/facebooksharebutton.png" class="fb-button" style="float: right; width: 32px; height: 32px;" onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>
-			<label><%= @problem.title %></label><br/>
-			<%= @problem.description %>
+			<% if !lecturer_signed_in? %>
+				<img src="/assets/facebooksharebutton.png" class="fb-button" 
+				style="float: right; width: 32px; height: 32px;" 
+				onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>
+			<% end %>
+			<div class='problem_title'>
+				<label><%= @problem.title %></label>
+			</div>
+			<br/><br/>
+
+			<div class="problem_desc">
+				<%= @problem.description %>
+			</div>
+
+			<br><br>
+
+			<%= render partial: "solutions/test_cases_time_limit" %>
+
 			<table width='100%'>
 				<tr>
 					<td width='80%'>
 						<% if student_signed_in? %>
-							
 							<% track_progess = TrackProgression.get_progress(current_student,
 							@problem.track.topic) %>
 		 					<% if track_progess >= @problem.track.difficulty %>

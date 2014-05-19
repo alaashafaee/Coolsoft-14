@@ -6,11 +6,13 @@
 			:action => 'index', :id => @assignment.id} %></li>
 	</ul>
 	<%= flash[:notice] %>
+	<%= flash[:alert] %>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
 			<% if flash[:notices] %>
 				<div class = "alert alert-success"> Problem  is now added </div>
 			<% end %>
+				<div class = "alert alert-success"> <%= flash[:alert] %> </div>
 			<% if @new_problem.errors.any? %>
 				<div id="error_explanation">
 					<h2><%= pluralize(@new_problem.errors.count, "error") %>
