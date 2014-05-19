@@ -1,9 +1,10 @@
 
 
 <div>
-	<div style="margin-left:10px; margin-top:5px; float:left">
-		<div style="float:left; margin:5px; margin-right:10px;">
-			<img src="/assets/lang_w.png" style="height:32px; width:32px; float:left;"></img>
+	<div style="margin-left:5px; margin-top:5px; float:left;">
+		
+		<div style="float:left; margin-right:10px; margin-top:3px;">
+			<img src="/assets/lang_w.png" style="height:26px; width:26px; float:left;"></img>
 		</div>
 
 		<div style="float:left">
@@ -13,8 +14,8 @@
 			</select>
 		</div>
 
-		<div style="float:left; margin:5px; margin-right:10px; margin-left:10px;">
-			<img src="/assets/theme_w.png" style="height:32px; width:32px; float:left;"></img>
+		<div style="float:left; margin-right:10px; margin-left:10px; margin-top:3px;">
+			<img src="/assets/theme_w.png" style="height:26px; width:26px; float:left;"></img>
 		</div>
 
 		<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="a7" data-width="auto">
@@ -29,26 +30,24 @@
 			<option value="github">github</option>
 			<option value="dreamweaver">dreamweaver</option>
 		</select> 
-	</div>
 
-	<div style="margin-left:10px; margin-top:5px; float:left">
-		<div style="float:left; margin:5px;">
-			<img src="/assets/increase_font_w.png" onClick="increaseFont()" style="height:32px; width:32px; cursor:pointer; float:left;" title="Increase Font"></img>
-		</div>
-
-		<div style="float:left; margin:5px;">
-			<img src="/assets/decrease_font_w.png" onClick="decreaseFont()" style="height:32px; width:32px; cursor:pointer; float:left;" title="Decrease Font"></img>
+		<div style="float:right; margin-top:3px; margin-left:5px;">
+			<img src="/assets/increase_font_w.png" onClick="increaseFont()" style="height:24px; width:24px; cursor:pointer; margin-left:5px; float:left;" title="Increase Font"></img>
+		
+			<img src="/assets/decrease_font_w.png" onClick="decreaseFont()" style="height:24px; width:24px; cursor:pointer; margin-left:5px; float:left;" title="Decrease Font"></img>
 		</div>
 	</div>
 	<%= hidden_field :problem, :default_code, value: @snippet %>
 <br><br><br>
 
 <!-- Add editor -->
+<div style="margin-top:-10px;">
 <pre id="editor">public class CoolSoft {
 	public static void main(String [] args) {
 &#09;&#09;
 	}
 }</pre>
+</div>
 
 </div>
 
@@ -61,5 +60,7 @@
 		border-style: dashed;
 		border-color: rgb(248,248,248);
 		color: rgb(248,248,248);
+		height: 32px;
+		padding: 5px;
 	}
 </style>
