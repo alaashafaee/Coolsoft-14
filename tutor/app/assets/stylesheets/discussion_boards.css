@@ -77,3 +77,10 @@
 	}
 	
 }
+
+
+.disabled {
+	font-size: 1em;
+	color: #cc000a !important;
+	text-align: center;
+}
