@@ -61,8 +61,9 @@ class AssignmentProblemsController < ApplicationController
 		@assignment = Assignment.find_by_id(session[:assignment_id])
 	 	@sproblems = Array.new
 	 	@check = Array.new
-	 	if params[:checkbox].empty?
-	 		flash[:notice] = "Please select problems to be saved"
+	 	if params[:checkbox].nil? || params[:checkbox].empty?
+	 		flash[:alert] = "Please select problems to be saved"
+	 		redirect_to :back
 	 	else
 			params[:checkbox].each do |check|
 				@problem_select = Problem.find_by_id(check)
