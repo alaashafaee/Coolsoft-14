@@ -836,8 +836,8 @@ puts("# ----------------------- Assignments ----------------------- ")
 
 puts("# ----------------------- Grades ----------------------- ")
 
-	Grade.create(grade: 100, student_id: 1, problem_id: 1)
-	Grade.create(grade: 80, student_id: 1, problem_id: 2)
+	# Grade.create(grade: 100, student_id: 1, problem_id: 1)
+	# Grade.create(grade: 80, student_id: 1, problem_id: 2)
 
 puts("# ----------------------- Notifications ----------------------- ")
 	Notification.create(message: "<a href='courses/1'>Dr wael Acknowledged your work in this course</a>", seen: false)
@@ -846,10 +846,10 @@ puts("# ----------------------- Notifications ----------------------- ")
 	Notification.create(message: " message", seen: true)
 
 puts("# ----------------------- Notes ----------------------- ")
-	Note.create(content:"Note1", line: 1, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
-	Note.create(content:"Note2", line: 2, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
-	Note.create(content:"Note3", line: 3, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
-	Note.create(content:"Note4", line: 4, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	# Note.create(content:"Note1", line: 1, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	# Note.create(content:"Note2", line: 2, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	# Note.create(content:"Note3", line: 3, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
+	# Note.create(content:"Note4", line: 4, solution_id: 1, owner_id: 1, owner_type: nil, created_at: "2014-05-16 17:22:16", updated_at: "2014-05-16 17:22:16")
 
 puts("# -----------------------Tags----------------------- ")
 	Tag.create(name: "Java")
@@ -926,8 +926,8 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		Lecturer.first.assignments << Assignment.find_by_id(3)
 		Lecturer.first.assignments << Assignment.find_by_id(4)
 	## Grades
-		Lecturer.first.grades << Grade.first
-		Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
+		# Lecturer.first.grades << Grade.first
+		# Lecturer.find_by_id(2).grades << Grade.find_by_id(2)
 	## Notifications
 		Lecturer.first.notifications << Notification.first
 		Lecturer.first.notifications << Notification.find_by_id(2)
@@ -988,8 +988,8 @@ puts("# ----------------------- Students ----------------------- ")
 		Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(8)
 		Student.find_by_id(3).contest_progresses << ContestProgress.find_by_id(9)
 	## Grades
-		Student.first.grades << Grade.first
-		Student.first.grades << Grade.find_by_id(2)
+		# Student.first.grades << Grade.first
+		# Student.first.grades << Grade.find_by_id(2)
 
 puts("# ----------------------- TeachingAssistants ----------------------- ")
 	## Courses
@@ -1170,7 +1170,7 @@ puts("# ----------------------- Assignment ----------------------- ")
 
 puts("# ----------------------- Grades ----------------------- ")
 	## Problems
-		Grade.first.update(problem_id:Assignment.first.problems.first.id)
-		Grade.find_by_id(2).update(problem_id:Assignment.first.problems.find_by_id(2).id)
+		# Grade.first.update(problem_id:Assignment.first.problems.first.id)
+		# Grade.find_by_id(2).update(problem_id:Assignment.first.problems.find_by_id(2).id)
 
 puts("# --------------------------------------------------------- ")
