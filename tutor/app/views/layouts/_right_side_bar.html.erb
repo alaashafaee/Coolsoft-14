@@ -23,7 +23,8 @@
 			<div class="panel-group">
 	  			<div class="panel panel-default">
 					<% if next_problems_to_solve != nil then %>
-							<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#Nextproblems">
+							<div class="panel-heading icon glyphicon glyphicon-chevron-right"
+							data-toggle="collapse" data-parent="#accordion" href="#Nextproblems">
 								Next problems to solve
 							</div>
 							<div id="Nextproblems" class="panel-collapse collapse">
@@ -59,7 +60,9 @@
 				<div class="panel panel-default">
 					<% recommended_problems = current_student.getClassMatesRecommendations 
 					if recommended_problems != nil then %>
-						<div class="panel-heading" data-toggle="collapse" data-parent="#accordion"href="#ClassmateRecommendations">
+						<div class="panel-heading icon glyphicon glyphicon-chevron-right"
+							data-toggle="collapse" data-parent="#accordion"
+							href="#ClassmateRecommendations">
 							Classmates Recommendations
 						</div>
 						<div id="ClassmateRecommendations" class="panel-collapse collapse">
@@ -87,7 +90,8 @@
 		<div class="right_side list-group table">
 			<div class="panel-group">
 				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#SystemRecommendation">
+					<div class="panel-heading icon glyphicon glyphicon-chevron-right"
+					data-toggle="collapse" data-parent="#accordion" href="#SystemRecommendation">
 						System Recommendations
 					</div>
 					<div id="SystemRecommendation" class="panel-collapse collapse">

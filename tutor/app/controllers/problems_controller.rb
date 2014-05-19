@@ -64,11 +64,14 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny + Ahmed Osam
 	def edit
 		if lecturer_signed_in? || teaching_assistant_signed_in?
-			session[:problem_id] = params[:problem_id]
-			@problem = Problem.find_by_id(session[:problem_id])
-			@track = Track.find_by_id(@problem.track_id)
-			@topic = Topic.find_by_id(@track.topic_id)
-			@tracks = Track.where(topic_id: @track.topic_id)
+			@session = {}
+			@session[:problem_id] = params[:id] || params[:problem_id]
+			@problem = Problem.find_by_id(@session[:problem_id])
+			@track = @problem.track
+			params[:track_id] = @track.id
+			@topic = @track.topic
+			@tracks = @topic.tracks
+			params[:model_answer_id] = @problem.model_answers.first.id
 			@snippet = @problem.snippet
 		else
 			render ('public/404')
@@ -85,7 +88,7 @@ class ProblemsController < ApplicationController
 	# Author: Abdullrahman Elhusseny + Ahmed Osam
 	def new
 		if lecturer_signed_in? || teaching_assistant_signed_in?
-			session[:track_id] = params[:track_id]
+			session[:track_id] = params[:id]
 			@problem = Problem.new
 			if session[:track_id].blank?
 				render ('public/404')
