@@ -2,10 +2,11 @@ class SolutionsController < ApplicationController
 
 	# [Code Editor: Write Code - Story 3.3]
 	# Creates a solution for a problem that the student chose
-	#	and outputs 2 flash messages for success and failure scenarios
 	# Parameters:
-	#	solution_params: submitted from the form_for
-	# Returns: none
+	#	solution_params: the parameters needed for the submitted solution
+	# Returns: 
+	#	JSON object containing the results of running the testcases of
+	#		the submitted solution
 	# Author: MOHAMEDSAEED
 	def create
 		if lecturer_signed_in? || teaching_assistant_signed_in?
@@ -18,7 +19,8 @@ class SolutionsController < ApplicationController
 		time = param[:time]
 		problem_type = param[:problem_type]
 		class_name = param[:class_name]
-		result = SolutionsLayer.validate("java", code, student, problem,
+		lang = param[:lang]
+		result = SolutionsLayer.validate(lang, code, student, problem,
 			problem_type, class_name, time)
 		render json: result
 	end
@@ -39,8 +41,9 @@ class SolutionsController < ApplicationController
 		code = params[:code]
 		problem_type = params[:problem_type]
 		class_name = params[:class_name]
-		cases = if params[:input] then params[:input] else "" end
-		result = SolutionsLayer.execute("java", code, id, pid,
+		lang = params[:lang]
+		cases = if params[:case] then params[:case] else "" end
+		result = SolutionsLayer.execute(lang, code, id, pid,
 			problem_type, class_name, cases)
 		render json: result
 	end
@@ -58,9 +61,67 @@ class SolutionsController < ApplicationController
 		problem = param[:problem_id]
 		problem_type = param[:problem_type]
 		class_name = param[:class_name]
-		compiler_feedback = SolutionsLayer.compile("java", code, student, 
+		lang = param[:lang]
+		compiler_feedback = SolutionsLayer.compile(lang, code, student, 
 			problem, problem_type, class_name)
 		render json: compiler_feedback
+	end
+
+	# [Mark Solution - Story 4.29]
+	# Allows a TA to mark a solution of a student
+	# Parameters:
+	#	submission_id: the id of the solution to be marked
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
+	def mark_solution
+		if lecturer_signed_in? || teaching_assistant_signed_in?
+			@solution = Solution.find_by_id(params[:submission_id])
+			if !@solution.blank?
+				@lines = @solution.code.split("\n")
+				@notes = Hash.new
+				@counter = 0
+				@lines.each do |line|
+					@counter+= 1
+					@notes[@counter]= Note.where(solution_id: @solution.id, line: @counter).last
+				end
+				@student = Student.find_by_id(@solution.student_id)
+				@problem = AssignmentProblem.find_by_id(@solution.problem_id)
+				@grade = Grade.where(problem_id: @problem.id, student_id: @student.id).first
+				@course = @problem.assignment.course
+				@can_edit = @course.can_edit(current_lecturer)
+				@can_edit||= @course.can_edit(current_teaching_assistant)
+				if !@can_edit
+					render ('public/404')
+				end
+			else
+				render ('public/404')
+			end
+		else
+			render ('public/404')
+		end
+	end
+
+	# [Mark Solution - Story 4.29]
+	# Allows a TA to view all submitted solutions to a specific assignment
+	# Parameters:
+	#	problem_id: the id of the assignment problem to view its submissions
+	# Returns: none
+	# Author: Abdullrahman Elhusseny
+	def view_submissions
+		@problem = AssignmentProblem.find_by_id(params[:problem_id])
+		@submissions = @problem.solutions.group(:student_id)
+		@students = Hash.new
+		@counter = 0
+		@submissions.each do |submission|
+			@counter+=1
+			@students[@counter] = Student.find_by_id(submission.student_id)
+		end
+		@course = @problem.assignment.course
+		@can_edit = @course.can_edit(current_lecturer)
+		@can_edit||= @course.can_edit(current_teaching_assistant)
+		if !@can_edit
+			render ('public/404')
+		end
 	end
 
 	private
@@ -69,11 +130,14 @@ class SolutionsController < ApplicationController
 	# Parameters:
 	# 	code: The written code for the problem
 	# 	problem_id: Hidden field for problem id
+	#	time: The time taken by the student to solve the problem
+	#	class_name: the name of the class to be used
+	#	problem_type: the type of the problem to be solved
 	# Returns:
 	# 	none
 	# Author: MOHAMEDSAEED
 	def solution_params
-		params.permit(:code, :problem_id, :time, :class_name, :problem_type)
+		params.permit(:code, :problem_id, :time, :class_name, :problem_type, :lang)
 	end
 
 	# [Compiler: Test - Story 3.15]

@@ -9,7 +9,9 @@ class CproblemsController < ApplicationController
 	# 	@problem: the curretn opened problem
 	# Author: Ahmed Akram
 	def show
-		@contest = Contest.find_by_id(4)
+		puts "*************"
+		puts get_contest_id
+		@contest = Contest.find_by_id(params[:id])
 		@problem = Cproblem.find_by_id(params[:id])
 		if @problem.nil?
 			render "problem_not_found"
@@ -46,11 +48,15 @@ class CproblemsController < ApplicationController
 	# Parameters:
 	# 	none
 	# Returns:
-	# 	a hash consisting of contest_id, problem_id and status
+	# 	a hash consisting of the required parameters
 	# Author: Ahmed Akram
 	private
 	def get_params
 		params.permit(:contest_id, :cproblem_id, :status)
+	end
+
+	def get_contest_id
+		params.permit(:contest_id, :cproblem_id)
 	end
 
 end
