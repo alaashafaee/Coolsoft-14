@@ -13,28 +13,28 @@ puts("# ----------------------- Contributor ----------------------- ")
 	Contributor.create(name:"Mohamed Abdelhamed Metawaa", profile_image:"profile_img/metawaa.jpg", link:"");
 	Contributor.create(name:"Rami Khalil", profile_image:"profile_img/rami.jpg", link:"");
 	Contributor.create(name:"Ahmed Elassuty", profile_image:"profile_img/elassuty.JPG", link:"");
-	Contributor.create(name:"Abdullrahman Elhusseny", profile_image:"", link:"");
-	Contributor.create(name:"Rana Ahmed Elnagar", profile_image:"", link:"");
-	Contributor.create(name:"Mohamed Fadel", profile_image:"", link:"");
+	Contributor.create(name:"Abdullrahman Elhusseny", link:"");
+	Contributor.create(name:"Rana Ahmed Elnagar", link:"");
+	Contributor.create(name:"Mohamed Fadel", link:"");
 	Contributor.create(name:"Ebrahim Serag", profile_image:"profile_img/serag.jpg", link:"");
-	Contributor.create(name:"Ahmed Osam", profile_image:"profile_img/metawaa.jpg", link:"");
-	Contributor.create(name:"Abanoub Mimi", profile_image:"profile_img/osam.jpg", link:"");
+	Contributor.create(name:"Ahmed Osam", profile_image:"profile_img/osam.gif", link:"");
+	Contributor.create(name:"Abanoub Mimi", link:"");
 	Contributor.create(name:"Ahmed Mohamed Magdi", profile_image:"profile_img/magdi.jpg", link:"");
 	Contributor.create(name:"Khaled Helmy", profile_image:"profile_img/khalid.jpg", link:"");
-	Contributor.create(name:"Ahmed Moataz", profile_image:"profile_img/moataz.jpg", link:"");
-	Contributor.create(name:"Mussab ElDash", profile_image:"", link:"");
+	Contributor.create(name:"Ahmed Moataz", profile_image:"profile_img/moataz.png", link:"");
+	Contributor.create(name:"Mussab ElDash", profile_image:"profile_img/mussab.jpg", link:"");
 	Contributor.create(name:"Lin Kassem", profile_image:"profile_img/lin.jpg", link:"");
-	Contributor.create(name:"Rania Abdel Fattah", profile_image:"", link:"");
-	Contributor.create(name:"Muhammad Mamdouh", profile_image:"", link:"");
-	Contributor.create(name:"Mohamed Saeed", profile_image:"", link:"");
-	Contributor.create(name:"Ahmed Atef", profile_image:"", link:"");
-	Contributor.create(name:"Nadine Adel", profile_image:"profile_img/nadine.jpg", link:"");
-	Contributor.create(name:"Mohab Ghanim", profile_image:"profile_img/mohab.jpg", link:"");
+	Contributor.create(name:"Rania Abdel Fattah", link:"");
+	Contributor.create(name:"Muhammad Mamdouh", link:"");
+	Contributor.create(name:"Mohamed Saeed", link:"");
+	Contributor.create(name:"Ahmed Atef", link:"");
+	Contributor.create(name:"Nadine Adel", profile_image:"profile_img/nadine.png", link:"");
+	Contributor.create(name:"Mohab Ghanim", profile_image:"profile_img/mohab.png", link:"");
 	Contributor.create(name:"Ahmed Akram", profile_image:"profile_img/akram.png", link:"");
-	Contributor.create(name:"Ahmed Sharaf", profile_image:"", link:"");
+	Contributor.create(name:"Ahmed Sharaf", link:"");
 	Contributor.create(name:"Amir George", profile_image:"profile_img/amir.jpg", link:"");
-	Contributor.create(name:"Mohamed El-Mahdi", profile_image:"", link:"");
-	Contributor.create(name:"Alaa Shafaee", profile_image:"", link:"");
+	Contributor.create(name:"Mohamed El-Mahdi", link:"");
+	Contributor.create(name:"Alaa Shafaee", link:"");
 
 puts("# ----------------------- Admins ----------------------- ")
 	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
