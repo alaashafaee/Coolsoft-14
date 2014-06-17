@@ -18,6 +18,7 @@ class Student < ActiveRecord::Base
 	validate :duplicate_email
 	validate :password_complexity
 	validate :letters_only
+	validate :guc_mail
 	validates :name, presence: true
 	validates :university, presence: true
 	validates :faculty, presence: true
@@ -226,6 +227,18 @@ class Student < ActiveRecord::Base
 				SystemReminders.reminder_email(student).deliver
 			end
 
+		end
+	end
+
+	# Checks if the e-mail used in the registration process is the GUC mail
+	# Parameters: none
+	# Returns: none
+	# Author: Lin Kassem
+	def guc_mail
+		regex = /\A([^\s,;0-9`!@#\$%\^&*+_=]+)[.]
+			([^\s,;0-9`!@#\$%\^&*+_=]+)@student.guc.edu.eg\z/
+		if email.present? and not email.match(regex)
+			errors.add(:email, "must be in the form user@guc.edu.eg")
 		end
 	end
 

@@ -18,6 +18,7 @@ class TeachingAssistant < ActiveRecord::Base
 	validate :duplicate_email
 	validate :password_complexity
 	validate :letters_only
+	validate :guc_mail
 	validates :name, presence: true
 	validates :graduated_from, presence: true
 	validates :graduated_year, presence: false, numericality: {only_integer: true, 
@@ -122,6 +123,18 @@ class TeachingAssistant < ActiveRecord::Base
 		validates_format_of :graduated_from, :with => regex
 		validates_format_of :university, :with => regex
 		validates_format_of :department, :with => regex
+	end
+
+	# Checks if the e-mail used in the registration process is the GUC mail
+	# Parameters: none
+	# Returns: none
+	# Author: Lin Kassem
+	def guc_mail
+		regex = /\A([^\s,;0-9`!@#\$%\^&*+_=]+)[.]
+			([^\s,;0-9`!@#\$%\^&*+_=]+)@student.guc.edu.eg\z/
+		if email.present? and not email.match(regex)
+			errors.add(:email, "must be in the form user@guc.edu.eg")
+		end
 	end
 
 end
