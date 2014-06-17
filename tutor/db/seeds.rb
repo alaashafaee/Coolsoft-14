@@ -37,7 +37,7 @@ puts("# ----------------------- Contributor ----------------------- ")
 	Contributor.create(name:"Alaa Shafaee", link:"");
 
 puts("# ----------------------- Admins ----------------------- ")
-	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+	l = AdminUser.new(email: 'admin@admin.com', password: 'password', password_confirmation: 'password')
 	l.save!
 
 puts("# ----------------------- Lecturers ----------------------- ")
