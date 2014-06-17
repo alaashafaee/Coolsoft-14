@@ -1,0 +1,39 @@
+
+<div class="left-content">
+	<% provide(:title, "Edit Assignment") %>
+		<%= form_for(@assignment) do |f| %>
+			<% if flash[:notice1] %>
+				<div class = "alert alert-success"> Problem  is now added </div>
+			<% end %>
+		
+			<h2> Edit Assignment </h2>
+			<p><h3><%= f.label :Title %></h3></p>
+			<% unless @assignment.errors[:title].blank? %>
+				<span id="error_explanation">
+					* Title <%= @assignment.errors[:title].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<p><%= f.text_field :title, placeholder:"Title", class:"form-control" %></p>
+			<h3><%= f.label :Description %></h3>
+			<p><%= f.text_area :description,
+				placeholder:"Description", :cols => "60", :rows => "10", class:"form-control" %>
+			</p>
+			<p><h3><%= f.label :Due_date %></h3></p>
+			<% unless @assignment.errors[:due_date].blank? %>
+				<span id="error_explanation">
+					* Date <%= @assignment.errors[:due_date].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<p><%= f.date_select :due_date, {:start_year => Date.today.year+1,
+				:end_year => Date.today.year, :order => [:day, :month, :year],
+				:value => Time.now} %>
+			</p>
+			
+			<br>
+			<p>
+				<%= f.submit "Save changes", class: "btn btn-large btn-info" %>
+			</p>
+		<% end %>
+</div>

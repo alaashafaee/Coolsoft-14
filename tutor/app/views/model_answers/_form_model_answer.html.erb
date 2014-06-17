@@ -1,0 +1,18 @@
+<div id="div1">
+	<% if flash[:notice] %>
+		<div class= "alert alert-success"><%= flash[:notice] %></div>
+	<% end %>
+</div>
+<%= form_for :model_answer, url: model_answer_path(@answer),
+		method: :patch, remote: true do |model_answer| %>
+	<br><%= model_answer.label :Title %>
+	<h4 align ="left"><%= @answer.title %></h4>
+	<%= model_answer.text_field :title, :value => @answer.title,
+		class: "form-control",
+		style: "width:30%", :cols => "2", :rows => "1" %><br>
+	<%= model_answer.label :Answer %> 
+	<p><%= model_answer.text_area :answer, :value => @answer.answer,
+		class: "form-control",
+		style: "width:60%", :cols => "10", :rows => "10" %></p>
+	<%= model_answer.submit "Save changes", class: "btn btn-large btn-info" %>
+<% end %>

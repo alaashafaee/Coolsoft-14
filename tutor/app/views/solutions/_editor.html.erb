@@ -1,0 +1,66 @@
+
+
+<div>
+	<div style="margin-left:5px; margin-top:5px; float:left;">
+		
+		<div style="float:left; margin-right:10px; margin-top:3px;">
+			<img src="/assets/lang_w.png" style="height:26px; width:26px; float:left;"></img>
+		</div>
+
+		<div style="float:left">
+			<select id='mode' onchange="changeMode()" class="selectpicker" data-style="a7" data-width="auto">
+				<option value="java">Java</option>
+				<option value="python">Python</option>
+			</select>
+		</div>
+
+		<div style="float:left; margin-right:10px; margin-left:10px; margin-top:3px;">
+			<img src="/assets/theme_w.png" style="height:26px; width:26px; float:left;"></img>
+		</div>
+
+		<select id='theme' onchange="changeTheme()" class="selectpicker" data-style="a7" data-width="auto">
+			<option value="twilight">twilight</option>
+			<option value="eclipse">eclipse</option>
+			<option value="xcode">xcode</option>
+			<option value="chaos">chaos</option>
+			<option value="chrome">chrome</option>
+			<option value="clouds">clouds</option>
+			<option value="tomorrow_night_blue">night blue</option>
+			<option value="tomorrow_night_eighties">tomorrow night eighties</option>
+			<option value="github">github</option>
+			<option value="dreamweaver">dreamweaver</option>
+		</select> 
+
+		<div style="float:right; margin-top:3px; margin-left:5px;">
+			<img src="/assets/increase_font_w.png" onClick="increaseFont()" style="height:24px; width:24px; cursor:pointer; margin-left:5px; float:left;" title="Increase Font"></img>
+		
+			<img src="/assets/decrease_font_w.png" onClick="decreaseFont()" style="height:24px; width:24px; cursor:pointer; margin-left:5px; float:left;" title="Decrease Font"></img>
+		</div>
+	</div>
+	<%= hidden_field :problem, :default_code, value: @snippet %>
+<br><br><br><br><br>
+
+<!-- Add editor -->
+<div style="margin-top:-10px;">
+<pre id="editor">public class CoolSoft {
+	public static void main(String [] args) {
+&#09;&#09;
+	}
+}</pre>
+</div>
+
+</div>
+
+<style type="text/css">
+	.a7 {
+		background-color: rgb(35,35,35);
+		border-top-right-radius: 4px;
+		border-bottom-right-radius: 4px;
+		border: thin;
+		border-style: solid;
+		border-color: rgb(248,248,248);
+		color: rgb(248,248,248);
+		height: 32px;
+		padding: 5px;
+	}
+</style>

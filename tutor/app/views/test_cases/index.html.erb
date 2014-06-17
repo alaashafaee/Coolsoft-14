@@ -1,0 +1,64 @@
+<div class="left-row">
+	<div class="container" style='width:100%;'>
+		<div id = "crumbs">
+			<ul>
+				<li class="sub"><%= link_to "Problem", {:controller => 'problems', :action => 'edit',
+							:problem_id => session[:problem_id], :track_id => session[:track_id]},:method => :get %></li>
+				<li class="sub1"><a class="visit" style ="padding: 5px 15% 0 0px;">Test Cases</a> </li>
+						
+				<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'index',:problem_id => session[:problem_id], :track_id => session[:track_id]}, :style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"%> </li>
+				<li class="sub3"><a class = "preventclick" >Tips</a> </li>
+				<li class="sub4"><a class = "preventclick">Hints</a> </li>
+			</ul>
+		</div><br><br><br>
+		<div id="div1">
+			<% if flash[:notice] %>
+				<div class= "alert alert-danger"><%= flash[:notice] %></div>
+			<% end %>
+		</div>
+		<ul class = "navbar-brand pull-right"><%= link_to "Create Test Case",
+			{ :controller => 'test_cases', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id] },
+			{ class: 'btn btn-info' } %></ul><br><br>
+		<a href="#" return:false; class= "Lst" onclick= "toggle_visibility('foo1');
+				return false;" style="font:120px">Test Cases</a>
+		<div id="foo1">
+			<% if !@test_cases.any? %>
+				<p>You have no previous test cases</p>
+			<% end %>
+			<% if !@test_cases.empty? %>
+				<table class="table table-striped" style = "width:60%">
+					<thead>
+						<tr>
+							<th style ="width:20%">Input</th>
+							<th style ="width:20%">Output</th>
+							<th style ="width:20%">Edit</th>
+							<th style ="width:20%">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @test_cases.each do |test_case| %>
+							<tr>
+								<td><%= test_case.input %></td>
+								<td><%= test_case.output %></td>
+								<td><%= link_to " Edit", {:controller => 'test_cases',
+									:action => 'edit', :method => :get, :test_case_id => test_case.id, :track_id => session[:track_id], :problem_id => session[:problem_id]},
+										{class: 'btn btn-info btn-xs', style: "text-decoration:none"}%></td>
+								<td><%= button_to "Delete Test Case", 
+										{:controller => 'test_cases',:action => 'destroy',
+										:test_case_id => test_case.id},method: :delete,
+										class:'btn btn-danger btn-xs', :confirm => 
+										"Are you sure you want to delete this test case ?" %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>				
+				</table>
+			<% end %>
+		</div>
+		<div><ul class = "navbar-brand pull-right"><%= link_to "Return to Track",
+			{ :controller => 'tracks', :action => 'show', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :id => session[:track_id] },
+			{ class: 'btn btn-info' } %></ul>
+
+		</div>
+	</div>
+</div>

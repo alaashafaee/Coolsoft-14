@@ -1,6 +1,12 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-manage-container {
+	width: 100% !important;
+	background-color: #f6f6f6 !important;
+	border-radius: 2px;
+}
 .btn.btn-primary {
 	font-weight: bold;
 	font-family: Courier;
@@ -9,4 +15,256 @@
 #error_explanation {
 	color: red;
 }
+.course_title{
+	font-size: 2.5em;
+}
 
+.course_code {
+	float: left;
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+.course_name {
+	float: left;
+}
+
+.course_sem {
+	float: left;	
+	font-size: 1em;
+	padding-right: 0px;
+	padding-bottom: 20px;
+}
+
+.course_info{
+	padding-left: 30px;
+	margin-top: 30px;
+	border-bottom: 1px solid #D2D3D4;
+	color: #808088;
+}
+
+.course_description{
+	padding-left: 15px;
+	color: #808088;
+}
+
+.course_description p{
+	padding-top: 40px;
+	font-size: 1.5em;
+}
+
+.description-body{
+	font-size: 1.2em ;
+	padding-bottom: 40px;
+}
+
+.course_manage{
+	float: right;
+	padding-right: 20px;
+	padding-top: 0px;
+}
+
+.course_manage a{
+	font-size: 0.5em;
+	color: #2A6775 !important;
+}
+.course_manage a:hover{
+	color: #1E4A54 !important;
+}
+
+.view_discussion{
+	font-size: 1.5em;
+	padding-bottom: 50px;
+}
+
+.view_discussion a{
+	color: #2A6775 !important;	
+}
+
+.view_discussion a:hover{
+	color: #1E4A54 !important;
+}
+
+.topic-box h3 a {
+	color: #65656B;
+}
+
+.course-create-body {
+	text-align: center !important;
+	vertical-align: center !important;
+}
+
+.course-manage-main {
+	width: 100% !important;
+}
+
+.info-desc .submit-course {
+	float: right !important;
+}
+.info-desc .submit-course-container {
+	width: 100% !important;
+}
+
+.course-manage-main h1 font {
+	font-size: 1.0em !important;
+	font-weight: bold !important;
+}
+
+.side-tab-left {
+    border-bottom: none !important;
+    padding-top: 2px !important;
+}
+.side-tab-left {
+    border-right: 1px solid #ddd !important;
+}
+
+.side-tab-left li {
+    float: none !important;
+    margin-bottom: 2px !important;
+}
+
+.side-tab-left li {
+    margin-right: -1px !important;
+}
+
+.side-tab-left li.active a, .side-tab-left li.active a:hover, .side-tab-left li.active a:focus {
+    border-bottom-color: #dd0047 !important;   /* sector border */
+    border-right-color: transparent !important;
+    background-color: #e2e5d6 !important;
+}
+
+.side-tab-left li a {
+    border-radius: 4px 0 0 4px !important;
+    margin-right: 0 !important;
+    display:block !important;
+}
+
+.alert {
+	margin-left: 5% !important;
+	width: 90% !important;
+	background-color: #c23a34 !important;
+}
+
+.alert .danger-message font {
+	font-size: 0.6em !important;
+}
+
+.switch_sharing {
+	background-color: transparent;
+	border: none;
+	color: #378195 !important;
+	margin-top: -2px;
+}
+
+.course-box{
+	color : black;
+	min-height: 260px;
+}
+
+.course-box a {
+	color : #3B8FA3;
+}
+
+.course-box a:hover {
+	color : #2C3E50;
+}
+
+.topic-box{
+	height: 250px;
+	margin-bottom: 30px;
+}
+
+
+.hide-p {
+	margin-top: 3px;
+	background-color: #CF5044;
+	border-radius: 100px;
+	color: white;
+	transition: all 1s;
+}
+.danger-alert {
+	margin-left: 5% !important;
+	width: 90% !important;
+	background-color: #c23a34 !important;
+	border-radius: 10px;
+}
+
+.danger-alert .danger-title font {
+	color: #ffffff;
+}
+.danger-alert .danger-message font {
+	color: #ffffff;
+	font-size: 0.6em !important;
+}
+.show-p {
+	margin-top: 3px;
+	background-color: #96AB4F;
+	border-radius: 100px;
+	color: white;
+	transition: all 1s;
+}
+
+.hide-p:hover{
+	background-color: #FF6354;
+}
+.tab-pane .delete-course-bt  {
+	width:90% !important;
+	margin-left: 5% !important;
+	text-align: center;
+}
+
+.switch_sharing {
+	background-color: transparent;
+	border: none;
+	color: #2fb899;
+	margin-top: -2px;
+}
+
+.ta-main .more-links {
+	width:90% !important;
+	text-align:center;
+
+}
+.show-p:hover {
+	background-color: #BCD663;
+}
+.c-description-label{
+	height: 82px;
+	font-weight: lighter;
+	font-family: sans-serif;
+}
+
+.course_sign_up {
+	padding: 10px;
+	background-color: #2A6775;
+	border-radius: 5px;
+	font-size: 1em;
+	font-weight: lighter;
+	font-family: sans-serif;
+	color: #fff !important;
+}
+
+.course_sign_up:hover {
+	background-color: #3B8FA3;
+	color: white;
+}
+
+.tag-area {
+}
+
+.tag {
+	background-color: #C4DAE9;
+	font-size: 14px;
+	margin-right: 10px;
+	padding: 5px;
+	height: 30px;
+	color: #3B8FA3;
+	box-shadow: 0px 0px 1px #888888;
+	transition: all 1s;
+}
+
+.tag:hover{
+	cursor: pointer;
+	background-color: #A9BCC9;
+	color: #fff;
+}

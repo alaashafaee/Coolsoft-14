@@ -1,0 +1,71 @@
+<div class="left-row" style="padding:10px 10px 10px 10px;">
+	<h1>Create New Contest</h1>
+	<hr>
+	<%= form_for :contest, url: contests_path do |f| %>
+		<p>
+			<%= f.label :Title %><br>
+			<% unless @new_contest.errors[:title].blank? %>
+				<span id="error_explanation">
+					Title <%= @new_contest.errors[:title].join(", ") %>
+				</span>
+				<br>
+			<% end %>
+			<%= f.text_field :title, :value => @new_contest.title,
+			class: "form-control", style: "width: 300px", placeholder: "Title" %>
+		</p>
+		<p>
+			<%= f.label :Start_Time %><br />
+			<% unless @new_contest.errors[:start_time].blank? %>
+				<span id="error_explanation">
+					Start Time <%= @new_contest.errors[:start_time].join(", ") %>
+				</span>
+				<br>
+			<% end %>
+			<%= f.datetime_select :start_time, {:start_year => Date.today.year + 1,
+				:end_year => Date.today.year, :value => Time.now} %>
+		</p>
+		<p>
+			<%= f.label :End_Time %><br />
+			<% unless @new_contest.errors[:end_time].blank? %>
+				<span id="error_explanation">
+					End Time <%= @new_contest.errors[:end_time].join(", ") %>
+				</span>
+				<br>
+			<% end %>
+			<%= f.datetime_select :end_time, {:start_year => Date.today.year+1,
+				:end_year => Date.today.year, :value => Time.now} %>
+		</p>
+		<p>
+			<% if lecturer_signed_in? %>
+				<% @owner_courses = current_lecturer.courses %>
+				<% @owner_courses = @owner_courses.map {|x| x.name} %>
+			<% elsif teaching_assistant_signed_in? %>
+				<% @owner_courses = current_teaching_assistant.courses %>
+				<% @owner_courses = @owner_courses.map {|x| x.name} %>
+			<% end %>
+			<%= f.label :Course %><br>
+			<% unless @new_contest.errors[:course].blank? %>
+				<span id="error_explanation">
+					Course <%= @new_contest.errors[:course].join(", ") %>
+				</span>
+				<br>
+			<% end %>
+			<%= f.collection_select :course, @owner_courses, :to_s, :to_s,
+				:include_blank => false %>
+		</p>
+		<p>
+			<%= f.label :Description %><br>
+			<% unless @new_contest.errors[:description].blank? %>
+				<span id="error_explanation">
+					Description <%= @new_contest.errors[:description].join(", ") %>
+				</span>
+				<br>
+			<% end %>
+			<%= f.text_area :description, class: "form-control", style: "width: 300px",
+				placeholder: "Description", :value => @new_contest.description %>
+		</p>
+		<p>
+			<%= f.submit "Save", class: "btn btn-info" %>
+		</p>
+	<% end %>
+</div>

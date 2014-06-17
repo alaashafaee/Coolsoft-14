@@ -1,0 +1,69 @@
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row c_title">
+				<% a = Assignment.find(params['assignment_id']) %>
+				<div class="course_code"><%= a.course.code %></div>
+				<div class="course_name"><%= link_to a.course.name, @course, style: "color: grey" %></div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= a.course.semester %>
+					Class <%= a.course.year %>
+				</div>
+			</div>
+		</div>
+		<div class = "topic_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_name"><%= a.title %></div>
+			</div>
+		</div>		
+		<table class="table table-striped" style ="width: 90%">
+			<thead>
+				<tr>
+					<td class="table_element">
+						Student
+					</td>
+					<td width="5px"></td>
+					<% @problems.each do |problem| %>
+						<td width="5px"></td>
+						<td class="table_element">
+							<%= problem.title %>
+						</td>
+					<% end %>
+					<td width="5px"></td>
+					<td class="table_element">
+						Total Grade
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @counter = 1 %>
+				<% @students.each do |student| %>
+					<tr>
+						<td><%= student.name %></td>
+						<td width="5px"></td>
+						<% @total_grade = 0 %>
+						<% @total_final_grade = 0 %>
+						<% @problems.each do |problem| %>
+							<td width="5px"></td>
+							<td><%= @grades[@counter] %>/
+								<%= problem.final_grade %>
+							</td>
+							<% @total_grade += @grades[@counter] %>
+							<% @total_final_grade += problem.final_grade %>
+							<% @counter +=1 %>
+						<% end %>
+						<td width="5px"></td>
+						<td><%= @total_grade %>/<%= @total_final_grade %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<br><br><br>
+		<%= link_to "Back to assignment page",
+				{:controller => 'assignments', :action => 'show',
+				:id => @assignment.id},
+				class: "btn btn-info" %>
+	</div>
+</div>

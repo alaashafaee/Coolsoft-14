@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="input_container">
+		<div class="input_word">
+			Example Input
+		</div>
+		<br>
+		<div class="example_input">
+			<label style="border: none; white-space:pre"><%= @problem.test_cases.first.input %></label>
+		</div>
+	</div>
+
+	<div class="input_container">
+		<div class="input_word">
+			Example Output
+		</div>
+		<br>
+		<div class="example_input">
+			<% if @problem.test_cases.first %>
+				<label style="border: none; white-space:pre"><%= @problem.test_cases.first.output %></label>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="input_container">
+		<div class="input_word">
+			Time Limit
+		</div>
+		<br>
+		<div class="example_input">
+			<% if @problem.time_limit %>
+				<label style="border: none; white-space:pre"><%= @problem.time_limit %> Sec</label>
+			<% end %>
+		</div>
+	</div>
+
+</div>

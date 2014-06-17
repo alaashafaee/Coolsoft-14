@@ -1,0 +1,23 @@
+<!-- 
+	Author: Ahmed Akram
+ -->
+<div class="left-row">
+	<div class= "container" style="width:100%; padding-bottom:10px;">
+		<div id="header">
+			<h2 style="text-align: center;"><%= @contest.title %></h2>
+		</div>
+
+		<br><br>
+
+		<div id="description">
+			<h3 style="text-align: center;"><%= @problem.title %></h3>
+			<p style="font-size: 20px; color: gray"> <%= @problem.description %> </p>	
+		</div>
+
+		<br/>
+
+		<%= render partial: "solutions/test_cases_time_limit" %>
+
+		<%= render partial: "solutions/new" %>
+	</div>
+</div>

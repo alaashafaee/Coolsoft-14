@@ -1,3 +1,76 @@
+.problem_title {
+	text-align: center;
+	font-size: 30px;
+	color: rgb(52, 73, 94);
+}
+
+.problem_desc {
+	color: rgb(52, 73, 94);
+	font-size: 20px;
+	font-family:"Times New Roman";
+}
+
+.input_container {
+	float: left;
+	width: 20%;
+	margin-leftt: 150px;
+	height: 150px;
+}
+
+.input_word {
+	font-weight: bold;
+	text-align: center;
+	/*width: 90%;*/
+	margin: 0 auto;
+	color: rgb(239, 72, 54);
+}
+
+.example_input {
+	max-width: 20%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.output_container {
+	float: left;
+	width: 20%;
+	margin-leftt: 150px;
+	height: 150px;
+}
+
+.output_word {
+	font-weight: bold;
+	text-align: center;
+	/*width: 90%;*/
+	margin: 0 auto;
+	color: rgb(239, 72, 54);
+}
+
+.output_input {
+	max-width: 20%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.example_input:before, .example_input:after, .example_output:before, .example_output:after {
+    content: "";
+    height: 1px;
+    width: 35%px;
+    background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(50%,rgba(0,0,0,1)), color-stop(100%,rgba(0,0,0,0)));
+    background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
+    background: -o-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
+    background: -ms-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
+    background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 );
+    display: block;
+}
+
+.time_limit {
+	text-align: center;
+	color: rgb(239, 72, 54);
+}
+
 .editor {
 	background-color: black;
 	color: white;
@@ -14,3 +87,117 @@
 	float: left;
 }
 
+#crumbs ul {
+	list-style-type: none;
+}
+
+#crumbs ul li.sub {
+	position: absolute; margin-left: 0%;
+}
+
+#crumbs ul li.sub1 {
+	position: absolute; margin-left: 13.5%;
+}
+
+#crumbs ul li.sub2 {
+	position: absolute; margin-left: 27%;
+}
+
+#crumbs ul li.sub3 {
+	position: absolute; margin-left: 40.5%;
+}
+
+#crumbs ul li.sub4 {
+	position: absolute; margin-left: 54%;
+}
+
+#crumbs ul li a {
+	display: block;
+	height: 40px;
+	width: 150px;
+	background: #3498db;
+	text-align: right;
+	padding: 5px 30% 0 50px;
+	position: relative;
+	margin: 0 40px 0 0; 
+	list-style-type: none;
+	font-size: 20px;
+	text-decoration: none;
+	color: #fff;
+	font-style: bold;
+}
+
+#crumbs ul li a:before {
+	content: "";  
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 45px transparent #ecf0f1;
+	position: absolute; left: 0; top: 0;
+}
+
+#crumbs ul li a:after {
+	content: "";  
+	border-top: 25px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 45px transparent #3498db;
+	position: absolute; right: -40px; top: 0;
+}
+
+#crumbs ul li:first-child a {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#crumbs ul li:first-child a:before {
+	display: none;
+}
+
+#crumbs ul li:last-child a {
+	padding-right: 80px;
+	border-top-right-radius: 10px; border-bottom-right-radius: 10px;
+}
+
+#crumbs ul li:last-child a:after {
+	display: none;
+}
+
+#crumbs ul li a:hover {
+	background: #fa5ba5;
+}
+
+#crumbs ul li a:hover:after {
+	border-left-color: #fa5ba5;
+}
+
+#crumbs ul li a:active {
+	background: #2383C4;
+}
+
+#crumbs ul li a.visit {
+	background: #2C3E50;
+}
+
+#crumbs ul li a.visit:after {
+	border-left-color: #333;
+}
+
+#crumbs ul li a.preventclick{
+	pointer-events: none;
+	background: darkgray;
+}
+
+#crumbs ul li a.preventclick:after{
+	pointer-events: none;
+	border-left-color: darkgray;
+}
+
+#crumbs ul li a.preventclick:before{
+	pointer-events: none;
+}
+
+.fb-button {
+	width:10%;
+	height:3%;
+	margin_top:10px;
+	cursor:pointer;
+}

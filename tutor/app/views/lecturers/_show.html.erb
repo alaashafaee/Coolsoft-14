@@ -1,14 +1,15 @@
-<%= render 'layouts/profile' %> 
-		<li class = "active"><a href = "#tab1">Info</a></li>
-	</ul>
-	<div class = "tab-content">
-		<div id ="tab1" class = "tab active">
-			<p> <b>Name: </b><%= current_lecturer.name %></p>
-			<p> <b>Email: </b><%= current_lecturer.email %></p>
-			<p> <b>Degree: </b><%= current_lecturer.degree %></p>
-			<p> <b>Department: </b><%= current_lecturer.department %></p>
-			<p> <b>University: </b><%= current_lecturer.university %></p>
-			<p> <b>Joined on: </b><%= current_lecturer.created_at.to_date %></p>
+<div class="left-row">
+	<div class= "profile_info_row">
+		<%= image_tag(current_lecturer.profile_image_url.to_s, :class => "profile_picture") %>
+		<div class = "profile_info">
+			<p class="name"><%= current_lecturer.name %></p>
+			<div class="info">
+				<p><%= current_lecturer.email %></p>
+				<p> <b>Degree: </b><%= current_lecturer.degree %></p>
+				<p> <b>Department: </b><%= current_lecturer.department %></p>
+				<p> <b>University: </b><%= current_lecturer.university %></p>
+				<p> <b>Joined on: </b><%= current_lecturer.created_at.to_date %></p>
+			</div>
 		</div>
 	</div>
 </div>

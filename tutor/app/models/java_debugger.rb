@@ -1,26 +1,6 @@
-require "open3"
-class JavaDebugger
+class JavaDebugger < Debugger
 
 	#Methods
-
-	# [Debugger: Debug - Story 3.6]
-	# Gets the output from the output stream of the debugger
-	# 	until the passed regex is encountered
-	# Parameters:
-	# 	regex : The input regex to be encountered to return
-	# Returns: A String of the buffer
-	# Author: Rami Khalil
-	def buffer_until(regex)
-		buffer = ""
-		until !$wait_thread.alive? or regex.any? { |expression| buffer =~ expression } do
-			begin
-				temp = $output.read_nonblock 2048
-				buffer += temp
-			rescue
-			end
-		end
-		return buffer
-	end
 
 	# [Debugger: Debug - Story 3.6]
 	# Gets the output from the output stream of the debugger
@@ -43,16 +23,6 @@ class JavaDebugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Inputs an input to the input stream of the debugger JDB
-	# Parameters:
-	# 	input : The input to be written in the sub stream
-	# Returns: none
-	# Author: Rami Khalil
-	def input(input)
-		$input.puts input
-	end
-
-	# [Debugger: Debug - Story 3.6]
 	# Starts the debugging session and return all variables and their values
 	# 	100 steps ahead
 	# Parameters:
@@ -60,59 +30,38 @@ class JavaDebugger
 	# 	input : The arguments to be passed to the main method
 	# Returns: A List of all 100 steps ahead
 	# Authors: Mussab ElDash + Rami Khalil
-	def start(class_name, input)
+	def start(class_name, input, time = 30)
+		$step = "step"
+		$TERM = /\nThe application exited.*\n/
 		$all = []
-		source_path = "#{Rails.root.to_s}/#{Solution::JAVA_PATH}"
-		Dir.chdir(Solution::CLASS_PATH){
-			begin
-				$input, $output, $error, $wait_thread = Open3.popen3("jdb",
-					"-sourcepath", source_path, class_name, *input)
-				buffer_until_ready
-				input "stop in #{class_name}.main"
-				buffer_until_ready
-				input "run"
-				nums = get_line
-				locals = get_variables
-				nums[:locals] = locals
-				$all << nums
+		$wait_thread = nil
+		status = "The debugging session was successful."
+		begin
+			$input, $output, $error, $wait_thread = Open3.popen3("jdb", class_name, *input)
+			buffer_until_ready
+			input "stop in #{class_name}.main"
+			buffer_until_ready
+			input "run"
+			nums = get_line
+			locals = []
+			locals = get_variables
+			stack = get_stack_trace
+			nums[:locals] = locals
+			nums[:stack] = stack
+			$all << nums
+			status = TimeLimit.start(time) {
 				debug
-			rescue => e
-				unless e.message === 'Exited'
-					return false
-				end
+			}
+		rescue => e
+			unless e.message === 'Exited'
+				return false
 			end
-		}
+		end
 		begin
 			Process.kill("TERM", $wait_thread.pid)
 		rescue => e
 		end
-		return $all
-	end
-
-	# [Debugger: Debug - Story 3.6]
-	# Iterates 100 times to get the value of all local variables in each step
-	# Parameters: none
-	# Returns: none
-	# Author: Mussab ElDash
-	def debug
-		counter = 0
-		while counter < 100 && !$input.closed? do
-			begin
-				input "step"
-				nums = get_line
-				locals = []
-				begin
-					locals = get_variables
-				rescue => e
-				end
-				nums[:locals] = locals
-				$all << nums
-				counter += 1
-			rescue => e
-				$input.close
-				raise 'Exited'
-			end
-		end
+		return $all, status
 	end
 
 	# [Debugger: Debug - Story 3.6]
@@ -126,13 +75,6 @@ class JavaDebugger
 		stream = get_stream out_stream
 		/,\sline=\d+/ =~ out_stream
 		line_first = $&
-		begin
-			input "list"
-			out_stream = buffer_until_complete
-			/\n\d+\s=>/ =~ out_stream
-			line_second = $&
-		rescue => e
-		end
 		if line_first
 			line_first = line_first[7..-1]
 			exceptions[:line] = line_first.to_i
@@ -141,10 +83,6 @@ class JavaDebugger
 			else
 				exceptions[:stream] = ""
 			end
-			return exceptions
-		elsif line_second
-			line_second = line_second[0..-4]
-			exceptions[:line] = line_second.to_i
 			return exceptions
 		else
 			raise 'Exited'
@@ -184,10 +122,9 @@ class JavaDebugger
 	end
 
 	# [Debugger: Debug - Story 3.6]
-	# Checks if there is a runtime error thrown
-	# Parameters: 
-	# 	line: The line to be checked if it has a runtime error
-	# Returns: A hash of the exception and its explanation if exists
+	# Gets the thrown exception
+	# Parameters: none
+	# Returns: The exception
 	# Author: Mussab ElDash
 	def get_exception
 		input "step"
@@ -209,14 +146,9 @@ class JavaDebugger
 	# Returns: The result of the debugging
 	# Author: Mussab ElDash
 	def self.debug(solution, input)
-		debugger = JavaDebugger.new
-		class_name = solution.file_name
-		debugging = debugger.start(class_name, input.split(" "))
-		java_file = solution.java_file_name true, true
-		class_file = solution.class_file_name true, true
-		File.delete(java_file)
-		File.delete(class_file)
-		return {:success => true, data: debugging}
+		$class_name = solution.class_name
+		$debugger = JavaDebugger.new
+		return super
 	end
 
 	# [Debugger: View Variables - Story 3.7]
@@ -248,15 +180,15 @@ class JavaDebugger
 			input "print " + variable_name
 			output_buffer2 = buffer_until_complete.split("main").first
 			unless output_buffer1.match("instance")
-				result << output_buffer1
+				result << "global." + output_buffer1
 			end
 			if output_buffer1 != output_buffer2
 				unless output_buffer2.match("instance")
-					result << output_buffer2
+					result << "global." + output_buffer2
 				end
 			end
 		else
-			result << variable
+			result << "global." + variable
 		end
 		return result
 	end
@@ -288,7 +220,7 @@ class JavaDebugger
 						input "print this." + field_name
 						field_result = buffer_until_complete
 						field_result = field_result.split(".").last.split("main").first
-						result << field_result
+						result << "global." + field_result
 					end
 				end
 			else
@@ -337,6 +269,28 @@ class JavaDebugger
 			end
 		end
 		return method_arguments + local_variables + class_variables
+	end
+
+	# [Debugger: View Variables - Story 3.7]
+	# Fetches the the stack trace of the code at the current state
+	# 	where the call stack is examined which contains the list of
+	# 	methods which did not finish its execution and thus did not
+	# 	return yet
+	# Parameters: none
+	# Returns:
+	# 	An array. It contains the list of methods in the call stack
+	# 		which have not returned yet
+	# Author: Khaled Helmy
+	def get_stack_trace
+		stack_trace = []
+		input "where"
+		output_buffer = buffer_until_complete
+		output_buffer.each_line do |line|
+			unless line == "main[1] \n"
+				stack_trace << line
+			end
+		end
+		return stack_trace
 	end
 
 end

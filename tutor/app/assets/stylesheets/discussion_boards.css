@@ -1,0 +1,86 @@
+/*
+ * Place all the styles related to the DiscussionBoards controller here.
+ * They will automatically be included in application.css.
+ * You can use Sass (SCSS) here: http://sass-lang.com/
+ */
+
+/* header */
+	.header {
+		text-align: center;
+	}
+	.header hr {
+		width:50% !important;
+	}
+/* Posts */
+	.posts {
+		width:100% !important;
+		background-color:white;
+		padding-bottom: 5%;
+	}	
+	.posts .col_main{
+		width:10%; 
+		height:100% !important;
+	}
+	.posts h2{
+		font-size: 1.7em;
+	}
+	.posts .box {
+		border-bottom: 1px solid #1a5f63 !important;
+		padding-bottom: 1%;
+	}
+	.box .profile_image {
+		width: 100%;
+		border-radius: 50%;
+		border: 3px solid #1a5f63 !important;
+	}
+	/* details */
+		.posts .details {
+			text-align: center;
+		}
+		.posts .details h3 {
+			font-size: 1.0em;
+		}
+		.posts font {
+			font-size: 0.9em;
+		}
+	.add_newss {
+		width: 100%;
+		background-color: #b000e6;
+		text-align: right ;
+	}
+
+@media (max-width: 767px) {
+	.posts .details {
+		text-align: center;
+		font-size: 0.9em;
+	}
+	.posts .details h3 {
+		font-size: 0.8em;
+	}
+	.posts font {
+		font-size: 0.7em;
+	}
+	.box .profile_image {
+		width: 20%;
+	}
+}
+@media (max-width: 991px) {
+	.posts .details {
+		text-align: center;
+		font-size: 0.9em;
+	}
+	.posts .details h3 {
+		font-size: 0.8em;
+	}
+	.posts font {
+		font-size: 0.7em;
+	}
+	
+}
+
+
+.disabled {
+	font-size: 1em;
+	color: #cc000a !important;
+	text-align: center;
+}

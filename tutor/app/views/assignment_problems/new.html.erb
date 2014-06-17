@@ -1,0 +1,55 @@
+<div class ="tabs">
+	<ul class="tab-links white">
+		<li class="active"><a href="#">Create Problems</a></li>
+		<li><%= link_to "Copy from Existing Problems",
+			{:controller => 'assignment_problems',
+			:action => 'index', :id => @assignment.id} %></li>
+	</ul>
+	<%= flash[:notice] %>
+	<%= flash[:alert] %>
+	<div class="tab-content">
+		<div id="tab1" class="tab active">
+			<% if flash[:notices] %>
+				<div class = "alert alert-success"> Problem  is now added </div>
+			<% end %>
+				<div class = "alert alert-success"> <%= flash[:alert] %> </div>
+			<% if @new_problem.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@new_problem.errors.count, "error") %>
+				 		prohibited this problem from being saved:
+					</h2>
+					<ul>
+						<% @new_problem.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<% if flash[:duplicatedcreate] %>
+				<div id="error_explanation">
+					<h2>Error prohibited this problem from being saved:</h2>
+					<li>problem already exists with the same title</li>
+				</div>
+			<% end %>
+			<%= form_for :assignment_problem, url: assignment_problems_path do |f| %>
+				<h2> Create Problem </h2>
+				<p>
+					<%= f.label :title %><br>
+					<%= f.text_field :title, placeholder:"Title" %>
+				</p>
+				<p>
+					<%= f.label :description %><br>
+					<%= f.text_area :description, :cols => "50",
+						:rows => "10", placeholder:"Description",
+						class: "form-control", style: "width:60%" %>
+				</p>
+					<ul class="navbar-brand pull-right">
+						<%= f.submit "Save", class: "btn btn-info" %>
+						<%= link_to "Finish",
+							{:controller => 'assignments', :action => 'show',
+							:id=> @assignment.id}, class: "btn btn-info" %>
+					</ul>
+			<% end %>
+		</div>
+	</div>
+</div>

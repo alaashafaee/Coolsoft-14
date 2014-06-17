@@ -1,0 +1,49 @@
+<div class="left-row" style="padding-bottom:20px;">
+	<div class="well">
+		<% provide(:title, "Edit Problem") %>
+		<% if flash[:notice] %>
+			<div class = "alert alert-success"> Problem  is now updated</div>
+		<% end %>
+		<%= form_for(@problem) do |f| %>
+			<% if @problem.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@problem.errors.count, "error") %>
+						prohibited this course from being saved:
+					</h2>
+					<ul>
+						<% @problem.errors.full_messages.each do |msg| %>
+							<li><%= msg %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+			<div>
+				<h2> Edit Problem </h2>
+			</div>
+			<hr>
+			<p>
+				<%= f.label :title %><br>
+				<% unless @problem.errors[:title].blank? %>
+						<span id="error_explanation">
+							* Title <%= @problem.errors[:title].join(", ") %> 
+						</span>
+						<br>
+					<% end %>
+				<%= f.text_field :title, placeholder:"* Title",class:"form-control",style:"width:60%;" %>
+			</p>
+			<p>
+				<%= f.label :description %><br>
+				<%= f.text_area :description, :cols => "50",
+					:rows => "10", placeholder:"Description",
+					class: "form-control", style: "width:60%" %>
+			</p>
+			<p>
+				<%= f.label :Grade %><br>
+				<%= f.text_field :final_grade, placeholder:"Grade",
+					style: "width:55px; height:35px;",class:"form-control"%>
+			</p>
+			<%= f.submit "Save changes", class: "btn btn-info", style:"float:right"%>
+			<br>
+		<% end %>
+	</div>
+</div>

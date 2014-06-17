@@ -1,0 +1,12 @@
+<%= form_for :Problem, url: problem_path(@problem),
+	method: :patch, remote: true do |problem| %>
+	<%= problem.text_area :snippet, :value => @problem.snippet, class: "
+	form-control", style: "width:650px; height:250px;" %>
+	<p>
+	<br>
+		<%= problem.submit "Update Code Snippet", class: 'btn btn-info' %>
+	</p>
+	<%= problem.hidden_field :description, value: @problem.description %>
+	<%= problem.hidden_field :title, value: @problem.title %>
+	<%= problem.hidden_field :track_id, value: @problem.track_id %>
+<% end %>

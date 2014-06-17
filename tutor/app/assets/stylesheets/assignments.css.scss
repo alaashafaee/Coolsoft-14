@@ -1,0 +1,60 @@
+// Place all the styles related to the assignments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.course_name a{
+	color:#808088 !important;
+}
+.assignment-description{
+	font-size: 1.2em ;
+	padding-bottom: 40px;
+	padding-top: 30px;
+}
+
+.assignment-title {
+	text-align: center;
+	color: #222222;
+}
+.c_title{
+	font-size: 1em;
+}
+
+.c_code {
+	float: left;
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+.c_name {
+	float: left;
+}
+
+.c_sem {
+	float: left;	
+	font-size: 1em;
+	padding-right: 0px;
+}
+
+.c_info{
+	padding-left: 30px;
+	margin-top: 30px;
+	color: #808088;
+	height: 60px;
+	margin-bottom: -20px;
+}
+
+.c_description{
+	padding-left: 15px;
+	color: #808088;
+}
+
+.body2
+{
+	text-align: left;
+}
+
+tr.spaceAbove > td
+{
+  padding-top: 1em;
+}

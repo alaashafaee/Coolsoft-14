@@ -1,0 +1,80 @@
+<script type="text/javascript">
+//Toggle to view previous tips
+//Parameters:
+//	id: Element that will be toggled.
+//Returns: none.
+//Author: Ahmed Osam
+	function toggle_visibility(id) {
+		var element = document.getElementById(id);
+		if(element.style.display == 'block')
+			element.style.display = 'none';
+		else
+			element.style.display = 'block';
+	}
+</script>
+<div class="left-row">
+	<div class="container" style='width:100%;'>
+		<div id = "crumbs">
+			<ul>
+		<li class="sub"><%= link_to "Problems", {:controller => 'problems', :action => 'edit',
+							:problem_id => @problem.id,:track_id => @problem.track_id}, :method => :get %></li>
+			 <li class="sub1"><%= link_to "Test Cases", {:controller => 'test_cases', :action => 'index',
+								:problem_id => @problem.id,:track_id => @problem.track_id},{:method => :get, :style=>'padding: 5px 15% 0 0px;', :class => "css_class"} %></li>
+			<li class="sub2"><a class = "visit" style="padding: 5px 3.75% 0 0px;">Model Answers</a> </li>
+			<li class="sub3"><a class="preventclick" >Tips</a> </li>
+			<li class="sub4"><a class="preventclick" >Hints</a> </li>    
+			</ul>
+		 </div>
+		<br><br><br>
+		<div id="div1">
+			<% if flash[:notice] %>
+				<div class= "alert alert-danger"><%= flash[:notice] %></div>
+			<% end %>
+		</div>
+		<ul class = "navbar-brand pull-right"><%= link_to "Create Model Answer",
+			{ :controller => 'model_answers', :action => 'new', :flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id] },
+			{ class: 'btn btn-info' } %></ul><br><br>
+		<a href="#" return:false; class="Lst" onclick="toggle_visibility('foo'); return false;"
+			style="font:120px"> Previous Model Answers</a>
+		</br>
+
+		<div id="foo">
+			<% if !@answers.any? %>
+				<p>You have no previous answers</p>
+			<% end %>
+			<% if !@answers.empty? %>
+				<table class="table table-striped" style = "width:60%">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th style = "width:20%">Created At</th>
+							<th style = "width:20%">Updated At</th>
+							<th>View/Edit</th>
+							<th>Remove</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @answers.each do |answer1| %>
+							<tr>
+								<td><%= answer1.title %></td>
+								<td><%= answer1.created_at %></td>
+								<td><%= answer1.updated_at %></td>
+								<td><%= link_to "View/Edit", {:controller => 'model_answers',
+										:action => 'edit', :method => :get, :model_answer_id => answer1.id,:track_id => session[:track_id],:problem_id => session[:problem_id]},
+										{class: 'btn btn-info btn-medium',
+										style: "text-decoration:none"} %></td>
+								<td><%= button_to "Delete", {:controller => 'model_answers',:action => 'destroy',
+										:model_answer_id => answer1.id}, method: :delete, class: 'btn btn-danger btn-medium', :confirm => "Are you sure you want to delete 
+											this Answer ?" %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+		</div> 
+		<div><ul class = "navbar-brand pull-right"><%= link_to "Return to Track",
+			{ :controller => 'tracks', :action => 'show', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :id => session[:track_id] },
+			{ class: 'btn btn-info' } %></ul>
+		</div>
+	</div>
+</div>

@@ -1,3 +1,24 @@
-// Place all the styles related to the Topics controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.topic_description{
+	padding-top: 30px;
+	padding-left: 15px;
+	color: #808088;
+}
+
+.topic_description p{
+	padding-top: 100px;
+	font-size: 1.5em;
+}
+
+.track-accordion a{
+	color: white;	
+}
+
+.track-accordion li a{
+	color: black;
+}
+
+.topic_info{
+	padding-left: 30px;
+	margin-top: 30px;
+	color: #808088;
+}

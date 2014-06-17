@@ -1,11 +1,12 @@
 class Course < ActiveRecord::Base
-	
+
 	#Elasticsearch
 	include Tire::Model::Search
 	include Tire::Model::Callbacks
 	
 	#Validations
-	validates :name, presence: true 
+	validates :name, presence: true
+	validates :link, :format => /\Ahttps?:\/\/((w{3})[.])?([\w]|-)+(\.com|\.org|\.guc|\.edu|\.eg|\.gov|\.biz|\.info|\.net)+((\?|#|\/)([\S])*)?\z/
 	validates :description, presence: true
 	validates :code, presence: true
 	validates :year, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: Date.today.year,
@@ -17,7 +18,7 @@ class Course < ActiveRecord::Base
 	has_and_belongs_to_many :lecturers, join_table: "courses_lecturers"
 	
 	has_one :discussion_board, dependent: :destroy	
-	has_many :topics, dependent: :destroy
+	has_many :topics, :order => 'order_factor', dependent: :destroy
 	has_many :acknowledgements, dependent: :destroy
 	has_many :course_students
 	has_many :students, through: :course_students
@@ -26,6 +27,8 @@ class Course < ActiveRecord::Base
 
 	has_many :tags, as: :tager
 	has_many :resources, dependent: :destroy
+
+	accepts_nested_attributes_for :resources, :reject_if => :all_blank, :allow_destroy => true
 	
 	#Scoops
 	

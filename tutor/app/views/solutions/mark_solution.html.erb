@@ -1,0 +1,150 @@
+<div class='left-row'>
+	<div class='container'>
+		<% if flash[:notice] %>
+			<div class= "alert alert-danger"><%= flash[:notice] %></div>
+		<% end %>
+		<table style = "width: 60%;">
+			<tbody>
+				<tr>
+					<td style = "font-weight: bold; font-size: 150%;"><p>Line</p></td>
+					<td style = "font-weight: bold; font-size: 150%;"><p>Code</p></td>
+					<td style = "font-weight: bold; font-size: 150%; width:150px;">
+						<p align= "center">Note Action</p></td>
+				</tr>
+				<% @counter = 0 %>
+				<% @lines.each do |line| %>
+					<% @counter+= 1 %>
+					<% @note = @notes[@counter] %>
+					<tr id = "<%= @counter %>",
+						onMouseOver = "show(this.id)",
+						onMouseOut = "hide(this.id)">
+						<td><%= @counter %></td>
+						<td>
+							<pre title ="<%if !@note.blank?%><%= @note.content %>
+								<% else %><%= "No note added to this line" %>
+								<% end %>" style = "font-weight: bold;"><%= line %></pre>
+						</td>
+						<td >
+							<p align= "center">
+								<% if @note %>
+									<%= image_tag "edit_button.png",
+										id: "#{@counter}edit_button",
+										class: "edit_button",
+										onclick: "pop(this.id);" %>
+								<% else %>
+									<%= image_tag "note.png",
+										id: "#{@counter}add_button",
+										class: "add_note_button",
+										onclick: "pop(this.id);" %>
+								<% end %>
+							</p>
+						</td>
+					</tr>
+					<% if @note %>
+						<div id = "<%= @counter %>edit_buttonform" class = "form_div">
+							<%= form_for :Note, url: note_path(@note),
+								method: :patch do |note| %>
+								<p>
+									<%= note.text_field :content,
+										class: "form-control",
+										style: "width: 60%",
+										value: @note.content %>
+								</p>
+									<%= note.hidden_field :solution_id,
+										value: @solution.id %>
+									<%= note.hidden_field :line,
+										value: @counter %>
+								<p style = "float: left;">
+									<%= note.submit "Update Note", class: "btn btn-info" %>&nbsp;
+								</p>
+							<% end %>
+							<%= button_to "Delete Note",{:controller => 'notes',
+								:action => 'destroy',
+								:id => @note.id}, method: :delete,
+								class: "btn btn-info",
+								style: "float: left;" %>
+						</div>
+					<% else %>
+						<div id = "<%= @counter %>add_buttonform" class = "form_div">
+							<%= form_for :Note, url: {controller: "notes",
+								action: "create"} do |note| %>
+								<p>
+									<%= note.text_field :content,
+										class: "form-control",
+										style: "width: 60%",
+										placeholder: "Write your note here!" %>
+								</p>
+									<%= note.hidden_field :solution_id,
+										value: @solution.id %>
+									<%= note.hidden_field :line,
+										value: @counter %>
+								<p style = "float: left;">
+									<%= note.submit "Save Note", class: "btn btn-info" %>&nbsp;
+								</p>
+							<% end %>
+						</div>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+		<br><br><br>
+		<button class= "btn btn-info", id = "grade",
+			onclick = "pop(this.id);">Grade this solution&nbsp;</button>
+		<% if @grade %>
+			<%= link_to "I'm done marking",
+				{:action => 'view_submissions', :problem_id => @problem.id},
+				class: "btn btn-info" %>
+		<% else %>
+			<button class= "btn btn-info", id = "exit",
+				onclick = "pop(this.id);">I'm done marking&nbsp;</button>
+		<% end %>
+		<div id = "gradeform" class = "form_div">
+			<% if @grade %>
+				<%= form_for :Grade, url: grade_path(@grade),
+					method: :patch do |grade| %>
+					<p style = "height: 35px;">
+						<%= grade.text_field :grade,
+							class: "form-control",
+							style: "width: 10%; float: left;",
+							value: @grade.grade %>
+						<span class = "total_grade">&nbsp;
+							/<%= @problem.final_grade %></span>
+					</p>
+						<%= grade.hidden_field :student_id,
+							value: @grade.student_id %>
+						<%= grade.hidden_field :problem_id,
+							value: @grade.problem_id %>
+					<p style = "float: left;">
+						<%= grade.submit "Update Grade",
+							class: "btn btn-info" %>&nbsp;
+					</p>
+				<% end %>
+			<% else %>
+				<%= form_for :Grade, url: {controller: "grades",
+					action: "create"} do |grade| %>
+					<p style = "height:35px;">
+						<%= grade.text_field :grade,
+							class: "form-control",
+							style: "width: 10%; float: left;" %>
+						<span class = "total_grade">&nbsp;
+							/<%= @problem.final_grade %></span>
+					</p>
+					<%= grade.hidden_field :problem_id, value: @problem.id %>
+					<%= grade.hidden_field :student_id, value: @student.id %>
+					<p style = "float: left;">
+						<%= grade.submit "Grade Solution",
+							class: "btn btn-info" %>&nbsp;
+					</p>
+				<% end %>
+			<% end %>
+		</div>
+		<div id = "exitform" class = "form_div">
+			<p class = "non_graded">You haven't graded this solution!</p>
+			<%= link_to "Proceed",
+				{:action => 'view_submissions', :problem_id => @problem.id},
+				class: "btn btn-info" %>
+			<button class= "btn btn-info", id = "exit",
+			onclick = "close_dialog(this.id);">Go Back</button>
+		</div>
+	</div>
+</div>	

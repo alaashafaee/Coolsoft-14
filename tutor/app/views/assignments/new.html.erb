@@ -1,0 +1,40 @@
+<div class="body2" style="vertical-align: auto;horizontal-align: auto; float:left;">
+	<% unless student_signed_in? %>
+		<%= form_for :assignment, url: assignments_path do |f| %>
+			<h2> Create Assignment </h2>
+			<br>
+			<p><h3><%= f.label :Title %></h3></p>
+			<% unless @new_assignment.errors[:title].blank? %>
+				<span id="error_explanation">
+					* Title <%= @new_assignment.errors[:title].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<p><%= f.text_field :title, class:"form-control", placeholder:"* Title",
+					value:@new_assignment.title%></p>
+
+			<h3><%= f.label :Description %></h3>
+			<p><%= f.text_area :description, class:"form-control" ,
+				placeholder:"* Description", :cols => "50",
+				:rows => "10", value: @new_assignment.description %>
+			</p>
+
+			<p><h3><%= f.label :Due_date %></h3></p>
+			<% unless @new_assignment.errors[:due_date].blank? %>
+				<span id="error_explanation">
+					* Date <%= @new_assignment.errors[:due_date].join(", ") %> 
+				</span>
+				<br>
+			<% end %>
+			<p><%= f.date_select :due_date, {:start_year => Date.today.year,
+				:end_year => Date.today.year+1, :order => [:day, :month, :year],
+				:value => Time.now} %></p>
+			<br>
+			<p>
+				<%= f.submit "Save", class: "btn btn-info btn-large" %>
+			</p>
+		<% end %>
+	<% else %>
+		<%= raise 'Error' %>
+	<% end %>
+</div>

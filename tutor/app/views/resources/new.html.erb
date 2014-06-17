@@ -1,0 +1,18 @@
+<div class="container well" style="width:100% !important; background-color:#fff !important; border-radius: 5px;">
+	<%= form_for @course, url: { controller: "resources", action: "create"}, method: :post do |f| %>
+		<div id="resources" class="resources">
+			<%= link_to_add_association "Add More Resources", f, :resources,\
+				"data-association-insertion-method" => "append",\
+				class: "pull-right btn btn-primary" %>
+			<div>
+				<%= f.fields_for :resources do |resource| %>
+					<%= render "resource_fields" , f: resource %>
+				<% end %>
+			</div>
+		</div>
+		<br/>
+		<p>
+			<%= f.submit "Save", class: "btn btn-success"%>
+		</p>
+	<% end %>
+</div>

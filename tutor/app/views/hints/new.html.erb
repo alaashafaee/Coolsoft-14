@@ -1,0 +1,65 @@
+<div class="left-row">
+	<div class="container" style='width:100%;'>
+		<% if (lecturer_signed_in? || teaching_assistant_signed_in?) &&
+			session[:model_answer_id] != nil %>
+			<div id = "crumbs">
+				<ul>
+					<li class = "sub"><a class = "preventclick">Problem</a></li>
+					<li class = "sub1"><a class = "preventclick" style="padding:5px 15% 0 0px;">Test
+					Cases</a></li>
+					<li class="sub2"><a class = "preventclick" style="padding: 5px 3.75% 0 0px;">Model
+					Answers</a> </li>
+					<li class = "sub3"><a class = "preventclick" >Tips</a></li>
+					<li class = "sub4"><a class = "visit" >hints</a> </li>
+				</ul>
+			</div><br><br>
+			<h2>Create Hint for Model Answer
+				<h1 style="color:red;">
+					<%= ModelAnswer.find_by_id(session[:model_answer_id]).title %>
+				</h1>
+			</h2>
+			<% if @hint.errors.any? %>
+				<div id = "error_explanation">
+					<h2>
+						<%= pluralize(@hint.errors.count, "error") %>
+						prohibited the Hint from being saved:
+					</h2>
+				</div>
+				<ul>
+					<% @hint.errors.full_messages.each do |msg| %>
+						<li>
+							<%= msg %>
+						</li>
+					<% end %>
+				</ul>
+			<% end %>
+			<div id = "div_hint" style = "float:center;">
+				<%= form_for :hint, url: hints_path do |t| %>
+					<p>
+						<%= t.label :Content %><br>
+						<%= t.text_area :message, class:"form-control", style:"width:350px",
+							:value => @hint.message %>
+					</p>
+					<p>
+						<%= t.label :Submission_counter %><br>
+						<%= t.text_field :submission_counter, class:"form-control", style: "width:55px;
+						height:35px;", :value => @hint.submission_counter %>
+					</p>
+					<p>
+						<%= t.hidden_field :model_answer_id, value: params[:model_answer_id] %>
+					</p>
+					<p style = "position: relative; bottom: 30%; left: 0%;">
+						<%= t.submit class: 'btn btn-info' %>
+					</p>
+				<% end %>
+			</div>
+			<div>
+				<ul class = "navbar-brand pull-right">
+					<%= link_to "Done", {:controller => 'tracks', :action => 'show',
+						:id => session[:track_id]},:method => :get,:class => "btn btn-info"%>
+				</ul>
+			</div>
+
+		<% end %>
+	</div>
+</div>

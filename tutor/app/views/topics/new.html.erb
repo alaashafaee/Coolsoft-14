@@ -1,47 +1,18 @@
-<div class ="tabs">
-	<ul class="tab-links">
-		<li><a href="/courses/">My Courses</a></li>
-		<li><a href="/courses/new">Create new Course</a></li>
-	</ul>
-	<div class="tab-content">
-<!--	Name: Course Edit Page
-		Author: Ahmed Akram
--->
-		<ul class="tab-links">
-			<!-- This button activates the new topic action and passes the course id  -->
-			<li>
-				<%= link_to "Edit Info", {:controller => 'courses', :action => 'edit',
-					:id => @course.id}, class: "btn btn-success", 
-						style: "float: left;margin-left: 15px",method: :get	 %> 
-			</li> 
-
-			<li>
-				<%= link_to "Add Topics", {:controller => 'topics', :action => 'new',
-					:course_id => @course.id}, class: "btn btn-success", 
-						style: "float: left;margin-left: 15px",method: :post %> 
-			</li> 
-
-			<!-- This button activates the add TA action -->
-			<li>
-				<%= link_to "Add a TA", {:controller => 'teaching_assistants', :action => 'new',
-					:course_id => @course.id}, class: "btn btn-success",
-						 style: "float: left; margin-left: 15px", :method => :get %>
-			</li>
-
-			<!-- This button activates the acknowledge a student action -->
-			<li>
-				<%= link_to "Acknowledge a student", {:controller => 'acknowledgements', :action => 'new',
-					:course_id => @course.id}, class: "btn btn-success",
-						 style: "float: left; margin-left: 15px", method: :get
-							%> 
-			</li>
-		</ul>
-		<!-- 	Name: The New Topic Form 
-		Author: Ahmed Akram
-		-->
-		<div>
-			<h1>New Topic</h1>
-
+<div class= "left-box" >
+	<div class="xob" style="padding : 0px 15px 2px;">
+		<div class = "course_info panel-body" style="margin-left: 15px;">
+			<div class= "row course_title">
+				<div class="course_code">New Topic</div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					<% course = Course.find(params[:course_id]) %>
+					Course | <%= course.name %>
+				</div>
+			</div>
+		</div>
+		<div class="left-content container" style="width: 100%;">
+			<hr>
 			<!-- Rendering the form fields -->
 			<%= form_for :topic, url: {action: "create"} do  |f| %>
 				<p>
@@ -69,10 +40,6 @@
 					<%= f.submit "Save", class: "btn btn-success"%>
 				</p>
 			<% end %>
-
-			<!-- A back to courses list button -->
-			<%= button_to "Back", {:controller => 'courses', :action => 'index'},
-			 class: "btn btn-success", style: "float:right; margin-top:-50px", :method => :get %>
 		</div>
 	</div>
 </div>

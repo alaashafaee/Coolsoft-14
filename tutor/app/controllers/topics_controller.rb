@@ -37,6 +37,22 @@ class TopicsController < ApplicationController
 		@new_topic = Topic.new
 	end
 
+	# [Delete Topic - Story 1.34]
+	# This action takes the topic id, remove it from the database
+	#	and then redirects the user to the show courses page accompanied
+	#	with a "Topic deleted" message.
+	# Parameters:
+	#	params[:id]: The current topic's id
+	# Returns: none
+	# Author: Mohamed Saeed
+	def destroy
+		topic = Topic.find_by_id(params[:id])
+		topic.destroy
+		flash[:success_deletion] = "Topic deleted."
+		@course = topic.course
+		redirect_to :controller => 'courses', :action => 'show', :id => @course.id
+	end
+
 	# [Specify Topics - Story 1.2]
 	# Description: This action takes the passed course id and assings
 	#	the respective topics of that course to an instance
@@ -48,7 +64,7 @@ class TopicsController < ApplicationController
 	# Author: Ahmed Akram
 	def index
 		@course = Course.find(params[:course_id])
-		@topics = @course.topics.order("created_at desc")
+		@topics = @course.topics
 	end
 
 	# [Specify Topics - Story 1.2]
@@ -62,22 +78,23 @@ class TopicsController < ApplicationController
 	#					create_topic_form
 	# Returns: 
 	#	flash[:notice]: A message indicating the success or failure of the creation
-	# Author: Ahmed Akram
+	# Author: Ahmed Akram + Mohamed Saeed
 	def create
 		@new_topic = Topic.new
 		@new_topic.title = topic_params[:title]
 		@new_topic.description = topic_params[:description]
 		bool = @new_topic.save
-		if bool == true 
+		if bool == true
 			flash[:notice] = "Topic successfully created"
 			@course = Course.find(course_params[:course_id])
 			@course.topics << @new_topic
-			redirect_to :action => 'index'
+			redirect_to :controller => 'courses', :action => 'show', :id => course_params[:course_id]
+			Topic.update_track_progression @new_topic
 		else
 			if @new_topic.errors.any?
 				flash[:notice] = @new_topic.errors.full_messages.first
 			end
-			render :action => 'new'  
+			render :action => 'new'
 		end
 	end
 
@@ -96,8 +113,7 @@ class TopicsController < ApplicationController
  		new_Order_Array = params[:methodParam]
 
 		@tracks.each do |track|
-			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1 
-			puts(track.save)
+			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1
 		end
 		render :nothing => true
 	end

@@ -1,0 +1,87 @@
+<!-- Author : Mohab Ghanim -->
+<div class="left-row">
+	<div class="container" style='width:100%'>
+		<br>
+		<div class="contest_information">
+			<h2> Contest: <%= @contest.title %></h2>
+			<h3><%= @contest.description %></h3>
+			<br /><%= render "contests/show_timer" %>
+			<h4><% if Time.now < @contest.end_time %>
+					<% if Time.now < @contest.start_time %>
+						Not started yet
+					<%end%>
+				<% else %>
+					expired
+					<p> Any new progress will not be saved </p>
+				<% end %>
+			</h4>
+			<h5><% if Time.now < @contest.start_time %>
+					Starts at
+				<% else %>
+					Started at
+				<%end%>
+				<%= @contest.start_time %>
+			</h5>
+			<h5>Ends at <%= @contest.end_time %></h5>
+			<ul>
+				<li><a href ="/contests/<%= @contest.id %>/">Problems</a></li>
+				<li><a href ="/contests/<%= @contest.id %>/registrants">Registrants</a></li>
+			</ul>
+		</div>
+		<table class="table table-bordered contest_table">
+			<% rank = 0 %>
+			<tr>
+				<td> Rank </td>
+				<td> Contestant </td>
+				<% @contest.problems.each do |problem| %>
+					<td> <a href ="/cproblems/<%= problem.id %>"><%= problem.title %></a></td>
+				<% end %>
+			</tr>
+			<% if @contest.get_contest_standings.count != 0 %>
+				<% @contest.get_contest_standings.each do |key, value| %>
+					<tr>
+						<td>
+							<%= rank += 1 %>
+						</td>
+						<td>
+							<%= link_to value[:record].student.name, 
+								controller: "/students", 
+								action: "show", 
+								id: value[:record].student.id %>
+						</td>
+						<% @contest.problems.each do |problem| %>
+							<% progress = ContestProgress.where(contest_id:
+								@contest.id, cproblem_id: problem.id,
+								student_id: value[:record].student.id).take %>
+							<% unless progress == nil %>
+								<% trials =  ContestProgress.where(contest_id:
+									@contest.id, cproblem_id: problem.id,
+									student_id: value[:record].student.id).take.trials %>
+								<% if ContestProgress.where(contest_id: @contest.id , cproblem_id: problem.id,
+									student_id: value[:record].student.id).take.status %>
+										<% time_taken = ((ContestProgress.where(contest_id: @contest.id,
+											cproblem_id: problem.id, student_id: value[:record].student.id).
+											take.updated_at - Contest.find(@contest.id).
+											start_time)/60).to_i %>
+										<td class="solution-accepted"> <%= trials %>/<%=time_taken %> </td>
+								<% else %>
+										<td class="wrong-answer"> <%= trials %> /-- </td>
+								<% end %>
+							<% end %>
+						<% end %>
+					</tr>
+				<% end %>
+			<% else %>
+			<tr><td colspan=<%= @contest.problems.count + 2 %> ><h5> No solved problems yet </h5></td></tr>
+			<% end %>
+		</table>
+		<div class="contest_note">
+			<div class="box-example">
+				X/Y 
+			</div>
+			<div class="box-note" style='padding-bottom:10px;'>
+				X : number of trials until the first success, Y : submission time - contest start time
+			</div>
+		</div>
+	</div>
+</div>

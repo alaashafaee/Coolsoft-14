@@ -1,0 +1,46 @@
+<div class='left-row'>
+	<div class="container" style="width:100%">
+		<div class="page-header">
+			<h1>
+				Add problems
+			</h1>
+		</div>
+		<% openable = true %>
+		<div class="panel-group list-group" id="accordion">
+			<% if flash[:added] %>
+				<%= flash[:added] %>
+			<% end %>
+			<% if @problems.size == 0 %>
+				<br>
+				There are no problems to add.
+			<% end %>
+			<% @problems.each do |problem| %>
+				<% color = "label label-success" %>
+				<% if openable %>
+					<% open = "in" %>
+					<% openarrow = "glyphicon-chevron-down" %>
+					<% openable = false %>
+				<% else %>
+					<% open = "" %>
+					<% openarrow = "glyphicon-chevron-right" %>
+				<% end %>
+				<div class="panel panel-default">
+					<div class="panel-title list-group-item list-group-item-info">
+						<a class="icon glyphicon <%= openarrow %>"
+							href="#<%= problem.id.to_s %>"
+							data-toggle="collapse" data-parent="#accordion"
+							style="margin-right: 1%; text-decoration: none;">
+						</a>
+						<%= problem.title %>
+					</div>
+					<div id="<%= problem.id.to_s %>" class="panel-collapse collapse <%= open %>">
+						<%= problem.description %>
+						<%= link_to "Add", {:action => 'add', :problem_id => problem.id,
+							:id => @contest.id }, class: 'btn btn-info', method: 'post' %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<%= link_to "Back to edit page", {:action => 'edit', :id => @contest.id}, class: "btn btn-success" %>
+	</div>
+</div>

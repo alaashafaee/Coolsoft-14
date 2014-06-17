@@ -1,0 +1,75 @@
+<div class="left-row" style="padding:10px 10px 10px 10px;">
+	<% if @my_contests != nil %>
+		<h1> Your Contests </h1>
+		<table class="table table-striped table-bordered table-responsive">
+			<tr>
+				<td>Contest title</td>
+				<td>Start time</td>
+				<td>Duration</td>
+			</tr>
+			<% if @my_contests.size !=0 %>
+			<% @my_contests.each do |contest| %>
+				<tr>
+					<td>
+						<h4><%= link_to contest.title, :controller => 'contests', :action=> 'show',
+								:id => contest.id %></h4>
+					</td>
+					<td>
+						<h4><%= contest.start_time %></h4>
+					</td>
+					<td>
+						<h4><%=((contest.end_time - contest.start_time)/(60*60)).to_i %> hours</h4>
+					</td>
+				</tr>
+			<% end %>
+			<% end %>
+		</table>	
+	<% end %>	
+	<h1> Contests </h1>
+	<hr>
+	<table class="table table-striped table-bordered table-responsive">
+		<% if @contests.size != 0 %>
+			<tr>
+				<td>Contest title</td>
+				<td>Start time</td>
+				<td>Duration</td>
+				<td>Actions</td>
+			</tr>
+			<% @contests.each do |contest| %>
+				<tr>
+					<td>
+						<h4><%= link_to contest.title, :controller => 'contests', :action=> 'show',
+								:id => contest.id %>
+						</h4>
+					</td>
+					<td>
+						<h4><%= contest.start_time %></h4>
+					</td>
+					<td>
+						<h4><%= ((contest.end_time - contest.start_time)/(60*60)).to_i %> hours</h4>
+					</td>
+					<% if current_lecturer || current_teaching_assistant %>
+						<td>
+							<h4><%= link_to "Edit", "/contests/#{contest.id}/edit" %></h4>
+						</td>
+					<% elsif contest.end_time < DateTime.now %>
+						<td>
+							<h4> Contest finished </h4>
+						</td>
+					<% else %>	
+						<td>
+							<h4><%= link_to "Register",
+							"/contests/#{contest.id}/register" %></h4>
+						</td>
+					<% end %>					
+				</tr>
+			<% end %>
+		<% else %>
+			You have no contests
+		<% end %>	
+	</table>
+	<% if current_lecturer || current_teaching_assistant %>
+		<center><%= button_to "Create new contest", {action: "new"}, 
+			:class => "btn btn-info", :method => :get %></center>
+	<% end %>
+</div>

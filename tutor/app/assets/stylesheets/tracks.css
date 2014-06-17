@@ -5,12 +5,20 @@
 	display:none;
 	padding:10px;
 	min-width:400px;
-	min-height: 600px;
+
 }
 #container li{
 	padding: 10px;
 	list-style: none;
 }
+#container h2{
+	font-size: 1.5em;
+	text-align: center;
+}
 .recommend {
 	float: right;
+}
+
+.bars {
+	width: 50%;
 }

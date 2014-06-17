@@ -1,0 +1,52 @@
+<div class="left-row">
+	<div class="container" style='width: 100%'>
+		<% if @submissions.empty? %>
+			<p>No solutions have been submitted to this problem</p>
+		<% else %>
+			<table>
+				<tr>
+					<td style = "font-weight:bold;font-size:200%;">Student</td>
+					<td width="50px"></td>
+					<td style = "font-weight:bold;font-size:200%;">Problem</td>
+					<td width="50px"></td>
+					<td style = "font-weight:bold;font-size:200%;">Submission Time</td>
+					<td width="50px"></td>
+					<td style = "font-weight:bold;font-size:200%;">Passed test cases</td>
+				</tr>
+					<% @counter = 0 %>
+					<% @submissions.each do |submission| %>
+						<% @counter+= 1 %>
+						<tr class="spaceAbove">
+							<% @student = @students[@counter] %>
+							<td><%= @student.name %></td>
+							<td width="50px"></td>
+							<td title = "<%= @problem.description %>"><%= @problem.title %></td>
+							<td width="50px"></td>
+							<td><%= submission.created_at %></td>
+							<td width="50px"></td>
+							<td>
+								<% if submission.status == 0 %>
+									<%= image_tag "delete_button.png",
+										class: "x_button",
+										title: "Solution didn't pass test cases!" %>
+								<% elsif submission.status == 1 %>
+									<%= image_tag "tick.png",
+										class: "tick_button",
+										title: "Solution passed test cases!" %>
+								<% end %>
+							</td>
+							<td width="50px"></td>
+							<td><%= link_to "Mark and grade",
+									{:action => 'mark_solution',
+									:submission_id => submission.id},
+									class: "btn btn-info" %></td>			
+						</tr>
+					<% end %>
+		</table>
+		<% end %>
+		<br><br><br>
+		<%= link_to "Back to assignment page",{:controller => 'assignments',
+			:action => 'show', :id => @problem.assignment.id },
+			:method => :get, class: "btn btn-info" %>
+	</div>
+</div>

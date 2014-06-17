@@ -1,36 +1,51 @@
-<!--  Name: The Show Post Form 
-    Author: Ahmed Atef
--->
-
-<%= link_to "back", {:action => 'show', :controller => 'discussion_boards',
-	:id => DiscussionBoard.find_by_id(@post.discussion_board_id).course_id}, {
-		class: 'btn btn-info pull-right'} %>
-<% if current_lecturer %>
-	<% @userID = current_lecturer.id %>
-<% end %>
-<% if current_student %>
-	<% @userID = current_student.id %>
-<% end %>	
-<%if current_teaching_assistant %>
-	<% @userID = current_teaching_assistant.id %>
-<% end %>
-<% if @post.owner_id == @userID %>
-	<%= link_to "Edit Post", {:action => 'edit', :controller => 'posts'}, {
-		class: 'btn btn-info pull-right', :id => @post.id, style: "margin-right:1%;"} %>
-<% end %>
-<div>
-	<div>
-		<h1><%= @post.title %></h1>
-	</div>
-	<div class = "greyLine">
-		<p><font size="3"><%= @post.owner.name %></font> </p>
-		<div class="panel panel-primary">
-			<div style="margin-left:1%;">
-				<h2><%= @post.content %></h2>
-				<p><font size="3"><%= distance_of_time_in_words_to_now @post.
-					created_at %> ago</p></font>
+<div class= "left-box" >
+    <div class="xob" style="padding : 0px 15px 2px;">
+        <div class = "c_info panel-body" >
+            <div class= "row c_title">
+                <% post = Post.find(params[:id]) %>
+                <div class="c_code"><%= post.discussion_board.course.code %></div>
+                <div class="c_name"><%= link_to post.discussion_board.course.name, post.discussion_board.course, style: "color: black" %> &nbsp Discussion Board</div>
+            </div>
+            <div class="row">
+                <div class="course_sem">
+                    Semester <%= post.discussion_board.course.semester %>
+                    Class <%= post.discussion_board.course.year %>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>    
+		<div class="row">	
+		</div>
+		<div class="row main_row" >
+			<div class="post ">
+				<font></font>
+				<div class="container p_div">
+					<% if student_signed_in? %>
+						<% user = current_student %>
+					<% elsif teaching_assistant_signed_in?%>
+						<% user = current_teaching_assistant %>
+					<% else %>
+						<% user = current_lecturer %>
+					<% end %>
+					<div class="header"> 
+						<h1><%= @post.title %></h1>
+					</div>
+					<% if user == @post.owner %>
+						<div class="edit_post">
+							<%= link_to "Edit Post", edit_post_path(@post) %>
+						</div>
+					<% end %>
+					<br>
+					<h2><%= @post.content.html_safe %></h2>
+					<hr>
+					<h3><%= distance_of_time_in_words_to_now @post.created_at %> 
+						ago by <%= link_to @post.owner.name , @post.owner %> </h3>
+				</div>
 			</div>
+		</div>
+		<div class="row">
+			<%= render "/replies/index", :@replies => @replies, :@post => @post %>
 		</div>
 	</div>
 </div>
-<%= render "/replies/index", :@replies => @replies, :@post => @post %>

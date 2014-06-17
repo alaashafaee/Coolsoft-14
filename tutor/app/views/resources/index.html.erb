@@ -1,0 +1,51 @@
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_code"><%= @course.code %></div>
+				<div class="course_name"><%= @course.name %> | Resources</div>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
+				</div>
+			</div>
+		</div>
+			<% unless flash[:notice].nil? %>
+				<div class= "alert alert-danger">
+					<%= flash[:notice] %>
+					<%- flash[:notice] = nil %>
+				</div>
+			<% end %>
+			<div>
+				<%- unless @course.resources.empty? %>
+					<%- @course.resources.each do |resource| %>
+						<div class="media">
+							<a class="pull-left" href="<%= resource.link %>">
+								<img class="media-object" src="<%= resource.img %>"\
+									height="64" width="64" alt="...">
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading">
+									<a href="<%= resource.link %>"><%= resource.link %></a>
+								</h4>
+								<%= resource.description %>
+							</div>
+						</div>
+					<% end%>
+				<% else %>
+					<div class="panel panel-default">
+						<div class="panel-body" align="center">
+							<h3>No Resources</h3>
+						</div>
+					</div>
+				<% end %>
+			</div>
+			<%- if lecturer_signed_in? %>
+				<%= link_to "Add Resources", new_course_resource_path(@course),
+				class: "btn btn-success",
+					 method: :get %>
+			<% end %>
+		</div>
+	</div>

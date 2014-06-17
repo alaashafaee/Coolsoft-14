@@ -1,0 +1,72 @@
+<div class="left-row">
+	<div class="container" style='width:100%;'>
+		<div id = "crumbs">
+		    <ul>
+				<li class="sub"><a class="preventclick">Problem</a></li>
+		    	<li class = "sub1"><a class="preventclick" style="padding: 5px 15% 0 0px;">Test Cases</a> </li>
+		    	<li class="sub2"><%= link_to "Model Answers", {:controller => 'model_answers', :action => 'edit', 
+		    		:problem_id => params[:problem_id],:track_id => params[:track_id],
+		    		:model_answer_id => params[:model_answer_id]},{:method => :get,
+		    		:style=>'padding: 5px 3.75% 0 0px;', :class => "css_class"} %></li>
+
+		    	<li class="sub3"><a class="visit" >Tips</a> </li>
+		    	<li class="sub4">    <li class = "sub4"><%= link_to "Hints", {:controller => 'hints', :action => 'index',:problem_id => params[:problem_id],:track_id => params[:track_id], :model_answer_id => params[:model_answer_id]}, :method => :get %> </li>
+			</ul>
+		</div>
+		<br><br>
+		<br><ul class = "navbar-brand pull-right"><%= link_to "Create Tip",
+			{ :controller => 'tips', :action => 'new', :model_answer_id => params[:model_answer_id] ,:flag => 1, :problem_id => session[:problem_id], :track_id => session[:track_id] },
+			{ class: 'btn btn-info' } %></ul><br><br>
+		<a href="#" return:false; class="Lst" onclick="toggle_visibility('foo3'); return false;"
+			style="font:120px"> Previous Tips</a>
+		<div id="foo3">
+			<% if !@tips.any? %>
+				<p>No previous Tips</p>
+			<% end %>
+			<% if !@tips.empty? %>
+				<table class="table table-striped" style = "width:60%">
+					<thead>
+						<tr>
+							<th style = "width:30%">Tips</th>
+							<th style = "width:10%">Time of showing in seconds</th>
+							<th style = "width:20%">Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @tips.each do |tip1| %>
+							<tr>
+								<% if tip1.category == true %>
+									<td style = "max-width: 300px; word-wrap:break-word;">
+										<%= tip1.message %></td>
+									<td style ="width:20%"><%= tip1.time %></td>
+									<td>
+										<%= link_to "Edit", {:action => 'edit',
+											:controller => 'tips',:tip_id => tip1.id,
+											:problem_id => params[:problem_id],
+											:model_answer_id => params[:model_answer_id],
+											:track_id => params[:track_id] },
+											{class: 'btn btn-primary btn-xs', style: "text-decoration: none;" } %>
+									</td>
+									<td>
+										<%= link_to "Delete Tip", { :controller => 'tips',
+											:action => "destroy",:id => tip1.id,
+											:problem_id => params[:problem_id],
+											:model_answer_id => params[:model_answer_id],
+											:track_id => session[:track_id] },
+											data: { confirm: "Are you sure you want to delete this Tip?"},
+											class: "btn btn-danger btn-xs", style: "float:left; text-decoration: none;",
+											method: :delete %>
+									</td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+		</div>
+		<div><ul class = "navbar-brand pull-right">
+				<%= link_to "Back", {:controller => 'model_answers', :action => 'index',
+							:track_id => session[:track_id], :problem_id => session[:problem_id], :model_answer_id => session[:model_answer_id]},:method => :get,:class => "btn btn-info"%></ul>
+		</div>
+	</div>
+</div>
