@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515223322) do
+ActiveRecord::Schema.define(version: 20140617132031) do
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 20140515223322) do
   end
 
   add_index "contests_students", ["contest_id", "student_id"], name: "index_contests_students_on_contest_id_and_student_id", unique: true
+
+  create_table "contributors", force: true do |t|
+    t.string   "name"
+    t.string   "profile_image"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "course_students", force: true do |t|
     t.boolean  "share",      default: false
