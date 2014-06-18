@@ -34,7 +34,7 @@ puts("# ----------------------- Contributor ----------------------- ")
 	Contributor.create(name:"Ahmed Sharaf", link:"");
 	Contributor.create(name:"Amir George", profile_image:"profile_img/amir.jpg", link:"");
 	Contributor.create(name:"Mohamed El-Mahdi", link:"");
-	Contributor.create(name:"Alaa Shafaee", link:"");
+	Contributor.create(name:"Alaa Shafaee", profile_image:"profile_img/alaa.jpg", link:"");
 
 puts("# ----------------------- Admins ----------------------- ")
 	l = AdminUser.new(email: 'admin@admin.com', password: 'password', password_confirmation: 'password')
