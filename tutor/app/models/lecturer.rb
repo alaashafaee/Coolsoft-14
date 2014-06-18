@@ -126,8 +126,7 @@ class Lecturer < ActiveRecord::Base
 	# Returns: none
 	# Author: Lin Kassem
 	def guc_mail
-		regex = /\A([^\s,;0-9`!@#\$%\^&*+_=]+)[.]
-			([^\s,;0-9`!@#\$%\^&*+_=]+)@student.guc.edu.eg\z/
+		regex = /\A([^\s,;0-9`!@#\$%\^&*+_=]+)[.]([^\s,;0-9`!@#\$%\^&*+_=]+)@guc.edu.eg\z/
 		if email.present? and not email.match(regex)
 			errors.add(:email, "must be in the form user@guc.edu.eg")
 		end
