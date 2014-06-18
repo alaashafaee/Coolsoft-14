@@ -267,6 +267,7 @@ DEPENDENCIES
   foreman
   jbuilder (~> 1.2)
   jquery-rails (~> 3.1.0)
+  jquery-ui-rails
   json_builder (= 3.1.0)
   metainspector (= 1.15.4)
   pg
