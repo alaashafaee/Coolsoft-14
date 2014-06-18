@@ -11,6 +11,7 @@
  *= require_self
  *= require posts
  *= require bootstrap
+ *= require jquery-ui
  *= require alertify-themes/alertify.core
  *= require posts
  *= require jquery.countdown.css

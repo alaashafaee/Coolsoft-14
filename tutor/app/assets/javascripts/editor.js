@@ -11,3 +11,4 @@
 //= require editor/theme-tomorrow_night_eighties
 //= require editor/theme-twilight
 //= require editor/theme-xcode
+//= require editor/theme-twilight-debug
