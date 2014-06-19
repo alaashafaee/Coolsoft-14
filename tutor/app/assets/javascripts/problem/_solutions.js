@@ -1,4 +1,4 @@
-//= require tree
+//= require_tree
 
 // [Editor cusomization - Story 3.19]
 //	Enable method "selectpicker" from the javascript file.
