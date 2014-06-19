@@ -1,4 +1,3 @@
-//= require sign_in
 //= assignment_problems
 //= require contests
 //= require courses
