@@ -48,6 +48,7 @@
 							<% track_progess = TrackProgression.get_progress(current_student,
 							@problem.track.topic) %>
 		 					<% if track_progess >= @problem.track.difficulty %>
+		 						<%= javascript_include_tag "_solutions", "solutions" %>
 		 						<%= render partial: "solutions/timer" %>
 		 						<%= render partial: "solutions/new"%>
 		 						<td style='vertical-align:top;'>
@@ -66,9 +67,6 @@
 										<div id="stack" class="fixed-dimensions">
 										</div>
 										<br /><br />
-										<!-- <script type="text/javascript">
-											$('#tip').tooltip(options)
-										</script> -->
 										<button id='tip' type="button" 
 											class="btn btn-info" 
 											data-toggle="tooltip" 

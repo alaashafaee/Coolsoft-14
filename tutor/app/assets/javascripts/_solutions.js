@@ -1,3 +1,18 @@
+//= require editor/ace
+//= require editor/mode-java
+//= require editor/mode-python
+//= require editor/theme-chaos
+//= require editor/theme-chrome
+//= require editor/theme-clouds
+//= require editor/theme-dreamweaver
+//= require editor/theme-eclipse
+//= require editor/theme-github
+//= require editor/theme-tomorrow_night_blue
+//= require editor/theme-tomorrow_night_eighties
+//= require editor/theme-twilight
+//= require editor/theme-xcode
+//= require editor/theme-twilight-debug
+
 // [Editor cusomization - Story 3.19]
 //	Enable method "selectpicker" from the javascript file.
 // Parameters: none.
