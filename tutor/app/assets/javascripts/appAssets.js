@@ -14,5 +14,4 @@
 //= require teaching_assistants
 //= require test_cases
 //= require tips
-//= require tracks
 //= require utilities
