@@ -7,7 +7,6 @@
 //= require hints
 //= require lecturers
 //= require contests
-//= require problems
 //= require replies
 //= require resources
 //= require solutions_constraints
