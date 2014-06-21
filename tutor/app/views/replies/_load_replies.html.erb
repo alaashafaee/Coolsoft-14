@@ -17,39 +17,22 @@
 					<div class="col-sm-2" >
 						<div class="row edit-reply">
 							<div>
-								<% if lecturer_signed_in? %>
-									<% if current_lecturer.email == reply.owner.email %>
-										<div>
-											<td><%= image_tag "edit_button.png",
-													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
-											</td>
-											<td><%= image_tag "delete_button_2.png",
-													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
-											</td>
-										</div>
-									<% end %>
-								<% elsif teaching_assistant_signed_in? %>
-									<% if current_teaching_assistant.email == reply.owner.email %>
-										<div>
-											<td><%= image_tag "edit_button.png",
-													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
-											</td>
-											<td><%= image_tag "delete_button_2.png", 
-													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
-											</td>
-										</div>
-									<% end %>
-								<% else %>
-									<% if current_student.email == reply.owner.email %>
-										<div>
-											<td><%= image_tag "edit_button.png", 
-													onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
-											</td>
-											<td><%= image_tag "delete_button_2.png", 
-													onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
-											</td>
-										</div>
-									<% end %>
+								<% if student_signed_in?
+									email = current_student.email
+								elsif teaching_assistant_signed_in?
+									email = current_teaching_assistant.email
+								else
+									email = current_lecturer.email
+								end %>
+								<% if email == reply.owner.email %>
+									<div>
+										<td><%= image_tag "edit_button.png",
+												onclick: "edit_reply(#{reply.id},#{reply.post_id})" %>
+										</td>
+										<td><%= image_tag "delete_button_2.png",
+												onclick: "delete_reply(#{reply.id},#{reply.post_id});" %>
+										</td>
+									</div>
 								<% end %>
 							</div>
 						</div>
