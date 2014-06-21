@@ -30,7 +30,7 @@
 		<br><br>
 		<div id="fb-root"></div>
 		<div class='problem'>
-			<% if !student_signed_in? %>
+			<% if student_signed_in? %>
 				<img src="/assets/facebooksharebutton.png" class="fb-button" 
 				style="float: right; width: 32px; height: 32px;" 
 				onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>

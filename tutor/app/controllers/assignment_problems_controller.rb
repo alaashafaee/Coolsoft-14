@@ -109,6 +109,7 @@ class AssignmentProblemsController < ApplicationController
 	def index
 		@title = session[:title]
 		@assignment = Assignment.find_by_id(session[:assignment_id])
+		used_problems = @assignment.problems
 		@course_id = @assignment.course_id
 		@course = Course.find_by_id(@course_id)
 		@topics = @course.topics
@@ -127,14 +128,18 @@ class AssignmentProblemsController < ApplicationController
 			@tracks.each do |track|
 				@probs = track.problems
 				@probs.each do |problem1|
-					@problems.push(problem1)
+					unless used_problems.include? problem1
+						@problems.push(problem1)
+					end
 				end
 			end
 		end
 		@bank = Problem.where("seen = ?", true)
 		@cproblems = Array.new
 		@bank.each do |contest| 
-			@cproblems.push(contest)
+			unless used_problems.include? contest
+				@cproblems.push(contest)				
+			end
 		end
 	end
 	
