@@ -1,3 +1,7 @@
+<% if !student_signed_in? %>
+	<%= javascript_include_tag "problem/_solutions", "facebook" %>
+<% end %>
+
 <div class= "left-box" >
 	<div class="xob">
 		<div class = "course_info panel-body" >
@@ -26,7 +30,7 @@
 		<br><br>
 		<div id="fb-root"></div>
 		<div class='problem'>
-			<% if !lecturer_signed_in? %>
+			<% if !student_signed_in? %>
 				<img src="/assets/facebooksharebutton.png" class="fb-button" 
 				style="float: right; width: 32px; height: 32px;" 
 				onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>
@@ -48,7 +52,6 @@
 							<% track_progess = TrackProgression.get_progress(current_student,
 							@problem.track.topic) %>
 		 					<% if track_progess >= @problem.track.difficulty %>
-		 						<%= javascript_include_tag "problem/_solutions" %>
 		 						<%= render partial: "solutions/timer" %>
 		 						<%= render partial: "solutions/new"%>
 		 						<td style='vertical-align:top;'>
