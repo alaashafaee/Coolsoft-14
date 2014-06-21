@@ -1,5 +1,5 @@
-<% if !student_signed_in? %>
-	<%= javascript_include_tag "problems/_solutions", "facebook" %>
+<% if student_signed_in? %>
+	<%= javascript_include_tag "problems/problems", "facebook" %>
 <% end %>
 
 <div class= "left-box" >
