@@ -1,6 +1,5 @@
 //= assignment_problems
 //= require contests
-//= require courses
 //= require facebook
 //= require helper
 //= require hints
