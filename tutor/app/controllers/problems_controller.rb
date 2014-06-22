@@ -16,6 +16,7 @@ class ProblemsController < ApplicationController
 			@topic = @track.topic
 			@course = @topic.course
 			@snippet = @problem.snippet
+			@st_snippet = @problem.last_submitted_code_by_student current_student
 		end
 	end
 

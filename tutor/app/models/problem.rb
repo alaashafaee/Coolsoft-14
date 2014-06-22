@@ -55,4 +55,28 @@ class Problem < ActiveRecord::Base
 		return number_of_attempts_with_status(status: Solution::STATUS_ACCEPTED)
 	end
 
+	# Gets the last student's solution of this problem
+	# Parameters:
+	#	student: The student owner of the wanted solution
+	# Returns: The last student's solution of this problem
+	# Author: Mussab ElDash
+	def last_solution_by_student student
+		return nil unless student
+		solutionss = solutions.where(student: student)
+		return nil unless solutionss
+		return solutionss.last
+	end
+
+	# Gets the code of the last student's solution of this problem
+	# Parameters:
+	#	student: The student owner of the wanted solution
+	# Returns: The code of the last student's solution of this problem
+	# Author: Mussab ElDash
+	def last_submitted_code_by_student student
+		return "" unless student
+		solution = last_solution_by_student student
+		return "" unless solution
+		return solution.code
+	end
+
 end
