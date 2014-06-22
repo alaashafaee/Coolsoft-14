@@ -275,6 +275,8 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "10\n20\n50\n30\n50\n", input:"10\n20\n50\n30\n50\n42")
 	TestCase.create(output: "1\n", input:"1\n42")
 	TestCase.create(output: "1\n2\n", input:"1\n2\n42\n4")
+	TestCase.create(output: "hello World 4", input:"x = 3")
+	TestCase.create(output: "hello World 5", input:"x = 4")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -1026,7 +1028,9 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.test_cases << TestCase.find_by_id(5)
 		Problem.first.test_cases << TestCase.find_by_id(6)
 		Problem.find_by_id(2).test_cases << TestCase.first
-		Problem.find_by_id(3).test_cases << TestCase.first
+		Problem.find_by_id(3).test_cases << TestCase.find_by_id(2)
+		Problem.find_by_id(4).test_cases << TestCase.find_by_id(10)
+		Problem.find_by_id(5).test_cases << TestCase.find_by_id(11)
 	## Model Answers
 		Problem.first.model_answers << ModelAnswer.first
 		Problem.first.model_answers << ModelAnswer.find_by_id(2)
