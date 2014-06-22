@@ -23,11 +23,10 @@ timer = ->
 		digit = "0" + digit
 	document.getElementById("secs").innerHTML = digit
 	i = 0
-	while element_exists('tip' + i)
+	while true
 		tip = $('#tip' + i)
-		i++
 		if typeof(tip.attr 'time') == 'undefined'
-			continue
+			break
 		if typeof(tip.attr 'shown') == 'undefined'
 			time = tip.attr 'time'
 			if time <= min*60 + parseInt(digit, 10)
@@ -35,6 +34,7 @@ timer = ->
 				the_tip = 'Tip: ' + tip.html()
 				tip.attr 'shown', ''
 				log = alert the_tip, 'log', 0
+		i++
 	return
 
 activate = ->
