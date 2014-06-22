@@ -9,13 +9,14 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require posts
  *= require bootstrap
+ *= require jquery-ui
  *= require alertify-themes/alertify.core
- ti*= require posts
+ *= require posts
  *= require jquery.countdown.css
  *= require bootstrap-wysihtml5/b3
+ *= require_tree .
  */
 
  html, body {

@@ -12,6 +12,8 @@ jQuery(document).on("ready page:load", function() {
 	Author: Khaled Helmy
 	*/
 	$(function () {
+		if (!element_exists('temp'))
+			return
 		var timer = $('#temp').data('timer')
 		timer = timer.substring(1, timer.length-1)
 		var destroy = $('#temp').data('del')
