@@ -39,7 +39,8 @@ class Problem < ActiveRecord::Base
 	# Returns: The number of the students
 	# Author: Mussab ElDash
 	def number_of_attempts_with_status(status)
-		query = self.attempts.where(status)
+		# query = self.attempts.where(status)
+		query = self.solutions.where(status)
 		query = query.select("DISTINCT student_id")
 		return query.count
 	end
@@ -50,7 +51,8 @@ class Problem < ActiveRecord::Base
 	# Returns: The number of the students that solved this problem
 	# Author: Mussab ElDash
 	def number_of_success
-		return number_of_attempts_with_status(success: true)
+		# return number_of_attempts_with_status(success: true)
+		return number_of_attempts_with_status(status: Solution::STATUS_ACCEPTED)
 	end
 
 end
