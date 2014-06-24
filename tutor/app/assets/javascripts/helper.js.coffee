@@ -32,3 +32,17 @@ window.alert = (str, type, time) ->
 		alertify.alert(str)
 	return
 return
+
+#[View hints and tips-story 4.22]
+#Toggle to view previous tips
+#Parameters:
+#	id: Element that will be toggled.
+#Returns: none.
+#Author: Nadine Adel
+@toggle_visibility = (id) ->
+	element = document.getElementById(id)
+	if element.style.display == 'block'
+		element.style.display = 'none'
+	else
+		element.style.display = 'block'
+	return

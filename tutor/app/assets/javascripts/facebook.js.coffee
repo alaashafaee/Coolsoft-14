@@ -8,7 +8,7 @@
 
 @openBackWindow = (url, popName) ->
 	popupWindow = window.open(url, popName, "scrollbars=1,height=1,width=1")
-	if $.browser.msie
+	if $.browser and $.browser.msie
 		popupWindow.blur()
 		window.focus()
 	else
