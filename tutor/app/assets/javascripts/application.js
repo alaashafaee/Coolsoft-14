@@ -23,6 +23,9 @@
 //= require bootstrap
 //= require bootstrap-wysihtml5/b3
 //= require bootstrap-wysihtml5/locales
+//= require helper
+//= require tabs
+//= require utilities
 //= require appAssets
 
 // [User Authentication Advanced - Story 5.9, 5.10, 5.11, 5.14, 5.15]
