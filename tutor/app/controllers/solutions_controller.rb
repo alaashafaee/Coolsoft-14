@@ -109,12 +109,11 @@ class SolutionsController < ApplicationController
 	# Author: Abdullrahman Elhusseny
 	def view_submissions
 		@problem = AssignmentProblem.find_by_id(params[:problem_id])
-		@submissions = @problem.solutions.group(:student_id)
+		submissions = @problem.solutions
 		@students = Hash.new
-		@counter = 0
-		@submissions.each do |submission|
-			@counter+=1
-			@students[@counter] = Student.find_by_id(submission.student_id)
+		submissions.each do |submission|
+			student = submission.student
+			@students[student.id] = [submission, student]
 		end
 		@course = @problem.assignment.course
 		@can_edit = @course.can_edit(current_lecturer)
