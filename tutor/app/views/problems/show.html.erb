@@ -1,3 +1,7 @@
+<% if student_signed_in? %>
+	<%= javascript_include_tag "problems/problems", "facebook" %>
+<% end %>
+
 <div class= "left-box" >
 	<div class="xob">
 		<div class = "course_info panel-body" >
@@ -26,7 +30,7 @@
 		<br><br>
 		<div id="fb-root"></div>
 		<div class='problem'>
-			<% if !lecturer_signed_in? %>
+			<% if student_signed_in? %>
 				<img src="/assets/facebooksharebutton.png" class="fb-button" 
 				style="float: right; width: 32px; height: 32px;" 
 				onClick="openBackWindow('/facebook', 'Facebook')" title="Ask Facebook"></img>
@@ -66,9 +70,6 @@
 										<div id="stack" class="fixed-dimensions">
 										</div>
 										<br /><br />
-										<!-- <script type="text/javascript">
-											$('#tip').tooltip(options)
-										</script> -->
 										<button id='tip' type="button" 
 											class="btn btn-info" 
 											data-toggle="tooltip" 

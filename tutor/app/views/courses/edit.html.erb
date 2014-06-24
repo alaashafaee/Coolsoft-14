@@ -1,3 +1,5 @@
+<%= javascript_include_tag "courses" %>
+
 <div class="container main-manage-container">
 	<div class="container course-manage-main">
 		<h1> 
@@ -23,7 +25,10 @@
 						<h1>
 							<font>  &raquo; Edit Course Info </font>
 							<div  id="course-edit-span">
-								<span class="glyphicon glyphicon-edit" style="float:right; cursor:pointer" onclick="edit_course(<%=@course.id%>);"></span>
+								<span class="glyphicon glyphicon-edit"
+									style="float:right; cursor:pointer" 
+									onclick="edit_course(<%=@course.id%>);">
+								</span>
 							</div>
 						</h1>
 						<hr>

@@ -1,6 +1,6 @@
 <div class="left-row">
 	<div class="container" style='width: 100%'>
-		<% if @submissions.empty? %>
+		<% if @students.empty? %>
 			<p>No solutions have been submitted to this problem</p>
 		<% else %>
 			<table>
@@ -13,12 +13,11 @@
 					<td width="50px"></td>
 					<td style = "font-weight:bold;font-size:200%;">Passed test cases</td>
 				</tr>
-					<% @counter = 0 %>
-					<% @submissions.each do |submission| %>
-						<% @counter+= 1 %>
+					<% @students.each do |student_id, submissionA| %>
 						<tr class="spaceAbove">
-							<% @student = @students[@counter] %>
-							<td><%= @student.name %></td>
+							<% student = submissionA[1] %>
+							<% submission = submissionA[0] %>
+							<td><%= student.name %></td>
 							<td width="50px"></td>
 							<td title = "<%= @problem.description %>"><%= @problem.title %></td>
 							<td width="50px"></td>
