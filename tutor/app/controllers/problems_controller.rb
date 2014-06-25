@@ -9,7 +9,7 @@ class ProblemsController < ApplicationController
 	def show
 		@contest = Contest.find_by_id(params[:contest_id])
 		@problem = Problem.find_by_id(params[:id])
-		if @problem.nil?
+		if @problem.nil? || (student_signed_in && @problem.incomplete)
 			render "problem_not_found"
 		else
 			@track = @problem.track
