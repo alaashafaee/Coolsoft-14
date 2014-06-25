@@ -15,8 +15,7 @@ class TopicsController < ApplicationController
 		if @topic
 			@course = @topic.course
 			@tracks = @topic.tracks
-			@can_edit = @course.can_edit(current_lecturer)
-			@can_edit||= @course.can_edit(current_teaching_assistant)
+			@can_edit = @course.can_edit(current_lecturer, current_teaching_assistant)
 		else
 			render ('public/404')
 		end

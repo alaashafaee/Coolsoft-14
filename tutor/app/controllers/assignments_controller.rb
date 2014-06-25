@@ -68,12 +68,7 @@ class AssignmentsController < ApplicationController
 		if @assignment
 			@course = @assignment.course
 			@problems = @assignment.problems
-			if teaching_assistant_signed_in?
-				@can_edit = @course.can_edit(current_teaching_assistant)
-			end
-			if lecturer_signed_in?
-				@can_edit ||= @course.can_edit(current_lecturer)
-			end
+			@can_edit = @course.can_edit(current_lecturer, current_teaching_assistant)
 		else
 			render ('public/404')
 		end
@@ -110,8 +105,7 @@ class AssignmentsController < ApplicationController
 			render "problem_not_found"
 		else
 			@course = @assignment.course
-			@can_edit = @course.can_edit(current_lecturer)
-			@can_edit||= @course.can_edit(current_teaching_assistant)
+			@can_edit = @course.can_edit(current_lecturer, current_teaching_assistant)
 		end
 	end
 

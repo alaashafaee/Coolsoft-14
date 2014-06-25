@@ -161,8 +161,7 @@ class AssignmentProblemsController < ApplicationController
 		else
 			@assignment = @problem.assignment
 			@course = @assignment.course
-			@can_edit = @course.can_edit(current_lecturer)
-			@can_edit||= @course.can_edit(current_teaching_assistant)
+			@can_edit = @course.can_edit(current_lecturer, current_teaching_assistant)
 		end
 	end
 
@@ -180,8 +179,7 @@ class AssignmentProblemsController < ApplicationController
 		else
 			@assignment = @problem.assignment
 			@course = @assignment.course
-			@can_edit = @course.can_edit(current_lecturer)
-			@can_edit||= @course.can_edit(current_teaching_assistant)
+			@can_edit = @course.can_edit(current_lecturer, current_teaching_assistant)
 		end
 	end
 
