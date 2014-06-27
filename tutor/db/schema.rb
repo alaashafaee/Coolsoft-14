@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515223322) do
+ActiveRecord::Schema.define(version: 20140617132031) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "acknowledgements", force: true do |t|
     t.string   "message"
@@ -33,9 +36,9 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -52,13 +55,14 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "assignment_problems", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "final_grade",   default: 0
+    t.boolean  "incomplete",    default: true
     t.integer  "assignment_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -66,7 +70,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "assignment_problems", ["title", "assignment_id"], name: "index_assignment_problems_on_title_and_assignment_id", unique: true
+  add_index "assignment_problems", ["title", "assignment_id"], name: "index_assignment_problems_on_title_and_assignment_id", unique: true, using: :btree
 
   create_table "assignments", force: true do |t|
     t.string   "title"
@@ -80,7 +84,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "assignments", ["title", "course_id"], name: "index_assignments_on_title_and_course_id", unique: true
+  add_index "assignments", ["title", "course_id"], name: "index_assignments_on_title_and_course_id", unique: true, using: :btree
 
   create_table "attempts", force: true do |t|
     t.integer  "student_id"
@@ -108,12 +112,11 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.integer  "cproblem_id"
     t.integer  "trials"
     t.boolean  "status"
-    t.integer  "trials"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "contest_progresses", ["contest_id", "student_id", "cproblem_id"], name: "ConProgress", unique: true
+  add_index "contest_progresses", ["contest_id", "student_id", "cproblem_id"], name: "ConProgress", unique: true, using: :btree
 
   create_table "contests", force: true do |t|
     t.string   "title"
@@ -133,14 +136,22 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.integer "cproblem_id", null: false
   end
 
-  add_index "contests_cproblems", ["contest_id", "cproblem_id"], name: "index_contests_cproblems_on_contest_id_and_cproblem_id", unique: true
+  add_index "contests_cproblems", ["contest_id", "cproblem_id"], name: "index_contests_cproblems_on_contest_id_and_cproblem_id", unique: true, using: :btree
 
   create_table "contests_students", id: false, force: true do |t|
     t.integer "contest_id", null: false
     t.integer "student_id", null: false
   end
 
-  add_index "contests_students", ["contest_id", "student_id"], name: "index_contests_students_on_contest_id_and_student_id", unique: true
+  add_index "contests_students", ["contest_id", "student_id"], name: "index_contests_students_on_contest_id_and_student_id", unique: true, using: :btree
+
+  create_table "contributors", force: true do |t|
+    t.string   "name"
+    t.string   "profile_image"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "course_students", force: true do |t|
     t.boolean  "share",      default: false
@@ -150,7 +161,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "course_students", ["course_id", "student_id"], name: "index_course_students_on_course_id_and_student_id", unique: true
+  add_index "course_students", ["course_id", "student_id"], name: "index_course_students_on_course_id_and_student_id", unique: true, using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "name"
@@ -171,19 +182,20 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.integer "lecturer_id", null: false
   end
 
-  add_index "courses_lecturers", ["course_id", "lecturer_id"], name: "index_courses_lecturers_on_course_id_and_lecturer_id", unique: true
+  add_index "courses_lecturers", ["course_id", "lecturer_id"], name: "index_courses_lecturers_on_course_id_and_lecturer_id", unique: true, using: :btree
 
   create_table "courses_teaching_assistants", id: false, force: true do |t|
     t.integer "course_id",             null: false
     t.integer "teaching_assistant_id", null: false
   end
 
-  add_index "courses_teaching_assistants", ["course_id", "teaching_assistant_id"], name: "TACourses", unique: true
+  add_index "courses_teaching_assistants", ["course_id", "teaching_assistant_id"], name: "TACourses", unique: true, using: :btree
 
   create_table "cproblems", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "time_limit"
+    t.boolean  "incomplete",  default: true
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
@@ -213,7 +225,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "grades", ["student_id", "problem_id"], name: "index_grades_on_student_id_and_problem_id", unique: true
+  add_index "grades", ["student_id", "problem_id"], name: "index_grades_on_student_id_and_problem_id", unique: true, using: :btree
 
   create_table "hints", force: true do |t|
     t.text     "message"
@@ -253,16 +265,16 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "lecturers", ["confirmation_token"], name: "index_lecturers_on_confirmation_token", unique: true
-  add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true
-  add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true
+  add_index "lecturers", ["confirmation_token"], name: "index_lecturers_on_confirmation_token", unique: true, using: :btree
+  add_index "lecturers", ["email"], name: "index_lecturers_on_email", unique: true, using: :btree
+  add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true, using: :btree
 
   create_table "lecturers_teaching_assistants", id: false, force: true do |t|
     t.integer "teaching_assistant_id", null: false
     t.integer "lecturer_id",           null: false
   end
 
-  add_index "lecturers_teaching_assistants", ["teaching_assistant_id", "lecturer_id"], name: "TALecturers", unique: true
+  add_index "lecturers_teaching_assistants", ["teaching_assistant_id", "lecturer_id"], name: "TALecturers", unique: true, using: :btree
 
   create_table "method_constraints", force: true do |t|
     t.string   "method_name"
@@ -341,7 +353,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "problem_opening_times", ["student_id", "problem_id"], name: "index_problem_opening_times_on_student_id_and_problem_id", unique: true
+  add_index "problem_opening_times", ["student_id", "problem_id"], name: "index_problem_opening_times_on_student_id_and_problem_id", unique: true, using: :btree
 
   create_table "problems", force: true do |t|
     t.string   "title"
@@ -360,7 +372,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "problems", ["track_id", "title"], name: "index_problems_on_track_id_and_title", unique: true
+  add_index "problems", ["track_id", "title"], name: "index_problems_on_track_id_and_title", unique: true, using: :btree
 
   create_table "recommendations", force: true do |t|
     t.integer  "problem_id"
@@ -370,7 +382,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "recommendations", ["problem_id", "student_id", "recommender_id"], name: "recom_problems", unique: true
+  add_index "recommendations", ["problem_id", "student_id", "recommender_id"], name: "recom_problems", unique: true, using: :btree
 
   create_table "replies", force: true do |t|
     t.text     "content"
@@ -392,19 +404,6 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.string   "owner_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "rich_rich_files", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "rich_file_file_name"
-    t.string   "rich_file_content_type"
-    t.integer  "rich_file_file_size"
-    t.datetime "rich_file_updated_at"
-    t.string   "owner_type"
-    t.integer  "owner_id"
-    t.text     "uri_cache"
-    t.string   "simplified_type",        default: "file"
   end
 
   create_table "solutions", force: true do |t|
@@ -449,9 +448,9 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true
-  add_index "students", ["email"], name: "index_students_on_email", unique: true
-  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+  add_index "students", ["confirmation_token"], name: "index_students_on_confirmation_token", unique: true, using: :btree
+  add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree
+  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"
@@ -491,9 +490,9 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true
-  add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true
-  add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true
+  add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true, using: :btree
+  add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true, using: :btree
+  add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true, using: :btree
 
   create_table "test_cases", force: true do |t|
     t.string   "input"
@@ -526,7 +525,7 @@ ActiveRecord::Schema.define(version: 20140515223322) do
     t.datetime "updated_at"
   end
 
-  add_index "track_progressions", ["student_id", "topic_id"], name: "index_track_progressions_on_student_id_and_topic_id", unique: true
+  add_index "track_progressions", ["student_id", "topic_id"], name: "index_track_progressions_on_student_id_and_topic_id", unique: true, using: :btree
 
   create_table "tracks", force: true do |t|
     t.string   "title"
