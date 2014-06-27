@@ -4,6 +4,7 @@ class CreateAssignmentProblems < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.integer :final_grade, default: 0
+      t.boolean :incomplete, default: true
 
       t.integer :assignment_id
       t.references :owner, polymorphic: true

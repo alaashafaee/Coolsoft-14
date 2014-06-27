@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20140617132031) do
     t.string   "title"
     t.text     "description"
     t.integer  "final_grade",   default: 0
+    t.boolean  "incomplete",    default: true
     t.integer  "assignment_id"
     t.integer  "owner_id"
     t.string   "owner_type"
@@ -194,6 +195,7 @@ ActiveRecord::Schema.define(version: 20140617132031) do
     t.string   "title"
     t.text     "description"
     t.integer  "time_limit"
+    t.boolean  "incomplete",  default: true
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"

@@ -4,6 +4,7 @@ class CreateCproblems < ActiveRecord::Migration
       t.string :title, unique: true
       t.text :description
       t.integer :time_limit
+      t.boolean :incomplete, default: true
       
       t.references :owner, polymorphic: true
       t.timestamps
