@@ -41,6 +41,3 @@ models.svg
 /students_solutions/Class/*.class
 /students_solutions/*
 .env
-
-# Ignoring elasticSearch files
-elasticsearch-1.2.1/
