@@ -14,6 +14,9 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 config/secrets.yml
 
+# Ignoring elasticSearch files
+**/elasticsearch/
+
 ## Environment normalisation:
 /.bundle
 /vendor/bundle
@@ -23,6 +26,3 @@ config/secrets.yml
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
-
-# Ignoring elasticSearch files
-elasticsearch-1.2.1/
