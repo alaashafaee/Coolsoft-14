@@ -1,6 +1,6 @@
 urun:
 	sudo /etc/init.d/postgresql start
-	../elasticsearch-1.2.1/bin/elasticsearch &
+	sudo service elasticsearch start
 	foreman start
 
 uinstall:
