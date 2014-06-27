@@ -46,6 +46,9 @@ body .container {
 footer {
 	width: 100%;
 }
+.footer {
+	color: white;
+}
 
 hr {
 	border-top: 1px solid #1a5f63 !important;

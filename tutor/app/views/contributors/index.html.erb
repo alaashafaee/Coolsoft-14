@@ -1,0 +1,44 @@
+<div class="container " style="background:#ffffff !important">
+	<div class="container well">
+		<div class="well">
+			<h1>&raquo;Contributors</h1>
+			<hr>
+		</div>
+	</div>
+	<% if !@contributors.blank? %>
+		<% @contributors.each_slice(5) do |contributor| %>
+			<div class="row container ">
+				<% contributor.each do |con| %>
+					<div class="container col-sm-2 col-style">
+						<div class="well">
+							<% if con.profile_image.blank? %>
+								<div class="row"><img class="img-md-responsive images" src="/assets/profile_img.jpg"></div>
+							<% else %>
+								<div class="row"><img class="img-md-responsive images" src="/assets/<%=con.profile_image%>"></div>
+							<% end %>
+							<div class="row"> <%= con.name %> </div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<style type="text/css">
+	.col-style {
+		text-align: center;
+		width: 20%;
+	}
+	.images {
+		width: 150px;
+		height: 150px;
+		border-radius: 100%;
+	}
+	@media (max-width: 759px) {
+		.col-style {
+			text-align: center;
+			width: 100%;
+		}
+	}
+</style>
