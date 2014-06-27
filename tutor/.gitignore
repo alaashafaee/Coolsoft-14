@@ -43,3 +43,4 @@ models.svg
 .env
 
 # Ignoring elasticSearch files
+/elasticsearch-1.2.1/*
