@@ -42,6 +42,7 @@ class Course < ActiveRecord::Base
 		users.each do |user|
 			if user && user.courses.include?(self)
 				return true
+			end
 		end
 		return false
 	end
