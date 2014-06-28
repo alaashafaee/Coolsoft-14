@@ -156,7 +156,7 @@ class AssignmentProblemsController < ApplicationController
 	# Author: Lin Kassem
 	def show
 		@problem = AssignmentProblem.find_by_id(params[:id])
-		if @problem.nil? || (student_signed_in && @problem.incomplete)
+		if @problem.nil? || (student_signed_in? && @problem.incomplete)
 			render "problem_not_found"
 		else
 			@assignment = @problem.assignment
