@@ -2,12 +2,7 @@
 				<% @courses.each do |course| %>
 					<tr>
 						<td>
-							<%= link_to course.name,
-								:controller => 'courses',
-								:action => 'show',
-								:id => course.id,
-								:method => :get,
-								class: "btn btn-success" %>
+							<%= link_to course.name, course %>
 						</td>
 					</tr>
 				<% end %>
