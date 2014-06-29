@@ -60,6 +60,9 @@ class AssignmentsController < ApplicationController
 		@assignment_submitted_flag = false
 		id = params[:id]
 		@assignment = Assignment.find_by_id(id)
+		if(@assignment.publish==false)
+			render "public/404.html"
+		end
 		@grade_records = []
 		@submitted_records = []
 		if student_signed_in?

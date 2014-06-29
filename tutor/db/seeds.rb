@@ -333,6 +333,8 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "10\n20\n50\n30\n50\n", input:"10\n20\n50\n30\n50\n42")
 	TestCase.create(output: "1\n", input:"1\n42")
 	TestCase.create(output: "1\n2\n", input:"1\n2\n42\n4")
+	TestCase.create(output: "hello World 4", input:"x = 3")
+	TestCase.create(output: "hello World 5", input:"x = 4")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -390,30 +392,27 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
 		print "."
 	## Exercise
-
+		snippet = "public class CoolSoft {\n\tpublic static "
+		snippet = "#{snippet}void main(String [] args) {\n"
+		snippet = "#{snippet}\t\t\n\t}\n}"
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
 		print "."
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					incomplete: false,
+					snippet: snippet)
 		print "."
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
 		print "."
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
 					incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
 		print "."
 		Problem.create(title: "Problem 5", description: "This is very easy Problem", incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
 		print "."
 		Problem.create(id: 501, title: "Count Change", description: "Write a program CountChange 
 			to count change. Given the number of quarter, dimes, nickles, and pennies the 
@@ -1119,7 +1118,9 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.test_cases << TestCase.find_by_id(5)
 		Problem.first.test_cases << TestCase.find_by_id(6)
 		Problem.find_by_id(2).test_cases << TestCase.first
-		Problem.find_by_id(3).test_cases << TestCase.first
+		Problem.find_by_id(3).test_cases << TestCase.find_by_id(2)
+		Problem.find_by_id(4).test_cases << TestCase.find_by_id(10)
+		Problem.find_by_id(5).test_cases << TestCase.find_by_id(11)
 	## Model Answers
 		Problem.first.model_answers << ModelAnswer.first
 		Problem.first.model_answers << ModelAnswer.find_by_id(2)
@@ -1168,7 +1169,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(9)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
-		Problem.first.model_answers.first.hints << Hint.all.second
+		Problem.first.model_answers.first.hints << Hint.find_by_id(2)
 		Problem.find_by_id(501).model_answers.find_by_id(501).hints << Hint.find_by_id(501)
 		Problem.find_by_id(502).model_answers.find_by_id(502).hints << Hint.find_by_id(502)
 		Problem.find_by_id(503).model_answers.find_by_id(503).hints << Hint.find_by_id(503)

@@ -38,15 +38,12 @@
 		</div>
 	</div>
 	<%= hidden_field :problem, :default_code, value: @snippet %>
+	<%= hidden_field :problem, :student_code, value: @st_snippet %>
 	<br><br><br>
 
 	<!-- Add editor -->
 	<div style="margin-top:-10px;">
-		<pre id="editor">public class CoolSoft {
-			public static void main(String [] args) {
-				&#09;&#09;
-			}
-		}</pre>
+	<pre id="editor"></pre>
 	</div>
 
 </div>
