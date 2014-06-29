@@ -397,7 +397,7 @@ puts("# ----------------------- Problems ----------------------- ")
 					\t\t\n\t}\n}")
 		print "."
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
-					incomplete: false,
+					incomplete: true,
 					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
 					\t\t\n\t}\n}")
 		print "."
