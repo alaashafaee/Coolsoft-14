@@ -106,13 +106,14 @@ class TopicsController < ApplicationController
 	# Returns: none
 	# Author: Lin Kassem
 	def sort
-		@track = Track.find_by_id(params[:methodParam][0])  
-		@topic = @track.topic 
-		@tracks = @topic.tracks
- 		new_Order_Array = params[:methodParam]
-
-		@tracks.each do |track|
-			track.difficulty = (params[:methodParam]).index(track.id.to_s) + 1
+		tracks = Track.find_by_id(params[:methodParam][0]).topic.tracks
+		tracks.each do |track|
+			track.difficulty = -1
+			track.save
+		end
+		tracks.each do |track|
+			track.difficulty = (params[:methodParam]).index(track.id.to_s)
+			track.save
 		end
 		render :nothing => true
 	end

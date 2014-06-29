@@ -822,7 +822,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## Problem 10
 		Problem.create(id: 110, title: "Fibonacci", description: "Use a recursive function to 
 			calculate the Fibonacci number", incomplete: false, seen:true)
-		print "."
+		print ".\n"
 		TestCase.create(output: "1", input:"1", model_answer_id: 110)
 		TestCase.create(output: "5", input:"5", model_answer_id: 110)
 		TestCase.create(output: "8", input:"6", model_answer_id: 110)
