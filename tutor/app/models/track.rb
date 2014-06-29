@@ -61,4 +61,34 @@ class Track < ActiveRecord::Base
 			return "Not Supported"
 		end
 	end
+
+	def visible_for *users
+		course = topic.course
+		return true if course.can_edit *users
+		users.each do |user|
+			return false if user.is_a?(Student) && 
+				TrackProgression.get_progress(user.id, topic.id) < difficulty
+			problems.each do |p|
+				unless p.incomplete
+					return true
+				end
+			end
+		end
+		return false
+	end
+
+	def problems_for *users
+		course = topic.course
+		return problems if course.can_edit *users
+		users.each do |user|
+			st_problems = []
+			problems.each do |pr|
+				unless pr.incomplete
+					st_problems << pr
+				end
+			end
+			return st_problems
+		end
+		return []
+	end
 end

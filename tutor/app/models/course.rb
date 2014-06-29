@@ -38,9 +38,10 @@ class Course < ActiveRecord::Base
 	# Parameters: The users to see if any of them has access
 	# Returns: True in case one has access else False
 	# Author: Mussab ElDash
-	def can_edit(*users)
+	def can_edit *users
 		users.each do |user|
-			if user && user.courses.include?(self)
+			isInstructor = user.is_a?(Lecturer) || user.is_a?(TeachingAssistant)
+			if isInstructor && user.courses.include?(self)
 				return true
 			end
 		end
