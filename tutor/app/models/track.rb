@@ -1,9 +1,10 @@
 class Track < ActiveRecord::Base
 
 	#Validations
-	validates :difficulty, presence: true, inclusion: { in: (0..4) },
-		uniqueness: { scope: :topic,
-			message: "A topic can not have two trcks with the same difficulty" }
+	validates :difficulty, presence: true, inclusion: { in: (0..4) }
+	validates :difficulty, uniqueness: { scope: :topic_id,
+		message: "A topic can not have two trcks with the same difficulty" },
+		unless: "topic.nil?"
 	validates :title , presence: true
 
 	#Relations
