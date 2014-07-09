@@ -21,11 +21,11 @@ class CoursesController < ApplicationController
 				@courses = Course.select(:university).distinct
 				@status = "1"
 			when "2"
-				@courses = Course.where("university= " + "\"" + params[:university] +
-					"\"").select(:semester).distinct
+				@courses = Course.where(university: params[:university]).
+					select(:semester).distinct
 			when "3"
-				@courses = Course.where("semester= " + params[:semester] +
-					" AND university = " + "\"" + params[:university] + "\"")
+				@courses = Course.where(semester: params[:semester],
+					university: params[:university])
 			when "4"
 				@course = Course.find(params[:id])
 			when "5"
