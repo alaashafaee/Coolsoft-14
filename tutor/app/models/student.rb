@@ -206,6 +206,7 @@ class Student < ActiveRecord::Base
 		recommended_problems = Recommendation.where(:student_id => self.id)
 		recommended_problems_hash = Hash.new
 		recommended_problems.each do |problem|
+			next if problem.problem.is_solved_by_student self.id
 			recommended_problems_hash[problem.problem_id] = Hash.new
 			recommender_name = Student.where(:id => problem.recommender_id).take.name
 			problem_title = Problem.where(:id => problem.problem_id).take.title
