@@ -80,15 +80,12 @@ class Track < ActiveRecord::Base
 	def problems_for *users
 		course = topic.course
 		return problems if course.can_edit *users
-		users.each do |user|
-			st_problems = []
-			problems.each do |pr|
-				unless pr.incomplete
-					st_problems << pr
-				end
+		st_problems = []
+		problems.each do |pr|
+			unless pr.incomplete
+				st_problems << pr
 			end
-			return st_problems
 		end
-		return []
+		return st_problems
 	end
 end
