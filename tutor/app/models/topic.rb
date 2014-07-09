@@ -44,14 +44,13 @@ class Topic < ActiveRecord::Base
 	end
 
 	# [Course Sign-Up - Story 2.6]
-	# Update the the progress of all students for a topic in a
-	#	specfic course 
+	# Update the progress of all students for a topic in a specfic course 
 	# Parameters:
 	#	Topic: the topic in which the progress of students should be updated
 	# Returns: none
 	# Author: Mohamed Saeed
 	def self.update_track_progression topic
-		course = Course.find_by_id(topic.course_id)
+		course = topic.course
 		course.students.each do |student|
 			progress = TrackProgression.create(level: 0, topic_id: topic.id)
 			student.progressions << progress

@@ -39,7 +39,8 @@ class Problem < ActiveRecord::Base
 	# Returns: The number of the students
 	# Author: Mussab ElDash
 	def number_of_attempts_with_status(status)
-		query = self.attempts.where(status)
+		# query = self.attempts.where(status)
+		query = self.solutions.where(status)
 		query = query.select("DISTINCT student_id")
 		return query.count
 	end
@@ -50,7 +51,32 @@ class Problem < ActiveRecord::Base
 	# Returns: The number of the students that solved this problem
 	# Author: Mussab ElDash
 	def number_of_success
-		return number_of_attempts_with_status(success: true)
+		# return number_of_attempts_with_status(success: true)
+		return number_of_attempts_with_status(status: Solution::STATUS_ACCEPTED)
+	end
+
+	# Gets the last student's solution of this problem
+	# Parameters:
+	#	student: The student owner of the wanted solution
+	# Returns: The last student's solution of this problem
+	# Author: Mussab ElDash
+	def last_solution_by_student student
+		return nil unless student
+		solutionss = solutions.where(student: student)
+		return nil unless solutionss
+		return solutionss.last
+	end
+
+	# Gets the code of the last student's solution of this problem
+	# Parameters:
+	#	student: The student owner of the wanted solution
+	# Returns: The code of the last student's solution of this problem
+	# Author: Mussab ElDash
+	def last_submitted_code_by_student student
+		return "" unless student
+		solution = last_solution_by_student student
+		return "" unless solution
+		return solution.code
 	end
 
 end

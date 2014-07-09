@@ -58,7 +58,7 @@ class TracksController < ApplicationController
 			elsif params[:Track][:difficulty] == ""
 				flash[:error] = "The Difficulty field is empty"
 			else
-				flash[:error] = "An error has occured"
+				flash[:error] = "An error has occured"
 			end
 			flash[:title] = params[:Track][:title]
 			flash[:difficulty] = params[:Track][:difficulty]
@@ -74,14 +74,16 @@ class TracksController < ApplicationController
 	def show_classmates
 		problem = Problem.find_by_id(params[:id])
 		track = problem.track
-		topic = problem.track.topic
-		course = problem.track.topic.course
+		topic = track.topic
+		course = topic.course
 		students_enrolled = course.students
 		students_receiving_recommendation = Hash.new
 
 		students_enrolled.each do |student|
 			student_level = TrackProgression.get_progress(student.id,topic.id)
-			if (student_level == track.difficulty)
+			next if problem.is_solved_by_student student.id
+			if (student_signed_in? && current_student.id != student.id &&
+					student_level >= track.difficulty)
 				students_receiving_recommendation[student.id] = Hash.new
 				students_receiving_recommendation[student.id]['student_name'] = student.name
 				students_receiving_recommendation[student.id]['recommended_before'] = 'false'

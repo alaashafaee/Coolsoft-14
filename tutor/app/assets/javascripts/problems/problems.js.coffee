@@ -22,7 +22,7 @@ timer = ->
 		document.getElementById("mins").innerHTML = min
 		digit = 0
 	if digit <= 9
-		digit = "0" + digit  
+		digit = "0" + digit
 	document.getElementById("secs").innerHTML = digit
 	i = 0
 	while true
@@ -37,6 +37,7 @@ timer = ->
 				tip.attr 'shown', ''
 				log = alert the_tip, 'log', 0
 		i++
+	return
 
 activate = ->
 	unless timer_is_on

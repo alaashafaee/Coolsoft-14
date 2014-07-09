@@ -22,9 +22,7 @@
 			</div>
 		</div>		
 		<div class="row topic_description">
-			<div class="description-body" ><%= @topic.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</div>
+			<div class="description-body" ><%= @topic.description %></div>
 		</div>
 		<% if @can_edit %>
 			<% if flash[:error] %>
@@ -43,15 +41,21 @@
 		<% hash = hash.to_h %>
 		<% openable = true %>
 		<div class="panel-group list-group" id="accordion">
-			<% @tracks.each do |track| %>
-				<% if openable %>
-					<% open = "in" %>
-					<% openarrow = "glyphicon-chevron-down" %>
-					<% openable = false %>
-				<% else %>
-					<% open = "" %>
-					<% openarrow = "glyphicon-chevron-right" %>
-				<% end %>
+			<% @tracks.each do |track| 
+				unless track.visible_for current_student, current_lecturer, 
+						current_teaching_assistant
+					next
+				end
+				problems = track.problems_for current_student, current_lecturer, 
+								current_teaching_assistant
+				if openable
+					open = "in"
+					openarrow = "glyphicon-chevron-down"
+					openable = false
+				else
+					open = ""
+					openarrow = "glyphicon-chevron-right"
+				end %>
 				<div class = "panel panel-default" style = "width:50%">
 					<div class="panel-title list-group-item list-group-item-info">
 						<a class="icon glyphicon <%= openarrow %>" href="#<%= track.id.to_s %>"
@@ -60,16 +64,16 @@
 						</a>
 						<%= link_to track.title , track , style: 'color:#003366;'%>
 						<% hash.delete track.difficulty %>
-						<span class="badge"><%= track.problems.count %></span>
+						<span class="badge"><%= problems.count %></span>
 					</div>
 					<div id="<%= track.id.to_s %>" class="panel-collapse collapse <%= open %>">
 						<ul class="list-group">
-							<% track.problems.each do |problem|%>
-								<% color = "" %>
-								<% if student_signed_in? && 
-									problem.is_solved_by_student(current_student.id) %>
-									<% color = "label label-success" %>
-								<% end %>
+							<% problems.each do |problem|
+								color = ""
+								if student_signed_in? && 
+									problem.is_solved_by_student(current_student.id)
+									color = "label label-success"
+								end %>
 								<li class="list-group-item" data-toggle="tooltip"
 									data-placement="top" title="<%= problem.description%>">
 										<%= link_to problem.title , problem , class: color %>
