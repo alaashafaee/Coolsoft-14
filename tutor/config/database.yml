@@ -41,7 +41,6 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-
 development:
   adapter: postgresql
   database: my_database_development

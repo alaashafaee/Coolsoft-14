@@ -21,7 +21,11 @@
 	var editor = ace.edit("editor");
 	var edit_session = editor.getSession();
 	var default_code = document.getElementById('problem_default_code');
-	edit_session.setValue(default_code.value);
+	var student_code = document.getElementById('problem_student_code');
+	if(student_code.value === "")
+		edit_session.setValue(default_code.value);
+	else
+		edit_session.setValue(student_code.value);
 	editor.setTheme("ace/theme/twilight");
 	edit_session.setMode("ace/mode/java");
 </script>

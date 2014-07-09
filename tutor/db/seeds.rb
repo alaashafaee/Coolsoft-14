@@ -9,8 +9,35 @@ puts("**************************************************************")
 puts("                      Creating records                    ")
 puts("**************************************************************")
 
+puts("# ----------------------- Contributor ----------------------- ")
+	Contributor.create(name:"Mohamed Abdelhamed Metawaa", profile_image:"profile_img/metawaa.jpg", link:"");
+	Contributor.create(name:"Rami Khalil", profile_image:"profile_img/rami.jpg", link:"");
+	Contributor.create(name:"Ahmed Elassuty", profile_image:"profile_img/elassuty.JPG", link:"");
+	Contributor.create(name:"Abdullrahman Elhusseny", link:"");
+	Contributor.create(name:"Rana Ahmed Elnagar", link:"");
+	Contributor.create(name:"Mohamed Fadel", link:"");
+	Contributor.create(name:"Ebrahim Serag", profile_image:"profile_img/serag.jpg", link:"");
+	Contributor.create(name:"Ahmed Osam", profile_image:"profile_img/osam.gif", link:"");
+	Contributor.create(name:"Abanoub Mimi", link:"");
+	Contributor.create(name:"Ahmed Mohamed Magdi", profile_image:"profile_img/magdi.jpg", link:"");
+	Contributor.create(name:"Khaled Helmy", profile_image:"profile_img/khalid.jpg", link:"");
+	Contributor.create(name:"Ahmed Moataz", profile_image:"profile_img/moataz.png", link:"");
+	Contributor.create(name:"Mussab ElDash", profile_image:"profile_img/mussab.jpg", link:"");
+	Contributor.create(name:"Lin Kassem", profile_image:"profile_img/lin.jpg", link:"");
+	Contributor.create(name:"Rania Abdel Fattah", link:"");
+	Contributor.create(name:"Muhammad Mamdouh", link:"");
+	Contributor.create(name:"Mohamed Saeed", link:"");
+	Contributor.create(name:"Ahmed Atef", link:"");
+	Contributor.create(name:"Nadine Adel", profile_image:"profile_img/nadine.png", link:"");
+	Contributor.create(name:"Mohab Ghanim", profile_image:"profile_img/mohab.png", link:"");
+	Contributor.create(name:"Ahmed Akram", profile_image:"profile_img/akram.png", link:"");
+	Contributor.create(name:"Ahmed Sharaf", link:"");
+	Contributor.create(name:"Amir George", profile_image:"profile_img/amir.jpg", link:"");
+	Contributor.create(name:"Mohamed El-Mahdi", link:"");
+	Contributor.create(name:"Alaa Shafaee", profile_image:"profile_img/alaa.jpg", link:"");
+
 puts("# ----------------------- Admins ----------------------- ")
-	l = AdminUser.new(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+	l = AdminUser.new(email: 'admin@admin.com', password: 'password', password_confirmation: 'password')
 	l.save!
 
 puts("# ----------------------- Lecturers ----------------------- ")
@@ -18,12 +45,16 @@ puts("# ----------------------- Lecturers ----------------------- ")
 		password_confirmation: 'Aa123456789', name: 'LecturerI',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "PhD", university: "GUC", department: "MET")
+	print "."
 	l.save!
+	print "."
 	l = Lecturer.new(email: '2@lecturer.com', password: 'Aa123456789', 
 		password_confirmation: 'Aa123456789', name: 'LecturerII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "PhD", university: "Uni", department: "Dep")
+	print "."
 	l.save!
+	print ".\n"
 
 puts("# ----------------------- Students ----------------------- ")
 	s = Student.new(email: '1@student.com', password: 'Aa123456789', 
@@ -31,25 +62,33 @@ puts("# ----------------------- Students ----------------------- ")
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		faculty: "MET", university: "GUC", major: "CS", semester: 6, 
 		advising: false, probation: false)
+	print "."
 	s.save!
+	print "."
 	s = Student.new(email: '2@student.com', password: 'Aa123456789', 
 		password_confirmation: 'Aa123456789', name: 'StudentII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
 		advising: true, probation: true)
+	print "."
 	s.save!
+	print "."
 	s = Student.new(email: '3@student.com', password: 'Aa123456789', 
 		password_confirmation: 'Aa123456789', name: 'StudentIII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: false,
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 6, 
 		advising: false, probation: true)
+	print "."
 	s.save!
+	print "."
 	s = Student.new(email: '4@student.com', password: 'Aa123456789', 
 		password_confirmation: 'Aa123456789', name: 'StudentIV',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		faculty: "Fac", university: "Uni", major: "Maj", semester: 8, 
 		advising: true, probation: false)
+	print "."
 	s.save!
+	print ".\n"
 
 puts("# ----------------------- TeachingAssistants ----------------------- ")
 	t = TeachingAssistant.new(email: '1@ta.com', password: 'Aa123456789', 
@@ -57,33 +96,45 @@ puts("# ----------------------- TeachingAssistants ----------------------- ")
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "MSc", university: "GUC", department: "MET",
 		graduated_from: "GUC", graduated_year: 2005)
+	print "."
 	t.save!
+	print "."
 	t = TeachingAssistant.new(email: '2@ta.com', password: 'Aa123456789', 
 		password_confirmation: 'Aa123456789', name: 'TAII',
 		confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 		degree: "BSc", university: "Uni", department: "Dep",
 		graduated_from: "Uni", graduated_year: 2009)
+	print "."
 	t.save!
+	print ".\n"
 
 puts("# ----------------------- Courses ----------------------- ")
 
 	Course.create(name:"Data Structures and Alogrithms", 
 				description:"This is a very easy course", code:"CSEN1", year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print "."
 	Course.create(name:"Computer Programming Lab", 
 				description:"This course's evaluation system is the bad", code:2, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print "."
 	Course.create(name:"Course3", 
 				description:"This is course three", code:3, year:2014, semester:1, link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print "."
 	Course.create(name: "CS 2", 
 				description:"This is course four", code: "cs2", year: 2014, semester: 2, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print "."
 	Course.create(name: "CS 3", 
 				description:"This is course five", code: "cs3", year: 2014, semester: 3, university: "GUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print "."
 	Course.create(name: "CS 4", 
 				description:"This is course six", code: "cs4", year: 2014, semester: 4, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print "."
 	Course.create(name: "CS 5", 
 				description:"This is course seven", code: "cs5", year: 2014, semester: 5, university: "AUC", link: "http://met.guc.edu.eg/Courses/CourseEdition.aspx?crsEdId=487")
+	print ".\n"
 
 puts("# ----------------------- Course_Student ----------------------- ")
 	CourseStudent.create(share: true)
+	print ".\n"
 
 puts("# ----------------------- DiscussionBoards ----------------------- ")
 	DiscussionBoard.create(title:"DiscussionBoard1", activated: true)
@@ -97,10 +148,14 @@ puts("# ----------------------- DiscussionBoards ----------------------- ")
 puts("# --------------------------Posts------------------------------")
 	Post.create(title:"Nginx return empty data, while header is 200 OK",
 				content: "The Main Objective is to be a winner", views_count: 20)
+	print "."
 	Post.create(title:"how sqlserver accept NUMERIC values from JDBC driver",
 				content: "It is very hard to keep in this life, be happy", views_count: 100)
+	print "."
 	Post.create(title:"My 3th Post", content: "Post3")
+	print "."
 	Post.create(title:"My 4th Post", content: "Post4")
+	print ".\n"
 
 puts("# ----------------------- Replies ----------------------- ")
 	Reply.create(content: "Reply1")
@@ -119,8 +174,11 @@ puts("# ----------------------- Replies ----------------------- ")
 
 puts("# ----------------------- Topics ----------------------- ")
 	Topic.create(title: "Topic1", description: "This is Topic1 description")
+	print "."
 	Topic.create(title: "Topic2", description: "This is Topic2 description")
+	print "."
 	Topic.create(title: "Topic3", description: "This is Topic3 description")
+	print ".\n"
 
 puts("# ----------------------- Hints ----------------------- ")
 	Hint.create(message: "Do not Try to Solve CS problem-1", category: false, time: 5, submission_counter:10)
@@ -275,8 +333,6 @@ puts("# ----------------------- Test Cases ----------------------- ")
 	TestCase.create(output: "10\n20\n50\n30\n50\n", input:"10\n20\n50\n30\n50\n42")
 	TestCase.create(output: "1\n", input:"1\n42")
 	TestCase.create(output: "1\n2\n", input:"1\n2\n42\n4")
-	TestCase.create(output: "hello World 4", input:"x = 3")
-	TestCase.create(output: "hello World 5", input:"x = 4")
 
 puts("# ----------------------- Method Parameters ----------------------- ")
 	MethodParameter.create(parameter:"MethodParameters 1", params_type: "int")
@@ -294,6 +350,7 @@ puts("# ----------------------- Problems ----------------------- ")
 			to find the Answer to Life, the Universe, and Everything. More precisely... rewrite small numbers from 
 			input to output. Stop processing input after reading in the number 42. All numbers at input are integers 
 			of one or two digits.", final_grade: 100)
+		print "."
 		AssignmentProblem.create(title: "AssignmentProblem 2", description: "he Antique Comedians of Malidinesia prefer 
 			comedies to tragedies. Unfortunately, most of the ancient plays are tragedies. Therefore 
 			the dramatic advisor of ACM has decided to transfigure some tragedies into comedies. 
@@ -311,39 +368,50 @@ puts("# ----------------------- Problems ----------------------- ")
 			reversed form of several numbers (e.g. 21 could be 12, 120 or 1200 before reversing). 
 			Thus we must assume that no zeros were lost by reversing 
 			(e.g. assume that the original number was 12).", final_grade: 100)
+		print "."
 		AssignmentProblem.create(title: "AssignmentProblem 3", description: "This wont be a hard Problem", final_grade:10)
+		print "."
 		AssignmentProblem.create(title: "AssignmentProblem 4", description: "This will be very easy Problem", final_grade:10)
+		print "."
 	## Contests
 		Cproblem.create(title: "Life, the Universe, and Everything", description: "Your program is to use the\ 
 			brute-force approach in order to find the Answer to Life, the Universe, and Everything. More\ 
 			precisely... rewrite small numbers from input to output. Stop processing input after reading\ 
 			in the number 42. All numbers at input are integers of one or two digits.")
+		print "."
 		Cproblem.create(title: "ContestProblem 2", description: "Given two numbers a and b, output a/b")
+		print "."
 		Cproblem.create(title: "ContestProblem 3", description: "This is very hard Problem")
+		print "."
 		Cproblem.create(title: "ContestProblem 4", description: "This wont be a hard Problem")
+		print "."
 		Cproblem.create(title: "ContestProblem 5", description: "This will be very easy Problem")
+		print "."
 		Cproblem.create(title: "ContestProblem 6", description: "This is very easy Problem")
+		print "."
 	## Exercise
-
+		snippet = "public class CoolSoft {\n\tpublic static "
+		snippet = "#{snippet}void main(String [] args) {\n"
+		snippet = "#{snippet}\t\t\n\t}\n}"
 		Problem.create(title: "Problem 1", description: "Given two numbers a and b, output a/b",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
+		print "."
 		Problem.create(title: "Problem 2", description: "This is very hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
+		print "."
 		Problem.create(title: "Problem 3", description: "This wont be a hard Problem",
 					incomplete: false,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
+		print "."
 		Problem.create(title: "Problem 4", description: "This will be very easy Problem",
 					incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
+		print "."
 		Problem.create(title: "Problem 5", description: "This is very easy Problem", incomplete: true,
-					snippet: "public class CoolSoft {\n\tpublic static void main(String [] args) {\n
-					\t\t\n\t}\n}")
+					snippet: snippet)
+		print "."
 		Problem.create(id: 501, title: "Count Change", description: "Write a program CountChange 
 			to count change. Given the number of quarter, dimes, nickles, and pennies the 
 			program should output the total as a single value in dollars and pennies.
@@ -352,6 +420,7 @@ puts("# ----------------------- Problems ----------------------- ")
 			For example if we have : 3 quarters, 2 dimes, 1 nickle, and 6 pennies,
 			then the total is 1.06 dollars. Implement your program to execute the previous 
 			example.", incomplete: false, seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 502, title: "Equivalent Resistance", description: "The equivalent resistance of 
 			resistors connected in series is calculated by adding the resistances of the 
 			individual resistors. The formula for resistors connected in parallel is a little 
@@ -361,44 +430,54 @@ puts("# ----------------------- Problems ----------------------- ")
 			equivalent resistance when they are connected in series and when they are connnected 
 			in parallel. Implement your program using values 8, 8, and 4 for three resistors.", 
 			incomplete: false, seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 503, title: "Even or Odd", description: "Write a program to check 
 			if a number is even or odd. Print 1 if even, and 0 if odd. Implement your code using 
 			two numbers 4 and 5, then test them consecutively. The program should print 1 
 			then 0.",incomplete: false, seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 504, title: "Palindrome", description: "Write a program to check if a 
 			number is a palindrome or not iteratively. Print 1 if the number is a palindrome, 
 			and -1 if not. Test the value 12321 in your program.",incomplete: false, seen: true, 
 			duplicated: false)
+		print "."
 		Problem.create(id: 505, title: "Fibonacci", description: "Write a program to print 
 			Fibonacci series up to a given number iteratively. Test your program using the 
 			value 5.", incomplete: false, seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 506, title: "Bubble sort", description: " Write a program to sort an 
 			integer array using the bubble sort method. Write your program using the array [32, 
 			39, 21, 45, 23, 3]", incomplete: false, seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 507, title: "Armstrong", description: "Write a program to check 
 			if a number is Armstrong number or not. An Armstrong number of 3 digit is a 
 			number for which sum of cube of its digits are equal to number e.g. 371 is an
 			Armstrong number because 3*3*3 + 7*7*7 + 1*1*1 = 371). Implement your code 
 			testing the value 153. Print 1 if Armstrong and -1 otherwise.", incomplete: false, 
 			seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 508, title: "GCD", description: "Write a  program to find GCD 
 			of two numbers in Java recursively. GCD: Greatest Common Divisor. Implement your code 
 			testing the numbers 12 90. The program should print 6.", incomplete: false, 
 			seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 509, title: "Square Root", description: "How to find square root of 
 			a number in Java. Implement your program testing the value 25, the program should 
 			print the value 5.", incomplete: false, seen: true, duplicated: false)
+		print "."
 		Problem.create(id: 510, title: "Structure", description: "Print the following structure:
 			1
 			22
 			333
 			4444
 			55555", incomplete: false, seen: true, duplicated: false)
+		print "."
 					
 	## Bank
 		## problem 1
 		Problem.create(id: 100, title: "Bubble Sort", description: "Given array of numbers a use them bubble 
 			sort to sort them descendingly ", incomplete: false, seen:true)
+		print "."
 		ModelAnswer.create(id: 100, title: "Answer1",problem_id: 100, answer: "")
 		TestCase.create(output: "1,2,2,3,5", input:"1,5,3,2,2", model_answer_id: 100)
 		TestCase.create(output: "-100,-20,49,100", input:"-100,-20,49,100", model_answer_id: 100)
@@ -451,6 +530,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## problem 2
 		Problem.create(id: 101, title: "Insertion Sort", description: "Given array of numbers a use the insertion 
 			sort to sort them ascendingly  ",incomplete: true, seen:true)
+		print "."
 		ModelAnswer.create(id: 101, title: "Answer1", problem_id: 101, answer: 'import java.io.BufferedReader;
 				import java.io.IOException;
 				import java.io.InputStreamReader;
@@ -493,6 +573,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## problem 3 	
 		Problem.create(id: 103 , title: "SelectionSort Sort", description: "Given array of numbers a use the selection 
 			sort to sort them descendingly ", incomplete: false, seen:true)
+		print "."
 		ModelAnswer.create(id: 103, title: "Answer1",problem_id: 103, answer: 'import java.io.BufferedReader;
 				import java.io.BufferedReader;
 				import java.io.IOException;
@@ -540,6 +621,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## problem 4
 		Problem.create(id: 104, title: "The Mean", description: "Given array of numbers calclate 
 			the mean for them ", incomplete: false, seen:true)
+		print "."
 		TestCase.create(output: "1.0", input:"1 1 1 ", model_answer_id: 104)
 		TestCase.create(output: "2.0", input:"1 2 3 ", model_answer_id: 104)
 		TestCase.create(output: "2.3333333333333335", input:"1 2 4", model_answer_id: 104)
@@ -570,6 +652,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## problem 5
 		Problem.create(id: 105 , title: "The max-so-far", description: "Given array of numbers get
 			the greatst elements so far",incomplete: false, seen:true)
+		print "."
 		TestCase.create(output: "1", input:"1 1 1 ", model_answer_id: 105)
 		TestCase.create(output: "222", input:"0 222 -2 ", model_answer_id: 105)
 		TestCase.create(output: "-1", input:"-1 -2 -5", model_answer_id: 105)
@@ -600,6 +683,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## problem 6
 		Problem.create(id: 106 , title: "The minmum-so-far", description: "Given array of numbers get
 			the smallest elements so far", incomplete: false, seen:true)
+		print "."
 		TestCase.create(output: "1", input:"1 1 1 ", model_answer_id: 106)
 		TestCase.create(output: "-2", input:"0 222 -2 ", model_answer_id: 106)
 		TestCase.create(output: "-4", input:"-1 -2 -5", model_answer_id: 106)
@@ -642,6 +726,7 @@ puts("# ----------------------- Problems ----------------------- ")
 			0 1 2
 			3 4 5 6	
 			7 8 9 0 1",incomplete: false, seen:true)
+		print "."
 		TestCase.create(output: "3 
 			4 5 
 			6 7 8 
@@ -682,6 +767,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## Problem 8
 		Problem.create(id: 108, title: "Multiplication", description: "Given array of numbers 
 			multipy all it elements",incomplete: false, seen:true)
+		print "."
 		TestCase.create(output: "6", input:"1 2 3 ", model_answer_id: 108)
 		TestCase.create(output: "0", input:"0 0 0 ", model_answer_id: 108)
 		TestCase.create(output: "-3", input:"-1 -1 -1", model_answer_id: 108)
@@ -709,6 +795,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## Problem 9
 		Problem.create(id: 109, title: "The reminder", description: "Given two numbers
 			a ,b calculate the reminder from dividing a over b ",incomplete: false, seen:true)
+		print "."
 		TestCase.create(output: "1", input:"3 2", model_answer_id: 109)
 		TestCase.create(output: "0", input:"4 2", model_answer_id: 109)
 		TestCase.create(output: "-3", input:"-1 -1 -1", model_answer_id: 109)
@@ -732,6 +819,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		## Problem 10
 		Problem.create(id: 110, title: "Fibonacci", description: "Use a recursive function to 
 			calculate the Fibonacci number", incomplete: false, seen:true)
+		print ".\n"
 		TestCase.create(output: "1", input:"1", model_answer_id: 110)
 		TestCase.create(output: "5", input:"5", model_answer_id: 110)
 		TestCase.create(output: "8", input:"6", model_answer_id: 110)
@@ -1029,8 +1117,6 @@ puts("# ----------------------- Problems ----------------------- ")
 		Problem.first.test_cases << TestCase.find_by_id(6)
 		Problem.find_by_id(2).test_cases << TestCase.first
 		Problem.find_by_id(3).test_cases << TestCase.find_by_id(2)
-		Problem.find_by_id(4).test_cases << TestCase.find_by_id(10)
-		Problem.find_by_id(5).test_cases << TestCase.find_by_id(11)
 	## Model Answers
 		Problem.first.model_answers << ModelAnswer.first
 		Problem.first.model_answers << ModelAnswer.find_by_id(2)
@@ -1079,7 +1165,7 @@ puts("# ----------------------- Problems ----------------------- ")
 		Cproblem.find_by_id(3).contests_progresses << ContestProgress.find_by_id(9)
 	## Hints
 		Problem.first.model_answers.first.hints << Hint.first
-		Problem.first.model_answers.first.hints << Hint.all.second
+		Problem.first.model_answers.first.hints << Hint.find_by_id(2)
 		Problem.find_by_id(501).model_answers.find_by_id(501).hints << Hint.find_by_id(501)
 		Problem.find_by_id(502).model_answers.find_by_id(502).hints << Hint.find_by_id(502)
 		Problem.find_by_id(503).model_answers.find_by_id(503).hints << Hint.find_by_id(503)

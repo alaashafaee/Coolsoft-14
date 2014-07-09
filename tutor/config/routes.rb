@@ -64,6 +64,7 @@ Tutor::Application.routes.draw do
 	resources :courses
 	resources :cproblems
 	resources :contests
+	resources :contributors
 
 	post "courses/choose"
 	post "courses/existing"

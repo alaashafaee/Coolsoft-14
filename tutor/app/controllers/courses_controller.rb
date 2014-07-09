@@ -21,11 +21,11 @@ class CoursesController < ApplicationController
 				@courses = Course.select(:university).distinct
 				@status = "1"
 			when "2"
-				@courses = Course.where("university= " + "\"" + params[:university] +
-					"\"").select(:semester).distinct
+				@courses = Course.where(university: params[:university]).
+					select(:semester).distinct
 			when "3"
-				@courses = Course.where("semester= " + params[:semester] +
-					" AND university = " + "\"" + params[:university] + "\"")
+				@courses = Course.where(semester: params[:semester],
+					university: params[:university])
 			when "4"
 				@course = Course.find(params[:id])
 			when "5"
@@ -176,8 +176,7 @@ class CoursesController < ApplicationController
 			@assignments.each do |a|
 				assignment_problems = assignment_problems + a.problems
 			end
-			@can_edit = @course.can_edit(current_lecturer)
-			@can_edit||= @course.can_edit(current_teaching_assistant)
+			@can_edit = @course.can_edit(current_lecturer, current_teaching_assistant)
 		else
 			render ('public/404')
 		end
