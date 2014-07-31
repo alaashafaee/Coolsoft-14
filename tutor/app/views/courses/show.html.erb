@@ -1,15 +1,65 @@
-<div class= 'left-row'>
-	<div class="row">
-		<div class="container">
-			<div class="col-md-8" 
-				style="color:#808088; font-family:sans-serif; font-weight:lighter">
-				<h2>&raquo; Courses</h2>
+<div class= "left-box" >
+	<div class="xob">
+		<div class = "course_info panel-body" >
+			<div class= "row course_title">
+				<div class="course_code"><%= @course.code %></div>
+				<div class="course_name"><%= @course.name %></div>
+				<% if current_lecturer %>
+					<div class="course_manage">
+							<%= link_to "Manage", { :controller => 'courses', :action => 'edit',
+							:method => :get, :id => params[:id] }, class: ""	%>
+					</div>
+				<% end %>
+			</div>
+			<div class="row">
+				<div class="course_sem">
+					Semester <%= @course.semester %>
+					Class <%= @course.year %>
+				</div>
+			</div>
+		</div>
+		<div class="row course_description">
+			<p>About the Course</p>
+			<% if @course.description %>
+				<div class="description-body" >
+					<%= @course.description %> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			<% end %>
+		</div>
+		<div class="view_discussion">
+			<%= link_to "View Discussion Board", { :controller => 'discussion_boards', :action => 'show', :id => params[:id] }, method: :get %>
+		</div>
+		<div class="view_discussion">
+			<%= link_to "View Resources", course_resources_path(@course)%>
+		</div>
+		<div class="tag-area"> 
+			<span class="view_discussion"> Tags : </span>	
+			<% @course.tags.each do |tag| %>
+				<span class="tag"><%= tag.name %></span>
+			<% end %>	
+		</div>
+				
+	</div>
+
+	<div class="xox">
+		<div class="well bell">
+			<div class="box-title"> Topics
+				<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
+					<%= link_to "Add Topic", {:controller => 'topics', :action => 'new',
+						:course_id => @course.id}, class: "btn btn-default", method: :post %> 
+				<% end %>
 			</div>
 				<% if lecturer_signed_in? %>
 					<%= link_to "Add Course", new_course_path %>
 				<% end %>
 		</div>
 	</div>
+	
 	<div class="well">
 		<% if @courses.any? %>
 			<div class="row">
