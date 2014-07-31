@@ -5,6 +5,7 @@
 			{:controller => 'assignment_problems',
 			:action => 'index', :id => @assignment.id} %></li>
 	</ul>
+	<%= flash[:notice] %>
 	<div class="tab-content">
 		<div id="tab1" class="tab active">
 			<% if flash[:notices] %>

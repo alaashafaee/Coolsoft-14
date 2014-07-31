@@ -113,7 +113,6 @@ class AssignmentsController < ApplicationController
 		end
 	end
 
-
 	# [Edit Assignment - Story 4.28]
 	# Updates the assignment needs to be edited in the database.
 	# Parameters: 
