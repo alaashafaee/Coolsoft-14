@@ -174,7 +174,37 @@ class AssignmentProblemsController < ApplicationController
 			@can_edit||= @course.can_edit(current_teaching_assistant)
 		end
 	end
-	
+
+	# [Edit Assignment - Story 4.28]
+	# Updates the problem needs to be edited in the database.
+	# Parameters: 
+	#	params[:id]: Id of the problem.
+	# Returns: none
+	# Author: Nadine Adel
+	def update
+		@problem = AssignmentProblem.find_by_id(params[:id])
+		if @problem.update_attributes(problem_params)
+			flash[:notice] = "Your problem is now updated"
+			redirect_to :action=>'show', :id =>params[:id]
+		else
+			render :action=>'edit', :id => @problem.id
+		end
+	end
+
+	# [Edit Assignment - Story 4.28]
+	# deletes and remove the problem selected from the database.
+	# Parameters: 
+	#	params[:id]: Id of the problem.
+	# Returns: none
+	# Author: Nadine Adel
+	def destroy
+		@problem = AssignmentProblem.find_by_id(params[:id])
+		@problem.destroy
+		flash[:notice] = "Answer successfully Deleted"
+		redirect_to :controller=> 'assignments',
+			:action=> 'show', :id=> @problem.assignment_id
+	end
+
 	# [Create Assignment - Story 4.27]
 	# To get from the assignment_problem form the values needed to save new problem.
 	# Parameters: none
@@ -184,7 +214,7 @@ class AssignmentProblemsController < ApplicationController
 	# Author: Nadine Adel
 	private
 	def problem_params
-		params.require(:assignment_problem).permit(:title, :description)
+		params.require(:assignment_problem).permit(:title, :description, :final_grade)
 	end
-	
+
 end

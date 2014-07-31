@@ -1,5 +1,5 @@
 <div class="body2" style="vertical-align: auto;horizontal-align: auto; float:left;">
-	<% unless student_signed_in? %>
+	<% if student_signed_in? %>
 		<%= form_for :assignment, url: assignments_path do |f| %>
 			<h2> Create Assignment </h2>
 			<br>
@@ -30,5 +30,7 @@
 				<%= f.submit "Save", class: "btn btn-info btn-large" %>
 			</p>
 		<% end %>
+	<% else %>
+		<%= raise 'Error' %>
 	<% end %>
 </div>

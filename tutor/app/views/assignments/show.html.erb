@@ -53,7 +53,7 @@
 	</p>
 </div>
 <br><br>
-<%= link_to "Back Assignments List", { :controller => 'courses',
+<%= link_to "Back To Course", { :controller => 'courses',
 		:action => 'show', id: @course.id}, class: "btn btn-info" %>
 <% if @can_edit %>
 	<%= link_to "Edit assignment", { :controller => 'assignments',
@@ -61,4 +61,7 @@
 	<%= link_to "View students' grades", {:controller => 'grades',
 		:action => 'view_grades', :assignment_id => @assignment.id},
 		:method => :get, class: 'btn btn-info' %>
+	<%= link_to "Delete Assignment", {:controller => 'assignments',
+		:action => 'destroy', :id => @assignment.id}, class: "btn btn-danger",
+		method: :delete, :confirm => "Are you sure you want to delete this Assignment ?" %>
 <% end %>

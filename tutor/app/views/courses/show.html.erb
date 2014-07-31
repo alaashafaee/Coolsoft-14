@@ -101,16 +101,13 @@
 						</div>
 					<% end %>
 				<% end %>
-<<<<<<< HEAD
 			<% end %>
 		</div>
 	</div>
-
 	<div class="xox">
 		<div class="well bell">
 			<div class="box-title"> Assignments
 				<% if lecturer_signed_in? || teaching_assistant_signed_in? %>
-					
 					<div class="btn btn-default"> <%= link_to "Create Assignment", {controller: 'assignments', action: 'new', course_id: params[:id]}, style:'color:white'%> </div>
 				<% end %>
 			</div>
