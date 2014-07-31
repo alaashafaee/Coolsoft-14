@@ -1,33 +1,29 @@
-<div class= "left-box" >
-	<div class="xob" style="padding : 0px 15px 2px;">
-		<div class = "c_info panel-body">
-		</div>
-		<div class= "row profile_info_row">
-			<img class = "image-responsive profile_picture" src="/assets/profile.png">
-			<div class = "profile_info">
-				<p class="name"><%= current_student.name %></p>
-				<div class="info">
-				<p><%= current_student.email %></p>
-				<p><b>University: </b><%= current_student.university %></p>
-				<p><b>Faculty: </b><%= current_student.faculty %></p>
-				<p><b>Major: </b><%= current_student.major %></p>
-				<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
-				</div>
+<div class="left-row">
+	<div class=  "profile_info_row">
+		<img class = "image-responsive profile_picture" src="/assets/profile.png">
+		<div class = "profile_info">
+			<p class="name"><%= current_student.name %></p>
+			<div class="info">
+			<p><%= current_student.email %></p>
+			<p><b>University: </b><%= current_student.university %></p>
+			<p><b>Faculty: </b><%= current_student.faculty %></p>
+			<p><b>Major: </b><%= current_student.major %></p>
+			<p><b>Joined on: </b><%= current_student.created_at.to_date %></p>
 			</div>
 		</div>
-		<div class = "row tabs">
-			<ul class = "tab-links"> 
-				<li class="active"><a href = "#tab2">Performance</a></li>
-				<li><a href = "#tab3">Statistics</a></li>
-			</ul>
-			<div class = "tab-content">
-				<div id = "tab2" class = "tab active">
-					Performance under construction
-				</div>
-				<div id = "tab3" class = "tab">
-					Statistics under construction
-				</div>
-			</div>	
-		</div>
+	</div>
+	<div class = "tabs">
+		<ul class = "tab-links"> 
+			<li class="active"><a href = "#tab2">Performance</a></li>
+			<li><a href = "#tab3">Statistics</a></li>
+		</ul>
+		<div class = "tab-content">
+			<div id = "tab2" class = "tab active">
+				Performance under construction
+			</div>
+			<div id = "tab3" class = "tab">
+				Statistics under construction
+			</div>
+		</div>	
 	</div>
 </div>

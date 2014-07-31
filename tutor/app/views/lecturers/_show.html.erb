@@ -1,18 +1,14 @@
-<div class= "left-box" >
-	<div class="xob" style="padding : 0px 15px 2px;">
-		<div class = "c_info panel-body" style="margin-bottom: -60px;">
-		</div>
-		<div class= "row profile_info_row">
-			<img class = "profile_picture" src="/assets/profile.png">
-			<div class = "profile_info">
-				<p class="name"><%= current_lecturer.name %></p>
-				<div class="info">
-					<p><%= current_lecturer.email %></p>
-					<p> <b>Degree: </b><%= current_lecturer.degree %></p>
-					<p> <b>Department: </b><%= current_lecturer.department %></p>
-					<p> <b>University: </b><%= current_lecturer.university %></p>
-					<p> <b>Joined on: </b><%= current_lecturer.created_at.to_date %></p>
-				</div>
+<div class="left-row">
+	<div class= "profile_info_row">
+		<img class = "profile_picture" src="/assets/profile.png">
+		<div class = "profile_info">
+			<p class="name"><%= current_lecturer.name %></p>
+			<div class="info">
+				<p><%= current_lecturer.email %></p>
+				<p> <b>Degree: </b><%= current_lecturer.degree %></p>
+				<p> <b>Department: </b><%= current_lecturer.department %></p>
+				<p> <b>University: </b><%= current_lecturer.university %></p>
+				<p> <b>Joined on: </b><%= current_lecturer.created_at.to_date %></p>
 			</div>
 		</div>
 	</div>
