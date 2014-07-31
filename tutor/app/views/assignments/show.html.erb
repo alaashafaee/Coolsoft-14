@@ -42,9 +42,9 @@
 						<%= link_to ap.title, { :controller => 'assignment_problems', 
 						:action => 'show', :id => ap.id }, :method => :get, class: ""%>
 						<% if @can_edit %>
+							<br>
 							<%= link_to "View Submissions", { :controller => 'solutions',
-								:action => 'view_submissions', :problem_id => ap.id },
-								class: "btn btn-info" %>
+								:action => 'view_submissions', :problem_id => ap.id }, style: "color:black; font-size: 12px" %>
 						<% end %>
 					</li>
 				<% end %>
@@ -53,6 +53,8 @@
 	</p>
 </div>
 <br><br>
+<%= link_to "Back Assignments List", { :controller => 'courses',
+		:action => 'show', id: @course.id}, class: "btn btn-info" %>
 <% if @can_edit %>
 	<%= link_to "Edit assignment", { :controller => 'assignments',
 		:action => 'edit', :id => @assignment.id }, class: "btn btn-info" %>

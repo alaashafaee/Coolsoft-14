@@ -8,6 +8,8 @@ class AssignmentsController < ApplicationController
 	# Author: Nadine Adel
 	def new
 		session[:course_id] = params[:course_id]
+		puts "**********"
+		puts params
 		@course = Course.find_by_id(session[:course_id])
 		@new_assignment = Assignment.new
 	end
