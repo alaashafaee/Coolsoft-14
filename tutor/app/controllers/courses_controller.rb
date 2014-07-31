@@ -94,6 +94,9 @@ class CoursesController < ApplicationController
 	#	@new_course: A new course instance 
 	# Author: Mohamed Mamdouh
 	def new
+		unless lecturer_signed_in?
+			raise 'Error'
+		end
 		if(@new_course == nil)
 			@new_course = Course.new
 		end
@@ -124,8 +127,10 @@ class CoursesController < ApplicationController
 			@discussion_board.course_id = @new_course.id
 			@discussion_board.save
 			@new_course.discussion_board = @discussion_board
-			params[:tags].each do |tag|
-				@new_course.tags << Tag.find_by_id(tag)
+			if params[:tags]
+				params[:tags].each do |tag|
+					@new_course.tags << Tag.find_by_id(tag)
+				end
 			end
 			flash[:success_creation]= "Course added."
 			redirect_to :action => 'index'
