@@ -18,6 +18,7 @@
     margin-bottom: 10px;
  	padding-left: 20px;
  	padding-top: 20px;
+ 	min-height: 250px;
 }
 .content_container{
 /*	background-color: #FAFAFA;
@@ -90,6 +91,10 @@
 .settings{
 	background-color: #96AB4F !important;
 
+}
+
+.contests {
+	background-color: #F4D03F !important;	
 }
 /*#######*/
 .right_side .list-group{
@@ -211,17 +216,7 @@
 .margin-10 {
 	margin: 10px;
 }
-.topic-box .well {
-	max-width: 400px;
-	max-height: 200px;
-	min-width: 400px;
-	min-height: 200px;
-	overflow-y: auto;
-}
-.bell .topic-box .well{
-	background-color: red;
-	margin-left: 3%;
-}
+
 .box-title {
 	font-size: 2em;
 	color: #808080;
@@ -245,4 +240,8 @@
 
 .delete {
 	background-color: #CF5044 !important;
+}
+
+.delete a {
+	color: white;F
 }
