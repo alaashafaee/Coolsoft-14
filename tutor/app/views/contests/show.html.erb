@@ -32,8 +32,9 @@
 								<% counter = counter + 1 %>
 							</td>
 							<td> 
-								<%= link_to problem.title,:controller =>'cproblems',:action =>'show',
-									:contest_id => @contest.id %><br/>
+								<%= link_to "#{problem.title}", {:controller => 'cproblems',
+									:action => 'show', :contest_id => @contest.id,
+									:cproblem_id => problem.id}%><br/>
 							</td>
 							<td>
 								<%= problem.time_limit %><br/>
