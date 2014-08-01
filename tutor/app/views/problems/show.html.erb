@@ -15,7 +15,8 @@
 			</div>
 			<div class= "row c_title">
 				<div class="course_code">
-					<%= link_to @topic.title, {controller: 'topics', action: 'show', id: @topic.id},  style: "color: gray" %> | 
+					<%= link_to @topic.title, {controller: 'topics', 
+						action: 'show', id: @topic.id},  style: "color: gray" %> | 
 				</div>
 				<div class="course_code">
 					<%= link_to @track.title, {controller: 'tracks',
@@ -44,7 +45,7 @@
 
 			<br><br>
 
-			<%= render partial: "solutions/test_cases_time_limit"
+			<%= render partial: "solutions/test_cases_time_limit" %>
 
 			<table width='100%'>
 				<tr>
