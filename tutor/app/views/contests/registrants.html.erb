@@ -1,0 +1,16 @@
+<div class="left-row">
+	<div class="container" style='width:100%'>
+		<%= render "contests/show_timer" %><br />
+		<div class="contest_information">
+			<ul>
+				<li><a href ="/contests/<%= @contest.id %>/">Problems</a></li>
+				<li><a href ="/contests/<%= @contest.id %>/standings">Standings</a></li>
+			</ul>
+		</div>
+		<h4>Contest Name:-</h4> <%= Contest.find_by_id(2).title %>
+		<h4> Registrants:-</h4>
+		<% @contest_registrants.each do |registrant| %>
+			<li><%= registrant.name %></li>
+		<% end %>
+	</div>
+</div>

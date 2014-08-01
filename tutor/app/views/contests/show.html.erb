@@ -9,15 +9,14 @@
 				<h3><%= @contest.title %></h3>	
 			</div>
 			<% if @contest.start_time == nil || @contest.start_time > DateTime.now %>
-				<h1> The Contest hasnt started yet <h1>
+				<center><h1> The Contest hasn't started yet <h1></center>
 			<% else %>
 				<div class="contest_information">
-					<%= link_to "Standings",
-						"/contests/#{@contest.id}/standings" %>
-					<%= link_to "Registrants",
-						"/registrants/#{@contest.id}",
-							style: "padding: 100px;" %>
-				<div>
+					<ul>
+						<li><a href ="/contests/<%= @contest.id %>/standings">Standings</a></li>
+						<li><a href ="/contests/<%= @contest.id %>/registrants">Registrants</a></li>
+					</ul>
+				</div>
 				<% unless @problems.blank? %>
 					<tr>
 						<td>Problem Number</td>

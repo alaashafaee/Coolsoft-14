@@ -46,8 +46,8 @@ describe SolutionsLayer do
 
 	context "test compile and execut and debug with java" do
 		before(:all) do
-			s = Student.create(email: '1@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'StudentI',
+			s = Student.create(email: '1@student.com', password: 'Aa123456789', 
+				password_confirmation: 'Aa123456789', name: 'StudentI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				faculty: "MET", university: "GUC", major: "CS", semester: 6, 
 				advising: false, probation: false)
@@ -192,8 +192,8 @@ describe SolutionsLayer do
 
 	context "test compile and execut and debug with python" do
 		before(:all) do
-			s = Student.create(email: '1@student.com', password: '123456789', 
-				password_confirmation: '123456789', name: 'StudentI',
+			s = Student.create(email: '1@student.com', password: 'Aa123456789', 
+				password_confirmation: 'Aa123456789', name: 'StudentI',
 				confirmed_at: Time.now, dob: DateTime.now.to_date, gender: true,
 				faculty: "MET", university: "GUC", major: "CS", semester: 6, 
 				advising: false, probation: false)

@@ -15,7 +15,6 @@ Tutor::Application.routes.draw do
 	get 'courses/sign_up'
 	get 'courses/find_course/:id' => 'courses#find_course'
 	get 'tracks/show_classmates/:id' => 'tracks#show_classmates'
-	get 'contests/add_problems/:id' => 'contests#add_problems'
 	get 'solutions/mark_solution'
 	get 'solutions/view_submissions'
 	post 'solutions/compile_solution' => 'solutions#compile_solution'
@@ -26,7 +25,10 @@ Tutor::Application.routes.draw do
 	post 'tracks/insert_recommendation' => 'tracks#insert_recommendation'
 	post 'debuggers/:id' => 'debuggers#start'
 	post 'cproblems/submit' => 'cproblems#submit'
+	get 'contests/add_problems/:id' => 'contests#add_problems'
 	get 'contests/:id/standings' => 'contests#standings'
+	get 'contests/:id/registrants' => 'contests#registrants'
+	get 'contests/:id/register' => 'contests#register'
 	post 'contests/add/:id' => 'contests#add'
 	get 'problems/edit'
 
@@ -55,7 +57,6 @@ Tutor::Application.routes.draw do
 	resources :tracks do
 		post 'getProblems', on: :member
 	end
-	resources :contests
 	resources :assignment_testcases
 	resources :problems_by_tas
 	resources :solutions
