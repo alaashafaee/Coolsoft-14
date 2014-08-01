@@ -2,6 +2,7 @@
 
 .cont {
 	background: #eeefe9;
+	width: 100% !important;
 	padding-top:100px;
 }
 .right_side {
